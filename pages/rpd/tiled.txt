@@ -1,0 +1,120 @@
+==== Tiled ====
+
+Tiled is a well-known map editor now can be used (with rpd export plugin) to create custom maps for Remixed Pixel Dungeon.
+
+To do so you need to download (or build) our customized Tiled package:
+
+==== Downloads ====
+
+  * [[https://drive.google.com/uc?export=download&id=1LIu8hlG519LhieMryHHQfpdpvUgRRAiR|Windows binaries]]
+  * [[https://github.com/NYRDS/tiled|Source code]]
+
+==== Guide ====
+
+To make it easier to create custom maps, and in order to add new functionality (like using non-standard tile sets), we made a modified build of an open source editor “Tiled”, so that it would export maps in the format RPD would understand.
+ 
+**Warning: This build works with Windows only!**
+
+Linux users can easily compile suitable build, following the link to a [[https://github.com/NYRDS/tiled|source code]]
+
+===== Preparing to create a new map =====
+
+Once you launch tiled.exe you have to create new map with specific parameters:
+
+**File -> New -> New map**
+
+**Orientation**: Orthogonal
+**Tile render order**: Left up
+
+**Tile size**:
+**Width**: 16 px
+**Height**: 16 px
+
+**Map size**: as big as you need (recommended range 8-64)
+
+{{:rpd:new_map.png?nolink|}}
+
+Save the project under desired name, and now we have basis to create a new map.
+
+==== Creating a map ====
+
+In order for map to work at all, you need to “draw” layout on “logic” layer.
+First you need to rename default layer (1.), or delete it and create a new one, named “logic” (2.) (it is important to use only lower case letters). 
+
+{{:ru:rpd:tiled_guide_new_layer.png?direct&200|}}
+
+Next you need to load standard tile set of you chose (non-x version). [[https://github.com/NYRDS/pixel-dungeon-remix/blob/master/PixelDungeon/src/main/assets/tiles0.png|Example]].
+It is important to, again, set tile size as 16x16, and for the sake of convenience set black color as transparent (even if black color is dominant in your tile set, it will become invisible in editor, but it will have no impact on how it looks in a game). 
+
+{{:rpd:create_tile_set.png?direct&200|}}
+
+Save tiles under desired name. And return to main tab:
+
+{{:rpd:back_to_map.png?direct&200|}}
+
+Now you can start to “draw” the map. Useful tips:
+ 
+1. **Stamp Brush** - places selected tile or group of tiles (if you selected more than one tile in tile palette) in chosen position of the map
+
+2. **Bucket Fill Tool** - "fills" chosen area of the map with selected tile
+
+3. **Rectangular Select** - lets you select group of tiles on the map to, for example, delete undesired result
+
+4. **"Tilesets" tab** - if this tab isn't active, you wouldn't be able to see our tile palette, which is located in lower right corner
+
+{{:rpd:tools.png?direct&200|}}
+
+Once we created layout for our map, now you need to ”export as”:
+
+{{:rpd:export_as.png?direct&200|}}
+
+As an export type select: **Remixed Pixel Dungeon levels**
+
+{{:rpd:export_as_type.png?direct&200|}}
+
+And that way you succesfully created a “*.json” file, which is standart format for rpd custom maps and can be used in your mod.
+
+==== Adding unique tiles ====
+
+With **Tiled** you can now create map with non-standard tile sets (but you still require standard set for “logic” layer). This will allow you to have any number of walls, floors, decorations etc. in your custom map. 
+To create a map with “custom” tiles, you need to follow previous tutorial, so that you have logical map layout at ready.
+
+Now, as previously you need to add your “decorative” tile set:
+
+{{:ru:rpd:tiled_guide_new_tileset.png?direct&200|}}
+
+Create “base” layer. This layer serves as foundation for decorative tiles, used to place walls, floor and decorations that does not have transparent parts. This is a “background layer”.
+
+{{:ru:rpd:tiled_guide_base.png?direct&200|}}
+
+
+Create “deco” layer. This layer is a secondary decorative layer, which is used to add complexity to your map composition. For example place windows and door on top of your walls from “base” layer. Basically that's a layer that is being drawn in front of “base”.
+
+{{:ru:rpd:tiled_guide_deco.png?direct&200|}}
+
+Once it's done, you need to make sure, that “logic” layer follows your layout accordingly. Basically, on logic layer, you need to have wall tiles in places where character can't walk, and floor tiles in place where character can walk, and all other tiles accordingly (like traps, chasms, etc.)
+
+{{:ru:rpd:tiled_guide_logic.png?direct&200|}}
+
+And if you are to hide “logic” layer in editor, you will be able to see this pretty picture:
+
+{{:ru:rpd:tiled_guide_pretty.png?direct&200|}}
+
+As a last thing to do, export your map as **Remixed Pixel Dungeon levels**. And you will get similar file:
+
+{{:ru:rpd:tiled_guide_deco_export.png?direct&200|}}
+
+There is two important parameters here,
+
+"customTiles":true — indicator, that your map uses custom tiles
+
+"tiles":"Citywip.png" — path to a file that contains said custom tile set
+
+=== Map Layers ===
+  * logic (base logic tiles)
+  * base
+  * deco
+  * deco2 - those layers will be drawn below the Hero
+
+  * roof_base
+  * roof_deco - and those will be drawn above
