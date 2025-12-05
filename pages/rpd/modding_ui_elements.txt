@@ -1,0 +1,249 @@
+====== Creating Custom UI Elements ======
+
+Remixed Dungeon has a sophisticated UI system that allows modders to create custom interfaces for their mods. Understanding this system is essential for creating professional-looking UI elements that integrate well with the game.
+
+===== UI System Overview =====
+
+The UI system in Remixed Dungeon follows a hierarchical structure:
+
+  * **Gizmo** - Base class for all interactive elements
+  * **Visual** - Visual elements with position, scale, transform
+  * **Group** - Container for other Gizmos
+    * **Scene** - Top-level container representing a screen
+    * **Component** - UI components with layout capabilities
+
+===== Creating a Simple Custom UI Element =====
+
+Here's how to create a basic custom UI element:
+
+<code java>
+package com.yourmod.ui;
+
+import com.watabou.noosa.ui.Component;
+
+public class CustomUIElement extends Component {
+    
+    // Your UI components
+    private Text title;
+    private RedButton actionButton;
+    
+    @Override
+    protected void createChildren() {
+        // Create all child elements here
+        title = PixelScene.createText("Custom Element", GuiProperties.titleFontSize());
+        add(title);
+        
+        actionButton = new RedButton("Action");
+        add(actionButton);
+        
+        // Set up event handlers
+        actionButton.setClickListener(() -> {
+            // Handle button click
+            onClickAction();
+        });
+    }
+    
+    @Override
+    protected void layout() {
+        // Position all child elements here
+        title.x = x + (width - title.width()) / 2;
+        title.y = y + 2;
+        
+        actionButton.setRect(x + 2, y + title.height() + 4, 
+                           width - 4, 16);
+    }
+    
+    private void onClickAction() {
+        // Your click handling logic
+    }
+}
+</code>
+
+===== Layout Containers =====
+
+Remixed Dungeon provides specialized layout containers to simplify UI arrangement:
+
+==== VBox (Vertical Box) ====
+VBox arranges its children vertically:
+
+<code java>
+VBox vbox = new VBox();
+vbox.setGap(2); // Set spacing between elements
+vbox.setAlign(VBox.Align.Top); // Alignment options: Top, Bottom, Center
+
+// Add UI elements
+vbox.add(new RedButton("Button 1"));
+vbox.add(new RedButton("Button 2"));
+vbox.add(new RedButton("Button 3"));
+
+// Position the container
+vbox.setPos(10, 10);
+add(vbox);
+</code>
+
+==== HBox (Horizontal Box) ====
+HBox arranges its children horizontally:
+
+<code java>
+HBox hbox = new HBox(200); // Maximum width
+hbox.setGap(2); // Set spacing between elements
+hbox.setAlign(HBox.Align.Left); // Alignment options: Left, Right, Center, Width
+
+// Add UI elements
+hbox.add(new RedButton("Button 1"));
+hbox.add(new RedButton("Button 2"));
+hbox.add(new RedButton("Button 3"));
+
+// Position the container
+hbox.setPos(10, 10);
+add(hbox);
+</code>
+
+===== Button Types =====
+
+The game provides several button types for different purposes:
+
+  * **Button** - Basic interactive component
+  * **TextButton** - Button with text label
+  * **RedButton** - Styled button with specific visual theme
+  * **IconButton** - Button with icon and text
+  * **ImageButton** - Button with only an image
+  * **ImageTextButton** - Button with image and text
+  * **CheckBox** - Checkable button with icon
+
+===== Working with Windows =====
+
+For modal dialogs, use the Window system:
+
+<code java>
+public class CustomWindow extends Window {
+    private static final int WIDTH = 120;
+    private static final int MARGIN = 2;
+
+    public CustomWindow(String message) {
+        super();
+
+        // Create content
+        Text text = PixelScene.createText(message, GuiProperties.regularFontSize());
+        text.maxWidth(WIDTH - MARGIN * 2);
+        text.measure();
+        add(text);
+
+        // Layout window
+        resize(WIDTH, (int)(text.height() + 2 * MARGIN));
+
+        // Add close button
+        IconButton closeBtn = new IconButton(Icons.get(Icons.CLOSE));
+        closeBtn.setPos(width() - closeBtn.width() - 2, 2);
+        add(closeBtn);
+        closeBtn.setClickListener(this::hide);
+    }
+}
+</code>
+
+===== UI Styling and Chrome =====
+
+Use the Chrome system for consistent styling:
+
+<code java>
+// Different chrome types for different UI elements
+NinePatch windowChrome = Chrome.get(Chrome.Type.WINDOW);
+NinePatch buttonChrome = Chrome.get(Chrome.Type.BUTTON);
+NinePatch toastChrome = Chrome.get(Chrome.Type.TOAST);
+
+// Apply to your UI element
+NinePatch bg = Chrome.get(Chrome.Type.WINDOW);
+bg.size(width(), height());
+add(bg);
+sendToBack(bg);
+</code>
+
+===== Text Handling =====
+
+For text rendering:
+
+<code java>
+// Single line text
+Text title = PixelScene.createText("Title", GuiProperties.titleFontSize());
+
+// Multi-line text
+Text multiline = PixelScene.createMultiline("This is a\nmulti-line\ntext", 
+                                            GuiProperties.regularFontSize());
+
+// With markup
+Text highlighted = PixelScene.createMultilineHighlighted("_Highlighted text_", 
+                                                       GuiProperties.regularFontSize());
+
+// Styling
+title.hardlight(0xFF0000); // Red color
+title.align(TextAlignment.CENTER_ALIGN);
+</code>
+
+===== Best Practices for UI Modding =====
+
+  - **Use Layout Containers**: Leverage VBox, HBox, and VHBox for complex arrangements
+  - **Pixel-perfect positioning**: Use PixelScene.align() for precise alignment
+  - **Follow Design Patterns**: Use the same patterns as the base game for consistency
+  - **Responsive UI**: Consider different screen sizes in your layouts
+  - **Touch-friendly**: Make sure interactive elements are large enough for touch
+  - **Memory Management**: Properly destroy UI components to prevent memory leaks
+  - **Performance**: Minimize layout recalculations with proper dirty flag patterns
+
+===== Example: Custom Item Slot =====
+
+Here's a more complex example showing how to create a custom item display slot:
+
+<code java>
+public class CustomItemSlot extends Component {
+    private Item item;
+    private ItemSlot slot;
+    private Text level;
+
+    public CustomItemSlot(Item item) {
+        super();
+        createChildren();
+        item(item);
+    }
+
+    @Override
+    protected void createChildren() {
+        slot = new ItemSlot();
+        add(slot);
+
+        level = new Text(GuiProperties.regularFontSize());
+        add(level);
+    }
+
+    @Override
+    protected void layout() {
+        super.layout();
+        
+        slot.setRect(x, y, height(), height());
+        
+        if (level != null) {
+            level.x = x + (width() - level.width()) / 2;
+            level.y = y + height() - level.height();
+        }
+    }
+
+    public void item(Item item) {
+        this.item = item;
+        if (item == null) {
+            slot.item((Item) null);
+            level.text("");
+        } else {
+            slot.item(item);
+            
+            if (item.levelKnown && item.level() != 0) {
+                level.text(Integer.toString(item.level()));
+                level.measure();
+            } else {
+                level.text("");
+            }
+        }
+        layout();
+    }
+}
+</code>
+
+By understanding and using these UI components properly, you can create professional-looking interfaces that integrate seamlessly with Remixed Dungeon's existing UI system.

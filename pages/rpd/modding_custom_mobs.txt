@@ -1,0 +1,549 @@
+====== Creating Custom Mobs with JSON and Lua ======
+
+This guide shows how to create completely new creatures in Remixed Dungeon without any Java coding. You'll learn to use JSON configuration and Lua scripting to define new enemies, NPCs, and other creatures.
+
+===== Mob Basics =====
+
+Every mob in Remixed Dungeon is defined by:
+  * A JSON file that describes its stats and properties
+  * Optional Lua scripts that define special behaviors
+  * An image file for its sprite
+
+===== Simple Mob: Custom Enemy =====
+
+==== Step 1: Create the Mob JSON ====
+Create ''actors/mobs/custom_rat.json'':
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.actors.mobs.Rat",
+  "name:en": "Poison Rat",
+  "name:ru": "Ядовитая крыса",
+  "desc:en": "A larger-than-normal rat with a sickly green coat and needle-sharp teeth. It bites with venomous intent.",
+  "desc:ru": "Больше обычной крысы с болезненно-зеленой шерстью и острыми как иглы зубами. Кусает с ядовитым намерением.",
+  "imageIndex": 7,
+  "HP": 15,
+  "exp": 3,
+  "damageMin": 4,
+  "damageMax": 8,
+  "defenseSkill": 4,
+  "properties": ["hostile", "small"],
+  "loot": "com.watabou.pixeldungeon.items.potions.PotionOfToxicGas",
+  "lootChance": 0.2,
+  "script": "actors/mobs/poison_rat.lua",
+  "onAttack": "poisonBite",
+  "onDeath": "toxicCloud"
+}
+</code>
+
+==== Step 2: Create the Lua Script ====
+Create ''actors/mobs/poison_rat.lua'':
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local mob = require "scripts/lib/mob"
+
+return mob.init{
+    spawn = function(self, level)
+        -- Called when the mob is spawned
+        RPD.glog("A poison rat appears!")
+    end,
+
+    -- Called when the mob attacks
+    attackProc = function(self, enemy, damage)
+        -- Calculate and deal damage
+        local damage = math.random(1, 4)  -- Example damage calculation
+        enemy:damage(damage, self)  -- Apply damage, source is mob
+
+        -- 30% chance to apply poison
+        if math.random() < 0.3 then
+            RPD.glog("The poison rat's bite poisons you!")
+            RPD.affectBuff(enemy, RPD.Buffs.Poison, 5) -- Apply poison for 5 turns
+        end
+        return damage
+    end,
+
+    die = function(self, cause)
+        -- Called when the mob dies
+        -- Create a toxic gas cloud at the mob's position
+        local pos = self:getPos()
+        -- In practice, you would use game mechanics to create gas clouds
+        RPD.glog("The poison rat explodes in a cloud of toxic gas!")
+
+        -- Visual effect
+        RPD.topEffect(pos, "gas")
+    end
+}
+</code>
+
+==== Step 3: Add the Sprite ====
+Add your custom rat sprite to ''sprites/mobs/rat.png'' at index 7 (the location specified in ''imageIndex'').
+
+===== Complex Mob: Support Creature =====
+
+==== JSON Definition ====
+Create ''actors/mobs/healing_angel.json'':
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.actors.mobs.Bandit",
+  "name:en": "Healing Sprite",
+  "name:ru": "Лечащий дух",
+  "desc:en": "A small, ethereal creature that floats gently through the dungeon. Rather than attacking, it tries to support nearby allies.",
+  "desc:ru": "Маленький, эфемерный дух, мягко парящий по подземелью. Вместо атаки, пытается поддерживать ближайших союзников.",
+  "imageIndex": 15,
+  "HP": 8,
+  "exp": 0,
+  "damageMin": 0,
+  "damageMax": 0,
+  "defenseSkill": 15,
+  "properties": ["neutral", "ethereal"],
+  "script": "actors/mobs/healing_sprite.lua",
+  "onTurn": "supportAllies",
+  "onDeath": "fadeAway"
+}
+</code>
+
+==== Lua Script ====
+Create ''actors/mobs/healing_sprite.lua'':
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local mob = require "scripts/lib/mob"
+
+return mob.init{
+    spawn = function(self, level)
+        -- Called when the mob is spawned
+        RPD.glog("A healing sprite appears!")
+    end,
+
+    act = function(self)
+        -- Called on each turn
+        local mobPos = self:getPos()
+
+        -- Find nearby allies (within 3 tiles)
+        local level = RPD.Dungeon.level()
+        local mobs = level:mobs()
+        local allies = {}
+
+        for i = 0, mobs:size()-1 do
+            local ally = mobs:get(i)
+            if ally ~= self and level:distance(mobPos, ally:getPos()) <= 3 then
+                local hpPercent = ally:getHP() / ally:getMaxHP()
+                if hpPercent < 1.0 then  -- Only consider injured allies
+                    table.insert(allies, {ally=ally, percent=hpPercent})
+                end
+            end
+        end
+
+        -- Find the most wounded ally
+        local mostWounded = nil
+        local lowestPercent = 1.0
+
+        for _, entry in ipairs(allies) do
+            if entry.percent < lowestPercent then
+                lowestPercent = entry.percent
+                mostWounded = entry.ally
+            end
+        end
+
+        -- Heal the most wounded ally if below 50% health
+        if mostWounded and lowestPercent < 0.5 then
+            mostWounded:heal(3, self)  -- Heal 3 HP, source is this mob
+            RPD.glog("The healing sprite glows softly, healing " .. mostWounded:name() .. "!")
+            RPD.topEffect(mostWounded:getPos(), "healing")
+        end
+
+        -- Spend turn time
+        self:spend(1)
+    end,
+
+    die = function(self, cause)
+        -- Called when the mob dies
+        RPD.glog("The healing sprite fades away peacefully.")
+        RPD.topEffect(self:getPos(), "fading")
+    end
+}
+</code>
+
+===== Special Behavior Mob: Mimic =====
+
+==== JSON Definition ====
+Create ''actors/mobs/treasure_mimic.json'':
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.actors.mobs.Mimic",
+  "name:en": "Treasure Mimic",
+  "name:ru": "Сундучная мимик",
+  "desc:en": "A mimic that takes the shape of a treasure chest. Appears innocent at first, but attacks the moment you try to open it.",
+  "desc:ru": "Мимик, принимающий форму сундука с сокровищами. Выглядит безобидным, но атакует в момент, когда вы пытаетесь его открыть.",
+  "imageIndex": 22,
+  "HP": 30,
+  "exp": 8,
+  "damageMin": 8,
+  "damageMax": 15,
+  "defenseSkill": 8,
+  "properties": ["hostile", "mimic"],
+  "loot": "com.watabou.pixeldungeon.items.Gold",
+  "lootQuantity": 100,
+  "script": "actors/mobs/treasure_mimic.lua",
+  "onAppear": "checkForPlayer",
+  "onAttack": "powerfulBite",
+  "onDeath": "dropTreasure"
+}
+</code>
+
+==== Lua Script ====
+Create ''actors/mobs/treasure_mimic.lua'':
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local mob = require "scripts/lib/mob"
+
+return mob.init{
+    spawn = function(self, level)
+        -- Called when the mimic appears
+        -- Mimics start in an inactive state
+        self.data = self.data or {}
+        self.data.inactive = true
+        RPD.glog("You see a treasure chest... it looks valuable!")
+    end,
+
+    act = function(self)
+        -- Called each turn - check for nearby player
+        local hero = RPD.Dungeon.hero
+        local distance = RPD.Dungeon.level():distance(self:getPos(), hero:getPos())
+
+        if self.data.inactive and distance <= 2 then
+            self.data.inactive = false
+            RPD.glog("The chest springs to life as you approach!")
+            -- Make the mob aggressive
+            self:setState(RPD.MobAi.State.HOSTILE)
+        end
+
+        -- Spend turn time
+        self:spend(1)
+    end,
+
+    -- Special attack
+    attackProc = function(self, target, damage)
+        local calculatedDamage = math.random(8, 12) -- Example damage calculation
+        target:damage(calculatedDamage, self) -- 50% more damage, source is mob
+        RPD.glog("The treasure mimic clamps down with powerful jaws!")
+        return calculatedDamage
+    end,
+
+    die = function(self, cause)
+        -- Called when the mob dies
+        local pos = self:getPos()
+        -- Drop extra treasure when defeated
+        local gold = RPD.item("Gold", 150)
+        RPD.Dungeon.level():drop(gold, pos)
+        local healingPotion = RPD.item("PotionOfHealing", 1)
+        RPD.Dungeon.level():drop(healingPotion, pos)
+        RPD.glog("The treasure mimic reveals its true hoard!")
+    end
+}
+</code>
+
+===== Boss Example =====
+
+==== JSON Definition ====
+Create ''actors/mobs/dungeon_lord.json'':
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.actors.mobs.Warlock",
+  "name:en": "Dungeon Lord",
+  "name:ru": "Повелитель подземелий",
+  "desc:en": "A powerful sorcerer who rules this level of the dungeon. Commands great magical powers and commands lesser undead.",
+  "desc:ru": "Могущественный колдун, правящий этим уровнем подземелья. Обладает великой магической силой и управляет простейшей нежитью.",
+  "imageIndex": 30,
+  "HP": 120,
+  "exp": 25,
+  "damageMin": 15,
+  "damageMax": 25,
+  "defenseSkill": 12,
+  "properties": ["boss", "hostile", "magical"],
+  "script": "actors/mobs/dungeon_lord.lua",
+  "onTurn": "bossActions",
+  "onAttack": "magicAttack",
+  "onDeath": "finalCurse"
+}
+</code>
+
+==== Lua Script ====
+Create ''actors/mobs/dungeon_lord.lua'':
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local mob = require "scripts/lib/mob"
+
+return mob.init{
+    act = function(self)
+        -- Called on each turn
+        local hero = RPD.Dungeon.hero
+        local distance = RPD.Dungeon.level():distance(self:getPos(), hero:getPos())
+
+        -- Summon a skeleton if there are fewer than 2 nearby
+        local nearbySkeletons = 0
+        local allMobs = RPD.Dungeon.level():mobs()
+        for i = 0, allMobs:size()-1 do
+            local other = allMobs:get(i)
+            if other:getEntityKind() == "Skeleton" and
+               RPD.Dungeon.level():distance(self:getPos(), other:getPos()) <= 5 then
+                nearbySkeletons = nearbySkeletons + 1
+            end
+        end
+
+        if nearbySkeletons < 2 and math.random() < 0.2 then
+            local mobPos = self:getPos()
+            local summonPos = nil
+            -- Find an empty adjacent cell
+            for direction = 0, 7 do
+                local adjCell = mobPos + RPD.PathFinder.CIRCLE8[direction + 1]
+                if RPD.Dungeon.level():cellValid(adjCell) and
+                   RPD.Dungeon.level().passable:adjCell(adjCell) and
+                   RPD.Dungeon.level():freeCell(adjCell) then
+                    summonPos = adjCell
+                    break
+                end
+            end
+
+            if summonPos then
+                local skeleton = RPD.spawnMob("Skeleton", summonPos, {})
+                RPD.glog("The Dungeon Lord summons aid!")
+                RPD.topEffect(summonPos, "summoning")
+            end
+        end
+
+        -- Spend turn time
+        self:spend(1)
+    end,
+
+    -- Called when attacking
+    attackProc = function(self, target, damage)
+        -- 50% chance for magic missile, 50% for weaken
+        if math.random() < 0.5 then
+            local calculatedDamage = math.random(10, 20)  -- Example damage calculation
+            target:damage(calculatedDamage, self)  -- Damage target, source is mob
+            RPD.topEffect(target:getPos(), "magic_missile")
+            RPD.glog("The Dungeon Lord fires a bolt of dark energy!")
+            return calculatedDamage
+        else
+            -- Weaken the target
+            RPD.affectBuff(target, RPD.Buffs.Weakness, 5)  -- Apply weakness for 5 turns
+            RPD.glog("The Dungeon Lord's magic weakens you!")
+            return damage
+        end
+    end,
+
+    die = function(self, cause)
+        -- Called when the boss dies
+        local hero = RPD.Dungeon.hero
+        RPD.glog("As the Dungeon Lord falls, he curses you with his dying breath!")
+
+        -- Apply a challenging debuff to the hero
+        RPD.affectBuff(hero, RPD.Buffs.Curse, 50) -- Apply curse for 50 turns
+
+        -- Create a special item at the location
+        local trophy = RPD.item("DungeonLordTrophy", 1)
+        RPD.Dungeon.level():drop(trophy, self:getPos())
+
+        RPD.topEffect(self:getPos(), "curse")
+    end
+}
+</code>
+
+===== Advanced Mob Techniques =====
+
+==== State Machine Mobs ====
+Create mobs with different behavior states:
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local mob = require "scripts/lib/mob"
+
+return mob.init{
+    act = function(self)
+        -- Get or initialize mob's state
+        self.data = self.data or {}
+        local state = self.data.state or "patrol"
+
+        if state == "patrol" then
+            -- Patrol behavior
+            local hero = RPD.Dungeon.hero
+            if RPD.Dungeon.level():distance(self:getPos(), hero:getPos()) < 8 then  -- Can see hero if within 8 tiles
+                self.data.state = "chase"
+                RPD.glog(self:name() .. " spots you!")
+            end
+        elseif state == "chase" then
+            -- Chase behavior
+            local hero = RPD.Dungeon.hero
+            if RPD.Dungeon.level():distance(self:getPos(), hero:getPos()) >= 8 then
+                self.data.state = "return"
+                self.data.returnTo = self:getPos() -- Remember spawn position
+            end
+        elseif state == "return" then
+            -- Return to spawn point
+            if RPD.Dungeon.level():distance(self:getPos(), self.data.returnTo) <= 1 then
+                self.data.state = "patrol"
+            end
+        end
+
+        -- Spend turn time
+        self:spend(1)
+    end
+}
+</code>
+
+==== Environmental Interaction ====
+Mobs that interact with dungeon features:
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local mob = require "scripts/lib/mob"
+
+return mob.init{
+    act = function(self)
+        local pos = self:getPos()
+        local level = RPD.Dungeon.level()
+
+        -- Check for doors nearby
+        for dx = -1, 1 do
+            for dy = -1, 1 do
+                local checkCell = level:cell(self:getPos().x + dx, self:getPos().y + dy)
+                if checkCell == RPD.Terrain.DOOR then
+                    -- Open the door
+                    level:set(self:getPos().x + dx, self:getPos().y + dy, RPD.Terrain.OPEN_DOOR)
+                    RPD.glog(self:name() .. " opens a door!")
+                    break
+                end
+            end
+        end
+
+        -- Check if on flammable terrain
+        if level:cell(self:getPos()) == RPD.Terrain.HIGH_GRASS then
+            -- Set the grass on fire
+            level:set(self:getPos(), RPD.Terrain.EMBERS)
+            -- In practice would use fire mechanics
+        end
+
+        -- Spend turn time
+        self:spend(1)
+    end
+}
+</code>
+
+==== Mob Groups and Coordinated Behavior ====
+Mobs that work together:
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local mob = require "scripts/lib/mob"
+
+return mob.init{
+    spawn = function(self, level)
+        -- Find other nearby mobs of the same type to form a group
+        local nearbyMobs = {}
+        local allMobs = RPD.Dungeon.level():mobs()
+        for i = 0, allMobs:size()-1 do
+            local other = allMobs:get(i)
+            if other ~= self and
+               RPD.Dungeon.level():distance(self:getPos(), other:getPos()) <= 5 and
+               other:getEntityKind() == self:getEntityKind() and
+               other.data and other.data.groupId then
+                table.insert(nearbyMobs, other)
+            end
+        end
+
+        local groupId = nil
+
+        for _, other in ipairs(nearbyMobs) do
+            if other.data.groupId then
+                groupId = other.data.groupId
+                break
+            end
+        end
+
+        -- If no group found, create a new one
+        if not groupId then
+            groupId = math.random(1000000)  -- Generate a simple ID
+        end
+
+        self.data = self.data or {}
+        self.data.groupId = groupId
+    end,
+
+    act = function(self)
+        if self.data.groupId then
+            local groupMobs = {}
+
+            -- Find all group members
+            local allMobs = RPD.Dungeon.level():mobs()
+            for i = 0, allMobs:size()-1 do
+                local other = allMobs:get(i)
+                if other.data and other.data.groupId == self.data.groupId then
+                    table.insert(groupMobs, other)
+                end
+            end
+
+            -- If this is the leader, make strategy decisions
+            if self.data.isLeader then
+                -- Move as a group toward the hero
+                local heroPos = RPD.Dungeon.hero:getPos()
+                for _, member in ipairs(groupMobs) do
+                    -- Move each member toward the hero
+                    member:getSprite():moveToTarget(heroPos)
+                end
+            else
+                -- Check if we need a new leader
+                local hasLeader = false
+                for _, member in ipairs(groupMobs) do
+                    if member.data and member.data.isLeader then
+                        hasLeader = true
+                        break
+                    end
+                end
+
+                if not hasLeader and #groupMobs > 0 then
+                    -- Make this mob the new leader
+                    self.data.isLeader = true
+                end
+            end
+        end
+
+        -- Spend turn time
+        self:spend(1)
+    end
+}
+</code>
+
+===== Testing Your Mobs =====
+
+==== Common Testing Steps ====
+  * Enable your mod in-game
+  * Start a new game to see new mobs (they'll appear based on your bestiary settings)
+  * Verify that sprites appear correctly
+  * Test all mob behaviors and Lua scripts
+  * Check that mob descriptions are properly localized
+  * Confirm that mob stats are balanced
+
+==== Bestiary Integration ====
+To make your mobs appear in the dungeon, add them to ''levelsDesc/Bestiary.json'':
+
+<code json>
+{
+  "level_1": [
+    {"class": "actors/mobs/custom_rat.json", "weight": 8},
+    {"class": "actors/mobs/healing_angel.json", "weight": 2}
+  ],
+  "level_5": [
+    {"class": "actors/mobs/treasure_mimic.json", "weight": 3},
+    {"class": "actors/mobs/dungeon_lord.json", "weight": 1}
+  ]
+}
+</code>
+
+Creating custom mobs without Java is quite powerful in Remixed Dungeon. With JSON and Lua, you can create complex behaviors, unique mechanics, and engaging new creatures for players to encounter!

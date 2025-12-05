@@ -1,0 +1,386 @@
+====== Non-Java Modding Techniques ======
+
+Remixed Dungeon provides extensive modding capabilities without requiring Java programming knowledge. This guide covers all the non-Java modding techniques you can use to create modifications.
+
+===== Resource Override Modding =====
+
+The simplest type of modding involves replacing game resources directly.
+
+==== Sprite Replacement ====
+  * Locate original sprites in the assets directory
+  * Create new sprites with the same dimensions and format
+  * Place them in the same directory structure in your mod folder
+
+Example directory structure:
+<code>
+MyMod/
+├── sprites/
+│   ├── items/
+│   │   ├── weapon/
+│   │   │   ├── sword.png (your custom sword sprite)
+│   │   │   └── dagger.png (your custom dagger sprite)
+│   │   └── armor/
+│   │       └── armor.png (your custom armor sprite)
+│   └── mobs/
+│       └── rat.png (your custom rat sprite)
+└── version.json
+</code>
+
+==== Sound and Music Replacement ====
+  * Replace sound effects by placing new files in ''sounds/'' directory
+  * Replace background music by placing new files in ''music/'' directory
+  * Keep the same filenames to ensure the game loads your replacements
+
+==== Text and Localization ====
+  * Modify game text by creating ''res/values/strings.json'' with string overrides
+  * Add new languages by creating ''res/values-[lang-code]/strings.json''
+  * Format: <code json>{"original_key": "your_new_text"}</code>
+
+===== JSON-Based Modding =====
+
+JSON files control most game content and mechanics in Remixed Dungeon.
+
+==== Item Modding ====
+Create custom items by defining them in JSON files:
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.items.weapon.melee.Sword",
+  "name:en": "Flaming Sword",
+  "name:ru": "Пылающий меч",
+  "desc:en": "This sword is engulfed in magical flames that burn enemies.",
+  "desc:ru": "Этот меч окутан магическим пламенем, которое сжигает врагов.",
+  "damageMin": 8,
+  "damageMax": 15,
+  "imageIndex": 5,
+  "AC": "ATTACK",
+  "script": "items/flaming_sword.lua",
+  "onHit": "onHit"
+}
+</code>
+
+==== Mob Modding ====
+Create or modify creatures:
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.actors.mobs.Rat",
+  "name:en": "Fire Rat",
+  "HP": 20,
+  "damageMin": 5,
+  "damageMax": 10,
+  "defenseSkill": 5,
+  "exp": 3,
+  "loot": "gold",
+  "lootChance": 0.5,
+  "properties": ["hostile", "small"],
+  "onDeath": "fire_explosion",
+  "imageIndex": 3
+}
+</code>
+
+==== Level Modding ====
+Design custom levels using JSON:
+
+<code json>
+{
+  "name": "Custom Level",
+  "width": 32,
+  "height": 32,
+  "map": [
+    "################################",
+    "#..............................#",
+    "#..............................#",
+    "################################"
+  ],
+  "mobs": [
+    {
+      "class": "com.watabou.pixeldungeon.actors.mobs.Rat",
+      "x": 10,
+      "y": 10
+    }
+  ],
+  "items": [
+    {
+      "class": "com.watabou.pixeldungeon.items.Gold",
+      "x": 15,
+      "y": 15,
+      "quantity": 50
+    }
+  ]
+}
+</code>
+
+==== Dungeon Structure ====
+Modify how levels connect by editing ''levelsDesc/Dungeon.json'':
+
+<code json>
+{
+  "connections": [
+    {"from": 1, "to": 2},
+    {"from": 2, "to": 3}
+  ],
+  "branches": [
+    {"level": 3, "branch": "sewers"}
+  ]
+}
+</code>
+
+===== Lua Scripting =====
+
+Lua scripts provide dynamic behavior without Java coding.
+
+==== Basic Lua Structure ====
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local item = require "scripts/lib/item"
+local M = {}
+
+return item.init{
+    desc = function()
+        return {
+            image         = 0,
+            imageFile     = "items.png",
+            name          = "Custom Item Name",
+            info          = "Custom Item Description",
+            stackable     = false,
+            upgradable    = true,
+            isFlies       = false,
+            defaultAction = "Custom Action Name"
+        }
+    end,
+
+    -- Function that can be called from JSON
+    execute = function(self, item, hero, action)
+        if action == "Custom Action Name" then
+            -- Add fire damage
+            RPD.affectBuff(hero, RPD.Buffs.Burning, 3) -- Apply burn for 3 turns
+            RPD.glog("The item burns you!")
+        end
+    end
+}
+</code>
+
+==== Correct Lua Functions ====
+  * ''target:damage(amount, source)'' - Deal damage to a target (e.g., victim:damage(10, caster))
+  * ''target:heal(amount, source)'' - Heal a target (e.g., target:heal(5, caster))
+  * ''RPD.affectBuff(target, buffClass, duration)'' - Apply a buff/debuff to a target
+  * ''RPD.permanentBuff(target, buffClass)'' - Apply a permanent buff to a target
+  * ''RPD.removeBuff(target, buffClass)'' - Remove a buff from a target
+  * ''RPD.glog(message)'' - Display a message in game log
+  * ''RPD.spawnMob(className, cell, mobDesc)'' - Create a new mob at a cell location
+  * ''RPD.item(itemClass, quantity)'' - Create an item
+  * ''RPD.GameAction'' - Check if currently in game (not in menu)
+  * ''RPD.GameLoop.currentTurn'' - Current turn count
+  * ''RPD.Dungeon.level()'' - Current level object
+  * ''RPD.Dungeon.hero'' - Player character
+  * ''RPD.Dungeon.level():mobs()'' - All mobs on current level
+  * ''RPD.Dungeon.level():cell(x, y)'' - Cell at coordinate
+  * ''RPD.Dungeon.level():distance(pos1, pos2)'' - Distance between positions
+  * ''RPD.Terrain.WALL'', ''RPD.Terrain.EMPTY'', etc. - Terrain constants
+  * ''RPD.Blobs.Fire'', ''RPD.Blobs.Water'', etc. - Environmental effects
+  * ''math.random()'' - Generate random number (use instead of G.chance())
+
+==== Item Scripts ====
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local item = require "scripts/lib/item"
+
+return item.init{
+    desc = function()
+        return {
+            image         = 1,
+            imageFile     = "items.png",
+            name          = "Explosive Item",
+            info          = "An explosive item that damages enemies.",
+            stackable     = false,
+            upgradable    = false,
+            isFlies       = true,
+            defaultAction = "EXPLODE"
+        }
+    end,
+
+    actions = function()
+        return {RPD.Actions.EXPLODE}
+    end,
+
+    -- Called when item is used
+    execute = function(self, item, hero, action)
+        if action == RPD.Actions.EXPLODE then
+            local level = RPD.Dungeon.level()
+            local cell = hero:getPos()
+
+            -- Damage all creatures in radius
+            local mobs = level:mobs()
+            for i = 0, mobs:size()-1 do
+                local mob = mobs:get(i)
+                if level:distance(mob:getPos(), cell) <= 2 then
+                    mob:damage(10, hero)  -- Damage mob, source is hero
+                    RPD.glog("Explosion damages " .. mob:name() .. "!")
+                end
+            end
+
+            -- Also damage the hero slightly
+            hero:damage(5, item)  -- Source is item itself
+            RPD.glog("The explosion hurts you too!")
+        end
+    end
+}
+</code>
+
+==== Mob Scripts ====
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local mob = require "scripts/lib/mob"
+
+return mob.init{
+    spawn = function(self, level)
+        -- Called when the mob is created
+        RPD.glog("A healing mob appears!")
+    end,
+
+    act = function(self)
+        -- Called each turn when mob is active
+        local hero = RPD.Dungeon.hero
+        local distance = RPD.Dungeon.level():distance(self:getPos(), hero:getPos())
+
+        if distance <= 2 then
+            -- Heal the mob
+            self:heal(5, self)  -- Heal 5 HP, source is mob itself
+            RPD.glog("The healing mob glows softly!")
+        end
+
+        -- Spend time for this turn
+        self:spend(1)
+    end,
+
+    -- Called when mob is attacked
+    onAttackProc = function(self, enemy, damage)
+        -- Chance to counter-attack
+        if math.random() < 0.3 then  -- 30% chance
+            enemy:damage(5, self)  -- Damage attacker, source is this mob
+        end
+        return damage
+    end,
+
+    die = function(self, cause)
+        -- Handle death
+        RPD.glog("The healing mob fades away.")
+    end
+}
+</code>
+
+==== Buff Scripts ====
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local buff = require "scripts/lib/buff"
+
+return buff.init{
+    desc = function()
+        return {
+            icon = 10,
+            name = "Custom Buff Name",
+            info = "Custom buff description with %d turns remaining."
+        }
+    end,
+
+    attach = function(self, target)
+        -- Called when buff is applied
+        RPD.glog("You feel different...")
+        return true
+    end,
+
+    act = function(self)
+        -- Called each turn while buff is active
+        if math.random() < 0.1 then -- 10% chance per turn
+            self.target:heal(1, self.target) -- Heal 1 HP occasionally, source is target itself
+        end
+
+        -- Continue for another turn
+        return true
+    end,
+
+    detach = function(self)
+        -- Called when buff is removed
+        RPD.glog("The effect fades...")
+    end
+}
+</code>
+
+===== Tiled Level Editor =====
+
+Create complex custom levels using the Tiled map editor:
+
+==== Getting Tiled ====
+  * Download Tiled from https://www.mapeditor.org/
+  * Use the custom Tiled extension provided with Remixed Dungeon
+
+==== Level Structure ====
+  * Create a new tilemap with the correct dimensions
+  * Use the original tilesets as a base or create new ones
+  * Place special objects for spawns, items, and exits
+  * Export as JSON format for use in the game
+
+==== Object Types ====
+  * ''mob_spawn'' - Places a mob at the location
+  * ''item_spawn'' - Places an item at the location  
+  * ''exit'' - Level exit point
+  * ''entrance'' - Level entrance point
+  * ''feature'' - Special level features
+
+===== Configuration Files =====
+
+==== version.json ====
+<code json>
+{
+  "version": 1,
+  "name": "My Mod",
+  "author": "Your Name",
+  "description": "A brief description of your mod",
+  "requiredCoreVersion": "32.0",
+  "dependencies": ["required_mod_name"]
+}
+</code>
+
+==== Bestiary Configuration ====
+Control what mobs appear where:
+<code json>
+{
+  "level_1": [
+    {"class": "com.watabou.pixeldungeon.actors.mobs.Rat", "weight": 10},
+    {"class": "com.watabou.pixeldungeon.actors.mobs.Gnoll", "weight": 5}
+  ],
+  "level_5": [
+    {"class": "com.watabou.pixeldungeon.actors.mobs.Swarm", "weight": 8},
+    {"class": "com.watabou.pixeldungeon.actors.mobs.Eye", "weight": 3}
+  ]
+}
+</code>
+
+===== Tips for Successful Non-Java Modding =====
+
+==== Planning Your Mod ====
+  * Start with simple resource swaps before moving to complex JSON configurations
+  * Look at existing game files as examples for your own
+  * Test frequently to avoid accumulating errors
+  * Keep backups of working configurations
+
+==== File Organization ====
+  * Follow the same directory structure as the original game
+  * Use clear, descriptive names for your files
+  * Group related content in subdirectories
+  * Document complex mods with a README file
+
+==== Testing and Debugging ====
+  * Enable your mod in-game and start a new game to test
+  * Check the game's log files for errors if something doesn't work
+  * Test on multiple save files to ensure compatibility
+  * Use simple test cases before implementing complex features
+
+==== Community Resources ====
+  * Share your work on the Remixed Dungeon Discord server
+  * Look at other mod authors' work for inspiration and techniques
+  * Collaborate with other modders for complex projects
+  * Report bugs or request features through the official channels
+
+With these techniques, you can create extensive modifications to Remixed Dungeon without writing a single line of Java code!

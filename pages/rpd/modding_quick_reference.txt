@@ -1,0 +1,278 @@
+====== Non-Java Modding Quick Reference ======
+
+This quick reference guide covers the most common modding tasks you can accomplish without Java coding in Remixed Dungeon.
+
+===== Common File Locations =====
+
+==== For Mods ====
+  * ''/Android/data/com.nyrds.pixeldungeon.ml/files/YourModName/'' (Android)
+  * ''C:\Users\YourName\.remixed-dungeon\mods\YourModName\'' (Desktop)
+
+==== Important Files ====
+  * ''version.json'' - Mod metadata and dependencies
+  * ''res/values/strings.json'' - Text translations
+  * ''levelsDesc/'' - Level definitions
+  * ''actors/mobs/'' - Creature definitions
+  * ''items/'' - Item definitions (weapon, armor, etc.)
+  * ''buffs/'' - Status effect definitions
+
+===== Resource Overrides =====
+
+==== Replace a Sprite ====
+1. Find original sprite in game assets
+2. Create your new sprite in the same format/dimensions
+3. Place in matching directory in your mod:
+<code>
+YourMod/
+└── sprites/
+    └── items/
+        └── weapon.png (replaces original weapon sprites)
+</code>
+
+==== Replace Sound ====
+<code>
+YourMod/
+└── sounds/
+    └── your_sound.wav (use same filename as original)
+</code>
+
+==== Replace Music ====
+<code>
+YourMod/
+└── music/
+    └── your_track.ogg (use same filename as original)
+</code>
+
+===== JSON Configuration Changes =====
+
+==== Change Item Stats ====
+Create ''items/weapon/short_sword.json'' in your mod:
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.items.weapon.melee.ShortSword",
+  "damageMin": 6,  // Increased from default
+  "damageMax": 12, // Increased from default
+  "name:en": "Enhanced Short Sword"
+}
+</code>
+
+==== Change Mob Stats ====
+Create ''actors/mobs/rat.json'' in your mod:
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.actors.mobs.Rat",
+  "HP": 20,        // Increased from default
+  "damageMin": 8,  // Increased from default
+  "exp": 4         // Increased from default
+}
+</code>
+
+==== Add New Text ====
+Create ''res/values/strings.json'' in your mod:
+
+<code json>
+{
+  "CustomMessage": "This is my custom message!",
+  "NewItemName": "Legendary Sword of Awesomeness",
+  "NewItemDesc": "This sword is incredibly awesome."
+}
+</code>
+
+===== Common Lua Functions =====
+
+==== Damage Functions ====
+  * ''target:damage(amount, source)'' - Deal damage to target (e.g., target:damage(10, source))
+  * ''target:heal(amount, source)'' - Heal target (e.g., target:heal(5, source))
+  * ''RPD.affectBuff(target, RPD.Buffs.Poison, duration)'' - Apply poison to target
+  * ''RPD.affectBuff(target, RPD.Buffs.Burning, duration)'' - Apply burn to target
+  * ''RPD.affectBuff(target, RPD.Buffs.Paralysis, duration)'' - Apply paralysis to target
+
+==== Summoning Functions ====
+  * ''RPD.spawnMob(mobClass, cell, mobDesc)'' - Spawn a new mob at a specific cell
+  * ''local item = RPD.item(itemClass, quantity)'' - Create an item
+  * ''Dungeon.level():drop(item, cell)'' - Drop an item at a specific cell
+
+==== Effect Functions ====
+  * ''RPD.topEffect(pos, effectName)'' - Show effect at a position (top layer)
+  * ''RPD.bottomEffect(pos, effectName)'' - Show effect at a position (bottom layer)
+  * ''RPD.objectEffect(pos, effectName)'' - Show effect at a position (object layer)
+  * ''RPD.playSound(soundName)'' - Play a sound effect
+
+==== Information Functions ====
+  * ''RPD.Dungeon.hero'' - Get the player character
+  * ''RPD.Dungeon.level():mobs()'' - Get all mobs on the current level
+  * ''RPD.Dungeon.level():cell(x, y)'' - Get terrain type at position
+  * ''RPD.Dungeon.level():distance(pos1, pos2)'' - Get distance between two positions
+  * ''math.random()'' - Generate random number
+
+===== Simple Custom Item (Complete Example) =====
+
+==== 1. Create the item JSON ====
+''items/weapon/ice_wand.json'':
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.items.weapon.missiles.MissileWeapon",
+  "name:en": "Ice Wand",
+  "desc:en": "A wand that shoots ice bolts. Freezes enemies temporarily.",
+  "imageIndex": 25,
+  "damageMin": 3,
+  "damageMax": 7,
+  "AC": "ZAP",
+  "script": "items/ice_wand.lua",
+  "onZap": "freezeBolt"
+}
+</code>
+
+==== 2. Create the Lua script ====
+''items/ice_wand.lua'':
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local item = require "scripts/lib/item"
+
+return item.init{
+    desc = function()
+        return {
+            image         = 25,
+            imageFile     = "items.png",
+            name          = "Ice Wand",
+            info          = "A wand that shoots ice bolts. Freezes enemies temporarily.",
+            stackable     = false,
+            upgradable    = true,
+            isFlies       = false,
+            defaultAction = "ZAP"
+        }
+    end,
+
+    actions = function()
+        return {RPD.Actions.ZAP}
+    end,
+
+    execute = function(self, item, hero, action)
+        if action == RPD.Actions.ZAP then
+            -- Find mob at target location
+            local level = RPD.Dungeon.level()
+            local allMobs = level:mobs()
+            local target = nil
+
+            for i = 0, allMobs:size()-1 do
+                local mob = allMobs:get(i)
+                if mob:getPos() == hero:getPos() then -- Simplified example - would need actual targeting
+                    target = mob
+                    break
+                end
+            end
+
+            if target then
+                -- Deal damage
+                target:damage(5, hero)  -- Damage target, source is hero
+                -- Freeze for 3 turns - using paralysis as an example
+                RPD.affectBuff(target, RPD.Buffs.Paralysis, 3)
+                RPD.glog("The ice bolt freezes " .. target:name() .. "!")
+                -- Visual effect
+                RPD.topEffect(target:getPos(), "ice")
+            end
+        end
+    end
+}
+</code>
+
+==== 3. Add to your mod's version.json ====
+<code json>
+{
+  "version": 1,
+  "name": "My Ice Mod",
+  "author": "Your Name"
+}
+</code>
+
+===== Common Modding Patterns =====
+
+==== Equipment with On-Equip Effects ====
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.items.armor.Armor",
+  "onEquip": "equipEffect",
+  "onUnequip": "unequipEffect"
+}
+</code>
+
+<code lua>
+function M.equipEffect(item, hero)
+    -- In practice, you would use different mechanics as properties may not work this way
+    RPD.glog("You feel protected from flames!")
+end
+
+function M.unequipEffect(item, hero)
+    RPD.glog("Your fire protection fades.")
+end
+</code>
+
+==== Mobs that Summon Others ====
+<code lua>
+function M.onTurn(mob)
+    if math.random() < 0.1 then  -- 10% chance per turn
+        local mobPos = mob:getPos()
+        local summonPos = nil
+        -- Find an empty adjacent cell
+        local level = RPD.Dungeon.level()
+        for direction = 0, 7 do
+            local adjCell = mobPos + RPD.PathFinder.CIRCLE8[direction + 1]
+            if level:cellValid(adjCell) and
+               level:passable:adjCell(adjCell) and
+               level:freeCell(adjCell) then
+                summonPos = adjCell
+                break
+            end
+        end
+
+        if summonPos then
+            local rat = RPD.spawnMob("Rat", summonPos, {})
+            RPD.glog(mob:name() .. " summons help!")
+        end
+    end
+end
+</code>
+
+==== Items that Change Terrain ====
+<code lua>
+function M.useItem(item, cell)
+    -- Change terrain at target location
+    local level = RPD.Dungeon.level()
+    level:set(cell.x, cell.y, RPD.Terrain.CHASM)
+    RPD.glog("The ground opens up!")
+end
+</code>
+
+===== Testing Checklist =====
+
+Before releasing your mod:
+
+  * [ ] Does ''version.json'' exist and have correct format?
+  * [ ] Do all JSON files have valid syntax? (Use JSON validator)
+  * [ ] Are all file paths correct and matching original structure?
+  * [ ] Do all referenced sprites exist?
+  * [ ] Do Lua scripts have proper syntax? (Use Lua validator)
+  * [ ] Are new items/mobs appearing in-game?
+  * [ ] Do custom behaviors work as expected?
+  * [ ] Is balance appropriate compared to existing content?
+
+===== Troubleshooting Common Issues =====
+
+==== Mod Not Loading ====
+  * Check that ''version.json'' is in the root of your mod directory
+  * Verify file permissions allow reading
+  * Make sure all JSON syntax is valid
+
+==== Lua Scripts Not Working ====
+  * Check game log for Lua error messages
+  * Verify script path in JSON matches actual file location
+  * Validate Lua syntax with an online checker
+
+==== Items/Mobs Not Appearing ====
+  * Make sure item/mob class in JSON matches an actual class
+  * Check that the item/mob is being placed somewhere (in bestiary, level, shop, etc.)
+  * Verify file paths and JSON syntax
+
+This quick reference should help you tackle most non-Java modding tasks in Remixed Dungeon!

@@ -1,0 +1,478 @@
+====== Creating Custom Items with JSON and Lua ======
+
+This guide shows how to create completely new items in Remixed Dungeon without any Java coding. You'll learn to use JSON configuration and Lua scripting to define new weapons, armor, potions, scrolls, and special items.
+
+===== Item Basics =====
+
+Every item in Remixed Dungeon is defined by:
+  * A JSON file that describes its properties
+  * Optional Lua scripts that define special behaviors
+  * An image file for its sprite
+
+===== Simple Item: Custom Weapon =====
+
+==== Step 1: Create the Item JSON ====
+Create ''items/weapon/custom_sword.json'':
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.items.weapon.melee.MeleeWeapon",
+  "name:en": "Lightning Sword",
+  "name:ru": "Меч молнии",
+  "desc:en": "This sword crackles with electrical energy that jumps to nearby enemies.",
+  "desc:ru": "Этот меч искрится электрической энергией, перекачивающейся на ближайших врагов.",
+  "imageIndex": 15,
+  "damageMin": 6,
+  "damageMax": 12,
+  "AC": "ATTACK",
+  "Tier": 3,
+  "script": "items/lightning_sword.lua",
+  "onHit": "lightningStrike",
+  "onEquip": "equipEffect",
+  "onUnequip": "unequipEffect"
+}
+</code>
+
+==== Step 2: Create the Lua Script ====
+Create ''items/lightning_sword.lua'':
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local item = require "scripts/lib/item"
+
+return item.init{
+    desc = function()
+        return {
+            image         = 15,
+            imageFile     = "items.png",
+            name          = "Lightning Sword",
+            info          = "This sword crackles with electrical energy that jumps to nearby enemies.",
+            stackable     = false,
+            upgradable    = true,
+            isFlies       = false,
+            defaultAction = "ATTACK"
+        }
+    end,
+
+    -- Called when the weapon hits an enemy
+    attackProc = function(self, cell, enemy, hero, damage)
+        -- Find nearby enemies (within 2 tiles) using level mobs
+        local mobs = RPD.Dungeon.level():mobs()
+        for i = 0, mobs:size()-1 do
+            local mob = mobs:get(i)
+            if mob ~= enemy and RPD.Dungeon.level():distance(enemy:getPos(), mob:getPos()) <= 2 then
+                local lightningDamage = math.random(1, 5)  -- Apply some damage (actual calculation would be more complex)
+                mob:damage(lightningDamage, hero)  -- Damage mob, source is hero
+                RPD.glog("Lightning arcs to " .. mob:name() .. "!")
+            end
+        end
+
+        -- Show visual effect (using available effect)
+        RPD.topEffect(enemy:getPos(), "electrical")
+        return damage
+    end,
+
+    activate = function(self, item, hero)
+        -- Called when item is equipped
+        RPD.glog("Electricity surges through your body!")
+    end,
+
+    deactivate = function(self, item, hero)
+        -- Called when item is unequipped
+        RPD.glog("The electrical sensation fades.")
+    end
+}
+</code>
+
+==== Step 3: Add the Sprite ====
+Add your custom sword sprite to ''sprites/items/weapon.png'' at index 15 (the location specified in ''imageIndex'').
+
+===== Custom Potion Example =====
+
+==== JSON Definition ====
+Create ''items/potions/custom_potion.json'':
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.items.potions.Potion",
+  "name:en": "Potion of Phase Shift",
+  "name:ru": "Зелье фазового сдвига",
+  "desc:en": "Drinking this potion will make you temporarily phase through walls and enemies for a short time.",
+  "desc:ru": "Выпив это зелье, вы временно будете проходить сквозь стены и врагов в течение короткого времени.",
+  "imageIndex": 22,
+  "script": "items/potion_phase.lua",
+  "onDrink": "phaseShift"
+}
+</code>
+
+==== Lua Script ====
+Create ''items/potion_phase.lua'':
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local item = require "scripts/lib/item"
+
+return item.init{
+    desc = function()
+        return {
+            image         = 22,
+            imageFile     = "items.png",
+            name          = "Potion of Phase Shift",
+            info          = "Drinking this potion will make you temporarily phase through walls and enemies for a short time.",
+            stackable     = true,
+            upgradable    = false,
+            isFlies       = false,
+            defaultAction = "DRINK"
+        }
+    end,
+
+    actions = function()
+        return {RPD.Actions.DRINK}
+    end,
+
+    execute = function(self, item, hero, action)
+        if action == RPD.Actions.DRINK then
+            RPD.glog("You feel insubstantial!")
+
+            -- Apply phase buff for 10 turns using RPD API
+            RPD.affectBuff(hero, RPD.Buffs.Invisibility, 10)  -- Using invisibility as example buff
+
+            -- Show visual effect (using available effect)
+            RPD.topEffect(hero:getPos(), "wind")
+        end
+    end
+}
+</code>
+
+==== Buff Definition ====
+Create the buff that enables phasing in ''buffs/phase_buff.json'':
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.actors.buffs.Buff",
+  "name:en": "Phase",
+  "desc:en": "You can move through walls and enemies.\nDuration: %d turns",
+  "imageIndex": 25,
+  "script": "buffs/phase_buff.lua",
+  "onAdd": "startPhase",
+  "onRemove": "endPhase",
+  "onStep": "onStep"
+}
+</code>
+
+And the Lua script ''buffs/phase_buff.lua'':
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local buff = require "scripts/lib/buff"
+
+return buff.init{
+    desc = function()
+        return {
+            icon = 25,
+            name = "Phase",
+            info = "You can move through walls and enemies.\\nDuration: %d turns"
+        }
+    end,
+
+    attach = function(self, target)
+        -- Called when buff is applied
+        self.target = target
+        RPD.glog("You phase out of reality!")
+        return true
+    end,
+
+    act = function(self)
+        -- Called each turn while active
+        -- Visual effect each step
+        RPD.topEffect(self.target:getPos(), "step")
+        -- Continue for another turn
+        return true
+    end,
+
+    detach = function(self)
+        -- Called when buff is removed
+        RPD.glog("You phase back into reality.")
+    end
+}
+</code>
+
+===== Custom Scroll Example =====
+
+==== JSON Definition ====
+Create ''items/scrolls/custom_scroll.json'':
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.items.scrolls.Scroll",
+  "name:en": "Scroll of Telepathy",
+  "name:ru": "Свиток телепатии",
+  "desc:en": "Reading this scroll will allow you to sense the minds of all creatures for a time, revealing their location and basic information.",
+  "desc:ru": "Прочтение этого свитка позволит вам ощущать разум всех существ некоторое время, раскрывая их местоположение и базовую информацию.",
+  "imageIndex": 12,
+  "script": "items/scroll_telepathy.lua",
+  "onRead": "activateTelepathy"
+}
+</code>
+
+==== Lua Script ====
+Create ''items/scroll_telepathy.lua'':
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local item = require "scripts/lib/item"
+
+return item.init{
+    desc = function()
+        return {
+            image         = 12,
+            imageFile     = "items.png",
+            name          = "Scroll of Telepathy",
+            info          = "Reading this scroll will allow you to sense the minds of all creatures for a time, revealing their location and basic information.",
+            stackable     = true,
+            upgradable    = false,
+            isFlies       = false,
+            defaultAction = "READ"
+        }
+    end,
+
+    actions = function()
+        return {RPD.Actions.READ}
+    end,
+
+    execute = function(self, scroll, hero, action)
+        if action == RPD.Actions.READ then
+            RPD.glog("You can feel the minds of all creatures!")
+
+            -- Apply telepathy buff for 20 turns
+            RPD.affectBuff(hero, RPD.Buffs.MindVision, 20)  -- Using MindVision as example buff
+
+            -- Show visual effect
+            RPD.topEffect(hero:getPos(), "telepathy")
+        end
+    end
+}
+</code>
+
+==== Telepathy Buff ====
+Create ''buffs/telepathy_buff.json'':
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.actors.buffs.Buff",
+  "name:en": "Telepathy",
+  "desc:en": "You can sense the minds of all creatures.\nDuration: %d turns",
+  "imageIndex": 26,
+  "script": "buffs/telepathy_buff.lua",
+  "onAdd": "startTelepathy",
+  "onRemove": "endTelepathy",
+  "onTurn": "updateTelepathy"
+}
+</code>
+
+And ''buffs/telepathy_buff.lua'':
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local M = {}
+
+function M.startTelepathy(buff, target)
+    RPD.glog("You can sense minds throughout the dungeon!")
+end
+
+function M.endTelepathy(buff, target)
+    RPD.glog("The mental noise fades.")
+end
+
+function M.updateTelepathy(buff, target)
+    -- Reveal all creatures on the level every few turns
+    -- Note: This effect would depend on specific game mechanics - this is conceptual
+    local level = RPD.Dungeon.level()
+    local mobs = level:mobs()
+    for i = 0, mobs:size()-1 do
+        local mob = mobs:get(i)
+        -- Reveal 1 tile around mob (conceptual implementation)
+    end
+end
+
+return M
+</code>
+
+===== Custom Armor Example =====
+
+==== JSON Definition ====
+Create ''items/armor/custom_armor.json'':
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.items.armor.Armor",
+  "name:en": "Shielding Armor",
+  "name:ru": "Экранирующая броня",
+  "desc:en": "This armor glows with a protective field that sometimes blocks attacks completely.",
+  "desc:ru": "Эта броня светится защитным полем, которое иногда полностью блокирует атаки.",
+  "imageIndex": 8,
+  "AC": "EQUIP",
+  "Tier": 4,
+  "baseDefenseFactor": 12,
+  "script": "items/armor_shielding.lua",
+  "onHit": "tryBlock",
+  "onEquip": "equipEffect"
+}
+</code>
+
+==== Lua Script ====
+Create ''items/armor_shielding.lua'':
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local item = require "scripts/lib/item"
+
+return item.init{
+    desc = function()
+        return {
+            image         = 8,
+            imageFile     = "items.png",
+            name          = "Shielding Armor",
+            info          = "This armor glows with a protective field that sometimes blocks attacks completely.",
+            stackable     = false,
+            upgradable    = true,
+            isFlies       = false,
+            defaultAction = "EQUIP"
+        }
+    end,
+
+    defenceProc = function(self, enemy, damage)
+        -- 25% chance to completely block the attack
+        if math.random() < 0.25 then  -- 25% chance
+            RPD.glog("Your armor's shield blocks the attack!")
+            RPD.topEffect(self:getOwner():getPos(), "shield")  -- Use available effect
+            return 0 -- Reduce damage to 0
+        end
+        return damage -- Return original damage if not blocked
+    end,
+
+    activate = function(self, item, hero)
+        RPD.glog("A protective field envelops you.")
+    end
+}
+</code>
+
+===== Advanced Item Techniques =====
+
+==== Item Sets ====
+Create items that work together:
+
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.items.weapon.melee.Sword",
+  "name:en": "Sword of Elements",
+  "set": "elemental_weapons",
+  "enchantments": ["fire", "ice", "shock"],
+  "script": "items/elemental_sword.lua",
+  "onHit": "applyElement"
+}
+</code>
+
+==== Conditional Behavior ====
+Use Lua to create context-sensitive items:
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local item = require "scripts/lib/item"
+
+return item.init{
+    desc = function()
+        return {
+            image         = 0,
+            imageFile     = "items.png",
+            name          = "Conditional Item",
+            info          = "An item with context-sensitive effects.",
+            stackable     = false,
+            upgradable    = true,
+            isFlies       = false,
+            defaultAction = "USE"
+        }
+    end,
+
+    actions = function()
+        return {RPD.Actions.USE}
+    end,
+
+    execute = function(self, item, hero, action)
+        if action == RPD.Actions.USE then
+            local level = RPD.Dungeon.level()
+            local heroHP = hero:getHP()
+            local heroMaxHP = hero:getMaxHP()
+
+            if level:getDepth() < 5 then
+                -- Stronger effect on early levels
+                hero:heal(10, item)  -- Heal hero, source is item
+                RPD.glog("The item glows brighter in the early dungeon!")
+            elseif heroHP < heroMaxHP * 0.3 then
+                -- Emergency healing when low on health
+                hero:heal(15, item)  -- Heal hero, source is item
+                RPD.glog("Desperation triggers the item's power!")
+            else
+                -- Normal effect
+                hero:heal(5, item)  -- Heal hero, source is item
+            end
+        end
+    end
+}
+</code>
+
+==== Complex Interactions ====
+Create items that interact with the environment:
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local item = require "scripts/lib/item"
+
+return item.init{
+    desc = function()
+        return {
+            image         = 0,
+            imageFile     = "items.png",
+            name          = "Environment Item",
+            info          = "An item that interacts with the environment.",
+            stackable     = false,
+            upgradable    = false,
+            isFlies       = true,
+            defaultAction = "THROW"
+        }
+    end,
+
+    onThrow = function(self, cell, user)
+        local level = RPD.Dungeon.level()
+        local terrainType = level:cell(cell)
+
+        if terrainType == RPD.Terrain.WATER then
+            -- Create a temporary bridge
+            level:set(cell, RPD.Terrain.EMPTY)
+            RPD.glog("The water parts before you!")
+        elseif terrainType == RPD.Terrain.CHASM then
+            -- Fill the chasm
+            level:set(cell, RPD.Terrain.EMPTY)
+            RPD.glog("A bridge of crystal forms!")
+        end
+    end
+}
+</code>
+
+===== Testing Your Items =====
+
+==== Common Testing Steps ====
+  * Enable your mod in-game
+  * Start a new game (not a saved game) to see new items
+  * Verify that sprites appear correctly
+  * Test all item functions and Lua scripts
+  * Check that item descriptions are properly localized
+  * Confirm that item balancing is appropriate
+
+==== Debugging Tips ====
+  * Check the game log for Lua errors
+  * Verify file paths match the expected directory structure
+  * Ensure JSON syntax is valid
+  * Make sure image indices correspond to actual sprite locations
+
+Creating custom items without Java is quite powerful in Remixed Dungeon. With JSON and Lua, you can create complex interactions, unique mechanics, and engaging new content for players to discover!

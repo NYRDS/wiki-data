@@ -1,0 +1,126 @@
+====== Modding Possibilities and Limitations ======
+
+This guide explains what can be achieved through modding in Remixed Dungeon and what limitations exist. Understanding these boundaries helps modders plan their projects effectively.
+
+===== What CAN be done without Java code changes =====
+
+==== Resource Overrides ====
+  * **Sprites and Graphics** - Replace any game sprites completely
+  * **Sounds and Music** - Change all sound effects and background music
+  * **Texts and Localization** - Modify all texts and add new languages
+
+==== JSON Configuration ====
+  * **Item Properties** - Stats, appearance, behavior of all items
+  * **Mob Properties** - Stats, AI, drops, abilities of all creatures
+  * **Dungeon Structure** - Level connections, room types, layout
+  * **Level Content** - What mobs, items and features appear where
+  * **Hero Properties** - Starting equipment, stats, abilities
+  * **Spells and Abilities** - Custom spell mechanics
+  * **Buffs and Effects** - Status effects and their properties
+  * **UI Texts** - All in-game texts and descriptions
+  * **Animations** - Custom animation sequences
+
+==== Lua Scripts ====
+  * **Custom Traps** - Create completely new trap mechanics
+  * **Custom Level Actors** - Add new environmental elements
+  * **Custom Mobs** - Design new creatures with unique behaviors
+  * **Custom Spells** - Implement new magical abilities
+  * **Custom Items** - Create items with unique effects
+  * **Custom Buffs** - Add new status effects
+  * **Custom AI** - Implement specialized AI for mobs and NPCs
+  * **Game Logic** - Modify certain game mechanics
+
+==== Map Creation ====
+  * **Pre-designed Levels** - Create completely custom levels using [[Tiled]]
+  * **Random Level Patterns** - Define new types of random levels
+  * **Dungeon Layout** - Change how levels connect
+  * **Special Areas** - Add unique branches and rooms
+
+===== What CAN be done with Java modding (advanced) =====
+
+==== Custom Classes ====
+  * **New Item Types** - Complete new item classes with complex mechanics
+  * **New Mob Types** - Completely new creatures with advanced AI
+  * **New Game Systems** - Add entirely new mechanics to the game
+  * **UI Extensions** - Create complex new UI systems
+  * **Game State Extensions** - Add new persistent game data
+
+==== Platform Integration ====
+  * **Platform Services** - Integrate with platform-specific services
+  * **Storage Extensions** - Custom data storage methods
+  * **Input Handling** - New input methods or controls
+
+===== What CANNOT be easily changed =====
+
+==== Core Game Systems ====
+  * **Inventory Size** - Fixed at 11 slots (8 equipment + 3 backpack)
+  * **Level Progression** - Still follows 1-26 progression
+  * **Core Game Rules** - Basic combat, movement, and survival mechanics
+  * **Save System Structure** - Game state serialization is fixed
+  * **Screen Resolution** - Game is designed for specific aspect ratios
+
+==== Technical Limitations ====
+  * **Game Speed** - Turn-based system cannot be made real-time
+  * **Physics System** - No physics engine for complex interactions
+  * **3D Graphics** - Game is strictly 2D with isometric sprites
+  * **Multiplayer Support** - Single-player only, no networking
+  * **Online Features** - No online functionality available
+
+==== UI Limitations ====
+  * **Main UI Layout** - Core interface positions are fixed
+  * **Button Limitations** - Touch interface has limited button space
+  * **Font Support** - Only specific font rendering system
+  * **Window Management** - Modal windows only, no overlapping UI
+
+==== Performance Constraints ====
+  * **Mobile Performance** - Complex mods may impact performance
+  * **Memory Usage** - Large resource files require more memory
+  * **Loading Times** - Complex initialization can slow loading
+
+===== Workarounds and Alternatives =====
+
+==== For Inventory Limits ====
+  * Use containers and chest-based storage
+  * Implement item conversion mechanisms
+  * Create storage items with internal space
+
+==== For UI Limitations ====
+  * Use scrollable interfaces within existing windows
+  * Create multiple screens instead of complex overlays
+  * Use iconography to convey complex information
+
+==== For Game System Limits ====
+  * Use Lua scripts to modify game behavior within the available hooks
+  * Create alternative mechanics using existing systems
+  * Use multiple levels to simulate new systems
+
+===== Platform-Specific Considerations =====
+
+==== Android ====
+  * File storage follows scoped storage requirements on newer versions
+  * Some mods may conflict with app updates
+  * Performance may vary across devices
+
+==== Desktop ====
+  * More memory and processing power available
+  * Keyboard and mouse support
+  * Easier debugging and mod installation
+
+==== Modding Capabilities vs Complexity ====
+
+==== Beginner Level ====
+  * Resource swaps (graphics, sounds, text)
+  * Simple JSON modifications
+  * Basic Lua scripts
+
+==== Intermediate Level ====
+  * Complex Lua scripts
+  * Custom level creation
+  * Advanced JSON configurations
+
+==== Advanced Level ====
+  * Java code modifications
+  * Platform-specific features
+  * Complex UI implementations
+
+Understanding these possibilities and limitations helps set realistic expectations for mod projects and plan development accordingly.

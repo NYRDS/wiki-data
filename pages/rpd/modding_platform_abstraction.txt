@@ -1,0 +1,128 @@
+====== Platform Abstraction System for Modders ======
+
+The Remixed Dungeon project uses a sophisticated platform abstraction system that allows the game to run on multiple platforms (Android, Desktop, Web) and distribution channels (Google Play, F-Droid, ruStore, etc.) while sharing the majority of core game logic. Understanding this system is crucial for developing cross-platform mods.
+
+===== Overview =====
+
+The platform abstraction system separates platform-specific functionality from the core game code using:
+
+  * **Interface-based abstraction** - Common interfaces and base classes that define contracts for platform-specific functionality
+  * **Class replacement** - Different implementations of the same class for different platforms
+  * **Build system integration** - Platform-specific code inclusion at build time
+
+===== Key Concepts for Modders =====
+
+==== Market Separation ====
+
+The game uses product flavors to support different markets:
+
+  * **Google Play** - Full analytics and crash reporting through Firebase
+  * **F-Droid** - No analytics, stub implementations to meet F-Droid requirements
+  * **ruStore** - Russian market specific features
+  * **Desktop** - No analytics, file-based storage
+  * **Web** - Browser-based functionality
+
+==== EventCollector Example ====
+
+One of the most important examples for modders is the **EventCollector** class, which handles analytics and crash reporting:
+
+  * **Core Usage** (in your mod code):
+    <code java>
+    import com.nyrds.platform.EventCollector;
+    
+    // Used throughout your mod
+    EventCollector.logEvent("mod_started");
+    EventCollector.logException(e);
+    </code>
+
+  * **Market-Specific Implementations**:
+    * ''src/googlePlay/java/com/nyrds/platform/EventCollector.java'' - Full Firebase implementation
+    * ''src/fdroid/java/com/nyrds/platform/EventCollector.java'' - Empty stub implementation
+    * ''src/ruStore/java/com/nyrds/platform/EventCollector.java'' - Minimal logging implementation
+    * ''src/libgdx/java/com/nyrds/platform/EventCollector.java'' - Desktop implementation
+
+The build system automatically selects the correct implementation based on the selected flavor.
+
+==== Preferences System ====
+
+The preferences system is another important abstraction:
+
+  * **Android** - Uses encrypted SharedPreferences
+  * **Desktop** - Uses HJSON file-based storage
+  * **Web** - Uses browser localStorage
+
+===== Creating Platform-Aware Mods =====
+
+When creating mods that need platform-specific features:
+
+==== 1. Use Platform Abstractions ====
+
+Always use the existing platform abstraction classes rather than platform-specific APIs directly:
+
+<code java>
+// Good - uses platform abstraction
+import com.nyrds.platform.storage.Preferences;
+
+Preferences.INSTANCE.put("music_volume", 0.8);
+float volume = Preferences.INSTANCE.getFloat("music_volume", 1.0f);
+
+// Avoid - platform-specific APIs
+SharedPreferences prefs = context.getSharedPreferences(...); // Android-only
+</code>
+
+==== 2. Check Platform Capabilities ====
+
+For complex platform-specific functionality, you can check which platform you're on:
+
+<code java>
+import com.nyrds.platform.PlatformSupport;
+
+if(PlatformSupport.isAndroid()) {
+    // Android-specific code
+} else if(PlatformSupport.isDesktop()) {
+    // Desktop-specific code
+}
+</code>
+
+==== 3. Add Platform-Specific Implementations ====
+
+If your mod needs platform-specific functionality, create the abstraction in your mod the same way the main game does:
+
+1. Define the interface or abstract class in your shared code
+2. Implement platform-specific versions in respective flavor directories
+3. Use the same fully-qualified class name for all implementations
+
+===== Cross-Platform Testing =====
+
+When developing mods, test on multiple platforms if possible, particularly:
+
+  * **Android Google Play** - Full feature set
+  * **Android F-Droid** - No analytics, may have different feature restrictions
+  * **Desktop** - Different storage and input methods
+
+===== Common Platform Abstractions =====
+
+==== Storage ====
+  * **Preferences** - Key-value storage
+  * **FileSystem** - File operations with SAF support on Android
+
+==== Audio ====
+  * **MusicManager** - Background music
+  * **Sample** - Sound effects
+
+==== Analytics ====
+  * **EventCollector** - Logging events and exceptions
+
+==== Input ====
+  * **Touchscreen** - Touch and mouse input abstraction
+  * **Keys** - Keyboard input abstraction
+
+===== Best Practices for Modders =====
+
+  - Always use the existing platform abstraction classes
+  - Test your mod on different platform flavors when possible
+  - Use stub implementations in F-Droid flavor to comply with privacy requirements
+  - Follow the package structure used by the main game
+  - Don't make assumptions about platform-specific behavior
+
+Understanding the platform abstraction system will help you create mods that work across all platforms and distribution channels where Remixed Dungeon is available.

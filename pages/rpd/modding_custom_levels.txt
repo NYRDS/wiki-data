@@ -1,0 +1,544 @@
+====== Creating Custom Levels with JSON ======
+
+Remixed Dungeon allows you to create custom levels using JSON configuration files. Custom levels are implemented via the PredesignedLevel class, which reads level data from JSON files.
+
+===== JSON-Based Level Creation =====
+
+For custom levels, you can define levels using JSON with integer-based tile representations.
+
+==== Basic Level Structure ====
+Create ''levelsDesc/custom_level.json'':
+
+<code json>
+{
+  "width": 16,
+  "height": 16,
+  "map": [
+    36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
+    36,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 36,
+    36,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 36,
+    36,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 36,
+    36,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 36,
+    36,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 36,
+    36,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 36,
+    36,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 36,
+    36,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 36,
+    36,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 36,
+    36,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 36,
+    36,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 36,
+    36,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 36,
+    36,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 36,
+    36,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 36,
+    36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36
+  ],
+  "entrance": [7, 14],  // Entrance coordinates [x, y]
+  "exit": [7, 1],       // Exit coordinates [x, y]
+  "mobs": [
+    {
+      "kind": "Rat",
+      "x": 5,
+      "y": 8
+    },
+    {
+      "kind": "Gnoll",
+      "x": 10,
+      "y": 5
+    }
+  ],
+  "items": [
+    {
+      "kind": "HealthPotion",
+      "x": 8,
+      "y": 8
+    },
+    {
+      "kind": "ScrollOfIdentify",
+      "x": 7,
+      "y": 5
+    }
+  ],
+  "customTiles": true,
+  "tiles": "tiles0.png",
+  "water": "water0.png"
+}
+</code>
+
+==== Map Array Legend ====
+The map array uses integers to represent different terrain types:
+  * 36 - Wall (Patched stone wall in default tileset)
+  * 1 - Empty floor (Normal floor in default tileset)
+  * 4 - Door (Closed door in default tileset)
+  * 7 - Entrance/Exit (Transition in default tileset)
+  * Other values correspond to specific terrain types in the tileset
+
+==== Advanced Level Features ====
+You can include complex features in your JSON levels:
+
+<code json>
+{
+  "width": 32,
+  "height": 32,
+  "map": [
+    // Integer array representing the level layout
+  ],
+
+  "entrance": [15, 31],  // Entrance coordinates [x, y]
+  "exit": [15, 0],       // Exit coordinates [x, y]
+
+  // For levels with multiple exits
+  "multiexit": [
+    [10, 0],
+    [20, 0]
+  ],
+
+  // Custom tile layers for visual effects
+  "customTiles": true,
+  "baseTileVar": [ /* Integer array for base tile variations */ ],
+  "decoTileVar": [ /* Integer array for decoration tile variations */ ],
+  "deco2TileVar": [ /* Integer array for secondary decoration tile variations */ ],
+  "roofBaseTileVar": [ /* Integer array for roof base tile variations */ ],
+  "roofDecoTileVar": [ /* Integer array for roof decoration tile variations */ ],
+
+  // Tileset and water texture files
+  "tiles": "tiles0.png",
+  "water": "water0.png",
+  "tiles_base": "tiles0.png",
+  "tiles_deco": "tiles0.png",
+  "tiles_deco2": "tiles0.png",
+  "tiles_logic": "tiles0.png",
+  "tiles_mobs": "Mobs.png",
+  "tiles_roof_base": "tiles0.png",
+  "tiles_roof_deco": "tiles0.png",
+  "tiles_objects": "Objects.png",
+
+  // Tile descriptions for tooltips
+  "decoName": [ /* Array of tile names for tooltips */ ],
+  "decoDesc": [ /* Array of tile descriptions for tooltips */ ],
+
+  "mobs": [
+    {
+      "kind": "Rat",  // Use the internal mob class name
+      "x": 10,
+      "y": 10
+    }
+  ],
+  "items": [
+    {
+      "kind": "HealthPotion",  // Use the internal item class name
+      "x": 15,
+      "y": 15
+    }
+  ],
+
+  // Complex objects in the level
+  "objects": [
+    {
+      "class": "com.nyrds.pixeldungeon.levels.objects.SignObject",
+      "x": 5,
+      "y": 5,
+      "text": "Welcome to the dungeon!"
+    }
+  ],
+
+  // Level-specific properties
+  "lighted": true,        // Whether the level is fully lit
+  "boss_level": false,    // Whether this is a boss level
+  "maxBrightness": 1.05,  // Maximum brightness level
+
+  // Level-specific music (defined in Dungeon.json)
+  // Music is set in the Dungeon.json level definition, not in the level JSON
+
+  // Lua script for level behavior
+  "script": "scripts/my_level_script.lua"
+}
+</code>
+
+==== Level Scripts ====
+You can add script functionality to your custom levels by defining a script in Dungeon.json:
+
+<code json>
+{
+  "Levels":{
+    // Other levels...
+    "custom_1":{"kind":"PredesignedLevel", "depth":6, "file":"levelsDesc/custom_level.json", "script": "scripts/my_custom_level_script", "music":"ost_prison"}
+  }
+}
+</code>
+
+Create ''scripts/my_custom_level_script.lua''. This script will be executed when the level loads:
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+
+-- The script defines a ScriptedActor which can respond to various game events
+local M = {}
+
+-- Called when the actor is added to the level
+function M.onSpawn(self)
+    RPD.glog("Welcome to my custom level!")
+end
+
+-- Called each turn (very frequently)
+function M.onTurn(self)
+    -- Example: spawn a random mob every 50 turns
+    if RPD.GameAction and RPD.GameLoop.currentTurn % 50 == 0 and math.random() < 0.3 then
+        local level = RPD.Dungeon.level()
+        local width = level:getWidth()
+        local height = level:getHeight()
+
+        -- Find a random empty cell
+        local pos = nil
+        for i = 1, 100 do
+            local testX = math.random(1, width - 2)
+            local testY = math.random(1, height - 2)
+            local testCell = level:cell(testX, testY)
+            if level:freeCell(testCell) and level:passable:cell(testCell) then
+                pos = testCell
+                break
+            end
+        end
+
+        if pos then
+            RPD.spawnMob("Rat", pos)
+            RPD.glog("A rat appears from the shadows!")
+        end
+    end
+end
+
+-- Called when the player steps on a cell (x, y)
+function M.onCellSelected(self, x, y, user)
+    -- Example: add an effect when player steps on certain tiles
+    local level = RPD.Dungeon.level()
+    local cell = level:cell(x, y)
+    RPD.topEffect(cell, "poison")
+end
+
+-- Other possible functions:
+-- onAttack(self, attacker, target)
+-- onCast(self, attacker, target)
+-- onDie(self, cause)
+-- onPickup(self, item, holder)
+-- onUseItem(self, item, holder)
+
+return M
+</code>
+
+Note that scripts can also be associated with individual objects/traps in the level definition:
+
+<code json>
+{
+  "objects": [
+    {
+      "kind": "Trap",
+      "x": 10,
+      "y": 10,
+      "trapKind": "scriptFile",
+      "script": "scripts/traps/MyCustomTrap",
+      "uses": 5
+    }
+  ]
+}
+</code>
+
+
+===== Tiled Map Editor Approach =====
+
+For complex visual level design, you can use the Tiled map editor to design your levels visually before converting them to the PredesignedLevel format.
+
+==== Setting Up Tiled ====
+  * Download Tiled from https://www.mapeditor.org/
+  * Create a new map with the same dimensions as you plan to use in-game (typically 32x32 for most levels)
+  * Use tilesets that match the game's art style, or create your own
+
+==== Tileset Creation ====
+  * Create a tileset image (PNG) with all your terrain tiles
+  * Each tile should be 16x16 pixels (same as the base game)
+  * Organize tiles in rows: walls, floors, special features, etc.
+
+==== Object Layers in Tiled ====
+Use special object layers in Tiled to plan game elements:
+
+  * ''mobs'' layer - Place mob spawn points using point objects
+  * ''items'' layer - Place items using point objects
+  * ''features'' layer - Place special features like altars, fountains
+  * ''exits'' layer - Mark exits and entrances
+
+==== Converting from Tiled to PredesignedLevel ====
+Tiled maps need to be converted to the integer array format used by PredesignedLevel:
+
+  * After designing your level in Tiled, you'll need to manually convert the tile IDs to match Remixed Dungeon's terrain system
+  * Each Tiled layer (base, deco, etc.) corresponds to arrays in the JSON: ''map'', ''baseTileVar'', ''decoTileVar'', etc.
+  * Mob and item positions from Tiled object layers need to be converted to the ''mobs'' and ''items'' arrays in JSON format
+  * The CSV data from Tiled layers needs to be adjusted to match the expected tile indices
+
+===== Complex Level Examples =====
+
+==== Switch and Door Puzzle Level ====
+Create a level with switches that open doors:
+
+<code json>
+{
+  "width": 16,
+  "height": 16,
+  "map": [
+     4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 4, 1, 4, 1, 4, 1, 1, 4, 1, 4, 1, 4, 1, 4,
+     4, 1, 4, 1, 4, 1, 4, 1, 1, 4, 1, 4, 1, 4, 1, 4,
+     4, 1, 4, 1, 4, 1, 4, 1, 1, 4, 1, 4, 1, 4, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 4, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 4,
+     4, 1, 4, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 4,
+     4, 1, 4, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 4,
+     4, 1, 4, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 4, 1, 4, 1, 4, 1, 1, 4, 1, 4, 1, 4, 1, 4,
+     4, 1, 4, 1, 4, 1, 4, 1, 1, 4, 1, 4, 1, 4, 1, 4,
+     4, 1, 4, 1, 4, 1, 4, 1, 1, 4, 1, 4, 1, 4, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4
+  ],
+  "entrance": [1, 1],
+  "exit": [1, 14],
+  "mobs": [
+    {
+      "kind": "Rat",
+      "x": 7,
+      "y": 7
+    }
+  ]
+}
+</code>
+
+Create ''scripts/puzzle_level.lua'' and reference it in Dungeon.json:
+
+<code json>
+{
+  "Levels":{
+    "puzzle_1":{"kind":"PredesignedLevel", "depth":6, "file":"levelsDesc/puzzle_level.json", "script": "scripts/puzzle_level"}
+  }
+}
+</code>
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+
+local M = {}
+
+-- Called when the actor is added to the level
+function M.onSpawn(self)
+    RPD.glog("Welcome to the puzzle level!")
+end
+
+-- Called each turn - check if player stepped on switch
+function M.onTurn(self)
+    local hero = RPD.Dungeon.hero
+    local heroPos = hero:getPos()
+    local level = RPD.Dungeon.level()
+    local x, y = level:cellToCoord(heroPos)
+
+    -- Check if player stepped on switch positions (represented as specific floor tiles)
+    if level:map(heroPos) == 8 and x == 3 and y == 2 then  -- Specific switch tile at 3,2
+        -- Change door at 3,7 from door (4) to floor (1)
+        level:set(level:cell(3, 7), 1)
+        RPD.glog("First door opened!")
+        RPD.topEffect(level:cell(3, 7), "poison")
+    elseif level:map(heroPos) == 8 and x == 5 and y == 2 then  -- Switch at 5,2
+        level:set(level:cell(5, 7), 1)  -- Open corresponding door
+        RPD.glog("Second door opened!")
+        RPD.topEffect(level:cell(5, 7), "poison")
+    elseif level:map(heroPos) == 8 and x == 7 and y == 2 then  -- Switch at 7,2
+        level:set(level:cell(7, 7), 1)  -- Open corresponding door
+        RPD.glog("Center door opened!")
+        RPD.topEffect(level:cell(7, 7), "poison")
+    end
+end
+
+return M
+</code>
+
+==== Procedural Arena Level ====
+Create a level that generates content dynamically:
+
+<code json>
+{
+  "width": 24,
+  "height": 24,
+  "map": [
+     4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+     4, 4, 4, 4, 4, 4, 4, 7, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4
+  ],
+  "entrance": [11, 23],
+  "multiexit": [],
+  "mobs": [
+    {
+      "kind": "Rat",
+      "x": 5,
+      "y": 5
+    }
+  ]
+}
+</code>
+
+Create ''scripts/arena_level.lua'' and reference it in Dungeon.json:
+
+<code json>
+{
+  "Levels":{
+    "arena_1":{"kind":"PredesignedLevel", "depth":7, "file":"levelsDesc/arena_level.json", "script": "scripts/arena_level"}
+  }
+}
+</code>
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+
+local M = {}
+local wave = 0
+
+-- Called when the actor is added to the level
+function M.onSpawn(self)
+    wave = 1
+    RPD.glog("The arena gates close behind you! Wave " .. wave .. " approaches...")
+    M.spawnWave()
+end
+
+-- Called each turn
+function M.onTurn(self)
+    local level = RPD.Dungeon.level()
+    local allMobs = level:mobs()
+
+    -- Count alive mobs excluding the player
+    local alive = 0
+    for i = 0, allMobs:size()-1 do
+        local mob = allMobs:get(i)
+        if mob:isAlive() and mob ~= RPD.Dungeon.hero then
+            alive = alive + 1
+        end
+    end
+
+    if alive == 0 then
+        wave = wave + 1
+        if wave <= 5 then
+            RPD.glog("Wave " .. wave .. " begins!")
+            M.spawnWave()
+        else
+            RPD.glog("You have survived the arena!")
+            -- Change exit tile to be accessible (if needed)
+        end
+    end
+end
+
+function M.spawnWave()
+    local enemyClasses = {"Rat", "Gnoll", "Crab"}
+    local class = enemyClasses[wave % #enemyClasses + 1]
+
+    local level = RPD.Dungeon.level()
+    local width = level:getWidth()
+    local height = level:getHeight()
+
+    -- Spawn multiple enemies based on wave
+    for i = 1, wave * 2 do
+        local pos = nil
+        for j = 1, 100 do  -- Try up to 100 times to find an empty cell
+            local testX = math.random(1, width - 2)
+            local testY = math.random(1, height - 2)
+            local testCell = level:cell(testX, testY)
+            if level:freeCell(testCell) and level:passable:cell(testCell) then
+                pos = testCell
+                break
+            end
+        end
+
+        if pos then
+            RPD.spawnMob(class, pos)
+        end
+    end
+
+    RPD.glog("Enemies pour into the arena!")
+end
+
+return M
+</code>
+
+===== Including Custom Levels in the Dungeon =====
+
+To make your custom levels appear in the dungeon progression, modify ''levelsDesc/Dungeon.json''. Each level is defined with a kind property and a unique ID:
+
+<code json>
+{
+   "Levels":{
+      "0":{"kind":"SewerLevel", "depth":0, "size":[0,0]},
+
+      "town_2":{"kind":"PredesignedLevel", "depth":0, "file":"levelsDesc/Town_2021_03.json", "noFogOfWar":"true", "isSafe":true, "music":"ost_town_1","script": "scripts/actors/town/Compass","maxBrightness":1.05},
+
+      "1":{"kind":"SewerLevel", "depth":1,        "size":[24,24], "music":"ost_sewer"},
+      "2":{"kind":"SewerLevel", "depth":2,        "size":[24,24], "music":"ost_sewer"},
+      "3":{"kind":"SewerLevel", "depth":3,        "size":[24,24], "music":"ost_sewer"},
+      "4":{"kind":"SewerLevel", "depth":4,        "size":[24,24], "music":"ost_sewer"},
+      "5":{"kind":"SewerBossLevel", "depth":5,    "size":[32,32], "music":"ost_boss_1_ambient", "fallbackMusic":"ost_boss_ambient"},
+
+      // Add your custom level
+      "custom_1":{"kind":"PredesignedLevel", "depth":6, "file":"levelsDesc/custom_level.json", "music":"ost_prison"}
+   },
+
+   "Graph":{
+      "0":[["town_2"],[]],
+      "town_2":[["1"],["0"]],
+      "1":[["2"],["town_2"]],
+      "2":[["3"],["1"]],
+      "3":[["4"],["2"]],
+      "4":[["5"],["3"]],
+      "5":[["custom_1"],["4"]],  // Connect to your custom level
+      "custom_1":[["6"],["5"]],  // Connect to next level
+      "6":[["7"],["custom_1"]],
+      // ... continue the progression
+   },
+   "Entrance":"0"
+}
+</code>
+
+The "Graph" section defines how levels connect to each other. Each entry has the format:
+  * First array: levels that can be reached from this level
+  * Second array: levels that lead to this level
+
+===== Testing and Debugging =====
+
+==== Common Testing Steps ====
+  * Enable your mod in-game
+  * Start a new game to access your custom levels
+  * Verify that all level elements (mobs, items, terrain) spawn correctly
+  * Test all scripted behaviors
+  * Check for pathfinding issues (ensure mobs and player can navigate properly)
+
+==== Debugging Tips ====
+  * Use the game log to trace script execution
+  * Verify that coordinates in JSON are within level boundaries
+  * Check that all referenced files (mobs, items) exist
+  * Ensure terrain values match valid game terrain indices
+  * Use integers in map arrays that correspond to actual tileset values
+  * Check that level dimensions match the length of your map array
+
+Custom levels greatly expand the possibilities for Remixed Dungeon mods. With the PredesignedLevel system, you can create unique challenges, puzzles, and experiences for players!

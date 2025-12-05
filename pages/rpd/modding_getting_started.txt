@@ -1,0 +1,190 @@
+====== Getting Started with Modding ======
+
+This guide will help you create your first mod for Remixed Dungeon. We'll start with simple modifications and work up to more complex ones.
+
+===== Prerequisites =====
+
+Before starting, make sure you have:
+
+  * A copy of Remixed Dungeon installed
+  * A text editor or IDE for editing files
+  * Basic understanding of JSON format
+  * Basic understanding of file organization
+
+===== Your First Simple Mod: Resource Override =====
+
+==== Step 1: Create a Mod Directory ====
+  * Navigate to your game's files directory: ''Android/data/com.nyrds.pixeldungeon.ml/files/'' (on Android)
+  * Create a new folder for your mod (e.g., "MyFirstMod")
+
+==== Step 2: Add Required Files ====
+  * Inside your mod folder, create a ''version.json'' file
+  * Add this basic content to the file:
+    <code json>
+    {
+      "version": 1,
+      "name": "My First Mod"
+    }
+    </code>
+
+==== Step 3: Override a Resource ====
+  * Download a simple image (e.g., a PNG file) that could replace an item sprite
+  * In your mod folder, create the directory structure to match the original game: ''items/weapon/'' 
+  * Place your image file in this directory with the same name as the original sprite you want to replace (e.g., ''dagger.png'' to replace the dagger sprite)
+
+==== Step 4: Test Your Mod ====
+  * Launch Remixed Dungeon
+  * Go to the Mods menu and enable your mod
+  * Start a new game to see your changes
+
+===== Your First JSON Mod: Changing Item Properties =====
+
+==== Step 1: Find the Item File ====
+  * Locate the JSON configuration for the item you want to modify in the game's assets
+  * For example, weapon properties might be in ''items/weapon/'' in files like ''short_sword.json''
+
+==== Step 2: Copy to Your Mod ====
+  * Copy the JSON file to your mod folder in the same directory structure
+  * Modify the properties you want to change (e.g., damage, level requirements)
+
+Example modification:
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.items.weapon.melee.ShortSword",
+  "name:en": "Modified Short Sword",
+  "name:ru": "Модифицированный короткий меч",
+  "damageMin": 3,  // Original value might be 4
+  "damageMax": 8,  // Original value might be 8
+  "ac": "ATTACK",
+  "imageIndex": 0
+}
+</code>
+
+==== Step 3: Test Your Changes ====
+  * Make sure your mod is enabled
+  * Start a new game to see the modified item properties
+
+===== Understanding the Directory Structure =====
+
+The game's assets follow a specific organization:
+
+  * ''actors/'' - Mobs, NPCs, and other entities
+    * ''actors/mobs/'' - Monster definitions
+    * ''actors/buffs/'' - Status effects
+  * ''items/'' - All items in the game
+    * ''items/weapon/'' - Weapons
+    * ''items/armor/'' - Armor
+    * ''items/rings/'' - Rings
+    * ''items/potions/'' - Potions
+    * ''items/scrolls/'' - Scrolls
+  * ''levelsDesc/'' - Level definitions and dungeon structure
+  * ''res/'' - Text strings and localization
+    * ''res/values/'' - English texts
+    * ''res/values-ru/'' - Russian texts
+  * ''sounds/'' - Sound effects
+  * ''music/'' - Background music
+  * ''sprites/'' - Game graphics
+
+===== Basic JSON Modding =====
+
+==== Changing Text ====
+To modify in-game text, create a ''res/values/strings.json'' file in your mod:
+<code json>
+{
+  "DungeonTitle": "My Custom Dungeon",
+  "WelcomeMsg": "Welcome to my modded version!"
+}
+</code>
+
+==== Modifying Mobs ====
+To change a mob's properties, copy the mob's JSON file to your mod:
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.actors.mobs.Rat",
+  "name:en": "Giant Rat",
+  "HP": 15,           // Higher HP
+  "damageMin": 3,     // Higher damage
+  "damageMax": 6,     // Higher damage
+  "exp": 3,          // More experience
+  "loot": "gold",    // Additional loot
+  "lootChance": 0.5  // Higher chance for loot
+}
+</code>
+
+===== Using Lua Scripts for Advanced Mods =====
+
+For more complex modifications, you can use Lua scripts. The correct approach uses specialized libraries:
+
+Example: ''items/custom_item.lua''
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local item = require "scripts/lib/item"
+
+return item.init{
+    desc = function()
+        return {
+            image         = 0,
+            imageFile     = "items.png",
+            name          = "Explosive Item",
+            info          = "An explosive item that damages enemies when thrown.",
+            stackable     = true,
+            upgradable    = false,
+            isFlies       = true,
+            defaultAction = "THROW"
+        }
+    end,
+
+    onThrow = function(self, cell, user)
+        -- Custom behavior when item is thrown
+        RPD.glog("Custom item thrown at " .. cell.x .. ", " .. cell.y)
+        -- Add explosion effect
+        -- Blast functionality would need to be implemented using specific game mechanics
+        RPD.topEffect(RPD.Dungeon.level():cell(cell.x, cell.y), "blast")
+    end
+}
+</code>
+
+Reference the script in your item's JSON using the correct format:
+<code json>
+{
+  "class": "com.watabou.pixeldungeon.items.Item",
+  "name:en": "Explosive Item"
+}
+</code>
+Note: Modern Remixed Dungeon uses the library-based approach that's defined entirely in the Lua file rather than through JSON script references.
+
+===== Testing and Debugging Your Mod =====
+
+==== Common Issues ====
+  * **Mod not loading**: Check that your ''version.json'' file exists and is properly formatted
+  * **Changes not showing**: Make sure the file paths exactly match the original game structure
+  * **JSON errors**: Use a JSON validator to check for syntax errors
+  * **Game crashes**: Check for missing or incorrectly formatted properties
+
+==== Debugging Tips ====
+  * Start with simple changes before moving to complex modifications
+  * Use the game's existing files as examples
+  * Test frequently to isolate problems
+  * Keep backups of working configurations
+
+===== Sharing Your Mod =====
+
+When your mod is complete and tested:
+
+  * Package all your mod files in a ZIP archive
+  * Include clear instructions and documentation
+  * Test on multiple devices if possible
+  * Share on the Remixed Dungeon Discord server
+  * Consider uploading to mod distribution platforms
+
+===== Next Steps =====
+
+Once you're comfortable with basic modding:
+
+  * Explore more complex JSON configurations
+  * Learn Lua scripting for dynamic behavior
+  * Create custom levels using Tiled
+  * Join the modding community for tips and feedback
+  * Look at existing mods like [[https://github.com/NYRDS/Maze-RPD-MOD|Maze]] to understand advanced techniques
+
+Remember to always backup your save files before testing new mods!
