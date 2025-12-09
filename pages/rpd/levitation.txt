@@ -1,0 +1,48 @@
+====== Levitation ======
+
+{{ rpd:images:levitation_icon.png|Levitation }}
+
+**Levitation** is a beneficial status effect in Remixed Dungeon that allows the affected character to float above the ground.
+
+==== Effect Description ====
+  * **Type:** Beneficial Status Effect (Buff)
+  * **Effect:** Allows floating above ground level
+  * **Duration:** 20 turns (standard duration)
+  * **Source:** Primarily from drinking a [[rpd:potion_of_levitation|Potion of Levitation]]
+
+==== How to Obtain ====
+  * From drinking a [[rpd:potion_of_levitation|Potion of Levitation]]
+  * From certain spells or class abilities
+  * From special items or environmental effects
+
+==== Mechanics ====
+  * Allows movement over traps without triggering them
+  * Enables passage over special terrain that would normally impede movement
+  * Prevents certain ground-based effects from affecting the character
+  * Blocks the Roots status effect (detaches any roots currently affecting the character)
+  * When effect ends, the game calls Dungeon.level.press() which may trigger floor effects at the character's position
+
+==== Strategy ====
+  * Excellent for safely crossing trap-filled areas
+  * Allows bypassing certain obstacles or difficult terrain
+  * Useful for avoiding ground-based harmful effects
+  * Good for navigating dangerous floor tiles
+  * Timing the end of the effect is important to avoid landing in dangerous areas
+
+==== Counters =====
+  * Air-based attacks may still affect levitating characters
+  * Some effects are not prevented by levitation
+  * Effect ends automatically after 20 turns
+
+==== Code Reference ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java|Levitation.java]]
+  * Source Code Location: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java
+  * Duration is fixed at 20 turns; removes Roots when attached and calls press() when detached
+
+==== See Also ====
+  * [[rpd:status_effects|Status Effects]] - Other status changes
+  * [[rpd:potion_of_levitation|Potion of Levitation]] - Primary source of levitation
+  * [[rpd:roots|Roots]] - Effect that Levitation counteracts
+  * [[rpd:mechanics|Game Mechanics]] - Other core systems
+
+{{tag> rpd mechanics status_effects buffs levitation}}
