@@ -3,20 +3,50 @@
 The **Crystal** is a special magical enemy found in Remixed Pixel Dungeon, often associated with the Shadow Lord.
 
 ==== Description ====
-Crystals are magical constructs that serve Shadow Lord and other powerful entities in the dungeon. They possess magical abilities and can be quite dangerous in combat.
+Crystals are magical constructs that serve Shadow Lord and other powerful entities in the dungeon. They possess magical abilities and can be quite dangerous in combat. They appear on pedestals and attack with wands.
 
 ==== Stats ====
-* HP: Moderate to High
-* Defense: Moderate
-* Attack: Magical attacks
-* Speed: Moderate
-* Special: Magical abilities, possibly related to Shadow Lord
+* **HP:** Depth * 4 + 1 (adjusts based on dungeon depth)
+* **Defense:** Depth * 2 + 1 (adjusts based on dungeon depth)
+* **Attack Skill:** 35 (with 1000 for special subtype 2)
+* **Damage:** Random value between HP/2 and HT/2
+* **Speed:** Immovable (cannot be displaced)
+* **EXP:** Depth + 1
+* **Max Level:** Depth + 2
+* **DR (Damage Resistance):** EXP/3
+
+==== Special Abilities ====
+* **Wand Attack:** Uses wands to attack enemies at range
+* **Immunities:** Immune to Toxic Gas, Paralysis, Stun, Confusion Gas, and Scroll of Psionic Blast
+* **Immobilized:** Cannot move (movable = false)
+* **No Corpse:** Does not leave a carcass upon death (carcassChance = 0)
+* **Special Subtype:** Shadow Lord crystals (kind = 2) have 25% chance to use Wand of Shadowbolt
+
+==== Types ====
+There are 3 different types of crystals:
+* **Type 0 & 1:** Standard crystals that spawn randomly in levels
+* **Type 2:** Special Shadow Lord crystals that appear during the Shadow Lord encounter with enhanced mechanics
 
 ==== Tactics ====
-Crystals use magical attacks rather than physical ones, so magical resistance or armor can be helpful. They may also be connected to the Shadow Lord encounter, so defeating them could affect the boss battle in some way.
+* **Magical Resistance:** Magical resistance or armor can be helpful against wand-based attacks
+* **Immobilized Target:** Since crystals don't move, you can position yourself to avoid their attacks
+* **Range Attack:** Crystals can attack from a distance using their wands
+* **Dungeon Interaction:** When a crystal on a pedestal dies, it transforms the area to embers and foliage, clearing Darkness in a 5x5 area
+
+==== Technical Details ====
+* **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Crystal.java|com.nyrds.pixeldungeon.mobs.common.Crystal]]
+* **Implementation:** Extends MultiKindMob and implements IDepthAdjustable and IZapper interfaces
+* **AI Behavior:** Immobilized with ranged attacks, doesn't use standard AI states
+* **Wand System:** Automatically equipped with random wands based on depth
+
+==== Shadow Lord Connection ====
+* **Spawning:** Special Shadow Lord crystals are created using Crystal.makeShadowLordCrystal()
+* **Encounter:** These appear during the Shadow Lord fight as part of his arena mechanics
+* **Enhanced Abilities:** Shadow Lord crystals have a 25% chance to use Wand of Shadowbolt instead of normal wands
 
 ==== See Also ====
   * [[rpd:enemies|Enemies]]
-  * [[shadow|Shadow Lord]]
+  * [[rpd:shadow|Shadow Lord]]
+  * [[rpd:wands|Wands]]
 
-{{tag>:rpd}}
+{{tag> rpd mobs}}

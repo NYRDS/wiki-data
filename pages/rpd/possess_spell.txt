@@ -5,46 +5,68 @@
 **Possess** is a spell in Remixed Pixel Dungeon (Necromancy Affinity).
 
 ==== Description ====
-The dark art of mind control allows the caster to bend the will of most creatures
+The dark art of mind control allows the caster to bend the will of most creatures. This spell turns the target into a controllable pet that fights for the player. The possessed creature will follow your commands and can be used strategically in combat.
 
 ==== Stats ====
   * **Magic Affinity:** Necromancy
-  * **Targeting:** char_not_self
+  * **Targeting:** char_not_self (targets any character except the caster)
   * **Level:** 4
   * **Mana Cost:** 15
+  * **Cast Time:** 0.5 (half a turn)
+  * **Image File:** spellsIcons/possession.png
+
+==== Mechanics ====
+  * **Pet Creation:** Turns the target into a controllable pet using RPD.Mob:makePet()
+  * **Controlled AI:** Sets the target's state to ControlledAi
+  * **Control Target:** Makes the target the player's control target with RPD.Dungeon.hero:setControlTarget()
+  * **Failure Condition:** Spell fails if the target cannot be a pet (target:canBePet() returns false)
+  * **Failure Message:** "Will of %s is too strong" when possession fails
+  * **Success Message:** "%s is awaiting for your commands" when possession succeeds
 
 ==== Usage ====
 The Possess spell can be used for:
-  * Primary effect of the spell
-  * Strategic applications in combat
-  * Utility purposes based on its mechanics
+  * **Primary effect:** Converting enemies into controllable allies
+  * **Combat Advantage:** Using powerful enemies against other enemies
+  * **Strategic Movement:** Controlling where the possessed creature moves
+  * **Boss Tactics:** Turning powerful enemies into allies during difficult encounters
+
+==== Restrictions ====
+  * **Cannot Self-Possess:** You can't possess yourself (target:canBePet() returns false for player)
+  * **Immune Targets:** Some creatures have canBePet() set to false and cannot be possessed:
+    * Mimics (including Pasty-Mimic)
+    * Crystal mobs
+    * Other bosses and special creatures
 
 ==== Classes ====
 Classes that can use this spell include:
-  * Classes with Necromancy affinity (e.g., [[rpd:necromancy|Necromancy class]])
-  * Other classes that gain access through special means
+  * Classes with Necromancy affinity - automatically available through spell affinity system
+  * Other classes may gain access through special means during modded gameplay
 
 ==== Strategy ====
 How to effectively use the Possess spell:
-  * Best situations to use the spell
-  * Synergies with other abilities
-  * Timing considerations
+  * **Best situations:** Use on strong enemies to turn them into allies during difficult fights
+  * **Synergies:** Combine with other Necromancy spells for maximum control
+  * **Timing considerations:** Best used when the target is weakened but still strong enough to be useful
+  * **Positioning:** After possession, you can control the creature's movement and attacks
 
-==== Data Validation ====
-This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
+==== Technical Details ====
+  * **Lua Script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Possess.lua|Possess.lua]]
+  * **Implementation:** Lua-based spell using the spell library system
+  * **Target Check:** Uses canBePet() method to determine if possession is possible
+  * **Pet System:** Integrates with the game's pet/mob control mechanics
 
-==== Content Verification ====
-* Information source: Lua Script in Remixed Dungeon codebase
-* Stats verified: Yes, extracted directly from spell class properties
-* Effect descriptions: Generated from code analysis and string resources
-* Last updated: 2025-12-09 based on Possess.lua
-
-==== Source Code ====
-This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Possess.lua|Possess]]
+==== Message Strings ====
+  * **Name:** "Possession"
+  * **Info:** "The dark art of mind control allows the caster to bend the will of most creatures"
+  * **Failure:** "Will of %s is too strong"
+  * **Success:** "%s is awaiting for your commands"
+  * **Self-Possess Error:** "You can't possess yourself"
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
-  * [[rpd:mechanics|Game Mechanics]]
   * [[rpd:necromancy|Necromancy Affinity]]
+  * [[rpd:raise_dead_spell|Raise Dead]] - Another Necromancy pet-creating spell
+  * [[rpd:exhumation_spell|Exhumation]] - Another Necromancy spell
+  * [[rpd:mobs|Enemies]] - List of creatures that may be possessible
 
 {{tag> rpd spells necromancy }}
