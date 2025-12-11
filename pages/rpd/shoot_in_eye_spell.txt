@@ -12,24 +12,34 @@ Use your exceptional marksmanship skills to shoot the enemy right in the eye, if
   * **Targeting:** char_not_self
   * **Level:** 1
   * **Mana Cost:** 5
-  * **Special Effects:** damages a target
+  * **Cast Time:** 1 turn
+  * **Special Effects:** damages and blinds target
+
+==== Mechanics ====
+When cast, the ShootInEye spell:
+  * Applies a blindness effect to the target for a duration equal to the caster's skill level
+  * Deals damage based on the caster's skill level and equipped weapon's damage roll
+  * Shows a boomerang zap effect between caster and target
+  * Plays a wound hit effect on the target
+
+The damage calculation is: `damage = math.sqrt(caster:skillLevel()) * weapon:damageRoll(caster)`
 
 ==== Usage ====
 The ShootInEye spell can be used for:
-  * Offensive applications against enemies
-  * Strategic applications in combat
-  * Utility purposes based on its mechanics
+  * **Offensive applications**: Direct damage to enemies
+  * **Tactical applications**: Blinding enemies to reduce their combat effectiveness
+  * **Strategic applications**: Creating opportunities during combat by blinding dangerous enemies
 
 ==== Classes ====
 Classes that can use this spell include:
-  * Classes with Huntress affinity (e.g., [[rpd:huntress|Huntress class]])
+  * [[rpd:huntress|Huntress]] class (default starting spell)
   * Other classes that gain access through special means
 
 ==== Strategy ====
 How to effectively use the ShootInEye spell:
-  * Best situations to use the spell
-  * Synergies with other abilities
-  * Timing considerations
+  * **Best situations**: Use against dangerous enemies to blind them temporarily and reduce their effectiveness
+  * **Timing considerations**: Most effective when you can follow up with additional attacks during the blindness period
+  * **Synergies**: Combines well with other damage-dealing abilities during the blindness window
 
 ==== Data Validation ====
 This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
@@ -38,7 +48,7 @@ This information is extracted directly from the game code and validated against 
 * Information source: Lua Script in Remixed Dungeon codebase
 * Stats verified: Yes, extracted directly from spell class properties
 * Effect descriptions: Generated from code analysis and string resources
-* Last updated: 2025-12-09 based on ShootInEye.lua
+* Last updated: 2025-12-12 based on ShootInEye.lua
 
 ==== Source Code ====
 This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/ShootInEye.lua|ShootInEye]]
@@ -47,5 +57,6 @@ This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed
   * [[rpd:spells|Spells]]
   * [[rpd:mechanics|Game Mechanics]]
   * [[rpd:huntress|Huntress Affinity]]
+  * [[rpd:blindness|Blindness Buff]]
 
 {{tag> rpd spells huntress }}
