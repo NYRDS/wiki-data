@@ -1,14 +1,19 @@
 ====== Summon Deathling ======
 
-**Summon Deathling** is a necromantic spell available primarily to Necromancers in Remixed Pixel Dungeon.
+{{ rpd:images:summon_deathling_spell_icon.png?200|Summon Deathling Icon }}
+
+**Summon Deathling** is a necromancy spell available primarily to Necromancers in Remixed Pixel Dungeon.
 
 ==== Description ====
-Summon Deathling creates a temporary undead minion that fights alongside the hero. The number of deathlings that can be summoned simultaneously is limited by the hero's level.
+Summons an undead follower. Deathling's hp and damage grows with hero level. The number of deathlings that can be summoned simultaneously is limited by the hero's level and magic level.
 
 ==== Stats ====
-* Mana Cost: Moderate
-* Range: Self
-* Effect: Summons a deathling minion
+* **Magic Affinity:** Necromancy
+* **Mana Cost:** 2
+* **Cast Time:** 3 seconds
+* **Range:** Self
+* **Effect:** Summons a deathling minion
+* **Summon Limit:** 1 + Magic Level (getSummonLimit() method)
 
 ==== Usage ====
 This spell is particularly useful for:
@@ -16,18 +21,30 @@ This spell is particularly useful for:
   * Distracting enemies during combat
   * Tanking damage for the hero
   * Exploring dangerous areas safely
+  * Creating meat shields for difficult encounters
 
 ==== Classes ====
   * **Necromancer**: Natural affinity, core class ability
   * **Other classes**: May learn through class-specific abilities
 
+==== Mechanics ====
+  * The summoning limit is calculated as 1 + Magic Level (from getLevelModifier method of hero)
+  * Deathlings scale in power based on the hero's level, with increased HP and damage
+  * Each summoned deathling will fight alongside the hero until destroyed or the hero dies
+
 ==== Strategy ====
-Deathlings scale in power based on the hero's level, making them more valuable as the hero progresses deeper into the dungeon. Managing your summon limit effectively is crucial to maximize the benefit of this spell.
+Deathlings scale in power based on the hero's level, making them more valuable as the hero progresses deeper into the dungeon. Managing your summon limit effectively is crucial to maximize the benefit of this spell. The summoning limit increases with the hero's magic level, allowing more deathlings to be summoned at once as the hero progresses.
+
+==== Content Verification ====
+* **Information Source:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]]
+* **Stats Verification:** Extracted directly from SummonDeathling.java class properties
+* **Effect Descriptions:** Based on getSummonLimit() method analysis and string resources
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
-  * [[rpd:mechanics|Game Mechanics]]
+  * [[rpd:necromancy|Necromancy]]
   * [[rpd:necromancer|Necromancer Class]]
   * [[rpd:deathling|Deathling]]
+  * [[rpd:spell_affinities|Spell Affinities]]
 
-{{tag>:rpd}}
+{{tag> rpd spells necromancy }}
