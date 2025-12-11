@@ -1,7 +1,53 @@
-====== beehive ======
+====== Beehive ======
 
-{:rpd:images:beehive_sprite.png?200|}
+{{ rpd:images:beehive_sprite.png|Beehive Sprite }}
 
-{{ rpd:images:beehive_sprite.png|Beehive Sprite  }}
+==== Description ====
+A beehive is a structure that houses a colony of bees. When damaged or destroyed, it spawns multiple bees that will attack the hero. Beehives are typically immobile structures that can be found in various dungeon levels.
 
-Description for beehive goes here.087df4a8853cb3229502316f929e70fc6db6790
+==== Stats ====
+* **HP**: 64
+* **Level**: 1
+* **Defense Skill**: 1
+* **Attack Skill**: 0
+* **Damage**: 0-0
+* **Armor**: 0
+* **Speed**: Immovable (0x)
+* **View Distance**: 4 tiles
+
+==== Abilities ====
+* **Bee Spawning**: When damaged, spawns 1 bee at a time
+* **Final Swarm**: When destroyed, releases 3-8 bees in one go
+* **Immobilization**: Cannot move from its location
+
+==== Behavior ====
+* **AI State**: Passive (does not actively seek targets)
+* **Movement Type**: Normal
+* **Can be a pet**: No
+* **Flying**: No
+* **Movable**: No (immobile structure)
+
+==== Drops ====
+* Beehives have a 0% chance to drop items
+
+==== Strategy ====
+* Beehives are not threatening by themselves, but approaching one can trigger bee spawns
+* If you need to fight near a beehive, consider taking it out quickly to prevent multiple bees from spawning
+* Be careful when using area-of-effect attacks near beehives, as they can trigger multiple bee spawns
+* The final swarm when the hive is destroyed can overwhelm unprepared heroes
+
+==== Source Code ====
+* [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BeeHive.json|BeeHive.json Configuration]]
+* [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/BeeSpawner.lua|BeeSpawner.lua Script]]
+
+==== Content Verification ====
+* Information source: JSON configuration and Lua script files
+* Stats verification: Extracted directly from BeeHive.json configuration
+* Ability description: Based on BeeSpawner.lua script analysis
+* Last updated: 2025-12-12 based on current codebase
+
+==== See Also ====
+  * [[rpd:bee_mob|Bee]]
+  * [[rpd:mobs|Mobs]]
+
+{{tag>:rpd mobs structures}}
