@@ -29,6 +29,21 @@ YourMod/
         └── weapon.png (replaces original weapon sprites)
 </code>
 
+==== Configure Custom Sprite Animations ====
+Sprites can be configured using JSON files in ''spritesDesc/'' directory. For example, SpiderElite sprite configuration:
+<code json>
+{
+  "texture": "spiders.png",
+  "width": 16,
+  "height": 16,
+  "shadow": 0.1,
+  "idle": { "fps": 5, "looped": true, "frames": [0, 0, 0, 0, 0, 0, 1, 1] },
+  "run": { "fps": 15, "looped": true, "frames": [2, 3, 4, 5] },
+  "attack": { "fps": 15, "looped": false, "frames": [6, 7, 8, 6] },
+  "die": { "fps": 10, "looped": false, "frames": [9, 10, 11] }
+}
+</code>
+
 ==== Replace Sound ====
 <code>
 YourMod/
@@ -69,6 +84,25 @@ Create ''actors/mobs/rat.json'' in your mod:
 }
 </code>
 
+==== Create Custom Mobs with JSON Configuration ====
+Mobs can be configured using JSON files in ''mobsDesc/'' directory. For example, SpiderElite configuration:
+<code json>
+{
+   "class"         :"com.nyrds.pixeldungeon.mobs.common.MultiKindMob",
+   "HP"            :[15, 17, 19],
+   "exp"           :[3, 4],
+   "maxLvl"        :10,
+   "dmgMin"        :[5, 6, 7],
+   "dmgMax"        :[10, 12, 15],
+   "name"          :"SpiderElite_Name",
+   "name_objective":"SpiderElite_Name_Objective",
+   "description"   :"SpiderElite_Desc",
+   "gender"        :"SpiderElite_Gender",
+   "spriteDesc"    :"spritesDesc/SpiderElite.json",
+   "scriptFile"    :"scripts/mobs/SpiderElite"
+}
+</code>
+
 ==== Add New Text ====
 Create ''res/values/strings.json'' in your mod:
 
@@ -77,6 +111,16 @@ Create ''res/values/strings.json'' in your mod:
   "CustomMessage": "This is my custom message!",
   "NewItemName": "Legendary Sword of Awesomeness",
   "NewItemDesc": "This sword is incredibly awesome."
+}
+</code>
+
+==== Configure Mob Spawning ====
+Mobs can be configured to spawn in specific levels using ''levelsDesc/Bestiary.json''. For example, Spider Nest configuration:
+<code json>
+{
+  "8s":{"SpiderServant":1,"SpiderExploding":0.5,"SpiderMind":0.2,"SpiderGuard":0.03,"SpiderMindAmber":0.006},
+  "9s":{"SpiderServant":1,"SpiderExploding":1,"SpiderMind":0.3,"SpiderGuard":0.03,"SpiderMindAmber":0.012},
+  "10s":{"SpiderServant":1,"SpiderExploding":1,"SpiderMind":0.5,"SpiderGuard":0.3, "SpiderElite":0.3 ,"SpiderMindAmber":0.018}
 }
 </code>
 
@@ -231,6 +275,17 @@ function M.onTurn(mob)
             local rat = RPD.spawnMob("Rat", summonPos, {})
             RPD.glog(mob:name() .. " summons help!")
         end
+    end
+end
+</code>
+
+==== Mobs with Special Attack Effects ====
+Mobs can have special effects during attacks, similar to how SpiderElite applies the Vertigo debuff:
+<code lua>
+function M.attackProc(self, enemy, dmg)
+    -- 20% chance to apply Vertigo effect (disorientation)
+    if math.random() < 0.2 then
+        RPD.affectBuff(enemy, "Vertigo", self:skillLevel())
     end
 end
 </code>
