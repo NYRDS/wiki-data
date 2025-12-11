@@ -14,13 +14,15 @@ The **Gnoll Shaman** is an intelligent gnoll that has mastered shamanistic magic
 * **Armor**: 4 DR
 * **EXP for Kill**: 6
 * **Maximum Level**: 14
-* **Lightning Resistance**: Immune to electricity damage
+* **Lightning Resistance**: Immune to electricity damage (resistance to LightningTrap.Electricity class)
 
 ==== Abilities ====
 * **Lightning Bolt**: When attacking at range, the shaman can zap enemies with a lightning bolt that deals double damage (base damage × 2)
 * **Fleeing Tactic**: When damaged, the shaman may flee when its HP is above 2/3 or 1/3 of max HP, taking only half damage during those states
-* **Ranged Attack**: Can attack enemies at range using Ballistica mechanics
+* **Ranged Attack**: Can attack enemies at range using Ballistica mechanics (attack is successful if Ballistica.cast(getPos(), enemy.getPos(), false, true) == enemy.getPos())
 * **Scroll Loot**: Drops scrolls with 33% chance
+* **Lightning Resistance**: Immune to electricity damage
+* **Vocalization**: Has a 10% chance to yell "*Cusses in gnollish*" when missing with lightning zap
 
 ==== Tactics ====
 Gnoll Shamans are dangerous ranged enemies that use lightning magic. They're typically found in groups with other gnolls. Be cautious when fighting them, as they can deal significant magical damage from a distance. The shaman may flee when low on health, but will fight back when cornered.
@@ -28,5 +30,16 @@ Gnoll Shamans are dangerous ranged enemies that use lightning magic. They're typ
 ==== Notes ====
 * This is a standard Gnoll Shaman mob, not to be confused with the [[rpd:shaman|Shaman]] hero subclass for the Elf class
 * The shaman has reduced effectiveness when HP is low, similar to other intelligent enemies
+* Can only attack at range using Ballistica mechanics, making positioning important for avoiding their attacks
 
-{{tag> rpd mobs}}
+==== Related ====
+  * [[rpd:gnoll|Gnoll]] - Other gnoll enemies
+  * [[rpd:shaman_elder|Shaman Elder]] - Stronger variant
+  * [[rpd:elf|Elf]] - For the hero subclass connection
+  * [[rpd:ballistica|Ballistica]] - Pathfinding mechanic used for ranged attacks
+
+==== Source Code ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java|Shaman.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1311|String definitions]]
+
+{{tag> rpd mobs gnolls}}
