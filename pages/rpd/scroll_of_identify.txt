@@ -9,12 +9,15 @@ The **Scroll of Identify** is a common scroll in Remixed Dungeon that reveals th
   * **Rarity:** Uncommon
   * **Special Effect:** Identifies one item in the inventory
   * **Usage:** Single use item (consumed upon use)
+  * **Price:** 30 gold when identified, 60 gold when unidentified
 
 ==== Special Mechanics ====
   * **Item Identification:** Permanently reveals all properties of a single item
-  * **Target Selection:** Allows selection of any item in inventory to identify
+  * **Target Selection:** Allows selection of any unidentified item in inventory to identify
   * **Permanent Effect:** Once identified, item stays identified permanently
   * **Information Revealed:** Reveals enchantments, glyphs, curse status, and other hidden properties
+  * **Badge Validation:** Validates the identified item for badge progression (Badges.validateItemLevelAcquired)
+  * **Visual Effect:** Creates an identification effect over the character's head when used
 
 ==== Strategy ====
   * Essential for determining if equipment is cursed before equipping
@@ -36,6 +39,8 @@ When read, the Scroll of Identify will permanently identify a single item in you
 ==== Code Reference ====
   * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfIdentify.java|ScrollOfIdentify.java]]
   * Source Code Location: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfIdentify.java
+  * Uses WndBag.Mode.UNIDENTIFIED for item selection interface
+  * Inventory title string: StringsManager.getVar(R.string.ScrollOfIdentify_InvTitle)
 
 ==== Related Items ====
   * [[rpd:scroll|Scrolls]] - General information about scrolls
