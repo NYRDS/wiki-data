@@ -3,40 +3,60 @@
 Poison is a status effect in Remixed Dungeon that causes ongoing damage to affected creatures over time.
 
 ==== Description ====
-When a character is poisoned, they take damage at the end of each turn while the poison effect is active. The damage typically increases with the duration of the poison effect.
+When a character is poisoned, they take damage at the end of each turn while the poison effect is active. The damage is calculated as (time remaining / 3) + 1, meaning the damage decreases as the poison duration runs out.
 
 ==== Effects ====
-  * **Damage Over Time:** Causes damage at the end of each turn
-  * **Duration:** Lasts for a limited number of turns
-  * **Stacking:** Multiple poison effects may not stack, but duration can extend
-  * **Vulnerability:** Reduces effectiveness of prolonged combat
+  * **Damage Over Time:** Causes damage at the end of each turn equal to (time remaining / 3) + 1
+  * **Duration:** Lasts for a limited number of turns, varies by source
+  * **Stacking:** Multiple poison effects do not stack, but duration can extend if applied while already poisoned
+  * **Death:** Causes instant death when the buff ends if the target has not already died from other causes
+  * **Badge:** Causes "Death from poison" badge to be earned if player dies from poison
 
 ==== Causes ====
-  * [[rpd:potion_of_toxic_gas|Potion of Toxic Gas]] - Exposure to toxic gas clouds
-  * Certain enemy attacks - Some creatures can poison with their attacks
-  * Poison-based wands - Magical items that inflict poison
-  * Traps - Some dungeon traps may apply poison
-  * Cursed items - Wearing cursed equipment might cause poisoning
+  * [[rpd:wand_of_poison|Wand of Poison]] - Magical staff that inflicts poison for 5+levels turns
+  * [[rpd:poison_trap|Poison Trap]] - Dart trap that inflicts poison for (4 + dungeon depth/2) turns
+  * [[rpd:poison_enchantment|Poison Enchantment]] - Weapon enchantment that poisons on hit (duration: 1+weapon level turns)
+  * [[rpd:poison_arrow|Poison Arrow]] - Thrown weapon that poisons on hit
+  * [[rpd:spider_servant|Spider Servant]] - Has 25% chance to poison for 2-3 turns per hit
+  * [[rpd:spider_mind|Spider Mind]] - Poisons for 7-9 turns
+  * [[rpd:spider_queen|Spider Queen]] - Poisons for 7-9 turns
+  * [[rpd:spinner|Spinner]] - Poisons for 7-9 turns
+  * [[rpd:worm|Worm]] - Poisons for 7-9 turns
+  * [[rpd:zombie|Zombie]] - Poisons for 2-4 turns on hit (Necro level mob)
+  * [[rpd:sorrowmoss|Sorrowmoss]] - Plant that poisons for (4 + dungeon depth/2) turns, or (character level) turns when picked
+  * [[rpd:mystery_meat|Mystery Meat]] - Has chance to poison when eaten for (character HT / 5) turns
+  * [[rpd:venom_trap|Venom Trap]] - Trap that inflicts poison
 
-==== Immunities ====
-  * Certain classes or armor may provide resistance
-  * Some magical effects might prevent poison
-  * Undead creatures may be immune to poison
+==== Immunities and Resistances ====
+  * [[rpd:ring_of_elements|Ring of Elements]] - Provides resistance with duration factor: (2 + 0.5 * level) / (2 + level), with chance to fully resist based on ring level
+  * Some creatures have natural immunity to poison
+  * Resistance reduces the duration of poison effects
 
 ==== Strategy ====
-  * **For Players:** Use poison to damage enemies over time
-  * **Defensively:** Try to avoid being poisoned during combat
-  * **Offensively:** Poison is particularly effective against slow-moving enemies
-  * **Timing:** Consider poison when planning extended fights
+  * **For Players:** Use poison to damage enemies over time without direct engagement
+  * **Defensively:** Try to avoid being poisoned during combat as it causes guaranteed damage
+  * **Offensively:** Poison is particularly effective against slow-moving enemies that can't reach you quickly
+  * **Timing:** Consider poison when planning extended fights, as it ensures damage even if enemy is defensive
 
 ==== Countermeasures ====
-  * Potions of cure poison (if such exist) can remove the effect
-  * Certain rings or equipment may provide resistance
+  * [[rpd:potion_of_healing|Potion of Healing]] - Cures poison along with healing
+  * [[rpd:ring_of_elements|Ring of Elements]] - Provides resistance, reducing duration
   * Avoiding poison-causing attacks or items when possible
   * Finishing fights quickly to minimize poison damage
+  * Using resistance-granting items before entering dangerous areas known to have poison sources
 
-==== Related ====
-  * [[rpd:potion_of_toxic_gas|Potion of Toxic Gas]] - Common source of poison
-  * [[rpd:toxic_gas|Toxic Gas]] - Environmental effect that poisons
+==== Related Pages ====
+  * [[rpd:wand_of_poison|Wand of Poison]] - Primary poison-inflicting wand
+  * [[rpd:poison_trap|Poison Trap]] - Dart trap that causes poison
+  * [[rpd:poison_enchantment|Poison Enchantment]] - Weapon enchantment that inflicts poison
+  * [[rpd:toxic_gas|Toxic Gas]] - Different environmental damage effect
   * [[rpd:status_effects|Status Effects]] - Other temporary condition types
   * [[rpd:buffs|Buffs and Debuffs]] - Other temporary status effects
+  * [[rpd:ring_of_elements|Ring of Elements]] - Provides poison resistance
+
+==== Source Code References ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L597|String definitions]]
+  * Resistance implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java#L32|RingOfElements.java]]
+
+{{tag> rpd buffs debuffs elements}}
