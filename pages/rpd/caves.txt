@@ -1,20 +1,24 @@
 ====== Caves ======
 
-The Caves is a dungeon area located beneath the prison, representing the dwarven mining excavations. It's characterized by sparse population and mineral-poor environment.
+{{ rpd:images:caves_tileset.png|Caves Level Tileset }}
+
+The **Caves** is a dungeon area located beneath the prison, representing the dwarven mining excavations. It's characterized by sparse population and mineral-poor environment.
 
 ==== Description ====
 The caves, which stretch down under the abandoned prison, are sparsely populated. They lie too deep to be exploited by the City and they are too poor in minerals to interest the dwarves. In the past there was a trade outpost somewhere here on the route between these two states, but it has perished since the decline of the Dwarven Metropolis. Only omnipresent gnolls and subterranean animals dwell here now.
 
 ==== Level Characteristics ====
-  * **Dungeon Depth:** Levels 11-15 of the main dungeon  
+  * **Dungeon Depth:** Levels 11-14 of the main dungeon
   * **Difficulty:** Moderate to challenging
   * **Environment:** Underground cave systems with rocky terrain
   * **Enemies:** Gnolls, bats, spiders, and other subterranean creatures
   * **Layout:** More open cave layouts with natural-looking passages
+  * **Music:** ost_caves
 
 ==== Enemies ====
   * [[rpd:bat|Bats]] - Flying enemies in cave systems
   * [[rpd:gnoll|Gnolls]] - More prominent in cave areas
+  * [[rpd:gnoll_brute|Gnoll Brutes]] - Stronger variant of gnolls
   * [[rpd:spider|Spiders]] - Various types in dark caverns
   * [[rpd:crab|Cave Crabs]] - Subterranean crustaceans
   * [[rpd:piranha|Piranhas]] - In underground water areas
@@ -23,16 +27,26 @@ The caves, which stretch down under the abandoned prison, are sparsely populated
 
 ==== Features ====
   * **Rocky Terrain:** Natural cave formations
-  * **Underground Wells:** Special fountains with unique effects
-  * **Cave-ins:** Potential for unstable areas
-  * **Mining Remnants:** Artifacts from past dwarven mining
-  * **Darkness:** Increased darkness effects
+  * **Wall Deco:** Decorated walls with vein-like formations (Terrain.WALL_DECO)
+  * **Chasms:** Areas with dangerous chasms between rooms
+  * **Decorated Empty Tiles:** Some empty spaces appear as "EMPTY_DECO" for visual interest
+  * **Blacksmith Quest:** [[rpd:blacksmith|Blacksmith]] quest may spawn in one of the standard rooms
+
+==== Visual Design ====
+  * **Color Theme:** Primary color #534f3e, secondary color #b9d661
+  * **View Distance:** Limited to 6 tiles
+  * **Tileset:** TILES_CAVES with specific textures for walls, floors, and water
+  * **Water Texture:** WATER_CAVES with cave-specific appearance
+  * **Grass & High Grass:** Randomly generated patches (35% chance, or 55% if grass feeling is active)
+  * **Water Patches:** Randomly generated (45% chance, or 60% if water feeling is active)
 
 ==== Special Characteristics ====
   * **Sparse Population:** Fewer enemies but potentially stronger ones
   * **Resource Scarcity:** Less treasure than other areas
   * **Navigation Challenges:** More complex cave layouts
-  * **Boss Level:** Level 15 features the [[rpd:dm300|DM-300]] boss encounter
+  * **Boss Level:** Level 15 features the [[rpd:dm300|DM-300]] boss encounter (CavesBossLevel)
+  * **Level Generation:** Uses RegularLevel generation with specific cave-themed decorations
+  * **Entrance Sign:** Special sign placed at the entrance location
 
 ==== Strategy ====
   * Prepare for stronger but fewer enemies
@@ -40,6 +54,13 @@ The caves, which stretch down under the abandoned prison, are sparsely populated
   * Look for valuable mining artifacts from the dwarven past
   * Prepare for the [[rpd:dm300|DM-300]] boss on level 15
   * Manage resources as this is a transition area to deeper levels
+  * Be aware of chasms that can separate rooms
+
+==== Technical Details ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/CavesLevel.java|com.watabou.pixeldungeon.levels.CavesLevel]]
+  * **Inheritance:** Extends RegularLevel class
+  * **Level Size:** 32x32 grid (as defined in Dungeon.json)
+  * **Additional Level Type:** [[rpd:ice_caves|Ice Caves]] variant exists for special game modes
 
 ==== Connections ====
   * **Previous:** Connects to the [[rpd:prison|Prison]] area
@@ -52,3 +73,4 @@ The caves, which stretch down under the abandoned prison, are sparsely populated
   * [[rpd:city|City]] - Next dungeon area (Dwarven Metropolis)
   * [[rpd:dungeon|Dungeon Layout]] - Overall dungeon structure
   * [[rpd:gnoll|Gnolls]] - Prominent enemy type in this area
+  * [[rpd:caves_boss_level|Caves Boss Level]] - DM-300 encounter area

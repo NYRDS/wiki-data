@@ -1,7 +1,68 @@
-====== crystal ======
+====== Crystal ======
 
-{:rpd:images:crystal_sprite.png?200|}
+{{ rpd:images:crystal_sprite.png|Crystal Sprite }}
 
-{{ rpd:images:crystal_sprite.png|Crystal Sprite  }}
+**Crystal** is a special magical enemy found in Remixed Pixel Dungeon, often associated with the [[rpd:shadow_lord|Shadow Lord]]. These are magical constructs that serve powerful entities in the dungeon and possess magical abilities.
 
-Description for crystal goes here.087df4a8853cb3229502316f929e70fc6db6790
+==== Description ====
+Crystals are magical constructs that serve the [[rpd:shadow_lord|Shadow Lord]] and other powerful entities in the dungeon. They appear on pedestals and attack with wands. They have 3 different types and can be quite dangerous in combat.
+
+==== Stats ====
+  * **HP:** Depth * 4 + 1 (adjusts based on dungeon depth)
+  * **Defense:** Depth * 2 + 1 (adjusts based on dungeon depth)
+  * **Attack Skill:** 35 (for types 0 & 1); 1000 (for type 2 - Shadow Lord crystals)
+  * **Damage:** Random value between HP/2 and HT/2
+  * **EXP:** Depth + 1
+  * **Max Level:** Depth + 2
+  * **DR (Damage Resistance):** EXP/3
+  * **Speed:** Immovable (cannot be displaced)
+
+==== Special Properties ====
+  * **Immunities:** Immune to Toxic Gas, Paralysis, Stun, Confusion Gas, and Scroll of Psionic Blast
+  * **Immobile:** Cannot move (movable = false)
+  * **No Corpse:** Does not leave a carcass upon death (carcassChance = 0)
+  * **Wand Attack:** Uses wands to attack enemies at range
+  * **3 Types:** Different types with different behaviors (0, 1, and 2)
+
+==== Behavior ====
+  * **Type 2 Special:** Shadow Lord crystals (kind = 2) have 25% chance to use [[rpd:wand_of_shadowbolt|Wand of Shadowbolt]] instead of normal wands
+  * **Dungeon Interaction:** When a crystal on a pedestal dies, it transforms the area to embers and foliage, clearing Darkness in a 5x5 area
+  * **Steal Action:** If targeted with a "steal" action, it will create a Chaos Mark and die
+  * **Non-Pettable:** Cannot be turned into a pet
+  * **Zapping:** Uses equipped wand when attacking
+
+==== Types ====
+  There are 3 different types of crystals:
+  * **Type 0 & 1:** Standard crystals that spawn randomly in levels
+  * **Type 2:** Special Shadow Lord crystals that appear during the [[rpd:shadow_lord|Shadow Lord]] encounter with enhanced mechanics
+
+==== Strategy ====
+  * **Magical Resistance:** Magical resistance or armor can be helpful against wand-based attacks
+  * **Immobilized Target:** Since crystals don't move, you can position yourself to avoid their attacks
+  * **Range Attack:** Crystals can attack from a distance using their wands
+  * **Pedestal Death Effect:** If a crystal dies while on a pedestal, it transforms the area to embers and foliage, clearing Darkness in a 5x5 area
+  * **Shadow Lord Crystals:** Be aware that Shadow Lord crystals have a 25% chance to use [[rpd:wand_of_shadowbolt|Wand of Shadowbolt]]
+
+==== Technical Details ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Crystal.java|com.nyrds.pixeldungeon.mobs.common.Crystal]]
+  * **Inheritance:** Extends [[rpd:multi_kind_mob|MultiKindMob]] and implements IDepthAdjustable and IZapper interfaces
+  * **Implementation:** Automatically equipped with random wands based on depth, with special handling for Shadow Lord crystals
+
+==== Drops ====
+  * **Standard Crystal:** Wand of appropriate level based on dungeon depth
+  * **Shadow Lord Crystal:** May drop [[rpd:wand_of_shadowbolt|Wand of Shadowbolt]] with 25% chance
+  * **Chaos Mark:** When targeted with "steal" action
+
+==== Trivia ====
+  * Crystals were once able to drop "Wand of Magic Missiles" but this was changed in a previous update
+  * Crystals created by the Shadow Lord use upgraded wands (upgrade level is half the dungeon depth)
+  * Crystals cannot be moved with telekinesis
+  * The crystal that appears during the Shadow Lord fight has special mechanics and a higher attack skill (1000)
+
+==== See Also ====
+  * [[rpd:enemies|Enemies]]
+  * [[rpd:shadow_lord|Shadow Lord]]
+  * [[rpd:wands|Wands]]
+  * [[rpd:multi_kind_mob|MultiKindMob]]
+
+{{tag> rpd mobs}}
