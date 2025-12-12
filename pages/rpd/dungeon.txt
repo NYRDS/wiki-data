@@ -1,42 +1,75 @@
 ====== Dungeon Layout ======
 
-The Remixed Dungeon has a complex layout with multiple levels and interconnected areas. The dungeon is divided into several themed sections, each with its own challenges and enemies.
+The Remixed Dungeon has a complex layout with multiple interconnected levels and special areas. The dungeon structure is defined by a graph in the Dungeon.json file.
 
-==== Main Dungeon Levels ====
+==== Main Dungeon Progression ====
 
-The main dungeon progression typically follows this order:
+The main dungeon progression follows this order:
 
-  * [[rpd:town|Town]] - Starting area with shops and services
-  * **Sewers** (Levels 1-5) - Early game area with basic enemies
-  * **Boss Level** (Level 5) - Features the Goo boss
-  * **Prison** (Levels 6-10) - Mid-game area, features Tengu boss
-  * **Caves** (Levels 11-15) - Underground caves, features DM-300 boss
-  * **City** (Levels 16-20) - Dwarven metropolis, features Dwarven King boss
-  * **Halls** (Levels 21-25) - Demon halls, features Yog-Dzewa's guardians
-  * **Boss Level** (Level 25) - Features Shadow Lord boss
-  * **Guts** (Levels 26-31) - Additional challenging areas
-  * **Boss Level** (Level 31) - Features the final Yog-Dzewa boss
+  * [[rpd:town|Town]] (Level 0) - Starting area with shops and services
+  * **Sewers** (Levels 1-4) - Early game area with basic enemies
+  * [[rpd:sewer_boss|Sewer Boss Level]] (Level 5) - Features the Goo boss
+  * Portal Room (Level 5) - Transitional area connecting to special levels
+  * **Prison** (Levels 6-9) - Mid-game area, features Tengu boss
+  * [[rpd:prison_boss|Prison Boss Level]] (Level 10) - Features the Tengu boss
+  * Portal Room (Level 10) - Transitional area
+  * **Caves** (Levels 11-14) - Underground caves, features DM-300 boss
+  * [[rpd:caves_boss|Caves Boss Level]] (Level 15) - Features the DM-300 boss
+  * Portal Room (Level 15) - Transitional area
+  * **City** (Levels 16-19) - Dwarven metropolis, features Dwarven King boss
+  * [[rpd:city_boss|City Boss Level]] (Level 20) - Features the King boss
+  * Portal Room (Level 20) - Transitional area
+  * [[rpd:last_shop|Last Shop Level]] (Level 21) - Final shop before demon halls
+  * **Halls** (Levels 22-24) - Demon halls, features Yog-Dzewa's guardians
+  * [[rpd:shadow_lord|Shadow Lord Level]] (Level 25) - Features Shadow Lord boss
+  * Portal Room (Level 25) - Transitional area
+  * [[rpd:fake_last|Fake Last Level]] (Level 26) - Guts level entrance
+  * **Guts** (Levels 27-30) - Additional challenging areas
+  * [[rpd:halls_boss|Halls Boss Level]] (Level 31) - Features the final Yog-Dzewa boss
+  * Portal Room (Level 31) - Transitional area to final level
+  * [[rpd:last_level|Last Level]] (Level 32) - True final level
 
 ==== Special Areas ====
 
-The dungeon also contains special side areas:
+The dungeon also contains special side areas that branch from the main progression:
 
-  * [[rpd:spider_nest|Spider Nests]] (Levels 6s-10s) - Spider-themed areas
-  * [[rpd:necropolis|Necropolis]] - Undead-themed area  
-  * [[rpd:ice_caves|Ice Caves]] - Cold-themed area
-  * [[rpd:sub_levels|Sub Levels]] - Special themed areas
+  * [[rpd:spider_nest|Spider Nests]] (Levels 6s-10s) - Spider-themed areas branching from Level 5
+  * [[rpd:necropolis|Necropolis]] (Levels necro1-necro5) - Undead-themed area branching from Level 7
+  * [[rpd:ice_caves|Ice Caves]] (Levels ice1-ice5) - Cold-themed area branching from Level 14
+  * [[rpd:sub_levels|Sub Levels]] - Various special themed areas
 
 ==== Town Features ====
 
-The [[rpd:town|Town]] area contains several special buildings:
+The [[rpd:town|Town]] area (Level 0) contains several special buildings:
 
-  * **Church** - Healing and blessings
-  * **Cinema** - Special area
-  * **Inn** - Rest and recovery
-  * **Library** - Knowledge and information
-  * **Fortune Teller** - Special services
-  * **Shop** - Equipment and supplies
+  * [[rpd:church_2|Church]] - Healing and blessings
+  * [[rpd:cinema_2|Cinema]] - Special area
+  * [[rpd:inn_2|Inn]] - Rest and recovery
+  * [[rpd:library_2|Library]] - Knowledge and information
+  * [[rpd:fortune_2|Fortune Teller]] - Special services
+  * [[rpd:shop_town_2|Shop]] - Equipment and supplies
 
-==== Level Transitions ====
+==== Dungeon Structure Details ====
 
-Each level is connected to others as defined in the dungeon's topology. Players can move up and down between connected levels to explore all areas of the dungeon.
+  * **Graph-Based Navigation**: Dungeon connections are defined in a graph structure in Dungeon.json
+  * **Depth Values**: Each level has a depth value that determines item generation and mob stats
+  * **Portal Rooms**: Special transitional levels connect main dungeon sections
+  * **Branching Areas**: Special levels like Spider Nests, Necropolis, and Ice Caves branch from main progression
+  * **Safe Levels**: Town levels and some special buildings are marked as safe (no monsters)
+  * **Music Themes**: Each area has distinct background music
+  * **Size Variations**: Levels have different dimensions, from 16x16 (Spider levels) to 64x64 (Spider Boss)
+
+==== Level Connections ====
+
+The dungeon graph allows for non-linear exploration in some areas:
+  * Spider Nest levels form a loop: 6s→7s→8s→9s→10s→6s
+  * Necropolis levels form a loop: necro1→necro2→necro3→necro4→necro5→necro1
+  * Ice Caves form a loop: ice1→ice2→ice3→ice4→ice5→ice1
+
+==== Content Verification ====
+  * **Information Source**: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/DungeonGenerator.java|DungeonGenerator.java]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Dungeon.json|Dungeon.json]]
+  * **Structure Verification**: Properties extracted from the actual dungeon graph in Dungeon.json
+  * **Level Details**: Based on code analysis of level definitions and connections
+  * **Last Updated**: Verified against source code
+
+{{tag> rpd dungeon layout structure}}

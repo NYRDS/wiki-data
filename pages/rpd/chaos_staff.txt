@@ -2,7 +2,8 @@
 
 {{ rpd:images:chaos_staff.png|Chaos Staff }}
 
-Earned by fusing a [[rpd:chaos_crystal|Chaos Crystal]] with at least 50 charges with a wand.
+==== Acquisition ====
+Earned by fusing a [[rpd:chaos_crystal|Chaos Crystal]] with at least 50 charges with a wand via the ''Fuse'' action.
 
 ==== Description ====
 [[rpd:mage|Mage]]'s weapon. Staff imbued with Power Of Chaos! What else a mage can dream or fear of?
@@ -10,33 +11,41 @@ Earned by fusing a [[rpd:chaos_crystal|Chaos Crystal]] with at least 50 charges 
 ==== Stats ====
   * **Type:** Magic Weapon
   * **Speed:** Normal
-  * **Damage:** 3-8 (scaling with level)
+  * **Damage:** Varies (scaling with level)
   * **Durability:** 15
   * **Strength Required:** 10 (reduces with [[rpd:mage|mage]]'s skill level)
+  * **Charges:** Automatically charges when wielder takes damage
 
 ==== Special Properties ====
   * A powerful magical staff infused with chaotic energy
   * Can be created by fusing a [[rpd:chaos_crystal|Chaos Crystal]] with a wand via the ''Fuse'' action
-  * The staff charges as the wielder takes damage (the Chaos Crystal item charges when taking damage)
-  * Upon zapping, creates a random chaos effect at the target location, consuming charge
+  * The staff charges when the wielder takes damage (starting at 0 charges)
+  * Upon zapping, creates random chaos effects at the target location, consuming all stored charges
+  * Changes sprite appearance based on level (5 different sprites for levels 0-4)
 
 ==== Chaos Effects ====
-When zapped, the staff performs one of these random effects:
+When zapped, the staff creates two random chaos blobs at the target location:
   * [[rpd:confusion_gas|Confusion Gas]]
   * [[rpd:liquid_flame|Liquid Flame]]
   * [[rpd:paralytic_gas|Paralytic Gas]]
   * [[rpd:regrowth|Regrowth]]
   * [[rpd:toxic_gas|Toxic Gas]]
 
+Additionally, has a 10% chance to trigger special effects on targeted mobs:
+  * Kill the mob
+  * Turn the mob into a pet
+  * Summon a copy of the mob
+  * Teleport the mob
+  * Heal the targeted character
+
 ==== Upgrades ====
   * Gains levels as the wielder uses it (owner does damage)
-  * Changes sprite appearance based on level (0-4 images)
+  * Sprite appearance changes based on level (0-4 total levels)
 
-==== Notes ====
-Chaos Staff is a high-level magical weapon created by fusing a [[rpd:chaos_crystal|Chaos Crystal]] with a wand. It provides [[rpd:mage|Mages]] with powerful chaotic magic at the cost of some predictability.
-
-==== Source Code References ====
-  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosStaff.java|ChaosStaff.java]]
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1183|String definitions]]
+==== Content Verification ====
+  * **Information Source**: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosStaff.java|ChaosStaff.java]]
+  * **Stats Verification**: Properties extracted from the ChaosStaff class
+  * **Effect Description**: Based on code analysis of ChaosStaff.java and ChaosCommon.java
+  * **Last Updated**: Verified against source code
 
 {{tag> rpd items weapons magic chaos}}
