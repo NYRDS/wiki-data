@@ -11,11 +11,12 @@ Goo, also known as the Goo boss, is an amorphous mass of living sludge that inha
 Goo is a massive living sludge that dwells in the sewers beneath the city. It has grown to large proportions by consuming waste and detritus in the sewers, and has become highly dangerous. It's the boss of the Sewers area.
 
 ==== Stats ====
-  * **HP:** Moderate to high
-  * **Attack Skill:** Moderate
-  * **Defense Skill:** Low to moderate
-  * **Damage:** Moderate
-  * **Exp for Kill:** Moderate
+  * **HP:** 68
+  * **Attack Skill:** 11 (when not pumped up), 26 (when pumped up)
+  * **Defense Skill:** 12
+  * **Damage:** 4-11 (when not pumped up), 7-21 (when pumped up)
+  * **Exp for Kill:** 9
+  * **Defense (DR):** 2
 
 ==== Combat ====
   * **Health:** Moderate but with special mechanics
@@ -23,19 +24,21 @@ Goo is a massive living sludge that dwells in the sewers beneath the city. It ha
   * **Abilities:**
     * Puddle creation that spreads around the arena
     * Splitting when damaged (in some variants)
-    * Powerful ranged "pumping" attack
+    * Powerful "pumping" attack that increases damage and range
   * **Mechanics:** Interacts with water tiles in special ways
 
 ==== Special Abilities ====
   * **Pond Creation:** Can create pools of acid when defeated
-  * **Acid Attacks:** Uses acid-based attacks
-  * **Absorption:** May absorb energy from defeated enemies
-  * **Regeneration:** Can heal when in contact with water or other goos
+  * **Acid Attacks:** Uses acid-based attacks that cause [[rpd:ooze|Ooze]] status effect (33% chance on hit)
+  * **Pump-Up Mechanic:** Can "pump up" before attacking, increasing damage (7-21) and attack skill (26), and gaining 2-tile range
+  * **Regeneration:** Heals 1 HP when standing in water while below full health
+  * **Shaking Effect:** Causes screen shake when attacking in pumped up state
 
 ==== Special Mechanics ====
-  * **Puddles:** Goo creates puddles that can heal the boss or damage the player
-  * **Water Interaction:** Goo becomes more dangerous near water
-  * **Pumping Attack:** A signature move that damages a wide area
+  * **Pumping:** Goo can pump itself up which increases damage (4-11 → 7-21), attack skill (11 → 26), and range (melee → 2 tiles)
+  * **Water Interaction:** Goo regenerates 1 HP when standing in water while below full health
+  * **Pumping Attack:** A signature move that increases Goo's power and causes screen shaking
+  * **Ooze Effect:** Goo's attacks have a 33% chance to inflict Ooze, causing continuous damage until washed off
   * **Arena:** Takes place in a specially designed arena with water features
 
 ==== Location ====
@@ -47,24 +50,38 @@ Goo is a massive living sludge that dwells in the sewers beneath the city. It ha
   * **Consumables:** Bring healing items and utility scrolls
   * **Strategy:** Understand puddle mechanics for positioning
   * **Footwear:** Avoid getting stuck in puddles
+  * **Water awareness:** Be mindful that Goo heals in water
 
 ==== Tactics ====
-  * Stay out of puddles that appear around the arena
+  * Stay out of water tiles where Goo can heal
   * Use ranged attacks to maintain distance
   * Dodge the pumping attack by moving along the edges
   * Attack during safe windows after the pumping attack
-  * Don't let the fight go on too long as Goo becomes more aggressive
+  * Don't let the fight go on too long as Goo becomes more aggressive when pumped up
+  * Avoid getting hit by Goo when it's pumped up as it does more damage and has increased range
+  * Clean off Ooze status effect when inflicted to prevent continuous damage
 
 ==== Rewards ====
   * Access to the next dungeon area (Prison)
-  * Unique equipment or artifacts
-  * Valuable experience and treasure
+  * [[rpd:skeleton_key|Skeleton Key]] for the Demon Halls
+  * High chance (80%) to drop a random [[rpd:potion|Potion]]
+  * Valuable experience (9 EXP) and treasure
+  * Unlock for [[rpd:mage|Mage]] class upon defeating as any class
+
+==== References ====
+  * Java source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Goo.java|Goo.java]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L676-L679|String definitions in strings_all.xml]]
+  * Bestiary configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L20|Bestiary.json]]
+  * Sprite configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Goo.json|Goo.json]]
 
 ==== Related ====
   * [[rpd:bosses|Boss Enemies]] - Other major dungeon challenges
   * [[rpd:sewers|Sewers]] - The area where Goo is found
   * [[rpd:enemies|Enemies]] - Other creatures in the dungeon
   * [[rpd:combat|Combat]] - General combat mechanics
+  * [[rpd:ooze|Ooze]] - Status effect that Goo inflicts
+  * [[rpd:potion|Potion]] - Common reward from Goo
+  * [[rpd:skeleton_key|Skeleton Key]] - Guaranteed reward item
 
 ==== Notes ====
-The Goo boss is found in the sewers area of the dungeon. Defeating it often results in acid pools that can damage the player, making positioning crucial during the battle.
+The Goo boss is found in the sewers area of the dungeon. Defeating it often results in acid pools that can damage the player, making positioning crucial during the battle. Goo has a unique "pump up" mechanic that makes it significantly more dangerous after it performs a special action that increases its stats temporarily.

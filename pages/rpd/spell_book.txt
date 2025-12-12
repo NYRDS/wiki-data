@@ -12,6 +12,7 @@ A Spell Book is an artifact that contains arcane knowledge of a specific spell. 
   * **Weight:** 20
   * **Class:** All classes can use this item
   * **Use:** Contains a single specific spell
+  * **Price:** 500 gold
 
 ==== Identification ====
 After being identified, the description reveals the specific spell contained within, formatted as: "Within these pages you've discovered a full text of a "[spell_name]" spell. [spell_description]"
@@ -21,18 +22,20 @@ After being identified, the description reveals the specific spell contained wit
   * Reading takes time and must be done without interruption
   * After reading, the hero permanently learns the contained spell
   * The spell book is consumed upon reading
+  * The contained spell is determined randomly from available spells for the relevant magic affinity
 
 ==== Acquisition ====
   * Found as treasure in dungeon levels, especially in treasury areas
-  * Available in special shops
+  * Available in special shops (specifically [[rpd:town_shop_treasury|Town Shop Treasury]])
   * Dropped by certain enemies, particularly spell-casting ones like the [[rpd:shaman_elder|Shaman Elder]]
-  * Can appear in various dungeon areas and shops
+  * Can appear in various dungeon areas and shops (e.g., [[rpd:spiders_treasury|Spiders Treasury]])
 
 ==== Strategy ====
   * Provides a permanent spell for the hero to use
   * Can be used to expand spell repertoire of any class
   * Particularly useful for classes with magic affinities
   * A way to learn spells that might not otherwise be available
+  * Can be transmuted at [[rpd:water_of_transmutation|Water of Transmutation]] to create another Spell Book
 
 ==== Notes ====
   * Each Spell Book contains exactly one specific spell
@@ -40,11 +43,19 @@ After being identified, the description reveals the specific spell contained wit
   * Reading is an action that requires uninterrupted time
   * Once consumed, it teaches the spell permanently to the hero
   * Not to be confused with [[rpd:scrolls|Scrolls]], which are one-time use items
+  * The spell name is revealed on the item when identified in the format "Spell Book (Spell Name)"
+
+==== References ====
+  * Java source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/artifacts/SpellBook.java|SpellBook.java]]
+  * String definitions: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L27-L29|String resources in strings_all.xml]]
+  * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json and other JSON files]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]] - List of all available spells
   * [[rpd:scrolls|Scrolls]] - Related magic items
   * [[rpd:artifacts|Artifacts]] - Other artifact items
   * [[rpd:mage|Mage]] - Hero class that focuses on spell usage
+  * [[rpd:spell|Spell]] - Base spell class information
+  * [[rpd:spellcasting|Spellcasting]] - General information about spells and casting
 
 {{tag> rpd items artifacts spell_book magic}}
