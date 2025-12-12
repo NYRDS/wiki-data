@@ -1,34 +1,41 @@
-====== Exhumation ======
+====== Exhumation Spell ======
 
 {{ rpd:images:exhumation_spell_icon.png|Exhumation Spell Icon }}
 
-**Exhumation** is a spell in Remixed Pixel Dungeon (Necromancy Affinity).
+**Exhumation** is a Necromancy spell in Remixed Pixel Dungeon that allows the caster to raise creatures from graves.
 
 ==== Description ====
-Opening the tomb is a sinister act on it own, but not enough for someone serving Death itself. Performer of this Dark Ritual has a great chance (and it will grow with the performer\'s mastery) to subdue a poor soul of one lying here.
+Opening the tomb is a sinister act on its own, but not enough for someone serving Death itself. Performer of this Dark Ritual has a great chance (and it will grow with the performer's mastery) to subdue a poor soul of one lying here.
 
 ==== Stats ====
-  * **Magic Affinity:** Necromancy
+  * **Magic Affinity:** [[rpd:necromancy|Necromancy]]
   * **Targeting:** cell
   * **Level:** 2
   * **Mana Cost:** 10
+  * **Cast Time:** 2 turns
+
+==== Mechanics ====
+When cast on a tomb or skeleton heap, the spell:
+  * Opens the grave and raises any contents
+  * Has a chance to convert nearby [[rpd:wraith|Wraiths]] into the caster's pet based on the caster's magic level
+  * Formula: chance = 1 - (1 / (caster:magicLvl() + 1))
 
 ==== Usage ====
 The Exhumation spell can be used for:
-  * Primary effect of the spell
-  * Strategic applications in combat
-  * Utility purposes based on its mechanics
+  * Raising wraiths from tombs as pets
+  * Strategic applications in combat by gaining allies
+  * Utility purposes for resource generation
 
 ==== Classes ====
 Classes that can use this spell include:
-  * Classes with Necromancy affinity (e.g., [[rpd:necromancy|Necromancy class]])
-  * Other classes that gain access through special means
+  * Classes with [[rpd:necromancy|Necromancy]] affinity
+  * [[rpd:necromancer|Necromancer]] class and related subclasses
 
 ==== Strategy ====
 How to effectively use the Exhumation spell:
-  * Best situations to use the spell
-  * Synergies with other abilities
-  * Timing considerations
+  * Best used when wraiths spawn near you after opening graves
+  * Higher magic level increases the chance to tame wraiths
+  * Synergizes with necromancy-related talents and equipment
 
 ==== Data Validation ====
 This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
@@ -37,14 +44,16 @@ This information is extracted directly from the game code and validated against 
 * Information source: Lua Script in Remixed Dungeon codebase
 * Stats verified: Yes, extracted directly from spell class properties
 * Effect descriptions: Generated from code analysis and string resources
-* Last updated: 2025-12-09 based on Exhumation.lua
+* Last updated: 2025-12-12 based on Exhumation.lua
 
 ==== Source Code ====
-This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Exhumation.lua|Exhumation]]
+This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Exhumation.lua|Exhumation.lua]]
 
-==== See Also ====
+==== Related ====
   * [[rpd:spells|Spells]]
-  * [[rpd:mechanics|Game Mechanics]]
   * [[rpd:necromancy|Necromancy Affinity]]
+  * [[rpd:raise_dead_spell|Raise Dead Spell]]
+  * [[rpd:wraith|Wraith]] - Creatures that can be tamed
+  * [[rpd:spell_affinities|Spell Affinities]]
 
 {{tag> rpd spells necromancy }}
