@@ -2,7 +2,7 @@
 
 {{ rpd:images:roar_spell_icon.png?200|Roar Spell Icon }}
 
-**Roar** is a Witchcraft-affinity spell in Remixed Pixel Dungeon that terrifies enemies.
+**Roar** is a Witchcraft-affinity spell in Remixed Pixel Dungeon that terrifies enemies. Based on source code: ''RemixedDungeon/src/main/assets/scripts/spells/Roar.lua''
 
 ==== Description ====
 The mighty roar will surely terrify your enemies and inspire allies. When cast, Roar creates a terror effect on random enemies equal to the caster's level.
@@ -14,13 +14,15 @@ The mighty roar will surely terrify your enemies and inspire allies. When cast, 
   * **Mana Cost:** 1
   * **Cast Time:** 0 seconds
   * **Effect:** Applies Terror to random enemies
+  * **Image File:** spellsIcons/witchcraft.png (image index 0)
 
 ==== Mechanics ====
-  * Creates a visual flare effect (6 rays, 32 pixels, red color) on the caster
-  * Plays the challenge sound effect
+  * Creates a visual flare effect (6 rays, 32 pixels, red color #FF0000) on the caster for 2 seconds
+  * Plays the challenge sound effect ('snd_challenge')
   * Duration of Terror effect equals the caster's level
   * Affects up to the caster's skill level number of random enemies
-  * For each affected enemy, creates a visual flare effect (4 rays, 16 pixels, red color)
+  * For each affected enemy, creates a visual flare effect (4 rays, 16 pixels, red color #FF0000) for 2 seconds
+  * Uses the Terror buff class with caster as the source
 
 ==== Usage ====
 The Roar spell is primarily used for:
@@ -38,14 +40,19 @@ Classes with Witchcraft affinity have primary access to this spell:
 Roar is most effective when used in groups of enemies where multiple targets can be terrorized simultaneously. The duration of the Terror effect scales with the caster's level, making it more effective at higher levels. Since Terror prevents enemies from attacking, it's particularly useful when surrounded or when facing dangerous enemies.
 
 ==== Content Verification ====
-* **Information Source:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua|Roar.lua]]
-* **Stats Verification:** Extracted directly from Roar.lua spell properties
-* **Effect Descriptions:** Based on cast() function analysis in Roar.lua
+  * Information source: ''RemixedDungeon/src/main/assets/scripts/spells/Roar.lua''
+  * Stats verification: Extracted directly from desc() function in Roar.lua
+  * Mechanics verification: Based on cast() function in Roar.lua
+  * Last updated: December 2025
+
+==== Source Code ====
+This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua|Roar.lua]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
   * [[rpd:terror|Terror Status Effect]]
   * [[rpd:witchcraft|Witchcraft Affinity]]
   * [[rpd:gnoll_hero|Gnoll Class]]
+  * [[rpd:buffs|Buffs]]
 
 {{tag> rpd spells witchcraft }}

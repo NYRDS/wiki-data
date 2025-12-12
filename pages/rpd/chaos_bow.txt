@@ -1,25 +1,64 @@
 ====== Chaos Bow ======
 
-Earned by fusing a [[Chaos Crystal]] with at least 50 or so charges with a compatible ranged weapon such as a bow. The bow will be unidentified and always require 14 strength to successfully wield. Upon attacking enemies a few times, will reveal a random enchantment upon the weapon followed by repeatedly upgrading the weapon every few tiers (+1,+2 etc.) as well as further reducing the requirement to wield, which increases the efficiency.
-
-It is recommended that if there is a specific enchantment desired, save the game and then monster hunt until the desired enchantment is reached. Also note that infusing any cursed ranged weapon will remove the curse and generate an entirely new weapon whilst consuming the old one, so no need to worry about cursed chaos weapons.
-
-If the enemy dodges a thrown arrow, the Chaos Bow will burst chaos magic on you.
+{{tag> rpd items}}
 
 ==== Description ====
-A dreadful Bow filled with the power of Chaos. Each arrow it shoots will carry piece of chaos energy within it. But if you miss...
+A dreadful Bow filled with the power of Chaos. Each arrow it shoots will carry piece of chaos energy within it. But if you miss... Based on source code: ''com.nyrds.pixeldungeon.items.chaos.ChaosBow.java''
 
 ==== Stats ====
-  * **Damage:** Varies based on enchantment
-  * **Durability:** Normal
-  * **Strength Required:** Moderate
+  * **Damage:** 1-? (damage factor increases with level: 1 + level * 0.3)
+  * **Durability:** Not applicable (not upgradable)
+  * **Strength Required:** 13 points (Tier 3 bow)
+  * **Tier:** 3 bow
+  * **Cursed:** Can be cursed like other weapons
+  * **Accuracy Factor:** 1.0
+  * **Speed Factor:** 1.0
 
 ==== Special Properties ====
-  * Each arrow shot carries chaos energy
-  * Can be created by fusing a Chaos Crystal with a regular bow
-  * May have unpredictable effects when missing targets
+  * **Chaos Energy:** Each arrow shot carries chaos energy
+  * **Auto-Upgrading:** Upgrades itself when wearer deals damage to enemies
+  * **Charge System:** Uses a charge system to control upgrade rate (requires more charges as level increases)
+  * **Upgrade Decay:** May lose levels if worn at level 6+ and takes damage
+  * **Not Upgradable:** Cannot be manually upgraded with Scroll of Upgrade
+  * **Chaos Burst:** When missing a target, causes chaos effects at the user's position
 
-==== Notes ====
-Chaos Bow is a powerful ranged weapon infused with chaotic energy. It's created by fusing a Chaos Crystal with a regular bow, resulting in arrows that carry chaotic power.
+==== Mechanics ====
+Chaos Bow has unique auto-upgrading mechanics based on code implementation:
+  * When wearer deals damage to enemies, the bow gains a charge
+  * When charges reach a threshold (based on current level), bow upgrades (+1 level)
+  * Charge threshold increases with bow level (calculated as: 5 * level^1.5)
+  * When wearer takes damage and bow level is 6+, it loses a level and resets charges/enchantments
+  * Image changes based on level (level 0-2: image 0, level 3-5: image 1, etc.)
+  * Damage factor increases with level (1 + level * 0.3)
+  * On miss, creates chaotic effects at user's position (chaos mark with gas effects)
+  * ''Source code verification: ownerDoesDamage(), ownerTakesDamage(), and onMiss() methods''
 
-{{tag> rpd:items}}
+==== Strategy ====
+  * Chaos Bow provides adaptive damage that improves as you fight enemies
+  * More effective in aggressive playstyles where you deal frequent damage
+  * Be cautious when taking damage at higher levels, as it causes degradation
+  * Cannot be manually upgraded, so rely on combat to improve it
+  * Higher levels provide better damage but require more charges to upgrade
+  * Be careful when missing shots, as it causes chaos effects at your position
+
+==== Obtaining ====
+Chaos Bow can be obtained through:
+  * As a rare drop from chaos-themed enemies or events (e.g., via ChaosCrystal generator)
+  * [[rpd:chaos_crystal|Chaos Crystal]] may have crafting applications (source code suggests it can be generated via ChaosCrystal selector)
+
+==== Content Verification ====
+  * Information source: ''com.nyrds.pixeldungeon.items.chaos.ChaosBow.java''
+  * Stats verification: Extracted directly from ChaosBow class properties and dmgFactor() method
+  * Mechanics verification: Based on ownerDoesDamage(), ownerTakesDamage(), onMiss(), and charge management methods
+  * Last updated: December 2025
+
+==== See Also ====
+  * [[rpd:chaos_set|Chaos Set]]
+  * [[rpd:chaos_crystal|Chaos Crystal]]
+  * [[rpd:chaos_sword|Chaos Sword]]
+  * [[rpd:chaos_staff|Chaos Staff]]
+  * [[rpd:chaos_armor|Chaos Armor]]
+  * [[rpd:chaos_shield|Chaos Shield]]
+  * [[rpd:items|Items]]
+  * [[rpd:weapons|Weapons]]
+  * [[rpd:chaos_common|Chaos Common]] (chaos effects implementation)
