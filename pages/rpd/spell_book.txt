@@ -13,6 +13,7 @@ A Spell Book is an artifact that contains arcane knowledge of a specific spell. 
   * **Class:** All classes can use this item
   * **Use:** Contains a single specific spell
   * **Price:** 500 gold
+  * **Bag:** [[rpd:scroll_holder|Scroll Holder]] (protects from burning)
 
 ==== Identification ====
 After being identified, the description reveals the specific spell contained within, formatted as: "Within these pages you've discovered a full text of a "[spell_name]" spell. [spell_description]"
@@ -22,7 +23,7 @@ After being identified, the description reveals the specific spell contained wit
   * Reading takes time and must be done without interruption
   * After reading, the hero permanently learns the contained spell
   * The spell book is consumed upon reading
-  * The contained spell is determined randomly from available spells for the relevant magic affinity
+  * The contained spell is determined when the book is generated
 
 ==== Acquisition ====
   * Found as treasure in dungeon levels, especially in treasury areas
@@ -44,10 +45,17 @@ After being identified, the description reveals the specific spell contained wit
   * Once consumed, it teaches the spell permanently to the hero
   * Not to be confused with [[rpd:scrolls|Scrolls]], which are one-time use items
   * The spell name is revealed on the item when identified in the format "Spell Book (Spell Name)"
+  * Protected from burning by being placed in a [[rpd:scroll_holder|Scroll Holder]]
+
+==== Content Verification ====
+  * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/artifacts/SpellBook.java|SpellBook.java]]
+  * Stats verification: Extracted directly from SpellBook class properties (image, price, bag method)
+  * Effect descriptions: Based on SpellBook class implementation and string resources
+  * Last updated: Verified against source code on December 2025
 
 ==== References ====
   * Java source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/artifacts/SpellBook.java|SpellBook.java]]
-  * String definitions: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L27-L29|String resources in strings_all.xml]]
+  * String definitions: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L29|SpellBook_Info_Identified in strings_all.xml]]
   * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json and other JSON files]]
 
 ==== See Also ====
@@ -57,5 +65,6 @@ After being identified, the description reveals the specific spell contained wit
   * [[rpd:mage|Mage]] - Hero class that focuses on spell usage
   * [[rpd:spell|Spell]] - Base spell class information
   * [[rpd:spellcasting|Spellcasting]] - General information about spells and casting
+  * [[rpd:scroll_holder|Scroll Holder]] - Bags that protect spell books
 
 {{tag> rpd items artifacts spell_book magic}}
