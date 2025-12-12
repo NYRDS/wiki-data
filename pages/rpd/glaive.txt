@@ -1,20 +1,47 @@
 ====== Glaive ======
 
-{:rpd:images:glaive_sprite.png?200|}
+{{ rpd:images:glaive_sprite.png|Glaive Sprite }}
 
-{{ rpd:images:glaive_sprite.png|Glaive Sprite  }}==== Description ====
-A glaive is a polearm weapon consisting of a single-edged blade on the end of a pole. It's a powerful melee weapon with excellent reach.
+==== Description ====
+A glaive is a polearm weapon consisting of a single-edged blade on the end of a pole. It's a powerful melee weapon with excellent reach. According to the in-game description: "A polearm consisting of a sword blade on the end of a pole."
+
+==== Item Class ====
+* **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Glaive.java|Glaive.java]]
+* **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Polearm.java|Polearm.java]]
+* **Sprite Index:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L44|GLAIVE = 30]]
 
 ==== Stats ====
-  * **Damage:** High
-  * **Reach:** Extended reach compared to standard melee weapons
-  * **Durability:** Moderate to high
-  * **Strength Required:** High
+* **Tier:** 5 (determines damage scaling)
+* **Damage:** 5-35 (min-max calculated as tier and (tier² - tier + 10) / accuracy * delay)
+* **Accuracy:** 1.2× (affects hit chance)
+* **Delay:** 1.4 (attack speed multiplier)
+* **Range:** 2 (can attack enemies 2 tiles away)
+* **Strength Required:** 15 (reduced by upgrades)
+* **Durability:** 100 (standard for weapons)
 
 ==== Special Properties ====
-  * **Extended Reach:** Can attack enemies at range
-  * **Sweeping Attacks:** May be able to attack multiple adjacent enemies
-  * **Polearm Mechanics:** Unique combat mechanics due to its length
+* **Extended Reach:** Can attack enemies at range of 2 tiles, allowing safe attacks from a distance
+* **Polearm Category:** Belongs to the "Polearms" archetype, granting increased attack distance
+* **Two-Handed:** Requires both hands to wield (blocks shield slot)
+* **Straight Flight:** When thrown (with boomerang enchantment), it flies straight to the target
 
-==== Notes ====
-The glaive is an excellent weapon for maintaining distance from enemies while still dealing significant damage. Its extended reach makes it useful in narrow corridors and for kiting enemies.
+==== Acquisition ====
+* Found in the City level (levels 16-19) of the dungeon
+* May appear in shops on higher dungeon levels
+* Can be created through transmutation at the [[rpd:water_of_transmutation|Water of Transmutation]]
+
+==== Strategy ====
+* The 2-tile range allows you to attack enemies while staying out of their reach
+* Effective against single targets, but can't hit multiple enemies in one attack
+* Works well in corridors where you can maintain distance from enemies
+* The high max damage makes it powerful against tough enemies when you connect
+* Upgrades will increase damage and reduce required strength
+* Consider using with other ranged weapons or magic items for maximum effectiveness
+
+==== Related Items ====
+* [[rpd:polearms|Polearms]] - Other weapons in the same category
+* [[rpd:spear|Spear]] - A similar but lower-tier polearm
+* [[rpd:halberd|Halberd]] - Another high-tier polearm with different stats
+* [[rpd:melee_weapons|Melee Weapons]] - All melee weapon types
+
+{{tag> rpd items weapons polearms melee}}

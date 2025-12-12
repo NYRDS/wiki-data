@@ -1,36 +1,43 @@
 ====== Ring of Stone Blood ======
 
-Ring of Stone Blood allows adventurer wearing it to walk through solid rocks as thin air. This comes at a price of course : for each step, the wearer lose portion of his health.
+Ring of Stone Blood allows adventurer wearing it to walk through solid rocks as thin air. This comes at a price of course: for each step taken inside walls, the wearer loses a portion of their health.
 
-This artifact is unique for [[rpd:start|Remixed Pixel Dungeon]]
+This artifact is unique for [[rpd:start|Remixed Pixel Dungeon]].
 
 ==== Description ====
-This strange ring is made of some sturdy stone. What you first thought was a ruby is actually liquid blood being held in place! Inside is an arrow pointing at what appears to be a wall, along with a broken heart... What might it do?
+This strange ring is made of sturdy stone. What you first thought was a ruby is actually liquid blood being held in place! Inside is an arrow pointing at what appears to be a wall, along with a broken heart... What might it do?
+
+==== Item Class ====
+* **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java|RingOfStoneWalking.java]]
+* **Sprite Index:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L80|RING_OF_STONE_WALKING = 133]]
 
 ==== Special Properties ====
-  * **Stone Construction:** Made of sturdy stone material
-  * **Blood Center:** Contains what appears to be liquid blood in the center
-  * **Mysterious Effects:** Has unknown but likely powerful effects
-  * **Unique Design:** Features an arrow and broken heart imagery
+* **Stone Construction:** Made of sturdy stone material
+* **Blood Center:** Contains what appears to be liquid blood in the center
+* **Unique Design:** Features an arrow and broken heart imagery
 
 ==== Effects ====
-  * **Wall Walking:** Allows the wearer to walk through solid rocks as if they were thin air
-  * **Health Cost:** For each step taken, the wearer loses a portion of their health
-  * **Stone Blood:** The blood turns stone which merges with nearby walls, making traversing them easier, but at what cost
-  * **Potential Consequences:** Comes with significant drawbacks or requirements
+* **Wall Walking:** Allows the wearer to walk through solid walls/rocks as if they were passable terrain
+* **Health Cost:** For each step taken inside solid walls, the wearer loses damage equal to max(HP / 2, 2)
+* **Stone Blood Ability:** The blood turns to stone which merges with nearby walls, making traversing them much easier, but at what cost
+* **Boss Level Restriction:** The ring does not function on boss levels (the walk-through-walls ability is disabled)
+* **Death Consequence:** If the player dies while using this ring, they will be immured in stone forever
 
-==== Bugs and Features ====
-Due to some flaws with the ring, it has a variety of interesting bugs that you can use to your advantage.
+==== Mechanics ====
+The ring works by overriding the normal passability checks in [[rpd:hero|Hero]] movement logic. When the player attempts to move to a solid tile while wearing the ring (and not on a boss level), the move is allowed. However, each step taken in solid terrain applies damage equal to the greater of half the hero's current HP or 2 points.
 
-  * **Gases don't disperse inside walls, which can lead to some interesting and even deadly effects. For example:**
-- If you drink a potion of toxic gas inside a wall, then it will stay in that tile forever. Same goes for the potion of paralytic gas, but drinking it will lead to your inevitable death. The effect of the potion will never end, so you will be paralyzed until you die to one of the natural factors- starving, ring that takes your life over time, or any enemy.
-  * **The ring works during boss fights, which lets you use some interesting tactics. Let's take Tengu as an example:**
-- Instead of using the key to the boss room right away, we can pass through the wall and only then use the key. This will make it possible to lure Tengu into another room, which will make the fight easier for you. The room will not have traps spawning in it and also it can be smaller in size (faster and easier to hit Tengu)
-  * **The ring lets you access locked rooms, if you can't find a key for some reason.**
+==== Strategy ====
+* Since the damage is based on current HP, try to reduce your HP before using the ring if you don't want to take too much damage
+* The ring is most useful for bypassing obstacles, accessing hard-to-reach areas, or evading enemies
+* You can drink potions inside walls without them dispersing, but be careful as this can lead to dangerous situations
+* The ring does not work on boss levels, so plan accordingly for boss encounters
+* Be aware that if you die while using this ring, the game will fail with "You have been immured in stone. Forever."
 
-==== Notes ====
-The Ring of Stone Blood is an enigmatic item with a mysterious design and potentially powerful abilities related to movement through solid objects. It allows the adventurer wearing it to walk through solid rocks as thin air, but this comes at a price of losing health with each step.
+==== Related Pages ====
+* [[rpd:artifacts|Artifacts]]
+* [[rpd:rings|Ring Types]]
+* [[rpd:hero|Hero Movement Mechanics]]
 
-{{tag> rpd items}}  
+{{tag> rpd items artifacts}}  
 
 
