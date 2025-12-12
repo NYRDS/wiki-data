@@ -1,59 +1,79 @@
 ====== Town Features ======
 
-The Town is the starting area of Remixed Dungeon where players can prepare for their dungeon expedition. It contains various buildings and services that aid the adventurer.
+The Town is the starting area of Remixed Dungeon where players can prepare for their dungeon expedition. It contains various buildings and services that aid the adventurer. The town acts as a safe zone before descending into the dungeon.
 
 ==== Overview ====
 
 The Town serves as the safe starting area where players can:
-  * Purchase equipment and supplies
-  * Heal and restore health
-  * Receive blessings and special services
-  * Learn about the dungeon and its dangers
+  * Purchase equipment and supplies from the Shop
+  * Rest and recover at the Inn
+  * Learn about the dungeon at the Library
+  * Be entertained at the Cinema
+  * Encounter various townspeople and guards
 
 ==== Buildings in Town ====
 
-The Town contains several important buildings:
-
-  * **Church** - Provides healing services and blessings
-    * Allows players to heal wounds
-    * May offer blessings that enhance abilities
-    * Run by NPCs like the Bishop
-
-  * **Cinema** - Special entertainment area
-    * Unique location with special content
-    * May contain unique items or quests
-
-  * **Inn** - Rest and recovery
-    * Provides a safe place to rest
-    * Allows for full healing and restoration
-
-  * **Library** - Source of knowledge
-    * Contains information about the dungeon
-    * May offer special items or services
-
-  * **Fortune Teller** - Divination services
-    * Provides special information or abilities
-    * May offer unique services to adventurers
+Based on the level configuration, the Town features various locations as indicated by the signs:
 
   * **Shop** - Equipment and supplies
     * Standard shop for purchasing items
     * Sells weapons, armor, potions, scrolls, and other equipment
+    * Runs on a separate level: [[rpd:townshoplevel|Town Shop Level]]
+
+  * **Inn** - Rest and recovery
+    * Provides a safe place to rest
+    * Allows for full healing and restoration
+    * Currently, the Inn exists as a sign but isn't implemented as a functional building
+
+  * **Library** - Source of knowledge
+    * Contains information about the dungeon
+    * Currently, the Library exists as a sign but isn't implemented as a functional building
+
+  * **Cinema** - Entertainment area
+    * Special entertainment area referenced in dialogues
+    * Townsfolk reference "special service" provided by the cinema
+    * Mentions "exotic thing called the 'Internet'"
+    * Currently, the Cinema exists as a sign but isn't implemented as a functional building
 
 ==== Town NPCs ====
 
-The Town is populated by various NPCs offering different services:
-  * Shopkeepers - Sell equipment and supplies
-  * Healers - Provide healing services
-  * Merchants - Offer special items or services
-  * Quest givers - Provide information or tasks
+The Town is populated by various NPCs:
+
+  * **TownGuardNPC** - Town guards
+    * Provides security in the town
+    * Messages include: "Move along.", "Thanks to adventurers like you, it became really peaceful up here."
+    * Also mentions: "You think there are too many guards in this town? Well, that's because this is the only town with a gigantic monster-infested dungeon, isn't it?"
+
+  * **TownsfolkNPC** - Townspeople
+    * Regular townspeople with random messages
+    * Messages include: "Hmph!", "...", "Hmmm...", "Hmph!"
+
+  * **TownsfolkSilentNPC** - Silent townspeople
+    * Quiet townspeople with minimal dialogue
+    * Messages include: "Hmph!", "...", "Hmmm..."
+
+  * **TownsfolkMovieNPC** - Movie theater patrons
+    * References the cinema's special service
+    * Says: "Do you know about that special service the \"movie theater\" provides? Too bad they ask for some exotic thing called the \"Internet\", I never even heard about such a thing."
+
+  * **TownShopkeeper** - Shop vendors
+    * Sells equipment and supplies on the separate Town Shop Level
 
 ==== Advantages of Town ====
 
-  * **Safety:** No dangerous monsters
+  * **Safety:** No dangerous monsters that attack players
   * **Preparation:** Opportunity to prepare for dungeon descent
-  * **Services:** Access to healing, equipment, and special services
-  * **Information:** Learn about dungeon challenges
+  * **Services:** Access to shops for equipment and supplies
+  * **Information:** NPC dialogues provide background lore
+  * **Challenge Interaction:** Affected by the [[rpd:challenges|NO_TOWN]] challenge which forbids the TownPortal spell
 
-==== Returning to Town ====
+==== Related Challenges ====
 
-In some game variations, players may be able to return to town using special items like portals, though in most cases progression is forward-only through the dungeon until completion.
+  * **[[rpd:challenges#no_town|NO_TOWN]]** challenge - When enabled, this challenge prevents the use of Town Portal spells, making it impossible to return to town after entering the dungeon.
+
+==== Notes ====
+
+  * Unlike the wiki page claimed, players cannot return to town using portals during a normal game
+  * The Town Portal spell is specifically forbidden when the NO_TOWN challenge is enabled
+  * Most buildings exist as locations in the game files but may not have functional interiors
+  * The town is based on the tileset: tiles_town_outside_winter.png
