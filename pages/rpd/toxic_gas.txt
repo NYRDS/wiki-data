@@ -1,41 +1,53 @@
 ====== Toxic Gas ======
 
-Toxic Gas is a harmful environmental effect in Remixed Dungeon that damages creatures within its area and may cause ongoing poison effects.
+Toxic Gas is a harmful environmental effect in Remixed Dungeon that damages creatures within its area.
 
 ==== Description ====
 Toxic Gas is a greenish cloud of poisonous gas that spreads through the dungeon, causing damage to most living creatures that remain within it. It's typically created by throwing a [[rpd:potion_of_toxic_gas|Potion of Toxic Gas]].
 
 ==== Effects ====
-  * **Area of Effect:** Covers multiple adjacent cells
   * **Damage Over Time:** Causes repeated damage while in the gas
-  * **Poison Status:** May cause poison status effect for ongoing damage after leaving
+  * **Damage Formula:** (character's HP + 5 + dungeon_depth * 5) / 40, with a chance for +1 damage
+  * **Area of Effect:** Covers multiple adjacent cells
   * **Duration:** Persists for several turns before dissipating
-  * **Movement:** Can move with wind or spread patterns in some variants
+  * **Heap Interaction:** Poisons items in heaps that are within the gas
+  * **Counter-Interaction:** Toxic gas cancels out with [[rpd:paralytic_gas|Paralytic Gas]] when they occupy the same tile
 
 ==== Creation ====
-  * [[rpd:potion_of_toxic_gas|Potion of Toxic Gas]] - Thrown potion creates the gas cloud
-  * Certain enemy abilities - Some creatures can produce toxic gas
-  * Environmental hazards - Some dungeon features may generate gas
+  * [[rpd:potion_of_toxic_gas|Potion of Toxic Gas]] - Thrown potion creates a large gas cloud (1000 volume)
+  * [[rpd:toxic_trap|Toxic Trap]] - Traps create gas clouds (300 + 20 * dungeon depth volume)
+  * [[rpd:rotten_food|Rotten Food]] - Creates gas when thrown (500 volume)
+  * Certain enemies like [[rpd:dm300|DM300]] and [[rpd:lich|Lich]] can produce toxic gas
+  * [[rpd:glyph_of_stench|Glyph of Stench]] on armor can occasionally produce toxic gas when attacked
+  * Some plants like [[rpd:sorrowmoss|Sorrowmoss]] can be transmuted into potions of toxic gas
 
 ==== Affected Creatures ====
   * Most living enemies and players
-  * Potentially harmful to some pets or summons
-  * Some undead or mechanical creatures may be immune
+  * **Immune Creatures:** Statues, Mirror Images, Mimic Pies, Piranhas, DM300, various Yog's body parts, Suspicious Rats, Zombies, Crystal mobs, IceElemental, EarthElemental, IceGuardian, IceGuardianCore, Tengu, Goo, King, BurningFist, YogsTeeth, RottingFist, YogsBrain
+  * **Resistant Creatures:** Some bosses like Tengu, Goo, King, YogsBrain, BurningFist, RottingFist, YogsTeeth
 
 ==== Strategy ====
-  * **For Players:** Use to damage groups of enemies
-  * **Defensive:** Avoid standing in toxic gas clouds
-  * **Environmental:** Can block passages temporarily
-  * **Tactical:** Consider gas spread before throwing potions
+  * **For Players:** Use to damage groups of enemies efficiently
+  * **Defensive:** Avoid standing in toxic gas clouds to prevent damage
+  * **Environmental:** Can block passages temporarily to control enemy movement
+  * **Tactical:** Consider gas spread before throwing potions to maximize area coverage
+  * **Note:** Toxic gas can be dangerous to yourself if you can't escape quickly
 
 ==== Countermeasures ====
   * Don't stand in the gas if avoidable
-  * Equipment may provide resistance to gas effects
-  * Consider timing when the gas will clear
-  * Avoid using in enclosed spaces where gas will linger
+  * Equipment like [[rpd:ring_of_elements|Ring of Elements]] may provide resistance to gas effects
+  * [[rpd:potion_of_purity|Potion of Purity]] can clear toxic gas from an area
+  * Consider timing when the gas will clear before entering an area
+  * Avoid using in enclosed spaces where gas will linger and potentially trap you
+
+==== Source Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas.java - Implementation]]
 
 ==== Related ====
   * [[rpd:potion_of_toxic_gas|Potion of Toxic Gas]] - Item that creates this effect
-  * [[rpd:paralysis|Paralysis]] - Other status effect from gas items
-  * [[rpd:poison|Poison]] - Status effect often associated with toxic gas
+  * [[rpd:paralytic_gas|Paralytic Gas]] - Other gas type that interacts with toxic gas
   * [[rpd:gas_effects|Gas Effects]] - Other gas-based dungeon mechanics
+  * [[rpd:toxic_trap|Toxic Trap]] - Trap that creates toxic gas
+  * [[rpd:poison|Poison]] - Status effect sometimes associated with toxic gas
+
+{{tag> rpd gas blobs effects}}

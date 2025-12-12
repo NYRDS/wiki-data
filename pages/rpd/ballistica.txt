@@ -1,0 +1,37 @@
+====== Ballistica ======
+
+Ballistica is the targeting and pathfinding system used in Remixed Dungeon for ranged attacks and other directional effects.
+
+==== Mechanics ====
+  * **Path Calculation:** Determines the path from source to target
+  * **Line of Sight:** Used to determine if target is visible
+  * **Obstacle Detection:** Identifies obstacles in the path
+  * **Final Position:** Determines the actual impact point
+
+==== Usage in Game ====
+  * [[rpd:wands|Wands]] - For targeting with wands
+  * [[rpd:kusarigama|Kusarigama]] - For the pull action
+  * [[rpd:throwing_weapons|Throwing weapons]] - For trajectory calculations
+  * [[rpd:spells|Spells]] - For directional spell effects
+  * [[rpd:traps|Traps]] - For some trap effects that have direction
+
+==== Technical Details ====
+  * Uses raycasting for path determination
+  * Accounts for walls and other obstacles
+  * Can handle reflection off certain surfaces in advanced implementations
+  * Critical for proper ranged combat mechanics
+
+==== Strategy ====
+  * Understanding line of sight can improve accuracy with ranged items
+  * Positioning can block enemy ranged attacks using obstacles
+  * Helpful to know for predicting enemy ranged attacks
+
+==== See Also ====
+  * [[rpd:range|Range]] - Understanding distance mechanics
+  * [[rpd:combat|Combat]] - Combat mechanics
+  * [[rpd:mechanics|Mechanics]] - General game mechanics
+
+==== Source Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java - Implementation]]
+
+{{tag> rpd mechanics combat targeting}}
