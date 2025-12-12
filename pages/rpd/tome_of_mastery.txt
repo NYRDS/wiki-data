@@ -12,10 +12,12 @@ The **Tome of Mastery** is a special book item in Remixed Dungeon that allows ce
 
 ==== Special Mechanics ====
   * When read, the Tome of Mastery allows the player to select a subclass specific to their current class (for eligible classes)
-  * **Important:** This tome does NOT work for the Necromancer and Gnoll classes
+  * **Important:** This tome does NOT work for the Necromancer and Gnoll classes (different unlocking mechanisms)
   * For eligible classes, each hero class has access to two specific subclasses (e.g. Warrior can choose Gladiator or Berserker)
   * The subclass choice is permanent and defines special mechanics and abilities for the rest of the run
   * Reading the tome is only possible after defeating the second boss to unlock the subclass option
+  * Cannot be read while blinded
+  * Cannot be read if player already has a subclass
 
 ==== Classes That Can Use the Tome of Mastery ====
   * **Warrior:** [[rpd:gladiator|Gladiator]] or [[rpd:berserker|Berserker]]
@@ -25,14 +27,24 @@ The **Tome of Mastery** is a special book item in Remixed Dungeon that allows ce
   * **Elf:** [[rpd:scout|Scout]] or [[rpd:shaman|Shaman]]
 
 ==== Classes That Do NOT Use the Tome of Mastery ====
-  * **Necromancer:** [[rpd:lich|Lich]] or [[rpd:witchdoctor|Witchdoctor]] - Achieved through different unlocking mechanisms
-  * **Gnoll:** [[rpd:guardian|Guardian]] - Achieved through different unlocking mechanisms
+  * **Necromancer:** [[rpd:lich|Lich]] or [[rpd:witchdoctor|Witchdoctor]]
+    * The Lich subclass is unlocked by obtaining the [[rpd:black_skull_of_mastery|Black Skull of Mastery]] from the Lich boss
+  * **Gnoll:** [[rpd:guardian|Guardian]]
+    * The Guardian subclass is unlocked by healing a [[rpd:gnoll_brute|Gnoll Brute]] NPC with the town [[rpd:healer_npc|Healer NPC]]
 
 ==== Strategy ====
   * Save the tome until you've explored the second dungeon level and identified which subclass best fits your playstyle
   * Consider your current equipment and playstyle when choosing a subclass
   * Some subclasses synergize better with certain equipment or items you may have found
   * Note: If you're playing as Necromancer or Gnoll, you won't be able to use this tome
+  * You can only have one subclass, so choose carefully as the decision is permanent for the run
+  * The tome is automatically added to your inventory if you play with an eligible class and have the appropriate badge unlocked
+
+==== Source Code Reference ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/TomeOfMastery.java|TomeOfMastery.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L58|Tengu.java]] (where it's dropped)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/necropolis/BlackSkullOfMastery.java|BlackSkullOfMastery.java]] (for Necromancer subclass)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndPriest.java#L85-L87|WndPriest.java]] (for Gnoll subclass unlock)
 
 ==== See Also ====
   * [[rpd:playable_class|Playable Classes]] - For information on all classes
@@ -51,5 +63,8 @@ The **Tome of Mastery** is a special book item in Remixed Dungeon that allows ce
   * [[rpd:lich|Lich]] - Necromancer subclass
   * [[rpd:witchdoctor|Witchdoctor]] - Necromancer subclass
   * [[rpd:guardian|Guardian]] - Gnoll subclass
+  * [[rpd:black_skull_of_mastery|Black Skull of Mastery]]
+  * [[rpd:healer_npc|Healer NPC]]
+  * [[rpd:gnoll_brute|Gnoll Brute]]
 
 {{tag> rpd items books quest}}

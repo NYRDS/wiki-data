@@ -2,7 +2,7 @@
 
 {{ rpd:images:cloak_spell_icon.png|CloakSpell Spell Icon }}
 
-**CloakSpell** is a spell in Remixed Pixel Dungeon (Rogue Affinity).
+**CloakSpell** is a spell in Remixed Pixel Dungeon (Rogue Affinity) that provides temporary invisibility.
 
 ==== Description ====
 Step into the shadows to become unseen. Greatly reduce your chances of being detected. Can\'t be used while enemies are nearby.
@@ -12,12 +12,23 @@ Step into the shadows to become unseen. Greatly reduce your chances of being det
   * **Targeting:** self
   * **Level:** 1
   * **Mana Cost:** 5
+  * **Cooldown:** 20 turns
+  * **Cast Time:** 0.5 turns
+  * **Duration:** Caster's skill level * 5 turns
+
+==== Mechanics ====
+  * Applies the [[rpd:cloak|Cloak Buff]] which makes the character invisible
+  * Provides stealth bonus: Caster's skill level + caster's level / 4
+  * Character appears with invisible status effect
+  * Cannot be used if the caster has visible enemies nearby (caster:visibleEnemies() > 0)
+  * Lasts one turn (the buff automatically detaches at the start of the next turn)
 
 ==== Usage ====
 The CloakSpell spell can be used for:
-  * Primary effect of the spell
-  * Strategic applications in combat
-  * Utility purposes based on its mechanics
+  * Escaping dangerous situations
+  * Avoiding enemy detection during movement
+  * Tactical positioning without being noticed
+  * Preparing for surprise attacks
 
 ==== Classes ====
 Classes that can use this spell include:
@@ -26,9 +37,11 @@ Classes that can use this spell include:
 
 ==== Strategy ====
 How to effectively use the CloakSpell spell:
-  * Best situations to use the spell
-  * Synergies with other abilities
-  * Timing considerations
+  * Use when no enemies are in sight to avoid triggering the failure message
+  * Plan movement carefully as the invisibility only lasts briefly
+  * Use to escape from groups of enemies or dangerous areas
+  * Combine with other stealth-based strategies for maximum utility
+  * The spell has a significant cooldown, so use it strategically
 
 ==== Data Validation ====
 This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
@@ -41,10 +54,14 @@ This information is extracted directly from the game code and validated against 
 
 ==== Source Code ====
 This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Cloak.lua|Cloak]]
+and the Cloak buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Cloak.lua|Cloak Buff]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
   * [[rpd:mechanics|Game Mechanics]]
   * [[rpd:rogue|Rogue Affinity]]
+  * [[rpd:cloak|Cloak Buff]]
+  * [[rpd:hide_in_grass_spell|Hide in Grass Spell]]
+  * [[rpd:invisibility|Invisibility]]
 
 {{tag> rpd spells rogue }}

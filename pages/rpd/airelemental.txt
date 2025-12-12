@@ -2,7 +2,7 @@
 
 {{ rpd:images:airelemental_sprite.png|Air Elemental Sprite }}
 
-Air Elementals are flying magic beings made of living air. They appear in the Goo feeling when the "Chasm" feature is present, and are immune to bleeding. They use the Wind Gust spell to attack enemies.
+Air Elementals are flying magic beings made of living air. They appear in the Chasm feeling, and are immune to bleeding. They use the Wind Gust spell to attack enemies.
 
 ==== Properties ====
   * **HP**: Scales with depth (hp = depth * 3 + 1)
@@ -21,20 +21,26 @@ Air Elementals are flying magic beings made of living air. They appear in the Go
 ==== Behavior ====
   * Air Elementals have a unique movement pattern - when they get too close to the target (distance < skillLevel - 1), they move away instead of approaching
   * They can attack from a distance (up to skillLevel range) but won't attack adjacent enemies
-  * When they attack, they cast Wind Gust which creates wind particles and bursts effect on the target
+  * When they attack, they cast Wind Gust which creates wind particles and burst effects on the target
+  * They only appear in the Chasm feeling, which has a 20% chance to appear on dungeon levels
 
 ==== Strategy ====
   * Air Elementals cannot be trapped in pits or affected by ground-based obstacles
   * Their Wind Gust ability can push characters, potentially into dangerous positions
   * They are immune to effects that require physical contact or ground presence
+  * They can be challenging to fight in narrow corridors due to push effects
+  * They move erratically due to their unique movement pattern
 
 ==== Source Code Reference ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]]
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L93|Bestiary.json]] (where spawn rates are defined)
 
 ==== See Also ====
   * [[rpd:elemental|Elementals]]
   * [[rpd:feeling|Feelings]]
   * [[rpd:wind_gust_spell|Wind Gust Spell]]
+  * [[rpd:water_elemental|Water Elemental]]
+  * [[rpd:earth_elemental|Earth Elemental]]
 
 {{tag> rpd mobs}}

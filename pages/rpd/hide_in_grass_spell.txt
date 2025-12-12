@@ -2,22 +2,34 @@
 
 {{ rpd:images:hide_in_grass_spell_icon.png|HideInGrassSpell Spell Icon }}
 
-**HideInGrassSpell** is a spell in Remixed Pixel Dungeon (Elf Affinity).
+**HideInGrassSpell** is a spell in Remixed Pixel Dungeon (Elf Affinity) that provides temporary invisibility when in grass.
 
 ==== Description ====
-You perfected your Hide-and-seek mastery.
+You perfected your Hide-and-seek mastery while in grassy terrain.
 
 ==== Stats ====
   * **Magic Affinity:** Elf
   * **Targeting:** self
   * **Level:** 2
   * **Mana Cost:** 5
+  * **Cooldown:** 10 turns
+  * **Cast Time:** 0.1 turns
+  * **Duration:** Caster's skill level * 5 turns
+
+==== Mechanics ====
+  * Applies the [[rpd:cloak|Cloak Buff]] which makes the character invisible (same buff as Cloak spell)
+  * Can only be used when caster is standing on grass (GRASS) or high grass (HIGH_GRASS) terrain
+  * Provides stealth bonus: Caster's skill level + caster's level / 4
+  * Character appears with invisible status effect
+  * If not on grass terrain, the spell fails with the message "You need grass to hide in"
+  * Lasts one turn (the buff automatically detaches at the start of the next turn)
 
 ==== Usage ====
 The HideInGrassSpell spell can be used for:
-  * Primary effect of the spell
-  * Strategic applications in combat
-  * Utility purposes based on its mechanics
+  * Escaping dangerous situations when near grassy areas
+  * Infiltration and stealth in grassy environments
+  * Tactical positioning while in grass
+  * Surprise attacks from hidden positions
 
 ==== Classes ====
 Classes that can use this spell include:
@@ -26,9 +38,11 @@ Classes that can use this spell include:
 
 ==== Strategy ====
 How to effectively use the HideInGrassSpell spell:
-  * Best situations to use the spell
-  * Synergies with other abilities
-  * Timing considerations
+  * Position yourself near grassy terrain before needing to use this spell
+  * Use to escape from enemies by hiding in grass when being chased
+  * The spell has a shorter cooldown than Cloak spell, making it more readily available
+  * Combine with the Elf's natural ability to move through grass without triggering traps
+  * Use during boss fights when near grassy areas for temporary invisibility
 
 ==== Data Validation ====
 This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
@@ -41,10 +55,15 @@ This information is extracted directly from the game code and validated against 
 
 ==== Source Code ====
 This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/HideInGrass.lua|HideInGrass]]
+and the Cloak buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Cloak.lua|Cloak Buff]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
   * [[rpd:mechanics|Game Mechanics]]
   * [[rpd:elf|Elf Affinity]]
+  * [[rpd:cloak|Cloak Buff]]
+  * [[rpd:cloak_spell|Cloak Spell]]
+  * [[rpd:invisibility|Invisibility]]
+  * [[rpd:grass|Grass Terrain]]
 
 {{tag> rpd spells elf }}
