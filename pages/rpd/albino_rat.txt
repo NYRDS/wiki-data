@@ -2,34 +2,52 @@
 
 {{ rpd:images:albino_rat_sprite.png|Albino Rat }}
 
-Albino Rats are rare variant of regular rats found in the Sewers area of Remixed Dungeon.
+Albino Rats are rare variant of regular rats found in the Sewers area of Remixed Dungeon. They have abnormally sharp teeth and a distinctive white coloration.
 
 ==== Stats ====
-  * **Level**: Found in Sewers (level 1-5)
-  * **HP**: Low
-  * **Attack**: Low
-  * **Defense**: Low
-  * **EXP**: Low
+  * **Level**: Found in Sewers (level 3)
+  * **HP**: 15 (same as regular rat but fixed value)
+  * **Attack**: Similar to regular rats
+  * **Defense**: Similar to regular rats
+  * **EXP**: 0 (no experience gained for killing)
 
 ==== Description ====
-Albino Rats are rare white variants of the common dungeon rat. They appear in the Sewers and behave similarly to regular rats but in smaller numbers.
+Albino Rats are rare white variants of the common dungeon rat. They appear in the Sewers and behave similarly to regular rats but with a special attack mechanic. According to the game description: "Marsupial rats are aggressive, but rather weak denizens of the sewers. They can be dangerous only in big numbers. This particular rat seems to be an albino. It also has abnormally sharp teeth."
 
 ==== Behavior ====
-  * Similar to regular rats
-  * Moves directly toward the player
+  * Similar to regular rats - moves directly toward the player
+  * Has a special attack that causes bleeding damage to the target
   * Generally appears alone rather than in groups
-  * Slightly more dangerous than regular rats
+  * The attack has a 50% chance of causing a Bleeding effect on the target equal to the damage dealt
+
+==== Special Ability ====
+  * **Bleeding Attack**: On successful hit, there is a 50% chance to cause Bleeding status effect on the target equal to the damage dealt
 
 ==== Drops ====
 Albino Rats typically drop:
   * Small amount of gold
-  * Maybe slightly better items than regular rats
+  * Standard rat drop items
 
-==== Special Notes ====
-  * Rare variant of the common rat
-  * Appears less frequently than regular rats
-  * Distinguished by white coloration
-  * Still a weak early-game enemy
-  * More of a curiosity than a significant threat
+==== Habitat ====
+  * Spawn rate: Very rare (0.03 weight in Bestiary.json for level 3)
+  * Found primarily in Sewer level (level 3)
+  * Part of the rare spawns in the dungeon
 
-{{tag> rpd mobs albino_rat sewers rat}}
+==== Strategy ====
+  * While individually weak, be aware of the bleeding effect which can accumulate over time
+  * Potentially more dangerous than regular rats due to the bleeding effect
+  * Try to avoid getting surrounded by multiple Albino Rats to prevent stacking bleeding damage
+
+==== Technical Information ====
+  * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Albino.java|Albino.java]]
+  * **Inherits From**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java|Rat.java]]
+  * **String Resource**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1210|Albino_Desc]]
+  * **Badge**: Killing an Albino rat contributes to the RARE_ALBINO badge
+
+==== Related Pages ====
+  * [[rpd:rat|Rat]] - Base mob that Albino inherits from
+  * [[rpd:bleeding|Bleeding]] - Status effect caused by Albino's attack
+  * [[rpd:sewers|Sewers]] - Level where it appears
+  * [[rpd:rats|Rats]] - Information about rat variants
+
+{{tag> rpd mobs albino_rat sewers rat rare bleeding}}
