@@ -1,5 +1,40 @@
-====== airelemental ======
+====== Air Elemental ======
 
-{:rpd:images:airelemental_sprite.png?200|}
+{{ rpd:images:airelemental_sprite.png|Air Elemental Sprite }}
 
-Description for airelemental goes here.
+Air Elementals are flying magic beings made of living air. They appear in the Goo feeling when the "Chasm" feature is present, and are immune to bleeding. They use the Wind Gust spell to attack enemies.
+
+==== Properties ====
+  * **HP**: Scales with depth (hp = depth * 3 + 1)
+  * **Attack**: High (baseAttackSkill = baseDefenseSkill * 2 + 1)
+  * **Defense**: Scales with depth (baseDefenseSkill = depth * 2 + 1)
+  * **Damage**: 0 to ht() / 4 (increases with HP)
+  * **EXP**: depth + 1
+  * **Max Level**: depth + 2
+  * **DR**: expForKill / 5
+  * **Carcass Chance**: 0%
+  * **Flying**: Yes (cannot be affected by ground-based effects)
+  * **Immunities**: [[rpd:bleeding|Bleeding]]
+  * **Special Ability**: Uses Wind Gust spell when attacking
+  * **Loot**: [[rpd:potion_of_levitation|Potion of Levitation]] (10% chance)
+
+==== Behavior ====
+  * Air Elementals have a unique movement pattern - when they get too close to the target (distance < skillLevel - 1), they move away instead of approaching
+  * They can attack from a distance (up to skillLevel range) but won't attack adjacent enemies
+  * When they attack, they cast Wind Gust which creates wind particles and bursts effect on the target
+
+==== Strategy ====
+  * Air Elementals cannot be trapped in pits or affected by ground-based obstacles
+  * Their Wind Gust ability can push characters, potentially into dangerous positions
+  * They are immune to effects that require physical contact or ground presence
+
+==== Source Code Reference ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]]
+
+==== See Also ====
+  * [[rpd:elemental|Elementals]]
+  * [[rpd:feeling|Feelings]]
+  * [[rpd:wind_gust_spell|Wind Gust Spell]]
+
+{{tag> rpd mobs}}
