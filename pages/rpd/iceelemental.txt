@@ -1,39 +1,57 @@
 ====== Ice Elemental ======
 
-{{ rpd:images:iceelemental_sprite.png?200|Ice Elemental Sprite }}
+{{ rpd:images:iceelemental_sprite.png|Ice Elemental }}
 
 Ice Elementals are magical creatures that inhabit the Ice Caves. They are among the most dangerous elementals in the dungeon due to their ability to slow down enemies with their chilling presence.
 
 ==== Description ====
-Ice Elementals are among all the elementals that exist in the dungeon, ice elementals can hardly be considered powerful, but they can truly be called one of the most dangerous ones. The frost aura that emits from their bodies can slow down any enemy.
+Ice Elementals are among all the elementals that exist in the dungeon. While they can hardly be considered powerful in terms of raw stats, they can truly be called one of the most dangerous ones. The frost aura that emits from their bodies can slow down any enemy.
 
 ==== Stats ====
-* **HP Scaling:** Depth * 10 + 1
-* **Defense:** Depth * 2 + 1
-* **EXP for Kill:** Depth + 1
-* **Max Level:** Depth + 2
-* **Damage Resistence:** EXP for Kill value
-* **Attack Skill:** (Defense/3) + 1
-* **Damage Min/Max:** HP/6
+  * **HP:** Depth * 10 + 1
+  * **Defense:** Depth * 2 + 1
+  * **EXP for Kill:** Depth + 1
+  * **Max Level:** Depth + 2
+  * **Damage Resistance:** EXP for Kill value
+  * **Attack Skill:** (Defense/3) + 1
+  * **Damage:** HP/6 to HP/6 (same minimum and maximum)
+  * **Carcass Chance:** 0 (does not drop bones)
 
 ==== Special Abilities ====
-* **Slow Aura:** When attacking, has a 33% chance to apply the Slow status effect to the target for 3 turns
-* **Immunities:** Immune to Roots, Paralysis, Stun, and Toxic Gas
+  * **Slow Aura:** When attacking, has a 33% chance (Random.Int(3) == 1) to apply the [[rpd:slow|Slow]] status effect to the target for 3 turns
+  * **Immunities:** Immune to [[rpd:roots|Roots]], [[rpd:paralysis|Paralysis]], [[rpd:stun|Stun]], and [[rpd:toxic_gas|Toxic Gas]]
 
 ==== Habitat ====
-Ice Elementals can be found in the Ice Caves levels (ice1-ice4).
+Ice Elementals can be found in the [[rpd:ice_caves|Ice Caves]] levels (ice1-ice4).
 
 ==== Drops ====
-* **Frozen Carpaccio** with a 10% chance (0.1f)
+  * [[rpd:frozen_carpaccio|Frozen Carpaccio]] with a 10% chance (0.1f)
+
+==== Strategy ====
+  * Be prepared for potential slow effects that can hinder your movement and attack speed
+  * Since they have low damage output, they're generally manageable in combat
+  * The slow effect can be particularly dangerous when fighting multiple enemies
+  * Consider using ranged weapons to avoid trigger the slow chance on adjacent attacks
+
+==== Related ====
+  * [[rpd:elementals|Elementals]] - Other elemental creatures
+  * [[rpd:ice_caves|Ice Caves]] - Where they're found
+  * [[rpd:slow|Slow]] - Status effect they can apply
+  * [[rpd:fire_elemental|Fire Elemental]] - Opposite elemental type
+  * [[rpd:water_elemental|Water Elemental]] - Other elemental type
+  * [[rpd:earth_elemental|Earth Elemental]] - Other elemental type
+  * [[rpd:air_elemental|Air Elemental]] - Other elemental type
+
+==== Technical Details ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/IceElemental.java|com.nyrds.pixeldungeon.mobs.elementals.IceElemental]]
+  * **Implementation:** Implements IDepthAdjustable interface for scaling based on dungeon depth
+  * **Slow Chance:** 33% chance (Random.Int(3) == 1) to apply Slow on attack
+  * **Depth Scaling:** All stats scale based on current dungeon depth
 
 ==== Content Verification ====
-* **Information Source:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/IceElemental.java|IceElemental.java]]
-* **Stats Verification:** Extracted directly from IceElemental.java adjustStats() method
-* **Effect Descriptions:** Based on attackProc() method analysis and string resources
+  * Information source: Java Class com.nyrds.pixeldungeon.mobs.elementals.IceElemental
+  * Stats verification: Extracted directly from adjustStats() method
+  * Effect descriptions: Based on attackProc() method analysis
+  * Source code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/IceElemental.java|IceElemental.java]]
 
-==== See Also ====
-* [[rpd:elemental|Elementals]]
-* [[rpd:ice_caves|Ice Caves]]
-* [[rpd:slow|Slow Effect]]
-
-{{tag> rpd mobs elemental }}
+{{tag> rpd mobs elemental ice}}

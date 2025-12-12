@@ -1,32 +1,58 @@
 ====== Berserk Armor ======
 
-Berserk Armor is the class-specific armor obtained by using an Armor Kit on any regular armor for the Berserker subclass in Remixed Dungeon.
+{{ rpd:images:berserk_armor_sprite.png|Berserk Armor }}
+
+Berserk Armor is the class-specific armor obtained by using an [[rpd:armor_kit|Armor Kit]] on any regular armor for the [[rpd:berserker|Berserker]] subclass in Remixed Dungeon.
 
 ==== Acquisition ====
-  * Use an Armor Kit on any regular armor while playing as a Warrior who has chosen the Berserker subclass
+  * Use an [[rpd:armor_kit|Armor Kit]] on any regular armor while playing as a [[rpd:warrior|Warrior]] who has chosen the [[rpd:berserker|Berserker]] subclass
   * Transforms the base armor into Berserk Armor with special properties
 
 ==== Special Properties ====
-  * Inherits all properties of Warrior Armor (Leap ability)
-  * Leap ability: Allows the wearer to jump to a targeted location, stunning adjacent enemies for 3 turns
-  * Requires sufficient skill points to use special ability
-  * Exclusive to the Berserker subclass - cannot be equipped if not the Berserker subclass
-
-==== Usage ====
-  * Essential armor for maximizing the effectiveness of the Berserker subclass
-  * Should be crafted as soon as possible after choosing the Berserker subclass
-  * Allows full utilization of subclass abilities
+  * Inherits all properties of [[rpd:warrior_armor|Warrior Armor]] (Leap ability)
+  * Exclusively usable by the [[rpd:berserker|Berserker]] subclass - cannot be equipped by other classes/subclasses
+  * Inherits the helmet from Warrior Armor
+  * Cover hair: Yes
 
 ==== Special Ability: Leap ====
   * Allows jumping to a targeted location
-  * Stuns adjacent enemies for 3 turns upon landing
-  * Requires skill points to activate
+  * Stuns adjacent enemies for 3 turns upon landing (SHOCK_TIME constant)
+  * Uses 1 turn of time (LEAP_TIME constant)
+  * Creates dust particles at landing location
+  * Causes camera shake upon landing
+  * Requires selecting a target location using the cell selector
+  * If the target location has an enemy, the leap will land on the closest empty adjacent cell
   * Can be used to reposition in combat or escape dangerous situations
 
-==== Notes ====
-  * Part of the subclass identity system in Remixed Dungeon
-  * Class armors represent the unique nature of each subclass
-  * Cannot be worn by characters who haven't unlocked the appropriate subclass
-  * Inherits the base Warrior armor special ability
+==== Usage ====
+  * Essential armor for maximizing the effectiveness of the [[rpd:berserker|Berserker]] subclass
+  * Should be crafted as soon as possible after choosing the [[rpd:berserker|Berserker]] subclass
+  * Allows full utilization of subclass abilities
+  * Cannot be equipped by non-Warrior classes or other Warrior subclasses
+
+==== Strategy ====
+  * Use the leap ability for positioning and to control enemy spacing
+  * The stun effect can give you breathing room against multiple enemies
+  * Can be used to reach distant areas quickly or escape dangerous situations
+  * Consider using it before engaging groups of enemies to separate them
+
+==== Technical Details ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/BerserkArmor.java|com.watabou.pixeldungeon.items.armor.BerserkArmor]]
+  * **Parent Class:** Extends WarriorArmor class
+  * **Implementation:** Overrides doEquip method to restrict to Berserker subclass only
+  * **Visual:** Uses image ID 6 with helmet
+
+==== Content Verification ====
+  * Information source: Java Class com.watabou.pixeldungeon.items.armor.BerserkArmor
+  * Stats verification: Extracted directly from class implementation
+  * Effect descriptions: Based on in-game mechanics and WarriorArmor implementation
+  * Source code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/BerserkArmor.java|BerserkArmor.java]]
+
+==== Related ====
+  * [[rpd:berserker|Berserker]] - The subclass that can use this armor
+  * [[rpd:warrior_armor|Warrior Armor]] - Parent class with shared abilities
+  * [[rpd:armor_kit|Armor Kit]] - Item needed to craft class armor
+  * [[rpd:warrior|Warrior]] - Hero class that can unlock Berserker
+  * [[rpd:armor|Armor]] - Other armor types in the game
 
 {{tag> rpd items armor berserker warrior}}
