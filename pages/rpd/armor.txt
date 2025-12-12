@@ -1,20 +1,18 @@
 ====== Armor ======
 
-{:rpd:images:armor_armor.png?200|}
-
 {{ rpd:images:armor_sprite.png|Armor }}
 
 Armor in Remixed Dungeon is protective equipment that reduces damage from enemy attacks. Different types of armor offer different levels of protection and special properties.
 
 ==== Armor Categories ====
   * **Light Armor:** Higher mobility but less protection
-    * [[rpd:cloth_armor|Cloth Armor]] - Basic armor
-    * [[rpd:leather_armor|Leather Armor]] - Mid-tier light armor
+    * [[rpd:cloth_armor|Cloth Armor]] - Basic armor (Tier 1)
+    * [[rpd:leather_armor|Leather Armor]] - Mid-tier light armor (Tier 2)
   * **Medium Armor:** Balanced protection and mobility
-    * [[rpd:mail_armor|Mail Armor]] - Balanced protection
-    * [[rpd:scale_armor|Scale Armor]] - Higher protection option
+    * [[rpd:mail_armor|Mail Armor]] - Balanced protection (Tier 3)
+    * [[rpd:scale_armor|Scale Armor]] - Higher protection option (Tier 4)
   * **Heavy Armor:** Maximum protection but reduced mobility
-    * [[rpd:plate_armor|Plate Armor]] - Maximum protection
+    * [[rpd:plate_armor|Plate Armor]] - Maximum protection (Tier 5)
   * **Specialty Armor:** Class-specific or unique armor
     * [[rpd:class_armor|Class Armor]] - Mastery armors (GladiatorArmor, BerserkArmor, etc.)
     * [[rpd:chaos_armor|Chaos Armor]] - Special variant
@@ -23,11 +21,12 @@ Armor in Remixed Dungeon is protective equipment that reduces damage from enemy 
     * [[rpd:rat_armor|Rat Armor]] - Special variant
 
 ==== Base Properties ====
-  * **Defense Rating:** How much damage is reduced from attacks
-  * **Durability:** How much damage the armor can take before breaking
-  * **Strength Requirement:** Minimum strength needed to wear effectively (increases with armor tier)
+  * **Defense Rating:** How much damage is reduced from attacks, calculated as: ''effectiveDR = tier * 2 + level() * tier + (glyph ? tier : 0)''
+  * **Durability:** How much damage the armor can take before breaking (related to level)
+  * **Strength Requirement:** Minimum strength needed to wear effectively (decreases as armor is upgraded)
   * **Speed Penalty:** How much armor may slow you down (based on weight vs strength)
   * **Tier:** Armor classifies from 1-5 based on protection (Cloth to Plate)
+  * **Default Price:** ''10 * (1 << (tier - 1))'', with 50% bonus if glyphed
 
 ==== Special Mechanics ====
   * **Glyphs:** Armor can have special magical properties added via [[rpd:arcane_stylus|Arcane Stylus]]
@@ -35,6 +34,7 @@ Armor in Remixed Dungeon is protective equipment that reduces damage from enemy 
   * **Class Specialization:** Some classes get special benefits from specific armor types
   * **Weight vs. Strength:** Heavier armor slows you down if insufficient strength
   * **Class Armors:** Special armor obtained via [[rpd:armor_kit|Armor Kit]] on any regular armor - grants special subclass abilities (e.g. [[rpd:gladiator_armor|Gladiator]], [[rpd:berserk_armor|Berserker]], [[rpd:warlock_armor|Warlock]], etc.)
+  * **Defence Processing:** Each armor has a ''defenceProc'' method that can modify incoming damage based on its glyph
 
 ==== Base Armor Tiers ====
   * **Tier 1:** [[rpd:cloth_armor|Cloth Armor]] (tier = 1)
@@ -43,16 +43,37 @@ Armor in Remixed Dungeon is protective equipment that reduces damage from enemy 
   * **Tier 4:** [[rpd:scale_armor|Scale Armor]] (tier = 4)
   * **Tier 5:** [[rpd:plate_armor|Plate Armor]] (tier = 5)
 
+==== Available Glyphs ====
+  * [[rpd:bounce_glyph|Bounce]] - Counter-attacks when hit
+  * [[rpd:affection_glyph|Affection]] - Charms attackers
+  * [[rpd:anti_entropy_glyph|Anti-Entropy]] - Buffs from cold, debuffs from fire
+  * [[rpd:multiplicity_glyph|Multiplicity]] - Occasional duplication of attacks
+  * [[rpd:potential_glyph|Potential]] - Generates energy when hit
+  * [[rpd:metabolism_glyph|Metabolism]] - Heals from damage dealt
+  * [[rpd:stench_glyph|Stench]] - Releases toxic gas
+  * [[rpd:viscosity_glyph|Viscosity]] - Delays damage until next turn
+  * [[rpd:displacement_glyph|Displacement]] - Teleports when hit
+  * [[rpd:entanglement_glyph|Entanglement]] - Creates earthroot armor when hit
+
+==== Technical Details ====
+  * **Base Class:** ''Armor'' extends ''EquipableItem'' and implements armor-specific mechanics
+  * **Class Armor Creation:** ''ArmorKit'' transforms any regular armor into class-specific armor with stats matching the original equipment
+  * **Glyph System:** Glyphs are selected randomly when armor is generated, or can be applied using Arcane Stylus
+  * **Strength Calculation:** ''requiredSTR = Math.max(typicalSTR() - level(), 2)'' where ''typicalSTR = 7 + tier * 2''
+  * **Defense Calculation:** ''effectiveDR = tier * 2 + level() * tier + (glyph ? tier : 0)''
+  * **Upgrade Behavior:** When upgrading glyphed armor, there's a chance to lose the glyph (higher level = higher chance of loss)
+
 ==== Content Verification ====
   * **Information Source**: ''com.watabou.pixeldungeon.items.armor.Armor.java'' (base class)
-  * **Armor Tiers**: Defined by 'tier' property in each armor class
+  * **Armor Tiers**: Defined by 'tier' property in each armor class constructor
   * **Class Armors**: ''com.watabou.pixeldungeon.items.ArmorKit.java'' transforms regular armor to class armor
-  * **Glyph Mechanics**: Handled by armor's ''inscribe'' method in base Armor class
+  * **Glyph Mechanics**: Handled by armor's ''inscribe'' method in base Armor class and ''Glyph'' subclass implementations
 
 ==== Class Implementation ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] - Base armor class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArcaneStylus.java|Arcane Stylus]] - Glyph application
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java|Armor Kit]] - Class armor creation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] - Mastery armor system
 
 ==== Related ====
   * [[rpd:weapons|Weapons]] - Offensive equipment
@@ -63,5 +84,6 @@ Armor in Remixed Dungeon is protective equipment that reduces damage from enemy 
   * [[rpd:arcane_stylus|Arcane Stylus]] - For adding glyphs
   * [[rpd:class_armor|Class Armor]] - Mastery armor types
   * [[rpd:equipment|Equipment]] - General equipment mechanics
+  * [[rpd:belongings|Belongings]] - Hero equipment system
 
 {{tag> rpd items equipment armor}}

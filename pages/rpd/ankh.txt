@@ -3,12 +3,12 @@
 {{ rpd:images:ankh_sprite.png|Ankh Sprite  }}
 
 ==== Description ====
-This ancient symbol of immortality grants an ability to return to life after death. Upon resurrection all non-equipped items are lost.
+This ancient symbol of immortality grants an ability to return to life after death. Upon resurrection, all items in the hero's inventory are lost, but one random equipped item is preserved as bones that can be retrieved from the location of death.
 
 ==== Special Properties ====
   * Provides one-time resurrection after death
-  * Upon resurrection, all non-equipped items are lost
-  * Equipped items are preserved during resurrection
+  * Upon resurrection, all items in the backpack are lost
+  * Equipped items are NOT preserved directly - instead, one random equipped item is left as bones at the death location
   * Single use item
   * Stackable (though only one is useful at a time due to loss upon resurrection)
   * No upgrade potential
@@ -16,20 +16,32 @@ This ancient symbol of immortality grants an ability to return to life after dea
   * Costs 50 gold per unit
 
 ==== Notes ====
-The Ankh is a powerful but risky item - it can save you from death, but at the cost of losing all your inventory items that weren't equipped. It's generally best to use it only in desperate situations.
+The Ankh is a powerful but risky item - it can save you from death, but at the cost of losing all your inventory. Only one random equipped item will be recoverable as bones from the place where you died.
 
 ==== Strategy ====
 * Best used as a last resort when facing certain death
 * Try to keep only essential items in your inventory when entering dangerous areas
-* Since only equipped items are preserved, consider equipping essential items if you suspect you might die
+* Since only one equipped item is preserved as bones (not all equipped items), consider which item is most valuable to preserve
 * Don't carry multiple Ankhs since you'll lose them upon resurrection (as mentioned in Dungeon_Tips_13 string)
+
+==== Technical Details ====
+When the hero dies and uses an Ankh for resurrection:
+  * ''Dungeon.gameOver()'' is called, which deletes the current game save via ''Dungeon.deleteGame(true)''
+  * The game state is completely removed, including the hero's inventory
+  * ''Bones.leave(hero)'' preserves one random equipped item (or gold if no useful equipped item exists)
+  * The hero is reborn with full HP but in a fresh game state
+  * All inventory items (except the one preserved as bones) are permanently lost
 
 ==== Related ====
   * [[rpd:belongings|Belongings]] - Hero equipment and inventory system
   * [[rpd:resurrection|Resurrection]] - Other resurrection mechanics
+  * [[rpd:bones|Bones]] - Bones mechanic for preserving items after death
 
 ==== Source Code ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ankh.java|Ankh.java]]
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndResurrect.java|WndResurrect.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Bones.java|Bones.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] (reallyDie method)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] (gameOver method)
 
 {{tag> rpd items resurrection}}
