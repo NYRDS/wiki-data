@@ -1,7 +1,31 @@
-====== servicemannpc ======
+====== ServiceManNPC ======
 
-{:rpd:images:servicemannpc_sprite.png?200|}
+{{ rpd:images:servicemannpc_sprite.png|ServiceManNPC Sprite }}
 
-{{ rpd:images:servicemannpc_sprite.png|Servicemannpc Sprite  }}
+The **ServiceManNPC** is an NPC that appears in certain special areas of the dungeon. He provides a service that allows players to watch reward videos in exchange for gold rewards.
 
-Description for servicemannpc goes here.087df4a8853cb3229502316f929e70fc6db6790
+==== Description ====
+The ServiceManNPC is a regular worker of local establishments who offers a service to adventurers. He requires an internet connection to operate his reward video system, and has a daily limit on how many times an adventurer can use his service.
+
+==== Mechanics ====
+* **Service Limit**: Players can use the ServiceManNPC's service up to (4 + Hero Level) times per game
+* **Rewards**: Each reward video watched provides a gold reward that increases over time:
+  * Base reward: 150 gold
+  * Bonus: Additional 50 gold for every 5 videos watched (150, 150, 150, 150, 150, 200, 200, 200, 200, 200, 250...)
+* **Internet Requirement**: Requires an active internet connection to function
+* **Location**: Found in special areas like the Cinema and Theater levels
+
+==== Behavior ====
+* When approached, the ServiceManNPC opens a window to show available reward video content
+* If the limit has been reached or no internet is available, he will inform the player accordingly
+* The service limit resets when starting a new game
+
+==== Location ====
+* [[rpd:cinema|Cinema Level]]
+* [[rpd:theater|Theater Level]]
+
+==== Source Code ====
+* Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ServiceManNPC.java|ServiceManNPC.java]]
+* Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1673-L1676|ServiceManNPC strings]]
+
+{{tag> rpd npcs}}
