@@ -1,50 +1,70 @@
-====== RaiseDead ======
+====== raise_dead_spell ======
 
-{{ rpd:images:raise_dead_spell_icon.png|RaiseDead Spell Icon }}
+{{ rpd:images:raise_dead_spell_icon.png|Raise Dead Spell Icon }}
 
-**RaiseDead** is a spell in Remixed Pixel Dungeon (Necromancy Affinity).
+**Raise Dead** is a Necromancy Affinity spell in Remixed Dungeon.
 
 ==== Description ====
-Attempt to raise the latest (Ritual requires quite a fresh material) slain creature. When using this dark art, remember: almost any creature can be raised, but not everyone\'s will is easy to bend.
+Attempt to raise the latest (ritual requires quite a fresh material) slain creature. When using this dark art, remember: almost any creature can be raised, but not everyone's will is easy to bend. The spell raises the most recently killed creature as a pet under your control.
 
 ==== Stats ====
   * **Magic Affinity:** Necromancy
-  * **Targeting:** none
+  * **Targeting:** None (targets the latest killed creature)
   * **Level:** 4
   * **Mana Cost:** 15
+  * **Cast Time:** 3 turns
+  * **Special Effects:** Summons the latest killed mob as a pet
+
+==== Mechanics ====
+When cast, Raise Dead attempts to resurrect the most recently killed creature:
+  * Only creatures that can be pets (except Mirror Images) can be raised
+  * The creature's original class and stats are preserved
+  * The raised creature becomes a pet under the caster's control
+  * The raised creature is set as an undead (using setUndead(true))
+  * The raised creature is given a gold item as loot
+  * All existing items are removed from the raised creature (using removeAllItems)
+  * Visual effect: Shadow particle burst (CURSE) on both caster and mob sprites
+  * Audio effect: Cursed sound when cast successfully
 
 ==== Usage ====
-The RaiseDead spell can be used for:
-  * Primary effect of the spell
-  * Strategic applications in combat
-  * Utility purposes based on its mechanics
+The Raise Dead spell can be used for:
+  * Bringing back a recently killed powerful enemy as an ally
+  * Converting dangerous creatures into helpful pets
+  * Strategic advantage in dungeon exploration with additional help
 
 ==== Classes ====
-Classes that can use this spell include:
-  * Classes with Necromancy affinity (e.g., [[rpd:necromancy|Necromancy class]])
-  * Other classes that gain access through special means
+Classes with Necromancy magic affinity can use this spell more efficiently.
 
 ==== Strategy ====
-How to effectively use the RaiseDead spell:
-  * Best situations to use the spell
-  * Synergies with other abilities
-  * Timing considerations
+How to effectively use the Raise Dead spell:
+  * Prepare to kill a useful creature that can be made into a pet
+  * Use immediately after killing a strong enemy you want as an ally
+  * Consider the space constraints, as the spell fails if there's no free space
+  * Be aware that only the most recently killed creature can be raised
+  * Note that Mirror Images cannot be raised
+  * The raised creature retains the original's abilities but serves as your pet
 
-==== Data Validation ====
-This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
+==== Restrictions ====
+  * Only works on the most recently killed creature that can be a pet
+  * Fails if there's no valid space to spawn the creature
+  * Cannot raise creatures if no valid creatures have been killed yet
+  * Mirror Images cannot be raised
+  * Any items the original mob had are removed from the raised pet
 
 ==== Content Verification ====
-* Information source: Lua Script in Remixed Dungeon codebase
-* Stats verified: Yes, extracted directly from spell class properties
-* Effect descriptions: Generated from code analysis and string resources
-* Last updated: 2025-12-09 based on RaiseDead.lua
+* Information source: Lua script [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/RaiseDead.lua|RaiseDead.lua]]
+* Stats verification: Extracted from RaiseDead.lua spell properties
+* Effect descriptions: Based on string resources and in-game mechanics
+* Last updated: December 2025, source: Remixed Dungeon 1.9.3
 
 ==== Source Code ====
-This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/RaiseDead.lua|RaiseDead]]
+* Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/RaiseDead.lua|RaiseDead.lua]]
+* Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L773-L776|Raise Dead strings]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
   * [[rpd:mechanics|Game Mechanics]]
   * [[rpd:necromancy|Necromancy Affinity]]
+  * [[rpd:necromancer|Necromancer]] - Hero class with necromancy affinity
 
 {{tag> rpd spells necromancy }}

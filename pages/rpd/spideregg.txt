@@ -1,8 +1,8 @@
-====== Spider Egg ======
+====== spideregg_mob ======
 
 {{ rpd:images:spideregg_sprite.png|Spider Egg }}
 
-The **Spider Egg** is an object/mob in Remixed Pixel Dungeon that hatches into a random spider.
+The **Spider Egg** is an immobile mob in Remixed Dungeon that hatches into a random spider after 20 turns.
 
 ==== Description ====
 This fragile egg is pulsating briefly, inside it you can see something of many legs. It's laid by spider queens and has a limited lifespan before hatching.
@@ -11,45 +11,57 @@ This fragile egg is pulsating briefly, inside it you can see something of many l
   * **HP:** 2
   * **Defense Skill:** 1
   * **Attack Skill:** 1
+  * **Damage:** 0-0
+  * **Damage Reduction:** 0
   * **Speed:** 0 (immobile)
-  * **EXP:** 0
+  * **Attack Delay:** 1
+  * **View Distance:** 0 (doesn't see)
+  * **Exp Given:** 0
+  * **Loot Chance:** 20% for a random seed
   * **Max Level:** 9
+  * **Movement Type:** Immovable
+  * **Can be Pet:** No
+  * **Flying:** No
+  * **Friendly:** No
 
-==== Properties ====
-  * **Type:** Mob/Object
+==== Abilities ====
+  * **Hatching:** Automatically hatches into a random spider after 20 turns
   * **Immobile:** Cannot move from its position
   * **Fragile:** Very low HP, easily destroyed
-  * **Hatching:** Automatically hatches after 20 turns
-  * **Pet Immunity:** Cannot be tamed or made into a pet
+  * **Pet Immunity:** Cannot be tamed or made into a pet (canBePet() returns false)
 
 ==== Behavior ====
   * **Immobile:** Remains in place until destroyed or hatched
-  * **Hatching Timer:** Automatically hatches after 20 turns
-  * **Spawn:** Upon hatching, creates a random spider mob
+  * **Hatching Timer:** Automatically hatches after 20 turns via the act() method
+  * **Spawn:** Upon hatching, creates a random spider mob using MobSpawner
   * **Destruction:** If killed before hatching, it is destroyed without producing a spider
+  * **Looting:** Has a 20% chance to drop a random seed when killed
 
-==== Spawn ====
-  * **Spider Type:** Upon hatching, spawns a random spider mob
-  * **Level Range:** Typically spawns spiders appropriate to the current dungeon level
-  * **Probability:** Spawned by Spider Queen and other spider-related mechanics
+==== Location ====
+  * **Spawned by:** [[rpd:spider_queen|Spider Queen]] (lays these eggs)
+  * **Hatching:** After 20 turns of remaining alive, it will hatch into a random spider mob
+  * **Level Range:** Can appear on any level where spider content is present
 
 ==== Strategy ====
   * **Immediate Threat:** Though fragile, poses a threat as it will soon hatch into a spider
-  * **Timing:** You can choose to destroy it or let it hatch depending on the situation
-  * **Avoid Crowding:** Be careful not to let multiple eggs hatch near each other
+  * **Timing:** You can choose to destroy it immediately to prevent spawning a spider, or let it hatch when you're prepared
   * **Advantage:** If you have ways to tame or control spiders, letting it hatch may be beneficial
+  * **Seed Farming:** Has a 20% chance to drop a seed when destroyed, which might be useful
+  * **Avoid Crowding:** Be careful not to let multiple eggs hatch near each other creating a spider swarm
 
-==== Related ====
-  * [[rpd:spider_queen|Spider Queen]] - Lays these eggs
-  * [[rpd:spider|Spider]] - What hatches from this egg
-  * [[rpd:object|Object]] - Object category
-  * [[rpd:mobs|Mobs]] - Other dungeon inhabitants
+==== Content Verification ====
+* Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java|SpiderEgg.java]]
+* Stats verification: Extracted from SpiderEgg constructor and methods
+* Effect descriptions: Based on string resources and in-game mechanics
+* Last updated: December 2025, source: Remixed Dungeon 1.9.3
 
 ==== Source Code ====
-  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java|SpiderEgg.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1384|Spider Egg Descriptions]]
+* Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java|SpiderEgg.java]]
+* Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1384-L1387|Spider Egg strings]]
 
-==== Notes ====
-Spider Eggs are fragile objects that will automatically hatch into a random spider after 20 turns. They are immobile and cannot be tamed. They are often found in spider-related areas of the dungeon.
+==== See Also ====
+  * [[rpd:spider_queen|Spider Queen]] - Lays these eggs
+  * [[rpd:spiders|Spiders]] - What hatches from this egg
+  * [[rpd:mobs|Mobs]] - Other dungeon inhabitants
 
-{{tag> rpd mobs spider object spideregg }}
+{{tag> rpd mobs spider spideregg }}
