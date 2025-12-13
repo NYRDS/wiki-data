@@ -546,4 +546,58 @@ To make your mobs appear in the dungeon, add them to ''levelsDesc/Bestiary.json'
 }
 </code>
 
+===== Testing Your Mobs =====
+
+==== Common Testing Steps ====
+  * Enable your mod in-game
+  * Start a new game to see new mobs (they'll appear based on your bestiary settings)
+  * Verify that sprites appear correctly
+  * Test all mob behaviors and Lua scripts
+  * Check that mob descriptions are properly localized
+  * Confirm that mob stats are balanced
+
+==== Bestiary Integration ====
+To make your mobs appear in the dungeon, add them to ''levelsDesc/Bestiary.json'':
+
+<code json>
+{
+  "SewerLevel": [
+    {"class": "PoisonRat", "weight": 8},
+    {"class": "HealingSprite", "weight": 2}
+  ],
+  "CavesLevel": [
+    {"class": "TreasureMimic", "weight": 3},
+    {"class": "DungeonLord", "weight": 1}
+  ]
+}
+</code>
+
+===== Code References =====
+
+==== Core Implementation ====
+- **Java Class**: ''RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/CustomMob.java''
+- **Lua Library**: ''RemixedDungeon/src/main/assets/scripts/lib/mob.lua''
+- **JSON Configuration**: ''RemixedDungeon/src/main/assets/mobsDesc/''
+- **Lua Examples**: ''RemixedDungeon/src/main/assets/scripts/mobs/''
+
+==== Key Methods in CustomMob.java ====
+- ''fillMobStats()'' - Processes JSON configuration for mob properties
+- ''attackProc()'' - Handles attack behavior
+- ''die()'' - Handles death behavior
+- ''act()'' - Handles turn-based actions
+- ''onInteract()'' - Handles player interaction
+
+==== Key Methods in mob.lua ====
+- ''mob.init'' - Initializes the mob with Lua functions
+- ''spawn(self, level)'' - Called when mob is spawned
+- ''attackProc(self, enemy, damage)'' - Called after successful attack
+- ''die(self, cause)'' - Called when mob dies
+- ''act(self)'' - Called each turn for AI processing
+- ''onInteract(self, chr)'' - Called when player interacts with mob
+
+==== JSON Properties Supported ====
+- ''defenseSkill'', ''attackSkill'', ''exp'', ''maxLvl'', ''dmgMin'', ''dmgMax'', ''dr''
+- ''baseSpeed'', ''attackDelay'', ''ht'', ''viewDistance'', ''lootChance''
+- ''name'', ''description'', ''spriteDesc'', ''scriptFile'', ''isBoss'', ''flying'', ''canBePet''
+
 Creating custom mobs without Java is quite powerful in Remixed Dungeon. With JSON and Lua, you can create complex behaviors, unique mechanics, and engaging new creatures for players to encounter!
