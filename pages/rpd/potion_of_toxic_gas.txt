@@ -1,6 +1,6 @@
 ====== Potion of Toxic Gas ======
 
-{{ rpd:images:potion_toxic_gas_item.png|Potion of Toxic Gas }}
+{{ rpd:images:potion_of_toxic_gas_potions.png|Potion of Toxic Gas }}
 
 The **Potion of Toxic Gas** is a throwable potion that creates a cloud of poisonous gas in Remixed Dungeon.
 
@@ -15,9 +15,13 @@ When shattered, this potion releases a deadly cloud of toxic gas that damages an
 
 ==== Mechanics ====
   * Creates a toxic gas cloud that deals damage over time
-  * Gas cloud lasts for approximately 1000 turns of damage
+  * Gas cloud volume is (1000 * qualityFactor()) - qualityFactor() is 1.0 for most potions
+  * Damage formula: (target's HP + 5 + dungeon depth * 5) / 40, with a chance for +1 damage
   * Affects all creatures in the area, including the player
   * Can be thrown to affect distant enemies safely
+  * Interacts with Paralytic Gas - if both gases occupy the same space, the weaker one is removed
+  * Gas spreads through the level and persists for multiple turns
+  * Also affects item heaps, poisoning items within the gas
 
 ==== Usage ====
   * Throws the potion at enemies or into groups
