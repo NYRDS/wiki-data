@@ -1,7 +1,30 @@
-====== sociologistnpc ======
+====== Sociologist NPC ======
 
-{:rpd:images:sociologistnpc_sprite.png?200|}
+{{ rpd:images:sociologistnpc_sprite.png|Sociologist NPC Sprite }}
 
-{{ rpd:images:sociologistnpc_sprite.png|Sociologistnpc Sprite  }}
+==== Description ====
+The **Sociologist NPC** is an NPC character in Remixed Dungeon who requests internet permission to download survey information. This character is part of the game's data collection mechanism, asking the player if they'd like to participate in a survey.
 
-Description for sociologistnpc goes here.087df4a8853cb3229502316f929e70fc6db6790
+==== Location ====
+* Found randomly in the dungeon levels
+
+==== Interactions ====
+* The NPC requests internet permission when interacted with
+* Presents a dialogue asking the player if they'd like to participate in a survey
+* If the player agrees, attempts to download survey.json from an external source
+* The NPC handles the download process with error reporting if it fails
+
+==== Java Class ====
+* **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/SociologistNPC.java|SociologistNPC.java]]
+* **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+
+==== Behavior ====
+* When approached, presents a dialogue with "Yes" and "No" options
+* If the player agrees, requests internet permission
+* Downloads survey data from an external URL
+* Handles download errors gracefully with an error message
+
+==== Implementation Details ====
+The NPC is implemented as an ImmortalNPC that implements DownloadStateListener.IDownloadComplete and InterstitialPoint interfaces, allowing it to handle the download process and manage the UI during the download.
+
+{{tag> rpd npcs}}
