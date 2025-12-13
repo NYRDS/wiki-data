@@ -1,62 +1,49 @@
 ====== Mana ======
 
-Mana is a magical resource used by spellcasters and magic-focused classes in Remixed Dungeon. It enables the casting of spells and the use of magical abilities.
+Mana is a magical resource in Remixed Dungeon that enables the casting of spells and use of magical abilities.
 
 ==== Description ====
-Mana represents the spiritual energy required to cast spells and use magical abilities. It's a limited resource that must be managed carefully by magic users.
-Mana is a magical energy resource used by certain classes and items in Remixed Dungeon.
-
-==== Function ====
-  * **Resource for Magic:** Required to cast spells and use magical abilities
-  * **Limited Resource:** Depletes when using magic, requiring restoration
-  * **Regeneration:** May regenerate over time or through specific items
-  * **Capacity:** May have maximum limits that can be increased
+Mana represents the spiritual energy required to cast spells. It's a resource that certain classes and spells use, though the game doesn't have a traditional mana pool system like other RPGs.
 
 ==== Mechanics ====
-  * Certain classes use mana to cast spells
-  * Mana can be restored using [[rpd:mana_potion|Mana Potions]]
-  * Some classes regenerate mana over time
-  * Different spells consume different amounts of mana
-
-==== Restoration ====
-  * [[rpd:mana_potion|Mana Potions]] - Restore mana when consumed
-  * [[rpd:tome_of_knowledge|Tome of Knowledge]] - May increase mana capacity
-  * Natural regeneration over time
-  * Special equipment that enhances mana
+  * **Skill Points System:** The game uses a skill point system rather than traditional mana
+  * **Spell Costs:** Different spells consume specific amounts of skill points when cast
+  * **Regeneration:** Skill points regenerate over time through the [[rpd:mana_regeneration|Mana Regeneration]] buff
+  * **Restoration:** [[rpd:mana_potion|Mana Potions]] restore skill points when consumed (gives 1/3 of max skill points)
 
 ==== Classes That Use Mana ====
-  * [[rpd:mage|Mages]] - Primary mana users
-  * [[rpd:mage|Mages]] use mana for elemental spells
-  * [[rpd:necromancer|Necromancers]] - Use souls as a mana-like resource
-  * [[rpd:necromancer|Necromancers]] use mana for death spells
-  * [[rpd:plague_doctor|Plague Doctors]] - May have mana-based abilities
-  * Other magic-focused classes
-  * Other magical classes may use mana for special abilities
+  * Classes with magical affinities use skill points to cast spells
+  * [[rpd:mage|Mages]] - Use skill points for elemental spells
+  * [[rpd:necromancer|Necromancers]] - Use skill points for necromancy spells
+  * [[rpd:rogue|Rogues]] - Use skill points for rogue-affinity spells
+  * Other classes with spell access also use skill points
 
-==== Items Using Mana ====
-  * Various magical items and equipment may consume mana
-  * Some items provide mana regeneration bonuses
+==== Items and Restoration ====
+  * [[rpd:mana_potion|Mana Potion]] - Drink to restore skill points (gives 1/3 of max skill points)
+  * [[rpd:potion_of_mana|Potion of Mana]] - Alchemy ingredient for creating mana potions
+  * Equipment may provide bonuses to skill point regeneration
+
+==== Regeneration ====
+  * [[rpd:mana_regeneration|Mana Regeneration]] - Buff that passively accumulates skill points
+  * Regenerates 1 skill point every 20/(1.2^bonus) turns (faster with bonuses)
+  * Regeneration rate is affected by buffs and game facilitations
+  * Does not regenerate in unsafe areas (when enemies are present)
 
 ==== Spells and Abilities ====
-  * [[rpd:spells|Spells]] - Various magical abilities that consume mana
-  * [[rpd:healing_spell|Healing]] - Restorative spell
-  * [[rpd:ignite|Ignite]] - Fire-based spell
-  * [[rpd:root_spell|Root]] - Immobilizing spell
-  * [[rpd:wind_gust|Wind Gust]] - Force-based spell
-  * [[rpd:freeze_globe|Freeze]] - Ice-based spell
-  * [[rpd:magic_torch|Magic Torch]] - Light-generating spell
-
-==== Equipment and Items ====
-  * Items that increase mana capacity
-  * Items that improve mana regeneration
-  * Equipment that reduces spell costs
-  * Magical artifacts that enhance mana efficiency
+  * [[rpd:spells|Spells]] - Various magical abilities that consume skill points
+  * Different spells have different costs (e.g., Cloak spell costs 5 skill points)
+  * Spell costs and mechanics are defined in Lua scripts
 
 ==== Strategy ====
-  * Manage mana carefully during extended fights
-  * Carry sufficient [[rpd:mana_potion|Mana Potions]] for magic-heavy sections
-  * Balance offensive spells with mana conservation
-  * Consider equipment that improves mana efficiency
+  * Manage skill points carefully during extended fights
+  * Carry [[rpd:mana_potion|Mana Potions]] for magic-heavy sections
+  * Balance offensive spells with skill point conservation
+  * Consider equipment that improves skill point regeneration
 
-==== Notes ====
-Managing mana effectively is crucial for spellcasters. Running out of mana prevents the use of magical abilities until it's restored.
+==== Related ====
+  * [[rpd:spells|Spells]] - Abilities that consume mana/skill points
+  * [[rpd:mana_potion|Mana Potion]] - Item that restores mana
+  * [[rpd:mana_regeneration|Mana Regeneration]] - Buff that passively restores mana
+  * [[rpd:skill_points|Skill Points]] - The underlying resource system
+
+{{tag> rpd mechanics resources }}
