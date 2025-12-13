@@ -1,51 +1,56 @@
-====== Root ======
+====== root_spell ======
 
 {{ rpd:images:root_spell_icon.png|Root Spell Icon }}
 
-**Root** is a spell in Remixed Pixel Dungeon (Elemental Affinity).
+**Root** is an Elemental Affinity spell in Remixed Dungeon that immobilizes a target, preventing movement for a short period of time.
 
 ==== Description ====
-Root Spell immobilizes a target enemy, preventing them from moving for several turns.
+Root Spell immobilizes a target character (not self), preventing them from moving for several turns. It's useful for crowd control and strategic positioning in combat.
 
 ==== Stats ====
   * **Magic Affinity:** Elemental
   * **Targeting:** Character (Not Self)
   * **Level:** 2
   * **Mana Cost:** 2
-  * **Special Effects:** applies a buff or debuff, roots the target in place
+  * **Special Effects:** Applies Roots buff for 10 turns, creates EarthParticle effect and sound
+
+==== Mechanics ====
+  * **Duration:** 10 turns of being rooted
+  * **Visual Effect:** Bursts EarthParticle.FACTORY (5 particles) and blue particles (0xFF99FFFF, 3 particles)
+  * **Audio Effect:** Plays PUFF sound when cast
+  * **Buff Applied:** Roots class buff to the target character
 
 ==== Usage ====
 The Root spell can be used for:
   * Control applications to restrict enemy movement
-  * Strategic applications in combat
-  * Utility purposes based on its mechanics
+  * Strategic positioning during combat
+  * Allowing safe distance attacks or escape
+  * Stopping fleeing enemies or bosses
 
 ==== Classes ====
-Classes that can use this spell include:
-  * Classes with Elemental affinity (e.g., [[rpd:spell_affinities|Elemental class]])
-  * Other classes that gain access through special means
+Classes with Elemental magic affinity can use this spell more efficiently.
 
 ==== Strategy ====
 How to effectively use the Root spell:
-  * Best situations to use the spell
-  * Synergies with other abilities
-  * Timing considerations
-
-==== Data Validation ====
-This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
+  * Best for controlling high-priority targets during critical moments
+  * Synergizes with damage-over-time effects while the enemy is immobilized
+  * Excellent for preventing bosses from escaping or reaching you
+  * Consider the 10-turn duration when planning your strategy
 
 ==== Content Verification ====
-* Information source: Java Class in Remixed Dungeon codebase
-* Stats verified: Yes, extracted directly from spell class properties
-* Effect descriptions: Generated from code analysis and string resources
-* Last updated: 2025-12-09 based on RootSpell.java
+* Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/RootSpell.java|RootSpell.java]]
+* Stats verification: Extracted from RootSpell.java constructor
+* Effect descriptions: Based on string resources and in-game mechanics
+* Last updated: December 2025, source: Remixed Dungeon 1.9.3
 
 ==== Source Code ====
-This page content is based on the Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/RootSpell.java|RootSpell]]
+* Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/RootSpell.java|RootSpell.java]]
+* Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L12-L13|Root spell strings]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
   * [[rpd:mechanics|Game Mechanics]]
+  * [[rpd:roots|Roots Status Effect]]
   * [[rpd:spell_affinities|Elemental Affinity]]
 
 {{tag> rpd spells elemental }}

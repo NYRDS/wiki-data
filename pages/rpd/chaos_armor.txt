@@ -1,53 +1,58 @@
-====== Chaos Armor ======
+====== chaos_armor ======
 
-{{tag> rpd items}}
+{{ rpd:images:chaos_armor_armor.png|Chaos Armor }}
 
-==== Description ====
-This armor consists of blood-red plates that are sewn together with dark red chains. They irradiate chaotic energy as you touch them. It is part of the Chaos Set, which features chaotic properties and auto-upgrading mechanics. Based on source code: ''com.nyrds.pixeldungeon.items.chaos.ChaosArmor.java''
+===== Description =====
+Chaos Armor consists of blood-red plates that are sewn together with dark red chains. They irradiate chaotic energy as you touch them. It is part of the Chaos Set, which features chaotic properties and auto-upgrading mechanics.
 
-==== Stats ====
-  * **Damage Resistance:** Based on level and tier (initially follows tier 3 armor stats)
-  * **Required Strength:** 13 points
+===== Stats =====
   * **Tier:** 3 armor
+  * **Required Strength:** 13
   * **Durability:** Not applicable (not upgradable)
   * **Class:** Heavy Armor
   * **Cursed:** Can be cursed like other armors
 
-==== Special Properties ====
+===== Special Properties =====
   * **Blood-red plates with dark red chains:** Distinctive appearance that irradiates chaotic energy
   * **Auto-Upgrading:** Upgrades itself when wearer deals damage to enemies
   * **Charge System:** Uses a charge system to control upgrade rate (requires more charges as level increases)
   * **Upgrade Decay:** May lose levels if worn at level 4+ and takes damage
   * **Not Upgradable:** Cannot be manually upgraded with Scroll of Upgrade
+  * **Glyph Removal:** When armor degrades (level 4+), the glyph is removed
 
-==== Mechanics ====
+===== Mechanics =====
 Chaos Armor has unique auto-upgrading mechanics based on code implementation:
-  * When wearer deals damage to enemies, the armor gains a charge
+  * When wearer deals damage to enemies, the armor gains a charge (if not cursed)
   * When charges reach a threshold (based on current level), armor upgrades (+1 level)
   * Charge threshold increases with armor level (calculated as: 5 * level^1.5)
-  * When wearer takes damage and armor level is 4+, it loses a level and resets charges
+  * When wearer takes damage and armor level is 4+, it loses a level, removes its glyph, and resets charges to the threshold for the new level
   * Image changes based on level (level 0-2: image 0, level 3-5: image 1, etc.)
-  * ''Source code verification: ownerDoesDamage() and ownerTakesDamage() methods''
+  * Cursed armor cannot gain charges from dealing damage
 
-==== Strategy ====
+===== Strategy =====
   * Chaos Armor provides adaptive protection that improves as you fight enemies
   * More effective in aggressive playstyles where you deal frequent damage
-  * Be cautious when taking damage at higher levels, as it causes degradation
+  * Be cautious when taking damage at higher levels (4+), as it causes degradation and glyph removal
   * Cannot be manually upgraded, so rely on combat to improve it
-  * Higher levels provide better protection but require more charges to upgrade
+  * Higher levels provide better protection but require more charges to upgrade (5 * level^1.5)
+  * If cursed, the armor will not gain charges from dealing damage
 
-==== Obtaining ====
+===== Obtaining =====
 Chaos Armor can be obtained through:
-  * As a rare drop from chaos-themed enemies or events (e.g., via ChaosCrystal generator)
-  * [[rpd:chaos_crystal|Chaos Crystal]] may have crafting applications (source code suggests it can be generated via ChaosCrystal selector)
+  * As a rare drop from chaos-themed enemies or events
+  * [[rpd:chaos_crystal|Chaos Crystal]] generator - appears in ChaosCrystal selector
 
-==== Content Verification ====
-  * Information source: ''com.nyrds.pixeldungeon.items.chaos.ChaosArmor.java''
-  * Stats verification: Extracted directly from ChaosArmor class properties
-  * Mechanics verification: Based on ownerDoesDamage(), ownerTakesDamage(), and charge management methods
-  * Last updated: December 2025
+===== Content Verification =====
+* Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java|ChaosArmor.java]]
+* Stats verification: Extracted from ChaosArmor.java constructor and methods
+* Effect descriptions: Based on string resources and in-game mechanics
+* Last updated: December 2025, source: Remixed Dungeon 1.9.3
 
-==== See Also ====
+===== Source Code =====
+* Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java|ChaosArmor.java]]
+* Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1808-L1809|Chaos armor strings]]
+
+===== See Also =====
   * [[rpd:chaos_set|Chaos Set]]
   * [[rpd:chaos_crystal|Chaos Crystal]]
   * [[rpd:chaos_sword|Chaos Sword]]
@@ -57,3 +62,5 @@ Chaos Armor can be obtained through:
   * [[rpd:items|Items]]
   * [[rpd:equipment_slots|Equipment Slots]]
   * [[rpd:armor|Armor]]
+
+{{tag> rpd items armor set}}

@@ -1,43 +1,60 @@
-====== Ring of Elements ======
+====== ring_of_elements ======
 
 {{ rpd:images:ringofelements_item.png|Ring of Elements }}
 
-The Ring of Elements is a powerful ring in Remixed Dungeon that provides resistance to various magical and elemental effects.
+**Ring of Elements** is a ring in Remixed Dungeon that provides resistance to various elemental and magical effects, and reduces the duration of negative status effects.
 
-==== Effects ====
+===== Description =====
+This ring provides resistance to different elements, such as fire, electricity, gases etc. Also it decreases duration of negative effects.
+
+===== Effects =====
   * Provides resistance to elemental and magical attacks
-  * Reduces damage from wands and magical effects
+  * Reduces damage from elemental sources
   * Provides protection against status effects from magical sources
   * Reduces duration of negative status effects
 
-==== Stats ====
-  * **Primary Effect:** Resistance to elemental and magical damage
-  * **Secondary Effect:** Reduced effect duration from magical status effects
-  * **Upgrade Benefits:** Higher upgrades provide stronger resistance
+===== Stats =====
+  * **Primary Effect:** Resistance to elemental effects (chance-based, increases with level)
+  * **Secondary Effect:** Reduced effect duration from negative status effects (2 + 0.5*level / 2 + level)
+  * **Upgrade Benefits:** Higher upgrades provide stronger resistance chance and duration reduction
 
-==== Acquisition ====
+===== Mechanics =====
+  * Resistance effect chance: Random chance of (level + 3) >= 3, meaning for positive levels (or 0), the ring always provides resistance
+  * Duration factor: (2 + 0.5 * level) / (2 + level) - with positive levels, this reduces duration of debuffs
+  * The ring provides resistance against: Burning, ToxicGas, Poison, LightningTrap.Electricity, Warlock, Eye, BurningFist, LiquidFlame
+  * At level 0 or higher, resistance is always active
+
+===== Acquisition =====
   * Found in treasure rooms
   * May be sold in shops in later levels
   * Sometimes obtained as quest rewards
 
-==== Strategy ====
-  * Extremely valuable against magic-using enemies and wands
-  * Helps against various status effects and magical traps
+===== Strategy =====
+  * Extremely valuable against magic-using enemies and elemental attacks
+  * Helps against various status effects and elemental traps
   * Particularly valuable for classes that face many magical enemies
-  * Good for players who frequently encounter magical hazards
+  * Good for players who frequently encounter elemental hazards
+  * Provides consistent protection against common debuffs when upgraded
 
-==== Identification ====
+===== Identification =====
   * Like all rings, starts unidentified and must be identified
   * Effects become clearer after identification
   * Quality affects the strength of the resistance
 
-==== See Also ====
+===== Content Verification =====
+* Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]]
+* Stats verification: Extracted from RingOfElements.java constructor and Resistance inner class
+* Effect descriptions: Based on string resources and in-game mechanics
+* Last updated: December 2025, source: Remixed Dungeon 1.9.3
+
+===== Source Code =====
+* Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]]
+* Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L49-L50|Ring of Elements strings]]
+
+===== See Also =====
   * [[rpd:rings|Rings]] - Other ring types in the game
   * [[rpd:wands|Wands]] - The effects this ring helps resist
   * [[rpd:equipment|Equipment]] - Other equipment options
   * [[rpd:immunities|Immunities]] - Complete list of immunities and resistances
-
-==== Source Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java - Implementation]]
 
 {{tag> rpd items rings equipment}}
