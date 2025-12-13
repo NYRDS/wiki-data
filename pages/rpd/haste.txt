@@ -2,45 +2,57 @@
 
 {{ rpd:images:haste_icon.png|Haste }}
 
-**Haste** is a beneficial status effect in Remixed Dungeon that increases the speed of the affected character's actions.
+**Haste** is a beneficial status effect in Remixed Dungeon that increases the speed of the affected character's actions. The haste effect increases the number of actions a character can perform in a given time.
 
-==== Effect Description ====
-  * **Type:** Beneficial Status Effect (Buff)
-  * **Effect:** Increases action speed and movement rate
-  * **Duration:** Varies by source
-  * **Source:** Primarily from wearing a [[rpd:ring_of_haste|Ring of Haste]] or using the Haste spell
-
-==== How to Obtain ====
-  * From wearing a [[rpd:ring_of_haste|Ring of Haste]] (continuous effect based on ring level)
-  * From using the [[rpd:haste_spell|Haste spell]] (temporary effect)
-  * From certain class abilities or special items
+==== Description ====
+Haste is a beneficial status effect that makes all actions (movement, attacking, item use) take less time to perform. The strength of the effect is determined by the "haste level" which can come from multiple sources that stack additively.
 
 ==== Mechanics ====
-  * Increases the speed at which actions are performed
-  * Reduces the time needed for actions like moving, attacking, or using items
-  * Allows for more actions to be performed in the same timeframe
-  * Effect strength correlates with the level of the source (e.g., higher-level Ring of Haste provides stronger haste)
+  * **Haste Level Calculation:** The total haste level is the sum of all individual haste sources
+  * **Ring of Haste:** Provides haste level equal to the ring's level (hasteLevel = ring level)
+  * **Haste Spell:** Provides temporary boost with duration affected by the hero's skill level
+  * **Elf Class:** Has natural haste level of 1 (hasteLevel = 1)
+  * **Scout Subclass:** Has natural haste level of 1 (hasteLevel = 1)
+  * **Formula:** Action time is divided by (1 + haste level), making actions faster
+
+==== Sources of Haste ====
+  * [[rpd:ring_of_haste|Ring of Haste]] - Continuous effect based on ring level (haste level = ring level)
+  * [[rpd:haste_spell|Haste Spell]] - Temporary effect (rogue affinity spell)
+  * **Elf Class** - Natural haste level of 1 (increases speed by ~9%)
+  * **Scout Subclass** - Natural haste level of 1 (in addition to Elf's haste, this provides ~9% extra speed)
+  * Other potential items or abilities that may provide haste effects
+
+==== Effect Duration ====
+  * **Ring of Haste:** Continuous while worn
+  * **Haste Spell:** Temporary effect, duration affected by hero's skill level
+  * **Class/Subclass bonuses:** Always active for that character
 
 ==== Strategy ====
   * Excellent for escaping dangerous situations quickly
   * Very effective during prolonged combat encounters
   * Allows faster exploration of dungeon levels
   * Particularly valuable when facing enemies with timed mechanics
-  * Can make difficult runs significantly easier
+  * Multiple haste sources stack additively for stronger effects
+  * Combining Ring of Haste with Scout subclass provides a significant speed advantage
 
-==== Counters =====
-  * No specific counter effects noted in the game mechanics
-  * High-level effects may consume more energy or mana
+==== Formula ====
+The haste effect works by dividing the time required for actions by (1 + haste level). For example:
+  * With no haste: 1 action per turn (100% normal time)
+  * With haste level 1: 2 actions per turn (50% normal time)
+  * With haste level 2: 3 actions per turn (33% normal time)
 
-==== Code Reference ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfHaste.java#L20-L28|RingOfHaste.Haste]]
-  * Source Code Location: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfHaste.java
-  * The hasteLevel method determines the strength of the haste effect
-
-==== See Also ====
+==== Related ====
   * [[rpd:status_effects|Status Effects]] - Other status changes
   * [[rpd:ring_of_haste|Ring of Haste]] - Primary source of haste
   * [[rpd:haste_spell|Haste Spell]] - Temporary haste spell
+  * [[rpd:scout|Scout]] - Subclass with natural haste
+  * [[rpd:elf|Elf]] - Class with natural haste
   * [[rpd:mechanics|Game Mechanics]] - Other core systems
+  * [[rpd:slow|Slow]] - Opposing debuff effect
+
+==== Source Code Reference ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfHaste.java|RingOfHaste.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L484|HeroClass.java hasteLevel]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L287|HeroSubClass.java hasteLevel]]
 
 {{tag> rpd mechanics status_effects buffs haste}}
