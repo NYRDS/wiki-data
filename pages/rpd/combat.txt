@@ -11,12 +11,16 @@ Combat in Remixed Dungeon is turn-based, meaning that after each action you take
   * **Ranged:** Attacks from a distance using thrown weapons or other items
   * **Magical:** Combat using spells, wands, or other magical items
 
+==== Accuracy and Defense ====
+  * **Attack Skill:** Determines chance to hit an opponent. Calculated as: (baseAttackSkill + character level) * accuracy modifier * skill factor (max 20)
+  * **Defense Skill:** Reduces chance of being hit. Calculated as: (baseDefenseSkill + character level) * evasion modifier - armor encumbrance penalty
+  * **Accuracy Formula:** Success chance is determined by: roll(accuracy) > roll(defense)
+  * **Ranged Penalty:** When attacking in melee range with a ranged weapon, accuracy is reduced by 50%
+
 ==== Damage Calculation ====
-  * **Accuracy:** Determines chance to hit an opponent
-  * **Defense:** Reduces chance of being hit
-  * **Damage:** Physical harm dealt by successful attacks
-  * **Armor:** Reduces damage from successful hits
-  * **Critical Hits:** Occasional attacks that deal extra damage
+  * **Base Damage:** Character's strength bonus (1 to STR-9) + active weapon damage roll + secondary weapon damage roll
+  * **Damage Range:** Calculated as random range between minimum and maximum values
+  * **Damage Reduction:** Armor reduces incoming damage by a flat amount (damage reduction value)
 
 ==== Combat Types ====
   * **Melee Combat:** Requires direct contact with enemies
@@ -48,4 +52,6 @@ Combat in Remixed Dungeon is turn-based, meaning that after each action you take
   * [[rpd:enemies|Enemies]] - Foes in the dungeon
   * [[rpd:bosses|Boss Enemies]] - Major combat encounters
   * [[rpd:buffs|Buffs and Debuffs]] - Temporary combat modifiers
-  * [[rpd:tactical_movement|Tactical Movement]] - Positioning strategies
+  * [[rpd:accuracy|Accuracy]] - Accuracy mechanics
+
+{{tag> rpd combat mechanics}}
