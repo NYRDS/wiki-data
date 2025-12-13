@@ -1,32 +1,42 @@
-====== Warlock ======
-{:rpd:images:warlock_sprite.png?200|}
-{{ rpd:images:warlock_sprite.png|Warlock }}
-The Warlock is the Mage's subclass in Remixed Dungeon.
+====== warlock ======
+
+{{ rpd:images:warlock_sprite.png|Warlock Hero Sprite }}
+
+The **Warlock** is a mastery subclass for the Mage class in Remixed Dungeon. After killing an enemy, the Warlock consumes its soul, which heals wounds and satisfies hunger.
+
 ==== Unlocking ====
-The Warlock subclass can be unlocked by using a Tome of Mastery after defeating the second boss (Tengu).
+The Warlock subclass can be unlocked by using a Tome of Mastery after defeating the second boss (Tengu). This subclass is specifically available to the Mage class.
+
 ==== Special Mechanics ====
-After killing an enemy the _Warlock_ consumes its soul. It heals his wounds and satisfies his hunger.
+After killing an enemy, the Warlock consumes its soul, which:
+* Heals the hero's wounds (healing amount: min(max HP - current HP, 1 + (dungeon depth - 1) / 5))
+* Satisfies hunger (restores 10 hunger points)
+
 ==== Special Armor ====
-Using an Armor Kit on any armor will transform it into the [[rpd:warlock_armor|Warlock Armor]], which is specifically designed for this subclass.
+Using an Armor Kit on any armor will transform it into the [[rpd:warlock_armor|Warlock Armor]], which is specifically designed for this subclass. Warlock Armor has special restrictions and can only be equipped by heroes with the Warlock subclass.
+
 ==== Advantages ====
   * Self-sufficiency in healing after killing enemies
   * Can manage hunger by killing enemies
   * Provides sustainability in long dungeon runs
   * Reduces reliance on healing potions
+  * Particularly effective in areas with many enemies
+
 ==== Disadvantages ====
   * Healing is dependent on killing enemies
   * Less effective against enemies that are difficult to kill
   * May encourage aggressive playstyle
+  * Limited effectiveness in areas with few enemies
+
+==== Content Verification ====
+* Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java]] and Hero.java
+* Stats verification: Extracted from Hero.java levelUp() method and WarlockArmor.java
+* Effect descriptions: Based on string resources and in-game mechanics
+* Last updated: December 2025, source: Remixed Dungeon 1.9.3
+
+==== Source Code ====
+* Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
+* Warlock Armor: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WarlockArmor.java|WarlockArmor.java]]
+* Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L996-L997|Warlock subclass strings]]
+
 {{tag> rpd subclasses warlock mage}}
-====== Warlock (Hero Subclass) ======
-==== Description ====
-The **Warlock** is a mastery subclass available to some hero classes in Remixed Dungeon. After killing an enemy, the Warlock consumes its soul, which heals wounds and satisfies hunger.
-==== Special Abilities ====
-  * **Soul Consumption**: After killing an enemy, the Warlock consumes its soul
-  * **Healing**: Soul consumption heals wounds
-  * **Hunger Satisfaction**: Soul consumption satisfies hunger
-  * **Magical Combat**: Combines fighting with dark magical abilities
-==== Notes ====
-The Warlock subclass provides survival benefits by allowing the hero to heal and satisfy hunger through combat, making it particularly useful for extended dungeon exploration.
-**Note**: This is the hero subclass. For the dungeon enemy (Dwarf Warlock), see [[rpd:warlock_mob|Dwarf Warlock]].
-{{tag> rpd class}}

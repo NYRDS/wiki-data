@@ -1,45 +1,71 @@
-====== Ignite ======
+====== fire ======
 
-**Ignite** is an Elemental Affinity spell in Remixed Pixel Dungeon.
+Fire is an environmental hazard in Remixed Dungeon that damages characters and spreads to flammable terrain.
 
 ==== Description ====
-Ignite sets a targeted cell on fire, creating a fire blob that spreads and damages any character that enters it.
+Fire is a harmful environmental effect that damages any character that enters burning cells. Fire originates from various sources and spreads to adjacent flammable terrain each turn.
 
-==== Stats ====
-  * **Magic Affinity:** Elemental
-  * **Targeting:** Cell
-  * **Level:** 2
-  * **Mana Cost:** 2
-  * **Special Effects:** creates fire
+==== Mechanics ====
+  * **Damage:** Fire damages characters each turn they remain in the burning cell
+  * **Spread:** Fire spreads to adjacent flammable terrain each turn
+  * **Duration:** Fire burns for 4 turns at each location (decreases by 1 each turn)
+  * **Terrain Change:** When fire expires on natural terrain, it becomes embers
+  * **Item Burning:** Fire burns items in heaps and carried items of affected characters
+  * **Status Effect:** Characters in fire receive the [[rpd:burning|Burning]] status effect
 
-==== Usage ====
-The Ignite spell can be used for:
-  * Creating fire in targeted locations
-  * Damaging enemies that stand in the fire
-  * Burning flammable terrain and objects
-  * Strategic environmental control
+==== Sources of Fire ====
+Fire can be created by:
+  * [[rpd:ignite_spell|Ignite Spell]] - Creates 5-turn fire blob
+  * [[rpd:wand_of_firebolt|Wand of Firebolt]] - Attacks ignite targets
+  * [[rpd:fire_arrow|Fire Arrows]] - Missile weapons that ignite targets
+  * [[rpd:fire_enchantment|Fire Enchantment]] - Weapon enchantment
+  * [[rpd:firebloom_seed|Firebloom Seeds]] - Plants that ignite characters
+  * [[rpd:fire_elemental|Fire Elementals]] - Enemies that attack with fire
+  * [[rpd:mage_armor|Mage Armor]] - Special armor effect
+  * Incendiary darts and other fire-based items
+  * Environmental sources and traps
 
-==== Classes ====
-Classes that can use this spell include:
-  * Classes with Elemental affinity (e.g., [[rpd:spell_affinities|Elemental class]])
-  * Other classes that gain access through special means
+==== Effects on Characters ====
+Characters standing in fire receive:
+  * Damage each turn while in the fire
+  * The [[rpd:burning|Burning]] status effect with 8-turn duration
+  * Visual flame particle effects on their sprite
+  * Burning sound effects
 
 ==== Strategy ====
-How to effectively use the Ignite spell:
-  * Use to block passages or create barriers against enemies
-  * Effective in areas with flammable grass or objects that can spread the fire
-  * Good for slowing down enemy movement by blocking their paths
-  * Consider the mana cost versus other spells at level 2
+How to effectively use fire:
+  * **For Players:** Use to damage enemies and create area denial
+  * **For Defense:** Be aware that fire will damage you as well as enemies
+  * **Combat:** Force enemies into fire to gain damage advantage
+  * **Terrain:** Use in flammable areas to spread the effect
 
-==== Notes ====
-  * The fire created will spread to adjacent cells if they contain flammable objects
-  * The fire effect lasts for several turns before extinguishing
-  * Fire damage is applied to any character that enters the burning cell
+==== Countering Fire ====
+  * Avoid standing in fire when possible
+  * Use Frost-based items or spells to extinguish fire
+  * Use flying abilities to avoid ground-based fire
+  * Remove burning status effect with appropriate items
+
+==== Immunities ====
+  * [[rpd:fire_elemental|Fire Elementals]] - Immune to fire and burning
+  * [[rpd:ice_elemental|Ice Elementals]] - May be resistant
+  * Some [[rpd:undead|undead]] creatures may have resistance
+  * [[rpd:mechanical|Mechanical]] creatures might be immune
+  * Characters with frost-based protection
+
+==== Content Verification ====
+* Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]]
+* Stats verification: Extracted from Fire.java and Burning.java implementation
+* Effect descriptions: Based on string resources and in-game mechanics
+* Last updated: December 2025, source: Remixed Dungeon 1.9.3
+
+==== Source Code ====
+* Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]]
+* Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L541|Fire strings]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
   * [[rpd:mechanics|Game Mechanics]]
-  * [[rpd:spell_affinities|Elemental Affinity]]
-  * [[rpd:ignite_spell|Ignite Spell]]
+  * [[rpd:burning|Burning]] - Status effect applied by fire
+  * [[rpd:ignite_spell|Ignite Spell]] - Spell that creates fire
 
-{{tag> rpd spells elemental }}
+{{tag> rpd status effects environment }}

@@ -1,51 +1,59 @@
-====== Ignite ======
+====== ignite_spell ======
 
 {{ rpd:images:ignite_spell_icon.png|Ignite Spell Icon }}
 
-**Ignite** is a spell in Remixed Pixel Dungeon (Elemental Affinity).
+**Ignite** is an Elemental Affinity spell in Remixed Dungeon.
 
 ==== Description ====
-Ignite sets a targeted cell on fire, creating a fire blob that spreads and damages any character that enters it.
+Ignite sets a targeted cell on fire, creating a fire blob that spreads and damages any character that enters it. The spell can be used to burn grass, characters and objects.
 
 ==== Stats ====
   * **Magic Affinity:** Elemental
   * **Targeting:** Cell
   * **Level:** 2
   * **Mana Cost:** 2
-  * **Special Effects:** creates fire
+  * **Special Effects:** creates fire blob with 5 turns duration
+
+==== Mechanics ====
+When cast, Ignite creates a fire blob at the targeted location using Ballistica for range calculation (can reach through obstacles but stops at blocking terrain). The fire will:
+  * Deal damage to any character that stands in the affected cell
+  * Spread to flammable terrain
+  * Burn carried items of the affected character
+  * Last for 5 turns of the Fire blob effect
 
 ==== Usage ====
 The Ignite spell can be used for:
-  * Primary effect of the spell
-  * Strategic applications in combat
-  * Utility purposes based on its mechanics
+  * Creating area denial by setting terrain on fire
+  * Damaging enemies by forcing them through fire
+  * Burning flammable terrain and objects
+  * Strategic environmental control to prevent enemy movement
 
 ==== Classes ====
-Classes that can use this spell include:
-  * Classes with Elemental affinity (e.g., [[rpd:spell_affinities|Elemental class]])
-  * Other classes that gain access through special means
+Classes with Elemental magic affinity can use this spell more efficiently.
 
 ==== Strategy ====
 How to effectively use the Ignite spell:
-  * Best situations to use the spell
-  * Synergies with other abilities
-  * Timing considerations
-
-==== Data Validation ====
-This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
+  * Use to block passages or create barriers against enemies
+  * Effective in areas with flammable grass that can spread the fire
+  * Good for slowing down enemy movement by blocking their paths
+  * Consider using in chokepoints to maximize damage
+  * Be careful not to trap yourself in burning areas
 
 ==== Content Verification ====
-* Information source: Java Class in Remixed Dungeon codebase
-* Stats verified: Yes, extracted directly from spell class properties
-* Effect descriptions: Generated from code analysis and string resources
-* Last updated: 2025-12-09 based on Ignite.java
+* Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Ignite.java|Ignite.java]]
+* Stats verification: Extracted from Ignite.java constructor and methods
+* Effect descriptions: Based on string resources and in-game mechanics
+* Last updated: December 2025, source: Remixed Dungeon 1.9.3
 
 ==== Source Code ====
-This page content is based on the Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Ignite.java|Ignite]]
+* Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Ignite.java|Ignite.java]]
+* Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L10-L11|Ignite spell strings]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
   * [[rpd:mechanics|Game Mechanics]]
   * [[rpd:spell_affinities|Elemental Affinity]]
+  * [[rpd:fire|Fire]] - The status effect and environmental element
+  * [[rpd:burning|Burning]] - The status effect applied by fire
 
 {{tag> rpd spells elemental }}
