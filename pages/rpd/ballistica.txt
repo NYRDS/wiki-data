@@ -1,37 +1,50 @@
 ====== Ballistica ======
 
-Ballistica is the targeting and pathfinding system used in Remixed Dungeon for ranged attacks and other directional effects.
+
+Ballistica is the line-of-sight and trajectory calculation system used in Remixed Dungeon. It implements a digital differential analyzer (DDA) algorithm to determine the path between two points, taking into account obstacles and blocking terrain.
 
 ==== Mechanics ====
-  * **Path Calculation:** Determines the path from source to target
-  * **Line of Sight:** Used to determine if target is visible
-  * **Obstacle Detection:** Identifies obstacles in the path
-  * **Final Position:** Determines the actual impact point
+  * **Digital Differential Analyzer (DDA):** Uses a line-drawing algorithm to trace a path between two points
+  * **Obstacle Detection:** Returns the last traversable cell when encountering blocking terrain
+  * **Character Blocking:** Can optionally stop at characters in the path (depending on the hitChars parameter)
+  * **Object Blocking:** Can optionally stop at level objects (depending on the hitObjects parameter)
+
+==== Technical Implementation ====
+  * **Static Class:** Contains static methods and variables for path calculation
+  * **Trace Array:** Stores the calculated path in the static 'trace' array up to the 'distance' variable
+  * **Parameters:** The cast method accepts parameters to determine if magic (can pass through some obstacles), whether to hit characters, and whether to hit objects
+  * **Algorithm:** Implements an optimized version of Bresenham's line algorithm with obstacle detection
 
 ==== Usage in Game ====
-  * [[rpd:wands|Wands]] - For targeting with wands
-  * [[rpd:kusarigama|Kusarigama]] - For the pull action
-  * [[rpd:throwing_weapons|Throwing weapons]] - For trajectory calculations
-  * [[rpd:spells|Spells]] - For directional spell effects
-  * [[rpd:traps|Traps]] - For some trap effects that have direction
+  * [[rpd:wands|Wands]] - For determining wand bolt trajectories
+  * [[rpd:throwing_weapons|Throwing weapons]] - For projectile paths
+  * [[rpd:spells|Spells]] - For directional spell effects like Magic Arrow
+  * [[rpd:traps|Traps]] - For effect trajectories like Warden's roots
+  * **Ranged combat** - For determining if a ranged attack can reach its target
 
-==== Technical Details ====
-  * Uses raycasting for path determination
-  * Accounts for walls and other obstacles
-  * Can handle reflection off certain surfaces in advanced implementations
-  * Critical for proper ranged combat mechanics
+==== API ====
+  * **cast(int from, int to, boolean magic, boolean hitChars, boolean hitObjects):** Main method that calculates the trajectory
+  * **trace[]:** Static array containing the calculated path points
+  * **distance:** Static variable containing the length of the calculated path
+
+==== Content Verification ====
+  * Information source: Java Class com.watabou.pixeldungeon.mechanics.Ballistica
+  * Implementation details based on code analysis of Ballistica.java
+  * Parameters and functionality verified against actual source code
+  * Last updated: Based on current git repository state
+
+==== Source Code =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java on GitHub]]
 
 ==== Strategy ====
-  * Understanding line of sight can improve accuracy with ranged items
-  * Positioning can block enemy ranged attacks using obstacles
-  * Helpful to know for predicting enemy ranged attacks
+  * Understanding line of sight can help predict when ranged attacks will be blocked
+  * Positioning behind corners can block enemy ranged attacks using obstacles
+  * Diagonal positioning can sometimes provide cover while still allowing attacks
 
 ==== See Also ====
   * [[rpd:range|Range]] - Understanding distance mechanics
   * [[rpd:combat|Combat]] - Combat mechanics
   * [[rpd:mechanics|Mechanics]] - General game mechanics
+  * [[rpd:los_blocking|LOS Blocking]] - Objects that block line of sight
 
-==== Source Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java - Implementation]]
-
-{{tag> rpd mechanics combat targeting}}
+{{tag> rpd mechanics combat targeting los}}

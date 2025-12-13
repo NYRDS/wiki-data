@@ -1,7 +1,57 @@
 ====== Scroll Of Domination ======
 
-This scroll will bend the will of any creature in your sight. 
+{{ rpd:images:scroll_of_domination_sprite.png|Scroll of Domination }}
 
-The affected creature will fight for you until its death.
+===== Description =====
+This scroll will bend the will of one creature in your sight. The affected creature will fight for you until its death. The scroll targets a random valid creature in your field of view.
 
-{{tag> rpd items}}
+===== Effect =====
+* Attempts to charm one random creature in the player's field of view
+* Only works on non-boss, non-NPC, non-pet creatures that can be pets
+* The targeted creature becomes a pet and fights for the player
+* Visual effect: Flare(3, 32) animation on the dominated creature
+* Audio effect: Dominance sound (SND_DOMINANCE)
+* Removes player's invisibility when used
+
+===== Targeting Restrictions =====
+* Cannot dominate boss mobs
+* Cannot dominate NPCs
+* Cannot dominate existing pets
+* Only affects creatures that can be pets (determined by canBePet() method)
+
+===== Mechanics =====
+* The spell randomly selects from available valid creatures in sight
+* If no valid creatures are present, the scroll has no effect
+* Uses the same mechanics as the Guardian armor's "Domination" ability
+* Shares similar effects to the Sacrificial Sword and Black Skull
+
+===== Usage =====
+* Effective for turning powerful enemies into allies
+* Particularly useful in tight situations when surrounded by enemies
+* Requires line of sight to the target creature
+
+===== Identification =====
+* Once read and identified, the scroll is known to the player
+* Known scrolls can be identified by other characters in the game
+
+===== Pricing =====
+* Base price: 80 gold per scroll (when known)
+* Unknown scrolls sell for the base price of unidentified scrolls
+
+===== Content Verification =====
+* Information source: Java Class com.watabou.pixeldungeon.items.scrolls.ScrollOfDomination
+* Effect descriptions based on code analysis of ScrollOfDomination.java
+* Targeting restrictions based on implementation details
+* Last updated: Based on current git repository state
+
+===== Source Code =====
+* [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfDomination.java|ScrollOfDomination.java on GitHub]]
+
+===== See Also =====
+* [[rpd:scrolls|Scrolls]] - Other types of scrolls
+* [[rpd:guardian_armor|Guardian Armor]] - Has similar domination ability
+* [[rpd:sacrificial_sword|Sacrificial Sword]] - Another item with domination mechanics
+* [[rpd:black_skull|Black Skull]] - Another item with similar mechanics
+* [[rpd:mechanics|Mechanics]] - General game mechanics
+
+{{tag> rpd items scrolls}}

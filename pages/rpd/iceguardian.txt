@@ -1,61 +1,44 @@
-====== Ice Guardian Core ======
+====== Ice Guardian ======
 
-{{ rpd:images:iceguardiancore_sprite.png|Ice Guardian Core Sprite }}
+{{ rpd:images:iceguardian_sprite.png|Ice Guardian }}
 
-**Ice Guardian Core** is the boss of the [[rpd:ice_caves|Ice Caves]] area in Remixed Dungeon. It is manufactured by ancient kobolds to protect their icy caves, with power stored within its core allowing it to reconstruct itself as long as it has enough energy.
+===== Description =====
+Ice Guardians are magical constructs made of magical ice, created by the ancient kobolds to protect their icy caves. Unlike the Ice Guardian Core boss, these are regular mobs that appear in the Ice Caves level.
 
-==== Description ====
-The Ice Guardian Core is a massive construct made of magical ice, created by the ancient kobolds to protect their realm. It has a glowing stone placed inside this wondrous construction at its core. Unlike the regular Ice Guardians that are made by this core, the Core itself is the actual boss entity.
+===== Stats =====
+* **HP:** 70
+* **EXP for Kill:** 5
+* **Defense Skill:** 30
+* **Attack Skill:** 31
+* **Damage:** 10-15
+* **DR (Damage Resistance):** 14
+* **Speed:** 0.7
 
-==== Stats ====
-  * **HP:** 1000 (high health pool)
-  * **EXP for Kill:** 5
-  * **Defense Skill:** 10
-  * **Attack Skill:** 26
-  * **Damage Range:** 13-23
-  * **Damage Resistance (DR):** 11
-  * **Speed:** 0.5 (half normal speed)
+===== Abilities =====
+* **Immunities:** Immune to Paralysis, Toxic Gas, Terror, Death enchantment, Amok, Blindness, and Sleep
+* **Loot:** Drops Frozen Carpaccio with 20% chance
 
-==== Special Properties ====
-  * **Boss Status:** One of the dungeon bosses with associated badge validation
-  * **Immunities:** Immune to Paralysis, Toxic Gas, Terror, Death, Amok, Blindness, and Sleep
-  * **Special Drops:** Drops [[rpd:ice_key|Ice Key]] and [[rpd:skeleton_key|Skeleton Key]] as well as a [[rpd:wand_of_icebolt|Wand of Icebolt]] (upgraded to level 1)
-  * **Reconstruction:** When killed, also kills all regular [[rpd:iceguardiancore|Ice Guardian]] mobs on the level
-  * **Badge:** Defeating it validates the "ICE_GUARDIAN_SLAIN" badge for achievements
+===== Special Mechanics =====
+* When an Ice Guardian dies, it attempts to damage the Ice Guardian Core (if present) for 150 damage
+* If the Ice Guardian Core survives the damage, it has a chance to resurrect the Ice Guardian twice
 
-==== Behavior ====
-  * **Movement:** Very slow movement speed (0.5x normal)
-  * **Combat:** Uses upgraded [[rpd:wand_of_icebolt|Wand of Icebolt]] for ranged attacks
-  * **Drops:** Guarantees dropping both [[rpd:ice_key|Ice Key]] and [[rpd:skeleton_key|Skeleton Key]]
+===== Habitat =====
+Ice Guardians can be found in the [[rpd:ice_caves|Ice Caves]] levels, usually protecting the Ice Guardian Core.
 
-==== Strategy ====
-  * The Ice Guardian Core is a slow but heavily armored boss with powerful ranged attacks
-  * It uses a level 1 upgraded [[rpd:wand_of_icebolt|Wand of Icebolt]] to attack from range
-  * The boss has high HP and DR, requiring sustained damage to defeat
-  * When defeated, all regular Ice Guardians on the level are also destroyed
-  * It's found on the 4th level of the [[rpd:ice_caves|Ice Caves]], which is accessible from the Guts levels or via special maps
+===== Content Verification =====
+* Information source: Java Class com.nyrds.pixeldungeon.mobs.icecaves.IceGuardian
+* Stats verified directly from IceGuardian.java class properties
+* Effect descriptions based on code analysis of die() method
+* Last updated: Based on current git repository state
 
-==== Technical Details ====
-  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardianCore.java|com.nyrds.pixeldungeon.mobs.icecaves.IceGuardianCore]]
-  * **Inheritance:** Extends Boss class
-  * **Implementation:** Creates regular IceGuardians that must also be defeated
+===== Source Code =====
+* [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardian.java|IceGuardian.java on GitHub]]
 
-==== Drops ====
-  * [[rpd:wand_of_icebolt|Wand of Icebolt]] (upgraded to level 1)
-  * [[rpd:ice_key|Ice Key]] - key for frozen locks and barriers
-  * [[rpd:skeleton_key|Skeleton Key]] - general purpose key
-  * Possible additional items (based on boss drop mechanics)
+===== See Also =====
+* [[rpd:ice_caves|Ice Caves]]
+* [[rpd:iceguardiancore|Ice Guardian Core]] (boss version)
+* [[rpd:kobold|Kobold]]
+* [[rpd:kobold_icemancer|Kobold Icemancer]]
+* [[rpd:frozen_carpaccio|Frozen Carpaccio]]
 
-==== Trivia ====
-  * The Ice Guardian Core is responsible for creating and maintaining the regular Ice Guardians found in the Ice Caves
-  * Defeating this boss is required for the "Ice Guardian Slain" badge achievement
-  * When it dies, its death message triggers the death of all associated Ice Guardian mobs on the same level
-
-==== See Also ====
-  * [[rpd:ice_caves|Ice Caves]]
-  * [[rpd:wand_of_icebolt|Wand of Icebolt]]
-  * [[rpd:ice_key|Ice Key]]
-  * [[rpd:bosses|Bosses]]
-  * [[rpd:iceguardiancore|Ice Guardian]] (regular mob version)
-
-{{tag> rpd mobs bosses ice_caves}}
+{{tag> rpd mobs ice_caves}}
