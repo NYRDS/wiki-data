@@ -1,6 +1,40 @@
 ====== Corpse Dust ======
-Corpse dust, as in the base game, is obtained from skeleton remains during the Wand maker's quest. 
 
-However, unlike in the base game, it can be equipped, and equipping corpse dust gives the effect [[New_effects#Bloodlust|Bloodlust]].
+{{ rpd:images:corpse_dust_sprite.png|Corpse Dust }}
 
-While corpse dust is equipped, regardless of the item being cursed or not, the player will randomly take small amounts of damage ranging from 1 to 4.
+Corpse Dust is a cursed artifact obtained during the Wandmaker's quest. It is found on skeleton remains in the Demon Halls.
+
+==== Properties ====
+  * **Type**: Cursed Artifact (Quest Item)
+  * **Cursed**: Always cursed and cannot be uncursed
+  * **Identified**: Always identified
+  * **Effect**: When equipped, provides Bloodlust buff with attack damage doubled but random self-damage
+
+==== Mechanics ====
+  * **Bloodlust Effect**: When equipped, provides the Bloodlust buff which:
+    * Doubles attack damage (attackProc damage * 2)
+    * Randomly causes 1-5 damage to the player (10% chance per turn when HP > 20% of max HP)
+    * Provides visual indicator (Bloodlust icon)
+
+==== Acquisition ====
+  * Obtained from skeleton remains during the [[rpd:wandmaker|Wandmaker]]'s quest in Demon Halls (Goo, Tengu, DM-300, King levels)
+  * Can be dropped by any of the 4 major bosses in the game
+  * May also appear on skeleton heaps in Demon Halls levels
+
+==== Strategy ====
+  * Provides a high-risk, high-reward combat option
+  * Doubled attack damage can be useful in critical situations
+  * Self-damage can be dangerous, especially when HP is low
+  * Consider using when high damage output is needed but be aware of the self-harm risk
+
+==== Technical Details ====
+  * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/CorpseDust.java|CorpseDust]]
+  * **Buff Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/RageBuff.java|RageBuff]]
+  * **String Resources**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L522|CorpseDust strings]]
+
+==== See Also ====
+  * [[rpd:wandmaker|Wandmaker quest]]
+  * [[rpd:artifacts|Artifacts]]
+  * [[rpd:quest_items|Quest Items]]
+
+{{tag> rpd items artifacts cursed quest_item bloodlust}}
