@@ -12,12 +12,14 @@ Wind Gust creates a gust of wind that pushes enemies back. If an enemy is pushed
   * **Targeting:** Cell
   * **Level:** 1
   * **Mana Cost:** 1
+  * **Range:** Skill level + 2 (up to Ballistica distance)
 
 ==== Effects ====
   * Pushes enemies back from the caster
   * Deals damage if pushed enemy hits an obstacle (caster's skill level × 2)
   * Creates visual wind particle effects (5 + caster's skill level × 2 particles)
   * Has a range that increases with the caster's skill level
+  * Pushes all enemies in the line of effect toward the target location
 
 ==== Usage ====
 The Wind Gust spell can be used for:
@@ -25,11 +27,13 @@ The Wind Gust spell can be used for:
   * Creating distance between the player and aggressive enemies
   * Forcing enemies into traps, walls, or other hazards
   * Crowd control when facing multiple enemies
+  * Activating distant switches or objects
+  * Breaking up enemy formations
 
 ==== Classes ====
 Classes that can use this spell include:
   * Classes with [[rpd:spell_affinities#elemental|Elemental]] affinity
-  * [[rpd:mage|Mage]] (naturally has [[rpd:elemental|Elemental]] affinity)
+  * [[rpd:mage|Mage]] (naturally has [[rpd:spell_affinities#elemental|Elemental]] affinity)
   * Other classes that gain access through special means
 
 ==== Strategy ====
@@ -38,6 +42,8 @@ How to effectively use the Wind Gust spell:
   * Effective for escape when surrounded by enemies
   * Works well for separating strong enemies from weaker ones
   * Useful in corridors where enemies can be pushed into each other
+  * Can be used to clear projectiles or items out of the way
+  * Good for maintaining distance with melee enemies
 
 ==== Data Validation ====
 This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
@@ -46,7 +52,7 @@ This information is extracted directly from the game code and validated against 
   * Information source: Java Class in Remixed Dungeon codebase
   * Stats verified: Yes, extracted directly from spell class properties
   * Effect descriptions: Generated from code analysis and string resources
-  * Last updated: 2025-12-12 based on WindGust.java
+  * Last updated: 2025-12-14 based on WindGust.java
 
 ==== Source Code ====
 This page content is based on the Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust]]

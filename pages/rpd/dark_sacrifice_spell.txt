@@ -1,65 +1,55 @@
-====== DarkSacrifice ======
+====== Dark Sacrifice ======
 
-{{ rpd:images:dark_sacrifice_spell_icon.png|DarkSacrifice Spell Icon }}
-
-**DarkSacrifice** is a spell in Remixed Pixel Dungeon (Necromancy Affinity).
+Dark Sacrifice is a necromantic ability available to the [[rpd:necromancer|Necromancer]] class that allows the player to sacrifice their loyal minion to cause an explosion.
 
 ==== Description ====
-Sacrifice your loyal minion to cause an explosion. The area covered by the explosion will depend on the servant\'s remaining health and your skill level.
+Sacrifice your loyal minion to cause an explosion. The area covered by the explosion will depend on the servant's remaining health and your skill level. This spell represents a significant tactical decision for Necromancers.
 
 ==== Stats ====
   * **Magic Affinity:** Necromancy
-  * **Targeting:** char
+  * **Targeting Type:** Single character
   * **Level:** 3
   * **Mana Cost:** 3
-  * **Cast Time:** 0.5 turns
-  * **Special Effects:** damages area around target
+  * **Cast Time:** 0.5
 
 ==== Mechanics ====
-When cast on a minion that belongs to the caster:
-  * The spell creates a Liquid Flame blob at the minion's position with strength equal to `minion's HP * caster's skill level`
-  * The minion takes damage equal to its current HP (causing death)
-  * A curse particle effect is shown on the minion
-  * A cursed sound effect is played
-  * The minion says "My life is yours!" when sacrificed
-
-When cast on an invalid target (not owned by caster):
-  * The target says "You have no power over me!" instead
-  * The spell fails and the player is prompted to select a loyal servant to sacrifice
+  * **Target:** Player's own summoned minion (Deathling or other undead) that belongs to the caster
+  * **Effect:** Creates a fire explosion (LiquidFlame) centered on the minion
+  * **Damage:** Area covered by LiquidFlame based on the minion's remaining HP and caster's skill level (LiquidFlame strength = sacrifice HP * caster skill level)
+  * **Scaling:** Effectiveness increases with the Necromancer's skill level
+  * **Validation:** Only works if the targeted minion belongs to the caster (checked via ownerId)
 
 ==== Usage ====
-The DarkSacrifice spell can be used for:
-  * **Offensive applications**: Area damage to enemies and surroundings
-  * **Strategic applications**: Controlling minion populations and creating fire zones
-  * **Resource management**: Sacrificing low-value minions to harm enemies
-
-==== Classes ====
-Classes that can use this spell include:
-  * Classes with Necromancy affinity
-  * Other classes that gain access through special means
+  * **Situational:** Most effective when surrounded by enemies
+  * **Resource Management:** Requires having a minion to sacrifice
+  * **Area Control:** Useful for clearing groups of enemies
+  * **Last Resort:** Can be used when other options are limited
 
 ==== Strategy ====
-How to effectively use the DarkSacrifice spell:
-  * **Best situations**: Use when minions are near enemies to maximize area damage
-  * **Timing considerations**: Most effective when enemies are in close proximity to your minions
-  * **Resource management**: Sacrifice lower-value minions to eliminate stronger enemies
+  * Best used when minion is at high health for maximum explosion
+  * Particularly effective against groups of weaker enemies
+  * Consider using before a minion would die anyway
+  * Tactical choice between losing minion and gaining area damage
+  * Can be useful to clear paths or escape difficult situations
 
-==== Data Validation ====
-This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
-
-==== Content Verification ====
-* Information source: Lua Script in Remixed Dungeon codebase
-* Stats verified: Yes, extracted directly from spell class properties
-* Effect descriptions: Generated from code analysis and string resources
-* Last updated: 2025-12-12 based on DarkSacrifice.lua
+==== Related ====
+  * [[rpd:necromancer|Necromancer]] - The class that uses this ability
+  * [[rpd:necromancy|Necromancy]] - The magical practice this belongs to
+  * [[rpd:deathling|Deathling]] - The primary minion that can be sacrificed
+  * [[rpd:summon_deathling|Summon Deathling]] - Ability to create minions
+  * [[rpd:necromancer_armor|Necromancer Armor]] - Equipment that enhances summoning
 
 ==== Source Code ====
-This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/DarkSacrifice.lua|DarkSacrifice]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/DarkSacrifice.lua|DarkSacrifice.lua]]
 
-==== See Also ====
-  * [[rpd:spells|Spells]]
-  * [[rpd:mechanics|Game Mechanics]]
-  * [[rpd:necromancy|Necromancy Affinity]]
-  * [[rpd:liquid_flame|Liquid Flame]]
+==== Trade-offs ====
+  * **Loss of Minion:** Permanently loses the sacrificed minion
+  * **Area Damage:** Gains significant area damage effect
+  * **Tactical:** Must weigh immediate damage against ongoing minion support
+  * **Resource:** Uses a valuable summoned creature as 'ammunition'
 
-{{tag> rpd spells necromancy }}
+==== Content Verification ====
+  * Information source: Lua Script in Remixed Dungeon codebase
+  * Effect descriptions: Generated from code analysis and string resources
+  * Last updated: 2025-12-14 based on DarkSacrifice.lua
+  * Source code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/DarkSacrifice.lua|DarkSacrifice.lua]]

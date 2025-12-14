@@ -3,7 +3,7 @@
 {{ rpd:images:mimicamulet_sprite.png|Mimic Amulet }}
 
 ==== Description ====
-The Mimic Amulet is a dangerous enemy that appears in the Guts level (depth 26-30) of the dungeon. It's a floating mimic that masquerades as a valuable amulet but attacks adventurers who approach it. As the description says: "The most glorious moment of your adventuring career just turned out to be a trap."
+The Mimic Amulet is a dangerous enemy that appears in the Guts level (depth 26-30) of the dungeon. It's a floating mimic that masquerades as a valuable amulet but attacks adventurers who approach it.
 
 ==== Stats ====
   * **Level:** Dependent on current dungeon depth (same as dungeon level)
@@ -13,19 +13,21 @@ The Mimic Amulet is a dangerous enemy that appears in the Guts level (depth 26-3
   * **Damage:** HP/10 to HP/4 (based on current HP)
   * **EXP for Kill:** 2 + 2 * (level - 1) / 5
   * **Speed:** 1.25 (faster than normal)
+  * **Defense Rating (DR):** 0
 
 ==== Special Properties ====
-  * **Floating:** Immune to Levitation effects
-  * **Flight:** Always flies, cannot be grounded
+  * **Floating:** Always flies, cannot be grounded
   * **Immunities:** Immune to Toxic Gas, Paralysis, and Stun
   * **Loot:** Always drops a Skeleton Key for the next level
   * **No Corpse:** Does not leave behind a corpse when defeated (carcassChance = 0)
   * **Always Visible:** Cannot become invisible or hide (enemySeen = true)
+  * **Not Pet**: Cannot be turned into a pet (canBePet() returns false)
 
 ==== Behavior ====
   * Automatically applies Levitation buff to itself if not already buffed
   * Always actively hunts the player once detected
-  * Does not function as a pet (canBePet() returns false)
+  * Appears as a floating amulet to trick players
+  * Will attack when approached
 
 ==== Location ====
   * Found in the Guts level (floors 26-30) of the dungeon
@@ -36,10 +38,11 @@ The Mimic Amulet is a dangerous enemy that appears in the Guts level (depth 26-3
   * Its high speed means it can quickly close distance
   * Its immunity to several status effects limits some tactical options
   * The guaranteed Skeleton Key makes defeating it worthwhile for accessing deeper levels
+  * Be prepared for combat instead of expecting to find an item
 
 ==== Content Verification ====
   * Information source: Java Class com.nyrds.pixeldungeon.mobs.guts.MimicAmulet
-  * Stats verification: Extracted directly from adjustStats() method
+  * Stats verification: Extracted directly from MimicAmulet.java constructor and adjustStats() method
   * Effect descriptions source: Code analysis and string resources
   * Last updated: Based on Remixed Dungeon source code
   * Source code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/MimicAmulet.java|MimicAmulet.java]]
