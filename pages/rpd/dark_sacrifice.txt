@@ -5,11 +5,19 @@ Dark Sacrifice is a necromantic ability available to the [[rpd:necromancer|Necro
 ==== Description ====
 Sacrifice your loyal minion to cause an explosion. The area covered by the explosion will depend on the servant's remaining health and your skill level. This spell represents a significant tactical decision for Necromancers.
 
+==== Stats ====
+  * **Magic Affinity:** Necromancy
+  * **Targeting Type:** Single character
+  * **Level:** 3
+  * **Mana Cost:** 3
+  * **Cast Time:** 0.5
+
 ==== Mechanics ====
-  * **Target:** Player's own summoned minion (Deathling or other undead)
-  * **Effect:** Creates an explosion centered on the minion
-  * **Damage:** Area and power depend on the minion's remaining health
+  * **Target:** Player's own summoned minion (Deathling or other undead) that belongs to the caster
+  * **Effect:** Creates a fire explosion (LiquidFlame) centered on the minion
+  * **Damage:** Area covered by LiquidFlame based on the minion's remaining HP and caster's skill level (LiquidFlame strength = sacrifice HP * caster skill level)
   * **Scaling:** Effectiveness increases with the Necromancer's skill level
+  * **Validation:** Only works if the targeted minion belongs to the caster (checked via ownerId)
 
 ==== Usage ====
   * **Situational:** Most effective when surrounded by enemies
@@ -30,6 +38,9 @@ Sacrifice your loyal minion to cause an explosion. The area covered by the explo
   * [[rpd:deathling|Deathling]] - The primary minion that can be sacrificed
   * [[rpd:summon_deathling|Summon Deathling]] - Ability to create minions
   * [[rpd:necromancer_armor|Necromancer Armor]] - Equipment that enhances summoning
+
+==== Source Code ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/DarkSacrifice.lua|DarkSacrifice.lua]]
 
 ==== Trade-offs ====
   * **Loss of Minion:** Permanently loses the sacrificed minion
