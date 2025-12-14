@@ -1,7 +1,5 @@
 ====== Stun ======
 
-{{ rpd:images:stun_effect.png|Stun Effect }}
-
 Stun is a status effect in Remixed Dungeon that prevents a character from taking any actions for a period of time. Despite its name, it functions very similarly to the [[rpd:paralysis|Paralysis]] effect.
 
 ==== Description ====
@@ -39,6 +37,7 @@ Some creatures are immune to the Stun effect:
   * **Default Duration:** 10 turns (DURATION constant)
   * **Visual State:** Uses CharSprite.State.PARALYSED state and BuffIndicator.PARALYSIS icon
   * **Implementation:** Extends FlavourBuff class and mimics Paralysis mechanics
+  * **Mechanics:** Calls target.paralyse(true) to prevent actions when attached
 
 ==== Content Verification ====
   * Information source: Java Class com.watabou.pixeldungeon.actors.buffs.Stun
