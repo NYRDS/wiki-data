@@ -1,50 +1,48 @@
-====== LightningBolt ======
+====== Lightning Bolt ======
 
-{{ rpd:images:lightning_bolt_spell_icon.png|LightningBolt Spell Icon }}
+{{ rpd:images:lightning_bolt_spell_icon.png|Lightning Bolt Spell Icon }}
 
-**LightningBolt** is a spell in Remixed Pixel Dungeon (Witchcraft Affinity).
+**Lightning Bolt** is a spell in Remixed Pixel Dungeon (Witchcraft Affinity).
 
 ==== Description ====
-A spell that is shared among ancient shamans, that will shock your enemies twice as effectively, especially if they are foolish enough to be on standing on water.
+A spell that is shared among ancient shamans, that will shock your enemies twice as effectively, especially if they are foolish enough to be standing on water. The spell deals random damage based on the caster's level and skill, and this damage is doubled if the target is standing in water and not flying.
 
 ==== Stats ====
   * **Magic Affinity:** Witchcraft
   * **Targeting:** char_not_self
   * **Level:** 2
   * **Mana Cost:** 5
+  * **Cooldown:** 2 turns
+  * **Cast Time:** 1 turn
 
-==== Usage ====
-The LightningBolt spell can be used for:
-  * Primary effect of the spell
-  * Strategic applications in combat
-  * Utility purposes based on its mechanics
+==== Damage Calculation ====
+The spell deals damage calculated as:
+  * Minimum damage: equal to caster's level (lvl)
+  * Maximum damage: (caster's skill level) * sqrt(caster's level) + (caster's level)
+
+==== Special Properties ====
+  * Damage is doubled when target is standing in water (and not flying)
+  * Creates visual lightning effect between caster and target
+  * Causes flash and spark particle effects on target
+  * If target is the hero, creates camera shake effect
 
 ==== Classes ====
 Classes that can use this spell include:
-  * Classes with Witchcraft affinity (e.g., [[rpd:witchcraft|Witchcraft class]])
-  * Other classes that gain access through special means
+  * Classes with Witchcraft affinity
 
 ==== Strategy ====
 How to effectively use the LightningBolt spell:
-  * Best situations to use the spell
-  * Synergies with other abilities
-  * Timing considerations
+  * Use on enemies standing in water for double damage
+  * Effective for ranged damage without engaging in melee
+  * Particularly useful in areas with water terrain
 
-==== Data Validation ====
-This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
-
-==== Content Verification ====
-* Information source: Lua Script in Remixed Dungeon codebase
-* Stats verified: Yes, extracted directly from spell class properties
-* Effect descriptions: Generated from code analysis and string resources
-* Last updated: 2025-12-09 based on LightningBolt.lua
-
-==== Source Code ====
-This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/LightningBolt.lua|LightningBolt]]
+==== Source Code References ====
+  * Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/LightningBolt.lua|LightningBolt.lua]]
+  * Mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java#L108-L133|CharUtils.java lightningProc method]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
   * [[rpd:mechanics|Game Mechanics]]
-  * [[rpd:witchcraft|Witchcraft Affinity]]
+  * [[rpd:spell_affinities|Spell Affinities]]
 
 {{tag> rpd spells witchcraft }}
