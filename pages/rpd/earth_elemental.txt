@@ -1,30 +1,31 @@
-====== earth_elemental ======
+====== Earth Elemental ======
 
 {{ rpd:images:earthelemental_sprite.png|Earth Elemental Sprite }}
 
-Earth elementals are earth masses driven by concentrated nature forces. They can literally root you to the ground and cause regrowth in appropriate terrain.
+**Earth Elemental** is an elemental mob found in grassy areas. Based on source code: ''com.nyrds.pixeldungeon.mobs.elementals.EarthElemental.java''
 
 ==== Description ====
-Earth elementals are made from earth and plants. They are heavily armored creatures with high HP but slower attack speed. They are immune to many status effects and can cause beneficial regrowth when attacking in certain terrains.
+Earth elementals are earth masses driven by concentrated nature forces. They can literally root you to the ground and cause regrowth in appropriate terrain. They are heavily armored creatures with high HP but slower attack speed. They are immune to many status effects and can cause beneficial regrowth when attacking in certain terrains.
 
 ==== Stats ====
-  * **HP**: Dungeon depth × 10 + 1
-  * **Defense Skill**: Dungeon depth / 2 + 1
-  * **Attack Skill**: (Base defense skill / 2) + 1
-  * **Damage**: HP / 5 (both min and max)
-  * **Damage Reduction**: Equal to experience for kill
-  * **Exp for Kill**: Dungeon depth + 1
-  * **Max Level**: Dungeon depth + 2
+  * **HP/HT**: Depth * 10 + 1 (scales with dungeon depth)
+  * **Defense Skill**: Depth / 2 + 1
+  * **Attack Skill**: (Depth / 2 + 1) / 2 + 1 (half of defense skill plus 1)
+  * **Min Damage**: HT / 5
+  * **Max Damage**: HT / 5 (same as min damage - fixed damage output)
+  * **Damage Resistance**: Depth + 1
+  * **Exp for Kill**: Depth + 1
+  * **Max Level**: Depth + 2
   * **Speed**: Normal speed, but 0.5x on liquid terrain
-  * **Kind**: Determined by dungeon depth (kind = min(depth/5, 4))
+  * **Kind**: Determined by depth (min(depth/5, 4))
 
-==== Abilities ====
-  * **Regrowth Attack**: Has a 50% chance to cause regrowth when attacking enemies on appropriate terrain
-  * **Liquid Slow**: Moves at half speed when on liquid terrain
+==== Special Abilities ====
+  * **Regrowth Attack**: On attack, has a 50% chance to cause regrowth in the targeted cell if it's a valid terrain type (EMPTY, EMBERS, EMPTY_DECO, GRASS, HIGH_GRASS) for 15 turns at power level max(Depth+1, 10)
+  * **Slow in Liquid**: Speed is halved when on liquid terrain
   * **Terrain Interaction**: Can cause regrowth when attacking on empty, ember, empty_deco, grass, or high_grass terrain
-  * **Regrowth Amount**: Creates 15×(expForKill or 10) units of regrowth when triggering the ability
 
 ==== Immunities ====
+Earth Elementals are immune to:
   * [[rpd:roots|Roots]]
   * [[rpd:paralysis|Paralysis]]
   * [[rpd:stun|Stun]]
@@ -33,11 +34,16 @@ Earth elementals are made from earth and plants. They are heavily armored creatu
   * [[rpd:bleeding|Bleeding]]
 
 ==== Drops ====
-  * [[rpd:earthroot_seed|Seed of Earthroot]] (10% chance)
+  * [[rpd:earthroot_seed|Earthroot Seed]]: 10% chance to drop an Earthroot seed
+
+==== Spawn Locations ====
+  * **Grass Areas**: Earth Elementals can spawn in grassy areas as defined in Bestiary.json
+  * ''Spawn definition: "GRASS":{"EarthElemental":1} in Bestiary.json''
 
 ==== Behavior ====
   * Adjusts stats based on dungeon depth through the IDepthAdjustable interface
-  * Speed is reduced to half when on liquid terrain (water, lava, etc.)
+  * Statistics scale with dungeon depth
+  * Speed reduced by half when on liquid terrain
   * When attacking, has a 50% chance to cause regrowth on appropriate terrain types
   * The regrowth effect can create favorable terrain for the Earth Elemental and hinder player mobility
 
@@ -47,22 +53,24 @@ Earth elementals are made from earth and plants. They are heavily armored creatu
   * Avoid standing on grass or other vegetation when fighting Earth Elementals
   * Be prepared for the Earth Elemental to potentially create advantageous terrain for itself
   * The high HP and damage reduction make these enemies quite durable
+  * Elemental creature with fixed damage output (min damage equals max damage)
 
 ==== Content Verification ====
-* Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java|EarthElemental.java]]
-* Stats verification: Extracted from adjustStats() method in EarthElemental.java
-* Effect descriptions: Based on attackProc() method and speed() method
-* Last updated: December 2025, source: Remixed Dungeon 1.9.3
+  * Information source: ''com.nyrds.pixeldungeon.mobs.elementals.EarthElemental.java''
+  * Stats verification: Extracted directly from adjustStats() method in EarthElemental.java
+  * Mechanics verification: Based on speed() and attackProc() methods in EarthElemental.java
+  * Immunities: Based on addImmunity() calls in adjustStats() method
+  * Last updated: December 2025
 
 ==== Source Code ====
-* Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java|EarthElemental.java]]
-* Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1416-L1419|Earth Elemental strings]]
+This page content is based on the Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java|EarthElemental]]
 
 ==== See Also ====
-  * [[rpd:elementals|Elementals]] - Other elemental creatures
-  * [[rpd:mobs|Mobs]] - All mobile creatures in the dungeon
-  * [[rpd:regrowth|Regrowth]] - The effect Earth Elementals can create
-  * [[rpd:earthroot_seed|Earthroot Seed]] - Drop from Earth Elementals
+  * [[rpd:mobs|Other Mobs]]
+  * [[rpd:elementals|Other Elementals]]
+  * [[rpd:mechanics|Game Mechanics]]
+  * [[rpd:multi_kind_mob|MultiKindMob]] (parent class)
+  * [[rpd:regrowth|Regrowth]] (effect applied by attack)
   * [[rpd:terrain|Terrain]] - Different terrain types that affect Earth Elementals
 
-{{tag> rpd mobs elementals earth}}
+{{tag> rpd mobs elementals }}
