@@ -6,14 +6,17 @@
 Shields provide defensive bonuses and blocking capabilities when equipped in the left hand. They can be used in combination with weapons in the main hand, offering protection at the cost of some offensive capability.
 
 ==== Shield Mechanics ====
-  * **Slot**: Left Hand equipment slot
+  * **Slot**: Left Hand equipment slot (can also be wielded as a weapon in main hand)
   * **Function**: Provides defensive bonuses and blocking capabilities
   * **Strategy**: Offers protection at the cost of some offensive capability
-  * **Compatibility**: Can be used with one-handed weapons in the main hand
-  * **Block Chance**: Varies by shield level (1-4) and character strength (30%, 40%, 40%, 50% base chance)
-  * **Block Damage**: Reduces incoming damage by a fixed amount (4, 6, 8, 10 base values for levels 1-4)
-  * **Recharge Time**: After blocking, shields require time to recharge before the next block (base 5 turns + weight penalty)
+  * **Compatibility**: Can be used with one-handed weapons in the main hand, or as a weapon when placed in main hand
+  * **Block Chance**: Varies by shield level and character strength (30%, 40%, 40%, 50% base chance for levels 1-4)
+  * **Block Damage**: Reduces incoming damage by a fixed amount (4, 6, 8, 10 base values for levels 1-4, scales with item level)
+  * **Block Formula**: Base damage reduction = blockForLevel * (1.3 ^ itemLevel)
+  * **Recharge Time**: After blocking, shields require time to recharge before the next block (base 5 turns + strength penalty)
   * **Required Strength**: Each shield level requires a minimum strength (Wooden: 12, Tough: 14, Strong: 16, Royal: 18)
+  * **Weight Penalty**: If character STR is below required STR, block chance is reduced by 10% per point deficit
+  * **Recharge Formula**: Recharge time = 5 + max(required STR - effective STR, 0)
 
 ==== Types of Shields ====
   * [[rpd:wooden_shield|Wooden Shield]] - Basic shield (Level 1)
@@ -30,6 +33,14 @@ Using shields changes the combat approach significantly:
   * **Versatility**: Can use main hand for weapons while maintaining defense
   * **Tactics**: Best for defensive playstyles or when facing numerous dangerous enemies
   * **Block Timing**: Shields must recharge after each block, so timing is crucial
+  * **Dual Usage**: Can be equipped as a weapon in main hand (with different damage mechanics)
+
+==== Content Verification ====
+  * Information source: Lua Script Library (lib/shields.lua, stats/shields.lua)
+  * Stats verified: Yes (from strForLevel, chanceForLevel, blockForLevel arrays)
+  * Mechanics verified: Yes (from shield functions in shields.lua)
+  * Last updated: December 14, 2025
+  * Source code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/shields.lua|shields.lua]]
 
 ==== Modding Support ====
 Remixed Dungeon's modding system supports custom shields with various special properties and effects, allowing for extensive equipment customization.
@@ -40,4 +51,4 @@ Remixed Dungeon's modding system supports custom shields with various special pr
   * [[rpd:items|Items]]
   * [[rpd:dual_wielding|Dual Wielding]]
 
-{{tag> rpd shields}}
+{{tag> rpd shields equipment defensive}}
