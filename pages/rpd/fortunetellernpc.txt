@@ -1,7 +1,38 @@
-====== fortunetellernpc ======
+====== Fortune Teller NPC ======
 
-{:rpd:images:fortunetellernpc_sprite.png?200|}
+{{ rpd:images:fortunetellernpc_sprite.png|Fortune Teller NPC Sprite }}
 
-{{ rpd:images:fortunetellernpc_sprite.png|Fortunetellernpc Sprite  }}
+The **Fortune Teller NPC** is a special NPC in Remixed Dungeon that helps players identify unID'd items in their inventory in exchange for gold.
 
-Description for fortunetellernpc goes here.087df4a8853cb3229502316f929e70fc6db6790
+==== Interaction ====
+  * When talked to, presents a dialog with options to identify items
+  * Requires 50 gold per item identification (modified by difficulty factor and Ring of Haggler)
+  * If the player has the [[rpd:ring_of_haggler|Ring of Haggler]], the cost is reduced by 10%
+
+==== Services ====
+  * **Single Item Identification**: Select one unID'd item to identify for 50 gold
+  * **All Item Identification**: Identify all unID'd items in inventory for 50 gold per item
+  * If no unID'd items are present, the NPC shows a message that there are no items to identify
+
+==== Behavior ====
+  * **Faction**: Neutral
+  * **Movement**: Immovable (base speed 0)
+  * **AI State**: Passive
+  * **Friendly**: Yes (does not attack player)
+
+==== Technical Details ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/FortuneTellerNPC.java|FortuneTellerNPC.java]]
+  * **Interaction Window:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndFortuneTeller.java|WndFortuneTeller.java]]
+  * **Mob Description:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Fortune.json|Fortune.json]]
+
+==== Strategy ====
+  * Cost-effective when you have many unidentified items
+  * Consider the Ring of Haggler to reduce identification costs
+  * Useful alternative to [[rpd:scroll_of_identify|Scroll of Identify]] when scrolls are scarce
+
+==== Related Content ====
+  * [[rpd:npcs|NPCs]]
+  * [[rpd:scroll_of_identify|Scroll of Identify]]
+  * [[rpd:ring_of_haggler|Ring of Haggler]]
+
+{{tag> rpd npcs fortune_teller identify }}
