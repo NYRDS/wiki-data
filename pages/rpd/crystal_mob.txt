@@ -10,7 +10,7 @@ Crystals are magical constructs that serve the [[rpd:shadow_lord|Shadow Lord]] a
 ==== Stats ====
 * **HP:** Depth * 4 + 1 (adjusts based on dungeon depth)
 * **Defense:** Depth * 2 + 1 (adjusts based on dungeon depth)
-* **Attack Skill:** 35 (for types 0 & 1); variable (for type 2 - Shadow Lord crystals)
+* **Attack Skill:** 1000 (for types 0 & 1); variable (for type 2 - Shadow Lord crystals, uses default mob attack skill)
 * **Damage:** Random value between HP/2 and HT/2
 * **Speed:** Immovable (cannot be displaced)
 * **EXP:** Depth + 1
@@ -23,24 +23,26 @@ Crystals are magical constructs that serve the [[rpd:shadow_lord|Shadow Lord]] a
 * **No Corpse:** Does not leave a carcass upon death (carcassChance = 0)
 * **Wand Attack:** Uses wands to attack enemies at range
 * **3 Types:** Different types with different behaviors (0, 1, and 2)
-* **Special Equipment:** Automatically equipped with random wands based on dungeon depth
+* **Special Equipment:** Automatically equipped with random wands based on dungeon depth (Shadow Lord crystals have 25% chance of getting Wand of Shadowbolt instead)
 
 ==== Behavior ====
 * **Type 2 Special:** Shadow Lord crystals (kind = 2) have 25% chance to be equipped with [[rpd:wand_of_shadowbolt|Wand of Shadowbolt]] upgraded to half dungeon depth (instead of normal wands)
 * **Dungeon Interaction:** When a crystal on a pedestal dies, it transforms the area to embers and foliage, clearing Darkness in a 5x5 area
-* **Steal Action:** If targeted with a "steal" action, it will create a Chaos Mark and die
+* **Steal Action:** If targeted with a "steal" action, it will create a Chaos Mark at its position and die
 * **Non-Pettable:** Cannot be turned into a pet
-* **Zapping:** Uses equipped wand when attacking
+* **Wand Attack:** Uses equipped wand when attacking (wand is upgraded to appropriate level based on dungeon depth)
+* **Attack Range:** Can attack any target in line of sight using Ballistica.cast
+* **Attack Mechanism:** Crystals always perform a zap attack instead of normal melee attack
 
 ==== Types ====
 There are 3 different types of crystals:
-* **Type 0 & 1:** Standard crystals that spawn randomly in levels
+* **Type 0 & 1:** Standard crystals that spawn randomly in levels with attack skill of 1000
 * **Type 2:** Special Shadow Lord crystals that appear during the [[rpd:shadow_lord|Shadow Lord]] encounter with enhanced mechanics
 
 ==== Strategy ====
 * **Magical Resistance:** Magical resistance or armor can be helpful against wand-based attacks
 * **Immobilized Target:** Since crystals don't move, you can position yourself to avoid their attacks
-* **Range Attack:** Crystals can attack from a distance using their wands
+* **Range Attack:** Crystals can attack from a distance using their wands, with attack skill of 1000 for types 0 & 1
 * **Pedestal Death Effect:** If a crystal dies while on a pedestal, it transforms the area to embers and foliage, clearing Darkness in a 5x5 area
 * **Shadow Lord Crystals:** Be aware that Shadow Lord crystals have a 25% chance to use [[rpd:wand_of_shadowbolt|Wand of Shadowbolt]]
 
@@ -50,8 +52,8 @@ There are 3 different types of crystals:
 * **Implementation:** Automatically equipped with random wands based on depth, with special handling for Shadow Lord crystals
 
 ==== Drops ====
-* **Standard Crystal:** Wand of appropriate level based on dungeon depth
-* **Shadow Lord Crystal:** May drop [[rpd:wand_of_shadowbolt|Wand of Shadowbolt]] with 25% chance
+* **Standard Crystal:** Wand of appropriate level based on dungeon depth (upgraded to Dungeon.depth/3)
+* **Shadow Lord Crystal:** May have [[rpd:wand_of_shadowbolt|Wand of Shadowbolt]] with 25% chance (upgraded to half dungeon depth)
 * **Chaos Mark:** When targeted with "steal" action
 
 ==== Trivia ====

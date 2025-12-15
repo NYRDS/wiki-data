@@ -7,7 +7,6 @@ Weapons in Remixed Dungeon are equipment items used to attack enemies. They come
 ==== Weapon Categories ====
   * **Melee Weapons:** Used in close combat
     * [[rpd:short_sword|Short Sword]] - Basic sword
-    * [[rpd:dart|Dart]] - Thrown weapon
     * [[rpd:boomerang|Boomerang]] - Returning thrown weapon
     * [[rpd:bone_saw|Bone Saw]] - Doctor's special weapon
   * **Ranged Weapons:**
@@ -15,17 +14,18 @@ Weapons in Remixed Dungeon are equipment items used to attack enemies. They come
     * [[rpd:elven_bow|Elven Bow]] - Elf's specialty weapon
     * [[rpd:chaos_bow|Chaos Bow]] - Powerful chaos weapon
   * **Throwing Weapons:** [[rpd:throwing_weapons|Throwing Weapons]]
+    * [[rpd:dart|Dart]] - Basic thrown weapon
     * [[rpd:throwing_stone|Throwing Stone]] - Basic thrown stone
     * [[rpd:tomahawk|Tomahawk]] - Throwing axe
     * [[rpd:gnoll_tamahawk|Gnoll Tamahawk]] - Gnoll hero class's special throwing axe (Gnoll's starting weapon)
 
 ==== Weapon Properties ====
-  * **Damage:** Physical damage dealt per hit
+  * **Damage:** Physical damage dealt per hit (MIN-MAX values in code)
   * **Durability:** How many hits the weapon can take before breaking
-  * **Speed:** Attack speed modifier
-  * **Accuracy:** Hit chance bonus
-  * **STR:** Strength requirement to wield effectively
-  * **Tier:** Quality level (1-5 for regular weapons, 6 for special weapons)
+  * **Speed:** Attack speed modifier (DLY value in code - 1.0 is normal speed)
+  * **Accuracy:** Hit chance modifier (ACU value in code - 1.0 is normal accuracy)
+  * **STR:** Strength requirement to wield effectively (STR value in code)
+  * **Tier:** Quality level (1-5 for regular weapons; special weapons like ChaosSword are tier 3 with special mechanics)
 
 ==== Special Mechanics ====
   * **Enchantments:** Weapons can have special magical properties added via [[rpd:scroll_of_weapon_upgrade|Scroll of Weapon Upgrade]]
@@ -33,23 +33,22 @@ Weapons in Remixed Dungeon are equipment items used to attack enemies. They come
   * **Class Bonuses:** Some classes get bonuses with specific weapon types
 
 ==== Weapon Tiers ====
-  * **Tier 1:** [[rpd:dart|Dart]], [[rpd:throwing_stone|Throwing Stone]]
-  * **Tier 2:** [[rpd:short_sword|Short Sword]], [[rpd:hand_axe|Hand Axe]]
-  * **Tier 3:** [[rpd:spear|Spear]], [[rpd:quarterstaff|Quarterstaff]]
-  * **Tier 4:** [[rpd:sword|Sword]], [[rpd:mace|Mace]]
-  * **Tier 5:** [[rpd:long_sword|Long Sword]], [[rpd:battle_axe|Battle Axe]]
-  * **Tier 6:** Special weapons like [[rpd:chaos_sword|Chaos Sword]]
+  * **Tier 1:** [[rpd:dart|Dart]], [[rpd:throwing_stone|Throwing Stone]], [[rpd:shuriken|Shuriken]]
+  * **Tier 2:** [[rpd:short_sword|Short Sword]], [[rpd:hand_axe|Hand Axe]], [[rpd:spear|Spear]], [[rpd:quarterstaff|Quarterstaff]], [[rpd:boomerang|Boomerang]]
+  * **Tier 3:** [[rpd:sword|Sword]], [[rpd:mace|Mace]], [[rpd:war_hammer|War Hammer]], [[rpd:chaos_sword|Chaos Sword]]
+  * **Tier 4:** [[rpd:longsword|Longsword]], [[rpd:battle_axe|Battle Axe]], [[rpd:flail|Flail]]
+  * **Tier 5:** [[rpd:greatsword|Greatsword]], [[rpd:halberd|Halberd]], [[rpd:hand_crossbow|Hand Crossbow]]
 
 ==== Code Reference ====
-  * [[code:com/watabou/pixeldungeon/items/weapon/melee/ShortSword.java|Short Sword]] - Basic melee weapon
-  * [[code:com/watabou/pixeldungeon/items/weapon/missiles/Dart.java|Dart]] - Basic throwing weapon
-  * [[code:com/watabou/pixeldungeon/items/weapon/missiles/Boomerang.java|Boomerang]] - Returning throwing weapon
+  * [[code:com/watabou/pixeldungeon/items/weapon/melee/ShortSword.java|Short Sword]] - Basic melee weapon (Tier 1)
+  * [[code:com/watabou/pixeldungeon/items/weapon/missiles/Dart.java|Dart]] - Basic throwing weapon (Tier 1)
+  * [[code:com/watabou/pixeldungeon/items/weapon/missiles/Boomerang.java|Boomerang]] - Returning throwing weapon (Tier 2)
   * [[code:RemixedDungeon/src/main/assets/scripts/items/BoneSaw.lua|Bone Saw]] - Special weapon for Doctor class
   * [[code:com/watabou/pixeldungeon/items/weapon/melee/WoodenBow.java|Wooden Bow]] - Basic ranged weapon
-  * [[code:com/nyrds/pixeldungeon/items/common/ElvenBow.java|Elven Bow]] - Elf's starting weapon
+  * [[code:com/nyrds/pixeldungeon/items/common/ElvenBow.java|Elven Bow]] - Elf's starting weapon (Tier 1)
   * [[code:com/nyrds/pixeldungeon/items/chaos/ChaosBow.java|Chaos Bow]] - Special chaotic weapon
   * [[code:com/watabou/pixeldungeon/items/weapon/missiles/Tamahawk.java|Tamahawk]] - Throwing axe (in code)
-  * [[code:com/nyrds/pixeldungeon/items/common/GnollTamahawk.java|Gnoll Tamahawk]] - Gnoll's special throwing axe
+  * [[code:com/nyrds/pixeldungeon/items/common/GnollTamahawk.java|Gnoll Tamahawk]] - Gnoll's special throwing axe (Tier 1 with higher damage)
 
 ==== Strategy ====
   * Choose weapons that complement your class and playstyle
