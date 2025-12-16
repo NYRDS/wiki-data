@@ -2,17 +2,17 @@
 
 {{ rpd:images:item_OverpricedRation.png|Overpriced Ration }}
 
-Overpriced Ration is an expensive food item in Remixed Dungeon that provides the same nutritional benefit as a regular Ration but at a higher cost.
+Overpriced Ration is an expensive food item in Remixed Dungeon that provides less nutritional benefit than a regular Ration but at a higher cost.
 
 ==== Stats ====
   * **Rarity**: Uncommon (probability 0.1 in Treasury system)
   * **Weight**: 1
-  * **Energy**: 120 food units (STARVING - HUNGRY = 400 - 280)
+  * **Energy**: 120 food units (STARVING - HUNGRY = 400 - 280 = 120)
   * **Consumption Time**: 3 turns
   * **Price**: 20 gold per unit
 
 ==== Description ====
-Overpriced Ration is a more expensive version of the standard Ration. While it provides the same nutritional benefit as a regular Ration, it costs twice as much. It can be found in the dungeon but appears much less frequently than regular Rations.
+Overpriced Ration is a more expensive version of the standard Ration. It provides only 120 energy units (the difference between hungry and starving states) compared to the regular Ration's 280 energy units (the hungry state threshold). It costs twice as much as a regular Ration. It can be found in the dungeon but appears much less frequently than regular Rations.
 
 ==== Usage ====
   * Satisfies hunger when consumed (restores 120 energy units)
@@ -24,6 +24,7 @@ Overpriced Ration is a more expensive version of the standard Ration. While it p
   * Costs twice as much as regular Ration (20 vs 10 gold)
   * Common food item found throughout the dungeon (but with low probability)
   * Can be poisoned by environmental effects (becomes [[rpd:rotten_ration|Rotten Ration]])
+  * When purified, becomes a regular Ration
 
 ==== Acquisition ====
   * Found throughout the dungeon (probability 0.1 in Treasury system, much less common than regular Rations)
@@ -32,20 +33,25 @@ Overpriced Ration is a more expensive version of the standard Ration. While it p
   * Available in shops when present
 
 ==== Strategy ====
-  * More expensive alternative to regular [[rpd:ration|Rations]]
-  * Provides less hunger restoration per gold spent than regular Rations
+  * Less efficient alternative to regular [[rpd:ration|Rations]]
+  * Provides less hunger restoration per gold spent than regular Rations (120/20 = 6 energy per gold vs 280/10 = 28 energy per gold)
   * Should only be used when regular Rations are unavailable
   * Less efficient than regular Rations from an economic perspective
+  * Better than starving, but try to find regular Rations when possible
 
 ==== Notes ====
   * Regular [[rpd:ration|Rations]] have a 4 probability in the Treasury system
   * Overpriced Rations have only 0.1 probability (40x less common)
-  * Provides less energy restoration (120 vs 280) than regular Ration
+  * Provides significantly less energy restoration (120 vs 280) than regular Ration
+  * Energy calculation: Overpriced Ration restores the difference between HUNGRY (280) and STARVING (400) states
+  * Regular Ration restores to the HUNGRY threshold (280) from 0 hunger
 
 ==== Content Verification ====
-  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/OverpricedRation.java|OverpricedRation.java]]
-  * Stats and mechanics verified from code implementation
-  * Last updated: December 15, 2025
+  * **Information Source:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/OverpricedRation.java|OverpricedRation.java]]
+  * **Stats Verification:** Extracted directly from OverpricedRation class properties
+  * **Energy Calculation:** Based on Hunger.HUNGRY (280) and Hunger.STARVING (400) constants
+  * **Price Verification:** From price() method returning 20 * quantity()
+  * **Last Updated:** Verified against current codebase
 
 ==== See Also ====
   * [[rpd:food|Food]]

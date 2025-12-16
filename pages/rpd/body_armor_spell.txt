@@ -23,6 +23,8 @@ When cast, the spell applies the BodyArmor buff to the caster which:
   * Reduces movement speed to 85% of normal speed
   * Lasts for 15 + 10×caster's skill level turns
   * The armor level is based on the caster's skill level
+  * Visual effect: Shows "body_armor" particle effect at caster's position
+  * Plays "body_armor" sound effect when cast
 
 ==== Usage ====
 The Body Armor spell is most effective when:
@@ -41,9 +43,22 @@ Classes with Combat affinity have primary access to this spell, including:
   * Be aware that movement speed will be reduced during the effect
   * The spell's effectiveness scales with your skill level
   * Consider the cooldown of 20 turns when planning spell usage
+  * The armor bonus scales with your effective strength (STR - 10) and buff level (1 + skill level)
+  * Movement speed is reduced to 85% during the effect, which affects escape tactics
+
+==== Content Verification ====
+  * **Information Source:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/BodyArmor.lua|BodyArmor.lua]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/BodyArmor.lua|BodyArmor.lua buff script]]
+  * **Stats Verification:** Extracted directly from spell description function in BodyArmor.lua
+  * **Effect Descriptions:** Based on cast function and buff implementation
+  * **Armor Calculation:** Based on drBonus function in BodyArmor.lua: (STR-10) × (1 + buff level)
+  * **Speed Reduction:** Based on speedMultiplier function returning 0.85 (85% speed)
+  * **Duration:** Based on casting logic: 15 + 10×caster:skillLevel()
+  * **Last Updated:** Verified against current codebase
 
 ==== Source Code Reference ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/BodyArmor.lua|BodyArmor.lua]]
+  * Spell implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/BodyArmor.lua|BodyArmor.lua]]
+  * Buff implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/BodyArmor.lua|BodyArmor.lua (buff)]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2240-L2243|String definitions in strings_all.xml]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]]

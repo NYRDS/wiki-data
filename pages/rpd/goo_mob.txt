@@ -26,12 +26,16 @@ Goo (The Black Blob) is a massive living sludge that inhabits the sewers of the 
   * **Acid Attacks**: Uses acid-based attacks that cause [[rpd:ooze|Ooze]] status effect (33% chance on hit)
   * **Regeneration**: Heals 1 HP when standing in water while below full health
   * **Screen Shake**: Causes screen shake when attacking in pumped up state
+  * **Toxic Gas Resistance**: Immune to [[rpd:toxic_gas|Toxic Gas]]
+  * **Pump-Up Delay**: Takes 2.2 turns to pump up, giving players a window to attack before increased damage
 
 ==== Combat Mechanics ====
   * **Pumping**: Goo can pump itself up which increases damage (4-11 → 7-21), attack skill (11 → 26), and range (melee → 2 tiles)
   * **Water Interaction**: Goo regenerates 1 HP when standing in water while below full health
   * **Ooze Effect**: Goo's attacks have a 33% chance to inflict Ooze, causing continuous damage until washed off
   * **Arena**: Takes place in a specially designed arena with water features
+  * **Pump Reset**: Goo's pumped state is reset after each attack, returning to normal stats
+  * **Zap Immunity**: When zapped (by wands/scrolls), Goo's pumped state is reset
 
 ==== Location ====
   * Found in the Sewers area (level 5)
@@ -52,6 +56,8 @@ Goo (The Black Blob) is a massive living sludge that inhabits the sewers of the 
   * Don't let the fight go on too long as Goo becomes more aggressive when pumped up
   * Avoid getting hit by Goo when it's pumped up as it does more damage and has increased range
   * Clean off Ooze status effect when inflicted to prevent continuous damage
+  * Exploit the 2.2 turn pump-up delay to attack safely before Goo becomes more dangerous
+  * Attack right after Goo uses its pumped up attack, as it will reset to normal stats
 
 ==== Drops ====
   * [[rpd:skeleton_key|Skeleton Key]] for the Demon Halls
@@ -60,16 +66,22 @@ Goo (The Black Blob) is a massive living sludge that inhabits the sewers of the 
   * Valuable treasure and experience
   * Unlock for [[rpd:mage|Mage]] class upon defeating as any class
 
+==== Description ====
+Little is known about The Goo. It's quite possible that it is not even a creature, but rather a conglomerate of substances from the sewers that gained rudiments of free will. Either way, it's obvious dark magic is at work here.
+
 ==== Content Verification ====
-  * Information source: [[code:com/watabou/pixeldungeon/actors/mobs/Goo.java|Goo.java]]
-  * Stats verification: Extracted directly from Goo.java constructor and implementation
-  * Effect descriptions: Based on code analysis and string resources
-  * Last updated: December 14, 2025
+  * **Information Source:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Goo.java|Goo.java]]
+  * **Stats Verification:** Extracted directly from Goo constructor and damageRoll/attackSkill methods
+  * **Effect Descriptions:** Based on code analysis and string resources
+  * **Pump-Up Mechanics:** Based on canAttack, doAttack, and attack methods
+  * **Water Regeneration:** Based on act() method
+  * **Ooze Chance:** Based on attackProc() method with Random.Int(3) == 0
+  * **Last Updated:** Verified against current codebase
 
 ==== References ====
   * Java source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Goo.java|Goo.java]]
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L676-L679|String definitions in strings_all.xml]]
-  * Bestiary configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L20|Bestiary.json]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1256-L1263|String definitions in strings_all.xml]]
+  * Bestiary configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L9|Bestiary.json]]
   * Sprite configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Goo.json|Goo.json]]
 
 ==== Related ====
