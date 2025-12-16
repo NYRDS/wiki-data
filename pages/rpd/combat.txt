@@ -12,15 +12,22 @@ Combat in Remixed Dungeon is turn-based, meaning that after each action you take
   * **Magical:** Combat using spells, wands, or other magical items
 
 ==== Accuracy and Defense ====
-  * **Attack Skill:** Determines chance to hit an opponent. Calculated as: (baseAttackSkill + character level) * accuracy modifier * skill factor (max 20)
-  * **Defense Skill:** Reduces chance of being hit. Calculated as: (baseDefenseSkill + character level) * evasion modifier - armor encumbrance penalty
-  * **Accuracy Formula:** Success chance is determined by: roll(accuracy) > roll(defense)
+  * **Attack Skill:** Determines chance to hit an opponent. Calculated as: (baseAttackSkill + character level) * accuracy modifier * skill factor (max 20), with ranged weapons having 50% accuracy when attacking in melee
+  * **Defense Skill:** Reduces chance of being hit. Calculated as: (baseDefenseSkill + character level) * evasion modifier, with armor encumbrance penalty reducing defense
+  * **Accuracy Formula:** Success chance is determined by: roll(0 to attackSkill) >= roll(0 to defenseSkill)
   * **Ranged Penalty:** When attacking in melee range with a ranged weapon, accuracy is reduced by 50%
 
 ==== Damage Calculation ====
-  * **Base Damage:** Character's strength bonus (1 to STR-9) + active weapon damage roll + secondary weapon damage roll
-  * **Damage Range:** Calculated as random range between minimum and maximum values
-  * **Damage Reduction:** Armor reduces incoming damage by a flat amount (damage reduction value)
+  * **Base Damage:** Character's strength bonus (Random range from 1 to STR-9) + active weapon damage roll + secondary weapon damage roll (if not using ranged)
+  * **Damage Range:** Calculated as random range between minimum and maximum values of all equipped weapons
+  * **Damage Reduction:** Armor provides a damage reduction (DR) value that reduces incoming damage by a flat amount (random value from 0 to DR)
+
+==== Combat Sequence ====
+  * **Hit Check:** Using CharUtils.hit() to determine if attack connects based on attack vs defense skills
+  * **Damage Roll:** Calculating damage based on strength and weapon damage
+  * **Attack Processing:** Applying attack-specific effects and modifiers
+  * **Defense Processing:** Reducing damage through armor DR and defensive effects
+  * **Final Damage:** Applying final damage to target's HP
 
 ==== Combat Types ====
   * **Melee Combat:** Requires direct contact with enemies
