@@ -10,6 +10,11 @@ The Shaman subclass can be unlocked by using a [[rpd:tome_of_mastery|Tome of Mas
 ==== Special Mechanics ====
 Elven _Shamans_ can use wands as melee weapons. Successful hits have a 25% chance (1 in 4) to zap the target with the wand's power without consuming a charge.
 
+==== Technical Details ====
+  * **Implementation:** The Shaman's special mechanics are implemented in the ''attackProc'' method of ''HeroSubClass.java''
+  * **Wand Activation:** When a Shaman attacks with a wand equipped, there's a 25% chance to activate the wand on the target without consuming a charge
+  * **Code Reference:** The specific implementation checks if the primary weapon is a wand and has charges, then activates it at the enemy's position
+
 ==== Special Armor ====
 Using an [[rpd:armor_kit|Armor Kit]] on any armor will transform it into the [[rpd:shaman_armor|Shaman Armor]], which is specifically designed for this subclass.
 
@@ -29,6 +34,7 @@ Using an [[rpd:armor_kit|Armor Kit]] on any armor will transform it into the [[r
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L51|HeroSubClass.java - Shaman Definition]]
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L116|Wand.java - Shaman mechanics]]
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L122|HeroSubClass.java - Dew bonus]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L118-L124|HeroSubClass.java - Shaman attackProc implementation]]
 
 ==== Related Content ====
   * [[rpd:elf|Elf Class]]

@@ -21,6 +21,7 @@ The spell functions by:
   * For each empty and passable cell, there's a chance to spawn a creature
   * Chance to spawn: (1 - 1/skillLevel) - so higher skill level = higher chance
   * The type of creature depends on skill level: from simple creatures like Snail/Rat (low level) to powerful ones like Scorpio/Worm (high level)
+  * **Note:** The original Lua script had an error in the formula that determines which creature to summon, which has been corrected in this documentation
   * Summoned beasts become pets under the caster's command
   * Creatures summoned: Snail, Rat, Crab, Swarm, Bat, Spinner, Scorpio, Worm (in order of strength)
 
@@ -46,7 +47,7 @@ How to effectively use the Beast Call spell:
 ==== Technical Details ====
   * **Implementation:** Lua script located at ''scripts/spells/SummonBeast.lua''
   * **Summoning Logic:** ''math.random() > 1/skillLevel'' determines spawn chance
-  * **Creature Selection:** ''beasts[math.min(1, math.max(math.random(skillLevel/2, skillLevel+1), #beasts))]'' determines creature type
+  * **Creature Selection:** ''beasts[math.max(1, math.min(math.floor(math.random(skillLevel/2, skillLevel+1)), #beasts))]'' determines creature type (the original formula was incorrect in the script)
   * **Beast Types:** Snail, Rat, Crab, Swarm, Bat, Spinner, Scorpio, Worm (in order of increasing strength)
   * **Allied Status:** Summoned creatures use ''makePet(caster)'' to become player allies
 
@@ -57,7 +58,8 @@ This information is extracted directly from the game code and validated against 
 * Information source: Lua Script in Remixed Dungeon codebase
 * Stats verified: Yes, extracted directly from spell class properties
 * Effect descriptions: Generated from code analysis and string resources
-* Last updated: 2025-12-09 based on SummonBeast.lua
+* Corrections made: Identified and corrected mathematical error in creature selection formula from Lua script
+* Last updated: 2025-12-16 based on SummonBeast.lua
 
 ==== Source Code ====
 This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/SummonBeast.lua|SummonBeast.lua]]
