@@ -1,25 +1,53 @@
-====== Statue ======
+====== statue ======
 
-**Statues** are static objects found throughout the dungeon that may have various properties and functions.
+{{ rpd:images:statue_mob.png|Statue }}
 
-==== Types of Statues ====
-  * **Decorative**: Serve only as environmental elements
-  * **Interactive**: May contain items or activate when touched
-  * **Animated**: Can come to life as enemies when disturbed
-  * **Locked**: Connected to mechanical systems and may be sealed
+**Statue** is a mob in Remixed Dungeon that appears as an inanimate statue but can animate to fight when disturbed.
 
-==== Known Statues ====
-  * [[rpd:gold_statue|Gold Statue]] - Can grant special rewards
-  * [[rpd:statue|Statue]] - Various types of statues with different properties
+==== Description ====
+The Statue is a deceptive enemy that appears as an inanimate statue until activated. When attacked or approached, it comes to life and fights with a random weapon it's carrying. Statues are typically found in rooms designated as statue rooms in the dungeon.
 
-==== Interaction ====
-  * Some statues can be smashed to reveal contents
-  * Others may trigger harmful effects when disturbed
-  * Some may be part of puzzles or mechanical systems
+==== Stats ====
+  * **Level:** Depends on dungeon depth (HP: 15 + 5 * dungeon depth)
+  * **HP:** 15 + 5 * dungeon depth
+  * **Defense:** 4 + dungeon depth
+  * **Attack:** Same as defense (4 + dungeon depth)
+  * **Damage:** dungeon depth / 4 + 1 to dungeon depth
+  * **EXP:** 0 when killed (no experience gained)
+  * **Carcass:** No (doesn't leave a corpse for Cook)
 
-==== Related Pages ====
-  * [[rpd:statues|Statue Types]] - More comprehensive list of statue types
-  * [[rpd:mechanical|Mechanical]] - General mechanical systems in the dungeon
-  * [[rpd:treasure|Treasure]] - Items that may be found in statues
+==== Abilities ====
+  * **Passive:** Remains motionless until disturbed, flagged in the journal as "Statue"
+  * **Equipment:** Armed with a random melee weapon (level appropriate) that has a random enchantment
+  * **Resistances:** Immune to Toxic Gas and Poison
+  * **Resistances:** Resistant to Death enchantment and Psionic Blast scroll
+  * **Immunities:** Immune to Leech enchantment and Bleeding status effect
+  * **Armor Type:** Considered to be wearing armor appropriate for its weapon type
+  * **Sprite:** Takes on the appearance of its equipped item when animated
 
-{{tag> rpd dungeon_objects}}
+==== Special Variants ====
+  * **Armored Statue:** Similar to regular statue but typically equipped with armor
+  * **Golden Statue:** Special variant that may contain valuable items (see [[rpd:golden_statue|Golden Statue]])
+
+==== Strategy ====
+  * **Detection:** Statues are marked in your journal when visible, making them easy to identify
+  * **Equipment:** Approach knowing that the statue will likely have a weapon advantage based on dungeon level
+  * **Distance:** Consider ranged attacks to avoid immediate retaliation
+  * **Preparation:** Have healing items ready since statues may be equipped with dangerous weapons/enchantments
+
+==== Content Verification ====
+* Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Statue.java|Statue.java]]
+* Stats verification: Extracted from Statue.java constructor and methods
+* Effect descriptions: Based on in-game mechanics
+* Last updated: December 2025, source: Remixed Dungeon 1.9.3
+
+==== Source Code ====
+* Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Statue.java|Statue.java]]
+
+==== See Also ====
+  * [[rpd:mobs|List of Mobs]]
+  * [[rpd:golden_statue|Golden Statue]] - Special variant
+  * [[rpd:armored_statue|Armored Statue]] - Another variant
+  * [[rpd:mechanics|Game Mechanics]]
+
+{{tag> rpd mobs mechanical dungeon_objects }}

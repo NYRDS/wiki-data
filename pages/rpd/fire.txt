@@ -1,9 +1,11 @@
 ====== fire ======
 
-Fire is an environmental hazard in Remixed Dungeon that damages characters and spreads to flammable terrain.
+{{ rpd:images:fire_blob.png|Fire Blob }}
+
+**Fire** is an environmental hazard in Remixed Dungeon that damages characters and spreads to flammable terrain.
 
 ==== Description ====
-Fire is a harmful environmental effect that damages any character that enters burning cells. Fire originates from various sources and spreads to adjacent flammable terrain each turn.
+Fire is a harmful environmental effect that damages any character that enters burning cells. Fire originates from various sources and spreads to adjacent flammable terrain each turn. When fire expires on natural terrain, it becomes embers.
 
 ==== Mechanics ====
   * **Damage:** Fire damages characters each turn they remain in the burning cell
@@ -11,18 +13,19 @@ Fire is a harmful environmental effect that damages any character that enters bu
   * **Duration:** Fire burns for 4 turns at each location (decreases by 1 each turn)
   * **Terrain Change:** When fire expires on natural terrain, it becomes embers
   * **Item Burning:** Fire burns items in heaps and carried items of affected characters
-  * **Status Effect:** Characters in fire receive the [[rpd:burning|Burning]] status effect
+  * **Status Effect:** Characters in fire receive the [[rpd:burning|Burning]] status effect with 8-turn duration
+  * **Level Objects:** Fire affects level objects (chests, statues, etc.) as well as characters
 
 ==== Sources of Fire ====
 Fire can be created by:
-  * [[rpd:ignite_spell|Ignite Spell]] - Creates 5-turn fire blob
+  * [[rpd:ignite_spell|Ignite Spell]] - Creates 5-turn fire blob (special implementation)
   * [[rpd:wand_of_firebolt|Wand of Firebolt]] - Attacks ignite targets
   * [[rpd:fire_arrow|Fire Arrows]] - Missile weapons that ignite targets
   * [[rpd:fire_enchantment|Fire Enchantment]] - Weapon enchantment
   * [[rpd:firebloom_seed|Firebloom Seeds]] - Plants that ignite characters
   * [[rpd:fire_elemental|Fire Elementals]] - Enemies that attack with fire
   * [[rpd:mage_armor|Mage Armor]] - Special armor effect
-  * Incendiary darts and other fire-based items
+  * [[rpd:incendiary_dart|Incendiary Darts]] and other fire-based items
   * Environmental sources and traps
 
 ==== Effects on Characters ====
@@ -38,6 +41,7 @@ How to effectively use fire:
   * **For Defense:** Be aware that fire will damage you as well as enemies
   * **Combat:** Force enemies into fire to gain damage advantage
   * **Terrain:** Use in flammable areas to spread the effect
+  * **Environmental:** Set grass and other flammable terrain on fire to create lasting obstacles
 
 ==== Countering Fire ====
   * Avoid standing in fire when possible
@@ -51,6 +55,7 @@ How to effectively use fire:
   * Some [[rpd:undead|undead]] creatures may have resistance
   * [[rpd:mechanical|Mechanical]] creatures might be immune
   * Characters with frost-based protection
+  * [[rpd:champions|Champions]] with the fire champion effect
 
 ==== Content Verification ====
 * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]]
