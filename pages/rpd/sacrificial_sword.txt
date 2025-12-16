@@ -1,39 +1,41 @@
 ====== Sacrificial Sword ======
 
-{:rpd:images:sacrificial_sword_swords.png?200|}
-
-{{ rpd:images:sacrificial_sword_swords.png|Sacrificial Sword Swords  }}
-
-The Sacrificial Sword is the most complicated artifact to find in RPD so far.
-
-When hitting an enemy with it, there is a chance for the enemy to become your eternal slave.
-This chance is calculated randomly, but there are some modifiers.
-
-The chances are greater when:
-  * the level of the Sacrificial Sword is high
-  * the level of the hero is high
-  * the enemy has low hp
-  * the enemy is slowed
-
-Also wearing an armor drastically reduces chances to successful dominate the victim, and the hero subclass also influences the outcome. (Naked Shaman or Warden have far greater chance than Armored Warrior )
+{{ rpd:images:sacrificial_sword_swords.png|Sacrificial Sword }}
 
 ==== Description ====
-A dark weapon associated with sacrificial and necromantic rituals.
+At first glance this aged bronze sword, covered with patina stains, looks absolutely useless. But some sort of old, archaic powers sleeps inside. Those powers can turn almost any creature to will-less slave. Just need find a right way to wake them...
 
-==== Stats ====
-  * **Damage:** Varies based on enchantments
-  * **Special Properties:** Likely related to sacrificial or necromantic mechanics
-  * **Thematic Elements:** Connected to dark magic and rituals
+==== Basic Stats ====
+  * **Damage:** 2 (base damage)
+  * **Speed:** 1.0x (normal attack speed)
+  * **Accuracy:** 1.0x (normal accuracy)
+  * **Durability:** Normal weapon durability
+  * **Enchantment:** Cannot be enchanted
+  * **Sprite:** Swords sprite sheet, image index 4
 
 ==== Special Properties ====
-  * **Sacrificial Properties:** May have abilities related to sacrifice mechanics
-  * **Necromantic Focus:** Could enhance necromantic abilities
-  * **Dark Magic:** Associated with death and sacrifice
+When attacking an enemy with the Sacrificial Sword, there is a chance to convert the enemy into a pet that fights for the player:
 
-==== Uses ====
-  * Potentially used in sacrificial rituals
-  * May have special interactions with undead enemies
-  * Could provide benefits when used in specific contexts
+  * **Conversion Chance Formula:**
+    * Base chance = (0.25 + (hero level × 4 + sword level²) × 0.01) × class bonus / armorPenalty
+    * Armor Penalty = target armor's DR / 8
+    * Class Bonuses: Necromancer (×3.0), Shaman (×2.0), Warden (×1.5), others (×1.0)
+    * Additional modifiers: - (enemy defense skill × 0.01 × enemy speed) - (enemy HP × 0.01)
 
-==== Notes ====
-The Sacrificial Sword is a weapon themed around sacrifice and dark rituals, likely valuable for characters following necromantic or sacrificial paths.
+==== Restrictions ====
+  * Cannot convert bosses
+  * Cannot convert NPCs
+  * Only works on mobs
+  * Lower chance with higher enemy defense skill and speed
+  * Lower chance against enemies with higher HP
+
+==== Strategy ====
+  * Wear no armor or light armor to maximize conversion chances (armor DR reduces success rate)
+  * Hero subclasses like Shaman or Necromancer have significantly higher conversion rates
+  * Try to weaken enemies before attempting to convert them (lower HP increases chances)
+  * Avoid using against fast enemies with high defense
+
+==== Source Code Reference ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/SacrificialSword.java|SacrificialSword.java]]
+
+{{tag> rpd items weapons artifacts melee warden shaman necromancer}}
