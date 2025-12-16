@@ -1,16 +1,78 @@
-Hero sprite layers as is:
+====== Hero Sprite Layers ======
 
-  * LAYER_BODY,
-  * LAYER_COLLAR,
-  * LAYER_HEAD,
-  * LAYER_HAIR,
-  * LAYER_ARMOR,
-  * LAYER_FACIAL_HAIR,
-  * LAYER_HELMET,
-  * LAYER_LEFT_ARMOR,
-  * LAYER_RIGHT_ARMOR,
-  * LAYER_LEFT_HAND,
-  * LAYER_RIGHT_HAND,
-  * LAYER_ACCESSORY,
-  * LAYER_LEFT_ITEM,
-  * LAYER_RIGHT_ITEM,
+==== Description ====
+This page documents the layer order for hero sprites in Remixed Dungeon. The hero sprite is composed of multiple layers that are rendered in a specific order from back to front.
+
+==== Modern Hero Sprite Layers ====
+The modern hero sprite system uses the following layer order (from back to front):
+  * LAYER_RIGHT_ITEM_BACK
+  * LAYER_LEFT_ITEM_BACK
+  * LAYER_BODY
+  * LAYER_COLLAR
+  * LAYER_HEAD
+  * LAYER_HAIR
+  * LAYER_ARMOR
+  * LAYER_ARMOR_BOOTS
+  * LAYER_FACIAL_HAIR
+  * LAYER_HELMET
+  * LAYER_LEFT_HAND
+  * LAYER_RIGHT_HAND
+  * LAYER_LEFT_ARMOR
+  * LAYER_RIGHT_ARMOR
+  * LAYER_ACCESSORY
+  * LAYER_LEFT_ITEM
+  * LAYER_RIGHT_ITEM
+
+==== Retro Hero Sprite Layers ====
+The retro hero sprite system uses the following layer order (from back to front):
+  * LAYER_BODY
+  * LAYER_COLLAR
+  * LAYER_HEAD
+  * LAYER_HAIR
+  * LAYER_ARMOR
+  * LAYER_FACIAL_HAIR
+  * LAYER_HELMET
+  * LAYER_DEATH
+
+==== Layer Descriptions ====
+  * **LAYER_BODY**: The base body of the hero character
+  * **LAYER_COLLAR**: The collar/neck area of armor
+  * **LAYER_HEAD**: The head of the hero character
+  * **LAYER_HAIR**: Hair layer, displayed over the head
+  * **LAYER_ARMOR**: The main armor texture
+  * **LAYER_ARMOR_BOOTS**: The boots portion of armor
+  * **LAYER_FACIAL_HAIR**: Beards, mustaches, etc. for male heroes
+  * **LAYER_HELMET**: Helmets and headwear that go over the hair
+  * **LAYER_LEFT_HAND**: Left hand with weapon animations
+  * **LAYER_RIGHT_HAND**: Right hand with weapon animations
+  * **LAYER_LEFT_ARMOR**: Left shoulder armor/weapon attachment
+  * **LAYER_RIGHT_ARMOR**: Right shoulder armor/weapon attachment
+  * **LAYER_ACCESSORY**: Accessories like capes or special effects
+  * **LAYER_LEFT_ITEM**: Items held in the left hand
+  * **LAYER_RIGHT_ITEM**: Items held in the right hand
+  * **LAYER_LEFT_ITEM_BACK**: Items on the back on the left side
+  * **LAYER_RIGHT_ITEM_BACK**: Items on the back on the right side
+  * **LAYER_DEATH**: Special layer used for death animation
+
+==== Purpose ====
+Hero sprite layers allow the game to compose a complete character appearance from multiple individual components. This system allows for:
+  * Dynamic equipment visualization - armor, helmets, and weapons are displayed correctly
+  * Different character customizations - hair, facial hair, etc.
+  * Proper visual ordering of items and equipment
+  * Animation compatibility - hands and weapons can animate properly
+
+==== Content Verification ====
+* Information source: Java classes [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ModernHeroSpriteDef.java|ModernHeroSpriteDef.java]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/RetroHeroSpriteDef.java|RetroHeroSpriteDef.java]]
+* Layer order: Extracted directly from the LAYER_* constants and arrays in sprite definition files
+* Last updated: December 2025, source: Remixed Dungeon 1.9.3
+
+==== Source Code ====
+* Modern Sprite: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ModernHeroSpriteDef.java|ModernHeroSpriteDef.java]]
+* Retro Sprite: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/RetroHeroSpriteDef.java|RetroHeroSpriteDef.java]]
+
+==== See Also ====
+  * [[rpd:sprites|Sprites]]
+  * [[rpd:hero|Hero]]
+  * [[rpd:armor|Armor]]
+
+{{tag> rpd internal sprites hero layers}}
