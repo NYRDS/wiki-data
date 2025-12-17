@@ -7,14 +7,14 @@ The Cloak buff makes the affected character invisible and harder to detect. It i
 
 ==== Properties ====
   * **Buff Type:** Invisibility
-  * **Stealth Bonus:** Caster's skill level + caster's level / 4
-  * **Duration:** Brief (detaches at the start of the next turn)
+  * **Stealth Bonus:** Caster's skill level + caster:lvl() / 4
+  * **Duration:** Calculated as caster:skillLevel() * 5 turns
   * **Status Effect:** Character appears with invisible sprite
 
 ==== Mechanics ====
   * Provides significant stealth bonus during its duration
   * Makes the character invisible to enemies
-  * The buff automatically ends at the beginning of the turn after it's applied
+  * The buff automatically ends at the beginning of each turn (due to the act function in Cloak.lua)
   * Character sprite changes to show invisible status
 
 ==== Applications ====
