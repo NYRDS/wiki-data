@@ -16,7 +16,7 @@ When a character is paralyzed, they are completely immobilized and unable to per
 ==== Causes ====
   * [[rpd:potion_of_paralytic_gas|Potion of Paralytic Gas]] - Thrown potion that creates a gas cloud causing paralysis
   * [[rpd:paralysis_arrow|Paralysis Arrow]] - Thrown missile that applies 4 turns of paralysis (uses Stun effect)
-  * [[rpd:paralysis|Paralysis Enchantment]] - Weapon enchantment that has a chance to apply Stun on hit (similar to paralysis)
+  * [[rpd:paralysis|Paralysis Enchantment]] - Weapon enchantment that has a chance to apply Stun on hit (technically applies Stun, not the Paralysis status)
   * [[rpd:curare_dart|Curare Dart]] - Thrown dart that applies Paralysis effect
   * [[rpd:paralytic_gas|Paralytic Gas]] - Gas effect from the gas blob
   * Certain enemy attacks - Some creatures can paralyze with their attacks
@@ -52,7 +52,7 @@ When a character is paralyzed, they are completely immobilized and unable to per
   * **Breaking Mechanism:** Chance to break when damage dealt >= Random.Int(damage) vs Random.Int(target.hp())
   * **Enchantment Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Paralysis.java|com.watabou.pixeldungeon.items.weapon.enchantments.Paralysis]]
   * **Arrow Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|com.watabou.pixeldungeon.items.weapon.missiles.ParalysisArrow]]
-  * **Stun Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|com.watabou.pixeldungeon.actors.buffs.Stun]] (used by Paralysis enchantment and Paralysis Arrow)
+  * **Stun Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|com.watabou.pixeldungeon.actors.buffs.Stun]] (used by Paralysis enchantment and Paralysis Arrow - both apply Stun effect, not Paralysis)
 
 ==== Content Verification ====
   * Information source: Java Classes com.watabou.pixeldungeon.actors.buffs.Paralysis, com.watabou.pixeldungeon.items.weapon.enchantments.Paralysis, com.watabou.pixeldungeon.items.weapon.missiles.ParalysisArrow, com.watabou.pixeldungeon.actors.buffs.Stun
@@ -62,9 +62,9 @@ When a character is paralyzed, they are completely immobilized and unable to per
 
 ==== Related ====
   * [[rpd:potion_of_paralytic_gas|Potion of Paralytic Gas]] - Creates ParalyticGas blob that applies paralysis
-  * [[rpd:paralysis_arrow|Paralysis Arrow]] - Missile weapon that causes paralysis
-  * [[rpd:paralysis|Paralysis Enchantment]] - Weapon enchantment that causes stun
-  * [[rpd:stun|Stun]] - Related status effect (Paralysis enchantment and Paralysis Arrow use Stun class)
+  * [[rpd:paralysis_arrow|Paralysis Arrow]] - Missile weapon that causes paralysis (technically applies Stun effect)
+  * [[rpd:paralysis|Paralysis Enchantment]] - Weapon enchantment that causes stun (technically applies Stun effect, not Paralysis)
+  * [[rpd:stun|Stun]] - Related status effect (Paralysis enchantment and Paralysis Arrow use Stun class, not Paralysis)
   * [[rpd:toxic_gas|Toxic Gas]] - Other status-causing effect
   * [[rpd:buffs|Buffs and Debuffs]] - Other temporary status effects
   * [[rpd:status_effects|Status Effects]] - Other condition types
