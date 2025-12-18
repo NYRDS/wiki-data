@@ -10,10 +10,10 @@ Haste is a beneficial status effect that makes all actions (movement, attacking,
 ==== Mechanics ====
   * **Haste Level Calculation:** The total haste level is the sum of all individual haste sources
   * **Ring of Haste:** Provides haste level equal to the ring's level (hasteLevel = ring level)
-  * **Haste Spell:** Provides temporary boost with duration affected by the hero's skill level
+  * **Haste Spell:** Reduces time spent on the NEXT action by (caster's skill level / 2) turns (from Lua script: caster:spend(-caster:skillLevel()/2))
   * **Elf Class:** Has natural haste level of 1 (hasteLevel = 1)
   * **Scout Subclass:** Has natural haste level of 1 (hasteLevel = 1)
-  * **Formula:** Action time is divided by (1 + haste level), making actions faster
+  * **Formula:** Action time is affected by Util.clamp((float) Math.pow(1.1f, -hasteLevel), 0.25f, 4.f), making actions faster
 
 ==== Sources of Haste ====
   * [[rpd:ring_of_haste|Ring of Haste]] - Continuous effect based on ring level (haste level = ring level)
@@ -24,7 +24,7 @@ Haste is a beneficial status effect that makes all actions (movement, attacking,
 
 ==== Effect Duration ====
   * **Ring of Haste:** Continuous while worn
-  * **Haste Spell:** Temporary effect, duration affected by hero's skill level
+  * **Haste Spell:** Affects the NEXT action only, reducing time spent by (caster's skill level / 2) turns
   * **Class/Subclass bonuses:** Always active for that character
 
 ==== Strategy ====
@@ -36,10 +36,11 @@ Haste is a beneficial status effect that makes all actions (movement, attacking,
   * Combining Ring of Haste with Scout subclass provides a significant speed advantage
 
 ==== Formula ====
-The haste effect works by dividing the time required for actions by (1 + haste level). For example:
-  * With no haste: 1 action per turn (100% normal time)
-  * With haste level 1: 2 actions per turn (50% normal time)
-  * With haste level 2: 3 actions per turn (33% normal time)
+The haste effect is calculated by summing all individual haste sources and applying the formula: Util.clamp((float) Math.pow(1.1f, -hasteLevel), 0.25f, 4.f). For example:
+  * With no haste (haste level 0): normal speed (100% time)
+  * With haste level 1: approximately 91% of normal time
+  * With haste level 2: approximately 83% of normal time
+  * The result is clamped between 0.25f (4x speed) and 4.f (0.25x speed)
 
 ==== Related ====
   * [[rpd:status_effects|Status Effects]] - Other status changes
