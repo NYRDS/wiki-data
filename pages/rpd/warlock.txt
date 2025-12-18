@@ -12,6 +12,8 @@ After killing an enemy, the Warlock consumes its soul, which:
 * Heals the hero's wounds (healing amount: min(max HP - current HP, 1 + (dungeon depth - 1) / 5))
 * Satisfies hunger (restores 10 hunger points)
 
+This healing and hunger satisfaction occurs when the Warlock gains experience from killing enemies (in the earnExp() method of Hero.java, lines 498-502).
+
 ==== Special Armor ====
 Using an Armor Kit on any armor will transform it into the [[rpd:warlock_armor|Warlock Armor]], which is specifically designed for this subclass. Warlock Armor has special restrictions and can only be equipped by heroes with the Warlock subclass.
 
@@ -30,13 +32,14 @@ Using an Armor Kit on any armor will transform it into the [[rpd:warlock_armor|W
 
 ==== Content Verification ====
 * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java]] and Hero.java
-* Stats verification: Extracted from Hero.java levelUp() method and WarlockArmor.java
+* Stats verification: Extracted from Hero.java earnExp() method (lines 498-502) and WarlockArmor.java
 * Effect descriptions: Based on string resources and in-game mechanics
 * Last updated: December 2025, source: Remixed Dungeon 1.9.3
 
 ==== Source Code ====
-* Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
+* Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
+* Hero mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] (earnExp method at lines 498-502)
+* Mob death handling: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] (die method)
 * Warlock Armor: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WarlockArmor.java|WarlockArmor.java]]
-* Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L996-L997|Warlock subclass strings]]
 
 {{tag> rpd subclasses warlock mage}}
