@@ -1,17 +1,34 @@
 ====== Potion of Levitation ======
 
+{{ rpd:images:item_PotionOfLevitation.png|Potion of Levitation }}
+
 ==== Description ====
-This potion will cause the drinker to become weightless and float in the air for a short time.
+Drinking this curious liquid will cause you to hover in the air, able to drift effortlessly over traps. Flames and gases fill the air, however, and cannot be bypassed while airborne.
 
 ==== Effects ====
   * **Levitation:** Allows the drinker to float over traps and certain terrain
-  * **Duration:** Temporary effect
-  * **Immunity:** Provides temporary immunity to harm from certain hazards
+  * **Duration:** 20 turns (Levitation.DURATION constant)
+  * **Immunity:** Provides immunity to harm from chasms, fire traps, and other weight-based floor hazards
+  * **Action Message:** "You float into the air!"
 
 ==== Special Properties ====
-  * Allows floating over pits and other terrain hazards
+  * Allows floating over chasms and other terrain hazards that would normally cause harm
   * Prevents triggering pressure plates and other weight-based traps
-  * Does not protect against all types of hazards
+  * Does NOT protect against gases or flames (those fill the air and still affect levitating character)
+  * Removes any existing Roots effect (Roots.detach) when applied
+  * When the effect ends, triggers level.press() which can trigger any floor-based effects at the character's location
+
+==== Content Verification ====
+  * **Information Source**: Java Class - PotionOfLevitation.java and Levitation.java
+  * **Stats Verification**: Extracted directly from potion class properties and duration constant
+  * **Effect Descriptions**: Based on code analysis and string resources
+  * **Last Updated**: December 2025
+  * **Source File**: com.watabou.pixeldungeon.items.potions.PotionOfLevitation.java
+
+==== Source Code ====
+  * ''com.watabou.pixeldungeon.items.potions.PotionOfLevitation.java'' - Main potion implementation
+  * ''com.watabou.pixeldungeon.actors.buffs.Levitation.java'' - Levitation buff implementation (DURATION = 20f)
+  * ''com.watabou.pixeldungeon.items.potions.Potion.java'' - Base potion class
 
 ==== Notes ====
-Potion of Levitation is particularly useful for navigating dangerous areas with traps or pits. However, it won't protect against all hazards while levitating.
+Potion of Levitation is particularly useful for navigating dangerous areas with traps or pits. However, it won't protect against all hazards while levitating - specifically gases and flames still cause damage since they fill the air. The effect lasts for 20 turns by default, and can be combined with other duration-affecting mechanics.

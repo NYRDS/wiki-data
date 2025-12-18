@@ -5,7 +5,7 @@
 **KunaiThrow** is a spell in Remixed Pixel Dungeon (Rogue Affinity).
 
 ==== Description ====
-This Deadly Kunai throw will be done extremely fast, so fast that you won't even be able to select a target.\n\nTrue Masters able to throw more than one Kunai at once.
+This spell throws Kunai at random visible enemies extremely fast. The number of Kunai thrown depends on the caster level, with more Kunai thrown at higher levels.
 
 ==== Stats ====
   * **Magic Affinity:** Rogue
@@ -15,7 +15,7 @@ This Deadly Kunai throw will be done extremely fast, so fast that you won't even
   * **Cast Time:** 0.01 (extremely fast)
   * **Special Effects:** damages random visible enemies
   * **Damage:** Random damage between n and (n + caster level * n), where n is the number of kunai thrown
-  * **Number of Kunai:** Based on caster skill level (min(caster skill level - 1, 3), max 3 kunai)
+  * **Number of Kunai:** Based on caster skill level (min(caster skill level - spellLevel + 1, 3), max 3 kunai)
   * **Targeting Logic:** The spell automatically targets random enemies visible to the caster
 
 ==== Usage ====
@@ -31,9 +31,10 @@ Classes that can use this spell include:
 
 ==== Strategy ====
 How to effectively use the KunaiThrow spell:
-  * Best situations to use the spell
-  * Synergies with other abilities
-  * Timing considerations
+  * Best used when multiple enemies are visible to maximize damage potential
+  * More effective at higher skill levels when more Kunai can be thrown
+  * Quick cast time makes it useful in tight situations
+  * Works well when enemies are grouped together
 
 ==== Data Validation ====
 This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
@@ -42,7 +43,7 @@ This information is extracted directly from the game code and validated against 
 * Information source: Lua Script in Remixed Dungeon codebase
 * Stats verified: Yes, extracted directly from spell class properties
 * Effect descriptions: Generated from code analysis and string resources
-* Last updated: 2025-12-15 based on KunaiThrow.lua
+* Last updated: 2025-12-18 based on KunaiThrow.lua
 
 ==== Source Code ====
 This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua|KunaiThrow]]

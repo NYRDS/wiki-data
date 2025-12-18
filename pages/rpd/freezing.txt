@@ -6,26 +6,31 @@ The **Freezing** status effect is a temporary condition that affects characters 
   * **Duration**: The freezing effect typically lasts for a certain number of turns based on the source of the effect
   * **Immobilization**: While frozen, the affected character cannot move or take any actions
   * **Stacking**: Usually does not stack with similar immobilizing effects like paralysis or stunning
+  * **Damage Interaction**: Taking damage will break the freezing effect (as implemented in the Frost buff)
 
 ==== Sources of Freezing ====
   * [[rpd:frost|Frost]]-based attacks
   * [[rpd:wand_of_frost|Wand of Frost]]
   * [[rpd:potion_of_frost|Potion of Frost]]
+  * [[rpd:icecap|Icecap]] plant
+  * [[rpd:water_elemental|Water Elemental]] attacks
+  * [[rpd:cold_spirit|Cold Spirit]] attacks
   * Some enemy abilities
 
 ==== Countering Freezing ====
   * Waiting for the effect to naturally expire
+  * Taking damage (breaks the effect)
   * Using items that clear status effects
-  * Applying fire-based damage (in some cases)
-
-==== Countering Freezing ====
-  * Fire-based attacks can sometimes break the freezing effect
-  * Some items and abilities can clear status effects
+  * Applying fire-based damage does not break freezing (fire immunity is separate)
 
 ==== Related Effects ====
   * [[rpd:iceelemental|Ice Elemental]] - Enemies that can apply freezing
   * [[rpd:ice_guardian|Ice Guardian]] - Enemies that use freezing attacks
   * [[rpd:paralysis|Paralysis]] - Similar immobilizing effect
   * [[rpd:stun|Stun]] - Another temporary immobilization effect
+
+==== Code Reference ====
+  * **Freezing Implementation**: [[code:com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] - Applies frost to cells
+  * **Frost Status**: [[code:com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]] - Implements the actual freezing effect on characters
 
 {{tag> rpd mechanics status_effects}}

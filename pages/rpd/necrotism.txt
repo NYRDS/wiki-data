@@ -1,39 +1,53 @@
 ====== Necrotism ======
 
-Necrotism is a powerful necromantic ability available to the [[rpd:necromancer|Necromancer]] class. It spreads a magical plague that may infect any creature in the vicinity, dead or alive.
+{{ rpd:images:buff_Necrotism.png|Necrotism }}
+
+Necrotism is a harmful debuff that causes damage-over-time and spreads to nearby creatures.
 
 ==== Description ====
-Necrotism is one of the signature abilities of the [[rpd:necromancer|Necromancer]]. It represents the mark of death itself, spreading an infectious effect that can affect multiple creatures around the Necromancer.
+Necrotism is a powerful magical plague that deals damage to affected creatures and spreads to adjacent creatures. It is primarily applied through the [[rpd:necromancer_armor|Necromancer Armor]]'s special ability.
 
 ==== Mechanics ====
-  * **Area Effect:** Affects all creatures in the vicinity of the Necromancer
-  * **Cross-Undead:** Can affect both living and undead creatures
-  * **Infectious:** May spread from creature to creature
-  * **Resource:** Requires souls to cast
+  * **Duration:** Base duration of 3 turns (duration constant from code)
+  * **Spread:** Affects creatures in adjacent 16 neighboring cells (Level.NEIGHBOURS16 from code)
+  * **Iteration:** Each spread increases the damage potency
+  * **Targeting:** Affects all non-player characters (mobs and NPCs)
+
+==== Damage Calculation ====
+  * **Boss targets:** 1 damage per 200 HP (minimum 1)
+  * **Non-boss targets:** 1 damage per max(3, (21 - iteration)) HP
+  * **Final damage:** (calculated damage * iteration), minimum 1
+
+==== Spread Mechanism ====
+  * Each turn, has a 50% chance to spread from an infected creature to each adjacent creature
+  * Cannot spread to Heroes or NPCs
+  * Each spread increases the iteration counter, making subsequent damage more potent
 
 ==== Effects ====
-  * **Plague Spread:** Spreads a magical plague among nearby creatures
-  * **Damage Over Time:** May cause ongoing effects to infected creatures  
-  * **Potential Conversion:** May have chance to convert enemies to the Necromancer's side
-  * **Stacking:** Duration and potency may scale with the Necromancer's level
+  * **Damage Over Time:** Causes increasing damage based on target's HP
+  * **Infectious Spread:** May spread from creature to adjacent creatures
+  * **Visual Effect:** Purple burst effect (0x6935a5) on affected creatures
+  * **Iteration Counter:** Each spread increases damage for subsequent ticks
 
-==== Usage ====
-  * **Situational:** Most effective when surrounded by enemies
-  * **Crowd Control:** Useful for managing groups of weaker enemies
-  * **Strategic:** Can turn enemy groups against each other
-  * **Limited Resource:** Requires souls, which are finite resources
+==== Application ====
+  * **Primary Source:** Activated via [[rpd:necromancer_armor|Necromancer Armor]] special ability
+  * **Auto-termination:** Ends when target dies or duration expires
 
-==== Equipment ====
-  * Enhanced by [[rpd:necromancer_armor|Necromancer Armor]] and related equipment
-  * May require specific armor or robes to use effectively
+==== Visuals ====
+  * Shows as purple/black icon in buff bar
+  * Purple particle burst on affected creature each turn
+
+==== Content Verification ====
+  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/Necrotism.java|Necrotism.java]]
+  * Mechanics verified from code implementation
+  * Last updated: December 15, 2025
 
 ==== Related ====
-  * [[rpd:necromancer|Necromancer]] - The class that uses this ability
-  * [[rpd:necromancy|Necromancy]] - The magical practice this ability belongs to
-  * [[rpd:undead|Undead]] - Creatures that might be affected differently by necrotism
+  * [[rpd:necromancer|Necromancer]] - The class that benefits from necrotism
+  * [[rpd:necromancer_armor|Necromancer Armor]] - Source of necrotism application
+  * [[rpd:buffs|Buffs]] - List of all status effects
 
-==== Strategy ====
-  * Most effective in enclosed spaces where enemies are grouped
-  * Consider enemy resistances before using
-  * Powerful against large groups of weaker enemies
-  * Can turn fights in your favor by affecting multiple enemies simultaneously
+==== See Also ====
+  * [[rpd:doom|Doom]]
+
+{{tag> rpd buffs debuff necromancy }}

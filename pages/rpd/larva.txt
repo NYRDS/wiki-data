@@ -15,20 +15,22 @@ The **Larva** is a transforming mob found in the Guts level of Remixed Dungeon. 
   * **Level**: 1 (starts at level 1)
 
 ==== Behavior ====
-  * The Larva will evolve into another mob after reaching level 2 during its turn
-  * When evolving, it will transform into either a [[rpd:scorpio|Scorpio]], [[rpd:worm|Worm]], or [[rpd:eye_mob|Eye]]
+  * The Larva will evolve into another mob when it reaches level 2 during its turn (the evolution happens automatically when the Larva acts while at level 2)
+  * When evolving, it will transform into either a [[rpd:scorpio|Scorpio]], [[rpd:worm_mob|Worm]], or [[rpd:eye_mob|Eye]]
   * The transformation is accompanied by shadow particles and a cursed sound effect
   * The evolved mob appears in the same location as the Larva
 
 ==== Evolution Options ====
 When the Larva evolves, it randomly becomes one of the following:
-  * [[rpd:scorpio|Scorpio]] (25% chance)
-  * [[rpd:worm|Worm]] (25% chance)
+  * [[rpd:scorpio|Scorpio]] (50% chance) - Scorpio appears twice in the list, giving it a higher probability to evolve into Scorpio
+  * [[rpd:worm_mob|Worm]] (25% chance)
   * [[rpd:eye_mob|Eye]] (25% chance)
-  * [[rpd:scorpio|Scorpio]] (25% chance) - Scorpio appears twice in the list, giving it a 50% chance to evolve into Scorpio
 
 ==== Location ====
-  * Found in the [[rpd:guts|Guts]] level (levels 26-30)
+  * Found in the [[rpd:guts|Guts]] level (levels 28-30)
+  * Floor 28: 1 larva per spawn
+  * Floor 29: 2 larvae per spawn
+  * Floor 30: 3 larvae per spawn
 
 ==== Strategy ====
   * The Larva is initially quite strong due to its high HP and damage
@@ -40,17 +42,19 @@ When the Larva evolves, it randomly becomes one of the following:
 * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/Larva.java|Larva.java]]
 * Stats verification: Extracted directly from Larva.java constructor and methods
 * Effect descriptions: Based on string resources and in-game mechanics
-* Note: There is a bug in the code where Larva.getDescription() returns R.string.Yog_Desc instead of R.string.Larva_Desc
+* Updated for recent changes: As of December 2025, Larva evolution now includes Scorpio as a possible outcome (with 50% chance)
+* Note: There is a bug in the code where Larva.getDescription() returns R.string.Yog_Desc instead of a proper Larva description
 * Last updated: December 2025, source: Remixed Dungeon 1.9.3
 
 ==== Source Code ====
 * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/Larva.java|Larva.java]]
 * Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1380-L1383|Larva strings]]
+* Bestiary config: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]
 
 ==== See Also ====
   * [[rpd:guts|Guts Level]]
   * [[rpd:scorpio|Scorpio]]
-  * [[rpd:worm|Worm]]
+  * [[rpd:worm_mob|Worm]]
   * [[rpd:eye_mob|Eye]]
   * [[rpd:mobs|Mobs]]
 
