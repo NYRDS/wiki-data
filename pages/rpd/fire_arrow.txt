@@ -5,11 +5,11 @@
 **Fire Arrow** is a special ranged ammunition item in Remixed Pixel Dungeon that ignites enemies on hit.
 
 ==== Description ====
-A wooden arrow with a head soaked in flammable material. When this arrow hits an enemy or is fired into flammable terrain (like grass), it ignites the target or creates a flame. This is created by "moistening" a Common Arrow with a Potion of Liquid Flame.
+A wooden arrow with a head soaked in flammable material. When this arrow hits an enemy, it ignites the target. According to the string resources, "This arrow looks just like a normal one, other than a warm red light radiating from its head."
 
 ==== Stats ====
-  * **Damage:** 1-3 points
-  * **Delay:** 1.0x (relative to weapon firing speed)
+  * **Damage:** 1-6 points (base damage before bow modifiers)
+  * **Delay:** 0.75x (relative to weapon firing speed)
   * **Durability:** Single use (consumed on impact)
   * **Price:** Cannot be purchased in shops; only created through moistening
   * **Weight:** 1
@@ -53,7 +53,9 @@ Fire Arrows can be created by using a [[rpd:potion_of_liquid_flame|Potion of Liq
 
 ==== Source Code ====
   * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FireArrow.java|FireArrow.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Arrow name and description strings]]
+  * Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L856-L858|FireArrow_Name, FireArrow_Info, FireArrow_Gender]]
+  * Buff Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]] (applied when hitting enemies)
 
 ==== Notes ====
 Fire Arrows are a key part of the alchemy system, allowing players to create powerful ammunition from common resources. They're particularly useful for area denial and dealing with groups of enemies, though care should be taken with flammable terrain.
