@@ -1,45 +1,49 @@
 ====== Spirit of Pain ======
 
-{{ rpd:images:spiritofpain_sprite.png|Spirit of Pain }}
+{{ rpd:images:mob_SpiritOfPain.png|Spirit of Pain }}
+
+The **Spirit of Pain** is a temporary mob that is summoned by the [[rpd:heart_of_darkness|Heart of Darkness]] [[rpd:artifact]] when its owner takes damage.
 
 ==== Stats ====
-  * **HP:** 80
-  * **Defense:** 30
-  * **Attack:** 30
-  * **Damage:** 5-10
-  * **DR:** 20
-  * **EXP:** 0
-  * **Carcass:** Never drops carcass
-  * **Movement:** Flies (can pass through walls)
-  * **Special:** Loses 6 HP each turn (suicide behavior)
+  * **HP/HT**: 80
+  * **Attack Skill**: 30
+  * **Defense Skill**: 30
+  * **Damage**: 5-10
+  * **Damage Reduction**: 20
+  * **EXP**: 0 (no experience when killed)
+  * **Movement**: Flying
+  * **Lifespan**: Self-damages 6 HP each turn until it dies
 
-==== Description ====
-A shard of living darkness. Spirit of Pain is a unique mob that appears as a small, flying dark entity. It possesses the ability to fly through walls, making it difficult to avoid in tight spaces.
+==== Behavior ====
+  * Summons by [[rpd:heart_of_darkness|Heart of Darkness]] artifact when wearer takes damage
+  * Appears in an adjacent empty cell to the damage location
+  * Functions as a temporary pet for the [[rpd:heart_of_darkness]] owner
+  * Automatically dies after taking damage for several turns (self-damage mechanism)
+  * Cannot be controlled directly by the player
 
-==== Special Properties ====
-  * **Suicide Tactic:** Loses 6 HP each turn, causing rapid self-destruction
-  * **Flight:** Can move through walls, making it difficult to trap or avoid
-  * **No Experience:** Provides no experience when defeated
-  * **No Carcass:** Never drops a carcass when defeated
-  * **High Damage Resistance:** Has significant damage reduction (DR: 20)
+==== Acquisition ====
+  * Automatically summoned by the [[rpd:heart_of_darkness|Heart of Darkness]] artifact
+  * No other way to summon or encounter these spirits normally
 
-==== Location ====
-Spirits of Pain are typically encountered:
-  * Summoned by [[rpd:treacherous_spirit|Treacherous Spirits]] during combat
-  * In the [[rpd:guts|Guts]] level as regular enemies
-  * Occasionally as a result of certain cursed items or effects
+==== Strategy ====
+  * The temporary nature means they provide short-term assistance
+  * More useful in situations where the player expects to take damage
+  * Can help in emergency situations by distracting enemies
 
-==== Tactics ====
-  * Due to their suicide behavior, Spirits of Pain will quickly come to melee range
-  * Their high damage resistance makes them hard to kill quickly
-  * Position carefully when fighting Treacherous Spirits to avoid multiple Spirits of Pain at once
-  * Ranged attacks are effective as they can't block at range
-  * Be cautious in narrow corridors where their flying ability is most problematic
+==== Source Code Reference ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/SpiritOfPain.java|SpiritOfPain.java]]
 
-==== Content Verification ====
-  * **Information Source**: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/SpiritOfPain.java|SpiritOfPain.java]]
-  * **Stats Verification**: Properties extracted directly from the SpiritOfPain class
-  * **Effect Description**: Based on code analysis of act() method and mob properties
-  * **Last Updated**: Verified against source code
+==== String Resources ====
+''<code xml>''
+<string name="SpiritOfPain_Name">Spirit of Pain</string>
+<string name="SpiritOfPain_Info">A dark spirit summoned by the Heart of Darkness when its owner takes damage.</string>
+<string name="SpiritOfPain_Desc">A dark spirit summoned by the Heart of Darkness when its owner takes damage. It has limited lifespan.</string>
+<string name="SpiritOfPain_Gender">masculine</string>
+''</code>''
 
-{{tag> rpd mobs spirit undead dark flying}}
+==== Related ====
+  * [[rpd:heart_of_darkness|Heart of Darkness]] - Artifact that summons this spirit
+  * [[rpd:treacherous_spirit|Treacherous Spirit]] - Related spirit mob
+  * [[rpd:artifacts|Artifacts]] - Other special items
+
+{{tag> rpd mobs spirits summoned temporary}}
