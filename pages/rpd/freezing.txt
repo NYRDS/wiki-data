@@ -3,10 +3,11 @@
 The **Freezing** status effect is a temporary condition that affects characters in the dungeon. When frozen, a character becomes immobilized and unable to take actions until the effect wears off or is removed.
 
 ==== Mechanics ====
-  * **Duration**: The freezing effect typically lasts for a certain number of turns based on the source of the effect
-  * **Immobilization**: While frozen, the affected character cannot move or take any actions
+  * **Duration**: The freezing effect typically lasts for 5f base duration, modified by resistance (as defined in [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java#L5|Frost.java:5]] and [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java#L48-L50|Frost.java:48-50]])
+  * **Immobilization**: While frozen, the affected character cannot move or take any actions (achieved via [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java#L30|Frost.java:30]])
   * **Stacking**: Usually does not stack with similar immobilizing effects like paralysis or stunning
-  * **Damage Interaction**: Taking damage will break the freezing effect (as implemented in the Frost buff)
+  * **Damage Interaction**: Taking damage will break the freezing effect (as implemented in [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java#L40-L42|Frost.java:40-42]])
+  * **Visual State**: Frozen characters display a frozen state sprite (as defined in [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java#L46|Frost.java:46]])
 
 ==== Sources of Freezing ====
   * [[rpd:frost|Frost]]-based attacks
@@ -23,14 +24,16 @@ The **Freezing** status effect is a temporary condition that affects characters 
   * Using items that clear status effects
   * Applying fire-based damage does not break freezing (fire immunity is separate)
 
+==== Code Implementation ====
+  * **Freezing Application**: [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] - Applies frost to cells
+  * **Frost Status**: [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]] - Implements the actual freezing effect on characters
+  * **Duration Calculation**: [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java#L48-L50|Frost.java:48-50]] - Calculates duration based on resistance
+  * **String Resources**: [[code:RemixedDungeon/src/main/res/values/strings_all.xml#L572-L574|Frost strings]] - Name, description, and shatter message
+
 ==== Related Effects ====
   * [[rpd:iceelemental|Ice Elemental]] - Enemies that can apply freezing
   * [[rpd:ice_guardian|Ice Guardian]] - Enemies that use freezing attacks
   * [[rpd:paralysis|Paralysis]] - Similar immobilizing effect
   * [[rpd:stun|Stun]] - Another temporary immobilization effect
-
-==== Code Reference ====
-  * **Freezing Implementation**: [[code:com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] - Applies frost to cells
-  * **Frost Status**: [[code:com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]] - Implements the actual freezing effect on characters
 
 {{tag> rpd mechanics status_effects}}
