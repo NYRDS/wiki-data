@@ -5,19 +5,19 @@
 **Heal** is a spell in Remixed Pixel Dungeon with Witchcraft Affinity (also available to Priest and PlagueDoctor affinities).
 
 ==== Description ====
-The Heal spell restores a portion of the target's health instantly, making it valuable for emergency situations. The healing amount is calculated as 20% of the target's max HP per skill level of the caster.
+The Heal spell restores a portion of the target's health instantly, making it valuable for emergency situations. The healing amount is calculated as 20% of the target's max HP multiplied by the caster's skill level (with a minimum of 1 HP healed).
 
 ==== Stats ====
   * **Magic Affinity:** Witchcraft (also available in Priest and PlagueDoctor affinities, according to CustomSpellsList.lua)
   * **Targeting:** Char (can target any character on the map)
-  * **Level:** 2
-  * **Mana Cost:** 5
-  * **Cast Time:** 1 turn
-  * **Cooldown:** 2 turns
-  * **Special Effects:** Heals the target character; heals a target for (target HT / 5) * caster skill level (minimum 1)
+  * **Level:** 2 - [[mr:heal_spell|Code Reference]]
+  * **Mana Cost:** 5 - [[mr:heal_spell|Code Reference]]
+  * **Cast Time:** 1 turn - [[mr:heal_spell|Code Reference]]
+  * **Cooldown:** 2 turns - [[mr:heal_spell|Code Reference]]
+  * **Special Effects:** Heals the target character for (Target's Max HP / 5 * Caster's skill level), with a minimum of 1 HP healed - [[mr:heal_spell|Code Reference]]
 
 ==== Mechanics ====
-The spell heals the target character for (Max HP / 5 * Caster's skill level) hit points, with a minimum of 1 point healed.
+The spell heals the target character for (Max HP / 5 * Caster's skill level) hit points, with a minimum of 1 point healed, according to the Lua implementation.
 
 ==== Usage ====
 The Heal spell can be used for:
@@ -54,8 +54,10 @@ This information is extracted directly from the game code and validated against 
 * Effect descriptions: Generated from code analysis and string resources
 * Last updated: Based on Heal.lua and CustomSpellsList.lua
 
-==== Source Code ====
-This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Heal.lua|Heal.lua]]
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Heal.lua|Heal.lua]] - Lua implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L9|CustomSpellsList.lua]] - Spell availability
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2679|String Resources]] - Name and description
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
