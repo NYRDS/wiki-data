@@ -10,20 +10,26 @@ Hunger is a status effect that accumulates over time. As the hunger level increa
 ==== Mechanics ====
   * **Hunger Thresholds:**
     * **Normal**: No penalties
-    * **Hungry**: 280 units (defined as Hunger.HUNGRY constant)
-    * **Starving**: 400 units (defined as Hunger.STARVING constant)
-  * **Damage:** When starving, the hero takes damage equal to max(1, effectiveSTR() - 10) in higher difficulties (difficulty ≥ 3)
+    * **Hungry**: 280f units (defined as Hunger.HUNGRY constant in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]])
+    * **Starving**: 400f units (defined as Hunger.STARVING constant in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]])
+  * **Damage:** When starving and on unsafe levels (enemies present), hero takes damage that scales with difficulty and effective strength
   * **Recovery:** Eating food items reduces the hunger level by the food's energy value
+  * **Regeneration:** When not hungry, the hunger level gradually decreases back to 0
 
 ==== Food Values ====
-  * **Ration**: Provides 100 energy units
-  * **Overpriced Ration**: Provides 100 energy units
+  * **Ration**: Provides 280 energy units (equals Hunger.HUNGRY constant)
+  * **Overpriced Ration**: Provides 120 energy units (equals Hunger.STARVING - Hunger.HUNGRY difference)
   * **Rotten Ration**: Provides 60 energy units (calculated as (HUNGRY - STARVING)/2)
-  * **Frozen Carpaccio**: Provides 50 energy units
-  * **Mystery Meat**: Provides 50 energy units
-  * **Chargrilled Meat**: Provides 50 energy units
-  * **Pasty**: Provides 80 energy units
+  * **Frozen Carpaccio**: Provides 120 energy units (equals Hunger.STARVING - Hunger.HUNGRY difference)
+  * **Mystery Meat**: Provides 120 energy units (equals Hunger.STARVING - Hunger.HUNGRY difference)
+  * **Chargrilled Meat**: Provides 120 energy units (equals Hunger.STARVING - Hunger.HUNGRY difference)
+  * **Pasty**: Provides 400 energy units (equals Hunger.STARVING constant)
   * **Other foods**: Vary according to their type
+
+==== Code References ====
+This system is implemented in:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]] - Main hunger system
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/|Food items]] - Food energy calculations
 
 ==== Strategic Considerations ====
   * Higher difficulties accelerate the hunger rate and cause more significant damage when starving
