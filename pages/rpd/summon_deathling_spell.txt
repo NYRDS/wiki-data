@@ -2,22 +2,24 @@
 
 {{ rpd:images:spell_SummonDeathling.png|Summon Deathling Spell Icon }}
 
-**Summon Deathling** is a Necromancy-affinity spell in Remixed Pixel Dungeon that summons a deathling minion. Based on source code: [[code:RemixedDungeon/src/main/assets/scripts/spells/SummonDeathling.lua|SummonDeathling.lua]]
+**Summon Deathling** is a Necromancy-affinity spell in Remixed Pixel Dungeon that summons a deathling minion.
 
 ==== Description ====
 This spell creates a temporary deathling ally to fight alongside the caster. The summoned creature will assist in combat for a limited duration.
 
 ==== Stats ====
-  * **Magic Affinity:** Necromancy (source: [[code:RemixedDungeon/src/main/assets/scripts/spells/SummonDeathling.lua#L14|SummonDeathling.lua:14]])
-  * **Targeting:** Self (source: [[code:RemixedDungeon/src/main/assets/scripts/spells/SummonDeathling.lua#L15|SummonDeathling.lua:15]])
-  * **Level:** 1 (source: [[code:RemixedDungeon/src/main/assets/scripts/spells/SummonDeathling.lua#L17|SummonDeathling.lua:17]])
-  * **Mana Cost:** 1 (source: [[code:RemixedDungeon/src/main/assets/scripts/spells/SummonDeathling.lua#L19|SummonDeathling.lua:19]])
-  * **Cast Time:** 0 seconds (source: [[code:RemixedDungeon/src/main/assets/scripts/spells/SummonDeathling.lua#L18|SummonDeathling.lua:18]])
+  * **Magic Affinity:** Necromancy
+  * **Targeting:** Self
+  * **Level:** 1
+  * **Mana Cost:** 1
+  * **Cast Time:** 3 seconds
   * **Effect:** Summons a deathling ally for a limited time
-  * **Image File:** spellsIcons/necromancy.png (image index 0) (source: [[code:RemixedDungeon/src/main/assets/scripts/spells/SummonDeathling.lua#L12-L13|SummonDeathling.lua:12-13]])
+  * **Image File:** spellsIcons/necromancy.png (image index 0)
 
 ==== Mechanics ====
-  * Summons a deathling creature to fight alongside the player (source: [[code:RemixedDungeon/src/main/assets/scripts/spells/SummonDeathling.lua#L25|SummonDeathling.lua:25-30]])
+  * Summons a deathling creature to fight alongside the player
+  * Each deathling has a summon limit that grows with hero level
+  * The summon limit is 1 + hero's magic level
 
 ==== Usage ====
 The Summon Deathling spell is used to:
@@ -27,31 +29,32 @@ The Summon Deathling spell is used to:
 
 ==== Classes ====
 Classes with Necromancy affinity have primary access to this spell:
-  * [[rpd:necromancer|Necromancer Class]] - Has Necromancy affinity
+  * [[rpd:necromancer_class|Necromancer Class]] - Has Necromancy affinity
 
 ==== Strategy ====
 Summon Deathling is most effective when used in challenging encounters where additional combat assistance is needed. The summoned deathling will fight for the player until its duration expires or it is defeated.
 
 ==== Content Verification ====
-  * Information source: [[code:RemixedDungeon/src/main/assets/scripts/spells/SummonDeathling.lua|SummonDeathling.lua]]
-  * Stats verification: Extracted directly from desc() function in [[code:RemixedDungeon/src/main/assets/scripts/spells/SummonDeathling.lua#L9|SummonDeathling.lua:9-19]]
-  * Mechanics verification: Based on cast() function in [[code:RemixedDungeon/src/main/assets/scripts/spells/SummonDeathling.lua#L23|SummonDeathling.lua:23-35]]
+  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]]
+  * Stats verification: Extracted from the Java class properties
+  * Mechanics verification: Based on the Java implementation in SummonDeathling.java
   * Last updated: December 2025
 
 ==== Code References ====
-  * [[code:RemixedDungeon/src/main/assets/scripts/spells/SummonDeathling.lua|SummonDeathling.lua]] - Main implementation
-  * [[code:RemixedDungeon/src/main/res/values/strings_all.xml#L2679-L2680|strings_all.xml:2679-2680]] - Name and description
-  * [[code:RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2680-L2681|strings_all.xml (ru):2680-2681]] - Russian name and description
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]] - Main implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L8-L9|strings_all.xml:8-9]] - Name and description
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (ru)]] - Russian name and description
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java|SpellFactory.java]] - Registration
   * [[mr:summon_deathling_spell|Machine-readable reference page]]
 
 ==== Source Strings ====
-Name: [[code:RemixedDungeon/src/main/res/values/strings_all.xml#L2679|SummonDeathling_Name]] = "Summon Deathling"
-Description: [[code:RemixedDungeon/src/main/res/values/strings_all.xml#L2680|SummonDeathling_Info]] = "Summons a temporary ally to fight alongside you."
+Name: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L8|SummonDeathling_Name]] = "Summon Deathling"
+Description: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L9|SummonDeathling_Info]] = "Summons an undead follower. Deathling's hp and damage grows with hero level. \n\nSummon limit: %1$d (+ 1 every Magic Level)"
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
   * [[rpd:necromancy|Necromancy Affinity]]
-  * [[rpd:necromancer|Necromancer Class]]
+  * [[rpd:necromancer_class|Necromancer Class]]
   * [[rpd:buffs|Buffs]]
 
 {{tag> rpd spells necromancy }}
