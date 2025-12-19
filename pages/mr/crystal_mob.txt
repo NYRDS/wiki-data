@@ -1,0 +1,80 @@
+====== Crystal Mob - Code References ======
+
+This page contains raw code references and configuration excerpts for the Crystal mob entity.
+
+==== Entity Kind ====
+* **getEntityKind() value:** Crystal
+
+==== Java Implementation ====
+* **Class location:** [[code:RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Crystal.java|Crystal.java]]
+* **Parent Class:** [[code:RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MultiKindMob.java|MultiKindMob]]
+* **Interfaces:** IDepthAdjustable, IZapper
+
+==== Code Fragments ====
+**Constructor:**
+<code java>
+public Crystal() {
+	adjustStats(Dungeon.depth);
+	ensureWand(false);
+}
+
+static public Crystal makeShadowLordCrystal() {
+	Crystal crystal = new Crystal();
+	crystal.kind = 2;
+	crystal.ensureWand(true);
+	return crystal;
+}
+</code>
+
+**Stats adjustment:**
+<code java>
+public void adjustStats(int depth) {
+	kind = (ctr++) % 2;
+
+	hp(ht(depth * 4 + 1));
+
+	baseDefenseSkill = depth * 2 + 1;
+	baseAttackSkill = 35;
+	expForKill = depth + 1;
+	maxLvl = depth + 2;
+	dr = expForKill /3;
+
+	addImmunity(ScrollOfPsionicBlast.class);
+	addImmunity(ToxicGas.class);
+	addImmunity(Paralysis.class);
+	addImmunity(Stun.class);
+	addImmunity(ConfusionGas.class);
+}
+</code>
+
+**Wand handling:**
+<code java>
+private Wand ensureWand(boolean regen) {
+	Wand wand = getBelongings().getItem(Wand.class);
+	if (wand != null && !regen) {
+		return wand;
+	}
+
+	var item = SimpleWand.createRandomSimpleWand().upgrade(Dungeon.depth/3);
+	if(kind == 2 && Random.Float(1) < 0.25f) {
+		item = new WandOfShadowbolt().upgrade(Dungeon.depth/2);
+	}
+
+	item.collect(this); //no treasury check, we want to keep the wand in the crystal
+
+	return ensureWand(false);
+}
+</code>
+
+==== Properties ====
+* **movable:** false (immovable)
+* **carcassChance:** 0 (no corpse)
+* **immunities:** ScrollOfPsionicBlast, ToxicGas, Paralysis, Stun, ConfusionGas
+* **attackSkill:** 1000 for types 0 & 1; default for type 2
+* **damageRoll:** Random.NormalIntRange(hp() / 2, ht() / 2)
+* **canBePet:** false
+
+==== String Resources ====
+* **Crystal_Name:** floating crystal
+* **Crystal_Desc:** Big shining crystal floating in the air. Probably it is filled with powerful magic.
+</content>
