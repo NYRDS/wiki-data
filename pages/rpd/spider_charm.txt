@@ -1,34 +1,53 @@
 ====== Spider Charm ======
 
-The **Spider Charm** is an artifact in Remixed Pixel Dungeon that allows the hero to summon friendly spider servants. It drops from the [[rpd:spider_queen|Spider Queen]] boss.
+{{ rpd:images:spidercharm_sprite.png|Spider Charm Sprite }}
 
-==== Function ====
-When used, the Spider Charm creates a friendly Spider Servant ally at the cost of 1/4 of the hero's max HP. The summoned spider serves as a temporary ally in combat.
+==== Description ====
+This exotic trinket is shrouded by aura of mystery. Who knows, what might happen to one who wears it?
+
+Spider Charm is an artifact that can summon a spider servant to fight alongside the player. However, using it requires self-harm, similar to other summoning items in the game.
 
 ==== Stats ====
-  * **Action**: Use
-  * **Health Cost**: 1/4 of hero's max HP
-  * **Summoned**: Spider Servant mob
-  * **Location**: Dropped by Spider Queen boss in Spider Nest level
+  * **Rarity:** Artifact
+  * **Weight:** 1
+  * **Action:** USE
+  * **Identified:** Yes (always identified)
+
+==== Mechanics ====
+  * **Self-Damage:** Using the charm causes damage equal to 1/4 of max HP (25%)
+  * **Spider Summoning:** Summons a [[rpd:spider_servant|Spider Servant]] to fight alongside the player
+  * **Positioning:** The spider spawns in an adjacent empty cell to the user
+  * **Pet Status:** The summoned spider acts as a pet allied with the player
+
+==== Acquisition ====
+  * Dropped by the [[rpd:spider_queen|Spider Queen]] boss (33% chance)
+  * Can be found occasionally in [[rpd:spider_level|Spider Level]] treasure rooms
 
 ==== Strategy ====
-The Spider Charm provides tactical advantages by creating an additional combatant to assist in battles. However, the health cost requires careful timing of its use. Consider the following:
+  * Use when you have sufficient HP to spare the self-damage
+  * The spider servant provides additional combat support and can tank damage
+  * Since it's summoned by the Spider Queen, it fits well with the spider-themed area
+  * Consider having healing items or effects ready after use
+  * Useful for crowd control in heavily populated areas
 
-  * The health cost is significant (25% of max HP), so use carefully
-  * Best used when the hero has high HP or healing available
-  * The summoned Spider Servant can tank damage and distract enemies
-  * Particularly useful in groups of enemies or against powerful single targets
+==== Mechanics Notes ====
+  * The charm removes any existing Health buff (from Sungrass) when used
+  * The summoned spider is spawned using the Mob.makePet system
+  * Uses the getEmptyCellNextTo method to find a suitable location for the summoned spider
 
 ==== Content Verification ====
-  * Information source: Java Class com.watabou.pixeldungeon.items.SpiderCharm
-  * Stats verification: Extracted directly from SpiderCharm.java constructor and _execute method
-  * Effect descriptions source: Code analysis and string resources
-  * Last updated: Based on Remixed Dungeon source code
-  * Source code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/SpiderCharm.java|SpiderCharm.java]]
+  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/SpiderCharm.java|SpiderCharm.java]]
+  * Description source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L73|String resource]]
+  * Mechanics verification: Extracted from SpiderCharm.java _execute method
+
+==== Source Code ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/SpiderCharm.java|SpiderCharm.java]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L72-L74|SpiderCharm strings]]
 
 ==== See Also ====
-  * [[rpd:spider_servant|Spider Servant]]
   * [[rpd:spider_queen|Spider Queen]]
-  * [[rpd:spider_nest|Spider Nest]]
+  * [[rpd:spider_servant|Spider Servant]]
+  * [[rpd:spider_level|Spider Level]]
+  * [[rpd:artifacts|Artifacts]]
 
-{{tag> rpd items artifact spider}}
+{{tag> rpd items artifacts charm spider }}
