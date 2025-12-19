@@ -10,28 +10,38 @@ Skill Points are the underlying resource system that powers spells and special a
   * **Consumption:** Different spells consume different amounts of skill points when cast
   * **Accumulation:** Points accumulate gradually over time based on various factors
   * **Maximum:** Character has a maximum skill point capacity that can be increased
+  * **Implementation:** Managed through methods in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] (getSkillPoints, spendSkillPoints, accumulateSkillPoints, etc.)
 
 ==== Regeneration ====
-  * Regenerates 1 skill point every 20/(1.2^bonus) turns
-  * Faster regeneration with bonuses from buffs and game facilitations
-  * Does not regenerate in unsafe areas (when enemies are present)
+  * Regenerates 1 skill point every 20/(1.2^bonus) turns in safe areas (ManaRegeneration buff implementation)
+  * Faster regeneration with bonuses from game facilitations and buffs
   * Game facilitation ''FAST_MANA_REGENERATION'' provides +10 bonus
-  * Other buffs may provide additional regeneration bonuses
+  * Other buffs may provide additional regeneration bonuses via manaRegenerationBonus()
+  * In unsafe areas (enemies present), 1 skill point is accumulated immediately
 
 ==== Spell Costs ====
-  * Different spells have different skill point costs
-  * Examples: Cloak spell costs 5 skill points, Raise Dead costs 15 skill points
+  * Different spells have different skill point costs (default is 5 as defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]])
+  * Examples: Healing spell costs 10 skill points, Magic Torch costs 1, Ignite costs 2
   * Cost is consumed when the spell is cast successfully
-  * Some spells may fail but still consume the skill points
+  * Spell costs are defined in individual spell classes or in custom spell configurations
 
 ==== Restoration ====
   * [[rpd:mana_potion|Mana Potion]] - Restores 1/3 of max skill points when consumed
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/drinks/ManaPotion.java|ManaPotion.java]] implementation
   * Some equipment or abilities may provide skill point restoration
 
 ==== Classes That Use Skill Points ====
   * All classes can use spells that consume skill points if they have access to them
   * Classes with higher spell affinity may have more efficient usage or bonuses
   * Different classes may have access to different spell types
+  * Some hero subclasses like Lich have special interactions with skill points
+
+==== Code References ====
+This system is implemented in:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Core skill point methods
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/ManaRegeneration.java|ManaRegeneration.java]] - Regeneration logic
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Spell cost system
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Hero-specific skill point handling
 
 ==== Strategy ====
   * Manage skill points carefully during extended fights
