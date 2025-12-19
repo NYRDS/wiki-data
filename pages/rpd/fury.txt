@@ -11,8 +11,9 @@ When a character with the Berserker subclass drops below 40% of their maximum he
   * **Damage Bonus:** Attack damage is doubled (multiplied by 2)
   * **Healing Prevention:** Natural healing from Dewdrops, Resting, and Regeneration is prevented
   * **Visual Indicator:** The character's eyes become blood red
-  * **Trigger:** Automatically applied when health drops below 40% maximum while still having HP
+  * **Trigger:** Automatically applied when health drops below 40% maximum while still having HP (defined as Fury.LEVEL constant)
   * **Deactivation:** Wears off when health rises above 40% maximum
+  * **Code Implementation:** Activation handled in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] at line 197
 
 ==== Affected By ====
   * [[rpd:berserker|Berserker]] - The Warrior subclass that automatically gains this effect when health is low
@@ -26,6 +27,11 @@ When a character with the Berserker subclass drops below 40% of their maximum he
   * Be cautious of the healing prevention - plan ahead if you need to retreat
   * Try to maintain lower health (but not too low) to stay in fury state for extended combat
   * Use healing potions when the fury state ends to restore health safely
+
+==== Code References ====
+This system is implemented in:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Fury.java|Fury.java]] - Main fury system
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Fury activation trigger
 
 ==== Source Code Reference ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Fury.java|Fury.java]]
