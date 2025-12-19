@@ -1,0 +1,31 @@
+====== Keyring Item ======
+
+==== Entity Kind ====
+Keyring
+
+==== Java Class ====
+[[code:com/watabou/pixeldungeon/items/bags/Bag.java|Bag.java]]
+
+==== JSON Configuration ====
+(No specific JSON config for this item)
+
+==== Lua Script ====
+(No specific Lua script for this item)
+
+==== String Resource References ====
+(Uses generic bag descriptions from parent class)
+
+==== Code Implementation ====
+This item inherits from Bag class. It has the following key properties:
+
+  * **image**: 11 (referring to the sprite index)
+  * **AC_OPEN**: The action to open the bag
+  * **Container**: Specifically designed to hold artifacts
+  * **isUpgradable**: Returns false, as it cannot be upgraded
+  * **isIdentified**: Returns true, as it starts identified
+
+==== Behavior ====
+  * Only accepts items that are artifacts (have bag() method returning Keyring)
+  * Can be opened to access its contents
+  * When detached from hero, returns its contents to hero's inventory
+  * Automatically validates badges when collected by hero

@@ -1,0 +1,31 @@
+====== Ring of Frost Item ======
+
+==== Entity Kind ====
+ring_of_frost
+
+==== Java Class ====
+[[code:RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java|RingOfFrost.java]]
+
+==== JSON Configuration ====
+(No specific JSON config for this item)
+
+==== Lua Script ====
+(No specific Lua script for this item)
+
+==== String Resource References ====
+* ''RingOfFrost_Name'': "Ring of Frost"
+* ''RingOfFrost_Info'': "This ring is carved from magical ice. It's wearer is protected by a frost aura, slowing and damaging the attacking enemies."
+
+==== Code Implementation ====
+This item inherits from Artifact class. It has the following key properties:
+
+  * **bag()**: Returns Bag.KEYRING as it's an artifact that goes in the keyring slot
+  * **isUpgradable()**: Returns true, allowing the ring to be upgraded
+  * **glowing()**: Returns a cyan glowing effect (0x00FFFF)
+  * **buff()**: Returns a FrostAura buff which triggers when an enemy attacks the wearer
+
+==== FrostAura Buff Mechanics ====
+When an enemy within 1 tile distance attacks the wearer:
+  * Applies Slow effect for (Slow.duration(enemy) / 5 + ring level) turns
+  * Has (10% + ring level)% chance to apply Frost effect for (Frost.duration(enemy) / 5 + ring level) turns
+  * Deals (ring level / 2) damage to the attacking enemy

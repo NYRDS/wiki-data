@@ -1,0 +1,43 @@
+====== Yogs Eye Mob ======
+
+==== Entity Kind ====
+YogsEye
+
+==== Java Class ====
+[[code:RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java|YogsEye.java]]
+
+==== JSON Configuration ====
+(No specific JSON config for this mob)
+
+==== Lua Script ====
+(No specific Lua script for this mob)
+
+==== String Resource References ====
+* ''YogsEye_Name'': "yog's eye"
+* ''YogsEye_Gender'': "masculine"
+* ''YogsEye_Name_Objective'': "Yog's eye"
+* ''YogsEye_Desc'': "The eye of the Old God, all-seeing gaze filled with eternal hatred. You can feel it watching right through your soul"
+
+==== Code Implementation ====
+This mob inherits from Boss class. It has the following key properties:
+
+  * **movable**: false (immovable boss)
+  * **HP**: 1000
+  * **Attack**: 30
+  * **Defense**: 30
+  * **Damage**: 20-30
+  * **EXP**: 50
+  * **Special Immunities**: Death, Terror, Amok, Charm, Sleep, Burning, Toxic Gas, and Psionic Blast
+  * **Special Abilities**:
+    * **Death Ray**: Can attack with a ray that passes through multiple enemies in a straight line
+    * **Larva Spawn**: Spawns Larva when taking damage
+    * **Organ Coordination**: When damaged, calls other Yog organs to its position
+    * **Organ Protection**: Damage is reduced when other Yog organs are alive (damage >>= number of other organs)
+    * **Secondary Boss Spawning**: At the start of battle, spawns 2-3 other Yog organs randomly
+
+==== Behavior ====
+  * Remains stationary throughout the battle
+  * Cannot be beckoned (overridden beckon method does nothing)
+  * Automatically spawns secondary bosses with the main Yog battle
+  * Uses a death ray attack that affects all enemies in a line
+  * Dies, awards a badge for Yog-Dzewa being slain
