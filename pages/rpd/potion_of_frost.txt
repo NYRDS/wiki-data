@@ -3,7 +3,7 @@
 {{ rpd:images:item_PotionOfFrost.png|Potion of Frost }}
 
 ==== Description ====
-When shattered, this potion creates a freezing effect that expands up to 2 tiles from the point of impact, affecting all creatures in its area of effect with the Freezing status.
+When shattered, this potion creates a freezing effect that expands up to 2 tiles from the point of impact, affecting all creatures in its area of effect with the Freezing status. According to the string resources: "Upon exposure to open air, this chemical will evaporate into a freezing cloud, causing any creature that contacts it to be frozen in place, unable to act and move."
 
 ==== Effects ====
   * **Freezing:** Creates a freezing effect that expands up to 2 tiles from the impact point
@@ -11,31 +11,51 @@ When shattered, this potion creates a freezing effect that expands up to 2 tiles
   * **Freezing Status:** Causes affected creatures to become frozen, unable to act
   * **Range:** The freezing effect has a limited range (2 tiles + quality factor)
 
+==== Stats ====
+  * **Type:** Throwable Potion
+  * **Weight:** 1
+  * **Base Price:** 50 gold
+  * **Upgrade Class:** UpgradablePotion
+  * **Effect Radius:** (int)(DISTANCE * qualityFactor()) where DISTANCE is 2
+
+==== Mechanics ====
+  * When shattered at any location, creates an area of effect based on distance map
+  * Uses PathFinder.buildDistanceMap to calculate affected area
+  * Affects all cells within the calculated distance map
+  * Freezing effect is applied to each affected tile using Freezing.affect()
+
 ==== Special Properties ====
   * Can be used defensively to stop approaching enemies
   * Can be used offensively to immobilize groups of enemies
   * Particularly effective against fire-based creatures
   * The range of the freezing effect increases based on the potion's quality factor
+  * Can extinguish fires on impact
 
 ==== Usage ====
-  * **Shatter**: When thrown at a target location, the potion shatters and creates a freezing area
-  * **Moistening Arrows**: Can be used to moisten arrows, turning them into Frost Arrows
+  * **Offensive:** Freeze groups of enemies to gain tactical advantage
+  * **Defensive:** Stop pursuing enemies to gain breathing room
+  * **Environmental interaction:** Extinguish fires in the dungeon
+  * **Alchemy:** Required to create Frost Arrows through moistening
 
-==== Stats ====
-  * **Base Price**: 50 gold
-  * **Upgrade Class**: UpgradablePotion
+==== Strategy ====
+  * Excellent for crowd control in corridors and enclosed spaces
+  * Effective against fire-based enemies for extra damage
+  * Can be used to interrupt enemy casting or special abilities
+  * Combine with other crowd control items for maximum effect
+  * Invaluable for creating Frost Arrows through the moistening process
 
-==== Drops ====
-  * Dropped by Water Elementals (10% chance)
-  * Dropped by Ice Cave Kobolds (10% chance)
+==== Content Verification ====
+  * Information source: Java Class com.watabou.pixeldungeon.items.potions.PotionOfFrost
+  * Stats verification: Extracted directly from PotionOfFrost class properties
+  * Effect descriptions: Based on in-game mechanics and string resources
+  * Source code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java]]
 
-==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java|PotionOfFrost.java in code]]
+==== Related ====
+  * [[rpd:potions|Potions]] - Complete list of all potions
+  * [[rpd:freezing|Freezing Status Effect]] - The status effect applied by this potion
+  * [[rpd:frost_arrow|Frost Arrow]] - Ammunition created using this potion
+  * [[rpd:moisten|Moisten]] - Process to create Frost Arrows
+  * [[rpd:potion_of_liquid_flame|Potion of Liquid Flame]] - Opposing element effect
+  * [[rpd:ice_elemental_mob|Ice Elemental]] - Mob that benefits from frost effects
 
-==== See Also ====
-  * [[rpd:potions|Potions]]
-  * [[rpd:freezing|Freezing]]
-  * [[rpd:frost_arrow|Frost Arrow]]
-  * [[rpd:water_elemental_mob|Water Elemental]]
-
-{{tag>:rpd}}
+{{tag> rpd items potions frost freezing throwable }}
