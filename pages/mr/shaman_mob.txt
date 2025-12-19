@@ -1,0 +1,47 @@
+====== Gnoll Shaman (Mob) ======
+
+==== Stats ====
+  * **HP**: 18
+  * **HT**: 18
+  * **Defense Skill**: 8
+  * **Attack Skill**: 11
+  * **Damage**: 2-6
+  * **Armor**: 4 DR
+  * **EXP for Kill**: 6
+  * **Maximum Level**: 14
+
+==== Abilities ====
+  * **Lightning Bolt**: When attacking at range, the shaman can zap enemies with a lightning bolt that deals double damage (base damage × 2)
+  * **Fleeing Tactic**: When damaged, the shaman may flee when its HP is above 2/3 or 1/3 of max HP, taking only half damage during those states
+  * **Ranged Attack**: Can attack enemies at range using Ballistica mechanics (attack is successful if Ballistica.cast(getPos(), enemy.getPos(), false, true) == enemy.getPos())
+  * **Scroll Loot**: Drops scrolls with 33% chance
+  * **Lightning Resistance**: Immune to electricity damage (resistance to LightningTrap.Electricity class)
+  * **Vocalization**: Has a 10% chance to yell "*Cusses in gnollish*" when missing with lightning zap
+
+==== Java Implementation ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java|Shaman.java]]
+
+==== JSON Configuration ====
+  * No specific configuration file (uses Java defaults)
+
+==== Lua Script ====
+  * No custom Lua script (uses Java implementation)
+  * No Shaman.lua file exists, behavior is defined in Java class
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1311|Shaman_Name, Shaman_Desc, Shaman_Killed, Shaman_ZapMiss]]
+
+==== Spawn Locations ====
+  * Found primarily in Sewers and Prison levels
+  * Spawn rates defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L12|Bestiary.json]]
+  * Appears from level 6 onwards with varying probability
+
+==== Entity Kind ====
+  * Entity Kind: Shaman (returns getClass().getSimpleName() from NamedEntityKind interface)
+
+==== Related Entities ====
+  * [[mr:gnoll_mob|Gnoll]] - Basic gnoll enemy
+  * [[mr:shaman_elder_mob|Shaman Elder]] - Stronger variant
+  * [[mr:ballistica|Ballistica]] - Pathfinding mechanic used for ranged attacks
+
+{{tag> mr mobs shaman gnoll}}
