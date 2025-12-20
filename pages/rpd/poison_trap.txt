@@ -1,50 +1,19 @@
 ====== Poison Trap ======
 
-The **Poison Trap** is a mechanical trap in Remixed Dungeon that inflicts the [[rpd:poison|Poison]] status effect when triggered.
+A **Poison Trap** is a common trap found throughout the dungeon. When triggered, it releases poisonous gas or darts that poison the character that activated it.
 
-==== Stats ====
-  * **Poison Duration:** 4 + (dungeon depth / 2) turns
-  * **Effect Range:** Single target at trap location
-  * **Trigger:** Stepped on by a character (hero or mob)
+==== Effects ====
+  * Inflicts poison status effect
+  * Causes damage over time until cured
+  * Can be dangerous in combination with other hazards
 
-==== Description ====
-When a character steps on a Poison Trap, it releases toxic gas that poisons the trigger. The poison will last for 4 + (current dungeon depth / 2) turns, with the duration affected by the target's resistance (e.g., from [[rpd:ring_of_elements|Ring of Elements]]). A visual effect of poison particles bursts from the trap location when triggered.
+==== Prevention & Mitigation ====
+  * Detection skills help spot the trap before triggering
+  * Disarmament can disable the trap
+  * Some armor and rings provide resistance to poison effects
 
-==== Mechanics ====
-  * **Effect:** Applies the Poison status effect for (4 + dungeon depth/2) turns
-  * **Trigger:** Activated when any character moves onto the trap's cell
-  * **Effectiveness:** Duration affected by target's poison resistance
-  * **Damage:** Poison damage is (time remaining / 3) + 1 per turn
-  * **Visual:** Emits poison particles when triggered
+==== Code References ====
+* Trap implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap.java]]
+* Level generation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]]
 
-==== Strategy ====
-  * **For Players:** 
-    * Carry [[rpd:scroll_of_identify|Scrolls of Identify]] to recognize hidden traps
-    * Use [[rpd:studded_gloves|Studded Gloves]] or other stealth equipment to avoid triggering
-    * Be cautious in areas with low HP
-  * **Against Enemies:** 
-    * Lure enemies onto traps when possible
-    * Effective for dealing sustained damage to dangerous foes
-  * **Avoidance:** 
-    * Watch for slightly discolored floor tiles
-    * Walk carefully (press and hold) in suspicious areas
-
-==== Location ====
-  * Found throughout the dungeon on various levels
-  * More common in deeper levels where poison duration is higher
-  * Typically hidden under floor, appearing as slightly different colored tile
-
-==== Related ====
-  * [[rpd:traps|Traps]] - List of all trap types
-  * [[rpd:poison|Poison]] - The status effect it inflicts
-  * [[rpd:ring_of_elements|Ring of Elements]] - Provides resistance to poison
-  * [[rpd:scroll_of_identify|Scroll of Identify]] - Reveals hidden traps
-  * [[rpd:venom_trap|Venom Trap]] - More powerful poison variant
-  * [[rpd:dart_trap|Dart Trap]] - Another common mechanical trap
-
-==== Content Verification ====
-  * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java]]
-  * Mechanics verified directly from source code
-  * Last updated: December 2025
-
-{{tag> rpd traps poison mechanics}}
+{{tag> rpd traps hazards}}
