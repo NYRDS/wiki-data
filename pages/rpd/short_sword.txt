@@ -16,8 +16,10 @@ The **Short Sword** is a basic melee weapon in Remixed Dungeon. It is the starti
 ==== Special Mechanics ====
   * **Reforge Ability:** When upgraded (level > 0), the Short Sword gains a special "Reforge" action
   * **Reforge Effect:** Using the Reforge action consumes the Short Sword to upgrade another weapon and provide a Scroll of Upgrade effect
-  * **Upgrade Enhancement:** The reforge action safely upgrades another weapon without destroying enchantments
+  * **Safe Upgrade:** The reforge action safely upgrades another weapon without destroying enchantments
+  * **Action Time:** Takes 2 turns to complete the reforge action
   * **Cannot upgrade Boomerangs:** The reforge action specifically prevents use on boomerangs
+  * **Badge Tracking:** Completing a reforge validates the item for level acquisition badges
 
 ==== Strategy ====
   * Starting weapon for Warrior class with modest but reliable stats
@@ -31,10 +33,11 @@ The **Short Sword** is a basic melee weapon in Remixed Dungeon. It is the starti
   * Can potentially be found as a random drop in the dungeon
   * Available in some shops
 
-==== Code Reference ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/ShortSword.java|ShortSword.java]]
-  * Source Code Location: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/ShortSword.java
-  * The reforge mechanic allows converting the upgraded Short Sword into an upgrade for another weapon
+==== Content Verification ====
+  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/ShortSword.java|ShortSword.java]]
+  * Stats verification: Extracted directly from ShortSword.java constructor (super(1, 1f, 1f) for damage, speed, accuracy)
+  * Special mechanics: Based on code analysis of actions(), _execute(), and itemSelector methods
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3551-L3557|ShortSword strings]] (Russian localization including ShortSword_Name, ShortSword_Info, ShortSword_ACReforge, ShortSword_Select, ShortSword_Reforged, ShortSword_NotBoomerang)
 
 ==== Related Items ====
   * [[rpd:weapons|Weapons]] - Other weapon types
