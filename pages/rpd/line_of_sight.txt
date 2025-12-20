@@ -19,6 +19,19 @@
   * Some abilities or items can grant extended vision
   * Darkness or fog effects can reduce line of sight
   * Certain terrain features may block or redirect line of sight
+  * Implemented using the **ShadowCaster** class which calculates visibility from a central point
+
+==== Technical Implementation ====
+  * The game maintains a boolean array `fieldOfView` for each level which tracks visibility
+  * Uses ShadowCaster algorithm to determine visible cells from character position
+  * LOS blocking terrain is flagged using TerrainFlags.LOS_BLOCKING
+  * Level objects can also block line of sight with the `losBlocker()` method
+
+==== Code References ====
+  * Core implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/ShadowCaster.java|ShadowCaster.java]]
+  * Level visibility: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java#L1488-L1525|updateFieldOfView in Level.java]]
+  * LOS blocking flags: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/TerrainFlags.java#L8|TerrainFlags.java]]
+  * Level objects LOS: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Deco.java#L83|losBlocker method]]
 
 ==== Related Pages ====
   * [[rpd:range|Range]] - Distance mechanics for attacks

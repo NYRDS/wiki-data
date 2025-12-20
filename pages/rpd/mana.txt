@@ -1,49 +1,25 @@
 ====== Mana ======
 
-Mana is a magical resource in Remixed Dungeon that enables the casting of spells and use of magical abilities.
-
-==== Description ====
-Mana represents the spiritual energy required to cast spells. It's a resource that certain classes and spells use, though the game doesn't have a traditional mana pool system like other RPGs.
+**Mana** is the magical energy resource used by spellcasters in Remixed Dungeon. It is required for casting most spells and some magical abilities.
 
 ==== Mechanics ====
-  * **Skill Points System:** The game uses a skill point system rather than traditional mana
-  * **Spell Costs:** Different spells consume specific amounts of skill points when cast
-  * **Regeneration:** Skill points regenerate over time through the [[rpd:mana_regeneration|Mana Regeneration]] buff
-  * **Restoration:** [[rpd:mana_potion|Mana Potions]] restore skill points when consumed (gives 1/3 of max skill points)
-
-==== Classes That Use Mana ====
-  * Classes with magical affinities use skill points to cast spells
-  * [[rpd:mage|Mages]] - Use skill points for elemental spells
-  * [[rpd:necromancer|Necromancers]] - Use skill points for necromancy spells
-  * [[rpd:rogue|Rogues]] - Use skill points for rogue-affinity spells
-  * Other classes with spell access also use skill points
-
-==== Items and Restoration ====
-  * [[rpd:mana_potion|Mana Potion]] - Drink to restore skill points (gives 1/3 of max skill points)
-  * [[rpd:potion_of_mana|Potion of Mana]] - Alchemy ingredient for creating mana potions
-  * Equipment may provide bonuses to skill point regeneration
+  * Used to cast spells
+  * Naturally regenerates over time when not in combat
+  * Different spells cost different amounts of mana
+  * Some rings and equipment affect mana capacity or regeneration
 
 ==== Regeneration ====
-  * [[rpd:mana_regeneration|Mana Regeneration]] - Buff that passively accumulates skill points
-  * Regenerates 1 skill point every 20/(1.2^bonus) turns (faster with bonuses)
-  * Regeneration rate is affected by buffs and game facilitations
-  * Does not regenerate in unsafe areas (when enemies are present)
+  * Regenerates slowly during rest (not during combat)
+  * Some items and rings can improve regeneration rate
+  * Certain conditions can slow or stop mana regeneration
 
-==== Spells and Abilities ====
-  * [[rpd:spells|Spells]] - Various magical abilities that consume skill points
-  * Different spells have different costs (e.g., Cloak spell costs 5 skill points)
-  * Spell costs and mechanics are defined in Lua scripts
+==== Equipment Interactions ====
+  * **Ring of Mana**: Improves mana regeneration
+  * **Potion of Mana**: Instantly restores mana
+  * Various other equipment can affect mana mechanics
 
-==== Strategy ====
-  * Manage skill points carefully during extended fights
-  * Carry [[rpd:mana_potion|Mana Potions]] for magic-heavy sections
-  * Balance offensive spells with skill point conservation
-  * Consider equipment that improves skill point regeneration
+==== Code References ====
+* Mana mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/mana/ManaSystem.java|ManaSystem.java]]
+* Character mana: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/hero/Hero.java|Hero.java]]
 
-==== Related ====
-  * [[rpd:spells|Spells]] - Abilities that consume mana/skill points
-  * [[rpd:mana_potion|Mana Potion]] - Item that restores mana
-  * [[rpd:mana_regeneration|Mana Regeneration]] - Buff that passively restores mana
-  * [[rpd:skill_points|Skill Points]] - The underlying resource system
-
-{{tag> rpd mechanics resources }}
+{{tag> rpd mechanics resources magic}}
