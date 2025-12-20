@@ -1,101 +1,47 @@
 ====== Mobs ======
 
-{{ rpd:images:mob_example.png|Example Mob }}
+Mobs (mobiles) are any mobile creatures in Remixed Pixel Dungeon. This includes enemies, NPCs, and any other creatures that can move around the dungeon.
 
-Mobs (short for "mobiles") are the moving entities in Remixed Dungeon that are not the player character. They include enemies, NPCs, and other creatures that populate the dungeon.
+==== Types of Mobs ====
+  * **Enemies** - Hostile creatures that attack the player
+  * **NPCs** - Non-player characters with special roles (e.g., [[rpd:shopkeeper_npc|Shopkeeper]], [[rpd:wandmaker_npc|Wandmaker]])
+  * **Pets** - Creatures allied to the player (see [[rpd:pet|Pets]])
+  * **Bosses** - Powerful enemies that guard special prizes
 
-==== Categories ====
+==== Basic Properties ====
+  * **HP/HT** - Hit points (current/max)
+  * **Attack Skill** - Chance to hit the player
+  * **Defense Skill** - Chance to avoid being hit
+  * **Damage** - Range of damage dealt on hit
+  * **EXP** - Experience awarded when killed
+  * **Dr** - Damage reduction (armor)
+  * **Speed** - How many turns per move relative to player
 
-==== Enemies ====
-Enemies are hostile mobs that will attack the player character when encountered. They come in various forms and abilities:
+==== Special Mob Properties ====
+  * **Immunities** - Status effects the mob is immune to
+  * **Resistances** - Status effects the mob resists
+  * **Special Abilities** - Unique attacks or behaviors
+  * **AI** - Artificial intelligence that governs behavior
 
-=== Regular Enemies ===
-  * **Rats**: Common, low-level enemies found in the sewers
-  * **Gnolls**: Humanoid enemies with varying roles (scouts, brutes, shamans)
-  * **Crabs**: High-defense enemies found in the sewers
-  * **Sewer Slimes**: Acidic slimes with distinctive mechanics
-  * **Thieves**: Agile enemies that steal items from the player
-  * **Guard Protectors**: Fast enemies that attack in groups
+==== Common Mob Categories ====
+  * [[rpd:rats|Rats]] - Early game enemies
+  * [[rpd:elemental_mob|Elementals]] - Magic-themed enemies
+  * [[rpd:undead_mob|Undead]] - Raised corpses and spirits
+  * [[rpd:spiders|Spiders]] - Arachnid enemies
+  * [[rpd:piranhas|Piranhas]] - Aquatic enemies
+  * [[rpd:golems|Golems]] - Construct enemies
 
-=== Boss Enemies ===
-  * [[rpd:goo_mob|Goo]]: The first boss in the sewers, with unique mechanics and puddles
-  * [[rpd:tengu_mob|Tengu]]: The prison boss with complex AI and traps
-  * [[rpd:dm300_mob|DM-300]]: Mechanical boss in the caves
-  * [[rpd:king_mob|King of Dwarves]]: The final boss of the dwarven metropolis
-  * [[rpd:yog_mob|Yog-Dzewa]]: The final boss of the dungeon
+==== Related ====
+  * [[rpd:enemies|Enemies]] - Foes that attack the player
+  * [[rpd:npcs|NPCs]] - Non-player characters
+  * [[rpd:pet|Pets]] - Allied creatures
+  * [[rpd:bosses|Bosses]] - Major enemies
+  * [[rpd:ai|AI]] - Information about mob behavior and artificial intelligence
+  * [[rpd:immunities|Immunities]] - Effects mobs are immune to
+  * [[rpd:resistances|Resistances]] - Effects mobs resist
 
-=== Neutral or Passive Mobs ===
-  * Some mobs start neutral but become hostile under certain conditions
-  * Others are completely passive and never attack
+==== Source Code ====
+  * Base mob class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * Mob factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]]
 
-==== NPCs (Non-Player Characters) ====
-NPCs are friendly characters that provide services or story elements:
-
-=== Shopkeepers ===
-  * [[rpd:shopkeeper_npc|Shopkeeper]]: Sells items in shops
-  * Various shopkeepers appear throughout different levels
-
-=== Other NPCs ===
-  * [[rpd:ghost_npc|Ghost]]: Appears in the sewers with a quest
-  * [[rpd:wandmaker_npc|Wandmaker]]: Provides high-level wands
-  * [[rpd:blacksmith_npc|Blacksmith]]: Helps with item identification
-  * [[rpd:imp_npc|Imp]]: Provides various services
-
-==== Common Mob Properties ====
-
-==== Health System ====
-  * **HP**: Current and maximum health points
-  * **Regeneration**: Some mobs have health regeneration abilities
-  * **Damage Resistance**: Various forms of damage reduction
-
-==== AI Behaviors ====
-  * **Hunting**: Actively pursuing the player when aware
-  * **Fleeing**: Running away when low on health
-  * **Wandering**: Moving randomly when no threat is present
-  * **Passive**: Not engaging in combat unless attacked
-
-==== Combat Mechanics ====
-  * **Attack Range**: Mobs can attack at melee range, or at distance
-  * **Attack Skill**: Determines hit chance against the player
-  * **Defense Skill**: Affects dodge chance against player attacks
-  * **Damage**: Range of damage dealt per successful attack
-  * **Special Abilities**: Unique mechanics for specific mobs
-
-==== Equipment and Items ====
-  * **Loot**: Items dropped when defeated
-  * **Treasury Categories**: Mobs belong to different drop categories (meat, scales, etc.)
-  * **Spawn Items**: Some mobs carry specific items when they appear
-
-==== Respawn Mechanics ====
-  * Some special mobs can respawn under certain conditions
-  * Regular enemies do not respawn once defeated
-
-==== Status Effects ====
-Mobs can be affected by various status effects:
-  * **[[rpd:burning_buff|Burning]]**: Takes periodic damage
-  * **[[rpd:poison_buff|Poisoned]]**: Takes periodic damage
-  * **[[rpd:paralysis_buff|Paralyzed]]**: Cannot act for several turns
-  * **[[rpd:sleep_buff|Sleeping]]**: Passively ignores surroundings
-  * **[[rpd:invisibility_buff|Invisible]]**: Cannot be seen until it acts
-  * **[[rpd:charm_buff|Charmed]]**: Attacks other mobs instead of the player
-
-==== Special Mob Types ====
-  * **Pets/Companions**: Mobs that fight alongside the player
-  * **Summoned Mobs**: Temporarily created by spells or items
-  * **Spawners**: Mobs that create other mobs
-  * **Statues**: Inanimate objects that can come to life
-
-==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Base mob class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Base character mechanics shared with hero
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]] - Turn-based system for mobs
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Mob creation and management
-
-==== See Also ====
-  * [[rpd:ai|AI]]
-  * [[rpd:immunities|Immunities]]
-  * [[rpd:resistances|Resistances]]
-  * [[rpd:skeleton|Skeleton]]
-  * [[rpd:pet|Pets/Companions]]
-
-{{tag> rpd mobs enemies npcs mechanics}}
+{{tag> rpd mechanics}}
