@@ -8,27 +8,27 @@ The **Skeleton** is a common undead enemy found throughout the dungeon, typicall
 Skeletons are reanimated bones of dead adventurers and denizens of the dungeon. They are persistent enemies that will relentlessly pursue the player character. Skeletons are immune to various status effects due to their undead nature.
 
 ==== Stats ====
-  * **HP**: 15
-  * **HT**: 15
-  * **Defense Skill**: 6
-  * **Attack Skill**: 10
+  * **HP**: 25
+  * **HT**: 25
+  * **Defense Skill**: 9
+  * **Attack Skill**: 12
   * **Damage**: 3-8
-  * **Armor**: 2 DR
+  * **Armor**: 5 DR
   * **EXP for Kill**: 5
-  * **Maximum Level**: 12
+  * **Maximum Level**: 10
 
 ==== Abilities ====
-  * **Knuckle Drop**: When defeated, has a 50% chance to drop a Knuckle (melee weapon)
-  * **Undead Resistance**: Immune to fear, charm, and sleep effects
+  * **Weapon Drop**: When defeated outside of NecroBossLevel, has a 20% chance to drop a random weapon from the worst weapons available
+  * **Undead Resistance**: Immune to fear, charm, and sleep effects (marked with setUndead(true))
   * **Poison Immunity**: Immune to poison damage and status effects
-  * **Corpse Explosion**: When killed by fire, explodes dealing damage to nearby entities
-  * **Bones**: Drops bones when defeated, which can be used for crafting
+  * **Corpse Explosion**: When defeated, deals damage to all adjacent characters based on the Skeleton's damage roll
+  * **Bones**: Makes a bones sound when defeated
 
 ==== Combat Tactics ====
 Skeletons are aggressive melee enemies that will pursue the player relentlessly. They cannot be charmed or frightened, making them consistently dangerous throughout the dungeon. Their bony structure provides some physical damage resistance.
 
 ==== Occurrence ====
-  * **Primary Location**: Found throughout the Prison level and deeper
+  * **Primary Location**: Found in Prison levels 6-9 (most common)
   * **Spawn Frequency**: Common in later dungeon levels
   * **Group Behavior**: Usually found alone or in small groups
   * **Special Variants**: May appear as special skeleton enemies with different equipment
@@ -44,10 +44,14 @@ Skeletons are aggressive melee enemies that will pursue the player relentlessly.
   * They're immune to various effects that work on living creatures
   * Defeating them contributes to the "Skeleton Slayed" badge
 
-==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java|Skeleton.java]] - Implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1349-L1352|Skeleton strings]] - Name, description, and gender
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L34-L37|Bestiary.json]] - Spawn rates in different levels
+==== Data Source References ====
+  * **Java Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java|Skeleton.java]]
+  * **Stats Configuration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L14-L22|Constructor with stats]]
+  * **English String Resource**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1349-L1352|Skeleton strings]]
+  * **Russian String Resource**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1350-L1353|Skeleton strings]]
+  * **Bestiary Configuration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L12-L15|Spawn rates in levels 6-9]]
+  * **Corpse Explosion**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L32-L52|die() method - damage to adjacent chars]]
+  * **Weapon Drop**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L24-L28|getLoot() method]]
 
 ==== Related ====
   * [[rpd:undead_mobs|Undead Mobs]]
