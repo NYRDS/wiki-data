@@ -9,19 +9,21 @@ The common brown rat is a small rodent that lives in the sewers. They have beady
 
 ==== Stats ====
   * **Level:** 1
-  * **HP:** 15
+  * **HP:** 8
   * **EXP:** 1
   * **Min Damage:** 1
-  * **Max Damage:** 4
-  * **Defense:** 1
-  * **Accuracy:** 10
-  * **Evasion:** 10
-  * **Speed:** 2
+  * **Max Damage:** 5
+  * **Defense Rating (DR):** 1
+  * **Defense Skill:** 3
+  * **Attack Skill:** 8
+  * **Max Level:** 7
 
 ==== Behavior ====
   * Passively moves toward the hero
   * Will attack if hero comes in range
   * Does not use special abilities
+  * Flee from targets with Ratter Aura buff (from [[rpd:rat_skull|Rat Skull]] item)
+  * Triggers quest events for Scarecrow NPC, Ghost NPC, and Plague Doctor NPC when killed
 
 ==== Drops ====
   * [[rpd:mystery_meat|Mystery Meat]]
@@ -31,25 +33,17 @@ The common brown rat is a small rodent that lives in the sewers. They have beady
   * Early game enemies like rats help the hero gain experience
   * Rats can be dangerous if encountered in groups
   * Generally safe to fight for a level 1 hero
-
-==== Data Validation ====
-This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the mob mechanics.
+  * When holding a Rat Skull item, rats will flee from you
 
 ==== Content Verification ====
-* Information source: Java Class in Remixed Dungeon codebase
-* Stats verified: Yes, extracted directly from Rat.java
-* Effect descriptions: Generated from code analysis and string resources
-* Last updated: Based on Rat.java class properties
-
-==== Source Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java|Rat.java - Implementation]]
-  
-String resources:
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1883|Rat_Name]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1884|Rat_Desc]]
+  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java|Rat.java]]
+  * Stats verification: Extracted directly from Rat.java constructor
+  * Special mechanics: Based on code analysis of canAttack() and die() methods
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1883|Rat_Name]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1884|Rat_Desc]] (Russian localization)
 
 ==== See Also ====
   * [[rpd:mobs|Mobs]] - List of all enemies
   * [[rpd:sewers|Sewers Level]] - Where this mob is typically found
+  * [[rpd:rat_skull|Rat Skull]] - Item that affects rat behavior
 
 {{tag> rpd mobs sewers}}
