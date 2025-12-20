@@ -1,64 +1,47 @@
 ====== Combat ======
 
-Combat is the core system in Remixed Dungeon for resolving conflicts between the player character and enemies. It involves turn-based tactical engagement using various weapons, abilities, and strategies.
+**Combat** in Remixed Dungeon refers to the system of fighting between characters (heroes and mobs) using weapons, spells, and abilities.
 
 ==== Description ====
-Combat in Remixed Dungeon is turn-based, meaning that after each action you take, nearly all creatures in the dungeon take an action as well. Understanding combat mechanics is crucial for survival and success in the dungeon.
+Combat is the core mechanic of Remixed Dungeon. It involves turn-based tactical fighting where characters take turns to attack, use abilities, or move around the dungeon.
 
-==== Basic Mechanics ====
-  * **Turn-Based:** After each action, enemies also take actions
-  * **Melee:** Close-range combat using weapons and shields
-  * **Ranged:** Attacks from a distance using thrown weapons or other items
-  * **Magical:** Combat using spells, wands, or other magical items
+==== Basic Combat ====
+  * **Turn-based system**: Characters take turns based on their speed
+  * **Melee combat**: Direct attacks with weapons or fists
+  * **Ranged combat**: Attacks from a distance using ranged weapons or spells
+  * **Accuracy vs Defense**: Attack success is determined by attacker's accuracy vs defender's evasion
 
-==== Accuracy and Defense ====
-  * **Attack Skill:** Determines chance to hit an opponent. Calculated as: (baseAttackSkill + character level) * accuracy modifier * skill factor (max 20), with ranged weapons having 50% accuracy when attacking in melee
-  * **Defense Skill:** Reduces chance of being hit. Calculated as: (baseDefenseSkill + character level) * evasion modifier, with armor encumbrance penalty reducing defense
-  * **Accuracy Formula:** Success chance is determined by: roll(0 to attackSkill) >= roll(0 to defenseSkill)
-  * **Ranged Penalty:** When attacking in melee range with a ranged weapon, accuracy is reduced by 50%
-
-==== Damage Calculation ====
-  * **Base Damage:** Character's strength bonus (Random range from 1 to STR-9) + active weapon damage roll + secondary weapon damage roll (if not using ranged)
-  * **Damage Range:** Calculated as random range between minimum and maximum values of all equipped weapons
-  * **Damage Reduction:** Armor provides a damage reduction (DR) value that reduces incoming damage by a flat amount (random value from 0 to DR)
-
-==== Combat Sequence ====
-  * **Hit Check:** Using CharUtils.hit() to determine if attack connects based on attack vs defense skills
-  * **Damage Roll:** Calculating damage based on strength and weapon damage
-  * **Attack Processing:** Applying attack-specific effects and modifiers
-  * **Defense Processing:** Reducing damage through armor DR and defensive effects
-  * **Final Damage:** Applying final damage to target's HP
+==== Combat Stats ====
+Key combat statistics include:
+  * **Attack Skill**: Determines hit chance in melee attacks
+  * **Defense Skill**: Determines evasion chance
+  * **Damage**: How much damage each attack deals
+  * **Armor**: Reduces incoming damage
+  * **Speed**: Affects turn frequency
 
 ==== Combat Types ====
-  * **Melee Combat:** Requires direct contact with enemies
-  * **Ranged Combat:** Attack from a distance
-  * **Magical Combat:** Using spells, wands, and scrolls
-  * **Environmental Combat:** Using terrain and dungeon features
+  * **Melee Combat**: [[rpd:melee|Melee]] - Close-range fighting
+  * **Ranged Combat**: Attacking from a distance
+  * **Spell Combat**: Using magical abilities
 
-==== Defensive Tactics ====
-  * **Kiting:** Attacking and moving to avoid retaliation
-  * **Corridor Fighting:** Using narrow spaces to fight enemies one at a time
-  * **Retreat:** Using scrolls or items to escape dangerous situations
-  * **Blocking:** Using shields to reduce incoming damage
+==== Combat Mechanics ====
+  * **Hit Chance Formula**: Based on accuracy and evasion
+  * **Damage Range**: Weapons have minimum and maximum damage
+  * **Critical Hits**: Chance to deal extra damage
+  * **Blocking**: Some abilities can block incoming attacks
 
-==== Offensive Tactics ====
-  * **Equipment:** Using the right weapons for the situation
-  * **Positioning:** Controlling where the fight takes place
-  * **Timing:** Knowing when to engage and when to wait
-  * **Resource Management:** Using consumables effectively
+==== Combat Tips ====
+  * Know your opponent's stats and abilities
+  * Use terrain to your advantage
+  * Manage your equipment and consumables
+  * Time your special abilities for maximum effect
+  * Retreat when necessary to heal
 
-==== Special Combat Situations ====
-  * **Multiple Enemies:** Fighting more than one enemy at a time
-  * **Boss Fights:** Special mechanics for major enemies
-  * **Traps:** Dealing with environmental hazards during combat
-  * **Crowd Control:** Managing groups of weaker enemies
+==== Related Pages ====
+  * [[rpd:melee|Melee Combat]]
+  * [[rpd:ranged_weapons|Ranged Weapons]]
+  * [[rpd:spells|Spells]]
+  * [[rpd:accuracy|Accuracy]]
+  * [[rpd:defense|Defense]]
 
-==== Related ====
-  * [[rpd:weapons|Weapons]] - Equipment for combat
-  * [[rpd:armor|Armor]] - Defensive equipment
-  * [[rpd:enemies|Enemies]] - Foes in the dungeon
-  * [[rpd:bosses|Boss Enemies]] - Major combat encounters
-  * [[rpd:buffs|Buffs and Debuffs]] - Temporary combat modifiers
-  * [[rpd:accuracy|Accuracy]] - Accuracy mechanics
-
-{{tag> rpd combat mechanics}}
+{{tag> rpd mechanics combat}}
