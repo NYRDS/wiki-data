@@ -1,6 +1,6 @@
 ====== Ankh ======
 
-{{ rpd:images:ankh_sprite.png|Ankh Sprite  }}
+{{ rpd:images:ankh_sprite.png|Ankh Sprite }}
 
 ==== Description ====
 This ancient symbol of immortality grants an ability to return to life after death. Upon resurrection, all items in the hero's inventory are lost, but one random equipped item is preserved as bones that can be retrieved from the location of death.
@@ -19,10 +19,10 @@ This ancient symbol of immortality grants an ability to return to life after dea
 The Ankh is a powerful but risky item - it can save you from death, but at the cost of losing all your inventory. Only one random equipped item will be recoverable as bones from the place where you died.
 
 ==== Strategy ====
-* Best used as a last resort when facing certain death
-* Try to keep only essential items in your inventory when entering dangerous areas
-* Since only one equipped item is preserved as bones (not all equipped items), consider which item is most valuable to preserve
-* Don't carry multiple Ankhs since you'll lose them upon resurrection (as mentioned in Dungeon_Tips_13 string)
+  * Best used as a last resort when facing certain death
+  * Try to keep only essential items in your inventory when entering dangerous areas
+  * Since only one equipped item is preserved as bones (not all equipped items), consider which item is most valuable to preserve
+  * Don't carry multiple Ankhs since you'll lose them upon resurrection (as mentioned in Dungeon_Tips_13 string)
 
 ==== Technical Details ====
 When the hero dies and uses an Ankh for resurrection:
@@ -35,13 +35,17 @@ When the hero dies and uses an Ankh for resurrection:
 ==== Related ====
   * [[rpd:belongings|Belongings]] - Hero equipment and inventory system
   * [[rpd:raise_dead_spell|Raise Dead Spell]] - Other resurrection mechanics
-  * [[rpd:black_skull|Black Skull]] - Similar bones/preservation mechanic
+  * [[rpd:black_skull_item|Black Skull]] - Similar bones/preservation mechanic
 
-==== Source Code ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ankh.java|Ankh.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndResurrect.java|WndResurrect.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Bones.java|Bones.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] (reallyDie method)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] (gameOver method)
+==== Source Code References ====
+  * Core implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ankh.java|Ankh.java]]
+  * Resurrection dialog: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndResurrect.java|WndResurrect.java]]
+  * Bones preservation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Bones.java|Bones.java]]
+  * Hero death handling: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] (reallyDie method)
+  * Game over mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] (gameOver method)
+
+==== String Resources ====
+  * Ankh name: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3450|Ankh_Name]]
+  * Resurrection dialog messages: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3451|WndResurrect_Message]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3452|WndResurrect_Yes]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3453|WndResurrect_No]]
 
 {{tag> rpd items resurrection}}
