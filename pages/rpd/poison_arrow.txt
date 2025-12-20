@@ -5,13 +5,15 @@
 **Poison Arrow** is a special ranged ammunition item in Remixed Pixel Dungeon that poisons enemies on hit.
 
 ==== Description ====
-A wooden arrow with a head soaked in poison. When this arrow hits an enemy, it applies a poison status effect, causing continuous damage over time. This is created by "moistening" a Common Arrow with a Potion of Toxic Gas.
+A wooden arrow with a head soaked in poison. When this arrow hits an enemy, it applies a poison status effect, causing continuous damage over time. This is created by "moistening" a Common Arrow with a [[rpd:potion_of_toxic_gas|Potion of Toxic Gas]].
 
 ==== Stats ====
-  * **Damage:** 1-3 points
-  * **Delay:** 1.0x (relative to weapon firing speed)
+  * **Damage:** 3-4 points (base, increases when fired from a bow)
+  * **Delay:** 0.75x (relative to weapon firing speed)
+  * **Accuracy:** 1x (relative to weapon accuracy)
+  * **Required Strength:** 9
   * **Durability:** Single use (consumed on impact)
-  * **Price:** Cannot be purchased in shops; only created through moistening
+  * **Price:** 5 gold per arrow
   * **Weight:** 1
 
 ==== Properties ====
@@ -20,19 +22,21 @@ A wooden arrow with a head soaked in poison. When this arrow hits an enemy, it a
   * **Consumable:** Each arrow is consumed after being shot
   * **Stackable:** Can stack up to very high quantities
   * **Special Effect:** Poisons the target on hit, causing damage over time
+  * **Upgradable when fired:** Damage increases with the bow's level
 
 ==== Creation ====
 Poison Arrows can be created by using a [[rpd:potion_of_toxic_gas|Potion of Toxic Gas]] on regular [[rpd:common_arrow|Common Arrows]]. This process is called "moistening" and transforms the basic arrow into one with special properties.
 
 ==== Mechanics ====
-  * When hitting an enemy, applies the Poison status effect
+  * When hitting an enemy, applies the [[rpd:poison|Poison]] status effect
+  * Base poison duration is 5 turns, increased by 1 turn per level of the bow it was fired from (if fired from a bow)
   * Poison causes 1 damage per turn until it wears off or enemy dies
   * Poison effect stacks with existing poison, refreshing duration
-  * Does not stack with other status effects like Paralysis or Burning
+  * Does not stack with other status effects like [[rpd:paralysis|Paralysis]] or [[rpd:burning|Burning]]
 
 ==== Availability ====
   * **Creation Only:** Cannot be found as random loot; must be created by moistening
-  * **Required Materials:** Common Arrow + Potion of Toxic Gas
+  * **Required Materials:** [[rpd:common_arrow|Common Arrow]] + [[rpd:potion_of_toxic_gas|Potion of Toxic Gas]]
   * **Alchemy:** Part of the game's alchemy system for creating special ammunition
 
 ==== Strategy ====
@@ -41,6 +45,7 @@ Poison Arrows can be created by using a [[rpd:potion_of_toxic_gas|Potion of Toxi
   * Consider when facing groups, as poison will continue to weaken them over time
   * Be careful not to waste on enemies that can clear poison quickly or are immune
   * Effective against enemies that don't kill you immediately, allowing the poison to work
+  * Damage increases when fired from a bow, and poison duration increases with the bow's level
 
 ==== Related ====
   * [[rpd:common_arrow|Common Arrow]] - Base arrow for moistening
@@ -52,9 +57,13 @@ Poison Arrows can be created by using a [[rpd:potion_of_toxic_gas|Potion of Toxi
 
 ==== Source Code ====
   * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/PoisonArrow.java|PoisonArrow.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Arrow name and description strings]]
+  * Base Arrow: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfToxicGas.java|PotionOfToxicGas.java]] - Creation mechanism
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L859-L860|PoisonArrow_Name and PoisonArrow_Info strings]]
+  * Russian String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L846-L847|Russian PoisonArrow strings]]
+  * JSON Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/missiles/Arrow.json|Arrow.json]]
 
 ==== Notes ====
-Poison Arrows are a key part of the alchemy system, allowing players to create powerful ammunition from common resources. They're particularly effective when fighting multiple enemies or in situations where you can maintain distance.
+Poison Arrows are a key part of the alchemy system, allowing players to create powerful ammunition from common resources. They're particularly effective when fighting multiple enemies or in situations where you can maintain distance. The poison effect has a base duration of 5 turns, with additional duration based on the level of the bow used to fire them.
 
 {{tag> rpd items ammunition ranged toxic_gas poison }}
