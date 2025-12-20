@@ -5,44 +5,51 @@
 **Earth Elementals** are sturdy, defensive enemies found in the deeper levels of Remixed Dungeon.
 
 ==== Description ====
-Earth Elementals are creatures of stone and mud with high defense and health. They move slowly but pack a powerful punch. These enemies are particularly resilient and require focused attacks to bring down.
+Earth Elementals are earth masses driven by concentrated nature forces. They are resilient enemies with high defense and health, and are immune to many status effects.
 
-==== Stats ====
-  * **Level:** 10
-  * **Health:** 35
-  * **Attack:** 12-24
-  * **Defense:** 15
-  * **Speed:** 0.8 (slow)
-  * **Resistances:** Physical damage, [[rpd:bleeding_buff|Bleeding]], [[rpd:paralysis_buff|Paralysis]], [[rpd:poison_buff|Poison]]
-  * **Vulnerabilities:** [[rpd:shock|Shocking]] effects and high-damage single attacks
+==== Stats (Depth-Based) ====
+  * **Level:** Variable (depth-based)
+  * **Health:** depth * 10 + 1 (scales with dungeon depth)
+  * **Attack:** (ht/5) - (ht/5) (based on health)
+  * **Defense:** depth / 2 + 1 (scales with dungeon depth)
+  * **Speed:** 0.5 in liquid terrain, normal otherwise
+  * **Resistances:** [[rpd:bleeding_buff|Bleeding]], [[rpd:paralysis_buff|Paralysis]], [[rpd:stun_buff|Stun]], [[rpd:toxic_gas_buff|Toxic Gas]], [[rpd:burning_buff|Burning]], [[rpd:roots_buff|Roots]]
+  * **Immunities:** Knockback effects
+  * **Experience:** depth + 1
+  * **Damage Reduction:** depth + 1
 
 ==== Special Abilities ====
-  * **High Defense:** Significantly reduces incoming physical damage
-  * **Steady:** Immune to knockback effects
-  * **Regeneration:** Slowly regenerates health while on earth/stone terrain
-  * **Earth Armor:** Gains additional damage reduction when fighting on earthen terrain
+  * **Depth Adjustment:** Stats scale with dungeon depth (kind = min(depth/5, 4))
+  * **Terrain Speed:** Moves at half speed when on liquid terrain
+  * **Regrowth:** 50% chance to create regrowth on the target's tile after attacking
+  * **Immunities:** Immune to roots, paralysis, stun, toxic gas, burning, bleeding
 
 ==== Loot ====
-  * [[rpd:gold_item|Gold]] (2-6 pieces)
-  * Occasionally drops a [[rpd:stone_item|Stone]]
+  * [[rpd:earthroot_seed_item|Earthroot Seed]] (10% chance)
 
 ==== Strategy ====
-  * Use high-damage attacks to overcome their high defense
-  * Try to fight them away from earthen terrain where they are strongest
-  * Magic or special effect weapons may be more effective
-  * Don't let them corner you, as they can be quite dangerous up close
-  * Stunning or slowing them is less effective due to their inherent resistances
+  * Since their stats scale with dungeon depth, they become significantly stronger in deeper levels
+  * Their damage output is tied to their health (dmgMin and dmgMax are ht/5)
+  * They're immune to many status effects that might be used to weaken them
+  * Be careful of the regrowth effect they can create when attacking
+  * Their speed is reduced on liquid terrain, making those areas potentially advantageous
 
 ==== Technical Details ====
-  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/EarthElemental.java|EarthElemental.java]]
-  * Statistics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1118-L1120|EarthElemental strings]]
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java|EarthElemental.java]]
+  * Class: com.nyrds.pixeldungeon.mobs.elementals.EarthElemental
+  * Inherits: MultiKindMob, implements IDepthAdjustable
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1416-L1419|EarthElemental strings]]
+
+==== Code References ====
+  * [[code:RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java|EarthElemental.java]]
+  * [[code:RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobsFactory.java]]
+  * [[code:RemixedDungeon/src/main/res/values/strings_all.xml#L1416-L1419|strings_all.xml]]
 
 ==== Related ====
-  * [[rpd:elemental_mob|Elementals]] - Other elemental creatures
+  * [[rpd:elementals|Elementals]] - Other elemental creatures
   * [[rpd:fire_elemental_mob|Fire Elemental]] - Other elementals
   * [[rpd:air_elemental_mob|Air Elemental]] - Other elementals
   * [[rpd:water_elemental_mob|Water Elemental]] - Other elementals
-  * [[rpd:stone_item|Stone]] - Related item
+  * [[rpd:earthroot_seed_item|Earthroot Seed]] - Related item
 
 {{tag> rpd mobs elementals earth }}
