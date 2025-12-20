@@ -1,54 +1,47 @@
 ====== Scout ======
 
-{{ rpd:images:hero_ELF_SCOUT.png|Scout }}
+{{ rpd:images:elf_scout_hero.png|Scout }}
 
-Elven _Scouts_ are masters of stealth. Trampling high grass grants them a temporary invisibility buff for 5 turns. Also they are even faster than regular Elves due to their haste level bonus.
+The Scout is the Elf's subclass in Remixed Dungeon.
 
 ==== Unlocking ====
 The Scout subclass can be unlocked by using a [[rpd:tome_of_mastery|Tome of Mastery]] after defeating the second boss (Tengu).
 
-==== Description ====
-Scout is a subclass of the [[rpd:elf|Elf]] class in Remixed Dungeon. Elven Scouts are masters of stealth who excel in exploration and evasion tactics.
-
 ==== Special Mechanics ====
-When a Scout moves through or tramples high grass, they receive a temporary invisibility buff lasting 5 turns. Scouts also have an inherent speed advantage over other subclasses due to their haste level bonus.
+Elven _Scouts_ gain special abilities when trampling through high grass:
+  * Gain **Invisibility** for 5 turns when trampling high grass
+  * High grass trampling produces fewer leaves (2 instead of 4)
 
-==== Special Abilities ====
-  * **Invisibility on Trampling:** Trampling high grass grants temporary invisibility for 5 turns
-  * **Increased Speed:** Has a natural haste level bonus, making them faster than regular Elves
-  * **Stealth Mastery:** Enhanced ability to avoid detection and navigate undetected
+==== Technical Details ====
+  * **Implementation:** The Scout's special mechanics are implemented in the ''trample'' method of ''HighGrass.java''
+  * **Invisibility Effect:** When a Scout tramples high grass, they gain 5 turns of invisibility
+  * **Code Reference:** The specific implementation checks if the character's subclass is SCOUT
 
 ==== Special Armor ====
 Using an [[rpd:armor_kit|Armor Kit]] on any armor will transform it into the [[rpd:scout_armor|Scout Armor]], which is specifically designed for this subclass.
 
 ==== Advantages ====
-  * Tactical invisibility for escaping dangerous situations
-  * Superior exploration capabilities
-  * Increased movement speed for better positioning
-  * Effective for hit-and-run tactics
+  * Escape dangerous situations by becoming invisible
+  * Access high grass for resources while gaining stealth
+  * Synergizes well with stealth-based strategies
+  * Perfect for surprise attacks after emerging from grass
 
 ==== Disadvantages ====
-  * Invisibility buff is temporary (5 turns)
-  * Requires presence of high grass to benefit from invisibility
-  * Speed advantage is less significant in tight spaces
+  * Only active when trampling high grass
+  * Invisibility duration is limited
+  * Doesn't provide direct combat bonuses
 
-==== Strategy ====
-  * Use high grass strategically to gain invisibility before engaging enemies
-  * Take advantage of the extra speed for positioning and escaping dangerous situations
-  * Combine invisibility with other stealth-enhancing items or abilities
-  * Make use of the extra speed to reach objectives more quickly
-  * Utilize hit-and-run tactics, using invisibility to disengage when needed
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L50|HeroSubClass.java - Scout Definition]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java#L52|HighGrass.java - Scout trample mechanics]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScoutArmor.java|ScoutArmor.java - Special armor implementation]]
+  * **String Resource**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L683-L684|HeroSubClass_NameScout, HeroSubClass_DescScout]]
 
-==== Related ====
-  * [[rpd:elf|Elf]] - Base class (Elf)
-  * [[rpd:shaman|Shaman]] - Other Elf subclass
-  * [[rpd:scout_armor|Scout Armor]] - Class-specific armor
-  * [[rpd:armor_kit|Armor Kit]] - Used to obtain class armor
-  * [[rpd:tome_of_mastery|Tome of Mastery]] - Required to unlock subclass
-  * [[rpd:high_grass|High Grass]] - Key mechanic enabling Scout's invisibility
+==== Related Content ====
+  * [[rpd:elf_class|Elf Class]]
+  * [[rpd:high_grass|High Grass]]
+  * [[rpd:invisibility_buff|Invisibility Buff]]
+  * [[rpd:playable_class|Playable Classes]]
+  * [[rpd:subclasses|Subclasses]]
 
-==== Source Code Reference ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#SCOUT|HeroSubClass.java - Scout]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java|HighGrass.java - Invisibility mechanic]]
-
-{{tag> rpd subclasses scout elf}}
+{{tag> rpd subclasses scout elf stealth}}
