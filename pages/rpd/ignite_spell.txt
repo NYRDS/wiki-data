@@ -1,4 +1,4 @@
-====== ignite_spell ======
+====== Ignite Spell ======
 
 {{ rpd:images:ignite_spell_icon.png|Ignite Spell Icon }}
 
@@ -8,14 +8,14 @@
 Ignite sets a targeted cell on fire, creating a fire blob that spreads and damages any character that enters it. The spell can be used to burn grass, characters and objects.
 
 ==== Stats ====
-  * **Magic Affinity:** Elemental
+  * **Magic Affinity:** [[rpd:elemental_affinity|Elemental]]
   * **Targeting:** Cell
   * **Level:** 2
   * **Mana Cost:** 2
   * **Special Effects:** creates fire blob with 5 turns duration
 
 ==== Mechanics ====
-When cast, Ignite creates a fire blob at the targeted location using Ballistica for range calculation (can reach through obstacles but stops at blocking terrain). The fire will:
+When cast, Ignite creates a fire blob at the targeted location using [[rpd:ballistica|Ballistica]] for range calculation (can reach through obstacles but stops at blocking terrain). The fire will:
   * Deal damage to any character that stands in the affected cell
   * Spread to flammable terrain
   * Burn carried items of the affected character
@@ -29,10 +29,10 @@ The Ignite spell can be used for:
   * Strategic environmental control to prevent enemy movement
 
 ==== Classes ====
-Classes with Elemental magic affinity can use this spell more efficiently.
+Classes with [[rpd:elemental_affinity|Elemental magic affinity]] can use this spell more efficiently.
 
 ==== Affinity ====
-  * [[rpd:spell_affinities|Elemental Affinity]]
+  * [[rpd:elemental_affinity|Elemental Affinity]]
 
 ==== Strategy ====
 How to effectively use the Ignite spell:
@@ -43,20 +43,26 @@ How to effectively use the Ignite spell:
   * Be careful not to trap yourself in burning areas
 
 ==== Content Verification ====
-* Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Ignite.java|Ignite.java]]
-* Stats verification: Extracted from Ignite.java constructor and methods
-* Effect descriptions: Based on string resources and in-game mechanics
-* Last updated: December 2025, source: Remixed Dungeon 1.9.3
+  * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Ignite.java|Ignite.java]]
+  * Stats verification: Extracted from Ignite.java constructor and methods
+  * Effect descriptions: Based on string resources and in-game mechanics
+  * Last updated: December 2025, source: Remixed Dungeon 1.9.3
 
-==== Source Code ====
-* Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Ignite.java|Ignite.java]]
-* Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L10-L11|Ignite spell strings]]
+==== Source Code References ====
+  * Core implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Ignite.java|Ignite.java]]
+  * Fire mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]]
+  * Burning status effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]]
+  * Range calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]]
+
+==== String Resources ====
+  * Spell name and description: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L10-L11|Ignite spell strings]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
   * [[rpd:mechanics|Game Mechanics]]
-  * [[rpd:spell_affinities|Elemental Affinity]]
+  * [[rpd:elemental_affinity|Elemental Affinity]]
   * [[rpd:fire|Fire]] - The status effect and environmental element
-  * [[rpd:burning|Burning]] - The status effect applied by fire
+  * [[rpd:burning_buff|Burning]] - The status effect applied by fire
+  * [[rpd:ballistica|Ballistica]] - Range calculation system
 
 {{tag> rpd spells elemental }}
