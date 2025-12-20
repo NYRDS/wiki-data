@@ -9,9 +9,12 @@ At first glance this aged bronze sword, covered with patina stains, looks absolu
   * **Damage:** 2 (base damage)
   * **Speed:** 1.0x (normal attack speed)
   * **Accuracy:** 1.0x (normal accuracy)
+  * **Required Strength:** 13 (base, scales with upgrades)
   * **Durability:** Normal weapon durability
   * **Enchantment:** Cannot be enchanted
   * **Sprite:** Swords sprite sheet, image index 4
+  * **Upgradable:** Yes
+  * **Attack Animation:** Sword swing animation
 
 ==== Special Properties ====
 When attacking an enemy with the Sacrificial Sword, there is a chance to convert the enemy into a pet that fights for the player:
@@ -28,14 +31,32 @@ When attacking an enemy with the Sacrificial Sword, there is a chance to convert
   * Only works on mobs
   * Lower chance with higher enemy defense skill and speed
   * Lower chance against enemies with higher HP
+  * Only triggers on direct hits (not on missed attacks)
+
+==== Mechanics ====
+  * The sword emits a red glow that pulses more rapidly as the conversion chance increases
+  * The glow period is inversely proportional to the base conversion chance
+  * Successfully converting an enemy triggers the [[rpd:pet|pet]] creation mechanics
+  * Does not work on enemies that are already pets
 
 ==== Strategy ====
   * Wear no armor or light armor to maximize conversion chances (armor DR reduces success rate)
   * Hero subclasses like Shaman or Necromancer have significantly higher conversion rates
   * Try to weaken enemies before attempting to convert them (lower HP increases chances)
   * Avoid using against fast enemies with high defense
+  * The pulsing glow can indicate the current conversion chance visually
+  * Consider using debuffs to reduce enemy defense before attempting conversion
 
-==== Source Code Reference ====
+==== Related ====
+  * [[rpd:pet|Pets]] - Information about pets created by this weapon
+  * [[rpd:hero_subclasses|Hero Subclasses]] - How different subclasses affect the conversion chance
+  * [[rpd:armor|Armor]] - How armor damage reduction affects conversion chance
+
+==== Source Code ====
   * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/SacrificialSword.java|SacrificialSword.java]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|SacrificialSword strings]]
+  * Russian String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|Russian SacrificialSword strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java#L442-L448|Mob.makePet()]] - Pet creation implementation
+  * JSON Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/weapons/melee/SacrificialSword.json|SacrificialSword.json]]
 
 {{tag> rpd items weapons artifacts melee warden shaman necromancer}}
