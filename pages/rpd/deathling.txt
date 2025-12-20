@@ -1,28 +1,28 @@
-====== Deathling ======
+====== Deathling Mob ======
 
-{{ rpd:images:deathling_sprite.png|Deathling }}
+{{ rpd:images:deathling_mob.png|Deathling }}
 
 ==== Basic Statistics ====
-  * **Type**: Undead minion
-  * **Base Health**: 4 HP (scales with hero level)
-  * **Base Attack Skill**: 4 (scales with hero level and magic skill level)
-  * **Base Defense Skill**: 1 (scales with hero level and magic skill level)
-  * **Damage**: 1-4 (scales with hero level and magic skill level)
-  * **Damage Reduction**: Scales with hero level and magic skill level
+  * **HP**: 4 (base) + hero.lvl + hero.skillLevel()² (scales with hero level and magic skill level)
+  * **Attack Skill**: 4 + hero.lvl + hero.skillLevel()² (scales with hero level and magic skill level)
+  * **Defense Skill**: 1 + hero.lvl + hero.skillLevel()² (scales with hero level and magic skill level)
+  * **Damage**: 1-4 + hero.lvl + hero.skillLevel()² (scales with hero level and magic skill level)
+  * **Damage Reduction**: hero.lvl + hero.skillLevel()² (scales with hero level and magic skill level)
   * **Speed**: 1.1x (faster than average)
   * **Experience**: 0 (no EXP for killing)
   * **Maximum Level**: 32
   * **Flying**: Yes (not affected by ground-based effects)
   * **Carcass Chance**: 0% (no items dropped upon death)
+  * **Undead**: Yes (has undead properties)
 
 ==== Description ====
 Deathlings are undead creatures created through necromantic magic. They serve as loyal followers to the Necromancer and fight alongside them in the dungeon. According to the game description: "The Deathling is a soul of a fallen hero who was unlucky enough to be summoned by a fellow adventurer, who practices necromancy."
 
 ==== Mechanics ====
-  * **Growth**: HP, damage, and defense all scale with the hero's level and magic skill level
-  * **Scaling Formula**: The modifier used to calculate stats is hero.level + hero.skillLevel()*hero.skillLevel()
+  * **Growth Formula**: The modifier used to calculate stats is hero.lvl() + hero.skillLevel()*hero.skillLevel()
   * **First Action**: Stats are adjusted on first action after spawning
   * **Flying**: Deathlings are not affected by ground-based effects like roots or fire
+  * **Owner Reference**: Deathling references its owner (the hero) to scale stats
 
 ==== Summoning ====
   * **Required Resource**: Souls (5 souls per deathling via [[rpd:necromancer_robe|Necromancer Robe]])
@@ -43,8 +43,17 @@ Deathlings are undead creatures created through necromantic magic. They serve as
   * Use their flying ability to navigate dangerous terrain
   * Maintain sufficient souls to consistently summon Deathlings
 
-==== Source Code Reference ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Deathling.java|Deathling.java]]
+==== Content Verification ====
+  * **Information Source:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Deathling.java|Deathling.java]]
+  * **Stats Verification:** Extracted directly from Deathling.java constructor, adjustStats() method and constants
+  * **Effect Descriptions:** Based on code analysis and string resources
+  * **Scaling Formula:** Based on code in adjustStats() method: hero.lvl() + hero.skillLevel()*hero.skillLevel()
+  * **Last Updated:** Verified against current codebase
+
+==== References ====
+  * Java source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Deathling.java|Deathling.java]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L744-L747|String definitions in strings_all.xml]]
+  * Summoning spell: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]]
 
 ==== See Also ====
   * [[rpd:necromancer|Necromancer]] - The class that can summon Deathlings
@@ -53,4 +62,4 @@ Deathlings are undead creatures created through necromantic magic. They serve as
   * [[rpd:necromancer_armor|Bone Armor]] - Allows higher Deathling capacity
   * [[rpd:undead|Undead]] - Category of which Deathlings are a part
 
-{{tag> rpd mobs undead}}
+{{tag> rpd mobs undead necromancer summon}}
