@@ -1,0 +1,79 @@
+====== mr:black_cat_npc_mob ======
+
+==== Entity Kind ====
+```lua
+getEntityKind() == "BlackCatNPC"
+```
+
+==== JSON Configuration ====
+**File**: RemixedDungeon/src/main/assets/mobsDesc/BlackCatNPC.json
+```json
+{
+   "defenseSkill"  :3,
+   "attackSkill"   :8,
+   "exp"           :2,
+   "maxLvl"        :4,
+   "dmgMin"        :1,
+   "dmgMax"        :4,
+   "dr"            :1,
+   "attackDelay"   :1,
+   "ht"            :10,
+   "baseSpeed"     : 1,
+   "spriteDesc"    :"spritesDesc/BlackCat.json",
+   "scriptFile"    :"scripts/npc/BlackCat",
+   "aiState"       :"Passive",
+   "fraction"      :"NEUTRAL",
+   "friendly"      :true,
+   "immortal"      :true
+}
+```
+
+==== Lua Script ====
+**File**: RemixedDungeon/src/main/assets/scripts/npc/BlackCat.lua
+```lua
+local RPD = require "scripts/lib/commonClasses"
+
+local mob = require"scripts/lib/mob"
+
+return mob.init({
+    interact = function(self, chr)
+        self:say("BlackCat_Phrases",math.random(0,2))
+        self:playExtra("sleep")
+    end,
+
+    die = function(self, cause)
+        local hero = RPD.Dungeon.hero
+        hero:STR(math.max(hero:STR()-1,1))
+        hero:getSprite():emitter():burst( RPD.Sfx.ShadowParticle.CURSE, 6 )
+        hero:showStatus( 0xFF0000, RPD.textById("Str_lose"))
+        RPD.playSound( "snd_cursed" )
+    end,
+
+    spawn = function(me, level)
+        RPD.setAi(me,"BlackCat")
+    end,
+
+    actionsList = function(self, chr)
+        return {"pet"}
+    end,
+
+    execute = function(self, chr, action)
+        if action == "pet" then
+            self:say("BlackCat_Phrases",math.random(0,2))
+        end
+    end,
+
+})
+```
+
+==== String Resources ====
+**Key**: BlackCat_Phrases
+**Values**:
+- English: "Prrrrrrr", "Meow...", "Meow!"
+- Russian: "Фрррр", "Мяу...", "Мяу!"
+
+==== Code References ====
+- RemixedDungeon/src/main/assets/mobsDesc/BlackCatNPC.json
+- RemixedDungeon/src/main/assets/scripts/npc/BlackCat.lua
+- RemixedDungeon/src/main/res/values/strings_all.xml
+- RemixedDungeon/src/main/res/values-ru/strings_all.xml
