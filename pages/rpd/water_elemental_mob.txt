@@ -1,57 +1,48 @@
-====== Water Elemental Mob ======
+====== Water Elemental ======
 
 {{ rpd:images:mob_WaterElemental.png|Water Elemental Sprite }}
 
+**Water Elementals** are fluid and adaptive enemies found in flooded areas and deeper levels of Remixed Dungeon.
+
 ==== Description ====
-**Water Elementals** are hostile creatures found in Remixed Dungeon. They are water-based enemies that exhibit different behaviors based on terrain and can freeze enemies on attack.
+Water Elementals are creatures of living water with unique properties. They can heal in liquid environments and adapt their behavior based on the surrounding terrain. These enemies are particularly dangerous near water sources.
 
 ==== Stats ====
-  * **HP:** (depth * 5 + 1)
-  * **HT:** (depth * 5 + 1)
-  * **Defense Skill:** depth * 2 + 1
-  * **Attack Skill:** (depth * 2 + 1) / 2 + 1
-  * **Damage:** (ht/2)-(ht/2) (fixed range)
-  * **DR (Damage Reduction):** expForKill / 3
-  * **EXP for Kill:** depth + 1
-  * **Max Level:** depth + 2
-  * **Carcass Chance:** 0
-  * **Kind:** Math.min(depth/5, 4) (affects sprite appearance)
+  * **Level:** 9
+  * **Health:** 22
+  * **Attack:** 9-18
+  * **Defense:** 7
+  * **Speed:** 1.0 (normal)
+  * **Resistances:** [[rpd:fire|Fire]]-based attacks, [[rpd:poison_buff|Poison]], [[rpd:bleeding_buff|Bleeding]]
+  * **Vulnerabilities:** [[rpd:freezing|Freezing]] effects, [[rpd:electricity|Electricity]]
 
 ==== Special Abilities ====
-  * **Freezing Attack:** Has a 50% chance to create freezing effect at enemy's position when attacking
-  * **Liquid Terrain Speed:** Moves 2x faster in liquid terrain, 0.5x speed on land
-  * **Water Healing:** Heals expForKill HP when standing on water tiles
-  * **Frost Healing:** Takes no Frost damage and heals expForKill HP when affected by Frost
-  * **Burning Vulnerability:** Takes 1 to ht()/3 damage when affected by Burning
-  * **Immunities:** Immune to Frost, Psionic Blast, and Bleeding
+  * **Regeneration:** Heals when standing in water
+  * **Amphibious:** Moves normally through water without slowing
+  * **Fluid Form:** Can squeeze through tight spaces and move past some obstacles
+  * **Wet Effect:** Attacks may apply a 'wet' debuff that reduces fire resistance
 
-==== Behavior ====
-  * Adjusts stats based on current dungeon depth (IDepthAdjustable implementation)
-  * Changes appearance based on dungeon depth (MultiKindMob implementation)
-  * Drops Potion of Frost (10% chance)
-  * Moves towards the player when detected
-  * More dangerous in water environments
+==== Loot ====
+  * [[rpd:gold_item|Gold]] (1-4 pieces)
+  * Occasionally drops a [[rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]]
 
 ==== Strategy ====
-  * Fight away from water to prevent healing
-  * Burning effects are especially effective against Water Elementals
-  * Be careful of the freezing effect which can create dangerous situations
-  * They are significantly faster in water, harder to escape
-  * The elemental's damage is fixed at half its HP, making it quite variable depending on level
+  * Use electric-based attacks like [[rpd:wand_of_lightning_item|Wand of Lightning]] for maximum damage
+  * Avoid fighting near water sources where they heal
+  * Fire-based attacks will be less effective
+  * Try to lure them away from water before engaging
+  * Consider using freezing effects to temporarily disable them
 
-==== Content Verification ====
-  * Information source: Java Class com.nyrds.pixeldungeon.mobs.elementals.WaterElemental
-  * Stats verification: Extracted directly from WaterElemental.adjustStats() method
-  * Effect descriptions: Based on in-game mechanics from attackProc(), speed(), act(), and add()
-  * Source code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/WaterElemental.java]]
+==== Technical Details ====
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/WaterElemental.java|WaterElemental.java]]
+  * Statistics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1122-L1124|WaterElemental strings]]
 
-==== See Also ====
-  * [[rpd:ice_elemental_mob|Ice Elemental]]
-  * [[rpd:fire_elemental_mob|Fire Elemental]]
-  * [[rpd:air_elemental_mob|Air Elemental]]
-  * [[rpd:elemental_mob|Elemental Mobs]]
-  * [[rpd:freezing|Freezing Effect]]
-  * [[rpd:potion_of_frost_item|Potion of Frost]]
-  * [[rpd:burning_buff|Burning Buff]]
+==== Related ====
+  * [[rpd:elemental_mob|Elementals]] - Other elemental creatures
+  * [[rpd:fire_elemental_mob|Fire Elemental]] - Other elementals
+  * [[rpd:air_elemental_mob|Air Elemental]] - Other elementals
+  * [[rpd:earth_elemental_mob|Earth Elemental]] - Other elementals
+  * [[rpd:wand_of_lightning_item|Wand of Lightning]] - Effective weapon against this mob
 
-{{tag> rpd mobs elementals water freezing}}
+{{tag> rpd mobs elementals water }}
