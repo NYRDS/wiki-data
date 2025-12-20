@@ -1,48 +1,67 @@
 ====== Fire Elemental ======
 
-{{ rpd:images:mob_FireElemental.png|Fire Elemental Sprite }}
-
-**Fire Elementals** are dangerous enemies found in the [[rpd:caves_level|Caves]] and [[rpd:halls_level|Halls]] levels of Remixed Dungeon.
+{{ rpd:images:mob_FireElemental.png|Fire Elemental }}
 
 ==== Description ====
-Fire Elementals are blazing creatures of living flame. They attack by striking with their fiery bodies and can set their targets ablaze. These enemies are particularly dangerous in groups as they can quickly overwhelm heroes with burning damage.
+Fire Elementals are blazing creatures of living flame found in the [[rpd:caves|Caves]] and [[rpd:city|City]] levels of Remixed Dungeon. They attack by striking with their fiery bodies and can set their targets ablaze. These enemies are particularly dangerous due to their burning attack and fire immunities.
 
 ==== Stats ====
-  * **Level:** 10
-  * **Health:** 25
-  * **Attack:** 10-20
-  * **Defense:** 8
-  * **Speed:** 1.0 (normal)
-  * **Resistances:** [[rpd:fire|Fire]], [[rpd:paralysis_buff|Paralysis]], [[rpd:root_buff|Roots]], [[rpd:sleep_buff|Sleep]], [[rpd:stun_buff|Stun]]
-  * **Vulnerabilities:** [[rpd:potion_of_frost_item|Frost]]-based attacks
+  * **HP/HT:** 65
+  * **Defense Skill:** 20
+  * **Attack Skill:** 25
+  * **Damage:** 16-20
+  * **Armor (DR):** 5
+  * **EXP for Kill:** 10
+  * **Maximum Level:** 20
+  * **Speed:** Normal
+  * **Type:** Elemental, Flying
+
+==== Immunities ====
+  * [[rpd:fire|Fire]] - Takes no damage from fire sources
+  * [[rpd:burning|Burning]] - Cannot be affected by burning status
+  * [[rpd:wand_of_firebolt_item|Wand of Firebolt]] - Immune to this wand
+  * [[rpd:scroll_of_psionic_blast_item|Scroll of Psionic Blast]] - Immune to this scroll
+  * [[rpd:bleeding_buff|Bleeding]] - Cannot bleed
+  * [[rpd:carcass_drop]] - Does not drop food when killed
 
 ==== Special Abilities ====
-  * **Burning Touch:** Any attack from a Fire Elemental inflicts the [[rpd:burning_buff|Burning]] status effect
-  * **Fire Immunity:** Completely immune to fire-based attacks and damage
-  * **Environmental Interaction:** Will spread fire to flammable terrain when moving
+  * **Burning Attack:** On successful hit, has a 50% chance to inflict [[rpd:burning|Burning]] on the target
+  * **Burning Healing:** When affected by Burning, will heal a random amount up to 4x their max HP (1-260 HP)
+  * **Frost Vulnerability:** When affected by Frost, will take damage up to 2/3 of their max HP (1-43 damage)
+  * **Flying:** Can fly over terrain obstacles
 
-==== Loot ====
-  * [[rpd:gold_item|Gold]] (1-5 pieces)
-  * Occasionally drops a [[rpd:potion_of_experience_item|Potion of Experience]]
+==== Location ====
+Fire Elementals can typically be found in:
+  * [[rpd:caves|Caves]] (levels 13-14) - 0.02 chance on each level
+  * [[rpd:city|City]] (levels 16-19) - Common enemy type on all city levels
+
+==== Drops ====
+  * [[rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] (10% chance)
 
 ==== Strategy ====
-  * Use [[rpd:potion_of_frost_item|Potion of Frost]] or [[rpd:wand_of_frost_item|Wand of Frost]] for effective damage
+  * Use [[rpd:wand_of_frost_item|Wand of Frost]] or frost-based attacks for effective damage
   * Keep your distance and use ranged attacks when possible
-  * Avoid fighting near flammable terrain to prevent fire spreading
+  * Be prepared for their 50% chance to inflict burning on hit
   * Don't allow these enemies to surround you as multiple burning effects can be lethal
-  * Be cautious of the burning effect spreading to your items
+  * Frost-based attacks are especially effective against them due to vulnerability mechanic
 
-==== Technical Details ====
-  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/FireElemental.java|FireElemental.java]]
-  * Statistics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L15-L20|Bestiary.json]]
+==== Content Verification ====
+  * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/FireElemental.java|FireElemental.java]]
+  * Stats verification: Extracted directly from FireElemental.java class properties
+  * Special abilities: Based on implementation in FireElemental.java
+  * Last updated: December 2025, source: Remixed Dungeon 1.9.3
+
+==== Source Code ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/FireElemental.java|FireElemental.java]]
   * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1126-L1128|FireElemental strings]]
 
 ==== Related ====
   * [[rpd:elemental_mob|Elementals]] - Other elemental creatures
-  * [[rpd:air_elemental_mob|Air Elemental]] - Other elementals
-  * [[rpd:earth_elemental_mob|Earth Elemental]] - Other elementals
-  * [[rpd:water_elemental_mob|Water Elemental]] - Other elementals
+  * [[rpd:ice_elemental_mob|Ice Elemental]] - Frost counterpart
+  * [[rpd:earth_elemental_mob|Earth Elemental]] - Earth counterpart
+  * [[rpd:air_elemental_mob|Air Elemental]] - Air counterpart
+  * [[rpd:water_elemental_mob|Water Elemental]] - Water counterpart
   * [[rpd:burning_buff|Burning]] - Status effect caused by this mob
-  * [[rpd:ice_elemental_mob|Ice Elemental]] - Opposite elemental creature
+  * [[rpd:fire|Fire]] - Element they're associated with
 
 {{tag> rpd mobs elementals fire }}
