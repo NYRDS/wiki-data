@@ -1,52 +1,48 @@
 ====== Gladiator Armor ======
 
-{{ rpd:images:item_GladiatorArmor.png|Gladiator Armor }}
+{{ rpd:images:gladiatorarmor_sprite.png|Gladiator Armor }}
 
-Gladiator Armor is the class-specific armor obtained by using an Armor Kit on any regular armor for the Gladiator subclass in Remixed Dungeon.
+**Gladiator Armor** is the upgraded form of [[rpd:warrior_armor|Warrior Armor]] for the Warrior class, obtained when the Warrior subclass is unlocked and equipped.
 
-==== Acquisition ====
-  * Use an [[rpd:armorkit|Armor Kit]] on any regular armor while playing as a character who has chosen the Gladiator subclass
-  * Transforms the base armor into Gladiator Armor with special properties
-  * The armor retains all properties of the original armor (defense, enchantment, level) but provides subclass-specific abilities
+==== Overview ====
+Gladiator Armor is the advanced form of [[rpd:warrior_armor|Warrior Armor]] that becomes available when the Warrior character chooses the Gladiator subclass. It enhances the Heroic Leap ability of the Warrior Armor and provides additional combat benefits.
 
-==== Special Properties ====
-  * Inherits all properties of the original armor (defense value, enchantment, level)
-  * Provides the Leap ability of Warrior Armor
-  * Leap ability: Allows the wearer to jump to a targeted location, stunning adjacent enemies for 3 turns
-  * Requires skill points to use special ability (skill point cost = max skill points / 3 + 1)
-  * Exclusive to the Gladiator subclass - can only be equipped by the Gladiator subclass
+==== Special Ability: Cleave ====
+  * **Effect**: When attacking an enemy, the Gladiator's weapon can potentially hit additional nearby enemies
+  * **Mechanism**: After a successful hit, there's a chance to strike another adjacent enemy with reduced damage (50% of the original damage)
+  * **Chain**: The cleaving attack can continue to another adjacent target, with damage reducing by half each time
+  * **Limitation**: Cannot hit the same target twice in one cleaving sequence
+  * **Chance**: The chance to cleave increases with armor level
 
-==== Usage ====
-  * Essential armor for maximizing the effectiveness of the Gladiator subclass
-  * Should be crafted as soon as possible after choosing the Gladiator subclass
-  * Allows full utilization of subclass abilities
-  * Obtained by using the Armor Kit (found in City level, dropped by King boss) on any regular armor
+==== Creation ====
+  * Requires: [[rpd:warrior_armor|Warrior Armor]] (crafted with Armor Kit) + Warrior subclass selection
+  * Character: Only available to Warrior characters who select the Gladiator subclass
+  * Method: Automatically upgrades Warrior Armor when Gladiator subclass is chosen
 
-==== Special Ability: Leap ====
-  * Allows jumping to a targeted location
-  * Stuns adjacent enemies for 3 turns upon landing (as defined in [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WarriorArmor.java#L11|WarriorArmor.java:11]])
-  * Requires skill points to activate
-  * Can be used to reposition in combat or escape dangerous situations
-  * Action: "SPECIAL" when equipped
+==== Benefits ====
+  * Maintains the Heroic Leap ability of Warrior Armor
+  * Adds the powerful Cleave ability for area combat
+  * Excellent for fighting groups of enemies
+  * Combines mobility and area damage effectively
 
-==== Code Reference ====
-  * Implementation: [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GladiatorArmor.java|GladiatorArmor.java]]
-  * Parent Class: [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WarriorArmor.java|WarriorArmor.java]] - Base warrior armor with leap ability
-  * Class Armor Base: [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] - Class armor base implementation
-  * Armor Kit: [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java|ArmorKit.java]] - Armor kit implementation that transforms regular armor to class armor
-  * Subclass Check: [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GladiatorArmor.java#L20-L25|GladiatorArmor.java:20-25]] - Verification of Gladiator subclass
-  * Special Ability: [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WarriorArmor.java#L25-L32|WarriorArmor.java:25-32]] - Special action implementation
-  * String Resources: [[code:RemixedDungeon/src/main/res/values/strings_all.xml#L2015-L2019|WarriorArmor strings]] - Name, description, and action text
+==== Strategy ====
+Gladiator Armor is particularly effective when fighting groups of enemies:
+  * Position yourself adjacent to multiple enemies to maximize cleave potential
+  * Use Heroic Leap to position yourself optimally for cleaving
+  * The higher the armor level, the higher the chance to cleave
+  * Combine with high-damage weapons to maximize cleave effectiveness
 
-==== Related ====
-  * [[rpd:armorkit|Armor Kit]] - Item used to create class armor
-  * [[rpd:warrior_armor|Warrior Armor]] - Base armor with leap ability
-  * [[rpd:warrior_class|Warrior Class]] - Base class for Gladiator subclass
+==== Data Source References ====
+  * **Java Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GladiatorArmor.java|GladiatorArmor.java]] - The GladiatorArmor class
+  * **Heroic Leap Reference**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WarriorArmor.java|WarriorArmor.java]] - Base Heroic Leap implementation
+  * **String Resources**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2015-L2019|WarriorArmor strings]] - Name and description strings (shared with Warrior Armor)
+  * **Subclass Reference**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass definitions
 
-==== Notes ====
-  * Part of the subclass identity system in Remixed Dungeon
-  * Class armors represent the unique nature of each subclass
-  * Cannot be worn by characters who haven't unlocked the appropriate subclass
-  * Inherits the base Warrior armor special ability
+==== Related Items ====
+  * [[rpd:warrior_armor|Warrior Armor]] - Base armor form
+  * [[rpd:warrior_class|Warrior]] - Hero class
+  * [[rpd:berserker_armor|Berserker Armor]] - Alternative Warrior subclass armor
+  * [[rpd:armor|Armor]] - General armor information
+  * [[rpd:subclasses|Subclasses]] - Information about subclasses
 
-{{tag> rpd items armor gladiator warrior}}
+{{tag> rpd items armor warrior subclass gladiator}}
