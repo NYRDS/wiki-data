@@ -1,0 +1,160 @@
+
+<h1 class="sectionedit1" id="chaos_bow">Chaos Bow</h1>
+<div class="level1">
+<div class="tags"><span>
+	<a href="https://www.nyrds.net/doku.php?id=tag:rpd&amp;do=showtag&amp;tag=rpd" class="wikilink1" title="tag:rpd" rel="tag">rpd</a>,
+	<a href="https://www.nyrds.net/doku.php?id=tag:items&amp;do=showtag&amp;tag=items" class="wikilink1" title="tag:items" rel="tag">items</a>
+</span></div>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Chaos Bow&quot;,&quot;hid&quot;:&quot;chaos_bow&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-45&quot;} -->
+<h3 class="sectionedit2" id="description">Description</h3>
+<div class="level3">
+
+<p>
+A dreadful Bow filled with the power of Chaos. Each arrow it shoots will carry piece of chaos energy within it. But if you miss… Based on source code: <code>com.nyrds.pixeldungeon.items.chaos.ChaosBow.java</code>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Description&quot;,&quot;hid&quot;:&quot;description&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;46-274&quot;} -->
+<h3 class="sectionedit3" id="stats">Stats</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>Damage:</strong> 1-? (damage factor increases with level: 1 + level * 0.3)</div>
+</li>
+<li class="level1"><div class="li"> <strong>Durability:</strong> Not applicable (not upgradable)</div>
+</li>
+<li class="level1"><div class="li"> <strong>Strength Required:</strong> 13 points (Tier 3 bow)</div>
+</li>
+<li class="level1"><div class="li"> <strong>Tier:</strong> 3 bow</div>
+</li>
+<li class="level1"><div class="li"> <strong>Cursed:</strong> Can be cursed like other weapons</div>
+</li>
+<li class="level1"><div class="li"> <strong>Accuracy Factor:</strong> 1.0</div>
+</li>
+<li class="level1"><div class="li"> <strong>Speed Factor:</strong> 1.0</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Stats&quot;,&quot;hid&quot;:&quot;stats&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;275-591&quot;} -->
+<h3 class="sectionedit4" id="special_properties">Special Properties</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>Chaos Energy:</strong> Each arrow shot carries chaos energy</div>
+</li>
+<li class="level1"><div class="li"> <strong>Auto-Upgrading:</strong> Upgrades itself when wearer deals damage to enemies</div>
+</li>
+<li class="level1"><div class="li"> <strong>Charge System:</strong> Uses a charge system to control upgrade rate (requires more charges as level increases)</div>
+</li>
+<li class="level1"><div class="li"> <strong>Upgrade Decay:</strong> May lose levels if worn at level 6+ and takes damage</div>
+</li>
+<li class="level1"><div class="li"> <strong>Not Upgradable:</strong> Cannot be manually upgraded with Scroll of Upgrade</div>
+</li>
+<li class="level1"><div class="li"> <strong>Chaos Burst:</strong> When missing a target, causes chaos effects at the user&#039;s position</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Special Properties&quot;,&quot;hid&quot;:&quot;special_properties&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;592-1106&quot;} -->
+<h3 class="sectionedit5" id="mechanics">Mechanics</h3>
+<div class="level3">
+
+<p>
+Chaos Bow has unique auto-upgrading mechanics based on code implementation:
+</p>
+<ul>
+<li class="level1"><div class="li"> When wearer deals damage to enemies, the bow gains a charge</div>
+</li>
+<li class="level1"><div class="li"> When charges reach a threshold (based on current level), bow upgrades (+1 level)</div>
+</li>
+<li class="level1"><div class="li"> Charge threshold increases with bow level (calculated as: 5 * level^1.5)</div>
+</li>
+<li class="level1"><div class="li"> When wearer takes damage and bow level is 6+, it loses a level and resets charges/enchantments</div>
+</li>
+<li class="level1"><div class="li"> Image changes based on level (level 0-2: image 0, level 3-5: image 1, etc.)</div>
+</li>
+<li class="level1"><div class="li"> Damage factor increases with level (1 + level * 0.3)</div>
+</li>
+<li class="level1"><div class="li"> On miss, creates chaotic effects at user&#039;s position (chaos mark with gas effects)</div>
+</li>
+<li class="level1"><div class="li"> <code>Source code verification: ownerDoesDamage(), ownerTakesDamage(), and onMiss() methods</code></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Mechanics&quot;,&quot;hid&quot;:&quot;mechanics&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1107-1845&quot;} -->
+<h3 class="sectionedit6" id="strategy">Strategy</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Chaos Bow provides adaptive damage that improves as you fight enemies</div>
+</li>
+<li class="level1"><div class="li"> More effective in aggressive playstyles where you deal frequent damage</div>
+</li>
+<li class="level1"><div class="li"> Be cautious when taking damage at higher levels, as it causes degradation</div>
+</li>
+<li class="level1"><div class="li"> Cannot be manually upgraded, so rely on combat to improve it</div>
+</li>
+<li class="level1"><div class="li"> Higher levels provide better damage but require more charges to upgrade</div>
+</li>
+<li class="level1"><div class="li"> Be careful when missing shots, as it causes chaos effects at your position</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Strategy&quot;,&quot;hid&quot;:&quot;strategy&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1846-2312&quot;} -->
+<h3 class="sectionedit7" id="obtaining">Obtaining</h3>
+<div class="level3">
+
+<p>
+Chaos Bow can be obtained through:
+</p>
+<ul>
+<li class="level1"><div class="li"> As a rare drop from chaos-themed enemies or events (e.g., via ChaosCrystal generator)</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:chaos_crystal" class="wikilink1" title="rpd:chaos_crystal" data-wiki-id="rpd:chaos_crystal">Chaos Crystal</a> may have crafting applications (source code suggests it can be generated via ChaosCrystal selector)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Obtaining&quot;,&quot;hid&quot;:&quot;obtaining&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;2313-2598&quot;} -->
+<h3 class="sectionedit8" id="content_verification">Content Verification</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Information source: <code>com.nyrds.pixeldungeon.items.chaos.ChaosBow.java</code></div>
+</li>
+<li class="level1"><div class="li"> Stats verification: Extracted directly from ChaosBow class properties and dmgFactor() method</div>
+</li>
+<li class="level1"><div class="li"> Mechanics verification: Based on ownerDoesDamage(), ownerTakesDamage(), onMiss(), and charge management methods</div>
+</li>
+<li class="level1"><div class="li"> Last updated: December 2025</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Content Verification&quot;,&quot;hid&quot;:&quot;content_verification&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;2599-2952&quot;} -->
+<h3 class="sectionedit9" id="see_also">See Also</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:chaos_set" class="wikilink1" title="rpd:chaos_set" data-wiki-id="rpd:chaos_set">Chaos Set</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:chaos_crystal" class="wikilink1" title="rpd:chaos_crystal" data-wiki-id="rpd:chaos_crystal">Chaos Crystal</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:chaos_sword" class="wikilink1" title="rpd:chaos_sword" data-wiki-id="rpd:chaos_sword">Chaos Sword</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:chaos_staff" class="wikilink1" title="rpd:chaos_staff" data-wiki-id="rpd:chaos_staff">Chaos Staff</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:chaos_armor" class="wikilink1" title="rpd:chaos_armor" data-wiki-id="rpd:chaos_armor">Chaos Armor</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:chaos_shield" class="wikilink1" title="rpd:chaos_shield" data-wiki-id="rpd:chaos_shield">Chaos Shield</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:items" class="wikilink1" title="rpd:items" data-wiki-id="rpd:items">Items</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:weapons" class="wikilink1" title="rpd:weapons" data-wiki-id="rpd:weapons">Weapons</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:chaos_common" class="wikilink2" title="rpd:chaos_common" rel="nofollow" data-wiki-id="rpd:chaos_common">Chaos Common</a> (chaos effects implementation)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;See Also&quot;,&quot;hid&quot;:&quot;see_also&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;2953-&quot;} -->

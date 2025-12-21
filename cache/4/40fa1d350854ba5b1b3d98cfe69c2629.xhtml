@@ -1,0 +1,261 @@
+
+<h1 class="sectionedit1" id="platform_abstraction_system_for_modders">Platform Abstraction System for Modders</h1>
+<div class="level1">
+
+<p>
+The Remixed Dungeon project uses a sophisticated platform abstraction system that allows the game to run on multiple platforms (Android, Desktop, Web) and distribution channels (Google Play, F-Droid, ruStore, etc.) while sharing the majority of core game logic. Understanding this system is crucial for developing cross-platform mods.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Platform Abstraction System for Modders&quot;,&quot;hid&quot;:&quot;platform_abstraction_system_for_modders&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-391&quot;} -->
+<h2 class="sectionedit2" id="overview">Overview</h2>
+<div class="level2">
+
+<p>
+The platform abstraction system separates platform-specific functionality from the core game code using:
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Interface-based abstraction</strong> - Common interfaces and base classes that define contracts for platform-specific functionality</div>
+</li>
+<li class="level1"><div class="li"> <strong>Class replacement</strong> - Different implementations of the same class for different platforms</div>
+</li>
+<li class="level1"><div class="li"> <strong>Build system integration</strong> - Platform-specific code inclusion at build time</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Overview&quot;,&quot;hid&quot;:&quot;overview&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;392-829&quot;} -->
+<h2 class="sectionedit3" id="key_concepts_for_modders">Key Concepts for Modders</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Key Concepts for Modders&quot;,&quot;hid&quot;:&quot;key_concepts_for_modders&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;830-867&quot;} -->
+<h3 class="sectionedit4" id="market_separation">Market Separation</h3>
+<div class="level3">
+
+<p>
+The game uses product flavors to support different markets:
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Google Play</strong> - Full analytics and crash reporting through Firebase</div>
+</li>
+<li class="level1"><div class="li"> <strong>F-Droid</strong> - No analytics, stub implementations to meet F-Droid requirements</div>
+</li>
+<li class="level1"><div class="li"> <strong>ruStore</strong> - Russian market specific features</div>
+</li>
+<li class="level1"><div class="li"> <strong>Desktop</strong> - No analytics, file-based storage</div>
+</li>
+<li class="level1"><div class="li"> <strong>Web</strong> - Browser-based functionality</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Market Separation&quot;,&quot;hid&quot;:&quot;market_separation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;868-1258&quot;} -->
+<h3 class="sectionedit5" id="eventcollector_example">EventCollector Example</h3>
+<div class="level3">
+
+<p>
+One of the most important examples for modders is the <strong>EventCollector</strong> class, which handles analytics and crash reporting:
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Core Usage</strong> (in your mod code):</div>
+</li>
+</ul>
+
+<p>
+    <pre class="code java">    <span class="kw1">import</span> <span class="co2">com.nyrds.platform.EventCollector</span><span class="sy0">;</span>
+&nbsp;
+    <span class="co1">// Used throughout your mod</span>
+    EventCollector.<span class="me1">logEvent</span><span class="br0">&#40;</span><span class="st0">&quot;mod_started&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    EventCollector.<span class="me1">logException</span><span class="br0">&#40;</span>e<span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;</pre>
+
+</p>
+<ul>
+<li class="level1 node"><div class="li"> <strong>Market-Specific Implementations</strong>:</div>
+<ul>
+<li class="level2"><div class="li"> <code>src/googlePlay/java/com/nyrds/platform/EventCollector.java</code> - Full Firebase implementation</div>
+</li>
+<li class="level2"><div class="li"> <code>src/fdroid/java/com/nyrds/platform/EventCollector.java</code> - Empty stub implementation</div>
+</li>
+<li class="level2"><div class="li"> <code>src/ruStore/java/com/nyrds/platform/EventCollector.java</code> - Minimal logging implementation</div>
+</li>
+<li class="level2"><div class="li"> <code>src/libgdx/java/com/nyrds/platform/EventCollector.java</code> - Desktop implementation</div>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+The build system automatically selects the correct implementation based on the selected flavor.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;EventCollector Example&quot;,&quot;hid&quot;:&quot;eventcollector_example&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1259-2170&quot;} -->
+<h3 class="sectionedit6" id="preferences_system">Preferences System</h3>
+<div class="level3">
+
+<p>
+The preferences system is another important abstraction:
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Android</strong> - Uses encrypted SharedPreferences</div>
+</li>
+<li class="level1"><div class="li"> <strong>Desktop</strong> - Uses HJSON file-based storage</div>
+</li>
+<li class="level1"><div class="li"> <strong>Web</strong> - Uses browser localStorage</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Preferences System&quot;,&quot;hid&quot;:&quot;preferences_system&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:6,&quot;range&quot;:&quot;2171-2398&quot;} -->
+<h2 class="sectionedit7" id="creating_platform-aware_mods">Creating Platform-Aware Mods</h2>
+<div class="level2">
+
+<p>
+When creating mods that need platform-specific features:
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Creating Platform-Aware Mods&quot;,&quot;hid&quot;:&quot;creating_platform-aware_mods&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:7,&quot;range&quot;:&quot;2399-2498&quot;} -->
+<h3 class="sectionedit8" id="use_platform_abstractions">1. Use Platform Abstractions</h3>
+<div class="level3">
+
+<p>
+Always use the existing platform abstraction classes rather than platform-specific APIs directly:
+</p>
+
+<p>
+<pre class="code java"><span class="co1">// Good - uses platform abstraction</span>
+<span class="kw1">import</span> <span class="co2">com.nyrds.platform.storage.Preferences</span><span class="sy0">;</span>
+&nbsp;
+Preferences.<span class="me1">INSTANCE</span>.<span class="me1">put</span><span class="br0">&#40;</span><span class="st0">&quot;music_volume&quot;</span>, <span class="nu0">0.8</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="kw4">float</span> volume <span class="sy0">=</span> Preferences.<span class="me1">INSTANCE</span>.<span class="me1">getFloat</span><span class="br0">&#40;</span><span class="st0">&quot;music_volume&quot;</span>, 1.0f<span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// Avoid - platform-specific APIs</span>
+SharedPreferences prefs <span class="sy0">=</span> context.<span class="me1">getSharedPreferences</span><span class="br0">&#40;</span>...<span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// Android-only</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;1. Use Platform Abstractions&quot;,&quot;hid&quot;:&quot;use_platform_abstractions&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:8,&quot;range&quot;:&quot;2499-2969&quot;} -->
+<h3 class="sectionedit9" id="check_platform_capabilities">2. Check Platform Capabilities</h3>
+<div class="level3">
+
+<p>
+For complex platform-specific functionality, you can check which platform you&#039;re on:
+</p>
+
+<p>
+<pre class="code java"><span class="kw1">import</span> <span class="co2">com.nyrds.platform.PlatformSupport</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">if</span><span class="br0">&#40;</span>PlatformSupport.<span class="me1">isAndroid</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="co1">// Android-specific code</span>
+<span class="br0">&#125;</span> <span class="kw1">else</span> <span class="kw1">if</span><span class="br0">&#40;</span>PlatformSupport.<span class="me1">isDesktop</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="co1">// Desktop-specific code</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;2. Check Platform Capabilities&quot;,&quot;hid&quot;:&quot;check_platform_capabilities&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:9,&quot;range&quot;:&quot;2970-3297&quot;} -->
+<h3 class="sectionedit10" id="add_platform-specific_implementations">3. Add Platform-Specific Implementations</h3>
+<div class="level3">
+
+<p>
+If your mod needs platform-specific functionality, create the abstraction in your mod the same way the main game does:
+</p>
+
+<p>
+1. Define the interface or abstract class in your shared code
+2. Implement platform-specific versions in respective flavor directories
+3. Use the same fully-qualified class name for all implementations
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;3. Add Platform-Specific Implementations&quot;,&quot;hid&quot;:&quot;add_platform-specific_implementations&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:10,&quot;range&quot;:&quot;3298-3672&quot;} -->
+<h2 class="sectionedit11" id="cross-platform_testing">Cross-Platform Testing</h2>
+<div class="level2">
+
+<p>
+When developing mods, test on multiple platforms if possible, particularly:
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Android Google Play</strong> - Full feature set</div>
+</li>
+<li class="level1"><div class="li"> <strong>Android F-Droid</strong> - No analytics, may have different feature restrictions</div>
+</li>
+<li class="level1"><div class="li"> <strong>Desktop</strong> - Different storage and input methods</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Cross-Platform Testing&quot;,&quot;hid&quot;:&quot;cross-platform_testing&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:11,&quot;range&quot;:&quot;3673-3967&quot;} -->
+<h2 class="sectionedit12" id="common_platform_abstractions">Common Platform Abstractions</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Common Platform Abstractions&quot;,&quot;hid&quot;:&quot;common_platform_abstractions&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:12,&quot;range&quot;:&quot;3968-4009&quot;} -->
+<h3 class="sectionedit13" id="storage">Storage</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>Preferences</strong> - Key-value storage</div>
+</li>
+<li class="level1"><div class="li"> <strong>FileSystem</strong> - File operations with SAF support on Android</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Storage&quot;,&quot;hid&quot;:&quot;storage&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:13,&quot;range&quot;:&quot;4010-4133&quot;} -->
+<h3 class="sectionedit14" id="audio">Audio</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>MusicManager</strong> - Background music</div>
+</li>
+<li class="level1"><div class="li"> <strong>Sample</strong> - Sound effects</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Audio&quot;,&quot;hid&quot;:&quot;audio&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:14,&quot;range&quot;:&quot;4134-4221&quot;} -->
+<h3 class="sectionedit15" id="analytics">Analytics</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>EventCollector</strong> - Logging events and exceptions</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Analytics&quot;,&quot;hid&quot;:&quot;analytics&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:15,&quot;range&quot;:&quot;4222-4297&quot;} -->
+<h3 class="sectionedit16" id="input">Input</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>Touchscreen</strong> - Touch and mouse input abstraction</div>
+</li>
+<li class="level1"><div class="li"> <strong>Keys</strong> - Keyboard input abstraction</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Input&quot;,&quot;hid&quot;:&quot;input&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:16,&quot;range&quot;:&quot;4298-4412&quot;} -->
+<h2 class="sectionedit17" id="best_practices_for_modders">Best Practices for Modders</h2>
+<div class="level2">
+<ol>
+<li class="level1"><div class="li"> Always use the existing platform abstraction classes</div>
+</li>
+<li class="level1"><div class="li"> Test your mod on different platform flavors when possible</div>
+</li>
+<li class="level1"><div class="li"> Use stub implementations in F-Droid flavor to comply with privacy requirements</div>
+</li>
+<li class="level1"><div class="li"> Follow the package structure used by the main game</div>
+</li>
+<li class="level1"><div class="li"> Don&#039;t make assumptions about platform-specific behavior</div>
+</li>
+</ol>
+
+<p>
+Understanding the platform abstraction system will help you create mods that work across all platforms and distribution channels where Remixed Dungeon is available.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Best Practices for Modders&quot;,&quot;hid&quot;:&quot;best_practices_for_modders&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:17,&quot;range&quot;:&quot;4413-&quot;} -->

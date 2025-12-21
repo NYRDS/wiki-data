@@ -1,43 +1,23 @@
 ====== Poison Enchantment ======
 
-{{ rpd:images:item_Sword.png?64|Poison Enchanted Weapon }}
+{{ rpd:images:enchant_poison.png|Poison Enchantment }}
 
-The **Poison Enchantment** is a weapon enchantment in Remixed Dungeon that has a chance to apply the [[rpd:poison|Poison]] status effect to enemies when they are hit by the weapon.
-
-==== Effect ====
-When attacking an enemy, the Poison Enchantment has a chance to apply the Poison status effect:
-  * **Level 0:** 33% chance to poison for (level + 1) turns
-  * **Level 1:** 50% chance to poison for (level + 1) turns  
-  * **Level 2:** 60% chance to poison for (level + 1) turns
-  * Higher levels increase both the chance and duration of poisoning
+==== Description ====
+The Poison enchantment has a chance to poison enemies when they are hit by the weapon. Poisoned enemies take damage over time.
 
 ==== Mechanics ====
-  * The poison duration is affected by the target's resistance (e.g., from [[rpd:ring_of_elements_item|Ring of Elements]])
-  * The effect applies to both melee and ranged weapons
-  * Multiple applications refresh the poison duration rather than stacking
-  * Poison causes (time remaining / 3) + 1 damage per turn
+- The chance to poison an enemy is based on the weapon's level
+- When triggered, applies the [[rpd:poison_buff|Poison]] status effect for several turns
+- Poison damage is dealt at the start of the poisoned creature's turn
+- Particularly effective against enemies with high HP
 
-==== Application ====
-  * Applied randomly when upgrading weapons with a [[rpd:scroll_of_weapon_upgrade|Scroll of Weapon Upgrade]]
-  * Can appear on any weapon type (melee, ranged, thrown)
-  * Higher-level weapons will have stronger enchantment effects
+==== Source Code ====
+- Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Poison.java|Poison.java]]
+- The effect is applied in the proc() method with probability increasing with weapon level
 
-==== Strategy ====
-  * Particularly effective on high-attack-speed weapons to consistently apply poison
-  * Works well with weapons that have lower base damage but good enchantment potential
-  * Effective against enemies that take time to defeat, as they'll take continuous damage
-  * Can be especially powerful in groups of enemies where they might spread poison to each other
-  * Synergizes well with other DoT (damage over time) effects
+==== See Also ====
+- [[rpd:poison_buff|Poison Buff]] - Status effect caused by this enchantment
+- [[rpd:enchantments|Enchantments]] - List of all weapon enchantments
+- [[rpd:weapons|Weapons]] - Equipment that can have enchantments
 
-==== Related ====
-  * [[rpd:enchantments|Enchantments]] - List of all weapon enchantments
-  * [[rpd:poison|Poison]] - The status effect applied by this enchantment
-  * [[rpd:weapons|Weapons]] - Equipment that can receive enchantments
-  * [[rpd:scroll_of_weapon_upgrade|Scroll of Weapon Upgrade]] - Used to apply enchantments
-
-==== Content Verification ====
-  * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Poison.java|Poison.java]]
-  * Mechanics verified directly from source code
-  * Last updated: December 2025
-
-{{tag> rpd enchantments poison weapons}}
+{{tag> rpd items enchantments poison}}

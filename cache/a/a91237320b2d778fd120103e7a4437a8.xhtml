@@ -1,0 +1,789 @@
+
+<h1 class="sectionedit1" id="creating_custom_mobs_with_json_and_lua">Creating Custom Mobs with JSON and Lua</h1>
+<div class="level1">
+
+<p>
+This guide shows how to create completely new creatures in Remixed Dungeon without any Java coding. You&#039;ll learn to use JSON configuration and Lua scripting to define new enemies, NPCs, and other creatures.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Creating Custom Mobs with JSON and Lua&quot;,&quot;hid&quot;:&quot;creating_custom_mobs_with_json_and_lua&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-262&quot;} -->
+<h2 class="sectionedit2" id="mob_basics">Mob Basics</h2>
+<div class="level2">
+
+<p>
+Every mob in Remixed Dungeon is defined by:
+</p>
+<ul>
+<li class="level1"><div class="li"> A JSON file that describes its stats and properties</div>
+</li>
+<li class="level1"><div class="li"> Optional Lua scripts that define special behaviors</div>
+</li>
+<li class="level1"><div class="li"> An image file for its sprite</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Mob Basics&quot;,&quot;hid&quot;:&quot;mob_basics&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;263-475&quot;} -->
+<h2 class="sectionedit3" id="simple_mobcustom_enemy">Simple Mob: Custom Enemy</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Simple Mob: Custom Enemy&quot;,&quot;hid&quot;:&quot;simple_mobcustom_enemy&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;476-513&quot;} -->
+<h3 class="sectionedit4" id="step_1create_the_mob_json">Step 1: Create the Mob JSON</h3>
+<div class="level3">
+
+<p>
+Create <code>actors/mobs/custom_rat.json</code>:
+</p>
+
+<p>
+<pre class="code json">{
+  &quot;class&quot;: &quot;com.watabou.pixeldungeon.actors.mobs.Rat&quot;,
+  &quot;name:en&quot;: &quot;Poison Rat&quot;,
+  &quot;name:ru&quot;: &quot;Ядовитая крыса&quot;,
+  &quot;desc:en&quot;: &quot;A larger-than-normal rat with a sickly green coat and needle-sharp teeth. It bites with venomous intent.&quot;,
+  &quot;desc:ru&quot;: &quot;Больше обычной крысы с болезненно-зеленой шерстью и острыми как иглы зубами. Кусает с ядовитым намерением.&quot;,
+  &quot;imageIndex&quot;: 7,
+  &quot;HP&quot;: 15,
+  &quot;exp&quot;: 3,
+  &quot;damageMin&quot;: 4,
+  &quot;damageMax&quot;: 8,
+  &quot;defenseSkill&quot;: 4,
+  &quot;properties&quot;: [&quot;hostile&quot;, &quot;small&quot;],
+  &quot;loot&quot;: &quot;com.watabou.pixeldungeon.items.potions.PotionOfToxicGas&quot;,
+  &quot;lootChance&quot;: 0.2,
+  &quot;script&quot;: &quot;actors/mobs/poison_rat.lua&quot;,
+  &quot;onAttack&quot;: &quot;poisonBite&quot;,
+  &quot;onDeath&quot;: &quot;toxicCloud&quot;
+}</pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Step 1: Create the Mob JSON&quot;,&quot;hid&quot;:&quot;step_1create_the_mob_json&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;514-1400&quot;} -->
+<h3 class="sectionedit5" id="step_2create_the_lua_script">Step 2: Create the Lua Script</h3>
+<div class="level3">
+
+<p>
+Create <code>actors/mobs/poison_rat.lua</code>:
+</p>
+
+<p>
+<pre class="code lua"><span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> mob <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/mob&quot;</span>
+&nbsp;
+<span class="kw1">return</span> mob<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    spawn <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> level<span class="br0">&#41;</span>
+        <span class="co1">-- Called when the mob is spawned</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;A poison rat appears!&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    <span class="co1">-- Called when the mob attacks</span>
+    attackProc <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> enemy<span class="sy0">,</span> damage<span class="br0">&#41;</span>
+        <span class="co1">-- Calculate and deal damage</span>
+        <span class="kw1">local</span> damage <span class="sy0">=</span> <span class="kw3">math.random</span><span class="br0">&#40;</span><span class="nu0">1</span><span class="sy0">,</span> <span class="nu0">4</span><span class="br0">&#41;</span>  <span class="co1">-- Example damage calculation</span>
+        enemy<span class="sy0">:</span>damage<span class="br0">&#40;</span>damage<span class="sy0">,</span> self<span class="br0">&#41;</span>  <span class="co1">-- Apply damage, source is mob</span>
+&nbsp;
+        <span class="co1">-- 30% chance to apply poison</span>
+        <span class="kw1">if</span> <span class="kw3">math.random</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">&lt;</span> <span class="nu0">0.3</span> <span class="kw1">then</span>
+            RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The poison rat's bite poisons you!&quot;</span><span class="br0">&#41;</span>
+            RPD<span class="sy0">.</span>affectBuff<span class="br0">&#40;</span>enemy<span class="sy0">,</span> RPD<span class="sy0">.</span>Buffs<span class="sy0">.</span>Poison<span class="sy0">,</span> <span class="nu0">5</span><span class="br0">&#41;</span> <span class="co1">-- Apply poison for 5 turns</span>
+        <span class="kw1">end</span>
+        <span class="kw1">return</span> damage
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    die <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> cause<span class="br0">&#41;</span>
+        <span class="co1">-- Called when the mob dies</span>
+        <span class="co1">-- Create a toxic gas cloud at the mob's position</span>
+        <span class="kw1">local</span> pos <span class="sy0">=</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="co1">-- In practice, you would use game mechanics to create gas clouds</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The poison rat explodes in a cloud of toxic gas!&quot;</span><span class="br0">&#41;</span>
+&nbsp;
+        <span class="co1">-- Visual effect</span>
+        RPD<span class="sy0">.</span>topEffect<span class="br0">&#40;</span>pos<span class="sy0">,</span> <span class="st0">&quot;gas&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Step 2: Create the Lua Script&quot;,&quot;hid&quot;:&quot;step_2create_the_lua_script&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:5,&quot;range&quot;:&quot;1401-2624&quot;} -->
+<h3 class="sectionedit6" id="step_3add_the_sprite">Step 3: Add the Sprite</h3>
+<div class="level3">
+
+<p>
+Add your custom rat sprite to <code>sprites/mobs/rat.png</code> at index 7 (the location specified in <code>imageIndex</code>).
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Step 3: Add the Sprite&quot;,&quot;hid&quot;:&quot;step_3add_the_sprite&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:6,&quot;range&quot;:&quot;2625-2768&quot;} -->
+<h2 class="sectionedit7" id="complex_mobsupport_creature">Complex Mob: Support Creature</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Complex Mob: Support Creature&quot;,&quot;hid&quot;:&quot;complex_mobsupport_creature&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:7,&quot;range&quot;:&quot;2769-2811&quot;} -->
+<h3 class="sectionedit8" id="json_definition">JSON Definition</h3>
+<div class="level3">
+
+<p>
+Create <code>actors/mobs/healing_angel.json</code>:
+</p>
+
+<p>
+<pre class="code json">{
+  &quot;class&quot;: &quot;com.watabou.pixeldungeon.actors.mobs.Bandit&quot;,
+  &quot;name:en&quot;: &quot;Healing Sprite&quot;,
+  &quot;name:ru&quot;: &quot;Лечащий дух&quot;,
+  &quot;desc:en&quot;: &quot;A small, ethereal creature that floats gently through the dungeon. Rather than attacking, it tries to support nearby allies.&quot;,
+  &quot;desc:ru&quot;: &quot;Маленький, эфемерный дух, мягко парящий по подземелью. Вместо атаки, пытается поддерживать ближайших союзников.&quot;,
+  &quot;imageIndex&quot;: 15,
+  &quot;HP&quot;: 8,
+  &quot;exp&quot;: 0,
+  &quot;damageMin&quot;: 0,
+  &quot;damageMax&quot;: 0,
+  &quot;defenseSkill&quot;: 15,
+  &quot;properties&quot;: [&quot;neutral&quot;, &quot;ethereal&quot;],
+  &quot;script&quot;: &quot;actors/mobs/healing_sprite.lua&quot;,
+  &quot;onTurn&quot;: &quot;supportAllies&quot;,
+  &quot;onDeath&quot;: &quot;fadeAway&quot;
+}</pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;JSON Definition&quot;,&quot;hid&quot;:&quot;json_definition&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:8,&quot;range&quot;:&quot;2812-3637&quot;} -->
+<h3 class="sectionedit9" id="lua_script">Lua Script</h3>
+<div class="level3">
+
+<p>
+Create <code>actors/mobs/healing_sprite.lua</code>:
+</p>
+
+<p>
+<pre class="code lua"><span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> mob <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/mob&quot;</span>
+&nbsp;
+<span class="kw1">return</span> mob<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    spawn <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> level<span class="br0">&#41;</span>
+        <span class="co1">-- Called when the mob is spawned</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;A healing sprite appears!&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    act <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+        <span class="co1">-- Called on each turn</span>
+        <span class="kw1">local</span> mobPos <span class="sy0">=</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span>
+&nbsp;
+        <span class="co1">-- Find nearby allies (within 3 tiles)</span>
+        <span class="kw1">local</span> level <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">local</span> mobs <span class="sy0">=</span> level<span class="sy0">:</span>mobs<span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">local</span> allies <span class="sy0">=</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+        <span class="kw1">for</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">,</span> mobs<span class="sy0">:</span>size<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">-</span><span class="nu0">1</span> <span class="kw1">do</span>
+            <span class="kw1">local</span> ally <span class="sy0">=</span> mobs<span class="sy0">:</span>get<span class="br0">&#40;</span>i<span class="br0">&#41;</span>
+            <span class="kw1">if</span> ally <span class="sy0">~=</span> self <span class="kw2">and</span> level<span class="sy0">:</span>distance<span class="br0">&#40;</span>mobPos<span class="sy0">,</span> ally<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">&lt;=</span> <span class="nu0">3</span> <span class="kw1">then</span>
+                <span class="kw1">local</span> hpPercent <span class="sy0">=</span> ally<span class="sy0">:</span>getHP<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">/</span> ally<span class="sy0">:</span>getMaxHP<span class="br0">&#40;</span><span class="br0">&#41;</span>
+                <span class="kw1">if</span> hpPercent <span class="sy0">&lt;</span> <span class="nu0">1.0</span> <span class="kw1">then</span>  <span class="co1">-- Only consider injured allies</span>
+                    <span class="kw3">table.insert</span><span class="br0">&#40;</span>allies<span class="sy0">,</span> <span class="br0">&#123;</span>ally<span class="sy0">=</span>ally<span class="sy0">,</span> percent<span class="sy0">=</span>hpPercent<span class="br0">&#125;</span><span class="br0">&#41;</span>
+                <span class="kw1">end</span>
+            <span class="kw1">end</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Find the most wounded ally</span>
+        <span class="kw1">local</span> mostWounded <span class="sy0">=</span> <span class="kw4">nil</span>
+        <span class="kw1">local</span> lowestPercent <span class="sy0">=</span> <span class="nu0">1.0</span>
+&nbsp;
+        <span class="kw1">for</span> _<span class="sy0">,</span> entry <span class="kw2">in</span> <span class="kw3">ipairs</span><span class="br0">&#40;</span>allies<span class="br0">&#41;</span> <span class="kw1">do</span>
+            <span class="kw1">if</span> entry<span class="sy0">.</span>percent <span class="sy0">&lt;</span> lowestPercent <span class="kw1">then</span>
+                lowestPercent <span class="sy0">=</span> entry<span class="sy0">.</span>percent
+                mostWounded <span class="sy0">=</span> entry<span class="sy0">.</span>ally
+            <span class="kw1">end</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Heal the most wounded ally if below 50% health</span>
+        <span class="kw1">if</span> mostWounded <span class="kw2">and</span> lowestPercent <span class="sy0">&lt;</span> <span class="nu0">0.5</span> <span class="kw1">then</span>
+            mostWounded<span class="sy0">:</span>heal<span class="br0">&#40;</span><span class="nu0">3</span><span class="sy0">,</span> self<span class="br0">&#41;</span>  <span class="co1">-- Heal 3 HP, source is this mob</span>
+            RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The healing sprite glows softly, healing &quot;</span> <span class="sy0">..</span> mostWounded<span class="sy0">:</span>name<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">..</span> <span class="st0">&quot;!&quot;</span><span class="br0">&#41;</span>
+            RPD<span class="sy0">.</span>topEffect<span class="br0">&#40;</span>mostWounded<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;healing&quot;</span><span class="br0">&#41;</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Spend turn time</span>
+        self<span class="sy0">:</span>spend<span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    die <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> cause<span class="br0">&#41;</span>
+        <span class="co1">-- Called when the mob dies</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The healing sprite fades away peacefully.&quot;</span><span class="br0">&#41;</span>
+        RPD<span class="sy0">.</span>topEffect<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;fading&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Lua Script&quot;,&quot;hid&quot;:&quot;lua_script&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:9,&quot;range&quot;:&quot;3638-5523&quot;} -->
+<h2 class="sectionedit10" id="special_behavior_mobmimic">Special Behavior Mob: Mimic</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Special Behavior Mob: Mimic&quot;,&quot;hid&quot;:&quot;special_behavior_mobmimic&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:10,&quot;range&quot;:&quot;5524-5564&quot;} -->
+<h3 class="sectionedit11" id="json_definition1">JSON Definition</h3>
+<div class="level3">
+
+<p>
+Create <code>actors/mobs/treasure_mimic.json</code>:
+</p>
+
+<p>
+<pre class="code json">{
+  &quot;class&quot;: &quot;com.watabou.pixeldungeon.actors.mobs.Mimic&quot;,
+  &quot;name:en&quot;: &quot;Treasure Mimic&quot;,
+  &quot;name:ru&quot;: &quot;Сундучная мимик&quot;,
+  &quot;desc:en&quot;: &quot;A mimic that takes the shape of a treasure chest. Appears innocent at first, but attacks the moment you try to open it.&quot;,
+  &quot;desc:ru&quot;: &quot;Мимик, принимающий форму сундука с сокровищами. Выглядит безобидным, но атакует в момент, когда вы пытаетесь его открыть.&quot;,
+  &quot;imageIndex&quot;: 22,
+  &quot;HP&quot;: 30,
+  &quot;exp&quot;: 8,
+  &quot;damageMin&quot;: 8,
+  &quot;damageMax&quot;: 15,
+  &quot;defenseSkill&quot;: 8,
+  &quot;properties&quot;: [&quot;hostile&quot;, &quot;mimic&quot;],
+  &quot;loot&quot;: &quot;com.watabou.pixeldungeon.items.Gold&quot;,
+  &quot;lootQuantity&quot;: 100,
+  &quot;script&quot;: &quot;actors/mobs/treasure_mimic.lua&quot;,
+  &quot;onAppear&quot;: &quot;checkForPlayer&quot;,
+  &quot;onAttack&quot;: &quot;powerfulBite&quot;,
+  &quot;onDeath&quot;: &quot;dropTreasure&quot;
+}</pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;JSON Definition&quot;,&quot;hid&quot;:&quot;json_definition1&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:11,&quot;range&quot;:&quot;5565-6516&quot;} -->
+<h3 class="sectionedit12" id="lua_script1">Lua Script</h3>
+<div class="level3">
+
+<p>
+Create <code>actors/mobs/treasure_mimic.lua</code>:
+</p>
+
+<p>
+<pre class="code lua"><span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> mob <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/mob&quot;</span>
+&nbsp;
+<span class="kw1">return</span> mob<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    spawn <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> level<span class="br0">&#41;</span>
+        <span class="co1">-- Called when the mimic appears</span>
+        <span class="co1">-- Mimics start in an inactive state</span>
+        self<span class="sy0">.</span>data <span class="sy0">=</span> self<span class="sy0">.</span>data <span class="kw2">or</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+        self<span class="sy0">.</span>data<span class="sy0">.</span>inactive <span class="sy0">=</span> <span class="kw4">true</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;You see a treasure chest... it looks valuable!&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    act <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+        <span class="co1">-- Called each turn - check for nearby player</span>
+        <span class="kw1">local</span> hero <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>hero
+        <span class="kw1">local</span> distance <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>distance<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> hero<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+&nbsp;
+        <span class="kw1">if</span> self<span class="sy0">.</span>data<span class="sy0">.</span>inactive <span class="kw2">and</span> distance <span class="sy0">&lt;=</span> <span class="nu0">2</span> <span class="kw1">then</span>
+            self<span class="sy0">.</span>data<span class="sy0">.</span>inactive <span class="sy0">=</span> <span class="kw4">false</span>
+            RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The chest springs to life as you approach!&quot;</span><span class="br0">&#41;</span>
+            <span class="co1">-- Make the mob aggressive</span>
+            self<span class="sy0">:</span>setState<span class="br0">&#40;</span>RPD<span class="sy0">.</span>MobAi<span class="sy0">.</span>State<span class="sy0">.</span>HOSTILE<span class="br0">&#41;</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Spend turn time</span>
+        self<span class="sy0">:</span>spend<span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    <span class="co1">-- Special attack</span>
+    attackProc <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> target<span class="sy0">,</span> damage<span class="br0">&#41;</span>
+        <span class="kw1">local</span> calculatedDamage <span class="sy0">=</span> <span class="kw3">math.random</span><span class="br0">&#40;</span><span class="nu0">8</span><span class="sy0">,</span> <span class="nu0">12</span><span class="br0">&#41;</span> <span class="co1">-- Example damage calculation</span>
+        target<span class="sy0">:</span>damage<span class="br0">&#40;</span>calculatedDamage<span class="sy0">,</span> self<span class="br0">&#41;</span> <span class="co1">-- 50% more damage, source is mob</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The treasure mimic clamps down with powerful jaws!&quot;</span><span class="br0">&#41;</span>
+        <span class="kw1">return</span> calculatedDamage
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    die <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> cause<span class="br0">&#41;</span>
+        <span class="co1">-- Called when the mob dies</span>
+        <span class="kw1">local</span> pos <span class="sy0">=</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="co1">-- Drop extra treasure when defeated</span>
+        <span class="kw1">local</span> gold <span class="sy0">=</span> RPD<span class="sy0">.</span>item<span class="br0">&#40;</span><span class="st0">&quot;Gold&quot;</span><span class="sy0">,</span> <span class="nu0">150</span><span class="br0">&#41;</span>
+        RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>drop<span class="br0">&#40;</span>gold<span class="sy0">,</span> pos<span class="br0">&#41;</span>
+        <span class="kw1">local</span> healingPotion <span class="sy0">=</span> RPD<span class="sy0">.</span>item<span class="br0">&#40;</span><span class="st0">&quot;PotionOfHealing&quot;</span><span class="sy0">,</span> <span class="nu0">1</span><span class="br0">&#41;</span>
+        RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>drop<span class="br0">&#40;</span>healingPotion<span class="sy0">,</span> pos<span class="br0">&#41;</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The treasure mimic reveals its true hoard!&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Lua Script&quot;,&quot;hid&quot;:&quot;lua_script1&quot;,&quot;codeblockOffset&quot;:5,&quot;secid&quot;:12,&quot;range&quot;:&quot;6517-8261&quot;} -->
+<h2 class="sectionedit13" id="boss_example">Boss Example</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Boss Example&quot;,&quot;hid&quot;:&quot;boss_example&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:13,&quot;range&quot;:&quot;8262-8287&quot;} -->
+<h3 class="sectionedit14" id="json_definition2">JSON Definition</h3>
+<div class="level3">
+
+<p>
+Create <code>actors/mobs/dungeon_lord.json</code>:
+</p>
+
+<p>
+<pre class="code json">{
+  &quot;class&quot;: &quot;com.watabou.pixeldungeon.actors.mobs.Warlock&quot;,
+  &quot;name:en&quot;: &quot;Dungeon Lord&quot;,
+  &quot;name:ru&quot;: &quot;Повелитель подземелий&quot;,
+  &quot;desc:en&quot;: &quot;A powerful sorcerer who rules this level of the dungeon. Commands great magical powers and commands lesser undead.&quot;,
+  &quot;desc:ru&quot;: &quot;Могущественный колдун, правящий этим уровнем подземелья. Обладает великой магической силой и управляет простейшей нежитью.&quot;,
+  &quot;imageIndex&quot;: 30,
+  &quot;HP&quot;: 120,
+  &quot;exp&quot;: 25,
+  &quot;damageMin&quot;: 15,
+  &quot;damageMax&quot;: 25,
+  &quot;defenseSkill&quot;: 12,
+  &quot;properties&quot;: [&quot;boss&quot;, &quot;hostile&quot;, &quot;magical&quot;],
+  &quot;script&quot;: &quot;actors/mobs/dungeon_lord.lua&quot;,
+  &quot;onTurn&quot;: &quot;bossActions&quot;,
+  &quot;onAttack&quot;: &quot;magicAttack&quot;,
+  &quot;onDeath&quot;: &quot;finalCurse&quot;
+}</pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;JSON Definition&quot;,&quot;hid&quot;:&quot;json_definition2&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:14,&quot;range&quot;:&quot;8288-9183&quot;} -->
+<h3 class="sectionedit15" id="lua_script2">Lua Script</h3>
+<div class="level3">
+
+<p>
+Create <code>actors/mobs/dungeon_lord.lua</code>:
+</p>
+
+<p>
+<pre class="code lua"><span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> mob <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/mob&quot;</span>
+&nbsp;
+<span class="kw1">return</span> mob<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    act <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+        <span class="co1">-- Called on each turn</span>
+        <span class="kw1">local</span> hero <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>hero
+        <span class="kw1">local</span> distance <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>distance<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> hero<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+&nbsp;
+        <span class="co1">-- Summon a skeleton if there are fewer than 2 nearby</span>
+        <span class="kw1">local</span> nearbySkeletons <span class="sy0">=</span> <span class="nu0">0</span>
+        <span class="kw1">local</span> allMobs <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>mobs<span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">for</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">,</span> allMobs<span class="sy0">:</span>size<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">-</span><span class="nu0">1</span> <span class="kw1">do</span>
+            <span class="kw1">local</span> other <span class="sy0">=</span> allMobs<span class="sy0">:</span>get<span class="br0">&#40;</span>i<span class="br0">&#41;</span>
+            <span class="kw1">if</span> other<span class="sy0">:</span>getEntityKind<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">==</span> <span class="st0">&quot;Skeleton&quot;</span> <span class="kw2">and</span>
+               RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>distance<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> other<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">&lt;=</span> <span class="nu0">5</span> <span class="kw1">then</span>
+                nearbySkeletons <span class="sy0">=</span> nearbySkeletons <span class="sy0">+</span> <span class="nu0">1</span>
+            <span class="kw1">end</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="kw1">if</span> nearbySkeletons <span class="sy0">&lt;</span> <span class="nu0">2</span> <span class="kw2">and</span> <span class="kw3">math.random</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">&lt;</span> <span class="nu0">0.2</span> <span class="kw1">then</span>
+            <span class="kw1">local</span> mobPos <span class="sy0">=</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span>
+            <span class="kw1">local</span> summonPos <span class="sy0">=</span> <span class="kw4">nil</span>
+            <span class="co1">-- Find an empty adjacent cell</span>
+            <span class="kw1">for</span> direction <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">,</span> <span class="nu0">7</span> <span class="kw1">do</span>
+                <span class="kw1">local</span> adjCell <span class="sy0">=</span> mobPos <span class="sy0">+</span> RPD<span class="sy0">.</span>PathFinder<span class="sy0">.</span>CIRCLE8<span class="br0">&#91;</span>direction <span class="sy0">+</span> <span class="nu0">1</span><span class="br0">&#93;</span>
+                <span class="kw1">if</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>cellValid<span class="br0">&#40;</span>adjCell<span class="br0">&#41;</span> <span class="kw2">and</span>
+                   RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">.</span>passable<span class="sy0">:</span>adjCell<span class="br0">&#40;</span>adjCell<span class="br0">&#41;</span> <span class="kw2">and</span>
+                   RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>freeCell<span class="br0">&#40;</span>adjCell<span class="br0">&#41;</span> <span class="kw1">then</span>
+                    summonPos <span class="sy0">=</span> adjCell
+                    <span class="kw1">break</span>
+                <span class="kw1">end</span>
+            <span class="kw1">end</span>
+&nbsp;
+            <span class="kw1">if</span> summonPos <span class="kw1">then</span>
+                <span class="kw1">local</span> skeleton <span class="sy0">=</span> RPD<span class="sy0">.</span>spawnMob<span class="br0">&#40;</span><span class="st0">&quot;Skeleton&quot;</span><span class="sy0">,</span> summonPos<span class="sy0">,</span> <span class="br0">&#123;</span><span class="br0">&#125;</span><span class="br0">&#41;</span>
+                RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The Dungeon Lord summons aid!&quot;</span><span class="br0">&#41;</span>
+                RPD<span class="sy0">.</span>topEffect<span class="br0">&#40;</span>summonPos<span class="sy0">,</span> <span class="st0">&quot;summoning&quot;</span><span class="br0">&#41;</span>
+            <span class="kw1">end</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Spend turn time</span>
+        self<span class="sy0">:</span>spend<span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    <span class="co1">-- Called when attacking</span>
+    attackProc <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> target<span class="sy0">,</span> damage<span class="br0">&#41;</span>
+        <span class="co1">-- 50% chance for magic missile, 50% for weaken</span>
+        <span class="kw1">if</span> <span class="kw3">math.random</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">&lt;</span> <span class="nu0">0.5</span> <span class="kw1">then</span>
+            <span class="kw1">local</span> calculatedDamage <span class="sy0">=</span> <span class="kw3">math.random</span><span class="br0">&#40;</span><span class="nu0">10</span><span class="sy0">,</span> <span class="nu0">20</span><span class="br0">&#41;</span>  <span class="co1">-- Example damage calculation</span>
+            target<span class="sy0">:</span>damage<span class="br0">&#40;</span>calculatedDamage<span class="sy0">,</span> self<span class="br0">&#41;</span>  <span class="co1">-- Damage target, source is mob</span>
+            RPD<span class="sy0">.</span>topEffect<span class="br0">&#40;</span>target<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;magic_missile&quot;</span><span class="br0">&#41;</span>
+            RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The Dungeon Lord fires a bolt of dark energy!&quot;</span><span class="br0">&#41;</span>
+            <span class="kw1">return</span> calculatedDamage
+        <span class="kw1">else</span>
+            <span class="co1">-- Weaken the target</span>
+            RPD<span class="sy0">.</span>affectBuff<span class="br0">&#40;</span>target<span class="sy0">,</span> RPD<span class="sy0">.</span>Buffs<span class="sy0">.</span>Weakness<span class="sy0">,</span> <span class="nu0">5</span><span class="br0">&#41;</span>  <span class="co1">-- Apply weakness for 5 turns</span>
+            RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The Dungeon Lord's magic weakens you!&quot;</span><span class="br0">&#41;</span>
+            <span class="kw1">return</span> damage
+        <span class="kw1">end</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    die <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> cause<span class="br0">&#41;</span>
+        <span class="co1">-- Called when the boss dies</span>
+        <span class="kw1">local</span> hero <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>hero
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;As the Dungeon Lord falls, he curses you with his dying breath!&quot;</span><span class="br0">&#41;</span>
+&nbsp;
+        <span class="co1">-- Apply a challenging debuff to the hero</span>
+        RPD<span class="sy0">.</span>affectBuff<span class="br0">&#40;</span>hero<span class="sy0">,</span> RPD<span class="sy0">.</span>Buffs<span class="sy0">.</span>Curse<span class="sy0">,</span> <span class="nu0">50</span><span class="br0">&#41;</span> <span class="co1">-- Apply curse for 50 turns</span>
+&nbsp;
+        <span class="co1">-- Create a special item at the location</span>
+        <span class="kw1">local</span> trophy <span class="sy0">=</span> RPD<span class="sy0">.</span>item<span class="br0">&#40;</span><span class="st0">&quot;DungeonLordTrophy&quot;</span><span class="sy0">,</span> <span class="nu0">1</span><span class="br0">&#41;</span>
+        RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>drop<span class="br0">&#40;</span>trophy<span class="sy0">,</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+&nbsp;
+        RPD<span class="sy0">.</span>topEffect<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;curse&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Lua Script&quot;,&quot;hid&quot;:&quot;lua_script2&quot;,&quot;codeblockOffset&quot;:7,&quot;secid&quot;:15,&quot;range&quot;:&quot;9184-12181&quot;} -->
+<h2 class="sectionedit16" id="advanced_mob_techniques">Advanced Mob Techniques</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Advanced Mob Techniques&quot;,&quot;hid&quot;:&quot;advanced_mob_techniques&quot;,&quot;codeblockOffset&quot;:8,&quot;secid&quot;:16,&quot;range&quot;:&quot;12182-12218&quot;} -->
+<h3 class="sectionedit17" id="state_machine_mobs">State Machine Mobs</h3>
+<div class="level3">
+
+<p>
+Create mobs with different behavior states:
+</p>
+
+<p>
+<pre class="code lua"><span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> mob <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/mob&quot;</span>
+&nbsp;
+<span class="kw1">return</span> mob<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    act <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+        <span class="co1">-- Get or initialize mob's state</span>
+        self<span class="sy0">.</span>data <span class="sy0">=</span> self<span class="sy0">.</span>data <span class="kw2">or</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+        <span class="kw1">local</span> state <span class="sy0">=</span> self<span class="sy0">.</span>data<span class="sy0">.</span>state <span class="kw2">or</span> <span class="st0">&quot;patrol&quot;</span>
+&nbsp;
+        <span class="kw1">if</span> state <span class="sy0">==</span> <span class="st0">&quot;patrol&quot;</span> <span class="kw1">then</span>
+            <span class="co1">-- Patrol behavior</span>
+            <span class="kw1">local</span> hero <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>hero
+            <span class="kw1">if</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>distance<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> hero<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">&lt;</span> <span class="nu0">8</span> <span class="kw1">then</span>  <span class="co1">-- Can see hero if within 8 tiles</span>
+                self<span class="sy0">.</span>data<span class="sy0">.</span>state <span class="sy0">=</span> <span class="st0">&quot;chase&quot;</span>
+                RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span>self<span class="sy0">:</span>name<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">..</span> <span class="st0">&quot; spots you!&quot;</span><span class="br0">&#41;</span>
+            <span class="kw1">end</span>
+        <span class="kw1">elseif</span> state <span class="sy0">==</span> <span class="st0">&quot;chase&quot;</span> <span class="kw1">then</span>
+            <span class="co1">-- Chase behavior</span>
+            <span class="kw1">local</span> hero <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>hero
+            <span class="kw1">if</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>distance<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> hero<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">&gt;=</span> <span class="nu0">8</span> <span class="kw1">then</span>
+                self<span class="sy0">.</span>data<span class="sy0">.</span>state <span class="sy0">=</span> <span class="st0">&quot;return&quot;</span>
+                self<span class="sy0">.</span>data<span class="sy0">.</span>returnTo <span class="sy0">=</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="co1">-- Remember spawn position</span>
+            <span class="kw1">end</span>
+        <span class="kw1">elseif</span> state <span class="sy0">==</span> <span class="st0">&quot;return&quot;</span> <span class="kw1">then</span>
+            <span class="co1">-- Return to spawn point</span>
+            <span class="kw1">if</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>distance<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> self<span class="sy0">.</span>data<span class="sy0">.</span>returnTo<span class="br0">&#41;</span> <span class="sy0">&lt;=</span> <span class="nu0">1</span> <span class="kw1">then</span>
+                self<span class="sy0">.</span>data<span class="sy0">.</span>state <span class="sy0">=</span> <span class="st0">&quot;patrol&quot;</span>
+            <span class="kw1">end</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Spend turn time</span>
+        self<span class="sy0">:</span>spend<span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;State Machine Mobs&quot;,&quot;hid&quot;:&quot;state_machine_mobs&quot;,&quot;codeblockOffset&quot;:8,&quot;secid&quot;:17,&quot;range&quot;:&quot;12219-13532&quot;} -->
+<h3 class="sectionedit18" id="environmental_interaction">Environmental Interaction</h3>
+<div class="level3">
+
+<p>
+Mobs that interact with dungeon features:
+</p>
+
+<p>
+<pre class="code lua"><span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> mob <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/mob&quot;</span>
+&nbsp;
+<span class="kw1">return</span> mob<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    act <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+        <span class="kw1">local</span> pos <span class="sy0">=</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">local</span> level <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span>
+&nbsp;
+        <span class="co1">-- Check for doors nearby</span>
+        <span class="kw1">for</span> dx <span class="sy0">=</span> <span class="sy0">-</span><span class="nu0">1</span><span class="sy0">,</span> <span class="nu0">1</span> <span class="kw1">do</span>
+            <span class="kw1">for</span> dy <span class="sy0">=</span> <span class="sy0">-</span><span class="nu0">1</span><span class="sy0">,</span> <span class="nu0">1</span> <span class="kw1">do</span>
+                <span class="kw1">local</span> checkCell <span class="sy0">=</span> level<span class="sy0">:</span>cell<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">.</span>x <span class="sy0">+</span> dx<span class="sy0">,</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">.</span>y <span class="sy0">+</span> dy<span class="br0">&#41;</span>
+                <span class="kw1">if</span> checkCell <span class="sy0">==</span> RPD<span class="sy0">.</span>Terrain<span class="sy0">.</span>DOOR <span class="kw1">then</span>
+                    <span class="co1">-- Open the door</span>
+                    level<span class="sy0">:</span>set<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">.</span>x <span class="sy0">+</span> dx<span class="sy0">,</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">.</span>y <span class="sy0">+</span> dy<span class="sy0">,</span> RPD<span class="sy0">.</span>Terrain<span class="sy0">.</span>OPEN_DOOR<span class="br0">&#41;</span>
+                    RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span>self<span class="sy0">:</span>name<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">..</span> <span class="st0">&quot; opens a door!&quot;</span><span class="br0">&#41;</span>
+                    <span class="kw1">break</span>
+                <span class="kw1">end</span>
+            <span class="kw1">end</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Check if on flammable terrain</span>
+        <span class="kw1">if</span> level<span class="sy0">:</span>cell<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">==</span> RPD<span class="sy0">.</span>Terrain<span class="sy0">.</span>HIGH_GRASS <span class="kw1">then</span>
+            <span class="co1">-- Set the grass on fire</span>
+            level<span class="sy0">:</span>set<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> RPD<span class="sy0">.</span>Terrain<span class="sy0">.</span>EMBERS<span class="br0">&#41;</span>
+            <span class="co1">-- In practice would use fire mechanics</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Spend turn time</span>
+        self<span class="sy0">:</span>spend<span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Environmental Interaction&quot;,&quot;hid&quot;:&quot;environmental_interaction&quot;,&quot;codeblockOffset&quot;:9,&quot;secid&quot;:18,&quot;range&quot;:&quot;13533-14668&quot;} -->
+<h3 class="sectionedit19" id="mob_groups_and_coordinated_behavior">Mob Groups and Coordinated Behavior</h3>
+<div class="level3">
+
+<p>
+Mobs that work together:
+</p>
+
+<p>
+<pre class="code lua"><span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> mob <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/mob&quot;</span>
+&nbsp;
+<span class="kw1">return</span> mob<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    spawn <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> level<span class="br0">&#41;</span>
+        <span class="co1">-- Find other nearby mobs of the same type to form a group</span>
+        <span class="kw1">local</span> nearbyMobs <span class="sy0">=</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+        <span class="kw1">local</span> allMobs <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>mobs<span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">for</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">,</span> allMobs<span class="sy0">:</span>size<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">-</span><span class="nu0">1</span> <span class="kw1">do</span>
+            <span class="kw1">local</span> other <span class="sy0">=</span> allMobs<span class="sy0">:</span>get<span class="br0">&#40;</span>i<span class="br0">&#41;</span>
+            <span class="kw1">if</span> other <span class="sy0">~=</span> self <span class="kw2">and</span>
+               RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>distance<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> other<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">&lt;=</span> <span class="nu0">5</span> <span class="kw2">and</span>
+               other<span class="sy0">:</span>getEntityKind<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">==</span> self<span class="sy0">:</span>getEntityKind<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="kw2">and</span>
+               other<span class="sy0">.</span>data <span class="kw2">and</span> other<span class="sy0">.</span>data<span class="sy0">.</span>groupId <span class="kw1">then</span>
+                <span class="kw3">table.insert</span><span class="br0">&#40;</span>nearbyMobs<span class="sy0">,</span> other<span class="br0">&#41;</span>
+            <span class="kw1">end</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="kw1">local</span> groupId <span class="sy0">=</span> <span class="kw4">nil</span>
+&nbsp;
+        <span class="kw1">for</span> _<span class="sy0">,</span> other <span class="kw2">in</span> <span class="kw3">ipairs</span><span class="br0">&#40;</span>nearbyMobs<span class="br0">&#41;</span> <span class="kw1">do</span>
+            <span class="kw1">if</span> other<span class="sy0">.</span>data<span class="sy0">.</span>groupId <span class="kw1">then</span>
+                groupId <span class="sy0">=</span> other<span class="sy0">.</span>data<span class="sy0">.</span>groupId
+                <span class="kw1">break</span>
+            <span class="kw1">end</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- If no group found, create a new one</span>
+        <span class="kw1">if</span> <span class="kw2">not</span> groupId <span class="kw1">then</span>
+            groupId <span class="sy0">=</span> <span class="kw3">math.random</span><span class="br0">&#40;</span><span class="nu0">1000000</span><span class="br0">&#41;</span>  <span class="co1">-- Generate a simple ID</span>
+        <span class="kw1">end</span>
+&nbsp;
+        self<span class="sy0">.</span>data <span class="sy0">=</span> self<span class="sy0">.</span>data <span class="kw2">or</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+        self<span class="sy0">.</span>data<span class="sy0">.</span>groupId <span class="sy0">=</span> groupId
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    act <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+        <span class="kw1">if</span> self<span class="sy0">.</span>data<span class="sy0">.</span>groupId <span class="kw1">then</span>
+            <span class="kw1">local</span> groupMobs <span class="sy0">=</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+            <span class="co1">-- Find all group members</span>
+            <span class="kw1">local</span> allMobs <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>mobs<span class="br0">&#40;</span><span class="br0">&#41;</span>
+            <span class="kw1">for</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">,</span> allMobs<span class="sy0">:</span>size<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">-</span><span class="nu0">1</span> <span class="kw1">do</span>
+                <span class="kw1">local</span> other <span class="sy0">=</span> allMobs<span class="sy0">:</span>get<span class="br0">&#40;</span>i<span class="br0">&#41;</span>
+                <span class="kw1">if</span> other<span class="sy0">.</span>data <span class="kw2">and</span> other<span class="sy0">.</span>data<span class="sy0">.</span>groupId <span class="sy0">==</span> self<span class="sy0">.</span>data<span class="sy0">.</span>groupId <span class="kw1">then</span>
+                    <span class="kw3">table.insert</span><span class="br0">&#40;</span>groupMobs<span class="sy0">,</span> other<span class="br0">&#41;</span>
+                <span class="kw1">end</span>
+            <span class="kw1">end</span>
+&nbsp;
+            <span class="co1">-- If this is the leader, make strategy decisions</span>
+            <span class="kw1">if</span> self<span class="sy0">.</span>data<span class="sy0">.</span>isLeader <span class="kw1">then</span>
+                <span class="co1">-- Move as a group toward the hero</span>
+                <span class="kw1">local</span> heroPos <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>hero<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span>
+                <span class="kw1">for</span> _<span class="sy0">,</span> member <span class="kw2">in</span> <span class="kw3">ipairs</span><span class="br0">&#40;</span>groupMobs<span class="br0">&#41;</span> <span class="kw1">do</span>
+                    <span class="co1">-- Move each member toward the hero</span>
+                    member<span class="sy0">:</span>getSprite<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>moveToTarget<span class="br0">&#40;</span>heroPos<span class="br0">&#41;</span>
+                <span class="kw1">end</span>
+            <span class="kw1">else</span>
+                <span class="co1">-- Check if we need a new leader</span>
+                <span class="kw1">local</span> hasLeader <span class="sy0">=</span> <span class="kw4">false</span>
+                <span class="kw1">for</span> _<span class="sy0">,</span> member <span class="kw2">in</span> <span class="kw3">ipairs</span><span class="br0">&#40;</span>groupMobs<span class="br0">&#41;</span> <span class="kw1">do</span>
+                    <span class="kw1">if</span> member<span class="sy0">.</span>data <span class="kw2">and</span> member<span class="sy0">.</span>data<span class="sy0">.</span>isLeader <span class="kw1">then</span>
+                        hasLeader <span class="sy0">=</span> <span class="kw4">true</span>
+                        <span class="kw1">break</span>
+                    <span class="kw1">end</span>
+                <span class="kw1">end</span>
+&nbsp;
+                <span class="kw1">if</span> <span class="kw2">not</span> hasLeader <span class="kw2">and</span> <span class="sy0">#</span>groupMobs <span class="sy0">&gt;</span> <span class="nu0">0</span> <span class="kw1">then</span>
+                    <span class="co1">-- Make this mob the new leader</span>
+                    self<span class="sy0">.</span>data<span class="sy0">.</span>isLeader <span class="sy0">=</span> <span class="kw4">true</span>
+                <span class="kw1">end</span>
+            <span class="kw1">end</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Spend turn time</span>
+        self<span class="sy0">:</span>spend<span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Mob Groups and Coordinated Behavior&quot;,&quot;hid&quot;:&quot;mob_groups_and_coordinated_behavior&quot;,&quot;codeblockOffset&quot;:10,&quot;secid&quot;:19,&quot;range&quot;:&quot;14669-17333&quot;} -->
+<h2 class="sectionedit20" id="testing_your_mobs">Testing Your Mobs</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Testing Your Mobs&quot;,&quot;hid&quot;:&quot;testing_your_mobs&quot;,&quot;codeblockOffset&quot;:11,&quot;secid&quot;:20,&quot;range&quot;:&quot;17334-17364&quot;} -->
+<h3 class="sectionedit21" id="common_testing_steps">Common Testing Steps</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Enable your mod in-game</div>
+</li>
+<li class="level1"><div class="li"> Start a new game to see new mobs (they&#039;ll appear based on your bestiary settings)</div>
+</li>
+<li class="level1"><div class="li"> Verify that sprites appear correctly</div>
+</li>
+<li class="level1"><div class="li"> Test all mob behaviors and Lua scripts</div>
+</li>
+<li class="level1"><div class="li"> Check that mob descriptions are properly localized</div>
+</li>
+<li class="level1"><div class="li"> Confirm that mob stats are balanced</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Common Testing Steps&quot;,&quot;hid&quot;:&quot;common_testing_steps&quot;,&quot;codeblockOffset&quot;:11,&quot;secid&quot;:21,&quot;range&quot;:&quot;17365-17689&quot;} -->
+<h3 class="sectionedit22" id="bestiary_integration">Bestiary Integration</h3>
+<div class="level3">
+
+<p>
+To make your mobs appear in the dungeon, add them to <code>levelsDesc/Bestiary.json</code>:
+</p>
+
+<p>
+<pre class="code json">{
+  &quot;level_1&quot;: [
+    {&quot;class&quot;: &quot;actors/mobs/custom_rat.json&quot;, &quot;weight&quot;: 8},
+    {&quot;class&quot;: &quot;actors/mobs/healing_angel.json&quot;, &quot;weight&quot;: 2}
+  ],
+  &quot;level_5&quot;: [
+    {&quot;class&quot;: &quot;actors/mobs/treasure_mimic.json&quot;, &quot;weight&quot;: 3},
+    {&quot;class&quot;: &quot;actors/mobs/dungeon_lord.json&quot;, &quot;weight&quot;: 1}
+  ]
+}</pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Bestiary Integration&quot;,&quot;hid&quot;:&quot;bestiary_integration&quot;,&quot;codeblockOffset&quot;:11,&quot;secid&quot;:22,&quot;range&quot;:&quot;17690-18111&quot;} -->
+<h2 class="sectionedit23" id="testing_your_mobs1">Testing Your Mobs</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Testing Your Mobs&quot;,&quot;hid&quot;:&quot;testing_your_mobs1&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:23,&quot;range&quot;:&quot;18112-18142&quot;} -->
+<h3 class="sectionedit24" id="common_testing_steps1">Common Testing Steps</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Enable your mod in-game</div>
+</li>
+<li class="level1"><div class="li"> Start a new game to see new mobs (they&#039;ll appear based on your bestiary settings)</div>
+</li>
+<li class="level1"><div class="li"> Verify that sprites appear correctly</div>
+</li>
+<li class="level1"><div class="li"> Test all mob behaviors and Lua scripts</div>
+</li>
+<li class="level1"><div class="li"> Check that mob descriptions are properly localized</div>
+</li>
+<li class="level1"><div class="li"> Confirm that mob stats are balanced</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Common Testing Steps&quot;,&quot;hid&quot;:&quot;common_testing_steps1&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:24,&quot;range&quot;:&quot;18143-18467&quot;} -->
+<h3 class="sectionedit25" id="bestiary_integration1">Bestiary Integration</h3>
+<div class="level3">
+
+<p>
+To make your mobs appear in the dungeon, add them to <code>levelsDesc/Bestiary.json</code>:
+</p>
+
+<p>
+<pre class="code json">{
+  &quot;SewerLevel&quot;: [
+    {&quot;class&quot;: &quot;PoisonRat&quot;, &quot;weight&quot;: 8},
+    {&quot;class&quot;: &quot;HealingSprite&quot;, &quot;weight&quot;: 2}
+  ],
+  &quot;CavesLevel&quot;: [
+    {&quot;class&quot;: &quot;TreasureMimic&quot;, &quot;weight&quot;: 3},
+    {&quot;class&quot;: &quot;DungeonLord&quot;, &quot;weight&quot;: 1}
+  ]
+}</pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Bestiary Integration&quot;,&quot;hid&quot;:&quot;bestiary_integration1&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:25,&quot;range&quot;:&quot;18468-18824&quot;} -->
+<h2 class="sectionedit26" id="code_references">Code References</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Code References&quot;,&quot;hid&quot;:&quot;code_references&quot;,&quot;codeblockOffset&quot;:13,&quot;secid&quot;:26,&quot;range&quot;:&quot;18825-18853&quot;} -->
+<h3 class="sectionedit27" id="core_implementation">Core Implementation</h3>
+<div class="level3">
+
+<p>
+- <strong>Java Class</strong>: <code>RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/CustomMob.java</code>
+- <strong>Lua Library</strong>: <code>RemixedDungeon/src/main/assets/scripts/lib/mob.lua</code>
+- <strong>JSON Configuration</strong>: <code>RemixedDungeon/src/main/assets/mobsDesc/</code>
+- <strong>Lua Examples</strong>: <code>RemixedDungeon/src/main/assets/scripts/mobs/</code>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Core Implementation&quot;,&quot;hid&quot;:&quot;core_implementation&quot;,&quot;codeblockOffset&quot;:13,&quot;secid&quot;:27,&quot;range&quot;:&quot;18854-19199&quot;} -->
+<h3 class="sectionedit28" id="key_methods_in_custommobjava">Key Methods in CustomMob.java</h3>
+<div class="level3">
+
+<p>
+- <code>fillMobStats()</code> - Processes JSON configuration for mob properties
+- <code>attackProc()</code> - Handles attack behavior
+- <code>die()</code> - Handles death behavior
+- <code>act()</code> - Handles turn-based actions
+- <code>onInteract()</code> - Handles player interaction
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Key Methods in CustomMob.java&quot;,&quot;hid&quot;:&quot;key_methods_in_custommobjava&quot;,&quot;codeblockOffset&quot;:13,&quot;secid&quot;:28,&quot;range&quot;:&quot;19200-19482&quot;} -->
+<h3 class="sectionedit29" id="key_methods_in_moblua">Key Methods in mob.lua</h3>
+<div class="level3">
+
+<p>
+- <code>mob.init</code> - Initializes the mob with Lua functions
+- <code>spawn(self, level)</code> - Called when mob is spawned
+- <code>attackProc(self, enemy, damage)</code> - Called after successful attack
+- <code>die(self, cause)</code> - Called when mob dies
+- <code>act(self)</code> - Called each turn for AI processing
+- <code>onInteract(self, chr)</code> - Called when player interacts with mob
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Key Methods in mob.lua&quot;,&quot;hid&quot;:&quot;key_methods_in_moblua&quot;,&quot;codeblockOffset&quot;:13,&quot;secid&quot;:29,&quot;range&quot;:&quot;19483-19864&quot;} -->
+<h3 class="sectionedit30" id="json_properties_supported">JSON Properties Supported</h3>
+<div class="level3">
+
+<p>
+- <code>defenseSkill</code>, <code>attackSkill</code>, <code>exp</code>, <code>maxLvl</code>, <code>dmgMin</code>, <code>dmgMax</code>, <code>dr</code>
+- <code>baseSpeed</code>, <code>attackDelay</code>, <code>ht</code>, <code>viewDistance</code>, <code>lootChance</code>
+- <code>name</code>, <code>description</code>, <code>spriteDesc</code>, <code>scriptFile</code>, <code>isBoss</code>, <code>flying</code>, <code>canBePet</code>
+</p>
+
+<p>
+Creating custom mobs without Java is quite powerful in Remixed Dungeon. With JSON and Lua, you can create complex behaviors, unique mechanics, and engaging new creatures for players to encounter!
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;JSON Properties Supported&quot;,&quot;hid&quot;:&quot;json_properties_supported&quot;,&quot;codeblockOffset&quot;:13,&quot;secid&quot;:30,&quot;range&quot;:&quot;19865-&quot;} -->

@@ -1,0 +1,34 @@
+<span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> mob <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/mob&quot;</span>
+&nbsp;
+<span class="kw1">return</span> mob<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    spawn <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> level<span class="br0">&#41;</span>
+        <span class="co1">-- Called when the mob is spawned</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;A poison rat appears!&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    <span class="co1">-- Called when the mob attacks</span>
+    attackProc <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> enemy<span class="sy0">,</span> damage<span class="br0">&#41;</span>
+        <span class="co1">-- Calculate and deal damage</span>
+        <span class="kw1">local</span> damage <span class="sy0">=</span> <span class="kw3">math.random</span><span class="br0">&#40;</span><span class="nu0">1</span><span class="sy0">,</span> <span class="nu0">4</span><span class="br0">&#41;</span>  <span class="co1">-- Example damage calculation</span>
+        enemy<span class="sy0">:</span>damage<span class="br0">&#40;</span>damage<span class="sy0">,</span> self<span class="br0">&#41;</span>  <span class="co1">-- Apply damage, source is mob</span>
+&nbsp;
+        <span class="co1">-- 30% chance to apply poison</span>
+        <span class="kw1">if</span> <span class="kw3">math.random</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">&lt;</span> <span class="nu0">0.3</span> <span class="kw1">then</span>
+            RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The poison rat's bite poisons you!&quot;</span><span class="br0">&#41;</span>
+            RPD<span class="sy0">.</span>affectBuff<span class="br0">&#40;</span>enemy<span class="sy0">,</span> RPD<span class="sy0">.</span>Buffs<span class="sy0">.</span>Poison<span class="sy0">,</span> <span class="nu0">5</span><span class="br0">&#41;</span> <span class="co1">-- Apply poison for 5 turns</span>
+        <span class="kw1">end</span>
+        <span class="kw1">return</span> damage
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    die <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> cause<span class="br0">&#41;</span>
+        <span class="co1">-- Called when the mob dies</span>
+        <span class="co1">-- Create a toxic gas cloud at the mob's position</span>
+        <span class="kw1">local</span> pos <span class="sy0">=</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="co1">-- In practice, you would use game mechanics to create gas clouds</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The poison rat explodes in a cloud of toxic gas!&quot;</span><span class="br0">&#41;</span>
+&nbsp;
+        <span class="co1">-- Visual effect</span>
+        RPD<span class="sy0">.</span>topEffect<span class="br0">&#40;</span>pos<span class="sy0">,</span> <span class="st0">&quot;gas&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span>

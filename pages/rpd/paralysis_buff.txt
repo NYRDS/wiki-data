@@ -1,56 +1,82 @@
-====== Paralysis Buff ======
+====== Paralysis ======
 
-{{ rpd:images:paralysis_buff.png|Paralysis Buff }}
+Paralysis is a status effect in Remixed Dungeon that prevents a character from taking any actions for a period of time.
 
 ==== Description ====
-Paralysis is a status effect that completely immobilizes the affected character. When a character is paralyzed, they are unable to take any actions until the effect wears off or is removed.
+When a character is paralyzed, they are completely immobilized and unable to perform any actions until the effect wears off or is cured. This includes movement, attacking, using items, or casting spells.
 
-==== Mechanics ====
-  * **Duration**: 10 turns by default, modified by Resistance from Ring of Elements
-  * **Removal**: Damage has a chance to break the character out of paralysis based on their current HP vs damage taken
-  * **Visual Indicator**: PARALYSIS icon appears on character's status bar
-  * **Visual Effect**: Character sprite shows PARALYSED state
+==== Stats ====
+  * **Default Duration**: 10 turns (DURATION constant)
+  * **Break Chance**: Chance to break when damage dealt >= Random.Int(damage) vs Random.Int(target.hp())
+  * **Visual State**: CharSprite.State.PARALYSED
+  * **Icon ID**: BuffIndicator.PARALYSIS
 
-==== Sources ====
-  * **Weapons**: Paralysis enchantment on weapons can stun enemies (not true paralysis, but Stun effect)
-  * **Arrows**: Paralysis Arrows inflict paralysis when they hit
-  * **Darts**: Curare Darts cause paralysis
-  * **Gases**: Paralytic Gas clouds cause paralysis when breathed
-  * **Enemies**: Some enemies like Yog's Brain can inflict paralysis
-  * **Armor**: Warrior class skill "Shock" can cause paralysis
+==== Effects ====
+  * **Action Prevention:** Paralyzed characters cannot take any actions
+  * **Duration:** Standard duration is 10 turns, modified by resistance effects
+  * **Vulnerability:** Paralyzed targets are vulnerable to attacks
+  * **Automatic Recovery:** Effect ends automatically after time expires
+  * **Break Chance:** Paralyzed characters have a chance to break free when taking damage (chance based on damage dealt vs current HP)
+  * **Visual Indicator:** Paralyzed characters display a specific status animation
+
+==== Causes ====
+  * [[rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] - Thrown potion that creates a gas cloud causing paralysis
+  * [[rpd:paralysis_arrow_item|Paralysis Arrow]] - Thrown missile that applies 4 turns of paralysis (uses Stun effect)
+  * [[rpd:paralysis_enchantment_item|Paralysis Enchantment]] - Weapon enchantment that has a chance to apply Stun on hit (technically applies Stun, not the Paralysis status)
+  * [[rpd:curare_dart_item|Curare Dart]] - Thrown dart that applies Paralysis effect
+  * [[rpd:paralytic_gas_trap_level_object|Paralytic Gas Trap]] - Trap that creates a gas cloud causing paralysis
+  * Certain enemy attacks - Some creatures can paralyze with their attacks
+  * Special spells - Some spells may cause paralysis
 
 ==== Immunities ====
-The following creatures are immune to paralysis:
-  * Ghost NPC and Mirror Images
-  * Earth and Ice Elementals
-  * Yog's brain, heart, and teeth
-  * King of Dwarves
-  * Piranhas
-  * Ice Guardian and Ice Guardian Core
-  * Crystal
-  * Various undead creatures (Worms, Nightmare, Zombie Gnoll, Pseudo Rat, Runic Skull, Lich, Dread Knight)
-  * Mimic types
+  * [[rpd:fetid_rat_mob|Fetid Rat]] - Immune to paralysis
+  * [[rpd:mimic_pie_mob|Mimic Pie]] - Immune to paralysis, toxic gas, and stun
+  * [[rpd:lich_mob|Lich]] - Immune to paralysis
+  * [[rpd:undead_mob|Undead creatures]] - Often have resistance or immunity
+  * [[rpd:piranha_mob|Piranha]] - Immune to paralysis
+  * [[rpd:king_mob|King]] - Immune to paralysis and stun
+  * Resistance from [[rpd:ring_of_elements_item|Ring of Elements]] may reduce duration
 
-==== Counters ====
-  * **Ring of Elements**: Provides resistance that extends the duration of paralysis effects
+==== Strategy ====
+  * **For Players:** Use paralytic effects to gain tactical advantages
+  * **Defensively:** Try to avoid being paralyzed in dangerous situations
+  * **Offensively:** Paralyze powerful enemies to gain breathing room
+  * **Timing:** Consider the duration when planning your next actions
+  * **Damage Breaking:** If paralyzed, taking damage might help break free (chance based on damage dealt vs HP)
 
-==== Content Verification ====
-  * **Information Source:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]]
-  * **Effect Description:** Based on code analysis of Paralysis class and string resources
-  * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L595-L596|String definitions in strings_all.xml]]
-  * **Last Updated:** Verified against current codebase
+==== Countermeasures ====
+  * Potions of cure poison do NOT cure paralysis (different effect)
+  * [[rpd:ring_of_elements_item|Ring of Elements]] may provide resistance to reduce duration
+  * Avoiding paralytic attacks or items when possible
+  * Taking damage may occasionally break the effect
 
-==== References ====
-  * Java source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]]
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L595-L596|String definitions in strings_all.xml]]
-  * Enchantment: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Paralysis.java|Paralysis enchantment]]
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]] (used by Paralysis enchantment and Paralysis Arrow)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Paralysis.java|Paralysis Enchantment.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|ParalysisArrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CurareDart.java|CurareDart.java]]
 
-==== See Also ====
-  * [[rpd:stun_buff|Stun]] - Related immobilization effect
-  * [[rpd:paralytic_gas|Paralytic Gas]] - Gas that causes paralysis
-  * [[rpd:curare_dart|Curare Dart]] - Dart that causes paralysis
-  * [[rpd:paralysis_arrow|Paralysis Arrow]] - Arrow that causes paralysis
-  * [[rpd:ring_of_elements|Ring of Elements]] - Provides resistance
-  * [[rpd:immunities|Immunities]] - List of all immunities in the game
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1152|ParalysisBuff_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1153|ParalysisBuff_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1159|Hero_StaParalysis]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1151|Char_OutParalysis]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1263|StunBuff_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1264|StunBuff_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1265|Char_StaStunned]]
 
-{{tag> rpd buffs status_effects paralysis}}
+==== Configuration Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]] (resistance)
+
+==== Related ====
+  * [[rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] - Creates ParalyticGas blob that applies paralysis
+  * [[rpd:paralysis_arrow_item|Paralysis Arrow]] - Missile weapon that causes paralysis (technically applies Stun effect)
+  * [[rpd:paralysis_enchantment_item|Paralysis Enchantment]] - Weapon enchantment that causes stun (technically applies Stun effect, not Paralysis)
+  * [[rpd:stun_buff|Stun]] - Related status effect (Paralysis enchantment and Paralysis Arrow use Stun class, not Paralysis)
+  * [[rpd:toxic_gas_trap_level_object|Toxic Gas]] - Other status-causing effect
+  * [[rpd:buffs|Buffs and Debuffs]] - Other temporary status effects
+  * [[rpd:status_effects|Status Effects]] - Other condition types
+  * [[rpd:curare_dart_item|Curare Dart]] - Another item that causes paralysis
+
+{{tag> rpd buffs }}

@@ -1,0 +1,144 @@
+
+<h1 class="sectionedit1" id="earth_elemental_mob_-_code_references">Earth Elemental Mob - Code References</h1>
+<div class="level1">
+
+<p>
+This page contains raw code references and configuration excerpts for the Earth Elemental mob entity.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Earth Elemental Mob - Code References&quot;,&quot;hid&quot;:&quot;earth_elemental_mob_-_code_references&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-156&quot;} -->
+<h3 class="sectionedit2" id="entity_kind">Entity Kind</h3>
+<div class="level3">
+
+<p>
+* <strong>getEntityKind() value:</strong> EarthElemental
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Entity Kind&quot;,&quot;hid&quot;:&quot;entity_kind&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;157-223&quot;} -->
+<h3 class="sectionedit3" id="java_implementation">Java Implementation</h3>
+<div class="level3">
+
+<p>
+* <strong>Class location:</strong> <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java">EarthElemental.java</a>
+* <strong>Parent Class:</strong> <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/Elemental.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/Elemental.java">Elemental</a>
+* <strong>Interfaces:</strong> IDepthAdjustable
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Java Implementation&quot;,&quot;hid&quot;:&quot;java_implementation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;224-646&quot;} -->
+<h3 class="sectionedit4" id="code_fragments">Code Fragments</h3>
+<div class="level3">
+
+<p>
+<strong>Constructor:</strong>
+<pre class="code java"><span class="kw1">public</span> EarthElemental<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	adjustStats<span class="br0">&#40;</span>Dungeon.<span class="me1">depth</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+<p>
+<strong>Stats adjustment:</strong>
+<pre class="code java">@Override
+<span class="kw1">public</span> <span class="kw4">void</span> adjustStats<span class="br0">&#40;</span><span class="kw4">int</span> depth<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw1">super</span>.<span class="me1">adjustStats</span><span class="br0">&#40;</span>depth<span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+	hp<span class="br0">&#40;</span>ht<span class="br0">&#40;</span>depth <span class="sy0">*</span> <span class="nu0">10</span> <span class="sy0">+</span> <span class="nu0">1</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+	baseDefenseSkill <span class="sy0">=</span> depth <span class="sy0">/</span> <span class="nu0">2</span> <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span>
+	baseAttackSkill <span class="sy0">=</span> <span class="br0">&#40;</span>baseDefenseSkill<span class="br0">&#41;</span> <span class="sy0">/</span> <span class="nu0">2</span> <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span>
+	dmgMin <span class="sy0">=</span> ht<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">/</span> <span class="nu0">5</span><span class="sy0">;</span>
+	dmgMax <span class="sy0">=</span> ht<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">/</span> <span class="nu0">5</span><span class="sy0">;</span>
+&nbsp;
+	dr <span class="sy0">=</span> depth <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span>
+	expForKill <span class="sy0">=</span> depth <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span>
+	maxLvl <span class="sy0">=</span> depth <span class="sy0">+</span> <span class="nu0">2</span><span class="sy0">;</span>
+&nbsp;
+	<span class="co1">// Add immunities</span>
+	addImmunity<span class="br0">&#40;</span>Burning.<span class="kw1">class</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	addImmunity<span class="br0">&#40;</span>ToxicGas.<span class="kw1">class</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	addImmunity<span class="br0">&#40;</span>Stun.<span class="kw1">class</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	addImmunity<span class="br0">&#40;</span>Paralysis.<span class="kw1">class</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	addImmunity<span class="br0">&#40;</span>Roots.<span class="kw1">class</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	addImmunity<span class="br0">&#40;</span>Bleeding.<span class="kw1">class</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+<p>
+<strong>Speed modification:</strong>
+<pre class="code java">@Override
+<span class="kw1">public</span> <span class="kw4">float</span> speed<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw1">return</span> level<span class="br0">&#40;</span><span class="br0">&#41;</span>.<span class="me1">getWater</span><span class="br0">&#40;</span>pos<span class="br0">&#41;</span> <span class="sy0">?</span> <span class="kw1">super</span>.<span class="me1">speed</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">*</span> 0.5f <span class="sy0">:</span> <span class="kw1">super</span>.<span class="me1">speed</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+<p>
+<strong>Attack processing with regrowth:</strong>
+<pre class="code java">@Override
+<span class="kw1">public</span> <span class="kw4">int</span> attackProc<span class="br0">&#40;</span>Char enemy, <span class="kw4">int</span> damage<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw1">if</span> <span class="br0">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+random"><span class="kw3">Random</span></a>.<a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+float"><span class="kw3">Float</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">&lt;</span> 0.5f<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="kw4">int</span> cell <span class="sy0">=</span> pos<span class="sy0">;</span>
+		var terrain <span class="sy0">=</span> level<span class="br0">&#40;</span><span class="br0">&#41;</span>.<span class="me1">getTerrain</span><span class="br0">&#40;</span>cell<span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="kw1">if</span> <span class="br0">&#40;</span>terrain <span class="sy0">==</span> Terrain.<span class="me1">EMPTY</span> <span class="sy0">||</span>
+			terrain <span class="sy0">==</span> Terrain.<span class="me1">EMBERS</span> <span class="sy0">||</span>
+			terrain <span class="sy0">==</span> Terrain.<span class="me1">EMPTY_DECO</span> <span class="sy0">||</span>
+			terrain <span class="sy0">==</span> Terrain.<span class="me1">GRASS</span> <span class="sy0">||</span>
+			terrain <span class="sy0">==</span> Terrain.<span class="me1">HIGH_GRASS</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+&nbsp;
+			GameScene.<span class="me1">add</span><span class="br0">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+blob"><span class="kw3">Blob</span></a>.<span class="me1">seed</span><span class="br0">&#40;</span>cell, <span class="nu0">15</span>, Regrowth.<span class="kw1">class</span><span class="br0">&#41;</span>.<span class="me1">setStrength</span><span class="br0">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+math"><span class="kw3">Math</span></a>.<span class="me1">max</span><span class="br0">&#40;</span>depth <span class="sy0">+</span> <span class="nu0">1</span>, <span class="nu0">10</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="br0">&#125;</span>
+	<span class="br0">&#125;</span>
+	<span class="kw1">return</span> <span class="kw1">super</span>.<span class="me1">attackProc</span><span class="br0">&#40;</span>enemy, damage<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+<p>
+<strong>Kind calculation:</strong>
+<pre class="code java">@Override
+<span class="kw1">public</span> <span class="kw4">int</span> getKind<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw1">return</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+math"><span class="kw3">Math</span></a>.<span class="me1">min</span><span class="br0">&#40;</span>depth <span class="sy0">/</span> <span class="nu0">5</span>, <span class="nu0">4</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Code Fragments&quot;,&quot;hid&quot;:&quot;code_fragments&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;647-2076&quot;} -->
+<h3 class="sectionedit5" id="drop_information">Drop Information</h3>
+<div class="level3">
+
+<p>
+<pre class="code java">@Override
+<span class="kw1">protected</span> Loot droppedLoot<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw1">return</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+random"><span class="kw3">Random</span></a>.<a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+float"><span class="kw3">Float</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">&lt;</span> 0.1f <span class="sy0">?</span> <span class="kw1">new</span> Earthroot.<span class="me1">Seed</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">:</span> <span class="kw2">null</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Drop Information&quot;,&quot;hid&quot;:&quot;drop_information&quot;,&quot;codeblockOffset&quot;:5,&quot;secid&quot;:5,&quot;range&quot;:&quot;2077-2228&quot;} -->
+<h3 class="sectionedit6" id="configuration">Configuration</h3>
+<div class="level3">
+
+<p>
+* <strong>Spawn location:</strong> GRASS areas, defined in <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json">Bestiary.json</a> as “GRASS”:{“EarthElemental”:1}
+* <strong>Entity Kind:</strong> EarthElemental
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Configuration&quot;,&quot;hid&quot;:&quot;configuration&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:6,&quot;range&quot;:&quot;2229-2492&quot;} -->
+<h3 class="sectionedit7" id="string_resources">String Resources</h3>
+<div class="level3">
+
+<p>
+* <strong>EarthElemental_Name:</strong> earth elemental
+* <strong>EarthElemental_Desc:</strong> A humanoid mass of living earth and stone, animated by primitive forces.
+&lt;/content&gt;
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;String Resources&quot;,&quot;hid&quot;:&quot;string_resources&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:7,&quot;range&quot;:&quot;2493-&quot;} -->

@@ -1,0 +1,48 @@
+<span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> item <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/item&quot;</span>
+&nbsp;
+<span class="kw1">return</span> item<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    desc <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">return</span> <span class="br0">&#123;</span>
+            image         <span class="sy0">=</span> <span class="nu0">25</span><span class="sy0">,</span>
+            imageFile     <span class="sy0">=</span> <span class="st0">&quot;items.png&quot;</span><span class="sy0">,</span>
+            name          <span class="sy0">=</span> <span class="st0">&quot;Ice Wand&quot;</span><span class="sy0">,</span>
+            info          <span class="sy0">=</span> <span class="st0">&quot;A wand that shoots ice bolts. Freezes enemies temporarily.&quot;</span><span class="sy0">,</span>
+            stackable     <span class="sy0">=</span> <span class="kw4">false</span><span class="sy0">,</span>
+            upgradable    <span class="sy0">=</span> <span class="kw4">true</span><span class="sy0">,</span>
+            isFlies       <span class="sy0">=</span> <span class="kw4">false</span><span class="sy0">,</span>
+            defaultAction <span class="sy0">=</span> <span class="st0">&quot;ZAP&quot;</span>
+        <span class="br0">&#125;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    actions <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">return</span> <span class="br0">&#123;</span>RPD<span class="sy0">.</span>Actions<span class="sy0">.</span>ZAP<span class="br0">&#125;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    <span class="kw3">execute</span> <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> item<span class="sy0">,</span> hero<span class="sy0">,</span> action<span class="br0">&#41;</span>
+        <span class="kw1">if</span> action <span class="sy0">==</span> RPD<span class="sy0">.</span>Actions<span class="sy0">.</span>ZAP <span class="kw1">then</span>
+            <span class="co1">-- Find mob at target location</span>
+            <span class="kw1">local</span> level <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span>
+            <span class="kw1">local</span> allMobs <span class="sy0">=</span> level<span class="sy0">:</span>mobs<span class="br0">&#40;</span><span class="br0">&#41;</span>
+            <span class="kw1">local</span> target <span class="sy0">=</span> <span class="kw4">nil</span>
+&nbsp;
+            <span class="kw1">for</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">,</span> allMobs<span class="sy0">:</span>size<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">-</span><span class="nu0">1</span> <span class="kw1">do</span>
+                <span class="kw1">local</span> mob <span class="sy0">=</span> allMobs<span class="sy0">:</span>get<span class="br0">&#40;</span>i<span class="br0">&#41;</span>
+                <span class="kw1">if</span> mob<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">==</span> hero<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="kw1">then</span> <span class="co1">-- Simplified example - would need actual targeting</span>
+                    target <span class="sy0">=</span> mob
+                    <span class="kw1">break</span>
+                <span class="kw1">end</span>
+            <span class="kw1">end</span>
+&nbsp;
+            <span class="kw1">if</span> target <span class="kw1">then</span>
+                <span class="co1">-- Deal damage</span>
+                target<span class="sy0">:</span>damage<span class="br0">&#40;</span><span class="nu0">5</span><span class="sy0">,</span> hero<span class="br0">&#41;</span>  <span class="co1">-- Damage target, source is hero</span>
+                <span class="co1">-- Freeze for 3 turns - using paralysis as an example</span>
+                RPD<span class="sy0">.</span>affectBuff<span class="br0">&#40;</span>target<span class="sy0">,</span> RPD<span class="sy0">.</span>Buffs<span class="sy0">.</span>Paralysis<span class="sy0">,</span> <span class="nu0">3</span><span class="br0">&#41;</span>
+                RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The ice bolt freezes &quot;</span> <span class="sy0">..</span> target<span class="sy0">:</span>name<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">..</span> <span class="st0">&quot;!&quot;</span><span class="br0">&#41;</span>
+                <span class="co1">-- Visual effect</span>
+                RPD<span class="sy0">.</span>topEffect<span class="br0">&#40;</span>target<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;ice&quot;</span><span class="br0">&#41;</span>
+            <span class="kw1">end</span>
+        <span class="kw1">end</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span>

@@ -1,16 +1,38 @@
-====== wand_of_firebolt_item ======
+====== mr:wand_of_firebolt_item ======
 
-===== Entity Information =====
+=== Entity Information ===
+  * **Class Name**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/WandOfFirebolt.java|WandOfFirebolt.java]]
   * **Entity Kind**: WandOfFirebolt
-  * **Class**: com.watabou.pixeldungeon.items.wands.WandOfFirebolt
-  * **Entity Type**: item
+  * **Type**: Item
+  * **Category**: Wand
 
-===== Code References =====
-  * **Java**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfFirebolt.java|WandOfFirebolt.java]]
+=== Statistics ===
+  * **Default Charges**: 3-5 charges depending on upgrade level
+  * **Image File**: items/wands.png (image index specified in implementation)
+  * **Identified**: Always known (isKnown() returns true)
 
-===== Configuration Files =====
-  * **JSON**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/WandOfFirebolt.json|WandOfFirebolt.json]]
+=== Special Abilities ===
+  * **Fire Damage**: On zapping, deals fire damage to target
+  * **Ignition Effect**: Has a chance to ignite targets, causing burning damage over time
+  * **Area of Effect**: Firebolt travels in a straight line, potentially hitting multiple targets
+  * **Self-Damage Risk**: Using the wand on oneself can cause damage and ignite the user
+  * **Visual Effects**: Uses MagicMissile.fire effect and fire-specific particle effects
 
-===== String Resources =====
-  * **Name**: @string/item_WandOfFirebolt
-  * **Description**: @string/itemd_WandOfFirebolt
+=== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/WandOfFirebolt.java|WandOfFirebolt.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] (base class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|MagicMissile.java]] (for fire effect)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] (for ignite effect)
+
+=== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2681|WandOfFirebolt_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2682|WandOfFirebolt_Info]]
+
+=== Configuration Files ===
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/Wand.json|Wand.json]] (base wand configuration)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] (base item implementation)
+
+=== Lua Scripts ===
+  * No specific Lua script for this wand (uses Java implementation)
+
+{{tag> rpd items machine_readable }}

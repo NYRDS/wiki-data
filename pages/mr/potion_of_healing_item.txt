@@ -1,39 +1,34 @@
-====== Potion of Healing (Item) ======
+====== mr:potion_of_healing_item ======
 
-==== Basic Properties ====
-  * **Item Type**: Potion
-  * **Class**: PotionOfHealing
-  * **Rarity**: Common
-  * **Price**: 30 gold (when identified)
+=== Entity Information ===
+  * **Class Name**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]]
+  * **Entity Kind**: PotionOfHealing
+  * **Type**: Item
+  * **Category**: Potion
 
-==== Effect ====
-  * **Healing**: Restores 100% of max HP to the drinker (full health restoration)
+=== Statistics ===
+  * **Default Price**: 30 gold when identified
+  * **Default Known**: false (becomes known when consumed, shattered, or seen after being identified)
+
+=== Special Abilities ===
+  * **Full Healing**: Restores all HP to maximum (heals 100% of max HP) when consumed
   * **Status Curing**: Removes Poison, Cripple, Weakness, and Bleeding status effects
   * **Shattering**: When shattered on the ground, heals 50% of max HP to any character on that tile
-  * **Arrow Moistening**: Can be used to create Health Arrows
+  * **Arrow Moistening**: Can be used to moisten arrows to create Health Arrows
+  * **Targeted Healing**: Can be thrown at allies to heal them
 
-==== Java Implementation ====
+=== Code References ===
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]]
-  * Uses the heal() method: ch.heal((int) (ch.ht()*portion), pseudoPotion)
-  * Detaches specific buffs: Poison.class, Cripple.class, Weakness.class, and Bleeding.class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]]
 
-==== String Resources ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2188|PotionOfHealing_Name, PotionOfHealing_Info, PotionOfHealing_Apply]]
+=== String Resources ===
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2189|PotionOfHealing_Name, PotionOfHealing_Info, PotionOfHealing_Apply]]
 
-==== Configuration ====
-  * Label index: 5 (for sprite identification)
-  * Identified pricing: 30 * quantity() when known
-  * Not identified pricing: Uses default price method
+=== Configuration Files ===
+  * No specific configuration file (uses Java defaults)
 
-==== Entity Kind ====
-  * Entity Kind: PotionOfHealing (returns getClass().getSimpleName() from NamedEntityKind interface)
+=== Lua Scripts ===
+  * No specific Lua script for this potion (uses Java implementation)
 
-==== Related Entities ====
-  * [[mr:potion|Potion]] - Base potion class
-  * [[mr:poison_buff|Poison]] - Status effect cured
-  * [[mr:cripple_buff|Cripple]] - Status effect cured
-  * [[mr:weakness_buff|Weakness]] - Status effect cured
-  * [[mr:bleeding_buff|Bleeding]] - Status effect cured
-  * [[mr:health_arrow_item|Health Arrow]] - Result of arrow moistening
-
-{{tag> mr items potions healing}}
+{{tag> rpd items machine_readable }}

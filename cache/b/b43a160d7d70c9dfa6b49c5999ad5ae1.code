@@ -1,0 +1,34 @@
+<span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> mob <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/mob&quot;</span>
+&nbsp;
+<span class="kw1">return</span> mob<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    act <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+        <span class="co1">-- Get or initialize mob's state</span>
+        self<span class="sy0">.</span>data <span class="sy0">=</span> self<span class="sy0">.</span>data <span class="kw2">or</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+        <span class="kw1">local</span> state <span class="sy0">=</span> self<span class="sy0">.</span>data<span class="sy0">.</span>state <span class="kw2">or</span> <span class="st0">&quot;patrol&quot;</span>
+&nbsp;
+        <span class="kw1">if</span> state <span class="sy0">==</span> <span class="st0">&quot;patrol&quot;</span> <span class="kw1">then</span>
+            <span class="co1">-- Patrol behavior</span>
+            <span class="kw1">local</span> hero <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>hero
+            <span class="kw1">if</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>distance<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> hero<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">&lt;</span> <span class="nu0">8</span> <span class="kw1">then</span>  <span class="co1">-- Can see hero if within 8 tiles</span>
+                self<span class="sy0">.</span>data<span class="sy0">.</span>state <span class="sy0">=</span> <span class="st0">&quot;chase&quot;</span>
+                RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span>self<span class="sy0">:</span>name<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">..</span> <span class="st0">&quot; spots you!&quot;</span><span class="br0">&#41;</span>
+            <span class="kw1">end</span>
+        <span class="kw1">elseif</span> state <span class="sy0">==</span> <span class="st0">&quot;chase&quot;</span> <span class="kw1">then</span>
+            <span class="co1">-- Chase behavior</span>
+            <span class="kw1">local</span> hero <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>hero
+            <span class="kw1">if</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>distance<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> hero<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">&gt;=</span> <span class="nu0">8</span> <span class="kw1">then</span>
+                self<span class="sy0">.</span>data<span class="sy0">.</span>state <span class="sy0">=</span> <span class="st0">&quot;return&quot;</span>
+                self<span class="sy0">.</span>data<span class="sy0">.</span>returnTo <span class="sy0">=</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="co1">-- Remember spawn position</span>
+            <span class="kw1">end</span>
+        <span class="kw1">elseif</span> state <span class="sy0">==</span> <span class="st0">&quot;return&quot;</span> <span class="kw1">then</span>
+            <span class="co1">-- Return to spawn point</span>
+            <span class="kw1">if</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>distance<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> self<span class="sy0">.</span>data<span class="sy0">.</span>returnTo<span class="br0">&#41;</span> <span class="sy0">&lt;=</span> <span class="nu0">1</span> <span class="kw1">then</span>
+                self<span class="sy0">.</span>data<span class="sy0">.</span>state <span class="sy0">=</span> <span class="st0">&quot;patrol&quot;</span>
+            <span class="kw1">end</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Spend turn time</span>
+        self<span class="sy0">:</span>spend<span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span>

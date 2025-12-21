@@ -1,38 +1,119 @@
-====== AI Wiki Tools and Suggestions ======
+====== AI Wiki Documentation and Tool Suggestions ======
 
-This page documents suggestions for additional tools that could improve the wiki maintenance process for Remixed Dungeon.
+This page documents the tools, methodologies, and best practices used in the AI-assisted wiki maintenance process for Remixed Dungeon.
 
-==== Suggested Tools ====
+==== Tools Used ====
 
-  * **Automated Link Checker:** A tool that regularly scans all pages for broken links and missing pages
-  * **Image Verification Tool:** Automatically verifies that all image references in wiki pages exist and are accessible
-  * **Content Consistency Checker:** Ensures common elements (like stats, descriptions) are consistent across pages and match the game code
-  * **Translation Consistency Tool:** Helps maintain consistency across different language versions of the wiki
-  * **Auto-Update Tool:** Automatically updates pages that contain frequently changing information like game stats
-  * **Content Generation Assistant:** AI-powered tool to help create initial drafts of pages based on game code
-  * **Diff Analysis Tool:** Compares changes in game code to existing wiki pages to suggest necessary updates
-  * **MR Page Generator:** Tool that automatically generates or updates machine-readable namespace pages (mr:) with code references, JSON configs, and string resources for all game entities
-  * **Wiki Verification Assistant:** AI tool that can analyze game source code (Java, Lua, JSON) against wiki content to identify discrepancies or outdated information
-  * **Bulk Update Tool:** Tool that can update multiple wiki pages simultaneously when game mechanics change
-  * **Naming Convention Enforcer:** Tool to ensure all pages follow the proper naming scheme (_mob, _item, _spell, etc.) and are in lowercase with underscores
-  * **Source Code Link Generator:** Tool that automatically adds or updates references to game source code, string resources, and JSON configurations for each wiki entity
+===== Code Search and Analysis =====
+  * **grep_search**: Used extensively to find specific code implementations, string resources, and configuration files across the codebase
+  * **read_file**: Utilized to examine the actual implementation of game entities in Java, Lua, JSON, and XML files
+  * **read_many_files**: Used when needed to understand multiple related files simultaneously
 
-==== Current Tools ====
+===== Wiki Maintenance Tools =====
+  * **find_red_links.py**: Python script to identify red links in the wiki data
+  * **scale_sprites_for_wiki.py**: Enhances sprites for better wiki visualization
+  * **check_broken_images.py**: Checks for broken image links in wiki pages
 
-The following tools already exist and are useful:
+==== Methodology for Wiki Page Creation and Verification ====
 
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/tools/py-tools/find_red_links.py|find_red_links.py]] - Finds broken links in wiki
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/tools/py-tools/scale_sprites_for_wiki.py|scale_sprites_for_wiki.py]] - Processes game sprites for wiki use
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/tools/py-tools/check_broken_images.py|check_broken_images.py]] - Validates image references
+===== Process for Creating/Updating Wiki Pages =====
+  1. **Research**: Use grep_search to locate relevant code, JSON configs, and string resources
+  2. **Implementation Analysis**: Read Java files to understand game mechanics
+  3. **Lua Script Review**: Examine Lua scripts for moddable entities
+  4. **JSON Configuration Review**: Check JSON files for entity definitions
+  5. **String Resources**: Find localized text in XML files
+  6. **Create/Update Page**: Write comprehensive wiki page based on discovered information
+  7. **Cross-reference**: Link related pages appropriately
+  8. **Verify**: Ensure all information is accurate and up-to-date
 
-==== Best Practices ====
+===== Information Sources =====
+Each wiki page should reference:
+  * Java implementation files
+  * Lua scripts for moddable entities
+  * JSON configuration files
+  * String resources (with specific line numbers when possible)
+  * Image resources
+  * Related game entities
 
-  * Always verify game mechanics against the actual source code
-  * Include direct links to relevant code files when documenting features
-  * Use consistent naming schemes for game entities
-  * Reference string resource names for accuracy of in-game text
-  * Regularly run validation tools to maintain quality
-  * Cross-reference information from multiple sources (Java, Lua, JSON, string resources) to ensure completeness
-  * Create proper machine-readable (mr:) reference pages for all game entities
+==== Page Structure Recommendations ====
 
-{{tag> rpd wiki tools }}
+===== Standard Sections for Game Entity Pages =====
+  * **Description**: What the entity is in-game
+  * **Stats**: Numerical values (with depth-scaling when applicable)
+  * **Special Abilities**: Unique mechanics and behaviors
+  * **Loot**: Items dropped or obtained
+  * **Strategy**: How to interact with the entity effectively
+  * **Technical Details**: Links to source code
+  * **Code References**: Direct links to relevant code files
+  * **See Also**: Related entities and concepts
+
+===== Naming Conventions =====
+  * Use snake_case for all wiki page names
+  * Use entity type suffixes (e.g., _mob, _item, _spell, _buff, _class, _subclass)
+  * Maintain consistency with existing page naming
+
+==== Special Considerations for MR Namespace Pages ====
+
+Machine-readable namespace pages (mr:) should contain:
+  * Entity kind identifiers used in getEntityKind() method
+  * Raw code excerpts
+  * JSON configuration files content
+  * Lua script code
+  * String resource keys and values
+  * Direct file paths to implementations
+
+==== Common Issues Found and Resolved ====
+
+===== Obsolete Information =====
+  * Stats that don't reflect depth scaling
+  * Old ability descriptions that don't match current implementations
+  * Incorrect item drops or probabilities
+  * Wrong immunities, resistances or vulnerabilities
+
+===== Red Links =====
+  * Create missing pages for referenced entities
+  * Ensure proper cross-linking between related pages
+  * Use correct namespace and naming conventions
+
+===== Inconsistent Information =====
+  * Different pages having conflicting information about the same entity
+  * Outdated strategy sections that no longer apply to current game mechanics
+
+==== Suggested Automation Tools ====
+
+===== Potential AI-Assisted Tools =====
+  * **Auto-verification Script**: Automatically compares wiki information with game code to identify discrepancies
+  * **MR Page Generator**: Creates/updates mr: namespace pages based on entity discovery
+  * **Stat Validation**: Checks that entity stats on wiki match the actual game implementation
+  * **Link Validation**: Ensures all internal links are valid and creates missing pages automatically
+  * **Localization Checker**: Verifies that wiki pages align with string resources for different languages
+  * **API Documentation Generator**: Creates documentation from code comments and structure
+  * **Duplicate Page Finder**: Identifies pages with similar content that should be merged or standardized
+  * **Naming Convention Enforcer**: Automatically checks and suggests fixes for pages not following the standard naming conventions (_item, _mob, _spell, etc.)
+  * **Content Completeness Analyzer**: Evaluates wiki pages to identify missing sections or insufficient detail
+  * **Cross-Reference Suggester**: Identifies related entities that should be linked from a wiki page
+  * **Code Change Tracker**: Monitors changes in game code and flags wiki pages that may need updating
+
+===== Proposed Workflow Improvements =====
+  * Integrate wiki validation into the build process
+  * Create automatic detection for new game entities that need wiki pages
+  * Develop templates for different types of game entities to ensure consistency
+  * Implement version tracking to understand when wiki pages become outdated compared to code changes
+  * Establish regular wiki maintenance cycles with AI assistance
+  * Create automated testing for wiki page rendering and link integrity
+
+==== Quality Assurance Practices ====
+
+===== Information Accuracy =====
+  * Always verify information against the actual source code
+  * Include specific file paths and line numbers when referencing code
+  * Note when information is depth-dependent or conditional
+  * Flag information that might change between game versions
+
+===== Page Completeness =====
+  * Ensure all major properties of game entities are documented
+  * Include both mechanical effects and strategic implications
+  * Add proper cross-references to related entities and mechanics
+  * Include appropriate images and visual aids
+
+{{tag> rpd ai wiki tools }}

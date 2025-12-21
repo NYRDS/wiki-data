@@ -1,0 +1,105 @@
+
+<h1 class="sectionedit1" id="potion_of_healing_item">Potion of Healing (Item)</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Potion of Healing (Item)&quot;,&quot;hid&quot;:&quot;potion_of_healing_item&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-40&quot;} -->
+<h3 class="sectionedit2" id="basic_properties">Basic Properties</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>Item Type</strong>: Potion</div>
+</li>
+<li class="level1"><div class="li"> <strong>Class</strong>: PotionOfHealing</div>
+</li>
+<li class="level1"><div class="li"> <strong>Rarity</strong>: Common</div>
+</li>
+<li class="level1"><div class="li"> <strong>Price</strong>: 30 gold (when identified)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Basic Properties&quot;,&quot;hid&quot;:&quot;basic_properties&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;41-189&quot;} -->
+<h3 class="sectionedit3" id="effect">Effect</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>Healing</strong>: Restores 100% of max HP to the drinker (full health restoration)</div>
+</li>
+<li class="level1"><div class="li"> <strong>Status Curing</strong>: Removes Poison, Cripple, Weakness, and Bleeding status effects</div>
+</li>
+<li class="level1"><div class="li"> <strong>Shattering</strong>: When shattered on the ground, heals 50% of max HP to any character on that tile</div>
+</li>
+<li class="level1"><div class="li"> <strong>Arrow Moistening</strong>: Can be used to create Health Arrows</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Effect&quot;,&quot;hid&quot;:&quot;effect&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;190-537&quot;} -->
+<h3 class="sectionedit4" id="java_implementation">Java Implementation</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java">PotionOfHealing.java</a></div>
+</li>
+<li class="level1"><div class="li"> Uses the heal() method: ch.heal((int) (ch.ht()*portion), pseudoPotion)</div>
+</li>
+<li class="level1"><div class="li"> Detaches specific buffs: Poison.class, Cripple.class, Weakness.class, and Bleeding.class</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Java Implementation&quot;,&quot;hid&quot;:&quot;java_implementation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;538-907&quot;} -->
+<h3 class="sectionedit5" id="string_resources">String Resources</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2188" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2188">PotionOfHealing_Name, PotionOfHealing_Info, PotionOfHealing_Apply</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;String Resources&quot;,&quot;hid&quot;:&quot;string_resources&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;908-1119&quot;} -->
+<h3 class="sectionedit6" id="configuration">Configuration</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Label index: 5 (for sprite identification)</div>
+</li>
+<li class="level1"><div class="li"> Identified pricing: 30 * quantity() when known</div>
+</li>
+<li class="level1"><div class="li"> Not identified pricing: Uses default price method</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Configuration&quot;,&quot;hid&quot;:&quot;configuration&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1120-1296&quot;} -->
+<h3 class="sectionedit7" id="entity_kind">Entity Kind</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Entity Kind: PotionOfHealing (returns getClass().getSimpleName() from NamedEntityKind interface)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Entity Kind&quot;,&quot;hid&quot;:&quot;entity_kind&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;1297-1420&quot;} -->
+<h3 class="sectionedit8" id="related_entities">Related Entities</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="https://nyrds.net/doku.php?id=mr:potion" class="wikilink2" title="mr:potion" rel="nofollow" data-wiki-id="mr:potion">Potion</a> - Base potion class</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://nyrds.net/doku.php?id=mr:poison_buff" class="wikilink1" title="mr:poison_buff" data-wiki-id="mr:poison_buff">Poison</a> - Status effect cured</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://nyrds.net/doku.php?id=mr:cripple_buff" class="wikilink2" title="mr:cripple_buff" rel="nofollow" data-wiki-id="mr:cripple_buff">Cripple</a> - Status effect cured</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://nyrds.net/doku.php?id=mr:weakness_buff" class="wikilink2" title="mr:weakness_buff" rel="nofollow" data-wiki-id="mr:weakness_buff">Weakness</a> - Status effect cured</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://nyrds.net/doku.php?id=mr:bleeding_buff" class="wikilink1" title="mr:bleeding_buff" data-wiki-id="mr:bleeding_buff">Bleeding</a> - Status effect cured</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://nyrds.net/doku.php?id=mr:health_arrow_item" class="wikilink2" title="mr:health_arrow_item" rel="nofollow" data-wiki-id="mr:health_arrow_item">Health Arrow</a> - Result of arrow moistening</div>
+</li>
+</ul>
+<div class="tags"><span>
+	<a href="https://nyrds.net/doku.php?id=tag:mr&amp;do=showtag&amp;tag=mr" class="wikilink1" title="tag:mr" rel="tag">mr</a>,
+	<a href="https://nyrds.net/doku.php?id=tag:items&amp;do=showtag&amp;tag=items" class="wikilink1" title="tag:items" rel="tag">items</a>,
+	<a href="https://nyrds.net/doku.php?id=tag:potions&amp;do=showtag&amp;tag=potions" class="wikilink1" title="tag:potions" rel="tag">potions</a>,
+	<a href="https://nyrds.net/doku.php?id=tag:healing&amp;do=showtag&amp;tag=healing" class="wikilink1" title="tag:healing" rel="tag">healing</a>
+</span></div>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Related Entities&quot;,&quot;hid&quot;:&quot;related_entities&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;1421-&quot;} -->

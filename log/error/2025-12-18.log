@@ -1,0 +1,73 @@
+2025-12-18 21:48:01	/var/www/dokuwiki/lib/plugins/logviewer/admin.php(155)	ValueError: fread(): Argument #2 ($length) must be greater than 0
+  #0 /var/www/dokuwiki/lib/plugins/logviewer/admin.php(155): fread()
+  #1 /var/www/dokuwiki/lib/plugins/logviewer/admin.php(99): admin_plugin_logviewer->getLogLines()
+  #2 /var/www/dokuwiki/lib/plugins/logviewer/admin.php(50): admin_plugin_logviewer->displayLog()
+  #3 /var/www/dokuwiki/inc/template.php(205): admin_plugin_logviewer->html()
+  #4 /var/www/dokuwiki/inc/Action/Admin.php(43): tpl_admin()
+  #5 /var/www/dokuwiki/inc/template.php(120): dokuwiki\Action\Admin->tplContent()
+  #6 [internal function]: tpl_content_core()
+  #7 /var/www/dokuwiki/inc/Extension/Event.php(134): call_user_func_array()
+  #8 /var/www/dokuwiki/inc/Extension/Event.php(200): dokuwiki\Extension\Event->trigger()
+  #9 /var/www/dokuwiki/inc/template.php(102): dokuwiki\Extension\Event::createAndTrigger()
+  #10 /var/www/dokuwiki/lib/tpl/dokuwiki/main.php(59): tpl_content()
+  #11 /var/www/dokuwiki/inc/actions.php(30): include('...')
+  #12 /var/www/dokuwiki/doku.php(131): act_dispatch()
+  #13 {main}
+2025-12-18 21:59:48	/var/www/dokuwiki/lib/plugins/gitbacked/action/editcommit.php(322)	Exception: Git command failed to perform periodic pull: From github.com:NYRDS/wiki-data
+ * branch            master     -> FETCH_HEAD
+There are no candidates for merging among the refs that you just fetched.
+Generally this means that you provided a wildcard refspec which had no
+matches on the remote end.
+
+  #0 /var/www/dokuwiki/inc/Extension/EventHandler.php(80): action_plugin_gitbacked_editcommit->handlePeriodicPull()
+  #1 /var/www/dokuwiki/inc/Extension/Event.php(97): dokuwiki\Extension\EventHandler->process_event()
+  #2 /var/www/dokuwiki/inc/Extension/Event.php(137): dokuwiki\Extension\Event->advise_after()
+  #3 /var/www/dokuwiki/inc/Extension/Event.php(200): dokuwiki\Extension\Event->trigger()
+  #4 /var/www/dokuwiki/doku.php(134): dokuwiki\Extension\Event::createAndTrigger()
+  #5 {main}
+2025-12-18 23:05:59	/var/www/dokuwiki/lib/plugins/gitbacked/action/editcommit.php(510)	E_WARNING: Undefined variable $lastRev
+  #0 /var/www/dokuwiki/lib/plugins/gitbacked/action/editcommit.php(510): dokuwiki\ErrorHandler::errorHandler()
+  #1 /var/www/dokuwiki/lib/plugins/gitbacked/action/editcommit.php(297): action_plugin_gitbacked_editcommit->updatePageWithGitHistory()
+  #2 /var/www/dokuwiki/inc/Extension/EventHandler.php(80): action_plugin_gitbacked_editcommit->handlePeriodicPull()
+  #3 /var/www/dokuwiki/inc/Extension/Event.php(97): dokuwiki\Extension\EventHandler->process_event()
+  #4 /var/www/dokuwiki/inc/Extension/Event.php(137): dokuwiki\Extension\Event->advise_after()
+  #5 /var/www/dokuwiki/inc/Extension/Event.php(200): dokuwiki\Extension\Event->trigger()
+  #6 /var/www/dokuwiki/doku.php(134): dokuwiki\Extension\Event::createAndTrigger()
+  #7 {main}
+2025-12-18 23:05:59	/var/www/dokuwiki/lib/plugins/gitbacked/action/editcommit.php(517)	E_WARNING: Undefined variable $lastRev
+  #0 /var/www/dokuwiki/lib/plugins/gitbacked/action/editcommit.php(517): dokuwiki\ErrorHandler::errorHandler()
+  #1 /var/www/dokuwiki/lib/plugins/gitbacked/action/editcommit.php(297): action_plugin_gitbacked_editcommit->updatePageWithGitHistory()
+  #2 /var/www/dokuwiki/inc/Extension/EventHandler.php(80): action_plugin_gitbacked_editcommit->handlePeriodicPull()
+  #3 /var/www/dokuwiki/inc/Extension/Event.php(97): dokuwiki\Extension\EventHandler->process_event()
+  #4 /var/www/dokuwiki/inc/Extension/Event.php(137): dokuwiki\Extension\Event->advise_after()
+  #5 /var/www/dokuwiki/inc/Extension/Event.php(200): dokuwiki\Extension\Event->trigger()
+  #6 /var/www/dokuwiki/doku.php(134): dokuwiki\Extension\Event::createAndTrigger()
+  #7 {main}
+2025-12-18 23:22:15	/var/www/dokuwiki/lib/plugins/iframe/syntax.php(26)	E_WARNING: Undefined array key 1
+  #0 /var/www/dokuwiki/lib/plugins/iframe/syntax.php(26): dokuwiki\ErrorHandler::errorHandler()
+  #1 /var/www/dokuwiki/inc/parser/handler.php(298): syntax_plugin_iframe->handle()
+  #2 /var/www/dokuwiki/inc/Parsing/Lexer/Lexer.php(269): Doku_Handler->plugin()
+  #3 /var/www/dokuwiki/inc/Parsing/Lexer/Lexer.php(196): dokuwiki\Parsing\Lexer\Lexer->invokeHandler()
+  #4 /var/www/dokuwiki/inc/Parsing/Lexer/Lexer.php(146): dokuwiki\Parsing\Lexer\Lexer->dispatchTokens()
+  #5 /var/www/dokuwiki/inc/Parsing/Parser.php(113): dokuwiki\Parsing\Lexer\Lexer->parse()
+  #6 /var/www/dokuwiki/inc/parserutils.php(234): dokuwiki\Parsing\Parser->parse()
+  #7 /var/www/dokuwiki/inc/parserutils.php(198): p_get_instructions()
+  #8 /var/www/dokuwiki/inc/parserutils.php(520): p_cached_instructions()
+  #9 /var/www/dokuwiki/inc/parserutils.php(299): p_render_metadata()
+  #10 /var/www/dokuwiki/inc/common.php(265): p_get_metadata()
+  #11 /var/www/dokuwiki/doku.php(101): pageinfo()
+  #12 {main}
+2025-12-18 23:50:25	/var/www/dokuwiki/lib/plugins/iframe/syntax.php(26)	E_WARNING: Undefined array key 1
+  #0 /var/www/dokuwiki/lib/plugins/iframe/syntax.php(26): dokuwiki\ErrorHandler::errorHandler()
+  #1 /var/www/dokuwiki/inc/parser/handler.php(298): syntax_plugin_iframe->handle()
+  #2 /var/www/dokuwiki/inc/Parsing/Lexer/Lexer.php(269): Doku_Handler->plugin()
+  #3 /var/www/dokuwiki/inc/Parsing/Lexer/Lexer.php(196): dokuwiki\Parsing\Lexer\Lexer->invokeHandler()
+  #4 /var/www/dokuwiki/inc/Parsing/Lexer/Lexer.php(146): dokuwiki\Parsing\Lexer\Lexer->dispatchTokens()
+  #5 /var/www/dokuwiki/inc/Parsing/Parser.php(113): dokuwiki\Parsing\Lexer\Lexer->parse()
+  #6 /var/www/dokuwiki/inc/parserutils.php(234): dokuwiki\Parsing\Parser->parse()
+  #7 /var/www/dokuwiki/inc/parserutils.php(198): p_get_instructions()
+  #8 /var/www/dokuwiki/inc/parserutils.php(520): p_cached_instructions()
+  #9 /var/www/dokuwiki/inc/parserutils.php(299): p_render_metadata()
+  #10 /var/www/dokuwiki/inc/common.php(265): p_get_metadata()
+  #11 /var/www/dokuwiki/doku.php(101): pageinfo()
+  #12 {main}

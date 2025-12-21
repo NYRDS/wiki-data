@@ -1,0 +1,244 @@
+
+<h3 class="sectionedit1" id="tiled">Tiled</h3>
+<div class="level3">
+
+<p>
+Tiled is a well-known map editor now can be used (with rpd export plugin) to create custom maps for Remixed Pixel Dungeon.
+</p>
+
+<p>
+To do so you need to download (or build) our customized Tiled package:
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Tiled&quot;,&quot;hid&quot;:&quot;tiled&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-213&quot;} -->
+<h3 class="sectionedit2" id="downloads">Downloads</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="https://drive.google.com/file/d/1S1Dv-5SdTxiLbhdQVGf7AmtJcdJPcG9B/view?usp=sharing" class="urlextern" title="https://drive.google.com/file/d/1S1Dv-5SdTxiLbhdQVGf7AmtJcdJPcG9B/view?usp=sharing">Windows binaries</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://github.com/NYRDS/tiled" class="urlextern" title="https://github.com/NYRDS/tiled">Source code</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Downloads&quot;,&quot;hid&quot;:&quot;downloads&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;214-394&quot;} -->
+<h3 class="sectionedit3" id="guide">Guide</h3>
+<div class="level3">
+
+<p>
+To make it easier to create custom maps, and in order to add new functionality (like using non-standard tile sets), we made a modified build of an open source editor “Tiled”, so that it would export maps in the format RPD would understand.
+</p>
+
+<p>
+<strong>Warning: This build works with Windows only!</strong>
+</p>
+
+<p>
+Linux users can easily compile suitable build, following the link to a <a href="https://github.com/NYRDS/tiled" class="urlextern" title="https://github.com/NYRDS/tiled">source code</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Guide&quot;,&quot;hid&quot;:&quot;guide&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;395-826&quot;} -->
+<h2 class="sectionedit4" id="preparing_to_create_a_new_map">Preparing to create a new map</h2>
+<div class="level2">
+
+<p>
+Once you launch tiled.exe you have to create new map with specific parameters:
+</p>
+
+<p>
+<strong>File → New → New map</strong>
+</p>
+
+<p>
+<strong>Orientation</strong>: Orthogonal
+<strong>Tile render order</strong>: Left up
+</p>
+
+<p>
+<strong>Tile size</strong>:
+<strong>Width</strong>: 16 px
+<strong>Height</strong>: 16 px
+</p>
+
+<p>
+<strong>Map size</strong>: as big as you need (recommended range 8-64)
+</p>
+
+<p>
+<img src="http://nyrds.net/lib/exe/fetch.php?media=rpd:new_map.png" class="media" loading="lazy" alt="" />
+</p>
+
+<p>
+Save the project under desired name, and now we have basis to create a new map.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Preparing to create a new map&quot;,&quot;hid&quot;:&quot;preparing_to_create_a_new_map&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;827-1258&quot;} -->
+<h3 class="sectionedit5" id="creating_a_map">Creating a map</h3>
+<div class="level3">
+
+<p>
+In order for map to work at all, you need to “draw” layout on “logic” layer.
+First you need to rename default layer (1.), or delete it and create a new one, named “logic” (2.) (it is important to use only lower case letters). 
+</p>
+
+<p>
+<a href="http://nyrds.net/lib/exe/fetch.php?media=ru:rpd:tiled_guide_new_layer.png" class="media" title="ru:rpd:tiled_guide_new_layer.png"><img src="http://nyrds.net/lib/exe/fetch.php?w=200&amp;tok=96d54f&amp;media=ru:rpd:tiled_guide_new_layer.png" class="media" loading="lazy" alt="" width="200" /></a>
+</p>
+
+<p>
+Next you need to load standard tile set of you chose (non-x version). <a href="https://github.com/NYRDS/pixel-dungeon-remix/blob/master/PixelDungeon/src/main/assets/tiles0.png" class="urlextern" title="https://github.com/NYRDS/pixel-dungeon-remix/blob/master/PixelDungeon/src/main/assets/tiles0.png">Example</a>.
+It is important to, again, set tile size as 16&times;16, and for the sake of convenience set black color as transparent (even if black color is dominant in your tile set, it will become invisible in editor, but it will have no impact on how it looks in a game). 
+</p>
+
+<p>
+<a href="http://nyrds.net/lib/exe/fetch.php?media=rpd:create_tile_set.png" class="media" title="rpd:create_tile_set.png"><img src="http://nyrds.net/lib/exe/fetch.php?w=200&amp;tok=9b8bf8&amp;media=rpd:create_tile_set.png" class="media" loading="lazy" alt="" width="200" /></a>
+</p>
+
+<p>
+Save tiles under desired name. And return to main tab:
+</p>
+
+<p>
+<a href="http://nyrds.net/lib/exe/fetch.php?media=rpd:back_to_map.png" class="media" title="rpd:back_to_map.png"><img src="http://nyrds.net/lib/exe/fetch.php?w=200&amp;tok=b668d9&amp;media=rpd:back_to_map.png" class="media" loading="lazy" alt="" width="200" /></a>
+</p>
+
+<p>
+Now you can start to “draw” the map. Useful tips:
+</p>
+
+<p>
+1. <strong>Stamp Brush</strong> - places selected tile or group of tiles (if you selected more than one tile in tile palette) in chosen position of the map
+</p>
+
+<p>
+2. <strong>Bucket Fill Tool</strong> - “fills” chosen area of the map with selected tile
+</p>
+
+<p>
+3. <strong>Rectangular Select</strong> - lets you select group of tiles on the map to, for example, delete undesired result
+</p>
+
+<p>
+4. <strong>“Tilesets” tab</strong> - if this tab isn&#039;t active, you wouldn&#039;t be able to see our tile palette, which is located in lower right corner
+</p>
+
+<p>
+<a href="http://nyrds.net/lib/exe/fetch.php?media=rpd:tools.png" class="media" title="rpd:tools.png"><img src="http://nyrds.net/lib/exe/fetch.php?w=200&amp;tok=d29f75&amp;media=rpd:tools.png" class="media" loading="lazy" alt="" width="200" /></a>
+</p>
+
+<p>
+Once we created layout for our map, now you need to ”export as”:
+</p>
+
+<p>
+<a href="http://nyrds.net/lib/exe/fetch.php?media=rpd:export_as.png" class="media" title="rpd:export_as.png"><img src="http://nyrds.net/lib/exe/fetch.php?w=200&amp;tok=b71698&amp;media=rpd:export_as.png" class="media" loading="lazy" alt="" width="200" /></a>
+</p>
+
+<p>
+As an export type select: <strong>Remixed Pixel Dungeon levels</strong>
+</p>
+
+<p>
+<a href="http://nyrds.net/lib/exe/fetch.php?media=rpd:export_as_type.png" class="media" title="rpd:export_as_type.png"><img src="http://nyrds.net/lib/exe/fetch.php?w=200&amp;tok=8ec0a3&amp;media=rpd:export_as_type.png" class="media" loading="lazy" alt="" width="200" /></a>
+</p>
+
+<p>
+And that way you succesfully created a “*.json” file, which is standart format for rpd custom maps and can be used in your mod.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Creating a map&quot;,&quot;hid&quot;:&quot;creating_a_map&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1259-3046&quot;} -->
+<h3 class="sectionedit6" id="adding_unique_tiles">Adding unique tiles</h3>
+<div class="level3">
+
+<p>
+With <strong>Tiled</strong> you can now create map with non-standard tile sets (but you still require standard set for “logic” layer). This will allow you to have any number of walls, floors, decorations etc. in your custom map. 
+To create a map with “custom” tiles, you need to follow previous tutorial, so that you have logical map layout at ready.
+</p>
+
+<p>
+Now, as previously you need to add your “decorative” tile set:
+</p>
+
+<p>
+<a href="http://nyrds.net/lib/exe/fetch.php?media=ru:rpd:tiled_guide_new_tileset.png" class="media" title="ru:rpd:tiled_guide_new_tileset.png"><img src="http://nyrds.net/lib/exe/fetch.php?w=200&amp;tok=1215e0&amp;media=ru:rpd:tiled_guide_new_tileset.png" class="media" loading="lazy" alt="" width="200" /></a>
+</p>
+
+<p>
+Create “base” layer. This layer serves as foundation for decorative tiles, used to place walls, floor and decorations that does not have transparent parts. This is a “background layer”.
+</p>
+
+<p>
+<a href="http://nyrds.net/lib/exe/fetch.php?media=ru:rpd:tiled_guide_base.png" class="media" title="ru:rpd:tiled_guide_base.png"><img src="http://nyrds.net/lib/exe/fetch.php?w=200&amp;tok=d01b02&amp;media=ru:rpd:tiled_guide_base.png" class="media" loading="lazy" alt="" width="200" /></a>
+</p>
+
+<p>
+Create “deco” layer. This layer is a secondary decorative layer, which is used to add complexity to your map composition. For example place windows and door on top of your walls from “base” layer. Basically that&#039;s a layer that is being drawn in front of “base”.
+</p>
+
+<p>
+<a href="http://nyrds.net/lib/exe/fetch.php?media=ru:rpd:tiled_guide_deco.png" class="media" title="ru:rpd:tiled_guide_deco.png"><img src="http://nyrds.net/lib/exe/fetch.php?w=200&amp;tok=b7bb72&amp;media=ru:rpd:tiled_guide_deco.png" class="media" loading="lazy" alt="" width="200" /></a>
+</p>
+
+<p>
+Once it&#039;s done, you need to make sure, that “logic” layer follows your layout accordingly. Basically, on logic layer, you need to have wall tiles in places where character can&#039;t walk, and floor tiles in place where character can walk, and all other tiles accordingly (like traps, chasms, etc.)
+</p>
+
+<p>
+<a href="http://nyrds.net/lib/exe/fetch.php?media=ru:rpd:tiled_guide_logic.png" class="media" title="ru:rpd:tiled_guide_logic.png"><img src="http://nyrds.net/lib/exe/fetch.php?w=200&amp;tok=a554fe&amp;media=ru:rpd:tiled_guide_logic.png" class="media" loading="lazy" alt="" width="200" /></a>
+</p>
+
+<p>
+And if you are to hide “logic” layer in editor, you will be able to see this pretty picture:
+</p>
+
+<p>
+<a href="http://nyrds.net/lib/exe/fetch.php?media=ru:rpd:tiled_guide_pretty.png" class="media" title="ru:rpd:tiled_guide_pretty.png"><img src="http://nyrds.net/lib/exe/fetch.php?w=200&amp;tok=f041a7&amp;media=ru:rpd:tiled_guide_pretty.png" class="media" loading="lazy" alt="" width="200" /></a>
+</p>
+
+<p>
+As a last thing to do, export your map as <strong>Remixed Pixel Dungeon levels</strong>. And you will get similar file:
+</p>
+
+<p>
+<a href="http://nyrds.net/lib/exe/fetch.php?media=ru:rpd:tiled_guide_deco_export.png" class="media" title="ru:rpd:tiled_guide_deco_export.png"><img src="http://nyrds.net/lib/exe/fetch.php?w=200&amp;tok=b45348&amp;media=ru:rpd:tiled_guide_deco_export.png" class="media" loading="lazy" alt="" width="200" /></a>
+</p>
+
+<p>
+There is two important parameters here,
+</p>
+
+<p>
+“customTiles”:true — indicator, that your map uses custom tiles
+</p>
+
+<p>
+“tiles”:“Citywip.png” — path to a file that contains said custom tile set
+</p>
+
+</div>
+
+<h4 id="map_layers">Map Layers</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> logic (base logic tiles)</div>
+</li>
+<li class="level1"><div class="li"> base</div>
+</li>
+<li class="level1"><div class="li"> deco</div>
+</li>
+<li class="level1"><div class="li"> deco2 - those layers will be drawn below the Hero</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> roof_base</div>
+</li>
+<li class="level1"><div class="li"> roof_deco - and those will be drawn above</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Adding unique tiles&quot;,&quot;hid&quot;:&quot;adding_unique_tiles&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;3047-&quot;} -->

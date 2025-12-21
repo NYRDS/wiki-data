@@ -1,0 +1,106 @@
+
+<h1 class="sectionedit1" id="line_of_sight">Line of Sight</h1>
+<div class="level1">
+
+<p>
+<strong>Line of Sight</strong> is a fundamental game mechanic that determines what areas and entities the hero can see and interact with.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Line of Sight&quot;,&quot;hid&quot;:&quot;line_of_sight&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-155&quot;} -->
+<h3 class="sectionedit2" id="basic_concept">Basic Concept</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Line of sight determines which tiles are visible to the hero</div>
+</li>
+<li class="level1"><div class="li"> The hero can typically see in a circular radius around their position</div>
+</li>
+<li class="level1"><div class="li"> Walls and other solid obstacles block line of sight</div>
+</li>
+<li class="level1"><div class="li"> Some effects can extend or restrict the hero&#039;s line of sight</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Basic Concept&quot;,&quot;hid&quot;:&quot;basic_concept&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;156-440&quot;} -->
+<h3 class="sectionedit3" id="applications">Applications</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>Movement</strong>: The hero can only move to adjacent visible tiles</div>
+</li>
+<li class="level1"><div class="li"> <strong>Ranged Attacks</strong>: Ranged weapons require an unobstructed line of sight to the target</div>
+</li>
+<li class="level1"><div class="li"> <strong>Spells</strong>: Many spells require line of sight to affect targets</div>
+</li>
+<li class="level1"><div class="li"> <strong>Detection</strong>: Enemies and items are only visible when in line of sight</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Applications&quot;,&quot;hid&quot;:&quot;applications&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;441-766&quot;} -->
+<h3 class="sectionedit4" id="mechanics">Mechanics</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Light sources can affect line of sight in dark areas</div>
+</li>
+<li class="level1"><div class="li"> Some abilities or items can grant extended vision</div>
+</li>
+<li class="level1"><div class="li"> Darkness or fog effects can reduce line of sight</div>
+</li>
+<li class="level1"><div class="li"> Certain terrain features may block or redirect line of sight</div>
+</li>
+<li class="level1"><div class="li"> Implemented using the <strong>ShadowCaster</strong> class which calculates visibility from a central point</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Mechanics&quot;,&quot;hid&quot;:&quot;mechanics&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;767-1114&quot;} -->
+<h3 class="sectionedit5" id="technical_implementation">Technical Implementation</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> The game maintains a boolean array `fieldOfView` for each level which tracks visibility</div>
+</li>
+<li class="level1"><div class="li"> Uses ShadowCaster algorithm to determine visible cells from character position</div>
+</li>
+<li class="level1"><div class="li"> LOS blocking terrain is flagged using TerrainFlags.LOS_BLOCKING</div>
+</li>
+<li class="level1"><div class="li"> Level objects can also block line of sight with the `losBlocker()` method</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Technical Implementation&quot;,&quot;hid&quot;:&quot;technical_implementation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1115-1471&quot;} -->
+<h3 class="sectionedit6" id="code_references">Code References</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Core implementation: <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/ShadowCaster.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/ShadowCaster.java">ShadowCaster.java</a></div>
+</li>
+<li class="level1"><div class="li"> Level visibility: <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java#L1488-L1525" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java#L1488-L1525">updateFieldOfView in Level.java</a></div>
+</li>
+<li class="level1"><div class="li"> LOS blocking flags: <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/TerrainFlags.java#L8" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/TerrainFlags.java#L8">TerrainFlags.java</a></div>
+</li>
+<li class="level1"><div class="li"> Level objects LOS: <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Deco.java#L83" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Deco.java#L83">losBlocker method</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Code References&quot;,&quot;hid&quot;:&quot;code_references&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1472-2235&quot;} -->
+<h3 class="sectionedit7" id="related_pages">Related Pages</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://nyrds.net/doku.php?id=rpd:range" class="wikilink1" title="rpd:range" data-wiki-id="rpd:range">Range</a> - Distance mechanics for attacks</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://nyrds.net/doku.php?id=rpd:ranged_weapons" class="wikilink1" title="rpd:ranged_weapons" data-wiki-id="rpd:ranged_weapons">Ranged Weapons</a> - Weapons affected by line of sight</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://nyrds.net/doku.php?id=rpd:spells" class="wikilink1" title="rpd:spells" data-wiki-id="rpd:spells">Spells</a> - Many spells require line of sight</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://nyrds.net/doku.php?id=rpd:light" class="wikilink1" title="rpd:light" data-wiki-id="rpd:light">Light</a> - Related to visibility</div>
+</li>
+</ul>
+<div class="tags"><span>
+	<a href="http://nyrds.net/doku.php?id=tag:rpd&amp;do=showtag&amp;tag=rpd" class="wikilink1" title="tag:rpd" rel="tag">rpd</a>,
+	<a href="http://nyrds.net/doku.php?id=tag:mechanics&amp;do=showtag&amp;tag=mechanics" class="wikilink1" title="tag:mechanics" rel="tag">mechanics</a>
+</span></div>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Related Pages&quot;,&quot;hid&quot;:&quot;related_pages&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;2236-&quot;} -->

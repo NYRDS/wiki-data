@@ -1,11 +1,11 @@
-====== KunaiThrow ======
+====== Kunai Throw ======
 
-{{ rpd:images:kunai_throw_spell_icon.png|KunaiThrow Spell Icon }}
+{{ rpd:images:kunai_throw_spell_icon.png|Kunai Throw Spell Icon }}
 
-**KunaiThrow** is a spell in Remixed Pixel Dungeon (Rogue Affinity).
+**Kunai Throw** is a spell in Remixed Pixel Dungeon (Rogue Affinity).
 
 ==== Description ====
-This spell throws Kunai at random visible enemies extremely fast. The number of Kunai thrown depends on the caster level, with more Kunai thrown at higher levels.
+This spell throws Kunai at random visible enemies extremely fast. The number of Kunai thrown depends on the caster's skill level, with more Kunai thrown at higher levels. The spell is so fast that you can't select the target.
 
 ==== Stats ====
   * **Magic Affinity:** [[rpd:rogue|Rogue]]
@@ -13,16 +13,20 @@ This spell throws Kunai at random visible enemies extremely fast. The number of 
   * **Level:** 2
   * **[[rpd:mana|Mana]] Cost:** 5
   * **Cast Time:** 0.01 (extremely fast)
-  * **Special Effects:** damages random visible enemies
-  * **Damage:** Random damage between n and (n + [[rpd:hero_level|caster level]] * n), where n is the number of [[rpd:kunai|kunai]] thrown
-  * **Number of Kunai:** Based on caster skill level (min(caster skill level - spellLevel + 1, 3), max 3 kunai)
-  * **Targeting Logic:** The spell automatically targets random enemies visible to the caster
+  * **Spell Image:** Uses different icons based on spell tier (1, 9, or 17 depending on tier)
+
+==== Mechanics ====
+  * **Number of Kunai:** min(caster:skillLevel() - spellLevel + 1, 3) - maximum of 3 kunai
+  * **Damage:** Random damage between n and (n + caster:lvl() * n), where n is the number of kunai thrown
+  * **Targeting:** Automatically targets random enemies visible to the caster
+  * **Zap Effect:** Shows a "Kunai" zap effect from caster to target
+  * **Requirement:** Requires at least one visible enemy to cast
 
 ==== Usage ====
-The KunaiThrow spell can be used for:
+The Kunai Throw spell can be used for:
   * Offensive applications against [[rpd:enemies|enemies]]
-  * Strategic applications in [[rpd:combat|combat]]
-  * Utility purposes based on its mechanics
+  * Quick burst damage in [[rpd:combat|combat]]
+  * Surprising enemies with fast, unavoidable attacks
 
 ==== Classes ====
 Classes that can use this spell include:
@@ -30,29 +34,25 @@ Classes that can use this spell include:
   * Other classes that gain access through special means
 
 ==== Strategy ====
-How to effectively use the KunaiThrow spell:
-  * Best used when multiple enemies are visible to maximize damage potential
+How to effectively use the Kunai Throw spell:
+  * Best used when multiple enemies are visible to potentially hit several targets
   * More effective at higher skill levels when more Kunai can be thrown
   * Quick cast time makes it useful in tight situations
   * Works well when enemies are grouped together
+  * Since it targets random enemies, it's useful when you don't need to target a specific one
 
-==== Data Validation ====
-This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
+==== Technical Details ====
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua|KunaiThrow.lua]]
+  * Class: Lua script implementing the spell system
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2626-L2627|KunaiThrow_Name and KunaiThrow_Info]]
 
-==== Content Verification ====
-* Information source: Lua Script in Remixed Dungeon codebase
-* Stats verified: Yes, extracted directly from spell class properties
-* Effect descriptions: Generated from code analysis and string resources
-* String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1931-L1932|KunaiThrow string resources]] (KunaiThrow_Name, KunaiThrow_Info)
-* Last updated: December 20, 2025
+==== Code References ====
+  * [[code:RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua|KunaiThrow.lua]]
+  * [[code:RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]]
+  * [[code:RemixedDungeon/src/main/res/values/strings_all.xml#L2626-L2627|strings_all.xml]]
 
-==== Source Code ====
-This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua|KunaiThrow.lua]]
-
-==== Related Code ====
-* The spell system is implemented in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]]
-* Spell casting mechanics can be found in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellCaster.java|SpellCaster.java]]
-* Zap effects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/effects/ZapEffect.java|ZapEffect.java]]
+==== Flavor Text ====
+From the game: "This Deadly Kunai throw will be done extremely fast, so fast that you won't even be able to select a target.\n\nTrue Masters able to throw more than one Kunai at once."
 
 ==== See Also ====
   * [[rpd:spells|Spells]]

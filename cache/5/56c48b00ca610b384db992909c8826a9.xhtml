@@ -1,0 +1,98 @@
+
+<h1 class="sectionedit1" id="кастомные_мобы">Кастомные мобы</h1>
+<div class="level1">
+
+<p>
+Кастомные мобы — новая возможность моддинга RPD, появившаяся в версии remix.26.5.alpha.1.
+</p>
+
+<p>
+В папке мода создаётся папка mobsDesc, в ней - json-файл, например <a href="https://github.com/NYRDS/remixed-dungeon/blob/CustomMob/PixelDungeon/src/main/assets/mobsDesc/BlackRat.json" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/CustomMob/PixelDungeon/src/main/assets/mobsDesc/BlackRat.json">BlackRat.json</a>. 
+</p>
+
+<p>
+При корректном содержимом имя файла без расширения можно использовать на этажах и в бестиарии, как уже существующих мобов. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;\u041a\u0430\u0441\u0442\u043e\u043c\u043d\u044b\u0435 \u043c\u043e\u0431\u044b&quot;,&quot;hid&quot;:&quot;\u043a\u0430\u0441\u0442\u043e\u043c\u043d\u044b\u0435_\u043c\u043e\u0431\u044b&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-655&quot;} -->
+<h3 class="sectionedit2" id="атрибуты">Атрибуты</h3>
+<div class="level3">
+<p><a class="folder" href="#folded_a4b87cfa30725443ea342da5cbf36111_1">показать весь список </a></p><div class="folded hidden" id="folded_a4b87cfa30725443ea342da5cbf36111_1"><ul>
+<li class="level1"><div class="li"> defenseSkill   (число; насколько хорошо моб уклоняется от атак)</div>
+</li>
+<li class="level1"><div class="li"> attackSkill    (число; насколько хорошо моб проводит атаки)</div>
+</li>
+<li class="level1"><div class="li"> exp            (число)</div>
+</li>
+<li class="level1"><div class="li"> maxLvl         (число; выпадет ли лут, зависит от maxLvl+2)</div>
+</li>
+<li class="level1"><div class="li"> dmgMin         (число)</div>
+</li>
+<li class="level1"><div class="li"> dmgMax         (число)</div>
+</li>
+<li class="level1"><div class="li"> dr             (число; максимум урона который может поглотить броня моба при пропущенной атаке)</div>
+</li>
+<li class="level1"><div class="li"> baseSpeed      (число; скорость перемещения моба)</div>
+</li>
+<li class="level1"><div class="li"> attackDelay    (число; задержка между атаками моба)</div>
+</li>
+<li class="level1"><div class="li"> ht             (число; максимальное здоровье моба)</div>
+</li>
+<li class="level1"><div class="li"> name           (явная строка или имя ресурса со строкой)</div>
+</li>
+<li class="level1"><div class="li"> name_objective (явная строка или имя ресурса со строкой)</div>
+</li>
+<li class="level1"><div class="li"> description    (явная строка или имя ресурса со строкой)</div>
+</li>
+<li class="level1"><div class="li"> gender         (явная строка или имя ресурса со строкой)</div>
+</li>
+<li class="level1"><div class="li"> spriteDesc     (путь к раскадровке)</div>
+</li>
+<li class="level1"><div class="li"> lootChance     (число, 1=100%)</div>
+</li>
+<li class="level1"><div class="li"> loot           («kind»:«предмет»)</div>
+</li>
+<li class="level1"><div class="li"> attackRange    (число; дальность атаки)</div>
+</li>
+<li class="level1"><div class="li"> walkingType    (NORMAL / WATER / WALL / GRASS / CHASM / ABSOLUTE)</div>
+</li>
+<li class="level1"><div class="li"> defenceVerb    (явная строка или имя ресурса со строкой)</div>
+</li>
+<li class="level1"><div class="li"> canBePet       (true / false)</div>
+</li>
+<li class="level1"><div class="li"> flying         (true / false)</div>
+</li>
+<li class="level1"><div class="li"> viewDistance   (число; радиус поля зрения моба)</div>
+</li>
+<li class="level1"><div class="li"> scriptFile     (строка, путь к файлу скрипта для этого моба)</div>
+</li>
+<li class="level1"><div class="li"> friendly       (true / false)</div>
+</li>
+<li class="level1"><div class="li"> immunities     (массив источников урона к которым у моба иммунитет)</div>
+</li>
+<li class="level1"><div class="li"> resistances    (массив источников урона к которым у моба сопротивление)</div>
+</li>
+<li class="level1"><div class="li"> movable        (true / false)</div>
+</li>
+<li class="level1"><div class="li"> immortal       (true / false)</div>
+</li>
+</ul>
+</div>
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;\u0410\u0442\u0440\u0438\u0431\u0443\u0442\u044b&quot;,&quot;hid&quot;:&quot;\u0430\u0442\u0440\u0438\u0431\u0443\u0442\u044b&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;656-2874&quot;} -->
+<h1 class="sectionedit3" id="скрипты_мобов">Скрипты мобов</h1>
+<div class="level1">
+
+<p>
+С каждым мобом может быть ассоциировано два скрипта:
+</p>
+<ul>
+<li class="level1"><div class="li"> скрипт моба - там описаны коллбеки к различным его действиям</div>
+</li>
+<li class="level1"><div class="li"> скрипт ИИ — который позволяет полностью менять поведение моба, но требует детального описания оного.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;\u0421\u043a\u0440\u0438\u043f\u0442\u044b \u043c\u043e\u0431\u043e\u0432&quot;,&quot;hid&quot;:&quot;\u0441\u043a\u0440\u0438\u043f\u0442\u044b_\u043c\u043e\u0431\u043e\u0432&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;2875-&quot;} -->

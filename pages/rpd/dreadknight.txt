@@ -8,23 +8,23 @@
 The dread knight is an ancient warrior who, in life, neither knew good or righteousness. For his sins, he is doomed to everlasting wanderings in this broken body of death. And every moment of his tormented existence is full of pain and suffering, similar to what he inflicted on his victims.
 
 ==== Stats ====
-  * **HP**: 40
+  * **HP**: 40 (hp(ht(40)))
   * **HT**: 40
-  * **Defense Skill**: 15
-  * **Attack Skill**: 17
-  * **Min Damage**: 8
-  * **Max Damage**: 16
-  * **Damage Resistance**: 12
-  * **Exp for Kill**: 8
-  * **Max Level**: 15
+  * **Defense Skill**: 15 (baseDefenseSkill = 15)
+  * **Attack Skill**: 17 (baseAttackSkill = 17)
+  * **Min Damage**: 8 (dmgMin = 8)
+  * **Max Damage**: 16 (dmgMax = 16)
+  * **Damage Resistance**: 12 (dr = 12)
+  * **Exp for Kill**: 8 (expForKill = 8)
+  * **Max Level**: 15 (maxLvl = 15)
 
 ==== Special Abilities ====
 The Dread Knight has two special abilities during combat:
-  * **Double Damage**: 25% chance (1 in 4) to double damage on attack
-  * **Stun Proc**: 10% chance (1 in 10) to apply stun to the target on attack
+  * **Double Damage**: 25% chance (1 in 4) to double damage on attack (Random.Int(4) == 1: DeathStroke.hit(enemy); return damage * 2)
+  * **Stun Proc**: 10% chance (1 in 10) to apply [[rpd:stun_buff|stun]] to the target on attack (Random.Int(10) == 1: Buff.affect(enemy, Stun.class))
 
 ==== Drops ====
-  * **Gold**: Small chance of dropping gold (2% chance)
+  * **Gold**: Small chance of dropping gold (2% chance) (loot(Gold.class, 0.02f))
 
 ==== Spawn Locations ====
   * **Necropolis Level 2**: 0.015 spawn weight
@@ -32,7 +32,7 @@ The Dread Knight has two special abilities during combat:
   * **Necropolis Level 4**: 0.045 spawn weight (increased chance)
 
 ==== Behavior ====
-  * Undead creature
+  * Undead creature (setUndead(true))
   * Aggressive towards the player
 
 ==== Data Validation ====
@@ -45,7 +45,12 @@ This information is extracted directly from the game code and validated against 
 * Last updated: 2025-12-12 based on DreadKnight.java
 
 ==== Source Code ====
-This page content is based on the Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DreadKnight.java|DreadKnight]]
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DreadKnight.java|DreadKnight.java]]
+  * Base Mob Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * String Resources (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3004|Dread Knight strings (line 3004)]]
+  * String Resources (Russian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3035|Dread Knight strings (line 3035)]]
+  * Stun Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]]
+  * Death Stroke Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/effects/DeathStroke.java|DeathStroke.java]]
 
 ==== See Also ====
   * [[rpd:mobs|Other Mobs]]

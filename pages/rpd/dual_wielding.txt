@@ -28,14 +28,27 @@ Using both weapon slots changes the combat approach:
 ==== Weapon Compatibility ====
 Not all weapons can be equipped in the left hand slot:
   * Many one-handed weapons can be equipped in the left hand slot
-  * Two-handed weapons like WarHammer, Quarterstaff, Longsword, BattleAxe, Polearm, and Claymore cannot be used together with another weapon in the left hand
+  * Two-handed weapons like [[rpd:war_hammer|WarHammer]], [[rpd:quarterstaff|Quarterstaff]], [[rpd:longsword|Longsword]], [[rpd:battle_axe|BattleAxe]], [[rpd:polearm|Polearm]], and [[rpd:claymore|Claymore]] cannot be used together with another weapon in the left hand
   * Bows (KindOfBow) are designed to use the left hand slot
   * Wands also use the left hand slot
   * The left hand slot is a general secondary equipment slot, not specifically for dual wielding
 
 ==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java#L173|Belongings.Slot.LEFT_HAND in code]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java#L189|Left Hand slot definition]]
+  * Main Java class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings.java]]
+  * LEFT_HAND slot definition: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java#L173|Belongings.Slot.LEFT_HAND (line 173)]]
+  * Slot blocking logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java#L280|slotBlocked method (line 280)]]
+  * Equipment blocking: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java#L679|equip method (line 679)]]
+  * Weapon compatibility: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/KindOfWeapon.java#L35|KindOfWeapon.java (line 35)]]
+  * Two-handed weapon blocking: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/KindOfWeapon.java#L30|KindOfWeapon.java (line 30)]]
+  * Specific weapon slot assignments:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/WarHammer.java#L31|WarHammer.java (line 31)]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Quarterstaff.java#L31|Quarterstaff.java (line 31)]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Longsword.java#L31|Longsword.java (line 31)]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/BattleAxe.java#L31|BattleAxe.java (line 31)]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Polearm.java#L28|Polearm.java (line 28)]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/KindOfBow.java#L103|KindOfBow.java (line 103)]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L402|Wand.java (line 402)]]
+  * Combat dual-weapon usage: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L151|HeroSubClass.java (lines 133, 151)]]
 
 ==== See Also ====
   * [[rpd:equipment_slots|Equipment Slots]]

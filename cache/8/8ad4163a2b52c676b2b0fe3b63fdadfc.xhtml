@@ -1,0 +1,111 @@
+
+<h1 class="sectionedit1" id="version_json">version_json</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;version_json&quot;,&quot;hid&quot;:&quot;version_json&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-28&quot;} -->
+<h2 class="sectionedit2" id="description">Description</h2>
+<div class="level2">
+
+<p>
+<strong>version.json</strong> is a required file for all mods in Remixed Dungeon. It contains metadata about the mod that the game uses to properly load and manage the mod.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Description&quot;,&quot;hid&quot;:&quot;description&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;29-213&quot;} -->
+<h2 class="sectionedit3" id="file_structure">File Structure</h2>
+<div class="level2">
+
+<p>
+<pre class="code javascript"> <span class="br0">&#123;</span>
+   <span class="st0">&quot;version&quot;</span><span class="sy0">:</span> <span class="nu0">6</span><span class="sy0">,</span>
+   <span class="st0">&quot;name&quot;</span><span class="sy0">:</span> <span class="st0">&quot;Cool Mod Name&quot;</span><span class="sy0">,</span>
+   <span class="st0">&quot;author&quot;</span><span class="sy0">:</span> <span class="st0">&quot;Proud Mod Developer&quot;</span><span class="sy0">,</span>
+   <span class="st0">&quot;description&quot;</span><span class="sy0">:</span> <span class="st0">&quot;Detailed mod description&quot;</span><span class="sy0">,</span>
+   <span class="st0">&quot;url&quot;</span><span class="sy0">:</span> <span class="st0">&quot;https://wiki.nyrds.net/&quot;</span><span class="sy0">,</span>
+   <span class="st0">&quot;hr_version&quot;</span><span class="sy0">:</span> <span class="st0">&quot;version 6!&quot;</span><span class="sy0">,</span>
+   <span class="st0">&quot;rpd_version&quot;</span><span class="sy0">:</span> <span class="nu0">610</span>
+ <span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;File Structure&quot;,&quot;hid&quot;:&quot;file_structure&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;214-490&quot;} -->
+<h3 class="sectionedit4" id="fields">Fields</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>version</strong> (integer, required) - Machine readable mod version, used for update checks</div>
+</li>
+<li class="level1"><div class="li"> <strong>name</strong> (string, optional) - Mod name as displayed to the player; defaults to directory name if not specified</div>
+</li>
+<li class="level1"><div class="li"> <strong>rpd_version</strong> (integer, optional) - Remixed Dungeon version required to run the mod; if not specified, defaults to 0</div>
+</li>
+<li class="level1"><div class="li"> <strong>author</strong> (string, optional) - Mod developer name as displayed to player; defaults to “Unknown” if not specified</div>
+</li>
+<li class="level1"><div class="li"> <strong>description</strong> (string, optional) - Mod description as displayed to player; defaults to empty string if not specified</div>
+</li>
+<li class="level1"><div class="li"> <strong>url</strong> (string, optional) - Clickable link to developer&#039;s site; defaults to empty string if not specified</div>
+</li>
+<li class="level1"><div class="li"> <strong>hr_version</strong> (string, optional) - Human-readable version as displayed to player; defaults to string representation of “version” value if not specified</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Fields&quot;,&quot;hid&quot;:&quot;fields&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:4,&quot;range&quot;:&quot;491-1346&quot;} -->
+<h2 class="sectionedit5" id="mechanics">Mechanics</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> The game checks for the existence of version.json in potential mod directories</div>
+</li>
+<li class="level1"><div class="li"> Only directories containing a valid version.json file will be loaded as mods</div>
+</li>
+<li class="level1"><div class="li"> The “rpd_version” field is used to determine compatibility with the current Remixed Dungeon version</div>
+</li>
+<li class="level1"><div class="li"> A mod is considered compatible if its rpd_version is less than or equal to (current version code % 2000)</div>
+</li>
+<li class="level1"><div class="li"> The “version” field is used to check if the installed mod is outdated compared to the online version</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Mechanics&quot;,&quot;hid&quot;:&quot;mechanics&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:5,&quot;range&quot;:&quot;1347-1851&quot;} -->
+<h2 class="sectionedit6" id="content_verification">Content Verification</h2>
+<div class="level2">
+
+<p>
+* Information source: Java classes <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/ModDesc.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/ModDesc.java">ModDesc.java</a> and <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/util/Mods.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/util/Mods.java">Mods.java</a>
+* Field definitions and defaults: Extracted from the fromJson() method in ModDesc.java
+* Compatibility logic: Extracted from the isCompatible() method in ModDesc.java
+* Last updated: December 2025, source: Remixed Dungeon 1.9.3
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Content Verification&quot;,&quot;hid&quot;:&quot;content_verification&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:6,&quot;range&quot;:&quot;1852-2414&quot;} -->
+<h2 class="sectionedit7" id="source_code">Source Code</h2>
+<div class="level2">
+
+<p>
+* Java: <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/ModDesc.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/ModDesc.java">ModDesc.java</a>
+* Java: <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/util/Mods.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/util/Mods.java">Mods.java</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Source Code&quot;,&quot;hid&quot;:&quot;source_code&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:7,&quot;range&quot;:&quot;2415-2717&quot;} -->
+<h2 class="sectionedit8" id="see_also">See Also</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://nyrds.net/doku.php?id=rpd:mods" class="wikilink1" title="rpd:mods" data-wiki-id="rpd:mods">Mods</a> - Overview of modding system</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://nyrds.net/doku.php?id=rpd:modding_getting_started" class="wikilink1" title="rpd:modding_getting_started" data-wiki-id="rpd:modding_getting_started">Getting Started with Modding</a> - Tutorial for creating mods</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://nyrds.net/doku.php?id=rpd:modding_quick_reference" class="wikilink1" title="rpd:modding_quick_reference" data-wiki-id="rpd:modding_quick_reference">Modding Quick Reference</a> - Reference for mod creation</div>
+</li>
+</ul>
+<div class="tags"><span>
+	<a href="http://nyrds.net/doku.php?id=tag:rpd&amp;do=showtag&amp;tag=rpd" class="wikilink1" title="tag:rpd" rel="tag">rpd</a>,
+	<a href="http://nyrds.net/doku.php?id=tag:modding&amp;do=showtag&amp;tag=modding" class="wikilink1" title="tag:modding" rel="tag">modding</a>,
+	<a href="http://nyrds.net/doku.php?id=tag:json&amp;do=showtag&amp;tag=json" class="wikilink1" title="tag:json" rel="tag">json</a>
+</span></div>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;See Also&quot;,&quot;hid&quot;:&quot;see_also&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:8,&quot;range&quot;:&quot;2718-&quot;} -->

@@ -1,0 +1,104 @@
+
+<h1 class="sectionedit1" id="mimic">Mimic</h1>
+<div class="level1">
+
+<p>
+<a href="https://wiki.nyrds.net/lib/exe/detail.php?id=rpd%3Amimic&amp;media=rpd:images:mob_mimic.png" class="media wikilink2" title="rpd:images:mob_mimic.png"><img src="https://wiki.nyrds.net/lib/exe/fetch.php?media=rpd:images:mob_mimic.png" class="mediaright" loading="lazy" title="Mimic Sprite " alt="Mimic Sprite " /></a>
+</p>
+
+<p>
+<strong>Mimic</strong> is a dangerous enemy that disguises itself as a treasure chest to lure unsuspecting adventurers. When approached, it reveals its true nature and attacks.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Mimic&quot;,&quot;hid&quot;:&quot;mimic&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-231&quot;} -->
+<h3 class="sectionedit2" id="properties">Properties</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>HP</strong>: (3 + depth) * 4</div>
+</li>
+<li class="level1"><div class="li"> <strong>Attack Skill</strong>: 9 + depth</div>
+</li>
+<li class="level1"><div class="li"> <strong>Defense Skill</strong>: 9 + depth/2</div>
+</li>
+<li class="level1"><div class="li"> <strong>Damage</strong>: (HP/10) to (HP/4)</div>
+</li>
+<li class="level1"><div class="li"> <strong>EXP</strong>: 2 + 2 * (depth - 1) / 5</div>
+</li>
+<li class="level1"><div class="li"> <strong>Special Ability</strong>: Immune to Psionic Blast scroll</div>
+</li>
+<li class="level1"><div class="li"> <strong>Loot</strong>: May drop gold during combat (Random amount from 1 to current HP)</div>
+</li>
+<li class="level1"><div class="li"> <strong>Behavior</strong>: Mimics treasure chests until revealed</div>
+</li>
+<li class="level1"><div class="li"> <strong>Carcass</strong>: Cannot be looted for meat (carcassChance = 0)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Properties&quot;,&quot;hid&quot;:&quot;properties&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;232-673&quot;} -->
+<h3 class="sectionedit3" id="mechanics">Mechanics</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> When a Mimic is adjacent to an enemy during its turn, it has a 1/3 chance to drop gold equal to a random value between 1 and its current HP</div>
+</li>
+<li class="level1"><div class="li"> Mimics are spawned using the static method Mimic.spawnAt(pos, items), which takes the position and a list of items that were in the chest being mimicked</div>
+</li>
+<li class="level1"><div class="li"> When spawning, if another character is in the target position, they will be pushed to an adjacent empty cell</div>
+</li>
+<li class="level1"><div class="li"> Mimics start in Wandering AI state but immediately change to Hunting when they spawn/activate</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Mechanics&quot;,&quot;hid&quot;:&quot;mechanics&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;674-1206&quot;} -->
+<h3 class="sectionedit4" id="strategy">Strategy</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Be cautious around chests that look too convenient to find</div>
+</li>
+<li class="level1"><div class="li"> Consider using ranged attacks or throwing weapons to test suspicious chests</div>
+</li>
+<li class="level1"><div class="li"> Since Mimics can drop gold during combat, they can be beneficial in certain situations</div>
+</li>
+<li class="level1"><div class="li"> Psionic Blast scrolls are ineffective against Mimics due to immunity</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Strategy&quot;,&quot;hid&quot;:&quot;strategy&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1207-1533&quot;} -->
+<h3 class="sectionedit5" id="related_mobs">Related Mobs</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="https://wiki.nyrds.net/doku.php?id=rpd:mimic_pie_mob" class="wikilink1" title="rpd:mimic_pie_mob" data-wiki-id="rpd:mimic_pie_mob">Pie Mimic</a> - A variant that mimics pastries instead of chests</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://wiki.nyrds.net/doku.php?id=rpd:mimicamulet" class="wikilink1" title="rpd:mimicamulet" data-wiki-id="rpd:mimicamulet">Mimic Amulet</a> - Another variant of mimic mob</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Related Mobs&quot;,&quot;hid&quot;:&quot;related_mobs&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1534-1712&quot;} -->
+<h3 class="sectionedit6" id="code_reference">Code Reference</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mimic.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mimic.java">Mimic.java</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Code Reference&quot;,&quot;hid&quot;:&quot;code_reference&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1713-1887&quot;} -->
+<h3 class="sectionedit7" id="see_also">See Also</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="https://wiki.nyrds.net/doku.php?id=rpd:chests" class="wikilink2" title="rpd:chests" rel="nofollow" data-wiki-id="rpd:chests">Chests</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://wiki.nyrds.net/doku.php?id=rpd:traps" class="wikilink1" title="rpd:traps" data-wiki-id="rpd:traps">Traps</a></div>
+</li>
+</ul>
+<div class="tags"><span>
+	<a href="https://wiki.nyrds.net/doku.php?id=tag:rpd&amp;do=showtag&amp;tag=rpd" class="wikilink1" title="tag:rpd" rel="tag">rpd</a>,
+	<a href="https://wiki.nyrds.net/doku.php?id=tag:mobs&amp;do=showtag&amp;tag=mobs" class="wikilink1" title="tag:mobs" rel="tag">mobs</a>
+</span></div>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;See Also&quot;,&quot;hid&quot;:&quot;see_also&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;1888-&quot;} -->

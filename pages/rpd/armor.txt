@@ -33,7 +33,7 @@ Armor in Remixed Dungeon is protective equipment that reduces damage from enemy 
   * **Upgrading:** Armor can be upgraded with Scrolls of Upgrade to improve defense rating and potentially add enhancement bonuses
   * **Class Specialization:** Some classes get special benefits from specific armor types
   * **Weight vs. Strength:** Heavier armor slows you down if insufficient strength
-  * **Class Armors:** Special armor obtained via [[rpd:armor_kit|Armor Kit]] on any regular armor - grants special subclass abilities (e.g. [[rpd:gladiator_armor|Gladiator]], [[rpd:berserker_armor|Berserker]], [[rpd:warlock_armor|Warlock]], etc.)
+  * **Class Armors:** Special armor obtained via [[rpd:armor_kit_item|Armor Kit]] on any regular armor - grants special subclass abilities (e.g. [[rpd:gladiator_armor|Gladiator]], [[rpd:berserker_armor|Berserker]], [[rpd:warlock_armor|Warlock]], etc.)
   * **Defence Processing:** Each armor has a ''defenceProc'' method that can modify incoming damage based on its glyph
 
 ==== Base Armor Tiers ====
@@ -69,18 +69,27 @@ Armor in Remixed Dungeon is protective equipment that reduces damage from enemy 
   * **Class Armors**: ''com.watabou.pixeldungeon.items.ArmorKit.java'' transforms regular armor to class armor
   * **Glyph Mechanics**: Handled by armor's ''inscribe'' method in base Armor class and ''Glyph'' subclass implementations
 
-==== Class Implementation ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] - Base armor class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArcaneStylus.java|Arcane Stylus]] - Glyph application
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java|Armor Kit]] - Class armor creation
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] - Base armor implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClothArmor.java|ClothArmor.java]] - Tier 1 armor
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/LeatherArmor.java|LeatherArmor.java]] - Tier 2 armor
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MailArmor.java|MailArmor.java]] - Tier 3 armor
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java|ScaleArmor.java]] - Tier 4 armor
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/PlateArmor.java|PlateArmor.java]] - Tier 5 armor
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java|ArmorKit.java]] - Class armor creation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/arcane_stylus.java|ArcaneStylus.java]] - Glyph application
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] - Mastery armor system
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1800-L1850|Armor-related strings]] - Armor names and descriptions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2400-L2405|ArmorKit strings]] - Armor Kit related strings
 
 ==== Related ====
   * [[rpd:weapons|Weapons]] - Offensive equipment
   * [[rpd:glyphs|Glyphs]] - Magical properties for armor
   * [[rpd:combat|Combat]] - General combat mechanics
   * [[rpd:shields|Shields]] - Additional protection options
-  * [[rpd:armor_kit|Armor Kit]] - Creates class-specific armor
+  * [[rpd:armor_kit_item|Armor Kit]] - Creates class-specific armor
   * [[rpd:arcane_stylus|Arcane Stylus]] - For adding glyphs
   * [[rpd:class_armor|Class Armor]] - Mastery armor types
   * [[rpd:equipment|Equipment]] - General equipment mechanics
