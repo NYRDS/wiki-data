@@ -1,79 +1,20 @@
-====== mr:black_cat_mob ======
+====== Black Cat Mob - Code References ======
 
-==== Entity Kind ====
-```lua
-getEntityKind() == "BlackCat"
-```
+===== Java Classes =====
+This entity may be implemented in Java, but no matching class was found. Check: 
+  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
+  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
 
-==== JSON Configuration ====
-**File**: RemixedDungeon/src/main/assets/mobsDesc/BlackCat.json
-```json
-{
-   "defenseSkill"  :3,
-   "attackSkill"   :8,
-   "exp"           :2,
-   "maxLvl"        :4,
-   "dmgMin"        :1,
-   "dmgMax"        :4,
-   "dr"            :1,
-   "attackDelay"   :1,
-   "ht"            :10,
-   "baseSpeed"     : 1,
-   "spriteDesc"    :"spritesDesc/BlackCat.json",
-   "scriptFile"    :"scripts/npc/BlackCat",
-   "aiState"       :"Passive",
-   "fraction"      :"NEUTRAL",
-   "friendly"      :true,
-   "immortal"      :true
-}
-```
+===== JSON Configuration =====
+This entity may have JSON configuration, but no matching config was found. Check: 
+  * RemixedDungeon/src/main/assets/mobsDesc/*.json
+  * RemixedDungeon/src/main/assets/spritesDesc/black_cat.json
 
-==== Lua Script ====
-**File**: RemixedDungeon/src/main/assets/scripts/npc/BlackCat.lua
-```lua
-local RPD = require "scripts/lib/commonClasses"
+===== String Resources =====
+''<code xml>''
+<string name="BlackCat_Name">[Name]</string>
+<string name="BlackCat_Info">[Description]</string>
+''</code>''
 
-local mob = require"scripts/lib/mob"
-
-return mob.init({
-    interact = function(self, chr)
-        self:say("BlackCat_Phrases",math.random(0,2))
-        self:playExtra("sleep")
-    end,
-
-    die = function(self, cause)
-        local hero = RPD.Dungeon.hero
-        hero:STR(math.max(hero:STR()-1,1))
-        hero:getSprite():emitter():burst( RPD.Sfx.ShadowParticle.CURSE, 6 )
-        hero:showStatus( 0xFF0000, RPD.textById("Str_lose"))
-        RPD.playSound( "snd_cursed" )
-    end,
-
-    spawn = function(me, level)
-        RPD.setAi(me,"BlackCat")
-    end,
-
-    actionsList = function(self, chr)
-        return {"pet"}
-    end,
-
-    execute = function(self, chr, action)
-        if action == "pet" then
-            self:say("BlackCat_Phrases",math.random(0,2))
-        end
-    end,
-
-})
-```
-
-==== String Resources ====
-**Key**: BlackCat_Phrases
-**Values**:
-- English: "Prrrrrrr", "Meow...", "Meow!"
-- Russian: "Фрррр", "Мяу...", "Мяу!"
-
-==== Code References ====
-- RemixedDungeon/src/main/assets/mobsDesc/BlackCat.json
-- RemixedDungeon/src/main/assets/scripts/npc/BlackCat.lua
-- RemixedDungeon/src/main/res/values/strings_all.xml
-- RemixedDungeon/src/main/res/values-ru/strings_all.xml
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists
