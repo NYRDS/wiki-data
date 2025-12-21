@@ -1,0 +1,29 @@
+====== Snipers Mark ======
+
+{{ rpd:images:snipers_mark_buff.png|Snipers Mark }}
+
+==== Description ====
+**Snipers Mark** is a debuff applied by the [[rpd:sniper_subclass|Sniper]] subclass when using ranged weapons. When active, it makes the affected target more vulnerable to attacks.
+
+==== Stats ====
+* **Duration**: 1.1x attack delay of the attacker
+* **Effect**: Increases damage taken by the affected enemy
+
+==== Effects ====
+* Visually marks the enemy with an icon to indicate the debuff is active
+* Makes the target more susceptible to damage from subsequent attacks
+
+==== Mechanism ====
+* Applied when a Sniper successfully hits an enemy with a ranged weapon
+* Duration is calculated as 1.1 times the attacker's weapon attack delay
+* Implemented using Buff.prolong(defender, SnipersMark.class, attacker.attackDelay() * 1.1f) in the HeroSubClass.java file
+
+==== Code References ====
+* [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/SnipersMark.java|SnipersMark.java]]
+* [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L172-L174|HeroSubClass.java#L172-L174]]
+
+==== See Also ====
+* [[rpd:sniper_subclass|Sniper Subclass]] - The subclass that applies this debuff
+* [[rpd:huntress_class|Huntress Class]] - Base class for the Sniper subclass
+
+{{tag> rpd buffs debuffs }}
