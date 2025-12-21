@@ -1,0 +1,40 @@
+<span class="kw1">package</span> <span class="co2">com.yourmod.ui</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">import</span> <span class="co2">com.watabou.noosa.ui.Component</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">public</span> <span class="kw1">class</span> CustomUIElement <span class="kw1">extends</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+component"><span class="kw3">Component</span></a> <span class="br0">&#123;</span>
+&nbsp;
+    <span class="co1">// Your UI components</span>
+    <span class="kw1">private</span> Text title<span class="sy0">;</span>
+    <span class="kw1">private</span> RedButton actionButton<span class="sy0">;</span>
+&nbsp;
+    @Override
+    <span class="kw1">protected</span> <span class="kw4">void</span> createChildren<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="co1">// Create all child elements here</span>
+        title <span class="sy0">=</span> PixelScene.<span class="me1">createText</span><span class="br0">&#40;</span><span class="st0">&quot;Custom Element&quot;</span>, GuiProperties.<span class="me1">titleFontSize</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        add<span class="br0">&#40;</span>title<span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+        actionButton <span class="sy0">=</span> <span class="kw1">new</span> RedButton<span class="br0">&#40;</span><span class="st0">&quot;Action&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        add<span class="br0">&#40;</span>actionButton<span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+        <span class="co1">// Set up event handlers</span>
+        actionButton.<span class="me1">setClickListener</span><span class="br0">&#40;</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">-&gt;</span> <span class="br0">&#123;</span>
+            <span class="co1">// Handle button click</span>
+            onClickAction<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    @Override
+    <span class="kw1">protected</span> <span class="kw4">void</span> layout<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="co1">// Position all child elements here</span>
+        title.<span class="me1">x</span> <span class="sy0">=</span> x <span class="sy0">+</span> <span class="br0">&#40;</span>width <span class="sy0">-</span> title.<span class="me1">width</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">/</span> <span class="nu0">2</span><span class="sy0">;</span>
+        title.<span class="me1">y</span> <span class="sy0">=</span> y <span class="sy0">+</span> <span class="nu0">2</span><span class="sy0">;</span>
+&nbsp;
+        actionButton.<span class="me1">setRect</span><span class="br0">&#40;</span>x <span class="sy0">+</span> <span class="nu0">2</span>, y <span class="sy0">+</span> title.<span class="me1">height</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">+</span> <span class="nu0">4</span>, 
+                           width <span class="sy0">-</span> <span class="nu0">4</span>, <span class="nu0">16</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw1">private</span> <span class="kw4">void</span> onClickAction<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="co1">// Your click handling logic</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>

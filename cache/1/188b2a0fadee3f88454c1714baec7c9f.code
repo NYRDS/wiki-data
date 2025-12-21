@@ -1,0 +1,56 @@
+<span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> mob <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/mob&quot;</span>
+&nbsp;
+<span class="kw1">return</span> mob<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    spawn <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> level<span class="br0">&#41;</span>
+        <span class="co1">-- Called when the mob is spawned</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;A healing sprite appears!&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    act <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+        <span class="co1">-- Called on each turn</span>
+        <span class="kw1">local</span> mobPos <span class="sy0">=</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span>
+&nbsp;
+        <span class="co1">-- Find nearby allies (within 3 tiles)</span>
+        <span class="kw1">local</span> level <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">local</span> mobs <span class="sy0">=</span> level<span class="sy0">:</span>mobs<span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">local</span> allies <span class="sy0">=</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+        <span class="kw1">for</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">,</span> mobs<span class="sy0">:</span>size<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">-</span><span class="nu0">1</span> <span class="kw1">do</span>
+            <span class="kw1">local</span> ally <span class="sy0">=</span> mobs<span class="sy0">:</span>get<span class="br0">&#40;</span>i<span class="br0">&#41;</span>
+            <span class="kw1">if</span> ally <span class="sy0">~=</span> self <span class="kw2">and</span> level<span class="sy0">:</span>distance<span class="br0">&#40;</span>mobPos<span class="sy0">,</span> ally<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">&lt;=</span> <span class="nu0">3</span> <span class="kw1">then</span>
+                <span class="kw1">local</span> hpPercent <span class="sy0">=</span> ally<span class="sy0">:</span>getHP<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">/</span> ally<span class="sy0">:</span>getMaxHP<span class="br0">&#40;</span><span class="br0">&#41;</span>
+                <span class="kw1">if</span> hpPercent <span class="sy0">&lt;</span> <span class="nu0">1.0</span> <span class="kw1">then</span>  <span class="co1">-- Only consider injured allies</span>
+                    <span class="kw3">table.insert</span><span class="br0">&#40;</span>allies<span class="sy0">,</span> <span class="br0">&#123;</span>ally<span class="sy0">=</span>ally<span class="sy0">,</span> percent<span class="sy0">=</span>hpPercent<span class="br0">&#125;</span><span class="br0">&#41;</span>
+                <span class="kw1">end</span>
+            <span class="kw1">end</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Find the most wounded ally</span>
+        <span class="kw1">local</span> mostWounded <span class="sy0">=</span> <span class="kw4">nil</span>
+        <span class="kw1">local</span> lowestPercent <span class="sy0">=</span> <span class="nu0">1.0</span>
+&nbsp;
+        <span class="kw1">for</span> _<span class="sy0">,</span> entry <span class="kw2">in</span> <span class="kw3">ipairs</span><span class="br0">&#40;</span>allies<span class="br0">&#41;</span> <span class="kw1">do</span>
+            <span class="kw1">if</span> entry<span class="sy0">.</span>percent <span class="sy0">&lt;</span> lowestPercent <span class="kw1">then</span>
+                lowestPercent <span class="sy0">=</span> entry<span class="sy0">.</span>percent
+                mostWounded <span class="sy0">=</span> entry<span class="sy0">.</span>ally
+            <span class="kw1">end</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Heal the most wounded ally if below 50% health</span>
+        <span class="kw1">if</span> mostWounded <span class="kw2">and</span> lowestPercent <span class="sy0">&lt;</span> <span class="nu0">0.5</span> <span class="kw1">then</span>
+            mostWounded<span class="sy0">:</span>heal<span class="br0">&#40;</span><span class="nu0">3</span><span class="sy0">,</span> self<span class="br0">&#41;</span>  <span class="co1">-- Heal 3 HP, source is this mob</span>
+            RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The healing sprite glows softly, healing &quot;</span> <span class="sy0">..</span> mostWounded<span class="sy0">:</span>name<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">..</span> <span class="st0">&quot;!&quot;</span><span class="br0">&#41;</span>
+            RPD<span class="sy0">.</span>topEffect<span class="br0">&#40;</span>mostWounded<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;healing&quot;</span><span class="br0">&#41;</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Spend turn time</span>
+        self<span class="sy0">:</span>spend<span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    die <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> cause<span class="br0">&#41;</span>
+        <span class="co1">-- Called when the mob dies</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The healing sprite fades away peacefully.&quot;</span><span class="br0">&#41;</span>
+        RPD<span class="sy0">.</span>topEffect<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;fading&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span>

@@ -1,0 +1,112 @@
+
+<h1 class="sectionedit1" id="hunger_system">Hunger System</h1>
+<div class="level1">
+
+<p>
+<a href="http://nyrds.net/lib/exe/detail.php?id=rpd%3Ahunger&amp;media=rpd:images:buff_hunger.png" class="media wikilink2" title="rpd:images:buff_hunger.png"><img src="http://nyrds.net/lib/exe/fetch.php?media=rpd:images:buff_hunger.png" class="mediaright" loading="lazy" title="Hunger " alt="Hunger " /></a>
+</p>
+
+<p>
+The Hunger system is a game mechanic that gradually increases the player&#039;s hunger level over time, leading to negative effects if not managed properly.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Hunger System&quot;,&quot;hid&quot;:&quot;hunger_system&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-223&quot;} -->
+<h3 class="sectionedit2" id="description">Description</h3>
+<div class="level3">
+
+<p>
+Hunger is a status effect that accumulates over time. As the hunger level increases, the hero&#039;s health gradually decreases. If the hunger level reaches the “Starving” threshold, the hero will start taking damage each turn.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Description&quot;,&quot;hid&quot;:&quot;description&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;224-469&quot;} -->
+<h3 class="sectionedit3" id="mechanics">Mechanics</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> <strong>Hunger Thresholds:</strong></div>
+<ul>
+<li class="level2"><div class="li"> <strong>Normal</strong>: No penalties</div>
+</li>
+<li class="level2"><div class="li"> <strong>Hungry</strong>: 280 units (defined as Hunger.HUNGRY constant)</div>
+</li>
+<li class="level2"><div class="li"> <strong>Starving</strong>: 400 units (defined as Hunger.STARVING constant)</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong>Damage:</strong> When starving, the hero takes damage equal to max(1, effectiveSTR() - 10) in higher difficulties (difficulty ≥ 3)</div>
+</li>
+<li class="level1"><div class="li"> <strong>Recovery:</strong> Eating food items reduces the hunger level by the food&#039;s energy value</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Mechanics&quot;,&quot;hid&quot;:&quot;mechanics&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;470-900&quot;} -->
+<h3 class="sectionedit4" id="food_values">Food Values</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>Ration</strong>: Provides 100 energy units</div>
+</li>
+<li class="level1"><div class="li"> <strong>Overpriced Ration</strong>: Provides 100 energy units</div>
+</li>
+<li class="level1"><div class="li"> <strong>Rotten Ration</strong>: Provides 60 energy units (calculated as (HUNGRY - STARVING)/2)</div>
+</li>
+<li class="level1"><div class="li"> <strong>Frozen Carpaccio</strong>: Provides 50 energy units</div>
+</li>
+<li class="level1"><div class="li"> <strong>Mystery Meat</strong>: Provides 50 energy units</div>
+</li>
+<li class="level1"><div class="li"> <strong>Chargrilled Meat</strong>: Provides 50 energy units</div>
+</li>
+<li class="level1"><div class="li"> <strong>Pasty</strong>: Provides 80 energy units</div>
+</li>
+<li class="level1"><div class="li"> <strong>Other foods</strong>: Vary according to their type</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Food Values&quot;,&quot;hid&quot;:&quot;food_values&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;901-1343&quot;} -->
+<h3 class="sectionedit5" id="strategic_considerations">Strategic Considerations</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Higher difficulties accelerate the hunger rate and cause more significant damage when starving</div>
+</li>
+<li class="level1"><div class="li"> Carrying multiple food items is essential for survival in deep dungeon runs</div>
+</li>
+<li class="level1"><div class="li"> Food can be preserved by storing it in special containers to prevent spoilage</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Strategic Considerations&quot;,&quot;hid&quot;:&quot;strategic_considerations&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1344-1640&quot;} -->
+<h3 class="sectionedit6" id="content_verification">Content Verification</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Information source: <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java">Hunger.java</a></div>
+</li>
+<li class="level1"><div class="li"> Constants verified in code implementation: HUNGRY = 280f, STARVING = 400f</div>
+</li>
+<li class="level1"><div class="li"> Last updated: December 2025</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Content Verification&quot;,&quot;hid&quot;:&quot;content_verification&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1641-1954&quot;} -->
+<h3 class="sectionedit7" id="see_also">See Also</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://nyrds.net/doku.php?id=rpd:food" class="wikilink1" title="rpd:food" data-wiki-id="rpd:food">Food</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://nyrds.net/doku.php?id=rpd:rotten_ration" class="wikilink1" title="rpd:rotten_ration" data-wiki-id="rpd:rotten_ration">Rotten Ration</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://nyrds.net/doku.php?id=rpd:rations" class="wikilink2" title="rpd:rations" rel="nofollow" data-wiki-id="rpd:rations">Ration</a></div>
+</li>
+</ul>
+<div class="tags"><span>
+	<a href="http://nyrds.net/doku.php?id=tag:rpd&amp;do=showtag&amp;tag=rpd" class="wikilink1" title="tag:rpd" rel="tag">rpd</a>,
+	<a href="http://nyrds.net/doku.php?id=tag:mechanics&amp;do=showtag&amp;tag=mechanics" class="wikilink1" title="tag:mechanics" rel="tag">mechanics</a>,
+	<a href="http://nyrds.net/doku.php?id=tag:status&amp;do=showtag&amp;tag=status" class="wikilink1" title="tag:status" rel="tag">status</a>,
+	<a href="http://nyrds.net/doku.php?id=tag:hunger&amp;do=showtag&amp;tag=hunger" class="wikilink1" title="tag:hunger" rel="tag">hunger</a>
+</span></div>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;See Also&quot;,&quot;hid&quot;:&quot;see_also&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;1955-&quot;} -->

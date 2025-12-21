@@ -1,0 +1,118 @@
+
+<h1 class="sectionedit1" id="crystal_mob_-_code_references">Crystal Mob - Code References</h1>
+<div class="level1">
+
+<p>
+This page contains raw code references and configuration excerpts for the Crystal mob entity.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Crystal Mob - Code References&quot;,&quot;hid&quot;:&quot;crystal_mob_-_code_references&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-140&quot;} -->
+<h3 class="sectionedit2" id="entity_kind">Entity Kind</h3>
+<div class="level3">
+
+<p>
+* <strong>getEntityKind() value:</strong> Crystal
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Entity Kind&quot;,&quot;hid&quot;:&quot;entity_kind&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;141-200&quot;} -->
+<h3 class="sectionedit3" id="java_implementation">Java Implementation</h3>
+<div class="level3">
+
+<p>
+* <strong>Class location:</strong> <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Crystal.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Crystal.java">Crystal.java</a>
+* <strong>Parent Class:</strong> <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MultiKindMob.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MultiKindMob.java">MultiKindMob</a>
+* <strong>Interfaces:</strong> IDepthAdjustable, IZapper
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Java Implementation&quot;,&quot;hid&quot;:&quot;java_implementation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;201-616&quot;} -->
+<h3 class="sectionedit4" id="code_fragments">Code Fragments</h3>
+<div class="level3">
+
+<p>
+<strong>Constructor:</strong>
+<pre class="code java"><span class="kw1">public</span> Crystal<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	adjustStats<span class="br0">&#40;</span>Dungeon.<span class="me1">depth</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	ensureWand<span class="br0">&#40;</span><span class="kw2">false</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw1">static</span> <span class="kw1">public</span> Crystal makeShadowLordCrystal<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	Crystal crystal <span class="sy0">=</span> <span class="kw1">new</span> Crystal<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	crystal.<span class="me1">kind</span> <span class="sy0">=</span> <span class="nu0">2</span><span class="sy0">;</span>
+	crystal.<span class="me1">ensureWand</span><span class="br0">&#40;</span><span class="kw2">true</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="kw1">return</span> crystal<span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+<p>
+<strong>Stats adjustment:</strong>
+<pre class="code java"><span class="kw1">public</span> <span class="kw4">void</span> adjustStats<span class="br0">&#40;</span><span class="kw4">int</span> depth<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	kind <span class="sy0">=</span> <span class="br0">&#40;</span>ctr<span class="sy0">++</span><span class="br0">&#41;</span> <span class="sy0">%</span> <span class="nu0">2</span><span class="sy0">;</span>
+&nbsp;
+	hp<span class="br0">&#40;</span>ht<span class="br0">&#40;</span>depth <span class="sy0">*</span> <span class="nu0">4</span> <span class="sy0">+</span> <span class="nu0">1</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+	baseDefenseSkill <span class="sy0">=</span> depth <span class="sy0">*</span> <span class="nu0">2</span> <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span>
+	baseAttackSkill <span class="sy0">=</span> <span class="nu0">35</span><span class="sy0">;</span>
+	expForKill <span class="sy0">=</span> depth <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span>
+	maxLvl <span class="sy0">=</span> depth <span class="sy0">+</span> <span class="nu0">2</span><span class="sy0">;</span>
+	dr <span class="sy0">=</span> expForKill <span class="sy0">/</span><span class="nu0">3</span><span class="sy0">;</span>
+&nbsp;
+	addImmunity<span class="br0">&#40;</span>ScrollOfPsionicBlast.<span class="kw1">class</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	addImmunity<span class="br0">&#40;</span>ToxicGas.<span class="kw1">class</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	addImmunity<span class="br0">&#40;</span>Paralysis.<span class="kw1">class</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	addImmunity<span class="br0">&#40;</span>Stun.<span class="kw1">class</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	addImmunity<span class="br0">&#40;</span>ConfusionGas.<span class="kw1">class</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+<p>
+<strong>Wand handling:</strong>
+<pre class="code java"><span class="kw1">private</span> Wand ensureWand<span class="br0">&#40;</span><span class="kw4">boolean</span> regen<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	Wand wand <span class="sy0">=</span> getBelongings<span class="br0">&#40;</span><span class="br0">&#41;</span>.<span class="me1">getItem</span><span class="br0">&#40;</span>Wand.<span class="kw1">class</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="kw1">if</span> <span class="br0">&#40;</span>wand <span class="sy0">!=</span> <span class="kw2">null</span> <span class="sy0">&amp;&amp;</span> <span class="sy0">!</span>regen<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="kw1">return</span> wand<span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+	var item <span class="sy0">=</span> SimpleWand.<span class="me1">createRandomSimpleWand</span><span class="br0">&#40;</span><span class="br0">&#41;</span>.<span class="me1">upgrade</span><span class="br0">&#40;</span>Dungeon.<span class="me1">depth</span><span class="sy0">/</span><span class="nu0">3</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="kw1">if</span><span class="br0">&#40;</span>kind <span class="sy0">==</span> <span class="nu0">2</span> <span class="sy0">&amp;&amp;</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+random"><span class="kw3">Random</span></a>.<a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+float"><span class="kw3">Float</span></a><span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span> <span class="sy0">&lt;</span> 0.25f<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		item <span class="sy0">=</span> <span class="kw1">new</span> WandOfShadowbolt<span class="br0">&#40;</span><span class="br0">&#41;</span>.<span class="me1">upgrade</span><span class="br0">&#40;</span>Dungeon.<span class="me1">depth</span><span class="sy0">/</span><span class="nu0">2</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+	item.<span class="me1">collect</span><span class="br0">&#40;</span><span class="kw1">this</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">//no treasury check, we want to keep the wand in the crystal</span>
+&nbsp;
+	<span class="kw1">return</span> ensureWand<span class="br0">&#40;</span><span class="kw2">false</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Code Fragments&quot;,&quot;hid&quot;:&quot;code_fragments&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;617-1788&quot;} -->
+<h3 class="sectionedit5" id="properties">Properties</h3>
+<div class="level3">
+
+<p>
+* <strong>movable:</strong> false (immovable)
+* <strong>carcassChance:</strong> 0 (no corpse)
+* <strong>immunities:</strong> ScrollOfPsionicBlast, ToxicGas, Paralysis, Stun, ConfusionGas
+* <strong>attackSkill:</strong> 1000 for types 0 &amp; 1; default for type 2
+* <strong>damageRoll:</strong> Random.NormalIntRange(hp() / 2, ht() / 2)
+* <strong>canBePet:</strong> false
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Properties&quot;,&quot;hid&quot;:&quot;properties&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:5,&quot;range&quot;:&quot;1789-2100&quot;} -->
+<h3 class="sectionedit6" id="string_resources">String Resources</h3>
+<div class="level3">
+
+<p>
+* <strong>Crystal_Name:</strong> floating crystal
+* <strong>Crystal_Desc:</strong> Big shining crystal floating in the air. Probably it is filled with powerful magic.
+&lt;/content&gt;
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;String Resources&quot;,&quot;hid&quot;:&quot;string_resources&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:6,&quot;range&quot;:&quot;2101-&quot;} -->

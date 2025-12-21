@@ -1,0 +1,136 @@
+
+<h1 class="sectionedit1" id="предустановленный_уровень_predesigned_level">Предустановленный уровень (Predesigned Level)</h1>
+<div class="level1">
+
+<p>
+<a href="http://nyrds.net/lib/exe/detail.php?id=ru%3Arpd%3Apredesignedlevel&amp;media=rpd:images:predesigned_level_example.png" class="media wikilink2" title="rpd:images:predesigned_level_example.png"><img src="http://nyrds.net/lib/exe/fetch.php?media=rpd:images:predesigned_level_example.png" class="mediaright" loading="lazy" title="Пример предустановленного уровня " alt="Пример предустановленного уровня " /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;\u041f\u0440\u0435\u0434\u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u043d\u044b\u0439 \u0443\u0440\u043e\u0432\u0435\u043d\u044c (Predesigned Level)&quot;,&quot;hid&quot;:&quot;\u043f\u0440\u0435\u0434\u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u043d\u044b\u0439_\u0443\u0440\u043e\u0432\u0435\u043d\u044c_predesigned_level&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-196&quot;} -->
+<h3 class="sectionedit2" id="описание">Описание</h3>
+<div class="level3">
+
+<p>
+<strong>Предустановленный уровень</strong> (Predesigned Level) - это особый тип уровня в Remixed Dungeon, который загружается из JSON-файла с заранее определённой структурой, мобами, предметами и объектами. Это позволяет создавать сложные, тщательно спроектированные уровни с уникальным дизайном.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435&quot;,&quot;hid&quot;:&quot;\u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;197-710&quot;} -->
+<h3 class="sectionedit3" id="структура_json">Структура JSON</h3>
+<div class="level3">
+
+<p>
+Предустановленные уровни определяются в JSON-файле со следующими параметрами:
+</p>
+
+<p>
+* <strong>width/height</strong> - ширина и высота уровня в клетках
+* <strong>map</strong> - массив значений тайлов (определяет структуру уровня)
+* <strong>tiles/water</strong> - файлы текстур (tiles0.png, water0.png)
+* <strong>entrance</strong> - координаты входа на уровень
+* <strong>multiexit</strong> - координаты возможных выходов
+* <strong>mobs</strong> - мобы, размещенные на уровне
+* <strong>items</strong> - предметы, размещенные на уровне
+* <strong>objects</strong> - специальные объекты (баррель, табличка и т.д.)
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;\u0421\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430 JSON&quot;,&quot;hid&quot;:&quot;\u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430_json&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;711-1528&quot;} -->
+<h3 class="sectionedit4" id="пример_структуры">Пример структуры</h3>
+<div class="level3">
+
+<p>
+<pre class="code json">{
+  &quot;width&quot;:16,
+  &quot;height&quot;:16,
+  &quot;map&quot;:[ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+          4, 7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 4,
+          4, 1,63,63,63,63, 1,63,63,63,63, 4, 1, 1, 1, 4,
+          4, 1,63, 8, 1,63, 1,63, 1, 1,63, 5, 1, 1, 1, 4,
+          4, 1,63, 1, 1,63, 1,63, 1, 1,63, 4, 1, 1, 1, 4,
+          4, 1,63,63,63, 8, 1,63,63,63,63, 4, 1, 1, 1, 4,
+          4, 1,63,63, 1, 1, 1,63, 1, 1, 1, 4, 4, 4, 4, 4,
+          4, 1,63, 1,63, 1, 1, 8, 1, 1,63,63,63, 1, 1, 4,
+          4, 1,63, 1, 1,63, 1,63, 1, 1,63, 1,63,63, 1, 4,
+          4, 1, 1, 1, 1, 1, 1, 1, 1, 8,63, 1, 1,63, 1, 4,
+          4, 1,14,14,14, 1, 1, 1, 1, 1,63, 1, 1,63, 1, 4,
+          4, 1,14, 1,14, 1, 1, 0, 1, 1,63, 1,63,63, 1, 4,
+          4, 1,14, 1,14, 1, 1, 1, 1, 1,63,63,63, 1, 1, 4,
+          4, 1,14,14,14, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+          4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+          4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4
+        ],
+  &quot;tiles&quot;:&quot;tiles0.png&quot;,
+  &quot;water&quot;:&quot;water0.png&quot;,
+  &quot;entrance&quot;:[1,1],
+  &quot;multiexit&quot;:[[3,3],[5,5],[7,7],[9,9]],
+  &quot;mobs&quot; : [
+     {&quot;kind&quot;:&quot;GoldenStatue&quot;,&quot;x&quot;:10,&quot;y&quot;:10, &quot;loot&quot;:{&quot;kind&quot;:&quot;Codex&quot;,&quot;text&quot;:&quot;Это кодекс отобранный у статуи&quot;} },
+     {&quot;kind&quot;:&quot;Mimic&quot;,&quot;x&quot;:8,&quot;y&quot;:8, &quot;level&quot;:100, &quot;loot&quot;:{&quot;kind&quot;:&quot;Codex&quot;,&quot;text&quot;:&quot;Это кодекс отобранный у толстого мимика&quot;} }
+  ],
+ &quot;items&quot;: [
+   {&quot;kind&quot;:&quot;Codex&quot;,&quot;text&quot;:&quot;Это текст кодекса&quot;,&quot;x&quot;:13,&quot;y&quot;:10},
+   {&quot;kind&quot;:&quot;IronKey&quot;, &quot;levelId&quot;:&quot;2&quot;, &quot;depth&quot;:2, &quot;x&quot;:13,&quot;y&quot;:11}
+ ],
+ &quot;objects&quot; : [
+   {&quot;kind&quot; : &quot;Sign&quot;,   &quot;x&quot; : 12, &quot;y&quot; : 10, &quot;text&quot; : &quot;Yay! it is a custom sign!&quot;},
+   {&quot;kind&quot; : &quot;Barrel&quot;, &quot;x&quot; : 13, &quot;y&quot; : 10},
+   {&quot;kind&quot; : &quot;Barrel&quot;, &quot;x&quot; : 13, &quot;y&quot; : 9}
+ ]
+}</pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;\u041f\u0440\u0438\u043c\u0435\u0440 \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u044b&quot;,&quot;hid&quot;:&quot;\u043f\u0440\u0438\u043c\u0435\u0440_\u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u044b&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1529-3323&quot;} -->
+<h3 class="sectionedit5" id="механика">Механика</h3>
+<div class="level3">
+
+<p>
+Предустановленные уровни позволяют:
+* Создавать уровни с уникальной геометрией
+* Размещать определенные мобы и предметы в конкретных местах
+* Устанавливать специальные объекты и логику уровней
+* Определять несколько точек выхода
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;\u041c\u0435\u0445\u0430\u043d\u0438\u043a\u0430&quot;,&quot;hid&quot;:&quot;\u043c\u0435\u0445\u0430\u043d\u0438\u043a\u0430&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:5,&quot;range&quot;:&quot;3324-3774&quot;} -->
+<h3 class="sectionedit6" id="проверка_контента">Проверка контента</h3>
+<div class="level3">
+
+<p>
+* Источник информации: Java класс <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/PredesignedLevel.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/PredesignedLevel.java">PredesignedLevel.java</a>
+* Проверка структуры: Извлечено напрямую из реализации PredesignedLevel.java
+* Последнее обновление: Декабрь 2025, источник: Remixed Dungeon 1.9.3
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0430&quot;,&quot;hid&quot;:&quot;\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430_\u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0430&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:6,&quot;range&quot;:&quot;3775-4263&quot;} -->
+<h3 class="sectionedit7" id="исходный_код">Исходный код</h3>
+<div class="level3">
+
+<p>
+* Java: <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/PredesignedLevel.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/PredesignedLevel.java">PredesignedLevel.java</a>
+* Связанный класс: <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/CustomLevel.java" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/CustomLevel.java">CustomLevel.java</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;\u0418\u0441\u0445\u043e\u0434\u043d\u044b\u0439 \u043a\u043e\u0434&quot;,&quot;hid&quot;:&quot;\u0438\u0441\u0445\u043e\u0434\u043d\u044b\u0439_\u043a\u043e\u0434&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:7,&quot;range&quot;:&quot;4264-4649&quot;} -->
+<h3 class="sectionedit8" id="см_также">См. также</h3>
+<div class="level3">
+
+<p>
+* <a href="http://nyrds.net/doku.php?id=ru:rpd:custom_levels" class="wikilink2" title="ru:rpd:custom_levels" rel="nofollow" data-wiki-id="ru:rpd:custom_levels">Пользовательские уровни</a>
+* <a href="http://nyrds.net/doku.php?id=ru:rpd:level_design" class="wikilink2" title="ru:rpd:level_design" rel="nofollow" data-wiki-id="ru:rpd:level_design">Дизайн уровней</a>
+* <a href="http://nyrds.net/doku.php?id=ru:rpd:modding" class="wikilink2" title="ru:rpd:modding" rel="nofollow" data-wiki-id="ru:rpd:modding">Моддинг</a>
+</p>
+<div class="tags"><span>
+	<a href="http://nyrds.net/doku.php?id=tag:rpd&amp;do=showtag&amp;tag=rpd" class="wikilink1" title="tag:rpd" rel="tag">rpd</a>,
+	<a href="http://nyrds.net/doku.php?id=tag:modding&amp;do=showtag&amp;tag=modding" class="wikilink1" title="tag:modding" rel="tag">modding</a>,
+	<a href="http://nyrds.net/doku.php?id=tag:levels&amp;do=showtag&amp;tag=levels" class="wikilink1" title="tag:levels" rel="tag">levels</a>
+</span></div>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;\u0421\u043c. \u0442\u0430\u043a\u0436\u0435&quot;,&quot;hid&quot;:&quot;\u0441\u043c_\u0442\u0430\u043a\u0436\u0435&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:8,&quot;range&quot;:&quot;4650-&quot;} -->

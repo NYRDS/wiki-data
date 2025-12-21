@@ -1,0 +1,33 @@
+<span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> buff <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/buff&quot;</span>
+&nbsp;
+<span class="kw1">return</span> buff<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    desc <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">return</span> <span class="br0">&#123;</span>
+            icon <span class="sy0">=</span> <span class="nu0">10</span><span class="sy0">,</span>
+            name <span class="sy0">=</span> <span class="st0">&quot;Custom Buff Name&quot;</span><span class="sy0">,</span>
+            info <span class="sy0">=</span> <span class="st0">&quot;Custom buff description with %d turns remaining.&quot;</span>
+        <span class="br0">&#125;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    attach <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> target<span class="br0">&#41;</span>
+        <span class="co1">-- Called when buff is applied</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;You feel different...&quot;</span><span class="br0">&#41;</span>
+        <span class="kw1">return</span> <span class="kw4">true</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    act <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+        <span class="co1">-- Called each turn while buff is active</span>
+        <span class="kw1">if</span> <span class="kw3">math.random</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">&lt;</span> <span class="nu0">0.1</span> <span class="kw1">then</span> <span class="co1">-- 10% chance per turn</span>
+            self<span class="sy0">.</span>target<span class="sy0">:</span>heal<span class="br0">&#40;</span><span class="nu0">1</span><span class="sy0">,</span> self<span class="sy0">.</span>target<span class="br0">&#41;</span> <span class="co1">-- Heal 1 HP occasionally, source is target itself</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Continue for another turn</span>
+        <span class="kw1">return</span> <span class="kw4">true</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    detach <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+        <span class="co1">-- Called when buff is removed</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The effect fades...&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span>

@@ -1,0 +1,590 @@
+
+<h1 class="sectionedit1" id="non-java_modding_techniques">Non-Java Modding Techniques</h1>
+<div class="level1">
+
+<p>
+Remixed Dungeon provides extensive modding capabilities without requiring Java programming knowledge. This guide covers all the non-Java modding techniques you can use to create modifications.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Non-Java Modding Techniques&quot;,&quot;hid&quot;:&quot;non-java_modding_techniques&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-237&quot;} -->
+<h2 class="sectionedit2" id="resource_override_modding">Resource Override Modding</h2>
+<div class="level2">
+
+<p>
+The simplest type of modding involves replacing game resources directly.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Resource Override Modding&quot;,&quot;hid&quot;:&quot;resource_override_modding&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;238-350&quot;} -->
+<h3 class="sectionedit3" id="sprite_replacement">Sprite Replacement</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Locate original sprites in the assets directory</div>
+</li>
+<li class="level1"><div class="li"> Create new sprites with the same dimensions and format</div>
+</li>
+<li class="level1"><div class="li"> Place them in the same directory structure in your mod folder</div>
+</li>
+</ul>
+
+<p>
+Example directory structure:
+<pre class="code">MyMod/
+├── sprites/
+│   ├── items/
+│   │   ├── weapon/
+│   │   │   ├── sword.png (your custom sword sprite)
+│   │   │   └── dagger.png (your custom dagger sprite)
+│   │   └── armor/
+│   │       └── armor.png (your custom armor sprite)
+│   └── mobs/
+│       └── rat.png (your custom rat sprite)
+└── version.json</pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Sprite Replacement&quot;,&quot;hid&quot;:&quot;sprite_replacement&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;351-1003&quot;} -->
+<h3 class="sectionedit4" id="sound_and_music_replacement">Sound and Music Replacement</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Replace sound effects by placing new files in <code>sounds/</code> directory</div>
+</li>
+<li class="level1"><div class="li"> Replace background music by placing new files in <code>music/</code> directory</div>
+</li>
+<li class="level1"><div class="li"> Keep the same filenames to ensure the game loads your replacements</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Sound and Music Replacement&quot;,&quot;hid&quot;:&quot;sound_and_music_replacement&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:4,&quot;range&quot;:&quot;1004-1259&quot;} -->
+<h3 class="sectionedit5" id="text_and_localization">Text and Localization</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Modify game text by creating <code>res/values/strings.json</code> with string overrides</div>
+</li>
+<li class="level1"><div class="li"> Add new languages by creating <code>res/values-[lang-code]/strings.json</code></div>
+</li>
+<li class="level1"><div class="li"> Format: <pre class="code json">{&quot;original_key&quot;: &quot;your_new_text&quot;}</pre>
+</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Text and Localization&quot;,&quot;hid&quot;:&quot;text_and_localization&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:5,&quot;range&quot;:&quot;1260-1513&quot;} -->
+<h2 class="sectionedit6" id="json-based_modding">JSON-Based Modding</h2>
+<div class="level2">
+
+<p>
+JSON files control most game content and mechanics in Remixed Dungeon.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;JSON-Based Modding&quot;,&quot;hid&quot;:&quot;json-based_modding&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:6,&quot;range&quot;:&quot;1514-1617&quot;} -->
+<h3 class="sectionedit7" id="item_modding">Item Modding</h3>
+<div class="level3">
+
+<p>
+Create custom items by defining them in JSON files:
+</p>
+
+<p>
+<pre class="code json">{
+  &quot;class&quot;: &quot;com.watabou.pixeldungeon.items.weapon.melee.Sword&quot;,
+  &quot;name:en&quot;: &quot;Flaming Sword&quot;,
+  &quot;name:ru&quot;: &quot;Пылающий меч&quot;,
+  &quot;desc:en&quot;: &quot;This sword is engulfed in magical flames that burn enemies.&quot;,
+  &quot;desc:ru&quot;: &quot;Этот меч окутан магическим пламенем, которое сжигает врагов.&quot;,
+  &quot;damageMin&quot;: 8,
+  &quot;damageMax&quot;: 15,
+  &quot;imageIndex&quot;: 5,
+  &quot;AC&quot;: &quot;ATTACK&quot;,
+  &quot;script&quot;: &quot;items/flaming_sword.lua&quot;,
+  &quot;onHit&quot;: &quot;onHit&quot;
+}</pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Item Modding&quot;,&quot;hid&quot;:&quot;item_modding&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:7,&quot;range&quot;:&quot;1618-2188&quot;} -->
+<h3 class="sectionedit8" id="mob_modding">Mob Modding</h3>
+<div class="level3">
+
+<p>
+Create or modify creatures:
+</p>
+
+<p>
+<pre class="code json">{
+  &quot;class&quot;: &quot;com.watabou.pixeldungeon.actors.mobs.Rat&quot;,
+  &quot;name:en&quot;: &quot;Fire Rat&quot;,
+  &quot;HP&quot;: 20,
+  &quot;damageMin&quot;: 5,
+  &quot;damageMax&quot;: 10,
+  &quot;defenseSkill&quot;: 5,
+  &quot;exp&quot;: 3,
+  &quot;loot&quot;: &quot;gold&quot;,
+  &quot;lootChance&quot;: 0.5,
+  &quot;properties&quot;: [&quot;hostile&quot;, &quot;small&quot;],
+  &quot;onDeath&quot;: &quot;fire_explosion&quot;,
+  &quot;imageIndex&quot;: 3
+}</pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Mob Modding&quot;,&quot;hid&quot;:&quot;mob_modding&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:8,&quot;range&quot;:&quot;2189-2552&quot;} -->
+<h3 class="sectionedit9" id="level_modding">Level Modding</h3>
+<div class="level3">
+
+<p>
+Design custom levels using JSON:
+</p>
+
+<p>
+<pre class="code json">{
+  &quot;name&quot;: &quot;Custom Level&quot;,
+  &quot;width&quot;: 32,
+  &quot;height&quot;: 32,
+  &quot;map&quot;: [
+    &quot;################################&quot;,
+    &quot;#..............................#&quot;,
+    &quot;#..............................#&quot;,
+    &quot;################################&quot;
+  ],
+  &quot;mobs&quot;: [
+    {
+      &quot;class&quot;: &quot;com.watabou.pixeldungeon.actors.mobs.Rat&quot;,
+      &quot;x&quot;: 10,
+      &quot;y&quot;: 10
+    }
+  ],
+  &quot;items&quot;: [
+    {
+      &quot;class&quot;: &quot;com.watabou.pixeldungeon.items.Gold&quot;,
+      &quot;x&quot;: 15,
+      &quot;y&quot;: 15,
+      &quot;quantity&quot;: 50
+    }
+  ]
+}</pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Level Modding&quot;,&quot;hid&quot;:&quot;level_modding&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:9,&quot;range&quot;:&quot;2553-3118&quot;} -->
+<h3 class="sectionedit10" id="dungeon_structure">Dungeon Structure</h3>
+<div class="level3">
+
+<p>
+Modify how levels connect by editing <code>levelsDesc/Dungeon.json</code>:
+</p>
+
+<p>
+<pre class="code json">{
+  &quot;connections&quot;: [
+    {&quot;from&quot;: 1, &quot;to&quot;: 2},
+    {&quot;from&quot;: 2, &quot;to&quot;: 3}
+  ],
+  &quot;branches&quot;: [
+    {&quot;level&quot;: 3, &quot;branch&quot;: &quot;sewers&quot;}
+  ]
+}</pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Dungeon Structure&quot;,&quot;hid&quot;:&quot;dungeon_structure&quot;,&quot;codeblockOffset&quot;:5,&quot;secid&quot;:10,&quot;range&quot;:&quot;3119-3370&quot;} -->
+<h2 class="sectionedit11" id="lua_scripting">Lua Scripting</h2>
+<div class="level2">
+
+<p>
+Lua scripts provide dynamic behavior without Java coding.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Lua Scripting&quot;,&quot;hid&quot;:&quot;lua_scripting&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:11,&quot;range&quot;:&quot;3371-3456&quot;} -->
+<h3 class="sectionedit12" id="basic_lua_structure">Basic Lua Structure</h3>
+<div class="level3">
+
+<p>
+<pre class="code lua"><span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> item <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/item&quot;</span>
+<span class="kw1">local</span> M <span class="sy0">=</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+<span class="kw1">return</span> item<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    desc <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">return</span> <span class="br0">&#123;</span>
+            image         <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">,</span>
+            imageFile     <span class="sy0">=</span> <span class="st0">&quot;items.png&quot;</span><span class="sy0">,</span>
+            name          <span class="sy0">=</span> <span class="st0">&quot;Custom Item Name&quot;</span><span class="sy0">,</span>
+            info          <span class="sy0">=</span> <span class="st0">&quot;Custom Item Description&quot;</span><span class="sy0">,</span>
+            stackable     <span class="sy0">=</span> <span class="kw4">false</span><span class="sy0">,</span>
+            upgradable    <span class="sy0">=</span> <span class="kw4">true</span><span class="sy0">,</span>
+            isFlies       <span class="sy0">=</span> <span class="kw4">false</span><span class="sy0">,</span>
+            defaultAction <span class="sy0">=</span> <span class="st0">&quot;Custom Action Name&quot;</span>
+        <span class="br0">&#125;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    <span class="co1">-- Function that can be called from JSON</span>
+    <span class="kw3">execute</span> <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> item<span class="sy0">,</span> hero<span class="sy0">,</span> action<span class="br0">&#41;</span>
+        <span class="kw1">if</span> action <span class="sy0">==</span> <span class="st0">&quot;Custom Action Name&quot;</span> <span class="kw1">then</span>
+            <span class="co1">-- Add fire damage</span>
+            RPD<span class="sy0">.</span>affectBuff<span class="br0">&#40;</span>hero<span class="sy0">,</span> RPD<span class="sy0">.</span>Buffs<span class="sy0">.</span>Burning<span class="sy0">,</span> <span class="nu0">3</span><span class="br0">&#41;</span> <span class="co1">-- Apply burn for 3 turns</span>
+            RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The item burns you!&quot;</span><span class="br0">&#41;</span>
+        <span class="kw1">end</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Basic Lua Structure&quot;,&quot;hid&quot;:&quot;basic_lua_structure&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:12,&quot;range&quot;:&quot;3457-4332&quot;} -->
+<h3 class="sectionedit13" id="correct_lua_functions">Correct Lua Functions</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <code>target:damage(amount, source)</code> - Deal damage to a target (e.g., victim:damage(10, caster))</div>
+</li>
+<li class="level1"><div class="li"> <code>target:heal(amount, source)</code> - Heal a target (e.g., target:heal(5, caster))</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.affectBuff(target, buffClass, duration)</code> - Apply a buff/debuff to a target</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.permanentBuff(target, buffClass)</code> - Apply a permanent buff to a target</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.removeBuff(target, buffClass)</code> - Remove a buff from a target</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.glog(message)</code> - Display a message in game log</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.spawnMob(className, cell, mobDesc)</code> - Create a new mob at a cell location</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.item(itemClass, quantity)</code> - Create an item</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.GameAction</code> - Check if currently in game (not in menu)</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.GameLoop.currentTurn</code> - Current turn count</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.Dungeon.level()</code> - Current level object</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.Dungeon.hero</code> - Player character</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.Dungeon.level():mobs()</code> - All mobs on current level</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.Dungeon.level():cell(x, y)</code> - Cell at coordinate</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.Dungeon.level():distance(pos1, pos2)</code> - Distance between positions</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.Terrain.WALL</code>, <code>RPD.Terrain.EMPTY</code>, etc. - Terrain constants</div>
+</li>
+<li class="level1"><div class="li"> <code>RPD.Blobs.Fire</code>, <code>RPD.Blobs.Water</code>, etc. - Environmental effects</div>
+</li>
+<li class="level1"><div class="li"> <code>math.random()</code> - Generate random number (use instead of G.chance())</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Correct Lua Functions&quot;,&quot;hid&quot;:&quot;correct_lua_functions&quot;,&quot;codeblockOffset&quot;:7,&quot;secid&quot;:13,&quot;range&quot;:&quot;4333-5623&quot;} -->
+<h3 class="sectionedit14" id="item_scripts">Item Scripts</h3>
+<div class="level3">
+
+<p>
+<pre class="code lua"><span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> item <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/item&quot;</span>
+&nbsp;
+<span class="kw1">return</span> item<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    desc <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">return</span> <span class="br0">&#123;</span>
+            image         <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">,</span>
+            imageFile     <span class="sy0">=</span> <span class="st0">&quot;items.png&quot;</span><span class="sy0">,</span>
+            name          <span class="sy0">=</span> <span class="st0">&quot;Explosive Item&quot;</span><span class="sy0">,</span>
+            info          <span class="sy0">=</span> <span class="st0">&quot;An explosive item that damages enemies.&quot;</span><span class="sy0">,</span>
+            stackable     <span class="sy0">=</span> <span class="kw4">false</span><span class="sy0">,</span>
+            upgradable    <span class="sy0">=</span> <span class="kw4">false</span><span class="sy0">,</span>
+            isFlies       <span class="sy0">=</span> <span class="kw4">true</span><span class="sy0">,</span>
+            defaultAction <span class="sy0">=</span> <span class="st0">&quot;EXPLODE&quot;</span>
+        <span class="br0">&#125;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    actions <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">return</span> <span class="br0">&#123;</span>RPD<span class="sy0">.</span>Actions<span class="sy0">.</span>EXPLODE<span class="br0">&#125;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    <span class="co1">-- Called when item is used</span>
+    <span class="kw3">execute</span> <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> item<span class="sy0">,</span> hero<span class="sy0">,</span> action<span class="br0">&#41;</span>
+        <span class="kw1">if</span> action <span class="sy0">==</span> RPD<span class="sy0">.</span>Actions<span class="sy0">.</span>EXPLODE <span class="kw1">then</span>
+            <span class="kw1">local</span> level <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span>
+            <span class="kw1">local</span> cell <span class="sy0">=</span> hero<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span>
+&nbsp;
+            <span class="co1">-- Damage all creatures in radius</span>
+            <span class="kw1">local</span> mobs <span class="sy0">=</span> level<span class="sy0">:</span>mobs<span class="br0">&#40;</span><span class="br0">&#41;</span>
+            <span class="kw1">for</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">,</span> mobs<span class="sy0">:</span>size<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">-</span><span class="nu0">1</span> <span class="kw1">do</span>
+                <span class="kw1">local</span> mob <span class="sy0">=</span> mobs<span class="sy0">:</span>get<span class="br0">&#40;</span>i<span class="br0">&#41;</span>
+                <span class="kw1">if</span> level<span class="sy0">:</span>distance<span class="br0">&#40;</span>mob<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> cell<span class="br0">&#41;</span> <span class="sy0">&lt;=</span> <span class="nu0">2</span> <span class="kw1">then</span>
+                    mob<span class="sy0">:</span>damage<span class="br0">&#40;</span><span class="nu0">10</span><span class="sy0">,</span> hero<span class="br0">&#41;</span>  <span class="co1">-- Damage mob, source is hero</span>
+                    RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;Explosion damages &quot;</span> <span class="sy0">..</span> mob<span class="sy0">:</span>name<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">..</span> <span class="st0">&quot;!&quot;</span><span class="br0">&#41;</span>
+                <span class="kw1">end</span>
+            <span class="kw1">end</span>
+&nbsp;
+            <span class="co1">-- Also damage the hero slightly</span>
+            hero<span class="sy0">:</span>damage<span class="br0">&#40;</span><span class="nu0">5</span><span class="sy0">,</span> item<span class="br0">&#41;</span>  <span class="co1">-- Source is item itself</span>
+            RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The explosion hurts you too!&quot;</span><span class="br0">&#41;</span>
+        <span class="kw1">end</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Item Scripts&quot;,&quot;hid&quot;:&quot;item_scripts&quot;,&quot;codeblockOffset&quot;:7,&quot;secid&quot;:14,&quot;range&quot;:&quot;5624-7036&quot;} -->
+<h3 class="sectionedit15" id="mob_scripts">Mob Scripts</h3>
+<div class="level3">
+
+<p>
+<pre class="code lua"><span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> mob <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/mob&quot;</span>
+&nbsp;
+<span class="kw1">return</span> mob<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    spawn <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> level<span class="br0">&#41;</span>
+        <span class="co1">-- Called when the mob is created</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;A healing mob appears!&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    act <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+        <span class="co1">-- Called each turn when mob is active</span>
+        <span class="kw1">local</span> hero <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>hero
+        <span class="kw1">local</span> distance <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span>distance<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> hero<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+&nbsp;
+        <span class="kw1">if</span> distance <span class="sy0">&lt;=</span> <span class="nu0">2</span> <span class="kw1">then</span>
+            <span class="co1">-- Heal the mob</span>
+            self<span class="sy0">:</span>heal<span class="br0">&#40;</span><span class="nu0">5</span><span class="sy0">,</span> self<span class="br0">&#41;</span>  <span class="co1">-- Heal 5 HP, source is mob itself</span>
+            RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The healing mob glows softly!&quot;</span><span class="br0">&#41;</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Spend time for this turn</span>
+        self<span class="sy0">:</span>spend<span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    <span class="co1">-- Called when mob is attacked</span>
+    onAttackProc <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> enemy<span class="sy0">,</span> damage<span class="br0">&#41;</span>
+        <span class="co1">-- Chance to counter-attack</span>
+        <span class="kw1">if</span> <span class="kw3">math.random</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">&lt;</span> <span class="nu0">0.3</span> <span class="kw1">then</span>  <span class="co1">-- 30% chance</span>
+            enemy<span class="sy0">:</span>damage<span class="br0">&#40;</span><span class="nu0">5</span><span class="sy0">,</span> self<span class="br0">&#41;</span>  <span class="co1">-- Damage attacker, source is this mob</span>
+        <span class="kw1">end</span>
+        <span class="kw1">return</span> damage
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    die <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> cause<span class="br0">&#41;</span>
+        <span class="co1">-- Handle death</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The healing mob fades away.&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Mob Scripts&quot;,&quot;hid&quot;:&quot;mob_scripts&quot;,&quot;codeblockOffset&quot;:8,&quot;secid&quot;:15,&quot;range&quot;:&quot;7037-8169&quot;} -->
+<h3 class="sectionedit16" id="buff_scripts">Buff Scripts</h3>
+<div class="level3">
+
+<p>
+<pre class="code lua"><span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> buff <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/buff&quot;</span>
+&nbsp;
+<span class="kw1">return</span> buff<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    desc <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">return</span> <span class="br0">&#123;</span>
+            icon <span class="sy0">=</span> <span class="nu0">10</span><span class="sy0">,</span>
+            name <span class="sy0">=</span> <span class="st0">&quot;Custom Buff Name&quot;</span><span class="sy0">,</span>
+            info <span class="sy0">=</span> <span class="st0">&quot;Custom buff description with %d turns remaining.&quot;</span>
+        <span class="br0">&#125;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    attach <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> target<span class="br0">&#41;</span>
+        <span class="co1">-- Called when buff is applied</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;You feel different...&quot;</span><span class="br0">&#41;</span>
+        <span class="kw1">return</span> <span class="kw4">true</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    act <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+        <span class="co1">-- Called each turn while buff is active</span>
+        <span class="kw1">if</span> <span class="kw3">math.random</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">&lt;</span> <span class="nu0">0.1</span> <span class="kw1">then</span> <span class="co1">-- 10% chance per turn</span>
+            self<span class="sy0">.</span>target<span class="sy0">:</span>heal<span class="br0">&#40;</span><span class="nu0">1</span><span class="sy0">,</span> self<span class="sy0">.</span>target<span class="br0">&#41;</span> <span class="co1">-- Heal 1 HP occasionally, source is target itself</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Continue for another turn</span>
+        <span class="kw1">return</span> <span class="kw4">true</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    detach <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+        <span class="co1">-- Called when buff is removed</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The effect fades...&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span></pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Buff Scripts&quot;,&quot;hid&quot;:&quot;buff_scripts&quot;,&quot;codeblockOffset&quot;:9,&quot;secid&quot;:16,&quot;range&quot;:&quot;8170-9083&quot;} -->
+<h2 class="sectionedit17" id="tiled_level_editor">Tiled Level Editor</h2>
+<div class="level2">
+
+<p>
+Create complex custom levels using the Tiled map editor:
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Tiled Level Editor&quot;,&quot;hid&quot;:&quot;tiled_level_editor&quot;,&quot;codeblockOffset&quot;:10,&quot;secid&quot;:17,&quot;range&quot;:&quot;9084-9173&quot;} -->
+<h3 class="sectionedit18" id="getting_tiled">Getting Tiled</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Download Tiled from <a href="https://www.mapeditor.org/" class="urlextern" title="https://www.mapeditor.org/">https://www.mapeditor.org/</a></div>
+</li>
+<li class="level1"><div class="li"> Use the custom Tiled extension provided with Remixed Dungeon</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Getting Tiled&quot;,&quot;hid&quot;:&quot;getting_tiled&quot;,&quot;codeblockOffset&quot;:10,&quot;secid&quot;:18,&quot;range&quot;:&quot;9174-9314&quot;} -->
+<h3 class="sectionedit19" id="level_structure">Level Structure</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Create a new tilemap with the correct dimensions</div>
+</li>
+<li class="level1"><div class="li"> Use the original tilesets as a base or create new ones</div>
+</li>
+<li class="level1"><div class="li"> Place special objects for spawns, items, and exits</div>
+</li>
+<li class="level1"><div class="li"> Export as JSON format for use in the game</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Level Structure&quot;,&quot;hid&quot;:&quot;level_structure&quot;,&quot;codeblockOffset&quot;:10,&quot;secid&quot;:19,&quot;range&quot;:&quot;9315-9554&quot;} -->
+<h3 class="sectionedit20" id="object_types">Object Types</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <code>mob_spawn</code> - Places a mob at the location</div>
+</li>
+<li class="level1"><div class="li"> <code>item_spawn</code> - Places an item at the location  </div>
+</li>
+<li class="level1"><div class="li"> <code>exit</code> - Level exit point</div>
+</li>
+<li class="level1"><div class="li"> <code>entrance</code> - Level entrance point</div>
+</li>
+<li class="level1"><div class="li"> <code>feature</code> - Special level features</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Object Types&quot;,&quot;hid&quot;:&quot;object_types&quot;,&quot;codeblockOffset&quot;:10,&quot;secid&quot;:20,&quot;range&quot;:&quot;9555-9794&quot;} -->
+<h2 class="sectionedit21" id="configuration_files">Configuration Files</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Configuration Files&quot;,&quot;hid&quot;:&quot;configuration_files&quot;,&quot;codeblockOffset&quot;:10,&quot;secid&quot;:21,&quot;range&quot;:&quot;9795-9827&quot;} -->
+<h3 class="sectionedit22" id="versionjson">version.json</h3>
+<div class="level3">
+
+<p>
+<pre class="code json">{
+  &quot;version&quot;: 1,
+  &quot;name&quot;: &quot;My Mod&quot;,
+  &quot;author&quot;: &quot;Your Name&quot;,
+  &quot;description&quot;: &quot;A brief description of your mod&quot;,
+  &quot;requiredCoreVersion&quot;: &quot;32.0&quot;,
+  &quot;dependencies&quot;: [&quot;required_mod_name&quot;]
+}</pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;version.json&quot;,&quot;hid&quot;:&quot;versionjson&quot;,&quot;codeblockOffset&quot;:10,&quot;secid&quot;:22,&quot;range&quot;:&quot;9828-10061&quot;} -->
+<h3 class="sectionedit23" id="bestiary_configuration">Bestiary Configuration</h3>
+<div class="level3">
+
+<p>
+Control what mobs appear where:
+<pre class="code json">{
+  &quot;level_1&quot;: [
+    {&quot;class&quot;: &quot;com.watabou.pixeldungeon.actors.mobs.Rat&quot;, &quot;weight&quot;: 10},
+    {&quot;class&quot;: &quot;com.watabou.pixeldungeon.actors.mobs.Gnoll&quot;, &quot;weight&quot;: 5}
+  ],
+  &quot;level_5&quot;: [
+    {&quot;class&quot;: &quot;com.watabou.pixeldungeon.actors.mobs.Swarm&quot;, &quot;weight&quot;: 8},
+    {&quot;class&quot;: &quot;com.watabou.pixeldungeon.actors.mobs.Eye&quot;, &quot;weight&quot;: 3}
+  ]
+}</pre>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Bestiary Configuration&quot;,&quot;hid&quot;:&quot;bestiary_configuration&quot;,&quot;codeblockOffset&quot;:11,&quot;secid&quot;:23,&quot;range&quot;:&quot;10062-10481&quot;} -->
+<h2 class="sectionedit24" id="tips_for_successful_non-java_modding">Tips for Successful Non-Java Modding</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Tips for Successful Non-Java Modding&quot;,&quot;hid&quot;:&quot;tips_for_successful_non-java_modding&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:24,&quot;range&quot;:&quot;10482-10531&quot;} -->
+<h3 class="sectionedit25" id="planning_your_mod">Planning Your Mod</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Start with simple resource swaps before moving to complex JSON configurations</div>
+</li>
+<li class="level1"><div class="li"> Look at existing game files as examples for your own</div>
+</li>
+<li class="level1"><div class="li"> Test frequently to avoid accumulating errors</div>
+</li>
+<li class="level1"><div class="li"> Keep backups of working configurations</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Planning Your Mod&quot;,&quot;hid&quot;:&quot;planning_your_mod&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:25,&quot;range&quot;:&quot;10532-10791&quot;} -->
+<h3 class="sectionedit26" id="file_organization">File Organization</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Follow the same directory structure as the original game</div>
+</li>
+<li class="level1"><div class="li"> Use clear, descriptive names for your files</div>
+</li>
+<li class="level1"><div class="li"> Group related content in subdirectories</div>
+</li>
+<li class="level1"><div class="li"> Document complex mods with a README file</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;File Organization&quot;,&quot;hid&quot;:&quot;file_organization&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:26,&quot;range&quot;:&quot;10792-11018&quot;} -->
+<h3 class="sectionedit27" id="testing_and_debugging">Testing and Debugging</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Enable your mod in-game and start a new game to test</div>
+</li>
+<li class="level1"><div class="li"> Check the game&#039;s log files for errors if something doesn&#039;t work</div>
+</li>
+<li class="level1"><div class="li"> Test on multiple save files to ensure compatibility</div>
+</li>
+<li class="level1"><div class="li"> Use simple test cases before implementing complex features</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Testing and Debugging&quot;,&quot;hid&quot;:&quot;testing_and_debugging&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:27,&quot;range&quot;:&quot;11019-11295&quot;} -->
+<h3 class="sectionedit28" id="community_resources">Community Resources</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Share your work on the Remixed Dungeon Discord server</div>
+</li>
+<li class="level1"><div class="li"> Look at other mod authors&#039; work for inspiration and techniques</div>
+</li>
+<li class="level1"><div class="li"> Collaborate with other modders for complex projects</div>
+</li>
+<li class="level1"><div class="li"> Report bugs or request features through the official channels</div>
+</li>
+</ul>
+
+<p>
+With these techniques, you can create extensive modifications to Remixed Dungeon without writing a single line of Java code!
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Community Resources&quot;,&quot;hid&quot;:&quot;community_resources&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:28,&quot;range&quot;:&quot;11296-&quot;} -->

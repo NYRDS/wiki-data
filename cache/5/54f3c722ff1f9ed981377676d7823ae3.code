@@ -1,0 +1,32 @@
+<span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> item <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/item&quot;</span>
+&nbsp;
+<span class="kw1">return</span> item<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    desc <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">return</span> <span class="br0">&#123;</span>
+            image         <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">,</span>
+            imageFile     <span class="sy0">=</span> <span class="st0">&quot;items.png&quot;</span><span class="sy0">,</span>
+            name          <span class="sy0">=</span> <span class="st0">&quot;Environment Item&quot;</span><span class="sy0">,</span>
+            info          <span class="sy0">=</span> <span class="st0">&quot;An item that interacts with the environment.&quot;</span><span class="sy0">,</span>
+            stackable     <span class="sy0">=</span> <span class="kw4">false</span><span class="sy0">,</span>
+            upgradable    <span class="sy0">=</span> <span class="kw4">false</span><span class="sy0">,</span>
+            isFlies       <span class="sy0">=</span> <span class="kw4">true</span><span class="sy0">,</span>
+            defaultAction <span class="sy0">=</span> <span class="st0">&quot;THROW&quot;</span>
+        <span class="br0">&#125;</span>
+    <span class="kw1">end</span><span class="sy0">,</span>
+&nbsp;
+    onThrow <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="sy0">,</span> cell<span class="sy0">,</span> user<span class="br0">&#41;</span>
+        <span class="kw1">local</span> level <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">local</span> terrainType <span class="sy0">=</span> level<span class="sy0">:</span>cell<span class="br0">&#40;</span>cell<span class="br0">&#41;</span>
+&nbsp;
+        <span class="kw1">if</span> terrainType <span class="sy0">==</span> RPD<span class="sy0">.</span>Terrain<span class="sy0">.</span>WATER <span class="kw1">then</span>
+            <span class="co1">-- Create a temporary bridge</span>
+            level<span class="sy0">:</span>set<span class="br0">&#40;</span>cell<span class="sy0">,</span> RPD<span class="sy0">.</span>Terrain<span class="sy0">.</span>EMPTY<span class="br0">&#41;</span>
+            RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;The water parts before you!&quot;</span><span class="br0">&#41;</span>
+        <span class="kw1">elseif</span> terrainType <span class="sy0">==</span> RPD<span class="sy0">.</span>Terrain<span class="sy0">.</span>CHASM <span class="kw1">then</span>
+            <span class="co1">-- Fill the chasm</span>
+            level<span class="sy0">:</span>set<span class="br0">&#40;</span>cell<span class="sy0">,</span> RPD<span class="sy0">.</span>Terrain<span class="sy0">.</span>EMPTY<span class="br0">&#41;</span>
+            RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;A bridge of crystal forms!&quot;</span><span class="br0">&#41;</span>
+        <span class="kw1">end</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span>

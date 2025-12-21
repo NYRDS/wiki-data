@@ -1,0 +1,52 @@
+
+<h1 class="sectionedit1" id="кастомные_предметы">Кастомные предметы</h1>
+<div class="level1">
+
+<p>
+Кастомные предметы - возможность RPD, планируемая к включению в 28.3. Кастомные предметы полностью реализуются с помощью lua скриптов.
+</p>
+
+<p>
+см. <a href="https://github.com/NYRDS/remixed-dungeon/blob/1af6a18f5385fb9e37e516c0aaf9b5a975f7388e/RemixedDungeon/src/main/assets/scripts/items/RawFish.lua#L12" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/1af6a18f5385fb9e37e516c0aaf9b5a975f7388e/RemixedDungeon/src/main/assets/scripts/items/RawFish.lua#L12">например тушка рыбы</a>
+</p>
+
+<p>
+Скрипт предмета состоит из таблицы описания и методов предмета.
+В таблице описания могут присутствовать следующие аттрибуты:
+</p>
+<ul>
+<li class="level1"><div class="li">         <strong>image</strong>      = 14 - Индекс спрайта предмета ( в ячейках 16х16 )</div>
+</li>
+<li class="level1"><div class="li">         <strong>imageFile</strong>  = «items/food.png» - Файл с атласом для этого предмета</div>
+</li>
+<li class="level1"><div class="li">         <strong>name</strong>       = «smth» - Название предмета</div>
+</li>
+<li class="level1"><div class="li">         <strong>info</strong>       = «smth» - Описание предмета</div>
+</li>
+<li class="level1"><div class="li">         <strong>stackable</strong>  = false  - Могут ли несколько предметов занимать одну ячейку инвентаря</div>
+</li>
+<li class="level1"><div class="li">         <strong>upgradable</strong> = false  - Можно ли улучшать предмет</div>
+</li>
+<li class="level1"><div class="li">         <strong>identified</strong> = true   - Опознан ли предмет</div>
+</li>
+</ul>
+
+<p>
+На текущий момент поддерживаются следующие методы:
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>actions</strong>(self, item, hero) - список действий которые герой может совершить с предметом</div>
+</li>
+<li class="level1"><div class="li"> <strong>execute</strong>(self, item, hero, action) - выполнение действий из списка выше</div>
+</li>
+<li class="level1"><div class="li"> <strong>burn</strong>(self, item, cell) - реакция предмета на контакт с огнём</div>
+</li>
+<li class="level1"><div class="li"> <strong>freeze</strong>(self, item, cell) - реакция предмета на контакт с холодом</div>
+</li>
+<li class="level1"><div class="li"> <strong>poison</strong>(self, item, cell) - реакция предмета на контакт с токсичным газом</div>
+</li>
+<li class="level1"><div class="li"> <strong>onThrow</strong>(self, item, cell) - реакция предмета на падение при броске</div>
+</li>
+</ul>
+
+</div>

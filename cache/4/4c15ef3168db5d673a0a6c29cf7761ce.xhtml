@@ -1,0 +1,152 @@
+
+<h1 class="sectionedit1" id="crystal_mob">Crystal (Mob)</h1>
+<div class="level1">
+
+<p>
+<a href="https://wiki.nyrds.net/lib/exe/detail.php?id=rpd%3Acrystal_mob&amp;media=rpd:images:crystal_sprite.png" class="media" title="rpd:images:crystal_sprite.png"><img src="https://wiki.nyrds.net/lib/exe/fetch.php?media=rpd:images:crystal_sprite.png" class="mediaright" loading="lazy" title="Crystal Sprite " alt="Crystal Sprite " /></a>
+</p>
+
+<p>
+The <strong>Crystal</strong> is a special magical enemy found in Remixed Pixel Dungeon, often associated with the <a href="https://wiki.nyrds.net/doku.php?id=rpd:shadow_lord" class="wikilink1" title="rpd:shadow_lord" data-wiki-id="rpd:shadow_lord">Shadow Lord</a>. These are magical constructs that serve powerful entities in the dungeon and possess magical abilities.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Crystal (Mob)&quot;,&quot;hid&quot;:&quot;crystal_mob&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-320&quot;} -->
+<h3 class="sectionedit2" id="description">Description</h3>
+<div class="level3">
+
+<p>
+Crystals are magical constructs that serve the <a href="https://wiki.nyrds.net/doku.php?id=rpd:shadow_lord" class="wikilink1" title="rpd:shadow_lord" data-wiki-id="rpd:shadow_lord">Shadow Lord</a> and other powerful entities in the dungeon. They appear on pedestals and attack with wands. They have 3 different types and can be quite dangerous in combat.
+</p>
+
+<p>
+Based on string resources: “Big shining crystal floating in the air. Probably it is filled with powerful magic.” <a href="https://wiki.nyrds.net/doku.php?id=mr:crystal_mob" class="wikilink1" title="mr:crystal_mob" data-wiki-id="mr:crystal_mob">Crystal - Code References</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Description&quot;,&quot;hid&quot;:&quot;description&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;321-739&quot;} -->
+<h3 class="sectionedit3" id="stats">Stats</h3>
+<div class="level3">
+
+<p>
+* <strong>HP:</strong> Depth * 4 + 1 (adjusts based on dungeon depth)
+* <strong>Defense:</strong> Depth * 2 + 1 (adjusts based on dungeon depth)
+* <strong>Attack Skill:</strong> 1000 (for types 0 &amp; 1); variable (for type 2 - Shadow Lord crystals, uses default mob attack skill)
+* <strong>Damage:</strong> Random value between HP/2 and HT/2
+* <strong>Speed:</strong> Immovable (cannot be displaced)
+* <strong>EXP:</strong> Depth + 1
+* <strong>Max Level:</strong> Depth + 2
+* <strong>DR (Damage Resistance):</strong> EXP/3
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Stats&quot;,&quot;hid&quot;:&quot;stats&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;740-1173&quot;} -->
+<h3 class="sectionedit4" id="special_properties">Special Properties</h3>
+<div class="level3">
+
+<p>
+* <strong>Immunities:</strong> Immune to Toxic Gas, Paralysis, Stun, Confusion Gas, and Scroll of Psionic Blast
+* <strong>Immobile:</strong> Cannot move (movable = false)
+* <strong>No Corpse:</strong> Does not leave a carcass upon death (carcassChance = 0)
+* <strong>Wand Attack:</strong> Uses wands to attack enemies at range
+* <strong>3 Types:</strong> Different types with different behaviors (0, 1, and 2)
+* <strong>Special Equipment:</strong> Automatically equipped with random wands based on dungeon depth (Shadow Lord crystals have 25% chance of getting Wand of Shadowbolt instead)
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Special Properties&quot;,&quot;hid&quot;:&quot;special_properties&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1174-1714&quot;} -->
+<h3 class="sectionedit5" id="behavior">Behavior</h3>
+<div class="level3">
+
+<p>
+* <strong>Type 2 Special:</strong> Shadow Lord crystals (kind = 2) have 25% chance to be equipped with <a href="https://wiki.nyrds.net/doku.php?id=rpd:wand_of_shadowbolt" class="wikilink2" title="rpd:wand_of_shadowbolt" rel="nofollow" data-wiki-id="rpd:wand_of_shadowbolt">Wand of Shadowbolt</a> upgraded to half dungeon depth (instead of normal wands)
+* <strong>Dungeon Interaction:</strong> When a crystal on a pedestal dies, it transforms the area to embers and foliage, clearing Darkness in a 5&times;5 area
+* <strong>Steal Action:</strong> If targeted with a “steal” action, it will create a Chaos Mark at its position and die
+* <strong>Non-Pettable:</strong> Cannot be turned into a pet
+* <strong>Wand Attack:</strong> Uses equipped wand when attacking (wand is upgraded to appropriate level based on dungeon depth)
+* <strong>Attack Range:</strong> Can attack any target in line of sight using Ballistica.cast
+* <strong>Attack Mechanism:</strong> Crystals always perform a zap attack instead of normal melee attack
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Behavior&quot;,&quot;hid&quot;:&quot;behavior&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1715-2511&quot;} -->
+<h3 class="sectionedit6" id="types">Types</h3>
+<div class="level3">
+
+<p>
+There are 3 different types of crystals:
+* <strong>Type 0 &amp; 1:</strong> Standard crystals that spawn randomly in levels with attack skill of 1000
+* <strong>Type 2:</strong> Special Shadow Lord crystals that appear during the <a href="https://wiki.nyrds.net/doku.php?id=rpd:shadow_lord" class="wikilink1" title="rpd:shadow_lord" data-wiki-id="rpd:shadow_lord">Shadow Lord</a> encounter with enhanced mechanics
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Types&quot;,&quot;hid&quot;:&quot;types&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;2512-2793&quot;} -->
+<h3 class="sectionedit7" id="strategy">Strategy</h3>
+<div class="level3">
+
+<p>
+* <strong>Magical Resistance:</strong> Magical resistance or armor can be helpful against wand-based attacks
+* <strong>Immobilized Target:</strong> Since crystals don&#039;t move, you can position yourself to avoid their attacks
+* <strong>Range Attack:</strong> Crystals can attack from a distance using their wands, with attack skill of 1000 for types 0 &amp; 1
+* <strong>Pedestal Death Effect:</strong> If a crystal dies while on a pedestal, it transforms the area to embers and foliage, clearing Darkness in a 5&times;5 area
+* <strong>Shadow Lord Crystals:</strong> Be aware that Shadow Lord crystals have a 25% chance to use <a href="https://wiki.nyrds.net/doku.php?id=rpd:wand_of_shadowbolt" class="wikilink2" title="rpd:wand_of_shadowbolt" rel="nofollow" data-wiki-id="rpd:wand_of_shadowbolt">Wand of Shadowbolt</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Strategy&quot;,&quot;hid&quot;:&quot;strategy&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;2794-3408&quot;} -->
+<h3 class="sectionedit8" id="technical_details">Technical Details</h3>
+<div class="level3">
+
+<p>
+* <strong>Java Class:</strong> <a href="https://wiki.nyrds.net/doku.php?id=code:remixeddungeon:src:main:java:com:nyrds:pixeldungeon:mobs:common:crystal.java" class="wikilink2" title="code:remixeddungeon:src:main:java:com:nyrds:pixeldungeon:mobs:common:crystal.java" rel="nofollow" data-wiki-id="code:remixeddungeon:src:main:java:com:nyrds:pixeldungeon:mobs:common:crystal.java">Crystal.java</a>
+* <strong>Inheritance:</strong> Extends <a href="https://wiki.nyrds.net/doku.php?id=rpd:multi_kind_mob" class="wikilink2" title="rpd:multi_kind_mob" rel="nofollow" data-wiki-id="rpd:multi_kind_mob">MultiKindMob</a> and implements IDepthAdjustable and IZapper interfaces
+* <strong>Implementation:</strong> Automatically equipped with random wands based on depth, with special handling for Shadow Lord crystals
+* <strong>Entity Kind:</strong> <a href="https://wiki.nyrds.net/doku.php?id=mr:crystal_mob" class="wikilink1" title="mr:crystal_mob" data-wiki-id="mr:crystal_mob">Crystal - Code References</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Technical Details&quot;,&quot;hid&quot;:&quot;technical_details&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;3409-3862&quot;} -->
+<h3 class="sectionedit9" id="drops">Drops</h3>
+<div class="level3">
+
+<p>
+* <strong>Standard Crystal:</strong> Wand of appropriate level based on dungeon depth (upgraded to Dungeon.depth/3)
+* <strong>Shadow Lord Crystal:</strong> May have <a href="https://wiki.nyrds.net/doku.php?id=rpd:wand_of_shadowbolt" class="wikilink2" title="rpd:wand_of_shadowbolt" rel="nofollow" data-wiki-id="rpd:wand_of_shadowbolt">Wand of Shadowbolt</a> with 25% chance (upgraded to half dungeon depth)
+* <strong>Chaos Mark:</strong> When targeted with “steal” action
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Drops&quot;,&quot;hid&quot;:&quot;drops&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;3863-4165&quot;} -->
+<h3 class="sectionedit10" id="trivia">Trivia</h3>
+<div class="level3">
+
+<p>
+* Crystals were once able to drop “Wand of Magic Missiles” but this was changed in a previous update
+* Crystals created by the Shadow Lord use upgraded wands (upgrade level is half the dungeon depth)
+* Crystals cannot be moved with telekinesis
+* The crystal that appears during the Shadow Lord fight has special mechanics and a higher attack skill (1000)
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Trivia&quot;,&quot;hid&quot;:&quot;trivia&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:10,&quot;range&quot;:&quot;4166-4538&quot;} -->
+<h3 class="sectionedit11" id="see_also">See Also</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="https://wiki.nyrds.net/doku.php?id=rpd:enemies" class="wikilink1" title="rpd:enemies" data-wiki-id="rpd:enemies">Enemies</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://wiki.nyrds.net/doku.php?id=rpd:shadow_lord" class="wikilink1" title="rpd:shadow_lord" data-wiki-id="rpd:shadow_lord">Shadow Lord</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://wiki.nyrds.net/doku.php?id=rpd:wands" class="wikilink1" title="rpd:wands" data-wiki-id="rpd:wands">Wands</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://wiki.nyrds.net/doku.php?id=rpd:multi_kind_mob" class="wikilink2" title="rpd:multi_kind_mob" rel="nofollow" data-wiki-id="rpd:multi_kind_mob">MultiKindMob</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://wiki.nyrds.net/doku.php?id=mr:crystal_mob" class="wikilink1" title="mr:crystal_mob" data-wiki-id="mr:crystal_mob">Crystal - Code References</a></div>
+</li>
+</ul>
+<div class="tags"><span>
+	<a href="https://wiki.nyrds.net/doku.php?id=tag:rpd&amp;do=showtag&amp;tag=rpd" class="wikilink1" title="tag:rpd" rel="tag">rpd</a>,
+	<a href="https://wiki.nyrds.net/doku.php?id=tag:mobs&amp;do=showtag&amp;tag=mobs" class="wikilink1" title="tag:mobs" rel="tag">mobs</a>
+</span></div>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;See Also&quot;,&quot;hid&quot;:&quot;see_also&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:11,&quot;range&quot;:&quot;4539-&quot;} -->

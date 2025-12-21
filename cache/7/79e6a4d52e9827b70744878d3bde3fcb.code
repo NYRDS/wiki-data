@@ -1,0 +1,50 @@
+<span class="kw1">public</span> <span class="kw1">class</span> CustomItemSlot <span class="kw1">extends</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+component"><span class="kw3">Component</span></a> <span class="br0">&#123;</span>
+    <span class="kw1">private</span> Item item<span class="sy0">;</span>
+    <span class="kw1">private</span> ItemSlot slot<span class="sy0">;</span>
+    <span class="kw1">private</span> Text level<span class="sy0">;</span>
+&nbsp;
+    <span class="kw1">public</span> CustomItemSlot<span class="br0">&#40;</span>Item item<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">super</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        createChildren<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        item<span class="br0">&#40;</span>item<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    @Override
+    <span class="kw1">protected</span> <span class="kw4">void</span> createChildren<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        slot <span class="sy0">=</span> <span class="kw1">new</span> ItemSlot<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        add<span class="br0">&#40;</span>slot<span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+        level <span class="sy0">=</span> <span class="kw1">new</span> Text<span class="br0">&#40;</span>GuiProperties.<span class="me1">regularFontSize</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        add<span class="br0">&#40;</span>level<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    @Override
+    <span class="kw1">protected</span> <span class="kw4">void</span> layout<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">super</span>.<span class="me1">layout</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+        slot.<span class="me1">setRect</span><span class="br0">&#40;</span>x, y, height<span class="br0">&#40;</span><span class="br0">&#41;</span>, height<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+        <span class="kw1">if</span> <span class="br0">&#40;</span>level <span class="sy0">!=</span> <span class="kw2">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            level.<span class="me1">x</span> <span class="sy0">=</span> x <span class="sy0">+</span> <span class="br0">&#40;</span>width<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">-</span> level.<span class="me1">width</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">/</span> <span class="nu0">2</span><span class="sy0">;</span>
+            level.<span class="me1">y</span> <span class="sy0">=</span> y <span class="sy0">+</span> height<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">-</span> level.<span class="me1">height</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw1">public</span> <span class="kw4">void</span> item<span class="br0">&#40;</span>Item item<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">this</span>.<span class="me1">item</span> <span class="sy0">=</span> item<span class="sy0">;</span>
+        <span class="kw1">if</span> <span class="br0">&#40;</span>item <span class="sy0">==</span> <span class="kw2">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            slot.<span class="me1">item</span><span class="br0">&#40;</span><span class="br0">&#40;</span>Item<span class="br0">&#41;</span> <span class="kw2">null</span><span class="br0">&#41;</span><span class="sy0">;</span>
+            level.<span class="me1">text</span><span class="br0">&#40;</span><span class="st0">&quot;&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span> <span class="kw1">else</span> <span class="br0">&#123;</span>
+            slot.<span class="me1">item</span><span class="br0">&#40;</span>item<span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+            <span class="kw1">if</span> <span class="br0">&#40;</span>item.<span class="me1">levelKnown</span> <span class="sy0">&amp;&amp;</span> item.<span class="me1">level</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">!=</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+                level.<span class="me1">text</span><span class="br0">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+integer"><span class="kw3">Integer</span></a>.<span class="me1">toString</span><span class="br0">&#40;</span>item.<span class="me1">level</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+                level.<span class="me1">measure</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+            <span class="br0">&#125;</span> <span class="kw1">else</span> <span class="br0">&#123;</span>
+                level.<span class="me1">text</span><span class="br0">&#40;</span><span class="st0">&quot;&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+            <span class="br0">&#125;</span>
+        <span class="br0">&#125;</span>
+        layout<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>

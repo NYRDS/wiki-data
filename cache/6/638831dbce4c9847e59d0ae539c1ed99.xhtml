@@ -1,0 +1,196 @@
+
+<h1 class="sectionedit1" id="raise_dead">Raise Dead</h1>
+<div class="level1">
+
+<p>
+<a href="https://www.nyrds.net/lib/exe/detail.php?id=rpd%3Araise_dead_spell&amp;media=rpd:images:raise_dead_spell_icon.png" class="media" title="rpd:images:raise_dead_spell_icon.png"><img src="https://www.nyrds.net/lib/exe/fetch.php?media=rpd:images:raise_dead_spell_icon.png" class="mediaright" loading="lazy" title="Raise Dead Spell Icon " alt="Raise Dead Spell Icon " /></a>
+</p>
+
+<p>
+<strong>Raise Dead</strong> is a spell in Remixed Pixel Dungeon (Necromancy Affinity) that attempts to raise the most recently slain creature as an undead minion.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Raise Dead&quot;,&quot;hid&quot;:&quot;raise_dead&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-243&quot;} -->
+<h3 class="sectionedit2" id="description">Description</h3>
+<div class="level3">
+
+<p>
+Attempt to raise the latest (Ritual requires quite a fresh material) slain creature. When using this dark art, remember: almost any creature can be raised, but not everyone&#039;s will is easy to bend. This spell allows Necromancers to turn defeated enemies into loyal undead servants.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Description&quot;,&quot;hid&quot;:&quot;description&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;244-547&quot;} -->
+<h3 class="sectionedit3" id="stats">Stats</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>Magic Affinity:</strong> Necromancy</div>
+</li>
+<li class="level1"><div class="li"> <strong>Targeting:</strong> none</div>
+</li>
+<li class="level1"><div class="li"> <strong>Level:</strong> 4</div>
+</li>
+<li class="level1"><div class="li"> <strong>Mana Cost:</strong> 15</div>
+</li>
+<li class="level1"><div class="li"> <strong>Cast Time:</strong> 3 turns</div>
+</li>
+<li class="level1"><div class="li"> <strong>Effect:</strong> Summons recently killed creature as pet undead</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Stats&quot;,&quot;hid&quot;:&quot;stats&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;548-752&quot;} -->
+<h3 class="sectionedit4" id="mechanics">Mechanics</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>Requirement:</strong> Must have recently defeated a creature</div>
+</li>
+<li class="level1"><div class="li"> <strong>Freshness:</strong> Works best on recently killed creatures (uses storage to track latest kill)</div>
+</li>
+<li class="level1"><div class="li"> <strong>Success Rate:</strong> Raises creature successfully if space is available</div>
+</li>
+<li class="level1"><div class="li"> <strong>Minion Type:</strong> Raised creature becomes a controllable undead minion</div>
+</li>
+<li class="level1"><div class="li"> <strong>Implementation:</strong> Uses <code>storage.get(“__latest_dead_mob”)</code> to find last killed creature</div>
+</li>
+<li class="level1"><div class="li"> <strong>Effect:</strong> Makes target undead, removes items, applies curse particles and sound</div>
+</li>
+<li class="level1"><div class="li"> Only creatures that can be pets (except Mirror Images) can be raised</div>
+</li>
+<li class="level1"><div class="li"> The creature&#039;s original class and stats are preserved</div>
+</li>
+<li class="level1"><div class="li"> The raised creature becomes a pet under the caster&#039;s control</div>
+</li>
+<li class="level1"><div class="li"> The raised creature is set as an undead (using setUndead(true))</div>
+</li>
+<li class="level1"><div class="li"> The raised creature is given a gold item as loot</div>
+</li>
+<li class="level1"><div class="li"> All existing items are removed from the raised creature (using removeAllItems)</div>
+</li>
+<li class="level1"><div class="li"> Visual effect: Shadow particle burst (CURSE) on both caster and mob sprites</div>
+</li>
+<li class="level1"><div class="li"> Audio effect: Cursed sound when cast successfully</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Mechanics&quot;,&quot;hid&quot;:&quot;mechanics&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;753-1790&quot;} -->
+<h3 class="sectionedit5" id="usage">Usage</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>Timing:</strong> Must be used soon after defeating a creature</div>
+</li>
+<li class="level1"><div class="li"> <strong>Class Ability:</strong> Primarily for <a href="https://www.nyrds.net/doku.php?id=rpd:necromancer" class="wikilink1" title="rpd:necromancer" data-wiki-id="rpd:necromancer">Necromancer</a> class with Necromancy affinity</div>
+</li>
+<li class="level1"><div class="li"> <strong>Tactical:</strong> Can turn powerful enemies into allies</div>
+</li>
+<li class="level1"><div class="li"> <strong>Resource:</strong> Makes use of defeated enemies instead of leaving them</div>
+</li>
+<li class="level1"><div class="li"> <strong>Space Requirement:</strong> Needs available space near player to summon</div>
+</li>
+<li class="level1"><div class="li"> Bringing back a recently killed powerful enemy as an ally</div>
+</li>
+<li class="level1"><div class="li"> Converting dangerous creatures into helpful pets</div>
+</li>
+<li class="level1"><div class="li"> Strategic advantage in dungeon exploration with additional help</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Usage&quot;,&quot;hid&quot;:&quot;usage&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1791-2350&quot;} -->
+<h3 class="sectionedit6" id="strategy">Strategy</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Best used after defeating strong enemies for powerful minions</div>
+</li>
+<li class="level1"><div class="li"> Consider which enemies would make better allies than adversaries</div>
+</li>
+<li class="level1"><div class="li"> Timing is crucial - use immediately after killing desired target</div>
+</li>
+<li class="level1"><div class="li"> Ensure adequate space is available before casting</div>
+</li>
+<li class="level1"><div class="li"> Can be used to create a large army of undead followers</div>
+</li>
+<li class="level1"><div class="li"> Prepare to kill a useful creature that can be made into a pet</div>
+</li>
+<li class="level1"><div class="li"> Use immediately after killing a strong enemy you want as an ally</div>
+</li>
+<li class="level1"><div class="li"> The raised creature retains the original&#039;s abilities but serves as your pet</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Strategy&quot;,&quot;hid&quot;:&quot;strategy&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;2351-2902&quot;} -->
+<h3 class="sectionedit7" id="related">Related</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:necromancy" class="wikilink1" title="rpd:necromancy" data-wiki-id="rpd:necromancy">Necromancy</a> - The magical practice this belongs to</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:exhumation_spell" class="wikilink1" title="rpd:exhumation_spell" data-wiki-id="rpd:exhumation_spell">Exhumation</a> - Similar resurrection-based ability for graves</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:summon_deathling" class="wikilink1" title="rpd:summon_deathling" data-wiki-id="rpd:summon_deathling">Summon Deathling</a> - Other minion summoning ability</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:undead" class="wikilink1" title="rpd:undead" data-wiki-id="rpd:undead">Undead</a> - The type of minion created</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:spells" class="wikilink1" title="rpd:spells" data-wiki-id="rpd:spells">Spells</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:mechanics" class="wikilink1" title="rpd:mechanics" data-wiki-id="rpd:mechanics">Game Mechanics</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.nyrds.net/doku.php?id=rpd:necromancer" class="wikilink1" title="rpd:necromancer" data-wiki-id="rpd:necromancer">Necromancer</a> - Hero class with necromancy affinity</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Related&quot;,&quot;hid&quot;:&quot;related&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;2903-3353&quot;} -->
+<h3 class="sectionedit8" id="limitations">Limitations</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>Space:</strong> Requires available space near the player</div>
+</li>
+<li class="level1"><div class="li"> <strong>Timing:</strong> Must be used quickly after kill (uses storage to track kill)</div>
+</li>
+<li class="level1"><div class="li"> <strong>Success Requirement:</strong> Latest killed mob must still be recorded</div>
+</li>
+<li class="level1"><div class="li"> <strong>Range:</strong> Must be used in general area of where the creature died</div>
+</li>
+<li class="level1"><div class="li"> Only works on the most recently killed creature that can be a pet</div>
+</li>
+<li class="level1"><div class="li"> Fails if there&#039;s no valid space to spawn the creature</div>
+</li>
+<li class="level1"><div class="li"> Cannot raise creatures if no valid creatures have been killed yet</div>
+</li>
+<li class="level1"><div class="li"> Mirror Images cannot be raised</div>
+</li>
+<li class="level1"><div class="li"> Any items the original mob had are removed from the raised pet</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Limitations&quot;,&quot;hid&quot;:&quot;limitations&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;3354-3950&quot;} -->
+<h3 class="sectionedit9" id="data_validation">Data Validation</h3>
+<div class="level3">
+
+<p>
+This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Data Validation&quot;,&quot;hid&quot;:&quot;data_validation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;3951-4203&quot;} -->
+<h3 class="sectionedit10" id="content_verification">Content Verification</h3>
+<div class="level3">
+
+<p>
+* Information source: Lua Script in Remixed Dungeon codebase (RaiseDead.lua)
+* Stats verified: Yes, extracted directly from spell class properties
+* Effect descriptions: Generated from code analysis and string resources
+* Last updated: 2025-12-14 based on RaiseDead.lua
+* Source code: <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/RaiseDead.lua" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/RaiseDead.lua">RaiseDead</a>
+</p>
+<div class="tags"><span>
+	<a href="https://www.nyrds.net/doku.php?id=tag:rpd&amp;do=showtag&amp;tag=rpd" class="wikilink1" title="tag:rpd" rel="tag">rpd</a>,
+	<a href="https://www.nyrds.net/doku.php?id=tag:spells&amp;do=showtag&amp;tag=spells" class="wikilink1" title="tag:spells" rel="tag">spells</a>,
+	<a href="https://www.nyrds.net/doku.php?id=tag:necromancy&amp;do=showtag&amp;tag=necromancy" class="wikilink1" title="tag:necromancy" rel="tag">necromancy</a>
+</span></div>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Content Verification&quot;,&quot;hid&quot;:&quot;content_verification&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:10,&quot;range&quot;:&quot;4204-&quot;} -->

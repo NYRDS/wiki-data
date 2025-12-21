@@ -1,0 +1,34 @@
+<span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+&nbsp;
+<span class="kw1">local</span> M <span class="sy0">=</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">-- Called when the actor is added to the level</span>
+<span class="kw1">function</span> M<span class="sy0">.</span>onSpawn<span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+    RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;Welcome to the puzzle level!&quot;</span><span class="br0">&#41;</span>
+<span class="kw1">end</span>
+&nbsp;
+<span class="co1">-- Called each turn - check if player stepped on switch</span>
+<span class="kw1">function</span> M<span class="sy0">.</span>onTurn<span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+    <span class="kw1">local</span> hero <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>hero
+    <span class="kw1">local</span> heroPos <span class="sy0">=</span> hero<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span>
+    <span class="kw1">local</span> level <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span>
+    <span class="kw1">local</span> x<span class="sy0">,</span> y <span class="sy0">=</span> level<span class="sy0">:</span>cellToCoord<span class="br0">&#40;</span>heroPos<span class="br0">&#41;</span>
+&nbsp;
+    <span class="co1">-- Check if player stepped on switch positions (represented as specific floor tiles)</span>
+    <span class="kw1">if</span> level<span class="sy0">:</span>map<span class="br0">&#40;</span>heroPos<span class="br0">&#41;</span> <span class="sy0">==</span> <span class="nu0">8</span> <span class="kw2">and</span> x <span class="sy0">==</span> <span class="nu0">3</span> <span class="kw2">and</span> y <span class="sy0">==</span> <span class="nu0">2</span> <span class="kw1">then</span>  <span class="co1">-- Specific switch tile at 3,2</span>
+        <span class="co1">-- Change door at 3,7 from door (4) to floor (1)</span>
+        level<span class="sy0">:</span>set<span class="br0">&#40;</span>level<span class="sy0">:</span>cell<span class="br0">&#40;</span><span class="nu0">3</span><span class="sy0">,</span> <span class="nu0">7</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="nu0">1</span><span class="br0">&#41;</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;First door opened!&quot;</span><span class="br0">&#41;</span>
+        RPD<span class="sy0">.</span>topEffect<span class="br0">&#40;</span>level<span class="sy0">:</span>cell<span class="br0">&#40;</span><span class="nu0">3</span><span class="sy0">,</span> <span class="nu0">7</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;poison&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">elseif</span> level<span class="sy0">:</span>map<span class="br0">&#40;</span>heroPos<span class="br0">&#41;</span> <span class="sy0">==</span> <span class="nu0">8</span> <span class="kw2">and</span> x <span class="sy0">==</span> <span class="nu0">5</span> <span class="kw2">and</span> y <span class="sy0">==</span> <span class="nu0">2</span> <span class="kw1">then</span>  <span class="co1">-- Switch at 5,2</span>
+        level<span class="sy0">:</span>set<span class="br0">&#40;</span>level<span class="sy0">:</span>cell<span class="br0">&#40;</span><span class="nu0">5</span><span class="sy0">,</span> <span class="nu0">7</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="nu0">1</span><span class="br0">&#41;</span>  <span class="co1">-- Open corresponding door</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;Second door opened!&quot;</span><span class="br0">&#41;</span>
+        RPD<span class="sy0">.</span>topEffect<span class="br0">&#40;</span>level<span class="sy0">:</span>cell<span class="br0">&#40;</span><span class="nu0">5</span><span class="sy0">,</span> <span class="nu0">7</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;poison&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">elseif</span> level<span class="sy0">:</span>map<span class="br0">&#40;</span>heroPos<span class="br0">&#41;</span> <span class="sy0">==</span> <span class="nu0">8</span> <span class="kw2">and</span> x <span class="sy0">==</span> <span class="nu0">7</span> <span class="kw2">and</span> y <span class="sy0">==</span> <span class="nu0">2</span> <span class="kw1">then</span>  <span class="co1">-- Switch at 7,2</span>
+        level<span class="sy0">:</span>set<span class="br0">&#40;</span>level<span class="sy0">:</span>cell<span class="br0">&#40;</span><span class="nu0">7</span><span class="sy0">,</span> <span class="nu0">7</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="nu0">1</span><span class="br0">&#41;</span>  <span class="co1">-- Open corresponding door</span>
+        RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span><span class="st0">&quot;Center door opened!&quot;</span><span class="br0">&#41;</span>
+        RPD<span class="sy0">.</span>topEffect<span class="br0">&#40;</span>level<span class="sy0">:</span>cell<span class="br0">&#40;</span><span class="nu0">7</span><span class="sy0">,</span> <span class="nu0">7</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;poison&quot;</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="kw1">end</span>
+&nbsp;
+<span class="kw1">return</span> M

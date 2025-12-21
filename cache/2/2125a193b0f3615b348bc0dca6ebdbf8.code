@@ -1,0 +1,32 @@
+<span class="kw1">local</span> RPD <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/commonClasses&quot;</span>
+<span class="kw1">local</span> mob <span class="sy0">=</span> <span class="kw3">require</span> <span class="st0">&quot;scripts/lib/mob&quot;</span>
+&nbsp;
+<span class="kw1">return</span> mob<span class="sy0">.</span>init<span class="br0">&#123;</span>
+    act <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>self<span class="br0">&#41;</span>
+        <span class="kw1">local</span> pos <span class="sy0">=</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span>
+        <span class="kw1">local</span> level <span class="sy0">=</span> RPD<span class="sy0">.</span>Dungeon<span class="sy0">.</span>level<span class="br0">&#40;</span><span class="br0">&#41;</span>
+&nbsp;
+        <span class="co1">-- Check for doors nearby</span>
+        <span class="kw1">for</span> dx <span class="sy0">=</span> <span class="sy0">-</span><span class="nu0">1</span><span class="sy0">,</span> <span class="nu0">1</span> <span class="kw1">do</span>
+            <span class="kw1">for</span> dy <span class="sy0">=</span> <span class="sy0">-</span><span class="nu0">1</span><span class="sy0">,</span> <span class="nu0">1</span> <span class="kw1">do</span>
+                <span class="kw1">local</span> checkCell <span class="sy0">=</span> level<span class="sy0">:</span>cell<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">.</span>x <span class="sy0">+</span> dx<span class="sy0">,</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">.</span>y <span class="sy0">+</span> dy<span class="br0">&#41;</span>
+                <span class="kw1">if</span> checkCell <span class="sy0">==</span> RPD<span class="sy0">.</span>Terrain<span class="sy0">.</span>DOOR <span class="kw1">then</span>
+                    <span class="co1">-- Open the door</span>
+                    level<span class="sy0">:</span>set<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">.</span>x <span class="sy0">+</span> dx<span class="sy0">,</span> self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">.</span>y <span class="sy0">+</span> dy<span class="sy0">,</span> RPD<span class="sy0">.</span>Terrain<span class="sy0">.</span>OPEN_DOOR<span class="br0">&#41;</span>
+                    RPD<span class="sy0">.</span>glog<span class="br0">&#40;</span>self<span class="sy0">:</span>name<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">..</span> <span class="st0">&quot; opens a door!&quot;</span><span class="br0">&#41;</span>
+                    <span class="kw1">break</span>
+                <span class="kw1">end</span>
+            <span class="kw1">end</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Check if on flammable terrain</span>
+        <span class="kw1">if</span> level<span class="sy0">:</span>cell<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">==</span> RPD<span class="sy0">.</span>Terrain<span class="sy0">.</span>HIGH_GRASS <span class="kw1">then</span>
+            <span class="co1">-- Set the grass on fire</span>
+            level<span class="sy0">:</span>set<span class="br0">&#40;</span>self<span class="sy0">:</span>getPos<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> RPD<span class="sy0">.</span>Terrain<span class="sy0">.</span>EMBERS<span class="br0">&#41;</span>
+            <span class="co1">-- In practice would use fire mechanics</span>
+        <span class="kw1">end</span>
+&nbsp;
+        <span class="co1">-- Spend turn time</span>
+        self<span class="sy0">:</span>spend<span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span>
+    <span class="kw1">end</span>
+<span class="br0">&#125;</span>

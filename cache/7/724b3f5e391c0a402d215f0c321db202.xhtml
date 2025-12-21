@@ -1,0 +1,138 @@
+
+<h1 class="sectionedit1" id="beehive">Beehive</h1>
+<div class="level1">
+
+<p>
+<a href="https://nyrds.net/lib/exe/detail.php?id=rpd%3Abeehive&amp;media=rpd:images:beehive_sprite.png" class="media" title="rpd:images:beehive_sprite.png"><img src="https://nyrds.net/lib/exe/fetch.php?media=rpd:images:beehive_sprite.png" class="mediaright" loading="lazy" title="Beehive Sprite " alt="Beehive Sprite " /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Beehive&quot;,&quot;hid&quot;:&quot;beehive&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-75&quot;} -->
+<h3 class="sectionedit2" id="description">Description</h3>
+<div class="level3">
+
+<p>
+A beehive is a structure that houses a colony of bees. When damaged or destroyed, it spawns multiple bees that will attack the hero. Beehives are typically immobile structures that can be found in various dungeon levels.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Description&quot;,&quot;hid&quot;:&quot;description&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;76-319&quot;} -->
+<h3 class="sectionedit3" id="stats">Stats</h3>
+<div class="level3">
+
+<p>
+* <strong>HP</strong>: 64
+* <strong>Level</strong>: 1
+* <strong>Defense Skill</strong>: 1
+* <strong>Attack Skill</strong>: 0
+* <strong>Damage</strong>: 0-0
+* <strong>Armor</strong>: 0
+* <strong>Speed</strong>: Immovable (0x)
+* <strong>View Distance</strong>: 4 tiles
+* <strong>AI State</strong>: Passive (does not actively seek targets)
+* <strong>Movement Type</strong>: Normal
+* <strong>Can be Pet</strong>: No
+* <strong>Flying</strong>: No
+* <strong>Friendly</strong>: No
+* <strong>Movable</strong>: No (immobile structure)
+* <strong>Exp Given</strong>: 5
+* <strong>Loot Chance</strong>: 0%
+* <strong>Attack Delay</strong>: 1
+* <strong>Base Speed</strong>: 0 (immobile)
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Stats&quot;,&quot;hid&quot;:&quot;stats&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;320-774&quot;} -->
+<h3 class="sectionedit4" id="abilities">Abilities</h3>
+<div class="level3">
+
+<p>
+* <strong>Bee Spawning</strong>: When damaged, spawns 1 bee at a time (from 3-8 total possible bees)
+* <strong>Final Swarm</strong>: When destroyed, releases remaining bees (if any) - 3-8 total bees possible
+* <strong>Immobilization</strong>: Cannot move from its location
+* <strong>Bee Limit</strong>: Starts with 3-8 total bees that can be spawned (randomly determined)
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Abilities&quot;,&quot;hid&quot;:&quot;abilities&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;775-1115&quot;} -->
+<h3 class="sectionedit5" id="behavior">Behavior</h3>
+<div class="level3">
+
+<p>
+* <strong>AI State</strong>: Passive (does not actively seek targets)
+* <strong>Movement Type</strong>: Normal (as a mob type, but doesn&#039;t move)
+* <strong>Can be a pet</strong>: No
+* <strong>Flying</strong>: No
+* <strong>Movable</strong>: No (immobile structure)
+* <strong>Special Behavior</strong>: When damaged or destroyed, activates BeeSpawner script to generate bees
+* <strong>Bee Generation</strong>: Randomly determines 3-8 total bees to potentially spawn at the start
+* <strong>Spawn Limit</strong>: Once the predetermined number of bees is spawned, no more bees are generated
+* <strong>Cell Selection</strong>: Spawns bees in an empty adjacent cell (using emptyCellNextTo())
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Behavior&quot;,&quot;hid&quot;:&quot;behavior&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1116-1702&quot;} -->
+<h3 class="sectionedit6" id="drops">Drops</h3>
+<div class="level3">
+
+<p>
+* Beehives have a 0% chance to drop items
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Drops&quot;,&quot;hid&quot;:&quot;drops&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1703-1761&quot;} -->
+<h3 class="sectionedit7" id="strategy">Strategy</h3>
+<div class="level3">
+
+<p>
+* Beehives are not threatening by themselves, but approaching one can trigger bee spawns
+* If you need to fight near a beehive, consider taking it out quickly to prevent multiple bees from spawning
+* Be careful when using area-of-effect attacks near beehives, as they can trigger multiple bee spawns
+* The final swarm when the hive is destroyed can overwhelm unprepared heroes
+* Beehives only spawn a predetermined number (3-8) of bees, so they&#039;re not an infinite source
+* Each time the beehive is damaged, it spawns 1 bee (if any remaining bees to spawn)
+* When destroyed, any remaining bees (if any) are released all at once
+* Bee spawning uses the emptyCellNextTo() method, so bees appear in adjacent empty cells
+* Bees are set to “Hunting” AI state when spawned, so they&#039;ll immediately target nearby enemies
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Strategy&quot;,&quot;hid&quot;:&quot;strategy&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;1762-2593&quot;} -->
+<h3 class="sectionedit8" id="source_code">Source Code</h3>
+<div class="level3">
+
+<p>
+* <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BeeHive.json" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BeeHive.json">BeeHive.json Configuration</a>
+* <a href="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/BeeSpawner.lua" class="urlextern" title="https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/BeeSpawner.lua">BeeSpawner.lua Script</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Source Code&quot;,&quot;hid&quot;:&quot;source_code&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;2594-2895&quot;} -->
+<h3 class="sectionedit9" id="content_verification">Content Verification</h3>
+<div class="level3">
+
+<p>
+* Information source: JSON configuration and Lua script files
+* Stats verification: Extracted directly from BeeHive.json configuration
+* Ability description: Based on BeeSpawner.lua script analysis
+* Last updated: 2025-12-12 based on current codebase
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Content Verification&quot;,&quot;hid&quot;:&quot;content_verification&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;2896-3178&quot;} -->
+<h3 class="sectionedit10" id="see_also">See Also</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="https://nyrds.net/doku.php?id=rpd:bee_mob" class="wikilink1" title="rpd:bee_mob" data-wiki-id="rpd:bee_mob">Bee</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://nyrds.net/doku.php?id=rpd:mobs" class="wikilink1" title="rpd:mobs" data-wiki-id="rpd:mobs">Mobs</a></div>
+</li>
+</ul>
+<div class="tags"><span>
+	<a href="https://nyrds.net/doku.php?id=rpd&amp;do=showtag&amp;tag=%3Arpd" class="wikilink1" title="rpd" rel="tag">rpd</a>,
+	<a href="https://nyrds.net/doku.php?id=tag:mobs&amp;do=showtag&amp;tag=mobs" class="wikilink1" title="tag:mobs" rel="tag">mobs</a>,
+	<a href="https://nyrds.net/doku.php?id=tag:structures&amp;do=showtag&amp;tag=structures" class="wikilink1" title="tag:structures" rel="tag">structures</a>
+</span></div>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;See Also&quot;,&quot;hid&quot;:&quot;see_also&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:10,&quot;range&quot;:&quot;3179-&quot;} -->
