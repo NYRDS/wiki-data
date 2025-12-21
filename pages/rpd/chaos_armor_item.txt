@@ -1,0 +1,42 @@
+====== Chaos Armor Item ======
+
+{{ rpd:images:chaos_armor_item.png|Chaos Armor }}
+
+==== Description ====
+This armor consists of blood-red plates that are sewed together with dark red chains. They irradiate chaotic energy as you touch them.
+
+==== Stats ====
+  * **Type**: Armor
+  * **Tier**: 3
+  * **Default Image**: chaosArmor.png
+  * **Upgrade Limitation**: Cannot be upgraded (isUpgradable() returns false)
+  * **Special Mechanism**: Charge system increases when wearer deals damage, decreases when wearer takes damage
+
+==== Mechanics ====
+  * **Charge System**: 
+    * Charge increases when wearer deals damage (if not cursed)
+    * Charge decreases when wearer takes damage
+    * When charge reaches threshold (based on armor level), the armor upgrades
+    * When charge depletes to 0 on level 4+, the armor degrades and loses inscription
+  * **Visual Changes**: Image changes based on armor level (0-4 images possible)
+  * **Level Requirement**: Upgrades only when charge reaches ''(5 * level()^1.5)'' 
+
+==== Strategy ====
+  * Effective against enemies that take damage (charges armor)
+  * Be careful during tough fights where you take damage (depletes charge)
+  * At level 4+, losing all charge results in degradation and loss of inscription
+  * Works best for aggressive playstyle where hero does more damage than taking
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java|ChaosArmor.java]]
+
+==== Data Sources ====
+  * **Java Source**: ''RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java''
+  * **String Resources**: ''RemixedDungeon/src/main/res/values/strings_all.xml'' - ''ChaosArmor_Name'', ''ChaosArmor_Info''
+
+==== Related Content ====
+  * [[rpd:armor|Armor]] - Other armor types
+  * [[rpd:chaos_set|Chaos Set]] - Other chaos-themed items
+  * [[rpd:equipment|Equipment]] - Equipment in general
+
+{{tag> rpd items armor chaos}}
