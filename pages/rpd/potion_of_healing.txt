@@ -1,18 +1,19 @@
 ====== Potion of Healing ======
 
-{{ rpd:images:potionofhealing_sprite.png|Potion of Healing }}
+{{ rpd:images:potion_of_healing_item.png|Potion of Healing }}
 
 The **Potion of Healing** is a common potion in Remixed Dungeon that restores a significant amount of health to the drinker.
 
 ==== Item Overview ====
   * **Type:** Potion
-  * **Rarity:** Common to Uncommon
+  * **Rarity:** Common
   * **Special Effect:** Heals full HP and removes several negative status effects
   * **Usage:** Single use item (consumed upon drinking)
+  * **Price:** 30 gold when identified
 
 ==== Special Mechanics ====
   * **Full Healing:** Restores all HP to maximum (heals 100% of max HP)
-  * **Status Curing:** Removes [[rpd:poison|Poison]], [[rpd:cripple|Cripple]], [[rpd:weakness|Weakness]], and [[rpd:bleeding|Bleeding]] status effects
+  * **Status Curing:** Removes [[rpd:poison_buff|Poison]], [[rpd:cripple|Cripple]], [[rpd:weakness|Weakness]], and [[rpd:bleeding_buff|Bleeding]] status effects
   * **Shattering:** When shattered on the ground, heals 50% of max HP to any character on that tile
   * **Arrow Moistening:** Can be used to moisten [[rpd:arrows|arrows]] to create [[rpd:health_arrow_item|Health Arrows]]
   * **Identification:** Becomes identified when consumed, shattered, or when seen in inventory after being identified
@@ -29,20 +30,19 @@ The **Potion of Healing** is a common potion in Remixed Dungeon that restores a 
 ==== Obtaining ====
   * Found throughout dungeon levels
   * Available in shops at moderate prices (30 gold when identified)
-  * Dropped by various enemies
+  * Dropped by various enemies (e.g., [[rpd:bat_mob|Bat]] (12.5% chance), [[rpd:scorpio_mob|Scorpio]], [[rpd:swarm_mob|Swarm]])
   * Found in containers and special rooms
 
 ==== Effect ====
-When consumed, the Potion of Healing restores all of your current hit points and cures [[rpd:poison|Poison]], [[rpd:cripple|Cripple]], [[rpd:weakness|Weakness]], and [[rpd:bleeding|Bleeding]] status effects.
+When consumed, the Potion of Healing restores all of your current hit points and cures [[rpd:poison_buff|Poison]], [[rpd:cripple|Cripple]], [[rpd:weakness|Weakness]], and [[rpd:bleeding_buff|Bleeding]] status effects.
 
 According to the game's string resources: "An elixir that will instantly return you to full health and cure poison."
 
-===== Code References =====
-  * **Java**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]]
-  * **String Resource**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2189|PotionOfHealing_Info]]
-  * **Machine-readable data**: [[mr:potion_of_healing_item|mr:potion_of_healing_item]]
-  * **Configuration**: [[code:RemixedDungeon/src/main/assets/itemsDesc/potions/PotionOfHealing.json|PotionOfHealing.json]]
-  * **Lua Script**: [[code:RemixedDungeon/src/main/assets/scripts/potions/heal.lua|heal.lua]]
+==== Code References ====
+  * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]]
+  * **Russian String Resource:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2189-L2191|strings_all.xml#L2189-L2191]]
+  * **Potion Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L48|Potion.java#L48]]
+  * **Alchemical Recipe:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java#L46|Sungrass.java#L46]]
 
 ==== Related Items ====
   * [[rpd:potion|Potions]] - General information about potions
@@ -50,5 +50,6 @@ According to the game's string resources: "An elixir that will instantly return 
   * [[rpd:potion_of_overhealing|Potion of Overhealing]] - Alternative healing potion
   * [[rpd:mechanics|Game Mechanics]] - Health system
   * [[rpd:arrows|Arrows]] - Information about arrows and moistening
+  * [[rpd:health_arrow_item|Health Arrow]] - Created by moistening with this potion
 
 {{tag> rpd items potions healing arrows}}
