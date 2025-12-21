@@ -1,20 +1,97 @@
 ====== Chaos Armor Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * ''RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java''
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/chaos_armor.json
+No specific JSON configuration found for this item.
 
 ===== String Resources =====
-''<code xml>''
-<string name="ChaosArmor_Name">[Name]</string>
-<string name="ChaosArmor_Info">[Description]</string>
-''</code>''
+  * ''RemixedDungeon/src/main/res/values/strings_all.xml'' - ''ChaosArmor_Name'', ''ChaosArmor_Info''
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+===== Java Implementation =====
+<code java>
+package com.nyrds.pixeldungeon.items.chaos;
+
+import com.nyrds.Packable;
+import com.watabou.pixeldungeon.items.armor.Armor;
+import com.watabou.utils.Bundle;
+
+public class ChaosArmor extends Armor {
+
+	@Packable
+	public int charge = 0;
+
+	public ChaosArmor() {
+		super( 3 );
+		imageFile = "items/chaosArmor.png";
+		image = 0;
+	}
+
+	@Override
+	public boolean isUpgradable() {
+		return false;
+	}
+
+	private int chargeForLevel() {
+		return (int) (5 * Math.pow(level(), 1.5));
+	}
+
+	@Override
+	public void ownerTakesDamage(int damage) {
+		charge--;
+		if(charge < 0) {
+			charge = 0;
+		}
+
+		if(level() > 3) {
+			if(charge == 0) {
+				degrade();
+				inscribe(null);
+				charge = chargeForLevel();
+				selectImage();
+			}
+		}
+	}
+
+	@Override
+	public void ownerDoesDamage(int damage) {
+
+		if(isCursed()) {
+			return;
+		}
+
+		if(damage > 0) {
+			charge++;
+			if(charge > chargeForLevel()) {
+				upgrade(true);
+				selectImage();
+				charge = 0;
+			}
+		}
+	}
+
+	private void selectImage() {
+		image = Math.max(0, Math.min(level()/3, 4));
+	}
+
+	@Override
+	public void restoreFromBundle(Bundle bundle) {
+		super.restoreFromBundle(bundle);
+
+		selectImage();
+	}
+}
+</code>
+
+===== String Resource Excerpts =====
+<code xml>
+<string name="ChaosArmor_Name">Chaos armor</string>
+<string name="ChaosArmor_Info">This armor consists of blood-red plates that are sewed together with dark red chains. They irradiate chaotic energy as you touch them.</string>
+</code>
+
+//For other languages see://
+  * ''values-ru/strings_all.xml''
+  * ''values-de/strings_all.xml''
+  * ''values-es/strings_all.xml''
+  * And other localized string resource files
