@@ -1,35 +1,35 @@
 ====== mr:invisibility_buff ======
 
 === Entity Information ===
-  * **Class Name**: [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/Invisibility.java|Invisibility.java]]
+  * **Class Name**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java|Invisibility.java]]
   * **Entity Kind**: Invisibility
   * **Type**: Buff
   * **Category**: Positive
 
 === Statistics ===
-  * **Default Duration**: 20-30 turns
+  * **Default Duration**: 15f time units (defined as DURATION constant)
   * **Stacking**: Does not stack
-  * **Visual Effect**: Character becomes semi-transparent
+  * **Visual Effect**: Character becomes semi-transparent (CharSprite.State.INVISIBLE)
 
 === Special Abilities ===
-  * **Stealth**: Prevents enemies from actively targeting the character.
-  * **Attack Breaking**: Ends when the character attacks.
+  * **Stealth**: Prevents enemies from actively targeting the character (increases target.invisible counter while active).
+  * **Attack Breaking**: Ends when the character performs hostile actions.
   * **Damage Over Time**: Does not end when taking damage.
-  * **Detection**: Can be detected by special means (e.g., magical eyes).
+  * **Detection**: Can be detected by special means.
+  * **Dispelling**: Can be removed by dispel function which also affects related "Cloak" buff if target has visible enemies.
 
 === Code References ===
-  * [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/Invisibility.java|Invisibility.java]]
-  * [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/Buff.java|Buff.java]]
-  * [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java|Invisibility.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]]
 
 === String Resources ===
-  * **Name**: [[code:RemixedDungeon/src/main/res/values-ru/strings_all.xml#Invisibility_Name|Invisibility_Name]]
-  * **Description**: [[code:RemixedDungeon/src/main/res/values-ru/strings_all.xml#Invisibility_Info|Invisibility_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L340|Char_StaInvisible]]
 
 === Configuration Files ===
-  * [[code:RemixedDungeon/src/main/assets/buffsDesc/Invisibility.json|Invisibility.json]]
+  * No specific configuration file (uses Java defaults)
 
 === Lua Scripts ===
-  * [[code:RemixedDungeon/src/main/assets/scripts/buffs/invisibility.lua|invisibility.lua]]
+  * No specific Lua script for this buff (uses Java implementation)
 
 {{tag> rpd buffs machine_readable }}
