@@ -1,0 +1,45 @@
+====== Paralysis Arrow ======
+
+{{ rpd:images:paralysisarrow_item.png|Paralysis Arrow }}
+
+The Paralysis Arrow is a special type of missile weapon that causes the Stun status effect (not the Paralysis status) when it hits a target.
+
+==== Stats ====
+  * **Damage**: 0-4
+  * **Delay**: 0.75 (baseDly: 0.75)
+  * **Min Strength Required**: 14 (setSTR: 14)
+
+==== Special Abilities ====
+  * **Stunning Effect**: When the arrow hits a target, it applies the Stun status effect for 4 turns
+  * **Mechanism**: Uses Buff.prolong(defender, Stun.class, DURATION) where DURATION = 4f
+
+==== Acquisition ====
+  * Can be found in various treasure locations throughout the dungeon
+  * Quantity typically ranges from 2-4 when randomly generated
+
+==== Strategy ====
+  * Effective against powerful enemies to temporarily disable them
+  * Particularly useful against dangerous ranged or magic attackers
+  * Can be used to buy time during difficult encounters
+  * The stunning effect only occurs on a successful hit
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|ParalysisArrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (base class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]] (effect applied)
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2082|ParalysisArrow_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2083|ParalysisArrow_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2084|ParalysisArrow_Gender]]
+
+==== Configuration Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (base missile implementation)
+
+==== See Also ====
+  * [[rpd:stun_buff|Stun]] - The status effect applied by this arrow
+  * [[rpd:paralysis_buff|Paralysis]] - Similar but different status effect
+  * [[rpd:arrows|Arrows]] - Other arrow types
+  * [[rpd:missile_weapons|Missile Weapons]] - Other throwing weapons
+
+{{tag> rpd items arrows missiles }}

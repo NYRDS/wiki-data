@@ -1,0 +1,39 @@
+====== mr:vertigo_buff ======
+
+=== Entity Information ===
+  * **Class Name**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]]
+  * **Entity Kind**: Vertigo
+  * **Type**: Buff
+
+=== Statistics ===
+  * **Default Duration**: 10 turns
+  * **Icon ID**: BuffIndicator.VERTIGO
+  * **Modified Duration**: Affected by RingOfElements.Resistance (r.durationFactor() * DURATION)
+
+=== Special Abilities ===
+  * **Movement Disorientation**: Affected characters cannot control their movement, moving in random directions instead of intended path
+  * **Action Retention**: Characters can still act (attack, use items) while affected
+  * **Special Movement**: Characters ignore vertigo for movement when using blink or teleport effects (adjacent(getPos(), step) check)
+  * **Status Message**: Shows "У тебя кружится голова!" when attached to hero
+  * **Visual Status**: Shows CharSprite.NEGATIVE status when attached
+
+=== Code References ===
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] (base class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] (movement handling)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] (status message)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]] (resistance)
+
+=== String Resources ===
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1166|VertigoBuff_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1167|VertigoBuff_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1169|Hero_StaVertigo]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1168|Char_StaDizzy]]
+
+=== Configuration Files ===
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] (registration)
+
+=== Lua Scripts ===
+  * No specific Lua script for this buff (uses Java implementation)
+
+{{tag> rpd buffs machine_readable }}

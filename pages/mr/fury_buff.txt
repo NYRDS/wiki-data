@@ -1,23 +1,37 @@
-====== Fury Buff - Code References ======
+====== mr:fury_buff ======
 
-===== Java Classes =====
+=== Entity Information ===
+  * **Class Name**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Fury.java|Fury.java]]
+  * **Entity Kind**: Fury
+  * **Type**: Buff
+
+=== Statistics ===
+  * **Level Threshold**: 0.4f (40% of max HP)
+  * **Icon ID**: BuffIndicator.FURY
+
+=== Special Abilities ===
+  * **Double Damage**: Doubles all damage dealt by the affected character (attackProc returns damage * 2)
+  * **Auto-Removal**: Buff automatically detaches when character's HP rises above 40% of max HP
+  * **Visual Status**: Shows "Ты впал в ярость!" status message when attached to player
+  * **Visual Effect**: Shows CharSprite.NEGATIVE status when attached
+  * **Warning Message**: Shows "%s впал в неистовство!" message when buff is attached if character is visible
+
+=== Code References ===
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Fury.java|Fury.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Base buff class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] (base class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java|CharSprite.java]]
 
-===== JSON Configuration =====
-  * This entity is implemented in Java, no JSON configuration exists
+=== String Resources ===
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1281|FuryBuff_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1282|FuryBuff_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1174|Hero_StaFury]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L728|Brute_Enraged]]
 
-===== String Resources =====
-''<code xml>''
-<string name="FuryBuff_Name">Fury</string>
-<string name="FuryBuff_Info">The eyes went bloody red from all that fury inside.</string>
-<string name="Hero_StaFury">You become furious!</string>
-''</code>''
+=== Configuration Files ===
+  * No specific configuration file (uses Java implementation)
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+=== Lua Scripts ===
+  * No specific Lua script for this buff (uses Java implementation)
 
-===== Related mr Entities =====
-  * [[mr:berserker_rage_skill|Berserker Rage (Skill)]] - Related rage mechanic
-  * [[mr:berserker_subclass|Berserker (Subclass)]] - Hero subclass that uses fury mechanic
-  * [[mr:hunter_subclass|Hunter (Subclass)]] - Related subclass
+{{tag> rpd buffs machine_readable }}

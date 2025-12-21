@@ -1,0 +1,47 @@
+====== mr:statue_mob ======
+
+=== Entity Information ===
+  * **Class Name**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Statue.java|Statue.java]]
+  * **Entity Kind**: Statue
+  * **Type**: Mob
+  * **Category**: Common
+
+=== Statistics ===
+  * **HP**: 15 + (5 × dungeon depth)
+  * **HT**: 15 + (5 × dungeon depth)
+  * **Defense Skill**: 4 + dungeon depth
+  * **Attack Skill**: 4 + dungeon depth
+  * **Damage Min**: dungeon depth / 4 + 1
+  * **Damage Max**: dungeon depth
+  * **EXP for Kill**: 0
+  * **Carcass Chance**: 0
+
+=== Special Abilities ===
+  * **Passive Nature**: The statue is normally passive and will not attack first
+  * **Aggro Trigger**: Becomes hostile when attacked, when a Scroll of Rage is used nearby, or when other hostile actions are taken
+  * **Immunities**: Immune to Toxic Gas, Poison, Bleeding, Leech and Death status effects
+  * **Resistances**: Resistant to Death enchantment and Scroll of Psionic Blast
+  * **Equipment**: Carries a random weapon from the current dungeon level's treasure pool
+  * **Weapon Drop**: Guarantees dropping its weapon upon death (100% drop rate)
+  * **Dynamic Sprite**: Generated dynamically based on the weapon it carries
+  * **No Beckoning**: Does not follow the player around the dungeon (overrides beckon method)
+
+=== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Statue.java|Statue.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] (base class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Passive.java|Passive.java]] (AI state)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java|Treasury.java]] (for weapon generation)
+
+=== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1317|Statue_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1320|Statue_Desc]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1319|Statue_Name_Objective]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L348|Journal_Statue]]
+
+=== Configuration Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/StatuePainter.java|StatuePainter.java]] (room generation)
+
+=== Lua Scripts ====
+  * No specific Lua script for this mob (uses Java implementation)
+
+{{tag> rpd mobs machine_readable }}

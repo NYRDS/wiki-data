@@ -1,0 +1,42 @@
+====== mr:wand_of_icebolt_item ======
+
+=== Entity Information ===
+  * **Class Name**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/icecaves/WandOfIcebolt.java|WandOfIcebolt.java]]
+  * **Entity Kind**: WandOfIcebolt
+  * **Type**: Item
+  * **Category**: Wand
+
+=== Statistics ===
+  * **Image File**: items/wands.png (index 12)
+  * **Identified**: Always known (isKnown() returns true)
+
+=== Special Abilities ===
+  * **Ice Damage**: On zapping, deals damage to target: Random.Int(3 + level, 4 + level * 2)
+  * **Freezing Effect**: Applies Frost buff to target for: Frost.duration(ch) / 2 + level
+  * **Slowing Effect**: Applies Slow buff to target for: Slow.duration(ch) / 2 + level
+  * **Self-Damage Risk**: If wielder is killed by this wand's effect, it triggers failure condition
+
+=== Visual Effects ===
+  * **Burst Effect**: Creates 0xFF99FFFF colored burst with size level / 2 + 3
+  * **Particle Emitter**: SnowParticle.FACTORY with 0.1f interval
+  * **Magic Missile**: Uses MagicMissile.ice effect when zapping
+  * **Sound Effect**: Plays Assets.SND_ZAP sound
+
+=== Code References ===
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/icecaves/WandOfIcebolt.java|WandOfIcebolt.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] (base class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]]
+
+=== String Resources ===
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2693|WandOfIcebolt_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2694|WandOfIcebolt_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2695|WandOfIcebolt_Info1]]
+
+=== Configuration Files ===
+  * No specific configuration file (uses Java implementation)
+
+=== Lua Scripts ===
+  * No specific Lua script for this wand (uses Java implementation)
+
+{{tag> rpd items machine_readable }}

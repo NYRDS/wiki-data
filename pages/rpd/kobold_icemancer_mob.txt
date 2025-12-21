@@ -1,0 +1,55 @@
+====== Kobold Icemancer ======
+
+{{ rpd:images:koboldicemancer_sprite.png|Kobold Icemancer }}
+
+==== Overview ====
+The **Kobold Icemancer** is a magic-using mob found in the Ice Caves level. It is an upgraded variant of the regular Kobold that uses ice-based attacks.
+
+==== Stats ====
+  * **HP**: 70
+  * **HT**: 70
+  * **Defense Skill**: 18
+  * **Attack Skill**: 25
+  * **Damage**: 15-17
+  * **DR (Damage Reduction)**: 11
+  * **EXP for Kill**: 11
+  * **Max Level**: 21
+
+==== Abilities ====
+  * **Ranged Attack**: Can attack enemies at range using a zapping mechanic (Ballistica.cast method)
+  * **Slow Effect**: Has a 50% chance (Random.Int(2) == 0) to inflict the Slow status effect on enemies for 1 turn when hitting with its ranged attack
+  * **Death Resistance**: Immune to instant death effects (Death.class resistance)
+  * **Death Report**: Tracks when the Kobold Icemancer kills an enemy with custom message
+
+==== Drops ====
+  * **Potion Category**: Has an 83% chance to drop a potion from the potion category on death
+
+==== Location ====
+Found in the Ice Caves level (specifically on floors ice2-ice4 based on Bestiary.json configuration):
+  * **ice2**: 1 spawn (vs 2 regular Kobolds)
+  * **ice3**: 1 spawn (vs 2 regular Kobolds, 1 ColdSpirit)
+  * **ice4**: 1 spawn (vs 2 regular Kobolds, 1 ColdSpirit, 0.6 IceElemental)
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/KoboldIcemancer.java|KoboldIcemancer.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] (base class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/IZapper.java|IZapper.java]] (interface)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]] (for ranged attack)
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L873|KoboldIcemancer_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L876|KoboldIcemancer_Desc]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L874|KoboldIcemancer_Gender]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L875|KoboldIcemancer_Name_Objective]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L877|KoboldIcemancer_Killed]]
+
+==== Configuration Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] (spawn rates)
+
+==== See Also ====
+  * [[rpd:kobold_mob|Kobold]]
+  * [[rpd:ice_caves_level|Ice Caves]]
+  * [[rpd:mobs|Mobs]]
+  * [[rpd:slow_buff|Slow]]
+
+{{tag> rpd mobs }}
