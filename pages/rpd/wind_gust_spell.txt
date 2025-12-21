@@ -36,6 +36,11 @@ Classes that can use this spell include:
   * [[rpd:mage_class|Mage]] (naturally has [[rpd:spell_affinities#elemental|Elemental]] affinity)
   * Other classes that gain access through special means
 
+==== Related Classes ====
+  * [[rpd:mage_class|Mage Class]]
+  * [[rpd:spell_affinities|Spell Affinities]]
+  * [[rpd:elemental_mob|Elemental]]
+
 ==== Strategy ====
 How to effectively use the Wind Gust spell:
   * Use near walls or chasms to deal damage to enemies when they're pushed back
@@ -55,7 +60,15 @@ This information is extracted directly from the game code and validated against 
   * Last updated: 2025-12-14 based on WindGust.java
 
 ==== Source Code ====
-This page content is based on the Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust]]
+This page content is based on the Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]]
+
+===== Additional Implementation Details =====
+  * The spell creates wind particles: 5 + caster's skill level × 2 particles
+  * Visual burst effect: 3 + caster's skill level particles
+  * Push only occurs if the next cell is valid (level.cellValid(next))
+  * When push fails, damage is dealt: caster's skill level × 2
+  * Range calculation: Math.min(chr.skillLevel() + 2, Ballistica.distance-1)
+  * The spell uses assets: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spellsIcons/elemental.png|elemental.png]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
