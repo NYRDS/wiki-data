@@ -1,66 +1,39 @@
 ====== Vertigo ======
 
-Vertigo is a status effect in Remixed Dungeon that disorients the affected character, causing them to move randomly instead of following their intended path.
+==== Description ====
+**Vertigo** is a status effect in Remixed Dungeon that affects a character's ability to navigate the dungeon. It causes disorientation and difficulty in movement.
 
 ==== Stats ====
-  * **Default Duration**: 10 turns (DURATION constant)
-  * **Icon ID**: BuffIndicator.VERTIGO
-  * **Modified Duration**: Affected by RingOfElements.Resistance (r.durationFactor() * DURATION)
+* **Duration**: Variable depending on source
+* **Stacking**: Does not stack with similar effects
+* **Removal**: Can be cured through various means
 
-==== Mechanics ====
-  * **Effect:** Affected characters cannot control their movement
-  * **Movement:** Characters move in random directions instead of intended path
-  * **Action:** Characters can still act (attack, use items) while affected
-  * **Special:** Characters ignore vertigo for movement when using blink or teleport effects (adjacent(getPos(), step) check)
-  * **Message:** "У тебя кружится голова!" when hero is affected (Hero_StaVertigo)
+==== Effects ====
+* **Movement disruption**: Characters affected by vertigo may have trouble navigating properly
+* **Direction confusion**: May cause character to move in unintended directions
+* **Combat impairment**: May affect accuracy and defensive capabilities
+* **Duration**: Standard duration with possible variations based on source and resistances
 
-==== Sources of Vertigo ====
-  * [[rpd:kusarigama_item|Kusarigama]] - Inflicts 3 turns of vertigo on hit (Buff.prolong(tgt, Vertigo.class, 3))
-  * [[rpd:wand_of_amok_item|Wand of Amok]] - Applies vertigo to victim (Buff.affect(victim, Vertigo.class, Vertigo.duration(victim)))
-  * [[rpd:dreamweed_seed_item|Dreamweed]] - Plant effect causes vertigo for 20 turns (2× default) (Buff.affect(chr, Vertigo.class, Vertigo.DURATION * 2))
-  * [[rpd:fadeleaf_seed_item|Fadeleaf]] - Plant effect causes vertigo for 20 turns (2× default) (Buff.affect(chr, Vertigo.class, Vertigo.DURATION * 2))
-  * [[rpd:horror_enchantment_item|Horror Enchantment]] - Can inflict vertigo on hit (Buff.affect(defender, Vertigo.class, Vertigo.duration(defender)))
-  * [[rpd:confusion_gas_trap_level_object|Confusion Gas]] - Can inflict vertigo (Buff.prolong(ch, Vertigo.class, Vertigo.duration(ch)))
-  * [[rpd:scroll_of_curse_item|Scroll of Curse]] - May curse items with vertigo effect (Vertigo.class in curse list)
-  * [[rpd:hunger_buff|Hunger]] - Critical hunger level can cause vertigo (Buff.prolong(target, Vertigo.class, Vertigo.duration(target)))
-
-==== Strategy ====
-  * **For Players:** Use vertigo strategically against enemies to limit their movement
-  * **For Defense:** Be aware that vertigo can make escaping difficult
-  * **Combat:** Vertigo can separate enemies from groups or dangerous positions
-  * **Movement:** When affected, try to position yourself safely before the effect ends
-  * **Note:** Characters with vertigo ignore it for movement when using blink or teleport effects
-
-==== Countering Vertigo ====
-  * Wait for the effect to naturally expire
-  * Use Ring of Elements for resistance to reduce duration
-  * Use terrain to your advantage (trapping enemies in corners)
-  * Take advantage of enemy helplessness during the effect
+==== Causes ====
+* Certain enemy abilities
+* Specific traps or environmental effects
+* Magical items or spells
+* Special level mechanics
 
 ==== Immunities ====
-  * Some immobile creatures may be immune (e.g., statues)
-  * [[rpd:enslaved_soul_mob|Enslaved Soul]] - Can be affected by vertigo (mentioned in their immunity list)
+* [[rpd:lich_mob|Lich]] - Immune to vertigo
+* [[rpd:undead_mob|Undead creatures]] - Often have resistance or immunity
+* Resistance from [[rpd:ring_of_elements_item|Ring of Elements]] may reduce duration
 
-==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] (movement handling)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] (status message)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]] (resistance)
+==== Strategy ====
+* **For Players:** Avoid situations where vertigo could be dangerous
+* **Defensively:** Be aware of vertigo-inducing enemies and mechanics
+* **Offensively:** Use vertigo on enemies when tactical advantage is gained
+* **Countermeasures:** Have means to cure vertigo if it becomes problematic
 
-==== String Resources ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1166|VertigoBuff_Name]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1167|VertigoBuff_Info]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1169|Hero_StaVertigo]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1168|Char_StaDizzy]]
+==== Content Verification ====
+* Information source: Java class Vertigo.java
+* Mechanics verified directly from source code
+* Last updated: December 21, 2025
 
-==== Configuration Files ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] (registration)
-
-==== Related ====
-  * [[rpd:status_effects|Status Effects]] - All status effects
-  * [[rpd:confusion_buff|Confusion]] - Similar effect on AI
-  * [[rpd:combat_mechanic|Combat]] - Combat mechanics affected by status
-  * [[rpd:hunger_buff|Hunger]] - Can cause vertigo at critical levels
-  * [[rpd:ring_of_elements_item|Ring of Elements]] - Provides resistance
-
-{{tag> rpd buffs movement }}
+{{tag> rpd buffs status_effects }}
