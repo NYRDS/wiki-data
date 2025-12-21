@@ -1,0 +1,56 @@
+====== Deathling ======
+
+{{ rpd:images:deathling_sprite.png|Deathling }}
+
+**Deathling** is an undead minion that can be summoned by Necromancer class abilities, particularly through the [[rpd:summon_deathling_spell|Summon Deathling]] spell. It serves as a temporary combat ally for the player character.
+
+==== Basic Stats ====
+  * **Base HP:** 4 (scales with hero level and skill level)
+  * **Base Attack Skill:** 4 + (hero level + hero skill level²)
+  * **Base Defense Skill:** 1 + (hero level + hero skill level²)
+  * **Damage:** 1-4 + (hero level + hero skill level²)
+  * **Defense Rate (DR):** (hero level + hero skill level²)
+  * **EXP for Kill:** 0
+  * **Max Level:** 32
+  * **Carcass Chance:** 0 (does not drop bones)
+  * **Flying:** Yes (immune to root effects)
+
+==== Special Abilities ====
+  * **Level Scaling:** Stats improve based on the summoner's level and skill level (formula: modifier = hero.lvl() + hero.skillLevel()*hero.skillLevel())
+  * **Flying:** Deathlings can fly, making them immune to root effects
+  * **Undead Nature:** Identified as undead creature
+  * **Temporary Summon:** Exists for a limited duration until defeated or spell effect expires
+
+==== Summoning ====
+  * Summoned via [[rpd:summon_deathling_spell|Summon Deathling]] spell
+  * Also summoned by [[rpd:necromancer_robe_item|Necromancer Robe]] and [[rpd:necromancer_armor_item|Necromancer Armor]]
+  * Strength scales with hero level and skill level of summoner
+
+==== Behavior ====
+  * Follows and aids the summoner in combat
+  * Attacks enemies when in proximity
+  * Base speed of 1.1
+  * Adjusts stats each turn via the adjustStats() method
+
+==== Strategy ====
+  * Use as temporary combat assistance in difficult encounters
+  * Higher-level heroes create more powerful Deathlings
+  * Works well with Necromancer class equipment that enables multiple summons
+  * Provides additional offensive pressure while player focuses on other enemies
+
+==== Content Verification ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Deathling.java|Deathling.java]]
+  * Stats verification: Extracted directly from Deathling.java constructor and adjustStats() method
+  * Effect descriptions: Based on code analysis
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L744|Deathling_Name]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L747|Deathling_Desc]]
+  * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Deathling.json|Deathling.json]]
+  * Machine-readable data: [[mr:deathling_mob|mr:deathling_mob]]
+  * Last updated: December 21, 2025
+
+==== See Also ====
+  * [[rpd:summon_deathling_spell|Summon Deathling]] - Spell that creates Deathlings
+  * [[rpd:necromancer_class|Necromancer Class]] - Class that specializes in summoning
+  * [[rpd:necromancer_robe_item|Necromancer Robe]] - Equipment that enables Deathling summoning
+  * [[rpd:undead_mobs|Undead Mobs]] - Other undead creatures
+
+{{tag> rpd mobs undead necromancy summoned}}
