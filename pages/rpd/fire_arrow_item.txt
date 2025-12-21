@@ -1,28 +1,28 @@
 ====== Fire Arrow ======
 
-{{ rpd:images:firearrow_item.png|Fire Arrow }}
+{{ rpd:images:fire_arrow_item.png|Fire Arrow }}
 
 The Fire Arrow is a special type of missile weapon that causes the Burning status effect when it hits a target.
 
 ==== Stats ====
   * **Damage**: 1-6
   * **Delay**: 0.75 (baseDly: 0.75)
-  * **Min Strength Required**: 9 (setSTR: 9)
+  * **Min Strength Required**: 9
+  * **Price**: 5 gold per arrow
 
 ==== Special Abilities ====
-  * **Burning Effect**: When the arrow hits a target, it applies the Burning status effect
-  * **Mechanism**: Uses Buff.affect(defender, Burning.class).reignite(defender)
+  * **Burning Effect**: When the arrow hits a target, it has a 25% chance to apply the [[rpd:burning_buff|Burning]] status effect
+  * **Mechanism**: Uses Buff.affect(defender, Burning.class).reignite(defender) when activated
 
 ==== Acquisition ====
   * Can be found in various treasure locations throughout the dungeon
   * Quantity typically ranges from 15-30 when randomly generated
-  * Price: 5 gold per arrow
 
 ==== Strategy ====
   * Effective against enemies vulnerable to fire damage
-  * Particularly useful against groups as burning can spread
+  * Particularly useful against groups as burning can spread to adjacent tiles
   * Good for dealing additional damage over time
-  * The burning effect only occurs on a successful hit with 25% chance
+  * The burning effect only occurs on a successful hit with 25% chance when thrown from a ranged weapon
 
 ==== Code References ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FireArrow.java|FireArrow.java]]
@@ -30,12 +30,9 @@ The Fire Arrow is a special type of missile weapon that causes the Burning statu
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]] (effect applied)
 
 ==== String Resources ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1545|FireArrow_Name]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1546|FireArrow_Info]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1547|FireArrow_Gender]]
-
-==== Configuration Files ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (base missile implementation)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L856|FireArrow_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L857|FireArrow_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L858|FireArrow_Gender]]
 
 ==== See Also ====
   * [[rpd:burning_buff|Burning]] - The status effect applied by this arrow
