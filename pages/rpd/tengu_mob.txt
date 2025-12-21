@@ -24,6 +24,8 @@ Tengu is a member of the ancient assassins clan, which is also called Tengu. The
   * **Trap Creation:** Creates 4 poison traps randomly on the level during each teleport phase
   * **Self-Healing:** When unable to jump to a valid position, heals 10% of max HP
   * **Phase Mechanics:** Changes tactics as the fight progresses
+  * **Ninja Techniques:** Uses various ninja-based special attacks
+  * **Phase Transition:** Becomes more dangerous as health decreases
 
 ==== Drops ====
   * [[rpd:tome_of_mastery|Tome of Mastery]]: If not yet acquired and the player is not a Necromancer or Gnoll
@@ -32,17 +34,9 @@ Tengu is a member of the ancient assassins clan, which is also called Tengu. The
 
 ==== Location ====
   * Found in the Prison Boss Level (appears in the boss arena specially designed for this encounter)
-  * Appears in the boss arena specially designed for this encounter
 
 ==== Description ====
 Tengu is an exiled assassin who has made his home in the Prison area of the dungeon.
-
-==== Special Mechanics ====
-  * **Smoke Bombs:** Periodically teleports (jumps) to reset distance, with a 5-turn cooldown between jumps
-  * **Trap Creation:** Creates 4 poison traps randomly on the level during each teleport phase
-  * **Self-Healing:** When unable to jump to a valid position, heals 10% of max HP
-  * **Ninja Techniques:** Uses various ninja-based special attacks
-  * **Phase Transition:** Becomes more dangerous as health decreases
 
 ==== Preparation ====
   * **Equipment:** Strong weapons and armor are essential
@@ -56,13 +50,8 @@ Tengu is an exiled assassin who has made his home in the Prison area of the dung
   * Be prepared for special attacks and mechanics
   * Expect the fight to take many turns
   * Bring ranged options in case of difficult positioning
-
-==== Strategy ====
-  * Maintain consistent damage output despite teleportation
-  * Avoid standing on floor traps when possible
   * Prepare for challenging positioning as Tengu resets distance frequently
   * Expect a long, complex fight that requires sustained effort
-  * Bring ranged options in case of difficult positioning
 
 ==== Quotes ====
   * "Free at last..."
@@ -70,15 +59,18 @@ Tengu is an exiled assassin who has made his home in the Prison area of the dung
   * "Gotcha, %s!" (female hero class)
 
 ==== Content Verification ====
-  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java|Tengu.java]]
-  * Stats verification: Extracted directly from Tengu.java constructor
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java|Tengu.java]]
+  * Entity Kind: Tengu (returns simple class name via getEntityKind())
+  * Stats verification: Extracted directly from Tengu.java constructor (hp: 120, attack skill: 20, defense skill: 20, damage: 8-15, defense rate: 5, exp: 20)
   * Effect descriptions: Based on code analysis and string resources
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1330|Tengu_Name]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1333|Tengu_Desc]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1334|Tengu_Info1]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1335|Tengu_Info2]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1897|Tengu_Info3]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1344|Tengu_Name]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1347|Tengu_Desc]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1348|Tengu_Info1]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1349|Tengu_Info2]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1896|Tengu_Info3]]
   * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Tengu.json|Tengu.json]]
   * Mechanics reference: Uses [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica]] for distance attacks
   * Trap mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap system]]
+  * Jump cooldown: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L31|JUMP_DELAY = 5]]
+  * Drop logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L40|Tome of Mastery]] only for non-Necromancer/Gnoll heroes
   * Machine-readable data: [[mr:tengu_mob|mr:tengu_mob]]
-  * Last updated: December 20, 2025
+  * Last updated: December 21, 2025
 
 ==== See Also ====
   * [[rpd:bosses|Boss Enemies]]
@@ -88,8 +80,10 @@ Tengu is an exiled assassin who has made his home in the Prison area of the dung
 
 ==== Related ====
   * [[rpd:bosses|Boss Enemies]] - Other major dungeon challenges
-  * [[rpd:prison|Prison]] - The area where Tengu is found
-  * [[rpd:enemies|Enemies]] - Other creatures in the dungeon
+  * [[rpd:prison_level|Prison Level]] - The area where Tengu is found
+  * [[rpd:enemies|Mobs]] - Other creatures in the dungeon
   * [[rpd:combat|Combat]] - General combat mechanics
+  * [[rpd:traps|Traps]] - Tengu's trap mechanics
+  * [[rpd:ballistica|Ballistica]] - Line-of-sight calculation system
 
 {{tag> rpd mobs boss ninja assassin prison}}
