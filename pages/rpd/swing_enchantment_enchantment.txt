@@ -1,0 +1,38 @@
+====== Swing Enchantment ======
+
+{{ rpd:images:enchant_swing.png|Swing Enchantment }}
+
+==== Description ====
+The Swing enchantment allows attacks to hit multiple adjacent enemies at once. When used with weapons that require two hands to wield, it can damage all enemies adjacent to the primary target.
+
+==== Mechanics ====
+- On a successful hit, the damage is applied to all adjacent enemies around the attacker
+- Each adjacent enemy receives reduced damage compared to the original hit
+- The damage reduction is calculated as: maxDamage = (int)(damage * Math.pow(2, -1d / (level + 1)))
+- Can simultaneously hit up to 8 adjacent enemies (in all 8 directions) if they are all present
+- The effect is particularly powerful in tight spaces with multiple enemies grouped together
+
+==== Technical Details ====
+- The damage reduction is based on the weapon's level
+- Higher-level weapons maintain more of the original damage when affecting multiple targets
+- The effect activates all adjacent cells around the attacker's position (Level.NEIGHBOURS8)
+- Each adjacent character (excluding the primary target) receives separate damage calculation
+- Only hits living characters that are not the primary target
+
+==== Source Code ====
+- Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Swing.java|Swing.java]]
+- The effect applies damage to all adjacent enemies using Level.NEIGHBOURS8 pattern
+- Only applies to characters that are alive and not the original target
+
+==== Configuration Files ====
+- [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Swing.json|Swing.json]] - Sprite configuration for swing enchantment visual effect
+
+==== String Resources ====
+- [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3750-L3755|Swing strings]] - English names and descriptions
+- [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3750-L3755|Russian Swing strings]] - Russian localization
+
+==== See Also ====
+- [[rpd:enchantments|Enchantments]] - List of all weapon enchantments
+- [[rpd:weapons|Weapons]] - Equipment that can have enchantments
+
+{{tag> rpd items enchantments swing damage multiple}}

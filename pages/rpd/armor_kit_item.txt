@@ -2,64 +2,48 @@
 
 {{ rpd:images:armor_kit_item.png|Armor Kit }}
 
-The **Armor Kit** is a consumable item in Remixed Dungeon that allows the transformation of any regular armor into its corresponding class-specific armor.
+An **Armor Kit** is a special item in Remixed Dungeon that allows players to upgrade regular armor into class-specific armor for their hero subclass.
 
-==== Description ====
-An armor kit contains the tools and materials necessary to modify regular armor. When used on a piece of armor, it transforms it into the special armor associated with your character's class or subclass.
+==== Item Overview ====
+  * **Type:** Crafting/Upgrade Item
+  * **Acquisition:** Dropped by [[rpd:the_king|King]] boss in the Halls level (as defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ArmorSmith.java#L42-L44|ArmorSmith.java:42-44]])
+  * **Purpose:** Transform regular armor into class-specific armor
+  * **Usage:** Must be used on regular armor while playing as a hero who has chosen the appropriate subclass
 
-==== Function ====
-  * **Transformation**: When used on any regular armor (e.g. Cloth Armor, Leather Armor, Mail Armor, Scale Armor, Plate Armor), transforms it into the corresponding class armor for your current hero class/subclass
-  * **Class-Specific Result**:
-    * [[rpd:warrior_class|Warrior]] → [[rpd:gladiator_armor|Gladiator Armor]] or [[rpd:berserker_armor|Berserker Armor]]
-    * [[rpd:mage_class|Mage]] → [[rpd:mage_armor_item|Mage Armor]]
-    * [[rpd:rogue_class|Rogue]] → [[rpd:rogue_armor_item|Rogue Armor]]
-    * [[rpd:huntress_class|Huntress]] → [[rpd:huntress_armor_item|Huntress Armor]]
-    * [[rpd:elf_class|Elf]] → [[rpd:elf_armor_item|Elf Armor]]
-    * [[rpd:necromancer_class|Necromancer]] → [[rpd:necromancer_armor_item|Necromancer Armor]]
-    * [[rpd:gnoll_class|Gnoll]] → [[rpd:gnoll_armor_item|Gnoll Armor]]
-    * [[rpd:priest_class|Priest]] → [[rpd:priest_armor|Priest Armor]]
-    * [[rpd:doctor_class|Doctor]] → [[rpd:doctor_armor|Doctor Armor]]
+==== Mechanics ====
+  * **Conversion:** Transforms any regular armor into the corresponding class armor
+  * **Stats Preservation:** The upgraded armor retains all properties of the original armor (defense value, enchantment, level)
+  * **Subclass Specific:** Each class armor can only be equipped by the corresponding subclass
+  * **One-time Use:** The armor kit is consumed when used
 
-==== Acquisition ====
-  * Dropped by the King (DM-300) on floor 7 of the City level
-  * Can be very valuable for heroes who wish to change their class armor without finding a new piece
+==== Class Armors Created ====
+  * **Warrior:** [[rpd:warrior_armor_item|Warrior Armor]] (with Leap ability) - requires [[rpd:gladiator_subclass|Gladiator]] subclass
+  * **Mage:** [[rpd:mage_armor_item|Mage Armor]] (with Mage Staff special) - requires [[rpd:battlemage_subclass|Battlemage]] subclass
+  * **Rogue:** [[rpd:rogue_armor_item|Rogue Armor]] (with Smoke Bomb ability) - requires [[rpd:freerunner_subclass|Freerunner]] subclass
+  * **Huntress:** [[rpd:huntress_armor_item|Huntress Armor]] (with Spirit Hawk ability) - requires [[rpd:warden_subclass|Warden]] subclass
+  * **Assassin:** [[rpd:assassin_armor|Assassin Armor]] (with Shadow Step ability) - requires [[rpd:assassin_subclass|Assassin]] subclass
+  * **Necromancer:** [[rpd:necromancer_armor_item|Necromancer Robe]] (with Raise Dead ability) - requires [[rpd:warlock_subclass|Warlock]] subclass
+  * **Gnoll:** [[rpd:gnoll_armor|Gnoll Armor]] (with Pack Hunt ability) - requires [[rpd:guardian_subclass|Guardian]] subclass or [[rpd:witchdoctor_subclass|Witch Doctor]] subclass
 
 ==== Strategy ====
-  * Best saved for high-level armor that has been upgraded significantly
-  * Allows customization of armor appearance without losing enchantments or upgrades
-  * Provides a way to get class armor even if your class wasn't able to use armor that dropped
+  * Essential for maximizing subclass effectiveness
+  * Should be crafted as soon as possible after choosing a subclass
+  * Allows full utilization of subclass abilities
+  * Preserve high-level armor before upgrading to maintain benefits
 
-==== Content Verification ====
-  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java|ArmorKit.java]]
-  * Implementation details: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L454-L458|ArmorKit_Name, ArmorKit_ACAplly, ArmorKit_Info, ArmorKit_SelectArmor, ArmorKit_Upgraded]]
+==== Acquisition ====
+  * Dropped by [[rpd:the_king|King]] boss in the Halls level
+  * Sometimes available in shops in higher levels of the dungeon
 
-==== Data Sources ====
-  * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java|com.watabou.pixeldungeon.items.ArmorKit]]
-  * **Class Armor Factory**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]]
-  * **Drop Location**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L64|King.java line 64]]
+==== Code Reference ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java|ArmorKit.java]] - Implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] - Base class armor implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GladiatorArmor.java|GladiatorArmor.java]] - Example of a class-specific armor
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L246-L248|ArmorKit_Name, ArmorKit_Info, ArmorKit_Gender]] - String resources
 
-==== String Resources ====
-''<code xml>''
-<string name="ArmorKit_Name">armor kit</string>
-<string name="ArmorKit_ACAplly">APPLY</string>
-<string name="ArmorKit_Info">Using this kit of small tools and materials anybody can transform any armor into an "epic armor", which will keep all properties of the original armor, but will also provide its wearer a special ability depending on his class. No skills in tailoring, leather-working or blacksmithing are required.</string>
-<string name="ArmorKit_SelectArmor">Select an armor to upgrade</string>
-<string name="ArmorKit_Upgraded">You applied the armor kit to upgrade your %s</string>
-''</code>''
+==== Related Items ====
+  * [[rpd:armors|Armors]] - All armor types
+  * [[rpd:upgrading|Upgrading]] - Equipment enhancement system
+  * [[rpd:subclass|Subclasses]] - Hero subclasses that use class armor
 
-==== See Also ====
-  * [[rpd:items|Items]]
-  * [[rpd:warrior_class|Warrior Class]]
-  * [[rpd:mage_class|Mage Class]]
-  * [[rpd:rogue_class|Rogue Class]]
-  * [[rpd:huntress_class|Huntress Class]]
-  * [[rpd:elf_class|Elf Class]]
-  * [[rpd:necromancer_class|Necromancer Class]]
-  * [[rpd:gnoll_class|Gnoll Class]]
-  * [[rpd:priest_class|Priest Class]]
-  * [[rpd:doctor_class|Doctor Class]]
-  * [[rpd:class_armor|Class Armor]]
-  * [[rpd:armor|Armor]]
-
-{{tag> rpd items equipment armor}}
+{{tag> rpd items crafting upgrade armor}}

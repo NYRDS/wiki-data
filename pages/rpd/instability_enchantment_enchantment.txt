@@ -1,0 +1,29 @@
+====== Instability Enchantment ======
+
+{{ rpd:images:enchant_instability.png|Instability Enchantment }}
+
+==== Description ====
+The Instability enchantment randomly triggers the effect of another random enchantment on each hit. The effect is unpredictable and can vary from beneficial to neutral to potentially harmful depending on the randomly selected enchantment.
+
+==== Mechanics ====
+- On each successful hit, the weapon's damage is processed using a random enchantment effect
+- Does not trigger piercing or swing effects when used on boomerangs (to prevent potential infinite loops)
+- The randomness can lead to very powerful effects or none at all, making it highly situational
+- The actual enchantment applied to the weapon doesn't matter, as it's overridden by a random effect
+
+==== Source Code ====
+- Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Instability.java|Instability.java]]
+- The effect simply selects a random enchantment and applies its proc() method
+
+==== Configuration Files ====
+- [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Instability.json|Instability.json]] - Sprite configuration for instability enchantment visual effect
+
+==== String Resources ====
+- [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3750-L3755|Instability strings]] - English names and descriptions
+- [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3750-L3755|Russian Instability strings]] - Russian localization
+
+==== See Also ====
+- [[rpd:enchantments|Enchantments]] - List of all weapon enchantments
+- [[rpd:weapons|Weapons]] - Equipment that can have enchantments
+
+{{tag> rpd items enchantments luck random}}
