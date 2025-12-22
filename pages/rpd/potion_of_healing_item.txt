@@ -2,21 +2,32 @@
 
 {{ rpd:images:potion_of_healing_item.png|Potion of Healing }}
 
-The **Potion of Healing** is a common potion in Remixed Dungeon that restores a significant portion of the drinker's health.
+The **Potion of Healing** is a common potion in Remixed Dungeon that restores a significant amount of health to the drinker.
 
 ==== Item Overview ====
   * **Type:** Potion
   * **Rarity:** Common
-  * **Special Effect:** Restores health to full
+  * **Special Effect:** Heals full HP and removes several negative status effects
   * **Usage:** Single use item (consumed upon drinking)
+  * **Price:** 30 gold when identified
 
 ==== Special Mechanics ====
-  * **Health Restoration:** When consumed, restores the hero's health to full (100% of current max HP)
-  * **Stacking:** Multiple potions can be carried and used as needed
+  * **Full Healing:** Restores all HP to maximum (heals 100% of max HP)
+  * **Status Curing:** Removes [[rpd:poison_buff|Poison]], [[rpd:cripple|Cripple]], [[rpd:weakness|Weakness]], and [[rpd:bleeding_buff|Bleeding]] status effects
+  * **Shattering:** When shattered on the ground, heals 50% of max HP to any character on that tile
+  * **Arrow Moistening:** Can be used to moisten [[rpd:arrows|arrows]] to create [[rpd:health_arrow_item|Health Arrows]]
   * **Identification:** Becomes identified when consumed, shattered, or when seen in inventory after being identified
+  * **Stacking:** Multiple potions can be carried and used as needed
   * **Emergency Use:** Can be used to prevent death or recover from significant damage
 
 ==== Strategy ====
+  * Essential for emergency health restoration during dangerous encounters
+  * Best used when health is critically low or during status effect removal
+  * Can be used proactively before challenging encounters
+  * Shattering can be useful for healing allies or when unable to drink
+  * Generally safer than using other healing methods during combat
+  * Good to use before boss fights to ensure full HP
+  * Arrow moistening provides additional utility for ranged combat
   * Essential for survival in dangerous situations
   * Should be conserved for critical moments rather than minor injuries
   * Often the difference between life and death in difficult fights
@@ -25,26 +36,38 @@ The **Potion of Healing** is a common potion in Remixed Dungeon that restores a 
 
 ==== Obtaining ====
   * Found throughout dungeon levels
-  * Available in shops at moderate prices (when identified)
-  * Dropped by various enemies
+  * Available in shops at moderate prices (30 gold when identified)
+  * Dropped by various enemies (e.g., [[rpd:bat_mob|Bat]] (12.5% chance), [[rpd:scorpio_mob|Scorpio]], [[rpd:swarm_mob|Swarm]])
   * Found in containers and special rooms
   * Starting item for several classes including [[rpd:priest_class|Priest]], [[rpd:doctor_class|Doctor]], [[rpd:necromancer_class|Necromancer]]
 
 ==== Effect ====
-When consumed, the Potion of Healing restores the hero's health to full capacity.
+When consumed, the Potion of Healing restores all of your current hit points and cures [[rpd:poison_buff|Poison]], [[rpd:cripple|Cripple]], [[rpd:weakness|Weakness]], and [[rpd:bleeding_buff|Bleeding]] status effects.
 
-According to the game's string resources: "An elixir that will instantly restore your health to full."
+According to the game's string resources: "An elixir that will instantly return you to full health and cure poison."
 
-==== Content Verification ====
-  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]]
-  * Stats verification: Extracted directly from PotionOfHealing.java class methods
-  * Effect descriptions: Based on code analysis and string resources
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2198-L2200|PotionOfHealing strings]] (Russian localization)
+==== Code References ====
+  * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]]
+  * **Potion Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]]
+  * **Healing Mechanism:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L99-L107|Char.java#L99-L107]] (heal method)
+  * **Status Effect Removal:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java#L32-L37|PotionOfHealing.java#L32-L37]] (curing specific debuffs)
+  * **Alchemical Recipe:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java#L46|Sungrass.java#L46]]
+  * **Shattering Mechanics:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java#L40-L45|PotionOfHealing.java#L40-L45]] (for when the potion is shattered)
+  * **Arrow Moistening:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java#L135-L138|Food.java#L135-L138]] (how potions can moisten arrows)
+  * **Russian String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2189-L2191|PotionOfHealing_Name, PotionOfHealing_Info, PotionOfHealing_Gender]]
+  * **Configuration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/Potions.json|Potions.json]] (item configuration)
+  * **Stats verification:** Extracted directly from PotionOfHealing.java class methods
+  * **Effect descriptions:** Based on code analysis and string resources
+  * **String resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2198-L2200|PotionOfHealing strings]] (Russian localization)
 
 ==== Related Items ====
   * [[rpd:potion|Potions]] - General information about potions
+  * [[rpd:status_effects|Status Effects]] - Information about statuses cured by this potion
+  * [[rpd:potion_of_overhealing|Potion of Overhealing]] - Alternative healing potion
+  * [[rpd:mechanics|Game Mechanics]] - Health system
+  * [[rpd:arrows|Arrows]] - Information about arrows and moistening
+  * [[rpd:health_arrow_item|Health Arrow]] - Created by moistening with this potion
   * [[rpd:health|Health]] - General mechanics about health restoration
   * [[rpd:hero|Hero]] - Main playable character
-  * [[rpd:priest_class|Priest Class]] - Starting class that gets this potion
 
-{{tag> rpd items potions healing }}
+{{tag> rpd items potions healing arrows}}
