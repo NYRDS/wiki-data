@@ -1,37 +1,48 @@
-====== Freerunner ======
+====== Free Runner Subclass ======
 
-{{ rpd:images:hero_ROGUE_FREERUNNER.png|Freerunner Hero Sprite }}
+{{ rpd:images:hero_ROGUE_FREERUNNER.png|Free Runner }}
 
-**Freerunner** is a [[rpd:subclass|subclass]] for the [[rpd:rogue_class|Rogue]] class.
+The **Free Runner** is a hero subclass for the [[rpd:rogue_class|Rogue]] class in Remixed Dungeon.
 
 ==== Description ====
-The Freerunner is a subclass of the Rogue that specializes in mobility and quick movement. This subclass provides enhanced abilities for traversing the dungeon quickly and evading enemies.
+The _Freerunner_ can move almost twice faster, than most of the monsters. When he is running, the Freerunner is much harder to hit. For that he must be unencumbered and not starving.
 
-==== Special Abilities ====
-  * **Enhanced Movement Speed:** Improved movement speed that allows for quicker traversal of the dungeon
-  * **Evasion Enhancement:** Better ability to avoid enemy attacks
-  * **Trap Avoidance:** Increased chance to avoid trap effects when moving through them
+==== Unlocking ====
+The Free Runner subclass can be unlocked by using a [[rpd:tome_of_mastery_item|Tome of Mastery]] after defeating the second boss (Tengu). This item can also be used with a [[rpd:tengu_liver_item|Tengu Liver]] if using a class that normally can't use Tomes of Mastery.
 
-==== Strategy ====
-  * Focus on exploration and quickly traversing the dungeon
-  * Use speed advantage to avoid tough enemies when needed
-  * Take advantage of quick movement to position for optimal attacks
-  * Utilize the ability to quickly retreat when facing overwhelming odds
+==== Special Mechanics ====
+The Free Runner has the following special mechanics implemented in the game code:
+  * **Speed Advantage:** Gets 1.6x movement speed when not starving (as implemented in Hero.java)
+  * **Evasion Bonus:** Gets 2x evasion when not starving and in motion (defensive skill is doubled during movement)
+  * **Requirements:** Must not be starving to maintain the special mechanics
+  * **Movement Bonuses:** Speed and evasion bonuses apply when character is moving and not starving
 
-==== Technical Details ====
-  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1473-L1475|Freerunner string resources]]
+==== Special Armor ====
+Using an [[rpd:armor_kit_item|Armor Kit]] on any armor will transform it into [[rpd:freerunner_armor|Free Runner Armor]], which is specifically designed for this subclass.
 
-===== String Resources =====
-  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1002-L1003|HeroSubClass_NameFreR and HeroSubClass_DescFreR]]
-  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L988-L989|HeroSubClass_NameFreR and HeroSubClass_DescFreR]]
-  * Other languages available in respective values-* directories
+==== Advantages ====
+  * Significantly faster movement speed when conditions are met
+  * Harder to hit when running
+  * Excellent for escape and positioning
+  * Good for hit-and-run tactics
+
+==== Disadvantages ====
+  * Requires being unencumbered (not overburdened)
+  * Must not be starving
+  * Speed advantage is lost when heavily loaded
+  * Requires careful food management
+
+==== Source Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L48|HeroSubClass.java - Free Runner Definition]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L278|Hero.java - Free Runner Speed Implementation]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L574-L577|Char.java - Free Runner Evasion Implementation]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java#L121-L123|Hunger.java - Starving Condition]]
+  * String definitions: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1003|HeroSubClass_DescFreR in strings_all.xml]]
 
 ==== See Also ====
-  * [[rpd:rogue_class|Rogue Class]]
-  * [[rpd:hero_subclasses|Hero Subclasses]]
-  * [[rpd:assassin_subclass|Assassin Subclass]]
-  * [[rpd:hero_classes|Hero Classes]]
-  * [[rpd:speed|Speed Mechanics]]
+  * [[rpd:hero_subclasses|Hero Subclasses]] - All subclasses
+  * [[rpd:rogue_class|Rogue]] - Base class
+  * [[rpd:tome_of_mastery_item|Tome of Mastery]] - Unlock item
+  * [[rpd:freerunner_armor|Free Runner Armor]] - Special armor
 
-{{tag> rpd subclasses mobility freerunner }}
+{{tag> rpd subclasses freerunner rogue}}
