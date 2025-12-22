@@ -129,6 +129,9 @@ Machine-readable namespace pages (mr:) should contain:
   * **Image Reference Validator**: Ensures wiki pages have appropriate images that match the entity type (_mob, _item, _spell, etc.) and verifies that image references are correctly formatted
   * **Cross-Reference Quality Tool**: Reviews links between related pages to ensure comprehensive interlinking across the wiki
   * **Page Quality Scoring System**: Implements an automated system to score pages based on completeness, accuracy, and adherence to wiki standards
+  * **Link Migration Tool**: When pages are renamed following naming conventions, this tool automatically updates all incoming links to point to the new page names
+  * **Red Link Prevention Validator**: Proactively checks if new links will create red links and suggests creating the target pages or correcting the link
+  * **Naming Convention Validator**: Checks that all page links follow the proper naming conventions (_item, _mob, _spell, _class, _subclass, etc.) and flags non-conforming links
 
 ==== Recent Maintenance Activities ====
 
@@ -151,6 +154,18 @@ The following types of wiki maintenance activities have been successfully perfor
   * Identified and corrected inconsistencies in entity naming
   * Updated internal links to reflect page renames
   * Ensured consistency between different entity types
+
+===== Red Link Resolution =====
+  * Used find_red_links.py to identify missing pages
+  * Created new pages for referenced but missing wiki entries
+  * Verified that created pages follow proper naming conventions
+  * Updated existing pages with correct links to newly created pages
+
+===== Content Verification and Enhancement =====
+  * Created detailed pages for items like arcane_stylus_item, blank_scroll_item, potion_of_frost_item, and ring_of_thorns_item
+  * Ensured all new and modified pages have proper source code references
+  * Corrected any obsolete or incorrect information found during verification
+  * Updated Russian wiki pages to follow the same naming conventions and quality standards
 
 ==== Quality Assurance Practices ====
 
