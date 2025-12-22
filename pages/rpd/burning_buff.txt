@@ -1,54 +1,53 @@
 ====== Burning ======
 
-{{ rpd:images:buff_Burning.png|Burning Buff Icon }}
+{{ rpd:images:burning_buff.png|Burning Status Effect }}
 
-**Burning** is a harmful status effect in Remixed Dungeon that causes continuous damage to the affected character.
+**Burning** is a status effect in Remixed Pixel Dungeon that causes ongoing fire damage to the affected character over time.
 
-==== Description ====
-The Burning status effect causes continuous damage over time. Characters affected by burning will take damage each turn until the effect ends. The effect can be spread to flammable terrain and can cause carried items to burn.
-
-==== Mechanics ====
-  * **Damage:** Takes 1-5 + (Dungeon.depth / 2) damage each turn
-  * **Duration:** Varies based on character's resistance and health
-  * **Spreads:** To flammable terrain when the affected character moves
-  * **Item effect:** Carried items may be damaged by the fire
-  * **Ends when:** Character dies, duration expires, or character steps in water (if not flying)
+==== Effects ====
+  * **Damage Over Time**: Affected characters take fire damage each turn
+  * **Duration**: The effect lasts until extinguished by water or until the timer expires
+  * **Spread Risk**: May ignite flammable objects or characters in close proximity
 
 ==== Causes ====
-Burning can be caused by:
-  * [[rpd:fire_elemental_mob|Fire Elementals]] and other fire-based enemies
+Burning can be inflicted by:
+  * Fire-based attacks (flames, fireballs, etc.)
   * [[rpd:wand_of_firebolt_item|Wand of Firebolt]]
-  * [[rpd:ignite_spell|Ignite Spell]]
-  * [[rpd:fire_enchantment|Fire Enchantments]] on weapons
-  * [[rpd:burning_fist_mob|Burning Fist]] boss
-  * [[rpd:torch_item|Torch]] usage in confined spaces
-  * [[rpd:fire_trap|Fire Traps]]
-
-==== Resistance ====
-  * [[rpd:ring_of_elements_item|Ring of Elements]] can provide partial resistance
-  * Some classes and subclasses have natural resistance to burning
+  * [[rpd:scroll_of_psionic_blast|Scroll of Psionic Blast]] (when affecting fire-vulnerable targets)
+  * Fire traps and environmental hazards
+  * [[rpd:enchantments#fire|Fire enchantment]] on weapons
+  * [[rpd:glyph_of_flame|Glyph of Flame]] on armor
+  * Various fire-elemental mobs and bosses
 
 ==== Counters ====
-  * Step in water (if not flying) to extinguish the flames
-  * Certain healing effects may remove the status
-  * Resistances provided by specific [[rpd:rings|Rings]]
+  * Water tiles can extinguish the burning effect
+  * [[rpd:potion_of_frost_item|Potion of Frost]] can remove burning
+  * [[rpd:wand_of_frost_item|Wand of Frost]] can remove burning
+  * Some characters may be immune or resistant to fire damage
+  * [[rpd:ring_of_elements|Ring of Elements]] may reduce fire damage
 
-==== Strategic Implications ====
-  * Burning can be used strategically to clear grassy areas
-  * Be careful when fighting in flammable environments as fire may spread
-  * Burning enemies can spread fire to other nearby enemies
-  * The effect is particularly dangerous in the early game when health pools are small
+==== Interactions ====
+  * Interacts with [[rpd:water|Water]] to be extinguished
+  * Affected by [[rpd:resistances|Fire Resistance]]
 
-==== Technical Details ====
-  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]]
-  * Fire spreading mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]]
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L808-L810|Burning strings]]
+==== Data Sources ====
+  * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|com.watabou.pixeldungeon.actors.buffs.Burning]]
+  * **Burning System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff base class]]
+  * **Water Interaction**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/WaterOfAwareness.java|WaterOfAwareness.java]] and related water mechanics
+
+==== String Resources ====
+''<code xml>''
+<string name="Burning_Name">Burning</string>
+<string name="Burning_Info">You are burning! It deals damage every turn and may ignite flammable objects you touch.</string>
+<string name="Burning_Apply">You catch fire!</string>
+<string name="Burning_NoDmg">The fire doesn\'t hurt you.</string>
+''</code>''
 
 ==== See Also ====
-  * [[rpd:fire|Fire]] - Environmental fire effect
-  * [[rpd:fire_elemental_mob|Fire Elemental]] - Enemy that causes burning
-  * [[rpd:wand_of_firebolt_item|Wand of Firebolt]] - Item that causes burning
-  * [[rpd:status_effects|Status Effects]] - List of all status effects
-  * [[rpd:ignite_spell|Ignite Spell]] - Spell that causes burning
+  * [[rpd:status_effects|Status Effects]]
+  * [[rpd:fire_elemental_mob|Fire Elemental]]
+  * [[rpd:torch_item|Torch]]
+  * [[rpd:fire_trap|Fire Traps]]
+  * [[rpd:buffs|Buffs and Debuffs]]
 
-{{tag> rpd status_effects elemental }}
+{{tag> rpd status_effects buffs }}
