@@ -1,59 +1,71 @@
-====== Marsupial Rat ======
+====== Marsupial Rat Mob ======
 
-{{ rpd:images:rat_mob.png|Marsupial Rat }}
+{{ rat_mob.png|Marsupial Rat }}
 
-Marsupial rats are aggressive, but rather weak denizens of the sewers. They can be dangerous only in big numbers.
+The **Marsupial Rat** is a common enemy found in the Sewers (levels 1-4) of Remixed Dungeon. They are aggressive, but rather weak inhabitants of the sewers. They can be dangerous only in big numbers.
+
+==== Overview ====
+Marsupial rats are among the most common enemies found in the early levels of the dungeon. They are aggressive but rather weak denizens of the sewers. While individually harmless, they can become dangerous in large numbers due to their sheer numbers.
 
 ==== Stats ====
-  * **Level**: Found in Sewers (level 1-3)
-  * **HP**: 8
-  * **Attack**: 8 (skill)
-  * **Defense**: 3 (skill)
+  * **HP**: 8 (HT: 8)
+  * **Defense Skill**: 3
+  * **Attack Skill**: 8
   * **Damage**: 1-5
-  * **Defense Rating (DR)**: 1
-  * **EXP**: Up to 7 (max level 7)
-  * **Weight**: Light
+  * **Armor**: 1 DR (Defense Rating)
+  * **EXP for Kill**: 1 (varies with level)
+  * **Maximum Level**: 7
+  * **Level Range**: Found in Sewers (levels 2-4, with higher density on level 3)
 
-==== Description ====
-Marsupial rats are aggressive, but rather weak inhabitants of the sewers. They are among the most common enemies found in the early levels of the dungeon. They typically appear in groups of 2-4 individuals.
+==== Abilities ====
+  * **Fleeing Behavior**: When the player carries the Giant Rat Skull, rats enter a Fleeing state and avoid attacking
+  * **Terror Effect**: If a rat cannot attack due to the Ratter's Aura from the Giant Rat Skull, it will become terrorized (Terror buff) and unable to act
+  * **Quest Trigger**: When a rat dies, it triggers quest checks for ScarecrowNPC, Ghost NPC, and Plague Doctor NPC quests
+  * **Simple AI**: Basic movement toward the player, attacks when adjacent
 
-==== Behavior ====
-  * Moves directly toward the player
-  * Attacks when adjacent to the player
-  * Becomes frightened when the player carries a Giant Rat Skull (Rat-King's Crown aura effect)
-  * Will flee from the player when affected by this aura
-  * If pursued despite being frightened, will become terrorized and unable to act
+==== Combat Tactics ====
+Marsupial rats follow simple AI patterns, moving toward the player and attacking when adjacent. They have low stats that make them individually weak, but potentially threatening in groups.
 
-==== Special Interactions ====
-  * **Rat-King's Crown Aura**: When the player has the Rat-King's Crown aura buff, regular rats will try to flee instead of attacking
-  * **Death Effects**: When a rat dies, it triggers quest checks for ScarecrowNPC, Ghost NPC, and Plague Doctor NPC quests
-  * **Fleeing Mechanics**: If a rat cannot attack due to the Ratter's Aura, it will enter a Fleeing state
-
-==== Drops ====
-Rats typically drop:
-  * Small amount of gold
-  * Occasionally some food or health potions
-  * Rat hide (artifacts:rat_hide_item) - used for crafting
+==== Occurrence ====
+  * **Primary Location**: Sewers levels (levels 2-4 according to Bestiary.json)
+  * **Spawn Frequency**: Very common in Sewers (density: level 2: 1.0, level 3: 1.0, level 4: 1.0)
+  * **Group Behavior**: Usually found in small to moderate groups
+  * **Special Variants**: Albino rats (rare, 0.03 density on level 3), which have different stats and abilities
 
 ==== Strategy ====
-  * Individual rats are easy to defeat
+  * Individual rats are easy to defeat due to their low stats
   * Be cautious when facing large groups, as their numbers can overwhelm
-  * Use ranged weapons to pick them off one-by-one when possible
-  * The rats' low damage output makes them relatively safe to fight with low health
+  * Use ranged weapons or spells to pick them off one-by-one when possible
+  * The Giant Rat Skull artifact causes them to flee instead of attacking
+  * Their low damage output makes them relatively safe to fight even with low health
+  * Focus on eliminating them early before they can surround you
 
-==== Technical Information ====
-  * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java|Rat.java]]
-  * **Sprite**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Rat.json|Rat.json]]
-  * **String Resources**: 
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1295-L1298|Rat_Name, Rat_Desc]]
+==== Special Notes ====
+  * The rat's death triggers quest processing for multiple NPCs (Scarecrow, Ghost, Plague Doctor)
+  * When affected by Ratter's Aura, they become frightened and flee; if pursued despite being frightened, they become terrorized
+  * Despite their name, they are not actual marsupials but are just called marsupial rats in the game
+  * They are the most basic enemy in the game, serving as an introduction to combat mechanics
 
-==== Related Pages ====
-  * [[rpd:sewers_level|Sewers]] - Level where it appears
-  * [[rpd:albino_rat_mob|Albino Rat]] - Rare variant with bleeding attack
-  * [[rpd:fetidrat|Fetid Rat]] - More dangerous variant that spawns in the Ghost quest
-  * [[rpd:suspicious_rat_mob|Suspicious Rat]] - Variant that appears deeper in the dungeon
-  * [[rpd:rats|Rats]] - Information about rat variants
-  * [[rpd:rat_skull_item|Giant Rat Skull]] - Item that causes rats to flee
-  * [[rpd:marsupial_rat_mob|Marsupial Rat]] - Another name for the same entity
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java|Rat.java]] - Primary implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1295-L1298|Rat strings]] - Name, description, and other text (English)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1279-L1282|Rat strings (Russian)]] - Russian localization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L4-L6|Bestiary.json]] - Spawn rates in Sewers levels (levels 2-4)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Rat.json|Rat.json]] - Sprite configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/RatSkull.java#L32|RatSkull.java#L32]] - Ratter's Aura implementation that affects rats
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java#L27-L36|Rat.java#L27-L36]] - canAttack method with flee mechanics
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java#L38-L46|Rat.java#L38-L46]] - die method with quest processing
 
-{{tag> rpd mobs rat sewers marsupial}}
+==== Related ====
+  * [[rpd:sewers_level|Sewers Level]] - Primary location
+  * [[rpd:albino_rat_mob|Albino Rat Mob]] - Rare variant with different abilities
+  * [[rpd:rat_skull_item|Giant Rat Skull Item]] - Item that causes rats to flee
+  * [[rpd:rats|All Rats]] - Information about rat variants
+  * [[rpd:fetid_rat_mob|Fetid Rat Mob]] - More dangerous variant that appears in Ghost's quest
+  * [[rpd:suspicious_rat_mob|Suspicious Rat Mob]] - Strange variant that appears deeper in dungeon
+  * [[rpd:scarecrow_npc|Scarecrow NPC]] - NPC whose quest is triggered by rat deaths
+  * [[rpd:ghost_npc|Ghost NPC]] - NPC whose quest is triggered by rat deaths
+  * [[rpd:plague_doctor_npc|Plague Doctor NPC]] - NPC whose quest is triggered by rat deaths
+  * [[rpd:mobs|Mobs]] - All mobs in the game
+
+{{tag> rpd mobs rat sewers marsupial basic enemy}}
