@@ -1,35 +1,51 @@
-====== Frost ======
+====== Frost Buff ======
 
-Frost is a status effect in Remixed Dungeon that causes freezing. When a character is affected by frost, they become frozen and unable to take actions.
+{{ rpd:images:frost_buff.png|Frost Buff }}
+
+Frost is a status effect in Remixed Dungeon that temporarily freezes a character in place, preventing them from moving or acting.
+
+==== Effect ====
+  * **Immobilization:** Affected characters cannot move or perform actions
+  * **Duration:** The freeze lasts for a specific duration (usually 3-4 turns)
+  * **Removal:** The effect wears off over time or can be removed by certain means
+  * **Stacking:** Does not typically stack with other movement-impairing effects
+
+==== Application ====
+The Frost effect can be applied through various sources:
+  * [[rpd:potion_of_frost_item|Potion of Frost]] - When shattered, creates a freezing cloud
+  * [[rpd:wand_of_frost_item|Wand of Frost]] - Direct damage and freezing effect
+  * [[rpd:ice_elemental_mob|Ice Elementals]] - Can apply frost through attacks
+  * [[rpd:ice_trap_level_object|Ice Traps]] - May apply frost when triggered
+  * [[rpd:freeze_globe_spell|Freeze Globe Spell]] - Spell that creates freezing effects
+
+==== Immunities and Resistances ====
+  * Some enemies are immune to freezing effects
+  * Certain armor or items may provide resistance
+  * Flame-resistant characters may have reduced duration
+
+==== Strategic Considerations ====
+  * **Benefits:** Can be used to temporarily disable enemies during dangerous encounters
+  * **Risks:** Affects both enemies and allies, so use cautiously in group situations
+  * **Timing:** Most effective when used on single powerful enemies
+  * **Counters:** Affected characters can be targeted more easily while frozen
 
 ==== Mechanics ====
-  * **Effect**: Completely immobilizes the affected character
-  * **Duration**: Varies based on the source of frost and the character's resistance
-  * **Breaking**: The effect can be broken by taking damage
-  * **Appearance**: Affected characters are visually covered in ice
+  * Applied through the [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] blob effect
+  * Character remains in place until duration expires
+  * Does not interrupt ongoing actions that were already started
 
-==== Sources of Frost ====
-  * [[rpd:wand_of_frost|Wand of Frost]]
-  * [[rpd:potion_of_frost_item|Potion of Frost]]
-  * [[rpd:icecap|Icecap]] plant
-  * [[rpd:ice_elemental_mob|Ice Elemental]] attacks
-  * [[rpd:cold_spirit_mob|Cold Spirit]] attacks
-
-==== Immunities ====
-Some characters and statuses provide immunity to frost:
-  * Fire-based characters
-  * Characters with specific resistances
-
-==== Code Implementation ====
-  * **Frost Effect**: [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]] - Implements the freezing effect on characters
-  * **Freezing Application**: [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] - Applies frost to cells
-  * **String Resources**: [[code:RemixedDungeon/src/main/res/values/strings_all.xml#L572-L574|Frost strings]] - Name, description, and shatter message
+==== Content Verification ====
+  * Core Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]]
+  * Buff Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L572-L574|Frost strings]]
+  * Machine-readable data: [[mr:frost_buff|mr:frost_buff]]
 
 ==== Related Effects ====
-  * [[rpd:freezing|Freezing]] - The status effect page with more details
-  * [[rpd:ice_elemental_mob|Ice Elemental]] - Enemies that can apply frost
-  * [[rpd:ice_guardian_mob|Ice Guardian]] - Enemies that use frost attacks
-  * [[rpd:paralysis_buff|Paralysis]] - Similar immobilizing effect
-  * [[rpd:stun_buff|Stun]] - Another temporary immobilization effect
+  * [[rpd:freeze_globe_spell|Freeze Globe Spell]] - Spell that creates frost effects
+  * [[rpd:potion_of_frost_item|Potion of Frost]] - Item that creates frost clouds
+  * [[rpd:wand_of_frost_item|Wand of Frost]] - Wand that applies frost
+  * [[rpd:chill_buff|Chill]] - Reduced effect version of frost
+  * [[rpd:paralysis_buff|Paralysis]] - Another immobilizing effect
+  * [[rpd:slowness_buff|Slowness]] - Speed reducing effect
 
-{{tag> rpd mechanics status_effects frost freezing}}
+{{tag> rpd status_effects frost buffs debuffs freezing}}
