@@ -1,54 +1,63 @@
-====== Albino Rat ======
+====== Albino Rat Mob ======
 
-{{ rpd:images:albino_sprite.png|Albino Rat }}
+{{ albino_rat_mob.png|Albino Rat }}
 
-Albino Rats are rare variant of regular rats found in the Sewers area of Remixed Dungeon. They have abnormally sharp teeth and a distinctive white coloration.
+The **Albino Rat** is a rare variant of the regular Marsupial Rat found in the Sewers area of Remixed Dungeon. They have abnormally sharp teeth and distinctive white coloration.
+
+==== Overview ====
+The Albino Rat is a rare white variant of the common dungeon rat. They appear in the Sewers and behave similarly to regular rats but possess a special bleeding attack. They are described as: "Marsupial rats are aggressive, but rather weak denizens of the sewers. They can be dangerous only in big numbers. This particular rat seems to be an albino. It also has abnormally sharp teeth."
 
 ==== Stats ====
-  * **Level**: Found in Sewers (level 3)
-  * **HP**: 15 (same as regular rat but fixed value)
-  * **Attack**: Similar to regular rats
-  * **Defense**: Similar to regular rats
-  * **EXP**: 1 (experience gained for killing)
+  * **HP**: 15 (HT: 15) - Fixed higher value than regular rats (8)
+  * **Defense Skill**: 3 (inherited from Rat)
+  * **Attack Skill**: 8 (inherited from Rat)
+  * **Damage**: 1-5 (inherited from Rat)
+  * **Armor**: 1 DR (inherited from Rat)
+  * **EXP for Kill**: 1 (inherited from Rat)
+  * **Maximum Level**: 7 (inherited from Rat)
 
-==== Description ====
-Albino Rats are rare white variants of the common dungeon rat. They appear in the Sewers and behave similarly to regular rats but with a special attack mechanic. According to the game description: "Marsupial rats are aggressive, but rather weak denizens of the sewers. They can be dangerous only in big numbers. This particular rat seems to be an albino. It also has abnormally sharp teeth."
+==== Abilities ====
+  * **Bleeding Attack**: On successful hit, has a 50% chance to cause Bleeding status effect on the target equal to the damage dealt
+  * **Inheritance**: Inherits all other abilities from the Marsupial Rat (fleeing behavior when affected by Giant Rat Skull, quest trigger on death)
 
-==== Behavior ====
-  * Similar to regular rats - moves directly toward the player
-  * Has a special attack that causes bleeding damage to the target
-  * Generally appears alone rather than in groups
-  * The attack has a 50% chance of causing a Bleeding effect on the target equal to the damage dealt
+==== Combat Tactics ====
+Albino rats behave like regular rats but add a dangerous bleeding effect to their attacks. They will approach the player and attack normally, but with a significant chance to apply a dangerous status effect.
 
-==== Special Ability ====
-  * **Bleeding Attack**: On successful hit, there is a 50% chance to cause Bleeding status effect on the target equal to the damage dealt
-
-==== Drops ====
-Albino Rats typically drop:
-  * Small amount of gold
-  * Standard rat drop items
-
-==== Habitat ====
-  * Spawn rate: Very rare (0.03 weight in Bestiary.json for level 3)
-  * Found primarily in Sewer level (level 3)
-  * Part of the rare spawns in the dungeon
+==== Occurrence ====
+  * **Primary Location**: Sewers level (level 3)
+  * **Spawn Frequency**: Very rare (0.03 density on level 3 according to Bestiary.json)
+  * **Group Behavior**: Usually found alone
+  * **Special Variants**: No special variants
 
 ==== Strategy ====
-  * While individually weak, be aware of the bleeding effect which can accumulate over time
-  * Potentially more dangerous than regular rats due to the bleeding effect
-  * Try to avoid getting surrounded by multiple Albino Rats to prevent stacking bleeding damage
+  * Be aware of the bleeding effect which can accumulate over time, especially in dangerous situations
+  * While individually weak like regular rats, the bleeding effect makes them more dangerous
+  * Prioritize eliminating them over regular rats if multiple rats are present
+  * Use armor or other defenses that can reduce the damage that gets converted to bleeding
+  * Healing or bleed removal items can be crucial when fighting multiple albino rats
+  * The bleeding effect can be especially dangerous if combined with other damage sources
 
-==== Technical Information ====
-  * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Albino.java|Albino.java]]
-  * **Inherits From**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java|Rat.java]]
-  * **String Resource**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1210|Albino_Desc]]
-  * **Badge**: Killing an Albino rat contributes to the RARE_ALBINO badge
+==== Special Notes ====
+  * The albino rat inherits all properties from the regular rat, including quest triggers on death
+  * Killing an albino rat contributes to the RARE_ALBINO badge
+  * The 50% chance to apply bleeding based on the damage dealt can result in significant ongoing damage
+  * They are the only common enemy that can apply the bleeding effect without special conditions
+  * Still affected by the Giant Rat Skull artifact like regular rats
 
-==== Related Pages ====
-  * [[rpd:rat_mob|Marsupial Rat]] - Base mob that Albino inherits from
-  * [[rpd:bleeding_buff|Bleeding]] - Status effect caused by Albino's attack
-  * [[rpd:sewers_level|Sewers]] - Level where it appears
-  * [[rpd:rats|Rats]] - Information about rat variants
-  * [[rpd:skeleton_mob|Skeleton]] - Entity that appears when a rat dies without quest triggers
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Albino.java|Albino.java]] - Primary implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java|Rat.java]] - Base class (inherits most properties)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1207-L1210|Albino strings]] - Name, description, and other text (English)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1193-L1196|Albino strings (Russian)]] - Russian localization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L5|Bestiary.json]] - Spawn rates (0.03 on level 3)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Albino.java#L17-L21|Albino.java#L17-L21]] - AttackProc method where bleeding effect is implemented
 
-{{tag> rpd mobs albino_rat sewers rat rare bleeding}}
+==== Related ====
+  * [[rpd:rat_mob|Marsupial Rat Mob]] - Base mob that Albino inherits from
+  * [[rpd:bleeding_buff|Bleeding Buff]] - Status effect caused by Albino's attack
+  * [[rpd:sewers_level|Sewers Level]] - Primary location
+  * [[rpd:rats|All Rats]] - Information about rat variants
+  * [[rpd:buffs|Buffs]] - List of all status effects
+  * [[rpd:mobs|Mobs]] - All mobs in the game
+
+{{tag> rpd mobs albino rat sewers rare bleeding}}
