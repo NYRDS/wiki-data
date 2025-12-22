@@ -1,64 +1,67 @@
-====== Skeleton ======
+====== Skeleton Mob ======
 
-{{ rpd:images:skeleton_mob.png|Skeleton }}
+{{ skeleton_mob.png|Skeleton }}
 
-Skeletons are undead warriors that have reanimated after death. They are composed of bones and typically wear remnants of ancient armor and wield rusty weapons.
+The **Skeleton** is a common undead enemy found throughout the dungeon, typically in the Prison and later levels.
 
-==== Description ====
-Skeletons are basic undead enemies that can be found throughout the dungeon. They are the reanimated bones of former adventurers or dungeon dwellers.
-Skeletal remains of those who didn't survive their dungeon adventure. They are reanimated by dark magic and serve as undead guardians.
+==== Overview ====
+Skeletons are reanimated bones of dead adventurers and denizens of the dungeon. They are persistent enemies that will relentlessly pursue the player character. Skeletons are immune to various status effects due to their undead nature.
 
 ==== Stats ====
-  * **HP:** 25 (varies based on dungeon level)
-  * **Attack Skill:** 12
-  * **Defense Skill:** 9
-  * **Damage:** 3-8
-  * **Defense Rating:** 5
-  * **Exp for Kill:** 5
-  * **Max Level:** 10
+  * **HP**: 25 (HT: 25)
+  * **Defense Skill**: 9
+  * **Attack Skill**: 12
+  * **Damage**: 3-8
+  * **Armor**: 5 DR (Defense Rating)
+  * **EXP for Kill**: 5
+  * **Maximum Level**: 10
+  * **Undead**: Yes (immune to certain status effects)
 
-==== Combat ====
-  * **Health:** 25 HP
-  * **Attack:** Melee attacks with 12 attack skill
-  * **Defense:** 9 defense skill with 5 defense rating
-  * **Damage:** 3-8 damage
-  * **Abilities:** Standard undead traits (immune to some status effects)
+==== Abilities ====
+  * **Weapon Drop**: When defeated (outside Necro levels), has a 20% chance to drop a low-level weapon from the Treasury
+  * **Undead Resistance**: Immune to fear, charm, and sleep effects
+  * **Poison Immunity**: Immune to poison damage and status effects
+  * **Corpse Explosion**: When killed, explodes dealing damage to nearby entities in a 5-cell radius
+  * **Sound Effect**: Plays a bone-cracking sound when defeated (Assets.SND_BONES)
 
-==== Special Abilities ====
-  * **Undead Nature:** Immune to certain status effects like fear and terror
-  * **Bone Drop:** Explosive death effect that can damage adjacent characters
-  * **Resistant to certain damage types:** Some damage types may be less effective
+==== Combat Tactics ====
+Skeletons are aggressive melee enemies that will pursue the player relentlessly. They cannot be charmed or frightened, making them consistently dangerous throughout the dungeon. Their bony structure provides some physical damage resistance.
 
-==== Characteristics ====
-  * **Undead Nature:** Immune to poison and bleeding
-  * **Physical Resistance:** May have resistance to certain physical attacks
-  * **Drops:** May carry weapons as loot (30% chance in non-boss levels)
+==== Occurrence ====
+  * **Primary Location**: Found throughout the Prison level and deeper dungeon levels
+  * **Spawn Frequency**: Common in later dungeon levels (specifically levels 6-9 according to Bestiary.json)
+  * **Group Behavior**: Usually found alone or in small groups
+  * **Necro Level Exception**: In NecroBossLevel, they do not drop weapons
 
-==== Location ====
-Skeletons can be found in:
-  * [[rpd:prison_level|Prison]] levels (floors 6-9)
-  * [[rpd:caves_level|Caves]] levels
-  * [[rpd:city|City]] levels
-  * [[rpd:halls|Halls]] levels
-  * [[rpd:necropolis_level|Necropolis]] levels (1 in 10 chance)
+==== Strategy ====
+  * Use ranged weapons or spells to attack from a distance
+  * Avoid letting them corner you in narrow passages
+  * Be careful with fire-based attacks as they cause explosion (though this is not explicitly stated as fire vulnerability)
+  * They're resistant to many status effects, requiring direct damage
+  * Try to avoid being surrounded as they explode on death, potentially harming you
 
-==== Tactics ====
-  * Fire-based attacks are often effective against undead
-  * Holy/light-based attacks may be particularly effective
-  * Be aware that healing magic may harm skeletons
-  * Physical attacks work, but may be resisted
-  * Skeletons can cause splash damage on death affecting adjacent characters
+==== Special Notes ====
+  * Skeletons are undead, which affects how certain items and spells interact with them
+  * They're immune to various effects that work on living creatures
+  * Defeating them contributes to the "Skeleton Slayed" badge
+  * They explode when killed, which can be dangerous to the player if standing too close
+  * In NecroBossLevel, they don't drop weapons, as this level has different rules
 
 ==== Code References ====
-  * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java|Skeleton.java]]
-  * **Sprite Configuration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Skeleton.json|Skeleton.json]]
-  * **Bestiary Spawn Data:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L12-L15|Bestiary.json#L12-L15]]
-  * **Russian String Resource:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1307-L1312|strings_all.xml#L1307-L1312]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java|Skeleton.java]] - Primary implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1321-L1326|Skeleton strings]] - Name, description, and other text (English)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1307-L1312|Skeleton strings (Russian)]] - Russian localization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L12-L15|Bestiary.json]] - Spawn rates in Prison levels (levels 6-9)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L64|Bestiary.json]] - Spawn rates in necro1 level
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Skeleton.json|Skeleton.json]] - Sprite configuration
 
 ==== Related ====
-  * Part of the [[rpd:undead_mob|Undead]] category
-  * Often found in areas with other undead creatures
-  * May be encountered in groups
+  * [[rpd:undead_mob|Undead]] - Other undead enemies
+  * [[rpd:prison_level|Prison Level]] - Primary location
+  * [[rpd:zombie_mob|Zombie]] - Other undead enemy
+  * [[rpd:undead_mobs|Undead Mobs]] - List of undead enemies
+  * [[rpd:mobs|Mobs]] - All mobs in the game
+  * [[rpd:skeleton_key_item|Skeleton Key]] - Item with similar name, but not related to the mob
+  * [[rpd:treasury|Treasury]] - For information about dropped items
 
-==== Notes ====
-Skeletons are common undead enemies found throughout the dungeon. They are relatively weak individually but can be dangerous in groups. They are immune to some status effects due to their undead nature.
+{{tag> rpd mobs undead prison skeleton skeleton_mob}}
