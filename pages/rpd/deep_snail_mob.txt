@@ -1,51 +1,61 @@
-====== Deep Snail Mob ======
+====== Deep Snail ======
 
-{{ rpd:images:deep_snail_mob.png|Deep Snail }}
-
-**Deep Snail** is a mollusk mob in Remixed Dungeon. It can often be seen near water sources and is much faster than your ordinary snail.
+{{ rpd:images:deepsnail_sprite.png|Deep Snail Sprite }}
 
 ==== Description ====
-This type of mollusk can often be seen near water sources and is much faster than your ordinary snail. Beware of the bites however, they can have an unpleasant effect on your skin. Deep Snails are unique in that they can potentially be tamed as pets.
+The **Deep Snail** is a rare variant of the regular Snail that appears in certain dungeon levels. It's a slow-moving creature with defensive capabilities.
 
 ==== Stats ====
-  * **HP:** 10
-  * **Defense Skill:** 3
-  * **Attack Skill:** 8
-  * **Damage Range:** 1-4
-  * **Damage Reduction:** 1
-  * **Experience:** 2
-  * **Max Level:** 4
-  * **Base Speed:** 1
-  * **View Distance:** 3
+* **HP:** 10
+* **HT:** 10
+* **Defense Skill:** 3
+* **Attack Skill:** 8
+* **Damage:** 1-4
+* **DR (Damage Reduction):** 1
+* **Speed:** 1.0x (normal speed)
+* **Attack Delay:** 1.0
+* **EXP for Kill:** 2
+* **Max Level:** 4
+* **View Distance:** 3
 
 ==== Special Abilities ====
-  * **Ooze proc:** 20% chance to apply Ooze debuff to adjacent attacker on being hit
-  * **Pet Potential:** Can be tamed as a pet
-  * **Water Affinity:** Often found near water sources
+* **Ooze Attack:** Has a 20% chance to apply Ooze to enemies when adjacent during defense
+* **Slow:** Moves at normal speed
 
 ==== Behavior ====
-  * Generally non-aggressive unless provoked
-  * Found primarily on levels with water sources
-  * Faster movement compared to regular snails
-  * When attacked, may apply Ooze effect to the attacker
+* Generally passive but will defend itself when attacked
+* Tends to stay in place rather than actively seeking the player
+* Can be tamed and become a pet (canBePet: true in configuration)
 
-==== Tactics ====
-  * Approach with caution due to the Ooze proc
-  * Consider taming it as a pet if desired
-  * Ooze effect can be harmful, so be prepared with appropriate equipment
+==== Spawning ====
+* **Level 2 Sewers:** Appears with a weight of 0.03 (rare)
+* **Level 4 Sewers:** Appears with a weight of 0.1 (uncommon) and 0.01 for thieves
+* Part of the sewers' ecosystem with Snails, Rats, Gnolls, Crabs, and Thieves
 
-==== Location ====
-Deep Snails are typically found near water sources on various dungeon levels, particularly where water features exist in the level design.
+==== Drops ====
+* Generally has a 0% loot chance (lootChance: 0 in configuration)
+* Does not drop items normally
 
-==== Code References ====
-  * JSON Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/DeepSnail.json|DeepSnail.json]]
-  * Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/DeepSnail.lua|DeepSnail.lua]]
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2780-L2783|strings_all.xml#L2780-L2783]]
+==== Java Class ====
+* **Java Class:** Generated from JSON configuration: DeepSnail.json
+* **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+* [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Where DeepSnail is registered
 
-==== See Also ====
-  * [[rpd:snail_mob|Snail]] - Regular snail mob
-  * [[rpd:mobs|Mobs]] - Other monsters in the game
-  * [[rpd:water_source|Water Source]] - Related terrain feature
-  * [[rpd:ooze|Ooze]] - Status effect applied by Deep Snail
+==== Lua Script ====
+* **Lua Script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/DeepSnail.lua|DeepSnail.lua]]
 
-{{tag> rpd mobs deep_snail pet}}
+==== Configuration Files ====
+* [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/DeepSnail.json|DeepSnail.json]] - JSON configuration for mob stats, spawning and behavior
+* [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/DeepSnail.json|DeepSnail.json]] - Sprite configuration
+
+==== String Resources ====
+* ''DeepSnail_Name'' - "deep snail" (R.string.DeepSnail_Name)
+* ''DeepSnail_Desc'' - "This type of mollusk can often be seen near water sources and is much faster than your ordinary snail. Beware of the bites however, they can have an unpleasant effect on your skin." (R.string.DeepSnail_Desc)
+* ''DeepSnail_Gender'' - "masculine" (R.string.DeepSnail_Gender)
+
+==== Related ====
+* [[rpd:snail_mob|Snail]] - The regular version of this creature
+* [[rpd:sewers|Sewers]] - Where Deep Snails are commonly found
+* [[rpd:pet_mechanic|Pet System]] - Can be tamed and become a pet through certain items
+
+{{tag> rpd mobs}}
