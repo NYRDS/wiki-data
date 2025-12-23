@@ -1,41 +1,45 @@
 ====== Toxic Gas ======
 
-{{ rpd:images:potionoftoxicgas_sprite.png|Toxic Gas Effect }}
-
-**Toxic Gas** is a harmful gas effect in Remixed Pixel Dungeon that causes ongoing damage to characters within its area of effect.
+**Toxic Gas** is a harmful effect in Remixed Dungeon that causes damage over time and may debilitate the affected character.
 
 ==== Effects ====
-  * **Damage Over Time**: Characters in the gas take damage each turn
-  * **Area Effect**: Affects all characters within the gas cloud
-  * **Duration**: The gas cloud persists for a limited number of turns
+  * **Damage Over Time**: Causes gradual damage each turn while active
+  * **Breathing Difficulty**: May impair the affected character's abilities
+  * **Area Effect**: Usually affects multiple cells in an area
+  * **Duration**: Persists for a limited number of turns
 
-==== Causes ====
-Toxic Gas can be created by:
-  * [[rpd:potion_of_toxic_gas_item|Potion of Toxic Gas]] when thrown
-  * [[rpd:paralytic_gas_trap_level_object|Paralytic Gas Traps]] (in some cases)
-  * [[rpd:toxic_gas_trap_level_object|Toxic Gas Traps]]
-  * Certain mob abilities or environmental effects
+==== Sources ====
+  * **[[rpd:toxic_gas_trap_level_object|Toxic Gas Traps]]**: Activated when stepped on
+  * **[[rpd:spells|Spells]]**: Some spells create toxic gas clouds
+  * **[[rpd:wands|Wands]]**: Certain wands can create toxic gas
+  * **[[rpd:mobs|Mobs]]**: Some enemies can emit toxic gas
+  * **[[rpd:potions|Potions]]**: Broken vials of certain potions may create toxic gas
 
-==== Counters ====
-  * Avoiding the area of the gas cloud
-  * [[rpd:resistances|Gas Resistance]] reduces the damage taken
-  * Some characters may be immune to gas effects
-  * Moving out of the gas cloud area
+==== Resistance and Immunity ====
+  * **[[rpd:ring_of_elements|Ring of Elements]]**: Provides resistance to toxic gas
+  * **[[rpd:armor_glyphs|Armor Glyphs]]**: Some glyphs provide protection
+  * **[[rpd:buffs|Buffs]]**: Special status effects may provide temporary immunity
 
-==== Interactions ====
-  * Affected by [[rpd:resistances|Gas Resistance]]
-  * Can be dissipated by air currents in certain levels
-  * [[rpd:ring_of_elements|Ring of Elements]] may provide some protection
+==== Countering Toxic Gas ====
+  * **[[rpd:potion_of_purity_item|Potion of Purity]]**: Clears toxic gas status immediately
+  * **Rapid Movement**: Moving quickly out of gas clouds
+  * **Avoidance**: Identifying and avoiding sources of toxic gas
 
-==== Source Code ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas.java]]
-  * String Resources (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L544-L545|Toxic Gas strings (line 544-545)]]
-  * String Resources (Russian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L544-L545|Toxic Gas strings (line 544-545)]]
+==== Technical Details ====
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas.java]]
+  * Blob system: Part of the blob/mob system for area effects
+  * Resistance: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java#L62-L67|Actor.java resistance methods]]
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
 
 ==== See Also ====
   * [[rpd:traps|Traps]]
-  * [[rpd:gas|Gas Effects]]
-  * [[rpd:potion_of_toxic_gas_item|Potion of Toxic Gas]]
-  * [[rpd:status_effects|Status Effects]]
+  * [[rpd:debuffs|Debuffs]]
+  * [[rpd:blobs|Blobs]]
+  * [[rpd:potion_of_purity_item|Potion of Purity]]
+  * [[rpd:tengu_mob|Tengu]] (resistant to poison/toxic gas)
 
-{{tag> rpd status_effects traps gases }}
+{{tag> rpd mechanics debuffs gas hazardous }}
