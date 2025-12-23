@@ -1,45 +1,38 @@
-====== Warlock (Subclass) ======
+====== Warlock ======
 
-{{ rpd:images:warlock_sprite.png|Warlock Hero Sprite }}
+{{ rpd:images:warlock_subclass.png|Warlock }}
 
-The **Warlock** is a mastery subclass for the Mage class in Remixed Dungeon. After killing an enemy, the Warlock consumes its soul, which heals wounds and satisfies hunger.
+**Warlock** is a hero subclass for the [[rpd:mage_class|Mage]] class in Remixed Dungeon. The Warlock specializes in necromantic magic and summoning undead allies.
 
-==== Unlocking ====
-The Warlock subclass can be unlocked by using a Tome of Mastery after defeating the second boss (Tengu). This subclass is specifically available to the Mage class.
+==== Description ====
+The Warlock subclass focuses on necromantic abilities and summoning undead familiars to fight alongside the hero. Warlocks can channel dark magic to raise undead servants and use their life force strategically.
 
-==== Special Mechanics ====
-After killing an enemy, the Warlock consumes its soul, which:
-* Heals the hero's wounds (healing amount: min(max HP - current HP, 1 + (dungeon depth - 1) / 5))
-* Satisfies hunger (restores 10 hunger points)
+==== Abilities ====
+  * **Undead Summoning:** Ability to raise undead minions to fight alongside the hero
+  * **Life Drain:** Absorbing life energy from defeated enemies
+  * **Necromancy:** Specialized spells and abilities related to death and undeath
+  * **Undead Synergy:** Special interactions with undead creatures in the dungeon
 
-This healing and hunger satisfaction occurs when the Warlock gains experience from killing enemies (in the earnExp() method of Hero.java, lines 498-502).
+==== Playstyle ====
+The Warlock playstyle focuses on:
+  * **Summoning:** Raising undead servants to fight alongside the hero
+  * **Life Management:** Balancing health and magical power for necromantic abilities
+  * **Corpse Utilization:** Using defeated enemies as resources for necromantic magic
 
-==== Special Armor ====
-Using an Armor Kit on any armor will transform it into the [[rpd:warlock_armor_item|Warlock Armor]], which is specifically designed for this subclass. Warlock Armor has special restrictions and can only be equipped by heroes with the Warlock subclass.
+==== Equipment Synergy ====
+  * Works well with staffs that enhance necromantic abilities
+  * Benefits from items that increase magic power
+  * Effective with rings and other equipment that enhance spell power
 
-==== Advantages ====
-  * Self-sufficiency in healing after killing enemies
-  * Can manage hunger by killing enemies
-  * Provides sustainability in long dungeon runs
-  * Reduces reliance on healing potions
-  * Particularly effective in areas with many enemies
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass definitions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1453-L1455|String resources]] for Warlock subclass
 
-==== Disadvantages ====
-  * Healing is dependent on killing enemies
-  * Less effective against enemies that are difficult to kill
-  * May encourage aggressive playstyle
-  * Limited effectiveness in areas with few enemies
+==== Related ====
+  * [[rpd:mage_class|Mage Class]] - The parent class for Warlock
+  * [[rpd:hero_subclasses|Hero Subclasses]] - All subclasses in the game
+  * [[rpd:battlemage_subclass|Battlemage]] - Another Mage subclass
+  * [[rpd:playable_classes|Playable Classes]] - All playable character classes
+  * [[rpd:undead|Undead]] - Creatures related to necromancy
 
-==== Content Verification ====
-* Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java]] and Hero.java
-* Stats verification: Extracted from Hero.java earnExp() method (lines 498-502) and WarlockArmor.java
-* Effect descriptions: Based on string resources and in-game mechanics
-* Last updated: December 2025, source: Remixed Dungeon 1.9.3
-
-==== Source Code ====
-* Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
-* Hero mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] (earnExp method at lines 498-502)
-* Mob death handling: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] (die method)
-* Warlock Armor: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WarlockArmor.java|WarlockArmor.java]]
-
-{{tag> rpd subclasses warlock mage}}
+{{tag> rpd classes subclass hero mage warlock necromancy}}
