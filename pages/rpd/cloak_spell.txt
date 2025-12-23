@@ -1,11 +1,11 @@
-====== CloakSpell ======
+====== Cloak Spell ======
 
-{{ rpd:images:cloak_spell_icon.png|CloakSpell Spell Icon }}
+{{ rpd:images:cloak_spell_icon.png|Cloak Spell Icon }}
 
-**CloakSpell** is a spell in Remixed Pixel Dungeon (Rogue Affinity) that provides temporary invisibility.
+**Cloak Spell** is a spell in Remixed Pixel Dungeon (Rogue Affinity) that provides temporary invisibility.
 
 ==== Description ====
-Step into the shadows to become unseen. Greatly reduce your chances of being detected. Can\'t be used while enemies are nearby.
+Step into the shadows to become unseen. Greatly reduce your chances of being detected. Can't be used while enemies are nearby.
 
 ==== Stats ====
   * **Magic Affinity:** Rogue
@@ -17,14 +17,14 @@ Step into the shadows to become unseen. Greatly reduce your chances of being det
   * **Duration:** Caster's skill level * 5 turns
 
 ==== Mechanics ====
-  * Applies the [[rpd:cloak_spell|Cloak Buff]] which makes the character invisible
+  * Applies the [[rpd:cloak_buff|Cloak Buff]] which makes the character invisible
   * Provides stealth bonus: Caster's skill level + caster's level / 4
   * Character appears with invisible status effect
   * Cannot be used if the caster has visible enemies nearby (caster:visibleEnemies() > 0)
-  * Lasts one turn (the buff automatically detaches at the start of the next turn)
+  * Lasts for the specified duration (the buff automatically detaches after duration expires)
 
 ==== Usage ====
-The CloakSpell spell can be used for:
+The Cloak Spell can be used for:
   * Escaping dangerous situations
   * Avoiding enemy detection during movement
   * Tactical positioning without being noticed
@@ -36,31 +36,24 @@ Classes that can use this spell include:
   * Other classes that gain access through special means
 
 ==== Strategy ====
-How to effectively use the CloakSpell spell:
+How to effectively use the Cloak Spell:
   * Use when no enemies are in sight to avoid triggering the failure message
-  * Plan movement carefully as the invisibility only lasts briefly
+  * Plan movement carefully as the invisibility only lasts for the calculated duration
   * Use to escape from groups of enemies or dangerous areas
   * Combine with other stealth-based strategies for maximum utility
   * The spell has a significant cooldown, so use it strategically
 
-==== Data Validation ====
-This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
-
-==== Content Verification ====
-* Information source: Lua Script in Remixed Dungeon codebase
-* Stats verified: Yes, extracted directly from spell class properties
-* Effect descriptions: Generated from code analysis and string resources
-* Last updated: 2025-12-09 based on Cloak.lua
-
-==== Source Code ====
-This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Cloak.lua|Cloak]]
-and the Cloak buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Cloak.lua|Cloak Buff]]
+==== Code References ====
+  * Lua Spell: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Cloak.lua|Cloak.lua]]
+  * Lua Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Cloak.lua|Cloak.lua (Buff)]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2255-L2257|CloakSpell_Name, CloakSpell_Info, CloakSpell_EnemiesNearby]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2258-L2259|CloakBuff_Name, CloakBuff_Info]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
   * [[rpd:mechanics|Game Mechanics]]
   * [[rpd:rogue_class|Rogue Affinity]]
-  * [[rpd:cloak_spell|Cloak Buff]]
+  * [[rpd:cloak_buff|Cloak Buff]]
   * [[rpd:hide_in_grass_spell|Hide in Grass Spell]]
   * [[rpd:invisibility_buff|Invisibility]]
 
