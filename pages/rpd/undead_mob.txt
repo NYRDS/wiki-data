@@ -1,33 +1,45 @@
 ====== Undead ======
 
-**Undead** is a category of mobs in Remixed Dungeon that share special characteristics and immunities.
+**Undead** is a mob in Remixed Dungeon summoned by the King boss. These are reanimated warriors that serve the King in the final dungeon levels.
+
+==== Statistics ====
+  * **HP:** 28
+  * **Defense Skill:** 15
+  * **Attack Skill:** 16
+  * **Damage:** 12-16
+  * **Armor Class:** 5
+  * **EXP for Kill:** 0
+  * **Undead Status:** Yes (immune to status effects targeting living creatures)
 
 ==== Description ====
-Undead mobs are reanimated creatures or spirits that were once living beings. They have special properties that make them different from living creatures, including immunities to certain status effects and resistances to specific types of damage.
+The Undead are reanimated warriors that serve the King. They are summoned by the King during combat and fight alongside him. They are former members of the King's army, brought back through dark magic.
 
-==== Common Properties ====
-  * **Immunities:** Immune to [[rpd:poison_buff|Poison]] and [[rpd:bleeding_buff|Bleeding]] effects
-  * **Vulnerabilities:** Often vulnerable to holy/light-based attacks and fire
-  * **Special Interactions:** Healing magic typically damages undead creatures
-  * **Resistances:** May have resistance to physical attacks
+==== Behavior ====
+  * **Summoned:** Created by the King during combat when he needs additional forces
+  * **Attack:** Has a chance to stun targets on hit (1 in MAX_ARMY_SIZE chance)
+  * **Toxic Gas Interaction:** When damaged by toxic gas, the gas blob is cleared
+  * **Death Sound:** Plays a bone-cracking death sound when killed
 
-==== Examples of Undead Mobs ====
-  * [[rpd:skeleton_mob|Skeleton]]
-  * [[rpd:zombie_mob|Zombie]]
-  * [[rpd:lich_mob|Lich]]
-  * [[rpd:wraith_mob|Wraith]]
-  * [[rpd:dread_knight_mob|Dread Knight]]
-  * [[rpd:death_knight_mob|Death Knight]]
-  * [[rpd:enslaved_soul_mob|Enslaved Soul]]
-  * [[rpd:exploding_skull_mob|Exploding Skull]]
+==== Strategy ====
+  * The King will summon Undead when his army size is below maximum
+  * They are not particularly dangerous individually but can overwhelm if many are summoned
+  * Focus on the King to prevent more from being summoned
+  * Consider using AoE attacks when multiple Undead are present
+  * Be aware that [[rpd:heal_spell|Heal]] spells will not work on them
 
 ==== Interactions ====
-  * **Healing:** Healing spells and effects typically damage undead
-  * **Status Effects:** Immune to certain status effects like poison and bleeding
-  * **Strategy:** Fire-based and holy/light-based attacks are often effective against undead
+  * **Immunities:** Immune to [[rpd:poison_buff|Poison]] and [[rpd:bleeding_buff|Bleeding]]
+  * **Vulnerabilities:** Vulnerable to holy/light-based attacks and healing magic (which damages them)
+  * **Status Effects:** Immune to status effects that target living creatures (sleep, paralysis, charm)
 
 ==== Code References ====
-  * **Java Implementation:** Various undead mobs implement the undead trait differently in their respective classes
-  * **Common Properties:** The undead trait is typically implemented through the setUndead() method in mob classes
+  * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L164|King.Undead.java]]
+  * **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * **King's Summoning:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L141-L147|King.java - summoning logic]]
 
-{{tag> rpd mobs undead category}}
+==== Related Mobs ====
+  * [[rpd:king_mob|King]] - The boss that summons Undead
+  * [[rpd:skeleton_mob|Skeleton]] - Another undead creature
+  * [[rpd:zombie_mob|Zombie]] - Another type of undead creature
+
+{{tag> rpd mobs undead boss_minion}}
