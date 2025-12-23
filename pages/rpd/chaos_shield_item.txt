@@ -1,0 +1,55 @@
+====== Chaos Shield ======
+
+{{ rpd:images:chaos_shield_item.png|Chaos Shield }}
+
+The **Chaos Shield** is a unique shield item in Remixed Dungeon that has special mechanics related to damage and charges. It's a level 3 shield that can gain and lose levels based on combat interactions.
+
+==== Description ====
+The Chaos Shield is an unusual shield with dynamic properties. It has its own charge system that can cause it to upgrade or degrade based on combat outcomes. When the shield takes damage, charges decrease and it may degrade if the charges go too low. Conversely, when the owner deals damage, charges increase and it may upgrade if the charges exceed the threshold.
+
+==== Stats ====
+  * **Level:** 3 (starts at level 3)
+  * **Appearance:** [[code:RemixedDungeon/src/main/res/values/strings_all.xml|ChaosShield_name]] - "{{ChaosShield_name}}"
+  * **Defensive Power:** Scales with level (see implementation details)
+  * **Type:** Left-hand equipment (off-hand/shield)
+
+==== Special Mechanics ====
+  * **Charges System:** The shield maintains an internal charge counter
+  * **Damage Response:** When the shield's owner takes damage, charges decrease
+  * **Upgrade on Damage Dealt:** When the owner deals damage, charges increase
+  * **Degradation:** If charges go too low after taking damage, the shield degrades (level decreases) and charges reset
+  * **Upgrading:** If charges exceed the required threshold after dealing damage, the shield upgrades (level increases) and charges reset
+  * **Cursed Behavior:** If cursed, the shield doesn't contribute to these mechanics
+
+==== Implementation Details ====
+The Chaos Shield is implemented as a Lua script that extends the shields library:
+
+  * Uses the shields.makeShield() function from the shields library
+  * Has special handling in ownerTakesDamage() and ownerDoesDamage() events
+  * Level scaling affects its defensive capabilities
+  * Curse status disables the special mechanics
+
+==== Content Verification ====
+* Information source: Lua script [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/ChaosShield.lua|ChaosShield.lua]]
+* Implementation: Based on shields library functions
+* String resources: [[code:RemixedDungeon/src/main/res/values/strings_all.xml|ChaosShield_name]] and [[code:RemixedDungeon/src/main/res/values/strings_all.xml|ChaosShield_desc]]
+* Last updated: December 2025, source: Remixed Dungeon 1.9.3
+
+==== Code References ====
+* Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/ChaosShield.lua|ChaosShield.lua]]
+* Shield Library: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/shields.lua|shields.lua]]
+* String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+
+==== String Resources ====
+* [[code:RemixedDungeon/src/main/res/values/strings_all.xml|ChaosShield_name]]
+* [[code:RemixedDungeon/src/main/res/values/strings_all.xml|ChaosShield_desc]]
+
+==== See Also ====
+  * [[rpd:shields|Shields]] - All shield types in the game
+  * [[rpd:armor|Armor]] - Other defensive equipment
+  * [[rpd:items|Items]] - All items in the game
+  * [[rpd:chaos_staff_item|Chaos Staff]] - Another item with chaos-themed mechanics
+  * [[rpd:chaos_bow_item|Chaos Bow]] - Another item with chaos-themed mechanics
+  * [[rpd:buffs|Buffs]] - Status effects that might interact with shields
+
+{{tag> rpd items shields chaos_chaotic chaos_shield_item }}
