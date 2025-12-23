@@ -1,32 +1,49 @@
 ====== Traps ======
 
-Traps are environmental hazards scattered throughout the dungeon that activate when stepped on or triggered in various ways. They can be found in all levels of the dungeon and pose a constant threat to adventurers.
+{{ rpd:images:trap_example.png|Trap Example }}
 
-==== Common Traps ====
-  * **Poison Trap**: Inflicts poison damage over time
-  * **Toxic Trap**: Releases toxic gas in an area
-  * **Fire Trap**: Erupts in flames, dealing fire damage
-  * **Frost Trap**: Covers area in freezing air
-  * **Paralytic Trap**: Paralyzes the victim temporarily
-  * **Alarm Trap**: Creates a loud noise that attracts nearby monsters
-  * **Lightning Trap**: Discharges electricity, shocking the trigger
-  * **Gripping Trap**: Causes damage and immobilizes the trigger
-  * **Burning Trap**: Ignites the trigger in flames
-  * **Rockfall Trap**: Causes rocks to fall from the ceiling
+**Traps** are hidden dangers in the dungeon that activate when stepped on or triggered by other means. They can cause various detrimental effects to the hero.
 
-==== Detection ====
-  * Traps can be detected by careful exploration
-  * Characters with high perception have better chances of spotting traps
-  * Certain rings and items can improve trap detection
-  * Some classes have special abilities to detect or avoid traps
+==== Types of Traps ====
+  * **[[rpd:poison_trap|Poison Trap]]**: Inflicts poison damage over time
+  * **[[rpd:fire_trap|Fire Trap]]**: Deals fire damage and may ignite the victim
+  * **[[rpd:alarm_trap|Alarm Trap]]**: Alerts all enemies in the vicinity
+  * **[[rpd:lightning_trap|Lightning Trap]]**: Deals electrical damage
+  * **[[rpd:gravel_trap|Gravel Trap]]**: Reveals invisible creatures and items
+  * **[[rpd:summoning_trap|Summoning Trap]]**: Summons hostile creatures
+  * **[[rpd:teleportation_trap|Teleportation Trap]]**: Randomly teleports the hero
+  * **[[rpd:paralytic_gas_trap|Paralytic Gas Trap]]**: Paralyzes the hero temporarily
+  * **[[rpd:toxic_gas_trap|Toxic Gas Trap]]**: Releases toxic gas in an area
 
-==== Disabling ====
-  * Most traps can be disarmed with sufficient skill
-  * Rogues and their subclasses are particularly skilled at trap disarmament
-  * Some items and equipment can protect against certain trap effects
+==== Trap Detection ====
+  * **Rogue Advantage**: Rogues have a higher chance to detect traps
+  * **Awareness**: Some items or abilities enhance trap detection
+  * **Visual Clues**: Most traps are hidden but can be spotted with careful attention
+
+==== Trap Avoidance ====
+  * **Stealth**: Moving carefully can sometimes avoid triggering traps
+  * **Detection Items**: Some items can reveal nearby traps
+  * **Safe Movement**: Throwing items or using pets to test dangerous areas
+
+==== Trap Mechanics ====
+  * **Activation**: Usually triggered when a character moves onto the trap's cell
+  * **Area of Effect**: Some traps affect an area around the trigger point
+  * **One-time Use**: Most traps activate once and then become harmless
+
+==== Technical Details ====
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap.java]]
+  * Level objects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObject.java|LevelObject.java]]
+  * Trap factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObjectsFactory.java|LevelObjectsFactory.java]]
 
 ==== Code References ====
-* Trap mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap.java]]
-* Trap definitions: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObjectsFactory.java|LevelObjectsFactory.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L150-L160|Hero.java trap handling]]
 
-{{tag> rpd mechanics hazards}}
+==== See Also ====
+  * [[rpd:level_objects|Level Objects]]
+  * [[rpd:enemies|Enemies]]
+  * [[rpd:mechanics|Game Mechanics]]
+  * [[rpd:tengu_mob|Tengu]] (uses traps strategically)
+
+{{tag> rpd mechanics traps hazards }}
