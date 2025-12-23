@@ -2,54 +2,47 @@
 
 {{ rpd:images:tome_of_mastery_item.png|Tome of Mastery }}
 
-The **Tome of Mastery** is a powerful artifact that allows a hero to master a new subclass of their current class.
+**Tome of Mastery** is a unique item that allows the hero to choose a subclass for their class, unlocking additional abilities and specialization options.
 
-==== Description ====
-This ancient tome contains the secrets of advanced techniques for a specific hero class. Reading it allows a hero to specialize in a mastery path and gain powerful subclass abilities.
+==== Function ====
+  * **Subclass Selection**: Allows choosing between different subclass options when found
+  * **One-time Use**: Each class can only select a subclass once
+  * **Special Reward**: Often found as a boss drop or special reward
 
-==== Properties ====
-  * **Type:** Artifact / Quest Item
-  * **Rarity:** Unique
-  * **Slot:** None (consumed when used)
-  * **Class:** All (class-specific effect)
+==== Availability ====
+  * **[[rpd:tengu_mob|Tengu]]**: Drops a Tome of Mastery if the player has not yet acquired one and is not a Necromancer or Gnoll
+  * **Special Quests**: May be found as rewards for completing special challenges
+  * **Hidden Locations**: Sometimes found in secret areas of the dungeon
 
-==== Usage ====
-  * **Primary Function:** Grants access to a hero's subclass
-  * **Consumed:** Yes, when read to select a subclass
-  * **Restriction:** Only works for the appropriate hero class
+==== Subclass Options ====
+Each class has specific subclass options:
+  * **[[rpd:warrior_class|Warrior]]**: [[rpd:gladiator_subclass|Gladiator]] or [[rpd:brawler_subclass|Brawler]]
+  * **[[rpd:mage_class|Mage]]**: [[rpd:battlemage_subclass|Battlemage]] or [[rpd:wizard_subclass|Wizard]]
+  * **[[rpd:rogue_class|Rogue]]**: [[rpd:freerunner_subclass|Freerunner]] or [[rpd:assassin_subclass|Assassin]]
+  * **[[rpd:huntress_class|Huntress]]**: [[rpd:sniper_subclass|Sniper]] or [[rpd:warden_subclass|Warden]]
+  * **[[rpd:elf_class|Elf]]**: [[rpd:shaman_subclass|Shaman]] or [[rpd:witch_doctor_subclass|Witch Doctor]]
+  * **[[rpd:necromancer_class|Necromancer]]**: [[rpd:lich_subclass|Lich]] or [[rpd:death_knight_subclass|Death Knight]]
+  * **[[rpd:gnoll_class|Gnoll]]**: [[rpd:shaman_subclass|Shaman]] or [[rpd:witch_doctor_subclass|Witch Doctor]]
 
-==== Acquisition ====
-  * **Sources:**
-    * Dropped by [[rpd:tengu_mob|Tengu]] in the Prison area (if subclass not yet acquired and hero is not Necromancer or Gnoll)
-    * Found in special level containers
-    * Granted through certain quests
-  * **Drop Rate:** 100% from Tengu if subclass not yet acquired
-  * **Limitation:** Each hero can only use one Tome of Mastery
+==== Strategy ====
+  * **Timing**: Consider waiting until later in the game to use it when subclass benefits are more impactful
+  * **Class Synergy**: Choose subclasses that complement your current equipment and strategy
+  * **Flexibility**: In some game versions, you may want to save it for a different character
 
-==== Mechanics ====
-  * When read, presents a choice of available subclasses for the hero's class
-  * After selection, permanently grants access to the chosen subclass abilities
-  * Consumed upon use, with no replacement available
-  * Critical item for character development and specialization
+==== Technical Details ====
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/TomeOfMastery.java|TomeOfMastery.java]]
+  * Class system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
+  * Drop logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L40|Tengu.java drop logic]]
 
-==== Notes ====
-  * Each hero class has specific subclass options
-  * Should be saved for when ready to specialize
-  * Cannot be used if subclass has already been acquired
-  * Class-specific abilities will be locked until used
-
-==== Content Verification ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/TomeOfMastery.java|TomeOfMastery.java]]
-  * Implementation: Artifact that grants subclass access
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1792-L1794|TomeOfMastery_Name, TomeOfMastery_Info, TomeOfMastery_Promote]]
-  * Machine-readable data: [[mr:tome_of_mastery_item|mr:tome_of_mastery_item]]
-  * Last updated: December 21, 2025
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/TomeOfMastery.java|TomeOfMastery.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2563-L2568|TomeOfMastery strings]]
 
 ==== See Also ====
   * [[rpd:subclasses|Subclasses]]
   * [[rpd:hero_classes|Hero Classes]]
-  * [[rpd:tengu_mob|Tengu]] (source)
-  * [[rpd:artifacts|Artifacts]]
+  * [[rpd:tengu_mob|Tengu]] (drops the tome)
   * [[rpd:items|Items]]
 
-{{tag> rpd items artifact}}
+{{tag> rpd items books subclass }}
