@@ -6,51 +6,57 @@ This page contains raw code references and configuration excerpts for the Black 
 * **getEntityKind() value:** BlackRat
 
 ==== Java Implementation ====
-* **Class location:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/BlackRat.lua|BlackRat.lua]] (custom mob implemented in Lua)
-* **Inheritance:** Based on generic mob class in game engine
+* **Implementation:** Custom mob implemented via JSON configuration using CustomMob.java base class
+* **Base class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/CustomMob.java|CustomMob.java]]
 
-==== Lua Implementation ====
-**Basic stats:**
-<code lua>
-local mob = {}
- 
-function mob:getEntityKind()
-    return "BlackRat"
-end
-
-function mob:hp()
-    return 5
-end
-
-function mob:expForKill()
-    return 1
-end
-
-function mob:maxLvl()
-    return 5
-end
-
-function mob:attackSkill()
-    return 10
-end
-
-function mob:defenseSkill()
-    return 5
-end
-
-function mob:damageRoll()
-    return math.random(1, 3)
-end
-
-function mob:attackProc( enemy, damage )
-    return damage
-end
+==== JSON Configuration ====
+**Main mob configuration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BlackRat.json|mobsDesc/BlackRat.json]]
+<code json>
+{
+   "defenseSkill"  :1,
+   "attackSkill"   :10,
+   "exp"           :1,
+   "maxLvl"        :1,
+   "dmgMin"        :1,
+   "dmgMax"        :1,
+   "dr"            :1,
+   "baseSpeed"     :2,
+   "attackDelay": 1,
+   "ht": 5,
+   "viewDistance": 1,
+   "lootChance": 1,
+   "name": "Black Rat",
+   "name_objective": "Black Rat",
+   "description": "Just a common house rat, not marsupial",
+   "gender": "feminine",
+   "spriteDesc": "spritesDesc/BlackRat.json",
+   "walkingType": "NORMAL",
+   "scriptFile": "scripts/mobs/ScriptedThief",
+   "loot": {
+      "kind": "RatHide"
+   }
+}
 </code>
 
-==== Configuration ====
-* **File location:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/BlackRat.lua|BlackRat.lua]]
-* **Entity Kind:** BlackRat
+**Sprite configuration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/BlackRat.json|spritesDesc/BlackRat.json]]
+<code json>
+{
+  "texture" : "rat.png",
+  "width"  : 16,
+  "height" : 15,
+  "idle"   : { "fps" : 2,  "looped" : true,     "frames" : [0,0,0,1] },
+  "run"    : { "fps" : 14, "looped" : true,     "frames" : [6,7,8,9,10] },
+  "attack" : { "fps" : 11, "looped" : false,    "frames" : [2,3,4,5,0] },
+  "die"    : { "fps" : 11, "looped" : false,    "frames" : [11,12,13,14] },
+  "zapEffect" : "Shadow"
+}
+</code>
+
+==== Lua Implementation ====
+* **Script file:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/ScriptedThief.lua|ScriptedThief.lua]]
+* **Behavior:** Based on thief behavior (steals items from hero when attacking)
 
 ==== String Resources ====
-* **BlackRat_Name:** black rat
-* **BlackRat_Desc:** A rare black rat. It can be dangerous in numbers.
+* **No specific string resources** - uses properties from JSON configuration
+* **Name:** Black Rat
+* **Description:** Just a common house rat, not marsupial
