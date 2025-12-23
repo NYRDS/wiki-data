@@ -1,38 +1,60 @@
 ====== mr:tengu_mob ======
 
 === Entity Information ===
-  * **Class Name**: [[code:RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/Tengu.java|Tengu.java]]
+  * **Class Name**: [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java|Tengu.java]]
   * **Entity Kind**: Tengu
   * **Type**: Mob
+  * **Parent Class**: Boss
 
 === Statistics ===
-  * **HP**: 150
-  * **HT**: 150
+  * **HP**: 120
+  * **HT**: 120
   * **Defense Skill**: 20
-  * **Attack Skill**: 30
-  * **Damage Min**: 15
-  * **Damage Max**: 25
-  * **DR (Damage Resistance)**: 8
-  * **EXP for Kill**: 18
+  * **Attack Skill**: 20
+  * **Damage Min**: 8
+  * **Damage Max**: 15
+  * **DR (Damage Resistance)**: 5
+  * **EXP for Kill**: 20
   * **Max Lvl**: 10
 
 === Special Abilities ===
-  * **Phase**: Tengu is able to teleport to avoid attacks.
-  * **Exploding Kunai**: Throws exploding kunai at the hero.
-  * **Mimic**: Creates a copy of itself to confuse enemies.
-  * **Sneak Attack**: Can attack from behind for bonus damage.
-  
+  * **Trap Mastery**: Makes extensive use of poison traps during combat
+  * **Smoke Bomb Escapes**: Periodically teleports to reset positioning with 5-turn cooldown (JUMP_DELAY constant)
+  * **High Evasion**: Difficult to hit consistently due to mobility
+  * **Immunities**: Resistant to Toxic Gas and Poison effects
+  * **Ballistica Attack**: Can attack from a distance using Ballistica line-of-sight calculation
+  * **Self-Healing**: When unable to jump to a valid position, heals 10% of max HP
+
 === Drops ===
-  * **Tengu Liver**: With 1.0f chance (always)
-  * **Kunai**: With 1.0f chance (always)
-  * **Dart**: With 0.5f chance
+  * **Tome of Mastery**: If not yet acquired by non-Necromancer/Gnoll heroes
+  * **Tengu Liver**: For Gnoll class heroes specifically
+  * **Skeleton Key**: Unlocks the Demon Halls area
 
 === Code References ===
-  * [[code:RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/Tengu.java|Tengu.java]]
+  * [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java|Tengu.java]]
+  * [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java|Boss.java]]
   * [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]]
+  * [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap.java]]
+  * [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas.java]]
+  * [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
 
 === String Resources ===
-  * [[code:RemixedDungeon/src/main/res/values/strings_all.xml#L1500-L1502|Tengu_Name, Tengu_Info, Tengu_Gender]]
+  * [[code:RemixedDungeon/src/main/res/values/strings_all.xml#L1344-L1346|Tengu_Name, Tengu_Gender, Tengu_Name_Objective]]
+  * [[code:RemixedDungeon/src/main/res/values/strings_all.xml#L1347|Tengu_Desc]]
+  * [[code:RemixedDungeon/src/main/res/values/strings_all.xml#L1348|Tengu_Info1]]
+  * [[code:RemixedDungeon/src/main/res/values/strings_all.xml#L1349|Tengu_Info2]]
+  * [[code:RemixedDungeon/src/main/res/values/strings_all.xml#L1896|Tengu_Info3]]
 
 === JSON Configuration ===
-  * [[code:RemixedDungeon/src/main/assets/mobsDesc/tengu.json|tengu.json]]
+  * [[code:RemixedDungeon/src/main/assets/mobsDesc/Tengu.json|Tengu.json]]
+
+=== Lua Scripts ===
+  * (No specific Lua scripts for Tengu)
+
+=== Additional Notes ===
+  * Tengu is a boss mob found in the Prison area
+  * Jump cooldown is defined by JUMP_DELAY constant (value: 5)
+  * Uses Ballistica for ranged attacks
+  * Has specific dialogue depending on hero's gender
+  * Has special drop logic based on hero class
