@@ -1,25 +1,42 @@
 ====== Mana ======
 
-**Mana** is the magical energy resource used by spellcasters in Remixed Dungeon. It is required for casting most spells and some magical abilities.
+{{ rpd:images:mana_icon.png|Mana Icon }}
+
+**Mana** is a resource system in Remixed Dungeon that powers spells and magical abilities for certain classes and character builds.
+
+==== Overview ====
+Mana represents the magical energy required to cast spells and use magical abilities. It's a limited but renewable resource that players must manage strategically.
 
 ==== Mechanics ====
-  * Used to cast spells
-  * Naturally regenerates over time when not in combat
-  * Different spells cost different amounts of mana
-  * Some rings and equipment affect mana capacity or regeneration
+  * **Regeneration**: Mana slowly regenerates over time during gameplay
+  * **Consumption**: Spells and magical abilities consume a specific amount of mana
+  * **Capacity**: Character's maximum mana capacity may be affected by equipment and abilities
+  * **Efficiency**: Some equipment and abilities may increase mana efficiency
 
-==== Regeneration ====
-  * Regenerates slowly during rest (not during combat)
-  * Some items and rings can improve regeneration rate
-  * Certain conditions can slow or stop mana regeneration
+==== Usage ====
+  * **Spell Casting**: Most spells require a certain amount of mana to cast
+  * **Magical Abilities**: Some special abilities consume mana
+  * **Resource Management**: Players must balance mana use with other resources
 
-==== Equipment Interactions ====
-  * **Ring of Mana**: Improves mana regeneration
-  * **Potion of Mana**: Instantly restores mana
-  * Various other equipment can affect mana mechanics
+==== Classes and Affinities ====
+  * **Rogue Class**: Uses mana for throwing spells like [[rpd:kunai_throw_spell|Kunai Throw]]
+  * **Mage Class**: May have special mana mechanics
+  * **Other Classes**: May gain access to mana-based abilities through special means
+
+==== Technical Details ====
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] (mana-related attributes)
+  * Class: Integrated into the hero system
+  * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]]
 
 ==== Code References ====
-* Mana mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/mana/ManaSystem.java|ManaSystem.java]]
-* Character mana: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/hero/Hero.java|Hero.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L18|KunaiThrow.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]]
 
-{{tag> rpd mechanics resources magic}}
+==== See Also ====
+  * [[rpd:spells|Spells]]
+  * [[rpd:magic|Magic System]]
+  * [[rpd:kunai_throw_spell|Kunai Throw Spell]]
+  * [[rpd:mechanics|Game Mechanics]]
+
+{{tag> rpd mechanics magic resources }}
