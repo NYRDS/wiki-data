@@ -9,6 +9,7 @@
   * **Вес:** 1
   * **Прочность:** Одноразовый предмет
   * **Ограничения по классу:** Может использоваться всеми классами героев
+  * **Цена:** 50 золотых за единицу
   * **Проклятия:** Не может использоваться на проклятых предметах
 
 ==== Функция ====
@@ -17,6 +18,9 @@
   * **Улучшение снаряжения:** Улучшает броню с помощью магических свойств
   * **Целевые предметы:** Может использоваться на броне и [[ru:rpd:blank_scroll_item|Пустых свитках]]
   * **Одиночное действие:** Использует действие 'Начертить' для выполнения любой из функций
+  * **Время действия:** Занимает 2 хода на каждое использование
+  * **Эффекты частиц:** Создает фиолетовые частицы при использовании (PurpleParticle.BURST)
+  * **Звуковые эффекты:** Воспроизводит звук горения при использовании (Assets.SND_BURNING)
 
 ==== Особые взаимодействия ====
   * **С броней:** Добавляет случайный [[ru:rpd:glyph_item|глиф]] на броню (заменяя любой существующий глиф)
@@ -37,16 +41,16 @@
   * Как награды за выполнение сложных задач
 
 ==== Проверка содержимого ====
-  * Java-класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Stylus.java|Stylus.java]] (Примечание: В коде называется Stylus, а не ArcaneStylus)
-  * Расположение исходного кода: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Stylus.java
-  * Строковый ресурс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L481|Stylus_Name]]
-  * Реализация: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L250|registerItemClass(Stylus.class)]]
-  * Тип сущности: stylus (через getEntityKind(), возвращаяющий ItemFactory.itemNameByClass(getClass()), который возвращает простое имя класса)
+  * Java-класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Stylus.java|Stylus.java]]
+  * Строковые ресурсы (рус.): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L481-L485|Stylus_Name, Stylus_ACInscribe, Stylus_Info, Stylus_SelectArmor, Stylus_Inscribed]]
+  * Строковые ресурсы (англ.): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L475-L479|Stylus_Name, Stylus_ACInscribe, Stylus_Info, Stylus_SelectArmor, Stylus_Inscribed]]
   * Машинно-читаемые данные: [[mr:stylus_item|mr:stylus_item]]
 
-==== Связанные предметы ====
+==== Связанные страницы ====
   * [[ru:rpd:blank_scroll_item|Пустой свиток]] - Может быть преобразован в случайный свиток
   * [[ru:rpd:glyph_item|Глифы]] - Эффекты, которые можно добавить на броню
   * [[ru:rpd:scroll_item|Свитки]] - Результат использования на пустых свитках
+  * [[ru:rpd:armor_item|Броня]] - Цель для нанесения глифов
+  * [[ru:rpd:inscription_mechanic|Начертание]] - Механика нанесения глифов
 
 {{tag> ru:rpd ru:items}}
