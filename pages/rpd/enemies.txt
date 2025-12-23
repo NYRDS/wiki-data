@@ -1,47 +1,56 @@
 ====== Enemies ======
 
-==== Description ====
-Enemies are hostile mobs in Remixed Pixel Dungeon that attack the player on sight. They are the primary source of combat challenges in the game.
+{{ rpd:images:enemy_example.png|Enemy Example }}
 
-==== Categories ====
-  * [[rpd:rats|Rats]] - Basic enemies found throughout the dungeon
-  * [[rpd:gnolls|Gnolls]] - Humanoid enemies with varied abilities
-  * [[rpd:crabs|Crabs]] - High-defense enemies in the sewers
-  * [[rpd:spiders|Spiders]] - Web-spinning enemies that can trap players
-  * [[rpd:elemental_mob|Elementals]] - Magic-themed enemies based on elements
-  * [[rpd:undead_mob|Undead]] - Reanimated corpses with special abilities
-  * [[rpd:mimic_mob| Mimics]] - Treasure chests that attack when opened
-  * [[rpd:bosses|Bosses]] - Powerful enemies with unique mechanics
+**Enemies** are hostile creatures that inhabit the dungeon and oppose the hero. This page serves as an index for various types of enemies in Remixed Dungeon.
 
-==== Common Enemy Properties ====
-  * **Hostility** - Enemies attack the player when in line of sight
-  * **Aggression Range** - Most enemies will chase the player a short distance
-  * **Drops** - Enemies provide loot when defeated
-  * **AI Behavior** - Enemies have different intelligence patterns (ranging from simple to complex)
+==== Enemy Categories ====
+  * **[[rpd:mobs|Mobs]]**: General term for mobile enemies
+  * **[[rpd:rats|Rats]]**: Common early-game enemies
+  * **[[rpd:gnolls|Gnolls]]**: Humanoid enemies with various specializations
+  * **[[rpd:elementals|Elementals]]**: Magical beings of different elements
+  * **[[rpd:undead|Undead]]**: Corpses reanimated with dark magic
+  * **[[rpd:dwarves|Dwarves]]**: Inhabitants of the dungeon's deeper levels
+  * **[[rpd:demons|Demons]]**: Powerful creatures from the Halls
 
-==== Combat Interactions ====
-  * Enemies will attack if the player is adjacent
-  * Some enemies have ranged attacks
-  * Enemies may have special abilities or immunities
-  * Different enemy types may appear in different dungeon levels
+==== Enemy Types by Level ====
+  * **Early Game**: [[rpd:rat_mob|Rats]], [[rpd:gnoll_mob|Gnolls]], [[rpd:crab_mob|Crabs]]
+  * **Mid Game**: [[rpd:skeleton_mob|Skeletons]], [[rpd:thief_mob|Thieves]], [[rpd:guard_mob|Guards]]
+  * **Late Game**: [[rpd:golem_mob|Golems]], [[rpd:warlock_mob|Warlocks]], [[rpd:elemental_mob|Elementals]]
+  * **Very Late**: [[rpd:acidic_mob|Acidic Scorpios]], [[rpd:monk_mob|Monks]], [[rpd:piranha_mob|Piranhas]]
 
-==== Dungeon Level Distribution ====
-  * **Sewers** - Rats, Gnolls, Crabs, Slimes
-  * **Prison** - Skeletons, Guards, Wraiths
-  * **Caves** - Bats, Brutes, Spiders, Shaman
-  * **Metropolis** - Elementals, Golems, Warlocks, Monks
-  * **Halls** - Demons, Succubi, Death knights, Yog's servants
+==== Enemy Mechanics ====
+  * **[[rpd:ai|AI]]**: How enemies behave and make decisions
+  * **[[rpd:combat|Combat]]**: How enemies engage in fights
+  * **[[rpd:drop_tables|Drop Tables]]**: What items enemies drop when defeated
+  * **[[rpd:special_abilities|Special Abilities]]**: Unique powers enemies possess
 
-==== Related ====
-  * [[rpd:mobs|Mobs]] - General information about mobile creatures
-  * [[rpd:combat|Combat]] - How combat works in the game
-  * [[rpd:ai|AI]] - Information about enemy behavior
-  * [[rpd:bosses|Bosses]] - Powerful enemy information
-  * [[rpd:immunities|Immunities]] - What status effects enemies are immune to
-  * [[rpd:resistances|Resistances]] - What status effects enemies resist
+==== Boss Enemies ====
+  * **[[rpd:bosses|Bosses]]**: Powerful enemies with unique mechanics
+  * **[[rpd:tengu_mob|Tengu]]**: Boss of the Prison area
+  * **[[rpd:dm300_mob|DM-300]]**: Mechanical boss in the Goo area
+  * **[[rpd:king_mob|King]]**: Boss of the Dwarf Metropolis
+  * **[[rpd:yog_mob|Yog-Dzewa]]**: Final boss of the Demon Halls
 
-==== Source Code ====
-  * Base mob class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
-  * Individual enemy implementations in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/|actors/mobs/]]
+==== Enemy Resistsances and Weaknesses ====
+  * **Elemental Resistances**: Fire, cold, poison, and other resistances
+  * **Status Effect Immunities**: Resistance to sleep, paralysis, etc.
+  * **Physical Defenses**: Armor and defense rates against physical attacks
 
-{{tag> rpd mechanics mobs}}
+==== Technical Details ====
+  * Base implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * AI System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java#L100-L150|Mob.java AI methods]]
+  * Entity system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+
+==== See Also ====
+  * [[rpd:mobs|Mobs]]
+  * [[rpd:bosses|Bosses]]
+  * [[rpd:combat|Combat]]
+  * [[rpd:levels|Levels]]
+
+{{tag> rpd enemies index mobs }}
