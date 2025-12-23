@@ -1,47 +1,68 @@
 ====== Combat ======
 
-**Combat** in Remixed Dungeon refers to the system of fighting between characters (heroes and mobs) using weapons, spells, and abilities.
+{{ rpd:images:combat_example.png|Combat Example }}
 
-==== Description ====
-Combat is the core mechanic of Remixed Dungeon. It involves turn-based tactical fighting where characters take turns to attack, use abilities, or move around the dungeon.
+**Combat** is the system for resolving conflicts between characters (hero and enemies) in Remixed Dungeon.
 
-==== Basic Combat ====
-  * **Turn-based system**: Characters take turns based on their speed
-  * **Melee combat**: Direct attacks with weapons or fists
-  * **Ranged combat**: Attacks from a distance using ranged weapons or spells
-  * **Accuracy vs Defense**: Attack success is determined by attacker's accuracy vs defender's evasion
+==== Basic Combat Mechanics ====
+  * **Turn-based**: Combat happens in turns, with each actor taking actions sequentially
+  * **Initiative**: Determined by character speed and status effects
+  * **Attack Roll**: Calculated using attacker's skill vs defender's defense skill
+  * **Damage**: Calculated based on weapon damage or spell power minus defense
 
-==== Combat Stats ====
-Key combat statistics include:
-  * **Attack Skill**: Determines hit chance in melee attacks
-  * **Defense Skill**: Determines evasion chance
-  * **Damage**: How much damage each attack deals
-  * **Armor**: Reduces incoming damage
-  * **Speed**: Affects turn frequency
+==== Attack Mechanics ====
+  * **Attack Skill**: Determines the chance to hit an enemy
+  * **Defense Skill**: Determines the chance to avoid being hit
+  * **Hit Chance**: Based on the formula involving both attack and defense skills
+  * **Critical Hits**: Occur with a certain probability for extra damage
+
+==== Damage Calculation ====
+  * **Weapon Damage**: Varies randomly within a range for each weapon
+  * **Defense**: Reduces incoming damage by a certain amount (DR - Defense Rate)
+  * **Elemental Effects**: Fire, cold, poison, and other elements may modify damage
+  * **Status Effects**: Buffs/debuffs may affect damage output or resistance
 
 ==== Combat Types ====
-  * **Melee Combat**: [[rpd:melee|Melee]] - Close-range fighting
-  * **Ranged Combat**: Attacking from a distance
-  * **Spell Combat**: Using magical abilities
+  * **[[rpd:melee_combat|Melee Combat]]**: Close-range fighting with weapons
+  * **[[rpd:ranged_combat|Ranged Combat]]**: Attacking from a distance with bows, throwing weapons, or spells
+  * **Spell Combat**: Using magical abilities to attack enemies
 
-==== Combat Mechanics ====
-  * **Hit Chance Formula**: Based on accuracy and evasion
-  * **Damage Range**: Weapons have minimum and maximum damage
-  * **Critical Hits**: Chance to deal extra damage
-  * **Blocking**: Some abilities can block incoming attacks
+==== Combat Actions ====
+  * **Attack**: Basic melee or ranged attack
+  * **Special Abilities**: Class-specific combat techniques
+  * **Item Use**: Consuming potions, scrolls, or other items during combat
+  * **Movement**: Positioning for tactical advantage
 
-==== Combat Tips ====
-  * Know your opponent's stats and abilities
-  * Use terrain to your advantage
-  * Manage your equipment and consumables
-  * Time your special abilities for maximum effect
-  * Retreat when necessary to heal
+==== Combat Strategy ====
+  * **Positioning**: Controlling distance and movement to optimize combat
+  * **Equipment**: Using appropriate weapons and armor for each situation
+  * **Resources**: Managing health, mana, and consumables effectively
+  * **Enemy Knowledge**: Understanding enemy weaknesses and abilities
 
-==== Related Pages ====
-  * [[rpd:melee|Melee Combat]]
-  * [[rpd:ranged_weapons|Ranged Weapons]]
-  * [[rpd:spells|Spells]]
-  * [[rpd:accuracy|Accuracy]]
-  * [[rpd:defense|Defense]]
+==== Advanced Combat Systems ====
+  * **[[rpd:enchantments|Weapon Enchantments]]**: Special weapon properties that affect combat
+  * **[[rpd:glyphs|Armor Glyphs]]**: Special armor properties that affect combat
+  * **[[rpd:buffs_and_debuffs|Buffs and Debuffs]]**: Temporary status effects in combat
+  * **[[rpd:mechanics#enemy_ai|Enemy AI]]**: How enemies behave in combat
 
-{{tag> rpd mechanics combat}}
+==== Technical Details ====
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]]
+  * Combat system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+  * Attack mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L265-L280|Hero.java combat methods]]
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+
+==== See Also ====
+  * [[rpd:melee_combat|Melee Combat]]
+  * [[rpd:ranged_combat|Ranged Combat]]
+  * [[rpd:enemies|Enemies]]
+  * [[rpd:weapons|Weapons]]
+  * [[rpd:armor|Armor]]
+  * [[rpd:buffs|Buffs]]
+  * [[rpd:debuffs|Debuffs]]
+
+{{tag> rpd mechanics combat }}
