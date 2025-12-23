@@ -1,19 +1,39 @@
 ====== Ballistica ======
 
-Ballistica is a line-of-sight calculation system used in Remixed Dungeon for determining how ranged attacks and spells travel through the dungeon terrain. It's used by various mechanics including the Tengu's ranged attacks.
+**Ballistica** is the line-of-sight and ranged attack calculation system used in Remixed Dungeon for determining if ranged attacks, spells, and other line-based interactions can reach their targets.
 
-==== Description ====
-Ballistica calculates the path for ranged attacks, spells, and other line-of-sight effects, accounting for obstacles like walls and determining which targets can be reached from a given position.
+==== Overview ====
+Ballistica is the fundamental system that calculates straight-line paths between two points in the dungeon grid, accounting for walls and other blocking terrain features.
 
 ==== Mechanics ====
-* Used for ranged attacks and spells
-* Calculates path considering dungeon terrain
-* Determines valid targets for ranged effects
-* Used in various game mechanics beyond just Tengu
+  * **Line Calculation**: Determines a direct path between source and target positions
+  * **Obstacle Detection**: Identifies which cells in the path are passable or blocked
+  * **Target Validation**: Ensures that ranged attacks and spells can reach their intended targets
+  * **Distance Calculation**: Used for range limits of various abilities
+
+==== Applications ====
+  * **Ranged Attacks**: Validates if thrown weapons can reach targets
+  * **Spell Targeting**: Determines if spells can reach their targets
+  * **Sight Detection**: Used by enemies to detect the hero when unobstructed
+  * **Special Abilities**: Powers abilities that work in straight lines
+
+==== Technical Details ====
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]]
+  * Class: Core mechanics class for line calculations
+  * Algorithm: Calculates the path using line-of-sight algorithms that consider dungeon geometry
+
+==== Usage in Tengu Combat ====
+  * **Ranged Attacks**: Tengu uses Ballistica to determine if it can attack the hero from a distance
+  * **Combat Strategy**: Uses line-of-sight checks to position itself strategically
+  * **Distance Management**: Evaluates line-of-sight to know if it needs to use teleportation
 
 ==== Code References ====
-* Ballistica mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]]
-* Used by Tengu for distant attacks
-* Used by various other ranged mechanics in the game
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L41|Tengu.java - Ballistica usage]]
 
-{{tag> rpd mechanics}}
+==== See Also ====
+  * [[rpd:combat|Combat]]
+  * [[rpd:ranged_combat|Ranged Combat]]
+  * [[rpd:mechanics|Game Mechanics]]
+
+{{tag> rpd mechanics combat ranged }}
