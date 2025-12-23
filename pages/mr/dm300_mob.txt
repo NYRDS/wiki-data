@@ -1,18 +1,46 @@
-====== dm300_mob ======
+====== DM300 Mob - Code References ======
 
-=== Class Name ===
-RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/Dm300.java
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/DM300.java|DM300.java]]
 
-=== Entity Kind ===
-dm300_mob
+===== Entity Kind =====
+DM300
 
-=== Stats ===
-- Health: 
-- Exp: 
-- Level: 
+===== Stats =====
+  * **Health**: 200 (HT: 200)
+  * **EXP for Kill**: 30
+  * **Defense Skill**: 18
+  * **Attack Skill**: 28
+  * **Damage**: 18-24
+  * **Armor**: 10 DR (Defense Rating)
+  * **Level**: Boss
 
-=== Drops ===
-- [[rpd:evil_engineer_hat_item|Evil Engineer Hat]]
+===== Drops =====
+  * [[rpd:chaos_crystal_item|Chaos Crystal]] (33.3% chance) or [[rpd:ring_of_thorns_item|Ring of Thorns]] (randomly enchanted, 33.3% chance)
+  * [[rpd:skeleton_key_item|Skeleton Key]]
 
-=== Code Reference ===
-- https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/Dm300.java
+===== Immunities =====
+  * [[rpd:toxic_gas_buff|Toxic Gas]]
+  * [[rpd:bleeding_buff|Bleeding]]
+  * [[rpd:terror_buff|Terror]]
+
+===== Special Abilities =====
+  * Releases toxic gas periodically (30 units of gas every turn)
+  * Repairs itself when stepping on traps if HP < HT (heals 1-50% of max HP)
+  * Stuns adjacent characters when moving (2 turns)
+  * Creates rock debris when moving, with camera shake and sound effects
+
+===== JSON Configuration =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/DM300.json|DM300.json]] - Sprite configuration
+
+===== String Resources =====
+  * <code xml>
+<string name="DM300_Name">DM-300</string>
+<string name="DM300_Desc">This machine was created by the Dwarves several centuries ago. Later, Dwarves started to replace machines with golems, elementals and even demons. Eventually it led their civilization to the decline. The DM-300 and similar machines were typically used for construction and mining, and in some cases, for city defense.</string>
+<string name="DM300_Info1">DM-300 repairs itself!</string>
+<string name="DM300_Info2">Mission failed. Shutting down.</string>
+<string name="DM300_Info3">Unauthorized personnel detected.</string>
+  * </code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists

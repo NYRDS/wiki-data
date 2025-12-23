@@ -1,20 +1,24 @@
 ====== Defered Damage Buff - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Viscosity.java#L64-L102|Viscosity.DeferedDamage.java]] - The nested class implementing the buff
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/defered_damage.json
+===== Entity Kind =====
+Viscosity.DeferedDamage
+
+===== Special Properties =====
+  * **Buff Type**: Negative buff (debuff)
+  * **Icon**: BuffIndicator.DEFERRED (ID 28)
+  * **Applied by**: [[rpd:viscosity_enchantment_enchantment|Viscosity Enchantment]] on armor
+  * **Effect**: Delays received damage over time (1 damage per turn instead of all at once)
 
 ===== String Resources =====
-''<code xml>''
-<string name="DeferedDamage_Name">[Name]</string>
-<string name="DeferedDamage_Info">[Description]</string>
-''</code>''
+  * <code xml>
+<string name="DeferedDamageBuff_Name">Deferred Damage (%d)</string>
+<string name="DeferedDamageBuff_Info">The pain has been turned into a slowing pain, lessening the damage taken at once.
+Damage left to receive %d</string>
+<string name="DeferedDamage_Killed_Txt">%s killed you...</string>
+  * </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
