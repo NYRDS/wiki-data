@@ -1,0 +1,55 @@
+====== Кастомные мобы ======
+
+Кастомные мобы — новая возможность моддинга RPD, появившаяся в версии remix.26.5.alpha.1.
+
+В папке мода создаётся папка mobsDesc, в ней - json-файл, например [[https://github.com/NYRDS/remixed-dungeon/blob/CustomMob/PixelDungeon/src/main/assets/mobsDesc/BlackRat.json|BlackRat.json]].
+
+При корректном содержимом имя файла без расширения можно использовать на этажах и в бестиарии, как уже существующих мобов.
+
+==== Атрибуты ====
+++++ показать весь список|
+  * defenseSkill   (число; насколько хорошо моб уклоняется от атак)
+  * attackSkill    (число; насколько хорошо моб проводит атаки)
+  * exp            (число)
+  * maxLvl         (число; выпадет ли лут, зависит от maxLvl+2)
+  * dmgMin         (число)
+  * dmgMax         (число)
+  * dr             (число; максимум урона который может поглотить броня моба при пропущенной атаке)
+  * baseSpeed      (число; скорость перемещения моба)
+  * attackDelay    (число; задержка между атаками моба)
+  * ht             (число; максимальное здоровье моба)
+  * name           (явная строка или имя ресурса со строкой)
+  * name_objective (явная строка или имя ресурса со строкой)
+  * description    (явная строка или имя ресурса со строкой)
+  * gender         (явная строка или имя ресурса со строкой)
+  * spriteDesc     (путь к раскадровке)
+  * lootChance     (число, 1=100%)
+  * loot           ("kind":"предмет")
+  * attackRange    (число; дальность атаки)
+  * walkingType    (NORMAL / WATER / WALL / GRASS / CHASM / ABSOLUTE)
+  * defenceVerb    (явная строка или имя ресурса со строкой)
+  * canBePet       (true / false)
+  * flying         (true / false)
+  * viewDistance   (число; радиус поля зрения моба)
+  * scriptFile     (строка, путь к файлу скрипта для этого моба)
+  * friendly       (true / false)
+  * immunities     (массив источников урона к которым у моба иммунитет)
+  * resistances    (массив источников урона к которым у моба сопротивление)
+  * movable        (true / false)
+  * immortal       (true / false)
+++++
+
+====== Скрипты мобов ======
+С каждым мобом может быть ассоциировано два скрипта:
+
+  * скрипт моба - там описаны коллбеки к различным его действиям
+  * скрипт ИИ — который позволяет полностью менять поведение моба, но требует детального описания оного.
+
+==== Примеры кастомных мобов ====
+Для более полного понимания создания собственных мобов, смотрите подробный английский гайд: [[rpd:modding_custom_mobs|Modding Custom Mobs]]
+
+==== Ссылки на исходный код ====
+  * Java реализация: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/CustomMob.java|CustomMob.java]]
+  * Lua библиотека: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/mob.lua|mob.lua]]
+  * JSON конфигурации: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/|mobsDesc/]]
+  * Примеры Lua скриптов: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/|scripts/mobs/]]
