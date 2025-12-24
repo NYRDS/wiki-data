@@ -1,23 +1,11 @@
 ====== Paralysis ======
 
-Paralysis is a status effect in Remixed Dungeon that prevents a character from taking any actions for a period of time.
+{{ rpd:images:paralysis_buff.png|Paralysis Buff Icon }}
+
+**Paralysis** is a status effect in Remixed Dungeon that renders the affected character unable to take any actions for a set duration.
 
 ==== Description ====
-When a character is paralyzed, they are completely immobilized and unable to perform any actions until the effect wears off or is cured. This includes movement, attacking, using items, or casting spells.
-
-==== Stats ====
-  * **Default Duration**: 10 turns (DURATION constant)
-  * **Break Chance**: Chance to break when damage dealt >= Random.Int(damage) vs Random.Int(target.hp())
-  * **Visual State**: CharSprite.State.PARALYSED
-  * **Icon ID**: BuffIndicator.PARALYSIS
-
-==== Effects ====
-  * **Action Prevention:** Paralyzed characters cannot take any actions
-  * **Duration:** Standard duration is 10 turns, modified by resistance effects
-  * **Vulnerability:** Paralyzed targets are vulnerable to attacks
-  * **Automatic Recovery:** Effect ends automatically after time expires
-  * **Break Chance:** Paralyzed characters have a chance to break free when taking damage (chance based on damage dealt vs current HP)
-  * **Visual Indicator:** Paralyzed characters display a specific status animation
+When a character is paralyzed, they are unable to move, attack, cast spells, or perform any other actions until the effect wears off. This can be particularly dangerous for the hero in combat situations, as it leaves them vulnerable to attacks.
 
 ==== Causes ====
   * [[rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] - Thrown potion that creates a gas cloud causing paralysis
@@ -25,37 +13,31 @@ When a character is paralyzed, they are completely immobilized and unable to per
   * [[rpd:paralysis_enchantment|Paralysis Enchantment]] - Weapon enchantment that has a chance to apply Stun on hit (technically applies Stun, not the Paralysis status)
   * [[rpd:curare_dart_item|Curare Dart]] - Thrown dart that applies Paralysis effect
   * [[rpd:paralytic_gas_trap_level_object|Paralytic Gas Trap]] - Trap that creates a gas cloud causing paralysis
-  * Certain enemy attacks - Some creatures can paralyze with their attacks
+  * Certain enemy attacks - Some creatures like [[rpd:fetid_rat_mob|Fetid Rats]], [[rpd:piranha_mob|Piranhas]], and [[rpd:king_mob|King]] can inflict paralysis
   * Special spells - Some spells may cause paralysis
 
+==== Duration ====
+The duration of paralysis depends on the source and the target's resistances. Characters with Paralysis Resistance will experience shorter durations.
+
 ==== Immunities ====
-  * [[rpd:fetid_rat_mob|Fetid Rat]] - Immune to paralysis
-  * [[rpd:mimic_pie_mob|Mimic Pie]] - Immune to paralysis, toxic gas, and stun
-  * [[rpd:lich_mob|Lich]] - Immune to paralysis
-  * [[rpd:undead_mob|Undead creatures]] - Often have resistance or immunity
-  * [[rpd:piranha_mob|Piranha]] - Immune to paralysis
-  * [[rpd:king_mob|King]] - Immune to paralysis and stun
-  * Resistance from [[rpd:ring_of_elements_item|Ring of Elements]] may reduce duration
+  * [[rpd:mobs|Mobs]] with paralysis immunity cannot be paralyzed
+  * [[rpd:prayers|Prayer]] effects may provide temporary immunity
+
+==== Countering Paralysis ====
+  * Wait for the effect to expire naturally
+  * Use [[rpd:potion_of_purity_item|Potion of Purity]] to cleanse the effect
+  * Some items and abilities provide resistance to paralysis
 
 ==== Strategy ====
-  * **For Players:** Use paralytic effects to gain tactical advantages
-  * **Defensively:** Try to avoid being paralyzed in dangerous situations
-  * **Offensively:** Paralyze powerful enemies to gain breathing room
-  * **Timing:** Consider the duration when planning your next actions
-  * **Damage Breaking:** If paralyzed, taking damage might help break free (chance based on damage dealt vs HP)
+Paralysis is often used strategically by enemies to gain the upper hand in combat. Players should:
+  * Keep a [[rpd:potion_of_purity_item|Potion of Purity]] handy for emergency situations
+  * Consider paralysis resistance when selecting equipment
+  * Use paralysis defensively against powerful enemies when possible
 
-==== Countermeasures ====
-  * Potions of cure poison do NOT cure paralysis (different effect)
-  * [[rpd:ring_of_elements_item|Ring of Elements]] may provide resistance to reduce duration
-  * Avoiding paralytic attacks or items when possible
-  * Taking damage may occasionally break the effect
-
-==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]] (used by Paralysis enchantment and Paralysis Arrow)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Paralysis.java|Paralysis Enchantment.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|ParalysisArrow.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CurareDart.java|CurareDart.java]]
+==== Content Verification ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]]
+  * Mechanics reference: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] base class
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1538|Paralysis_Name]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1539|Paralysis_Info]]
 
 ==== String Resources ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1152|ParalysisBuff_Name]]
@@ -79,4 +61,10 @@ When a character is paralyzed, they are completely immobilized and unable to per
   * [[rpd:status_effects|Status Effects]] - Other condition types
   * [[rpd:curare_dart_item|Curare Dart]] - Another item that causes paralysis
 
-{{tag> rpd buffs }}
+==== See Also ====
+  * [[rpd:buffs|Buffs]]
+  * [[rpd:debuffs|Debuffs]]
+  * [[rpd:status_effects|Status Effects]]
+  * [[rpd:resistances|Resistances]]
+
+{{tag> rpd buffs debuffs status_effects paralysis }}
