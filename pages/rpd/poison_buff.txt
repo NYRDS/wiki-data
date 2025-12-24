@@ -8,11 +8,11 @@ The **Poison** buff is a negative status effect in Remixed Dungeon that causes c
 Poison is a harmful debuff that causes damage each turn, with the damage increasing the longer the effect persists. The damage dealt increases as the duration decreases, making it more dangerous the longer it stays active.
 
 ==== Mechanics ====
-  * **Damage Calculation:** Deals (timeLeft / 3) + 1 damage each turn (where timeLeft is the remaining duration)
-  * **Visual Effect:** Shows "Poisoned" status message in red text and emits poison particles
-  * **Icon:** Specific icon in the buff bar (BuffIndicator.POISON)
+  * **Damage Calculation:** Deals (timeLeft / 3) + 1 damage each turn (where timeLeft is the remaining duration) (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L21|Poison.java:L21]])
+  * **Visual Effect:** Shows "Poisoned" status message in red text and emits poison particles (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L42|Poison.java:L42]])
+  * **Icon:** Specific icon in the buff bar (BuffIndicator.POISON) (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L16|Poison.java:L16]])
   * **Duration:** Variable depending on source, but damage increases over time
-  * **Death Effect:** If poison kills the hero, it triggers a "Death from Poison" failure condition
+  * **Death Effect:** If poison kills the hero, it triggers a "Death from Poison" failure condition (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L32|Poison.java:L32]])
 
 ==== How to Apply ====
 The Poison debuff can be applied through:
@@ -25,19 +25,27 @@ The Poison debuff can be applied through:
 
 ==== How to Remove ====
   * [[rpd:potion_of_purity_item|Potion of Purity]] removes all debuffs including Poison
-  * [[rpd:potion_of_healing_item|Potion of Healing]] removes Poison (as mentioned in the healing potion description)
-  * Some spells and abilities may remove debuffs
-  * [[rpd:ring_of_elements_item|Ring of Elements]] resistance can reduce duration
+  * [[rpd:potion_of_healing_item|Potion of Healing]] removes Poison (as mentioned in the healing potion description) (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java#L36|PotionOfHealing.java:L36]])
 
 ==== Code References ====
   * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
-  * **Damage Calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L22-L24|charAct method]]
-  * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1087|Char_StaPoisoned, Poison_Death]] (Russian localization)
+  * **Damage Calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L21|charAct method]]
+  * **Icon Reference:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L16|Poison.java:L16]]
+  * **Death Condition:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L32|Poison.java:L32]]
+  * **Duration Factor Method:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L29|durationFactor method]]
 
-==== Related ====
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2759|Char_StaPoisoned]]: "Poisoned"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2760|Poison_Death]]: "Death from poison..."
+
+==== See Also ====
   * [[rpd:status_effects|Status Effects]]
   * [[rpd:debuffs|Debuffs]]
   * [[rpd:buffs|Buffs and Debuffs]]
   * [[rpd:potion_of_healing_item|Potion of Healing]]
+  * [[rpd:potion_of_purity_item|Potion of Purity]]
+  * [[rpd:wand_of_poison_item|Wand of Poison]]
+  * [[rpd:poison_trap|Poison Trap]]
+  * [[rpd:poison_dart_item|Poison Dart]]
 
 {{tag> rpd buffs debuffs status_effects poison damage}}
