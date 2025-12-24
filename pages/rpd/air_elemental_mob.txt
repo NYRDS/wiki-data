@@ -1,6 +1,6 @@
 ====== Air Elemental ======
 
-{{ rpd:images:airelemental_sprite.png|Air Elemental Sprite }}
+{{ rpd:images:air_elemental_mob.png|Air Elemental }}
 
 Air Elementals are flying magic beings made of living air. They appear in the Chasm feeling, and are immune to bleeding. They use the Wind Gust spell to attack enemies. Though they might be weak fighters in close combat, their ranged wind breath makes them a dangerous enemy to deal with.
 
@@ -8,24 +8,26 @@ Air Elementals are flying magic beings made of living air. They appear in the Ch
   * **HP**: Depth * 3 + 1
   * **Attack Skill**: Base defense skill * 2 + 1
   * **Defense Skill**: Depth * 2 + 1
-  * **Damage**: 0 to ht() / 4
+  * **Min Damage**: 0
+  * **Max Damage**: ht() / 4
   * **Exp for Kill**: Depth + 1
   * **Max Level**: Depth + 2
   * **Damage Reduction**: expForKill / 5
   * **Carcass Chance**: 0%
+  * **Flying**: Yes
 
 ==== Abilities ====
   * **Flight**: Air elementals are flying creatures and can move over any terrain
   * **Wind Gust**: When attacking enemies at range, Air elementals will cast Wind Gust, pushing the target away
   * **Distance Preference**: When in hunting state and at a distance less than skillLevel() - 1 from target, will move away
   * **Range Attack**: Uses Wind Gust on distant enemies, which can cause the player to fall from bridges or other elevated areas
-  * **Immunities**: Completely immune to [[rpd:bleeding|Bleeding]]
+  * **Immunities**: Completely immune to [[rpd:bleeding_buff|Bleeding]]
 
 ==== Behavior ====
   * Air Elementals have a unique movement pattern - when they get too close to the target (distance < skillLevel - 1), they move away instead of approaching
   * They can attack from a distance (up to skillLevel range) but won't attack adjacent enemies
   * When they attack, they cast Wind Gust which creates wind particles and burst effects on the target
-  * They only appear in the Chasm feeling, which has a 20% chance to appear on dungeon levels
+  * They only appear in the Chasm feeling, which has a 20% chance to appear on dungeon levels (as defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L93|Bestiary.json#L93]] where "CHASM":{"AirElemental":1})
 
 ==== Drops ====
   * [[rpd:potion_of_levitation_item|Potion of Levitation]] (10% chance)
@@ -40,14 +42,16 @@ Air Elementals are flying magic beings made of living air. They appear in the Ch
   * They move erratically due to their unique movement pattern
 
 ==== Source Code Reference ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L93|Bestiary.json]] (where spawn rates are defined)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]] - Main implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]] - Wind attack implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L177|MobFactory.java#L177]] - Registration of the mob class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - String resources for mob name and description
 
 ==== See Also ====
   * [[rpd:wind_gust_spell|Wind Gust Spell]]
   * [[rpd:water_elemental_mob|Water Elemental]]
   * [[rpd:earth_elemental_mob|Earth Elemental]]
   * [[rpd:fire_elemental_mob|Fire Elemental]]
+  * [[rpd:elementals|Elementals]] - General page about elemental mobs
 
 {{tag> rpd mobs elementals air }}

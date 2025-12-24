@@ -20,39 +20,44 @@ The spell heals the target character for (Max HP / 5 * Caster's skill level) hit
 
 The exact formula from the Lua code is: heal = target:ht() / 5. * caster:skillLevel()
 
+This means that for a full-health target:
+  * At caster skill level 1: heals 20% of target's max HP (minimum 1)
+  * At caster skill level 2: heals 40% of target's max HP (minimum 1)
+  * At caster skill level 3: heals 60% of target's max HP (minimum 1)
+  * And so on...
+
 ==== Usage ====
 The Heal spell can be used for:
-  * Healing applications in combat situations
+  * Emergency health restoration during dangerous encounters
   * Healing yourself in combat situations
   * Healing allies or pets
-  * Emergency health restoration during dangerous encounters
-  * Strategic applications in combat
-  * Utility purposes based on its mechanics
+  * Supporting pets during challenging fights
 
-==== Classes ====
-Classes that can use this spell include:
+==== Affinities ====
+Affinities that can use this spell include:
   * [[rpd:witchcraft|Witchcraft]] affinity users
   * [[rpd:priest_class|Priest]] affinity users
   * [[rpd:plague_doctor_affinity|Plague Doctor]] affinity users
-  * Other classes that gain access through special means
 
 ==== Strategy ====
-How to effectively use the Heal spell:
-  * Best situations to use the spell
   * Best used when health is critically low
   * Can heal allies and pets as well as yourself
   * Good for supporting pets during challenging fights
   * The healing scales with your skill level
-  * Synergies with other abilities
-  * Timing considerations
+  * Be mindful of the 2-turn cooldown when planning healing
+
+==== Important Note ====
+There is a different Java-based spell called "Healing" (not "Heal") with different mechanics:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - Heals 30% of target's max HP, targeting self only, costs 10 mana, level 3 spell
 
 ==== Code References ====
   * **Lua Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Heal.lua|Heal.lua]]
-  * **Java Implementation (Different Spell):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] (Note: This is a separate Java-based "Healing" spell with different mechanics)
-  * **Spell Availability:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L9|CustomSpellsList.lua#L9]]
+  * **Spell Availability (Common):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L9|CustomSpellsList.lua#L9]]
+  * **Spell Availability (Witchcraft):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L13|CustomSpellsList.lua#L13]]
+  * **Spell Availability (Priest):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L16|CustomSpellsList.lua#L16]]
+  * **Spell Availability (PlagueDoctor):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L17|CustomSpellsList.lua#L17]]
   * **English String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2679-L2680|strings_all.xml#L2679-L2680]]
   * **Russian String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2681-L2682|strings_all.xml#L2681-L2682]]
-  * **All String Resources:** [[https://github.com/NYRDS/remixed-dungeon/search?q=Heal_Name+OR+Heal_Info|Search for Heal_Name and Heal_Info strings]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
@@ -61,5 +66,6 @@ How to effectively use the Heal spell:
   * [[rpd:witchcraft|Witchcraft Affinity]]
   * [[rpd:priest_class|Priest Affinity]]
   * [[rpd:plague_doctor_affinity|Plague Doctor Affinity]]
+  * [[rpd:healing_spell|Healing Spell]] - The Java-based healing spell (different from this Heal spell)
 
 {{tag> rpd spells witchcraft priest plague_doctor }}

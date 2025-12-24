@@ -83,4 +83,33 @@ The current AI workflow for wiki maintenance includes:
   * **Multilingual Support:** AI tools that can assist with translations and keep multiple language versions synchronized
   * **Automated Testing:** Integration of wiki content verification into CI/CD pipelines for the game codebase
 
+==== Additional Suggested Tools Based on Recent Maintenance ====
+
+===== Naming Convention Validator =====
+
+  * **Tool Purpose:** Automatically detect and flag wiki pages that don't follow the established naming conventions (e.g., ''entity_type'' suffixes like ''_mob'', ''_item'', ''_spell'', etc.)
+  * **Implementation:** A script that scans all wiki pages and verifies they follow the naming pattern: ''name_entitytype.txt''
+  * **Example Issues to Catch:**
+    * Pages without proper suffixes (e.g., ''artificernpc.txt'' should be ''artificer_npc.txt'')
+    * Inconsistent NPC naming (some pages using ''_npc'' suffix, others not)
+    * Duplicated content in differently named files
+  * **Validation Checks:**
+    * Verify all mob pages use ''_mob.txt'' suffix
+    * Verify all item pages use ''_item.txt'' suffix
+    * Verify all spell pages use ''_spell.txt'' suffix
+    * Verify all NPC pages use ''_npc.txt'' suffix
+
+===== Duplicate Content Detector =====
+
+  * **Tool Purpose:** Identify wiki pages that contain duplicate or highly similar content
+  * **Implementation:** A script that compares content similarity across pages and flags potential duplicates
+  * **Example:** Previously had both ''charm_buff.txt'' and ''charm_old.txt'' with similar content
+  * **Benefits:** Helps maintain single source of truth for each entity
+
+===== Automated Link Validator =====
+
+  * **Tool Purpose:** Ensure all links to source code in wiki pages are still valid and point to existing code sections
+  * **Implementation:** A script that checks if each GitHub URL in wiki pages returns a 200 status and the referenced code still exists
+  * **Benefits:** Prevents broken links to code that has been refactored or removed
+
 {{tag> rpd tools ai wiki }}

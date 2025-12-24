@@ -1,6 +1,6 @@
 ====== Ankh ======
 
-{{ rpd:images:ankh_sprite.png|Ankh Sprite }}
+{{ rpd:images:ankh_item.png|Ankh }}
 
 ==== Description ====
 This ancient symbol of immortality grants an ability to return to life after death. Upon resurrection, all items in the hero's inventory are lost, but one random equipped item is preserved as bones that can be retrieved from the location of death.
@@ -22,7 +22,7 @@ The Ankh is a powerful but risky item - it can save you from death, but at the c
   * Best used as a last resort when facing certain death
   * Try to keep only essential items in your inventory when entering dangerous areas
   * Since only one equipped item is preserved as bones (not all equipped items), consider which item is most valuable to preserve
-  * Don't carry multiple Ankhs since you'll lose them upon resurrection (as mentioned in Dungeon_Tips_13 string)
+  * Don't carry multiple Ankhs since you'll lose them upon resurrection
 
 ==== Technical Details ====
 When the hero dies and uses an Ankh for resurrection:
@@ -41,11 +41,14 @@ When the hero dies and uses an Ankh for resurrection:
   * Core implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ankh.java|Ankh.java]]
   * Resurrection dialog: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndResurrect.java|WndResurrect.java]]
   * Bones preservation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Bones.java|Bones.java]]
-  * Hero death handling: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] (reallyDie method)
-  * Game over mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] (gameOver method)
+  * Hero death handling: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L599|Hero.java#L599]] (resurrection call)
+  * Game over mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java#L796|Dungeon.java#L796]] (resurrection check)
+  * Item registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L243|ItemFactory.java#L243]]
+  * Statistics tracking: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Statistics.java#L15|Statistics.java#L15]] (ankhsUsed counter)
 
 ==== String Resources ====
-  * Ankh name: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3450|Ankh_Name]]
-  * Resurrection dialog messages: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3451|WndResurrect_Message]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3452|WndResurrect_Yes]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3453|WndResurrect_No]]
+  * Ankh name: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3783|Ankh_Name]] (line 3783 in English strings)
+  * Resurrection dialog messages: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3784|WndResurrect_Message]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3785|WndResurrect_Yes]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3786|WndResurrect_No]] (lines 3784-3786 in English strings)
+  * Russian strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3783]] - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3786|lines 3783-3786]]
 
 {{tag> rpd items resurrection}}
