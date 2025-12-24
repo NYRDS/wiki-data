@@ -1,0 +1,70 @@
+====== Scroll of Challenge ======
+
+{{ rpd:images:scroll_challenge.png|Scroll of Challenge }}
+
+The Scroll of Challenge is a magical item that creates a ring of fire around the hero, which causes all visible enemies to become hostile and attack the hero immediately.
+
+==== Description ====
+When read, the Scroll of Challenge creates a ring of fire around the hero that immediately attracts the attention of all visible enemies on the level, making them aggressive and causing them to come to attack the hero. This can be useful for clearing out areas when the hero is in a strong position.
+
+==== Effects ====
+  * **Area of Effect**: Affects all visible enemies on the current level
+  * **Instant Aggro**: Makes all enemies immediately hostile toward the hero
+  * **Aggressive Behavior**: Enemies will ignore other targets and prioritize attacking the hero
+  * **Duration**: Lasts until all affected enemies are dead or have lost interest
+
+==== Strategy ====
+  * **Area Clearing**: Excellent for clearing out large areas when the hero is in a defensible position
+  * **Preparation**: Best used after preparing defenses or healing to full health
+  * **Escape Planning**: Should have a plan for escaping if the situation becomes overwhelming
+  * **Advantage Positioning**: Use when enemies are in disadvantageous positions (e.g., in corridors)
+
+==== Code References ====
+''<code java>''
+package com.watabou.pixeldungeon.items.scrolls;
+
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.buffs.Invisibility;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.pixeldungeon.effects.Flare;
+import com.watabou.pixeldungeon.levels.Level;
+import com.watabou.pixeldungeon.utils.GLog;
+
+public class ScrollOfChallenge extends Scroll {
+
+	@Override
+	protected void doRead() {
+		
+		new Flare( 5, 32 ).show( curUser.sprite, 2f );
+		for (Mob mob : Dungeon.level.mobs) {
+			if (Level.fieldOfView[mob.pos]) {
+				mob.beckon( curUser.pos );
+			}
+		}
+		
+		Buff.detach( curUser, Invisibility.class );
+		
+		GLog.n( "The scroll emits a challenging roar that echoes throughout the dungeon!" );
+		setKnown();
+		
+		((ScrollOfMagicMapping)curItem).readAnimation();
+	}
+	
+	@Override
+	public String desc() {
+		return
+			"When read aloud, the scroll creates a ring of fire around you that will " +
+			"attract the attention of all visible enemies on the level, making them " +
+			"immediately aggressive toward you.";
+	}
+}
+''</code>''
+
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfChallenge.java|ScrollOfChallenge.java]] - Main implementation
+
+==== Related Items ====
+  * [[rpd:scrolls|Scrolls]] - List of all scrolls
+  * [[rpd:scroll_of_teleportation_item|Scroll of Teleportation]] - Another escape utility scroll
+
+{{tag> rpd items scrolls challenge}}
