@@ -1,20 +1,37 @@
 ====== Pickaxe Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/Pickaxe.java|Pickaxe.java]]
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/pickaxe.json
+This entity does not appear to have dedicated JSON configuration
 
 ===== String Resources =====
 ''<code xml>''
-<string name="Pickaxe_Name">[Name]</string>
-<string name="Pickaxe_Info">[Description]</string>
+<string name="Pickaxe_Name">pickaxe</string>
+<string name="Pickaxe_Info">This is a large and sturdy tool for breaking rocks. It can be probably used as a weapon.</string>
+<string name="Pickaxe_ACMine">MINE</string>
+<string name="Pickaxe_NoVein">There is no dark gold vein near you to mine</string>
+<string name="Pickaxe_Gender">feminine</string>
+<string name="Pickaxe_NothingToMine">Nothing to mine here!</string>
+<string name="Pickaxe_InsufficientStr">Not enough strength to mine!</string>
 ''</code>''
 
+===== Class Implementation Details =====
+  * **Image**: ItemSpriteSheet.PICKAXE
+  * **Strength Required**: 14
+  * **Damage Range**: 3-12
+  * **Special Action**: AC_MINE (mining dark gold veins)
+  * **Mining Time**: 2 turns
+  * **Upgradable**: false (not upgradable)
+  * **Identified**: true (always identified)
+  * **Blood Staining**: Becomes stained when killing a bat, which changes its appearance
+  * **Special Use**: Required in Blacksmith quest for mining dark gold or getting bat blood
+  * **Animation Class**: SWORD_ATTACK
+
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[code:RemixedDungeon/src/main/assets/scripts/items/RemixedPickaxe.lua|RemixedPickaxe.lua]]
+
+===== Related Files =====
+  * [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Blacksmith.java|Blacksmith.java]]
+  * [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DarkGold.java|DarkGold.java]]
