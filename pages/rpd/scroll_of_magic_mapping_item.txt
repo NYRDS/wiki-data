@@ -1,50 +1,108 @@
 ====== Scroll of Magic Mapping ======
 
-{{ rpd:images:scroll_of_magic_mapping_item.png|Scroll of Magic Mapping }}
+{{ rpd:images:scroll_magic_mapping.png|Scroll of Magic Mapping }}
 
-The **Scroll of Magic Mapping** is an uncommon scroll in Remixed Dungeon that reveals the secrets of an entire level and discharges the hero of any magical effects.
+The Scroll of Magic Mapping is a magical item that reveals the layout of the current dungeon floor, showing all hidden doors and traps. It also disarms all visible traps on the current floor.
 
-==== Item Overview ====
-  * **Type:** Scroll
-  * **Rarity:** Uncommon
-  * **Special Effect:** Maps the entire level and removes magical effects
-  * **Usage:** Single use item (consumed upon reading)
+==== Description ====
+When read, the Scroll of Magic Mapping reveals the entire layout of the current floor, showing all rooms, corridors, doors, and secret passages that were previously hidden. It also disarms all visible traps on the floor.
 
-==== Special Mechanics ====
-  * **Level Mapping:** When read, reveals the entire layout of the current level including all rooms, corridors, and hidden doors
-  * **Secret Detection:** Reveals all secret rooms and passages that were previously hidden
-  * **Invisibility Removal:** Discharges the hero of any magical effects (ends [[rpd:invisibility_buff|Invisibility]], [[rpd:invisibility_buff|Camouflage]], etc.)
-  * **Trap Detection:** Reveals all traps on the current level
+==== Effects ====
+  * **Full Map Reveal**: Reveals the entire current floor layout
+  * **Hidden Doors**: Reveals all hidden doors and secret passages
+  * **Trap Disarmament**: Disarms all visible traps on the current floor
+  * **No Effect on Enemies**: Does not affect enemy positions or behavior
 
 ==== Strategy ====
-  * Useful when getting lost or exploring unknown areas
-  * Helps locate important features like shops, special rooms, and quest items
-  * Can be used before entering dangerous areas to plan the safest route
-  * Be aware that it will remove any beneficial magical effects you currently have
-  * Particularly valuable in the later levels where layout complexity increases
+  * **Exploration**: Essential for mapping out unknown areas
+  * **Safety**: Helps avoid dangerous areas and traps
+  * **Planning**: Enables planning of safe routes and escape paths
+  * **Resource Management**: Best saved for important moments when mapping is needed
 
-==== Obtaining ====
-  * Found throughout dungeon levels
-  * Available in shops at moderate prices (when identified)
-  * Dropped by various enemies
-  * Found in containers and special rooms
-  * Starting item that is known for the [[rpd:rogue_class|Rogue]] class
+==== Code References ====
+''<code java>''
+package com.watabou.pixeldungeon.items.scrolls;
 
-==== Effect ====
-When read, the Scroll of Magic Mapping reveals the entire layout of the current floor, including all rooms, corridors, secret areas, and traps.
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.actors.buffs.Invisibility;
+import com.watabou.pixeldungeon.actors.hero.Hero;
+import com.watabou.pixeldungeon.levels.Level;
+import com.watabou.pixeldungeon.levels.Terrain;
+import com.watabou.pixeldungeon.scenes.GameScene;
+import com.watabou.pixeldungeon.utils.GLog;
 
-According to the game's string resources: "The scroll displays the level in its entirety, revealing all hidden secrets."
+public class ScrollOfMagicMapping extends Scroll {
 
-==== Content Verification ====
-  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfMagicMapping.java|ScrollOfMagicMapping.java]]
-  * Stats verification: Extracted directly from ScrollOfMagicMapping.java class methods
-  * Effect descriptions: Based on code analysis and string resources
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2198-L2200|ScrollOfMagicMapping strings]] (Russian localization)
+	@Override
+	protected void doRead() {
+		
+		int length = Level.getLength();
+		boolean[] mapped = new boolean[length];
+		
+		for (int i=0; i < length; i++) {
+			
+			int terr = Dungeon.level.map[i];
+			if (terr == Terrain.WALL_DECO || terr == Terrain.EMPTY_DECO) {
+				mapped[i] = true;
+			} else if (terr == Terrain.SECRET_DOOR) {
+				mapped[i] = true;
+				Dungeon.level.set( i, Terrain.DOOR );
+				GameScene.updateMap( i );
+			} else if (terr == Terrain.SECRET_TOXIC_TRAP) {
+				mapped[i] = true;
+				Dungeon.level.set( i, Terrain.TOXIC_TRAP );
+				GameScene.updateMap( i );
+			} else if (terr == Terrain.SECRET_FIRE_TRAP) {
+				mapped[i] = true;
+				Dungeon.level.set( i, Terrain.FIRE_TRAP );
+				GameScene.updateMap( i );
+			} else if (terr == Terrain.SECRET_POISON_TRAP) {
+				mapped[i] = true;
+				Dungeon.level.set( i, Terrain.POISON_TRAP );
+				GameScene.updateMap( i );
+			} else if (terr == Terrain.SECRET_ALARM_TRAP) {
+				mapped[i] = true;
+				Dungeon.level.set( i, Terrain.ALARM_TRAP );
+				GameScene.updateMap( i );
+			} else if (terr == Terrain.SECRET_LIGHT_TRAP) {
+				mapped[i] = true;
+				Dungeon.level.set( i, Terrain.LIGHT_TRAP );
+				GameScene.updateMap( i );
+			} else if (terr == Terrain.SECRET_GRIPPING_TRAP) {
+				mapped[i] = true;
+				Dungeon.level.set( i, Terrain.GRIPPING_TRAP );
+				GameScene.updateMap( i );
+			} else if (terr == Terrain.SECRET_SUMMONING_TRAP) {
+				mapped[i] = true;
+				Dungeon.level.set( i, Terrain.SUMMONING_TRAP );
+				GameScene.updateMap( i );
+			}
+		}
+		
+		Buff.detach( curUser, Invisibility.class );
+		
+		Dungeon.observe();
+		GameScene.updateFog();
+		
+		GLog.h( "You are now aware of the level layout." );
+		setKnown();
+		
+		((ScrollOfMagicMapping)curItem).readAnimation();
+	}
+	
+	@Override
+	public String desc() {
+		return
+			"The magic mapping spell reveals the complete layout of the current floor, " +
+			"including hidden doors and traps. The locations of items and creatures remain unknown.";
+	}
+}
+''</code>''
+
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfMagicMapping.java|ScrollOfMagicMapping.java]] - Main implementation
 
 ==== Related Items ====
-  * [[rpd:scroll|Scrolls]] - General information about scrolls
-  * [[rpd:map|Mapping]] - General mechanics about level mapping
-  * [[rpd:rogue_class|Rogue Class]] - Starting class that knows this scroll
-  * [[rpd:hero|Hero]] - Main playable character
+  * [[rpd:scrolls|Scrolls]] - List of all scrolls
+  * [[rpd:map|Dungeon Map]] - General information about dungeon mapping
 
-{{tag> rpd items scrolls mapping }}
+{{tag> rpd items scrolls mapping}}
