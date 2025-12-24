@@ -9,12 +9,14 @@ The **Potion of Paralytic Gas** is an uncommon potion in Remixed Dungeon that re
   * **Rarity:** Uncommon
   * **Special Effect:** Creates a cloud of paralytic gas
   * **Usage:** Single use item (consumed upon drinking or shattering)
+  * **Price:** 40 gold (base price)
 
 ==== Special Mechanics ====
   * **Paralysis Gas:** When shattered on the ground, creates a cloud of numbing gas that paralyzes all creatures in the area
   * **Paralysis Effect:** Paralyzed creatures cannot move or act until the effect wears off
   * **Shattering:** Can be intentionally shattered by throwing at the floor or at enemies
   * **Drinking:** When drunk, creates a paralytic gas cloud around the hero (affects the hero too)
+  * **Quality Factor:** Gas area and duration affected by item quality as indicated by 1000 * qualityFactor() in the code
 
 ==== Strategy ====
   * Excellent for stopping powerful enemies in their tracks
@@ -22,6 +24,7 @@ The **Potion of Paralytic Gas** is an uncommon potion in Remixed Dungeon that re
   * Very effective against enemies with dangerous attacks or special abilities
   * Useful for separating groups of enemies or stopping bosses mid-attack
   * Be careful when using in enclosed spaces as it may paralyze the hero as well
+  * Consider using arrows to moisten with paralysis effect using the moistenArrow implementation
 
 ==== Obtaining ====
   * Found throughout dungeon levels
@@ -33,13 +36,18 @@ The **Potion of Paralytic Gas** is an uncommon potion in Remixed Dungeon that re
 ==== Effect ====
 When shattered, the Potion of Paralytic Gas creates a cloud of numbing gas that paralyzes all creatures within it.
 
-According to the game's string resources: "Uncorking or shattering this pressurized glass will cause its contents to explode into a cloud of numbing yellow gas. The gas will paralyze anything it touches, rendering them helpless until it wears off."
+According to the game's string resources: "Upon exposure to open air, the liquid in this flask will vaporize into a numbing yellow haze. Anyone who inhales the cloud will be paralyzed instantly, unable to move for some time after the cloud dissipates. This item can be thrown at distant enemies to catch them within the effect of the gas."
 
 ==== Content Verification ====
   * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java|PotionOfParalyticGas.java]]
   * Stats verification: Extracted directly from PotionOfParalyticGas.java class methods
   * Effect descriptions: Based on code analysis and string resources
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2198-L2200|PotionOfParalyticGas strings]] (Russian localization)
+  * Base price: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L28|PotionOfParalyticGas.java:28]] (basePrice() returns 40)
+  * Gas area calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L18|PotionOfParalyticGas.java:18]] (1000 * qualityFactor())
+  * Paralytic gas blob: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ParalyticGas.java|ParalyticGas.java]] implementation
+  * Quality factor: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java#L167|Item.java:167]] base implementation
+  * Arrow moistening: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L31-L35|PotionOfParalyticGas.java#moistenArrow]] implementation
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2207-L2208|PotionOfParalyticGas_Name, PotionOfParalyticGas_Info]]
 
 ==== Related Items ====
   * [[rpd:potion|Potions]] - General information about potions
