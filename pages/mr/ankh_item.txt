@@ -2,15 +2,24 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ankh.java|Ankh.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndResurrect.java|WndResurrect.java]]
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 ''<code xml>''
-<string name="ankh_name">Ankh</string>
-<string name="ankh_desc">This ancient symbol of immortality grants an ability to return to life after physical death. The Ankh is consumed upon use.</string>
+<string name="Ankh_Name">Ankh</string>
+<string name="Ankh_Info">This ancient symbol of immortality grants an ability to return to life after death. Upon resurrection all non-equipped items are lost.</string>
+<string name="Dungeon_Tips_13">There is no sense in possessing more than one Ankh at the same time, because you will lose them upon resurrecting.</string>
+<string name="WndRanking_StaAnkhs">Ankhs Used</string>
 ''</code>''
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related Information =====
+  * The Ankh allows resurrection after death but causes loss of all non-equipped items
+  * Only one Ankh should be carried at a time due to consumption on use
+  * Implemented as a static method ''resurrect'' that can be called for any Char
+  * Uses WndResurrect window for hero resurrection to give player choice
