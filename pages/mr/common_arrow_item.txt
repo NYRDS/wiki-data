@@ -1,20 +1,43 @@
-====== Common Arrow Item - Code References ======
+====== Common Arrow Item ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+{{ rpd:images:common_arrow_item.png|Common Arrow }}
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/common_arrow.json
+**Common Arrow** is a missile weapon item in Remixed Dungeon.
 
-===== String Resources =====
-''<code xml>''
-<string name="CommonArrow_Name">[Name]</string>
-<string name="CommonArrow_Info">[Description]</string>
-''</code>''
+==== Description ====
+Common Arrow is a basic missile weapon that can be used with bows. It is made of wood with an iron head and serves as a standard ammunition for ranged combat.
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+==== Stats ====
+* **Damage Min**: 2 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CommonArrow.java#L16|CommonArrow.java:L16]])
+* **Damage Max**: 5 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CommonArrow.java#L17|CommonArrow.java:L17]])
+* **Delay**: 0.75 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CommonArrow.java#L18|CommonArrow.java:L18]])
+* **Price**: 3 per arrow (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CommonArrow.java#L22|CommonArrow.java:L22]])
+
+==== Usage ====
+* Can be equipped as ammunition for bow weapons
+* Found in shops and various locations throughout the dungeon
+* Used for ranged combat against enemies
+* Can be purchased from shopkeepers
+
+==== Availability ====
+* Sold in shops (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/TownShopLevel.java#L80|TownShopLevel.java:L80]])
+* Included in hero starting equipment (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L113|initHeroes.json:L113]])
+* Found in treasure rooms such as Treasury (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L25|Treasury.json:L25]])
+
+==== Code References ====
+* **Java Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CommonArrow.java|CommonArrow.java]]
+* **Inheritance**: Extends Arrow class (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CommonArrow.java#L6|CommonArrow.java:L6]])
+* **Item Registration**: Registered in ItemFactory (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L350|ItemFactory.java:L350]])
+
+==== String Resources ====
+* [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L853|CommonArrow_Name]]: "arrow"
+* [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L854|CommonArrow_Info]]: "Common wooden arrow with an iron head."
+* [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L855|CommonArrow_Gender]]: "feminine"
+
+==== See Also ====
+  * [[rpd:items|All Items]]
+  * [[rpd:weapons|Weapons]]
+  * [[rpd:missile_weapons|Missile Weapons]]
+  * [[rpd:arrows|Arrow Items]]
+
+{{tag> rpd items weapons missile weapons ammunition }}
