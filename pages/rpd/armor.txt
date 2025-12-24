@@ -1,53 +1,69 @@
 ====== Armor ======
 
-{{ rpd:images:armor_Leather.png|Armor }}
+{{ rpd:images:armor_hero.png|Armor }}
 
-**Armor** is an equipment type in Remixed Dungeon that provides defense against physical attacks.
+**Armor** provides protection against physical attacks in Remixed Dungeon. It reduces incoming damage based on its level and can be enchanted with special properties called glyphs.
 
-==== Base Types ====
-  * [[rpd:cloth_armor_item|Cloth Armor]] - The basic armor available to all heroes
-  * [[rpd:leather_armor_item|Leather Armor]] - Crafted armor made from tanned monster leather
-  * [[rpd:mail_armor_item|Mail Armor]] - Interlocking metal rings for improved protection
-  * [[rpd:scale_armor_item|Scale Armor]] - Metal scales attached to a leather backing
-  * [[rpd:plate_armor_item|Plate Armor]] - Heavy metal plates for maximum protection
+==== Armor Properties ====
+  * **Armor Level**: Determines the effectiveness of damage reduction
+  * **Durability**: All armor has durability that decreases with use
+  * **Weight**: Heavier armor can slow down the hero's movement
+  * **Enchantments**: Armor can be enchanted with glyphs that provide special effects
 
-==== Class Armor ====
-Each hero class has access to a unique class armor that can be crafted using an [[rpd:armor_kit_item|Armor Kit]]:
-  * [[rpd:warrior_armor_item|Warrior Armor]]
-  * [[rpd:mage_armor_item|Mage Armor]]
-  * [[rpd:rogue_armor_item|Rogue Armor]]
-  * [[rpd:huntress_armor_item|Huntress Armor]]
-  * [[rpd:elf_armor_item|Elf Armor]]
-  * [[rpd:necromancer_robe_item|Necromancer Robe]]
-  * [[rpd:gnoll_armor_item|Gnoll Armor]]
+==== Armor Tier System ====
+Armor is organized into 5 tiers:
+  * **Cloth Armor** (Tier 1): Basic protection, lowest armor value
+  * **Leather Armor** (Tier 2): Moderate protection
+  * **Mail Armor** (Tier 3): Good protection
+  * **Plate Armor** (Tier 4): High protection (Scale Armor also belongs to this tier)
+  * **Gothic Armor** (Tier 5): Maximum protection
 
-==== Special Armor ====
-  * [[rpd:spider_armor_item|Spider Armor]] - Crafted using spider silk
-  * [[rpd:gothic_armor_item|Gothic Armor]] - High-tier armor with special properties
+==== Armor Reduction Formula ====
+The damage reduction formula is: 
+  * Reduction = armorValue * 0.06f / (1 + 0.06f * armorValue)
+  * With glyph enhancements, this can be increased further
 
-==== Mechanics ====
-  * **Defense**: Armor provides a defense value that reduces incoming physical damage
-  * **Armor Penetration**: Some weapons and attacks can partially ignore armor
-  * **Enchantments**: Armor can be enchanted with [[rpd:glyphs|glyphs]] that provide special effects
-  * **Durability**: Armor has a charge system that can be maintained with dew
+==== Armor Enchantments (Glyphs) ====
+Armor can be enchanted with various glyphs that provide special effects:
+  * **Glyph of Affection**: Charms enemies on block
+  * **Glyph of Anti-Entropy**: Heals the hero and chills enemies on block
+  * **Glyph of Bounce**: Reflects damage back to attackers
+  * **Glyph of Displacement**: Teleports attackers away on hit
+  * **Glyph of Entanglement**: Roots the hero but provides armor bonus
+  * **Glyph of Metabolism**: Converts damage to healing
+  * **Glyph of Multiplicity**: Creates mirror images when taking damage
+  * **Glyph of Potential**: Charges hero's wand on hit
+  * **Glyph of Stench**: Releases toxic gas when blocking attacks
+  * **Glyph of Viscosity**: Delays damage until armor is removed
 
-==== Crafting ====
-  * Using an [[rpd:armor_kit_item|Armor Kit]] on any regular armor creates the class-specific armor for that hero
-  * The [[rpd:the_king|King]] drops armor kits that allow the creation of class armors
-  * Higher-tier armor requires more resources and rare materials
+==== Acquisition ====
+  * Found randomly throughout the dungeon
+  * Available in shops
+  * Dropped by certain enemies
+  * Found in chests and other containers
 
-==== Data Validation ====
-  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]]
-  * Defense calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L244-L247|Char.java#L244-L247]]
+==== Upgrade and Identification ====
+  * Armor can be upgraded using [[rpd:scroll_of_upgrade_item|Scroll of Upgrade]]
+  * Higher tier armor is generally better than upgrading lower tier armor
+  * Unidentified armor shows as "armor" with unknown stats
 
-==== Source Code ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]]
+==== Strategy ====
+  * Higher tier armor provides exponentially better protection
+  * Consider the weight of armor and its effect on movement speed
+  * Choose glyphs based on your playstyle and character build
+  * Balance armor level with mobility for your character class
+  * Prioritize armor upgrades for early game survival
+
+==== Technical Details ====
+  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1998-L2050|Armor-related strings]]
+  * Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor base class]]
+  * Entity Kind Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind interface]]
+  * All armor tiers: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor|Armor tier implementations]]
 
 ==== See Also ====
-  * [[rpd:armor_kit_item|Armor Kit]]
-  * [[rpd:glyphs|Glyphs]]
-  * [[rpd:enchantments|Enchantments]]
-  * [[rpd:clothing|Clothing]]
+  * [[rpd:armor_glyphs|Armor Glyphs]] - Special effects for armor
+  * [[rpd:items|Items]] - Other equipment and consumables
+  * [[rpd:combat|Combat]] - General combat mechanics
 
-{{tag> rpd equipment armor}}
+{{tag> rpd items armor }}
