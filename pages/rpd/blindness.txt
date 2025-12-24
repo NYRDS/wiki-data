@@ -1,39 +1,51 @@
-====== Blindness ======
+====== Blindness Buff ======
 
-{{ rpd:images:buff_Blindness.png|Blindness Status Effect }}
+{{ rpd:images:blindness_buff.png|Blindness Status Effect }}
 
-**Blindness** is a status effect in Remixed Pixel Dungeon that impairs the affected character's vision, reducing their ability to navigate and fight effectively.
+**Blindness** is a status effect in Remixed Dungeon that impairs the affected character's vision, reducing their ability to navigate and fight effectively.
 
-==== Effects ====
-  * **Reduced Vision**: Affected characters have limited sight range
+===== Description =====
+Completely blinded, only the sounds around can be heard. The affected character experiences significant penalties to vision, accuracy, and defense.
+
+===== Effects =====
+  * **Reduced Vision**: Affected characters have limited sight range (character needs to be adjacent to hear sounds)
   * **Accuracy Penalty**: Reduced accuracy when attacking
   * **Defense Penalty**: Reduced defense against attacks
   * **Navigation**: Difficulty navigating terrain effectively
+  * **Detection**: Character can only detect adjacent enemies
   * **Duration**: The effect lasts until it wears off or is cured
 
-==== Causes ====
+===== Causes =====
 Blindness can be inflicted by:
   * [[rpd:enslaved_soul_mob|Enslaved Soul]] attacks
-  * [[rpd:shoot_in_eye_spell|Shoot in Eye Spell]]
+  * [[rpd:shoot_in_eye_spell|Shoot in Eye Spell]] - inflicts blindness for a duration based on caster's skill level
   * [[rpd:wand_of_lightning|Wand of Lightning]] (in some cases)
   * Special abilities of certain mobs
   * Environmental effects or cursed items
 
-==== Counters ====
+===== Counters =====
   * [[rpd:resistances|Blindness Resistance]] may reduce the effect
   * Potions and items that cure status effects may remove blindness
   * Some creatures may be immune to blindness effects
   * [[rpd:mind_vision|Mind Vision]] can partially counteract blindness
 
-==== Source Code ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Blindness.java|Blindness.java]]
-  * String Resources (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L559-L560|Blindness strings (line 559-560)]]
-  * String Resources (Russian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L559-L560|Blindness strings (line 559-560)]]
+===== Data Validation =====
+  * Information source: Java Class ''com.watabou.pixeldungeon.actors.buffs.Blindness''
+  * Mechanics verification: Implemented as a FlavourBuff in Java, with attachTo and detach methods that call target.observe() to update the field of view
+  * Effect descriptions: Based on string resources from values/strings_all.xml ("BlindnessBuff_Info")
+  * Name verification: Confirmed from string resources ("BlindnessBuff_Name")
 
-==== See Also ====
+===== Source Code =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Blindness.java|Blindness.java]] - Java implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/ShootInEye.lua|ShootInEye.lua]] - Lua spell that inflicts blindness
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L559-L560|English strings]] - Name and info text
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L559-L560|Russian strings]] - Russian localization
+
+===== See Also =====
   * [[rpd:status_effects|Status Effects]]
   * [[rpd:mind_vision|Mind Vision]]
   * [[rpd:accuracy|Accuracy]]
   * [[rpd:buffs|Buffs and Debuffs]]
+  * [[rpd:resistances|Resistances]]
 
 {{tag> rpd status_effects buffs }}
