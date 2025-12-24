@@ -1,0 +1,35 @@
+====== Evasion Mechanic ======
+
+Evasion is a core combat mechanic in Remixed Pixel Dungeon that represents a character's ability to avoid attacks entirely. Higher evasion increases the chance to dodge enemy attacks, making it particularly valuable against strong enemies.
+
+==== Evasion Calculation ====
+Evasion is implemented through the defenseSkill method in Char.java, where defensive bonus is calculated using the formula:
+```
+float evasion = (float) Math.pow(1.2, bonus)
+```
+Where 'bonus' is the sum of any defenceSkillBonus from active buffs.
+
+==== Factors Affecting Evasion ====
+  * **Dexterity**: Higher level characters naturally have better defense
+  * **Armor Penalty**: If armor required STR exceeds effective STR, evasion is reduced by 1.5^penalty
+  * **Equipment**: Rings and other items can provide defenceSkillBonus
+  * **Buff Effects**: Temporary evasion boosts from various status effects
+
+==== Equipment with Evasion Bonuses ====
+  * **[[rpd:ring_of_evasion_item|Ring of Evasion]]**: Provides +1 defenceSkillBonus per ring level
+  * **[[rpd:freerunner_subclass|Freerunner Subclass]]**: Doubles evasion bonus when not starving and in motion
+
+==== Code References ====
+  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L552-L583|defenseSkill method in Char.java]]
+  * Ring Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfEvasion.java|RingOfEvasion.java]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L51-L52|RingOfEvasion_Name, RingOfEvasion_Info]]
+
+==== Related ====
+  * [[rpd:combat|Combat]]
+  * [[rpd:melee_combat|Melee Combat]]
+  * [[rpd:ranged_combat|Ranged Combat]]
+  * [[rpd:defense|Defense]]
+  * [[rpd:accuracy|Accuracy]]
+  * [[rpd:attack_skill|Attack Skill]]
+
+{{tag> rpd mechanics evasion dexterity }}
