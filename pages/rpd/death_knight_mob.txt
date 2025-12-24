@@ -1,53 +1,41 @@
-====== Death Knight ======
+====== Death Knight Mob ======
 
-{{ rpd:images:deathknight_sprite.png|Death Knight }}
+{{ rpd:images:death_knight_mob.png|Death Knight }}
 
-Death Knights are powerful [[rpd:undead_mob|undead]] warriors found in the [[rpd:necropolis|Necropolis]] areas of the dungeon in Remixed Dungeon.
+The **Death Knight** is an undead mob found in the Necropolis area of Remixed Dungeon. It has a chance to deal double damage on attack.
 
-==== Stats ====
-  * **HP:** 35 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DeathKnight.java#L18|DeathKnight.java:18]])
-  * **Defense Skill:** 12 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DeathKnight.java#L19|DeathKnight.java:19]])
-  * **Attack Skill:** 15 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DeathKnight.java#L20|DeathKnight.java:20]])
-  * **Damage:** 7-14 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DeathKnight.java#L22-L23|DeathKnight.java:22-23]])
-  * **Armor:** 7 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DeathKnight.java#L24|DeathKnight.java:24]])
-  * **EXP:** 7 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DeathKnight.java#L26|DeathKnight.java:26]])
-  * **Max Level:** 15 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DeathKnight.java#L27|DeathKnight.java:27]])
-
-==== Description ====
-At first glance, this is a mighty warrior in heavy armor, and only a dead grin gives him away. The death knight is a manifestation of the soul of a knight who failed to pursue his vows. And in his cursed state, he will always wander seeking to purge in battle, killing the innocent, unable to remember who he swore to protect.
+==== Mechanics ====
+  * **HP**: 35
+  * **Defense**: 12
+  * **Attack**: 15
+  * **Damage**: 7-14
+  * **Armor**: 7 (DR - Damage Resistance)
+  * **Experience**: 7
+  * **Max Level**: 15
+  * **Type**: Undead
+  * **Special**: 1 in 7 chance to deal double damage on attack
 
 ==== Behavior ====
-  * Powerful [[rpd:combat|melee combat]]
-  * Has a 1/7 chance to deal double damage on each attack (proc) - (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DeathKnight.java#L32|DeathKnight.java:32]])
-  * Part of the [[rpd:undead_mob|undead]] category - (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DeathKnight.java#L29|DeathKnight.java:29]])
-  * Appears in Necro levels 2-4 according to Bestiary.json, with higher spawn rates in necro4
+  * Death Knight has a 1 in 7 chance to deal double damage on attack
+  * When the double damage proc activates, it also applies a visual effect using ``DeathStroke.hit(enemy)``
 
-==== Drops ====
-Death Knights typically drop:
-  * Gold (rarely) - 2% chance according to (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DeathKnight.java#L30|DeathKnight.java:30]])
-  * Standard mob drops
+==== Implementation Details ====
+  * **Class**: ''com.nyrds.pixeldungeon.mobs.necropolis.DeathKnight''
+  * **Parent Class**: Extends ''Mob'' class
+  * **Undead Status**: Marked as undead with ''setUndead(true)''
+  * **Loot**: Has a 2% chance to drop Gold on death
 
-==== Special Notes ====
-  * Very powerful [[rpd:undead_mob|undead]] enemy with high stats
-  * Has a chance to proc double damage on hits
-  * Part of the [[rpd:necropolis|necropolis]] area enemies
+==== Source Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DeathKnight.java|DeathKnight.java - Implementation]]
 
-==== Spawn Rates ====
-According to [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L65|Bestiary.json:L65]]:
-  * necro2: 0.5 spawn rate
-  * necro3: 0.5 spawn rate
-  * necro4: 1.5 spawn rate
+==== Strategy ====
+  * Can deal double damage occasionally, making it dangerous
+  * The double damage proc can be particularly problematic during combat
 
-==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DeathKnight.java|DeathKnight.java]] - Main implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L217|MobFactory.java:217]] - Registration
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1435|strings_all.xml:1435]] - Name and description
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1421|strings_all.xml (ru):1421]] - Russian name and description
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L65|Bestiary.json:L65]] - Spawn rates
-  * [[mr:death_knight_mob|Machine-readable reference page]]
+==== See Also ====
+  * [[rpd:dread_knight_mob|Dread Knight]] - A rarer and more powerful variant of the Death Knight
+  * [[rpd:necropolis_level|Necropolis]] - Area where this mob appears
+  * [[rpd:undead_mobs|Undead Mobs]] - Other undead creatures in the game
+  * [[rpd:mobs|Mobs]] - Other monsters in the game
 
-==== Source Strings ====
-Name: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1435|DeathKnight_Name]] = "death knight"
-Description: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1438|DeathKnight_Desc]] = "At first glance, this is a mighty warrior in heavy armor, and only a dead grin gives him away. The death knight is a manifestation of the soul of a knight who failed to pursue his vows. And in his cursed state, he will always wander seeking to purge in battle, killing the innocent, unable to remember who he swore to protect."
-
-{{tag> rpd mobs death_knight undead melee}}
+{{tag> rpd mobs necropolis undead death_knight }}
