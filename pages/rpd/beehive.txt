@@ -6,65 +6,65 @@
 A beehive is a structure that houses a colony of bees. When damaged or destroyed, it spawns multiple bees that will attack the hero. Beehives are typically immobile structures that can be found in various dungeon levels.
 
 ==== Stats ====
-* **HP**: 64
-* **Level**: 1
-* **Defense Skill**: 1
-* **Attack Skill**: 0
-* **Damage**: 0-0
-* **Armor**: 0
-* **Speed**: Immovable (0x)
-* **View Distance**: 4 tiles
-* **AI State**: Passive (does not actively seek targets)
-* **Movement Type**: Normal
-* **Can be Pet**: No
-* **Flying**: No
-* **Friendly**: No
-* **Movable**: No (immobile structure)
-* **Exp Given**: 5
-* **Loot Chance**: 0%
-* **Attack Delay**: 1
-* **Base Speed**: 0 (immobile)
+  * **HP**: 64
+  * **Level**: 1
+  * **Defense Skill**: 1
+  * **Attack Skill**: 0
+  * **Damage**: 0-0
+  * **Armor**: 0
+  * **Speed**: Immovable (0x)
+  * **View Distance**: 4 tiles
+  * **AI State**: Passive (does not actively seek targets)
+  * **Movement Type**: Normal
+  * **Can be Pet**: No
+  * **Flying**: No
+  * **Friendly**: No
+  * **Movable**: No (immobile structure)
+  * **Exp Given**: 5
+  * **Loot Chance**: 0%
+  * **Attack Delay**: 1
+  * **Base Speed**: 0 (immobile)
 
 ==== Abilities ====
-* **Bee Spawning**: When damaged, spawns 1 bee at a time (from 3-8 total possible bees)
-* **Final Swarm**: When destroyed, releases remaining bees (if any) - 3-8 total bees possible
-* **Immobilization**: Cannot move from its location
-* **Bee Limit**: Starts with 3-8 total bees that can be spawned (randomly determined)
+  * **Bee Spawning**: When damaged, spawns 1 bee at a time (from 3-8 total possible bees)
+  * **Final Swarm**: When destroyed, releases remaining bees (if any) - 3-8 total bees possible
+  * **Immobilization**: Cannot move from its location
+  * **Bee Limit**: Starts with 3-8 total bees that can be spawned (randomly determined)
 
 ==== Behavior ====
-* **AI State**: Passive (does not actively seek targets)
-* **Movement Type**: Normal (as a mob type, but doesn't move)
-* **Can be a pet**: No
-* **Flying**: No
-* **Movable**: No (immobile structure)
-* **Special Behavior**: When damaged or destroyed, activates BeeSpawner script to generate bees
-* **Bee Generation**: Randomly determines 3-8 total bees to potentially spawn at the start
-* **Spawn Limit**: Once the predetermined number of bees is spawned, no more bees are generated
-* **Cell Selection**: Spawns bees in an empty adjacent cell (using emptyCellNextTo())
+  * **AI State**: Passive (does not actively seek targets)
+  * **Movement Type**: Normal (as a mob type, but doesn't move)
+  * **Can be a pet**: No
+  * **Flying**: No
+  * **Movable**: No (immobile structure)
+  * **Special Behavior**: When damaged or destroyed, activates BeeSpawner script to generate bees
+  * **Bee Generation**: Randomly determines 3-8 total bees to potentially spawn at the start
+  * **Spawn Limit**: Once the predetermined number of bees is spawned, no more bees are generated
+  * **Cell Selection**: Spawns bees in an empty adjacent cell (using emptyCellNextTo())
 
 ==== Drops ====
-* Beehives have a 0% chance to drop items
+  * Beehives have a 0% chance to drop items
 
 ==== Strategy ====
-* Beehives are not threatening by themselves, but approaching one can trigger bee spawns
-* If you need to fight near a beehive, consider taking it out quickly to prevent multiple bees from spawning
-* Be careful when using area-of-effect attacks near beehives, as they can trigger multiple bee spawns
-* The final swarm when the hive is destroyed can overwhelm unprepared heroes
-* Beehives only spawn a predetermined number (3-8) of bees, so they're not an infinite source
-* Each time the beehive is damaged, it spawns 1 bee (if any remaining bees to spawn)
-* When destroyed, any remaining bees (if any) are released all at once
-* Bee spawning uses the emptyCellNextTo() method, so bees appear in adjacent empty cells
-* Bees are set to "Hunting" AI state when spawned, so they'll immediately target nearby enemies
+  * Beehives are not threatening by themselves, but approaching one can trigger bee spawns
+  * If you need to fight near a beehive, consider taking it out quickly to prevent multiple bees from spawning
+  * Be careful when using area-of-effect attacks near beehives, as they can trigger multiple bee spawns
+  * The final swarm when the hive is destroyed can overwhelm unprepared heroes
+  * Beehives only spawn a predetermined number (3-8) of bees, so they're not an infinite source
+  * Each time the beehive is damaged, it spawns 1 bee (if any remaining bees to spawn)
+  * When destroyed, any remaining bees (if any) are released all at once
+  * Bee spawning uses the emptyCellNextTo() method, so bees appear in adjacent empty cells
+  * Bees are set to "Hunting" AI state when spawned, so they'll immediately target nearby enemies
 
 ==== Source Code ====
-* [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BeeHive.json|BeeHive.json Configuration]]
-* [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/BeeSpawner.lua|BeeSpawner.lua Script]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BeeHive.json|BeeHive.json Configuration]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/BeeSpawner.lua|BeeSpawner.lua Script]]
 
 ==== Content Verification ====
-* Information source: JSON configuration and Lua script files
-* Stats verification: Extracted directly from BeeHive.json configuration
-* Ability description: Based on BeeSpawner.lua script analysis
-* Last updated: 2025-12-12 based on current codebase
+  * Information source: JSON configuration and Lua script files
+  * Stats verification: Extracted directly from BeeHive.json configuration
+  * Ability description: Based on BeeSpawner.lua script analysis
+  * Last updated: 2025-12-12 based on current codebase
 
 ==== See Also ====
   * [[rpd:bee_mob|Bee]]
