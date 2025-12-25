@@ -1,0 +1,57 @@
+====== Mana ======
+
+{{ rpd:images:mana_icon.png|Mana Icon }}
+
+**Mana** (also known as Skill Points) is a resource system in Remixed Dungeon that powers spells and magical abilities for certain classes and character builds.
+
+==== Overview ====
+Mana represents the magical energy required to cast spells and use magical abilities. It's a limited but renewable resource that players must manage strategically. In the game code, mana is referred to as "skill points" and is tracked as the SP (Skill Points) system.
+
+==== Mechanics ====
+  * **Regeneration**: Mana regenerates through the ManaRegeneration buff which grants 1 skill point at regular intervals
+  * **Regeneration Rate**: Regenerates 1 skill point every 20/(1.2^bonus) turns where bonus includes various factors
+  * **Capacity**: Maximum mana is determined by skill point maximums, which increase with level
+  * **Consumption**: Spells and special abilities consume a specific number of skill points
+  * **Regeneration Delay**: Outside of safe areas (shops, altars), mana regenerates more slowly
+  * **Bonus Regeneration**: Certain buffs and subclasses can provide mana regeneration bonuses (e.g., Shaman subclass)
+
+==== Usage ====
+  * **Spell Casting**: Most spells require a certain number of skill points to cast
+  * **Special Abilities**: Class armors and other special abilities consume skill points
+  * **Resource Management**: Players must balance skill point use with other resources
+  * **Class Armors**: Warrior armor abilities, Mage staff powers, and other class-specific abilities require skill points
+
+==== Classes and Affinities ====
+  * **Rogue Class**: Uses mana for throwing spells like [[rpd:kunai_throw_spell|Kunai Throw]]
+  * **Shaman Subclass**: Provides mana regeneration bonus through HeroSubClass.manaRegenerationBonus()
+  * **Mage Class**: Has direct access to wand and spell mechanics
+  * **Other Classes**: May gain access to mana-based abilities through special means
+
+==== Technical Details ====
+  * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Contains SP (skill points) system implementation
+  * **Regeneration Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/ManaRegeneration.java|ManaRegeneration.java]] - Handles automatic mana regeneration
+  * **Methods**:
+    * **getSkillPoints()**: Returns current mana value
+    * **getSkillPointsMax()**: Returns maximum mana capacity
+    * **spendSkillPoints()**: Reduces skill points by specified amount
+    * **accumulateSkillPoints()**: Adds skill points to current value
+  * **Regeneration Formula**: 1 skill point every 20/(1.2^bonus) turns with various bonuses factored in
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Main skill points implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/ManaRegeneration.java|ManaRegeneration.java]] - Automatic mana regeneration system
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass mana bonuses (shaman.manaRegenerationBonus)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Class mana bonuses
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L18|KunaiThrow.lua]] - Example spell using mana
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] - Initial mana values for different classes
+
+==== See Also ====
+  * [[rpd:spells|Spells]]
+  * [[rpd:magic|Magic System]]
+  * [[rpd:kunai_throw_spell|Kunai Throw Spell]]
+  * [[rpd:mechanics|Game Mechanics]]
+  * [[rpd:shaman_subclass|Shaman]] - Subclass with mana regeneration bonus
+  * [[rpd:warrior_armor_item|Warrior Armor]] - Class armor that uses mana
+  * [[rpd:class_armor|Class Armor]] - All class-specific armors use mana
+
+{{tag> rpd mechanics magic resources }}
