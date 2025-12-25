@@ -9,11 +9,13 @@ The **Potion of Strength** is a rare potion in Remixed Dungeon that permanently 
   * **Rarity:** Very Rare
   * **Special Effect:** Permanently increases hero's strength by 1 point
   * **Usage:** Single use item (consumed upon drinking)
+  * **Base Price:** 100 gold (when identified)
 
 ==== Special Mechanics ====
   * **Strength Increase:** When consumed, permanently increases the hero's strength by 1 point, allowing them to equip heavier armor and weapons
   * **Identification:** Becomes identified when consumed or when seen in inventory after being identified
   * **Stacking:** Multiple potions can be consumed to increase strength multiple times
+  * **Moistening Arrows:** When used to moisten arrows, converts them to Amok Arrows
 
 ==== Strategy ====
   * Essential for equipping higher-level weapons and armor that require more strength
@@ -30,31 +32,31 @@ The **Potion of Strength** is a rare potion in Remixed Dungeon that permanently 
 ==== Effect ====
 When consumed, the Potion of Strength permanently increases the hero's strength by 1 point, allowing them to equip items with higher strength requirements.
 
-According to the game's string resources: "This powerful liquid will course through your muscles, permanently increasing your strength by one unit."
-
-==== Content Verification ====
-  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfStrength.java|PotionOfStrength.java]]
-  * Stats verification: Extracted directly from PotionOfStrength.java class methods
-  * Effect descriptions: Based on code analysis and string resources
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L593-L596|PotionOfStrength strings]] (English localization)
+According to the game's string resources: "This powerful liquid will course through your muscles, permanently increasing your strength by one point."
 
 ==== Data Sources ====
   * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfStrength.java|com.watabou.pixeldungeon.items.potions.PotionOfStrength]]
   * **Drop Locations**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java#L600-L601|Level.java lines 600-601]]
   * **Potion System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion base class]]
+  * **Sprite Index**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L43|labelIndex = 6]]
+  * **Base Price**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfStrength.java#L29|basePrice() method in PotionOfStrength.java]]
 
 ==== String Resources ====
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2213-L2216|PotionOfStrength strings]] - Name, description, and messages
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2213-L2216|PotionOfStrength strings]] - Russian localization
+  * All languages: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/res/values-*/strings_all.xml|Localized strings]]
+
 ''<code xml>''
-<string name="PotionOfStrength_Name">potion of strength</string>
-<string name="PotionOfStrength_Info">This is a very concentrated solution of distilled strength. Your strength will be permanently increased by 1 point after drinking it.</string>
-<string name="PotionOfStrength_Apply">You feel physically stronger!</string>
-<string name="PotionOfStrength_StaApply">!</string>
+<string name="PotionOfStrength_Name">Potion of Strength</string>
+<string name="PotionOfStrength_Info">This powerful liquid will course through your muscles, permanently increasing your strength by one point.</string>
+<string name="PotionOfStrength_Apply">Newfound strength surges through your body.</string>
+<string name="PotionOfStrength_StaApply">+1 str</string>
 ''</code>''
 
 ==== Related Items ====
-  * [[rpd:potion|Potions]] - General information about potions
+  * [[rpd:potions|Potions]] - General information about potions
   * [[rpd:potion_of_might_item|Potion of Might]] - Alternative strength-enhancing potion
   * [[rpd:mechanics|Game Mechanics]] - Equipment and strength mechanics
   * [[rpd:hero|Hero]] - Main playable character
 
-{{tag> rpd items potions strength }}
+{{tag> rpd items potions strength}}

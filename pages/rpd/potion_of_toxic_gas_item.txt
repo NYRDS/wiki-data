@@ -9,12 +9,16 @@ The **Potion of Toxic Gas** is an uncommon potion in Remixed Dungeon that releas
   * **Rarity:** Uncommon
   * **Special Effect:** Creates a cloud of toxic gas
   * **Usage:** Single use item (consumed upon drinking or shattering)
+  * **Base Price:** 40 gold (when identified)
 
 ==== Special Mechanics ====
   * **Gas Cloud:** When shattered on the ground, creates a cloud of toxic gas that affects all creatures in the area
   * **Poison Effect:** The gas inflicts poison damage over time to affected creatures
   * **Shattering:** Can be intentionally shattered by throwing at the floor or at enemies
   * **Drinking:** When drunk, creates a toxic gas cloud around the hero (harmful to the hero too)
+  * **Gas Volume:** Creates gas cloud with volume of (1000 * qualityFactor()) - qualityFactor() is 1.0 for most potions
+  * **Damage Formula:** (target's max HP + 5 + dungeon depth * 5) / 40, with a chance for +1 damage
+  * **Moistening Arrows:** When used to moisten arrows, converts them to Poison Arrows
 
 ==== Strategy ====
   * Useful against groups of enemies, especially in corridors or small rooms
@@ -35,21 +39,32 @@ When shattered, the Potion of Toxic Gas creates a cloud of poison gas that damag
 
 According to the game's string resources: "Uncorking or shattering this pressurized glass will cause its contents to explode into a deadly cloud of toxic green gas. You might choose to fling this potion at distant enemies instead of uncorking it by hand."
 
-==== Content Verification ====
-  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfToxicGas.java|PotionOfToxicGas.java]]
-  * Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|UpgradablePotion.java]]
-  * Stats verification: Extracted directly from PotionOfToxicGas.java class methods
-  * Effect descriptions: Based on code analysis and string resources
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2218-L2219|PotionOfToxicGas strings]] (Russian localization)
-  * Related Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas.java]] (implementation of the gas effect)
-  * Base Price: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfToxicGas.java#L29|basePrice() method in PotionOfToxicGas.java]]
+==== Data Sources ====
+  * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfToxicGas.java|com.watabou.pixeldungeon.items.potions.PotionOfToxicGas]]
+  * **Potion System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|UpgradablePotion base class]]
+  * **Toxic Gas Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas.java]]
+  * **Sprite Index**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L43|labelIndex = 9]]
+  * **Base Price**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfToxicGas.java#L32|basePrice() method in PotionOfToxicGas.java]]
+  * **Gas Interaction**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java#L20-L42|Interaction with ParalyticGas]]
+
+==== String Resources ====
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2217-L2218|PotionOfToxicGas strings]] - Name and description
+  * Toxic Gas Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L544-L545|ToxicGas strings]] - Gas tile description and death message
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2218-L2219|PotionOfToxicGas strings]] - Russian localization
+  * All languages: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/res/values-*/strings_all.xml|Localized strings]]
+
+''<code xml>''
+<string name="PotionOfToxicGas_Name">Potion of Toxic Gas</string>
+<string name="PotionOfToxicGas_Info">Uncorking or shattering this pressurized glass will cause its contents to explode into a deadly cloud of toxic green gas. You might choose to fling this potion at distant enemies instead of uncorking it by hand.</string>
+<string name="ToxicGas_Info">A greenish cloud of toxic gas is swirling here.</string>
+<string name="ToxicGas_Info1">You died from breathing toxic gas..</string>
+''</code>''
 
 ==== Related Items ====
-  * [[rpd:potion|Potions]] - General information about potions
-  * [[rpd:potions|Potions]] - More about different types of potions
+  * [[rpd:potions|Potions]] - General information about potions
   * [[rpd:poison_buff|Poison]] - General mechanics about poison effects
   * [[rpd:doctor_class|Doctor Class]] - Starting class that gets this potion
   * [[rpd:potion_of_purity_item|Potion of Purity]] - Counteracts harmful effects
   * [[rpd:hero|Hero]] - Main playable character
 
-{{tag> rpd items potions gas poison }}
+{{tag> rpd items potions gas poison}}

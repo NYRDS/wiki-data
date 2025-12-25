@@ -1,45 +1,50 @@
 ====== Invisibility Buff ======
 
-The **Invisibility** buff is a status effect in Remixed Dungeon that makes the hero temporarily invisible to enemies.
+{{ rpd:images:invisibility_buff.png|Invisibility }}
 
-==== Effect Overview ====
-  * **Type:** Beneficial Status Effect
-  * **Duration:** 15f time units when applied via [[rpd:potion_of_invisibility_item|Potion of Invisibility]] (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L14|Invisibility.java:14]])
-  * **Effect:** Makes the hero invisible to enemies
-  * **Cancels on:** Any action that directly targets an enemy (attack, wand use, etc.)
+The Invisibility buff is a status effect in Remixed Dungeon that renders the affected character temporarily invisible to enemies.
+
+==== Effect ====
+  * **Invisibility:** The affected character cannot be seen by enemies and will not be targeted by them
+  * **Duration:** Typically lasts 15 turns (duration may vary based on item quality)
+  * **Detection:** Enemies lose track of the invisible character's position
+  * **Visual:** The affected character appears invisible on the game screen
+
+==== Acquisition ====
+The Invisibility buff can be obtained through:
+  * [[rpd:potion_of_invisibility_item|Potion of Invisibility]] - Most common source
+  * [[rpd:ring_of_shadows_item|Ring of Shadows]] - Provides periodic invisibility
+  * Special abilities or class features
+  * Other items or spells that grant invisibility
 
 ==== Mechanics ====
-  * **Enemy Detection:** While under the effect of Invisibility, enemies cannot see the hero
-  * **Pathfinding:** Enemies will lose track of the hero's position and revert to wandering behavior
-  * **Combat Interaction:** Any action that targets an enemy (attack, wands, etc.) will immediately cancel the invisibility effect
-  * **Passive Abilities:** Using non-targeting abilities (like throwing items at a location) will not break invisibility
-  * **Visual Indicator:** Hero sprite becomes transparent while invisible
-  * **Duration:** Invisibility naturally fades after 15f time units (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L14|Invisibility.java:14]])
-  * **Code Reference:** DURATION constant defined as 15f in the Invisibility class (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L14|Invisibility.java:14]])
-
-==== Methods of Obtaining ====
-  * [[rpd:potion_of_invisibility_item|Potion of Invisibility]] - The most common way to gain invisibility
-  * [[rpd:ring_of_shadows_item|Ring of Shadows]] - Special ring that can grant invisibility
-  * Some special abilities or class features may also grant this effect
+  * **Combat Disruption:** Any attack or action that directly targets an enemy will immediately cancel the invisibility
+  * **Wand/Scroll Use:** Using wands or scrolls while in enemy sight will break invisibility
+  * **Detection:** Some special enemies may still be able to detect invisible characters
+  * **Stacking:** Does not typically stack with other invisibility effects
 
 ==== Strategy ====
-  * Essential for escaping dangerous situations
-  * Allows bypassing groups of enemies
-  * Useful for exploring dangerous areas safely
-  * Can set up ambushes after the effect wears off
-  * Valuable for avoiding boss fights when health is low
-  * Allows safe item usage during difficult encounters
+  * **Escape:** Essential for escaping dangerous situations
+  * **Exploration:** Useful for bypassing groups of enemies
+  * **Tactical:** Can be used to reposition safely
+  * **Timing:** Best used when enemies are grouped or in dangerous areas
+  * **Caution:** Be careful when moving near enemies as they may still detect you
 
-==== Content Verification ====
-  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java|Invisibility.java]]
-  * Mechanics verification: Extracted directly from Invisibility.java class methods
-  * Effect descriptions: Based on code analysis and gameplay behavior
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1202-L1203|Invisibility strings]] (Russian localization)
+==== Counters ====
+  * Some enemies have special detection abilities
+  * Certain area effects may still affect invisible characters
+  * Physical contact with enemies breaks invisibility
+
+==== Data Sources ====
+  * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java|com.watabou.pixeldungeon.actors.buffs.Invisibility]]
+  * **Duration Constant**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L14|DURATION = 15f]]
+  * **Dispel Method**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L40|dispel() method]]
 
 ==== Related ====
-  * [[rpd:potion_of_invisibility_item|Potion of Invisibility]] - Main method of obtaining invisibility
-  * [[rpd:ring_of_shadows_item|Ring of Shadows]] - Alternative source of invisibility
-  * [[rpd:stealth|Stealth Mechanics]] - General stealth and detection mechanics
-  * [[rpd:status_effects|Status Effects]] - Other status effects in the game
+  * [[rpd:potion_of_invisibility_item|Potion of Invisibility]] - Primary source of the buff
+  * [[rpd:ring_of_shadows_item|Ring of Shadows]] - Alternative source
+  * [[rpd:stealth_mechanics|Stealth]] - Related mechanics
+  * [[rpd:buffs|Buffs]] - Other status effects
+  * [[rpd:buff_mechanics|Buff Mechanics]] - General buff information
 
-{{tag> rpd buffs status invisibility stealth}}
+{{tag> rpd buffs status_effects stealth invisibility}}

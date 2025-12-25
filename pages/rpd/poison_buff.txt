@@ -1,49 +1,54 @@
-====== Poison ======
+====== Poison Buff ======
 
-{{ rpd:images:poison_buff.png|Poison Buff }}
+{{ rpd:images:poison_buff.png|Poison }}
 
-**Poison** is a harmful status effect in Remixed Dungeon that causes damage over time to affected characters.
+The Poison buff is a harmful status effect in Remixed Dungeon that causes ongoing damage to the affected character over time.
 
-==== Effects ====
-  * **Damage Over Time**: Causes 1 damage per turn while active
-  * **Duration**: Gradually decreases over time until it expires
-  * **Stacking**: Multiple poison effects can stack to increase damage rate
-  * **Weakening**: May impair character's performance in combat
+==== Effect ====
+  * **Damage Over Time:** Causes damage at the end of each turn
+  * **Duration:** Continues until cured or runs out of duration
+  * **Intensity:** Damage typically scales with the character's max HP
+  * **Visual:** Affected character shows poison visual effects
 
-==== Sources ====
-  * **[[rpd:poison_trap|Poison Traps]]**: Activated when stepped on
-  * **[[rpd:spells|Spells]]**: Some spells can inflict poison
-  * **[[rpd:wands|Wands]]**: Wand of Poison can inflict poison
-  * **[[rpd:mobs|Mobs]]**: Some enemies have poisonous attacks (e.g., [[rpd:scorpio_mob|Scorpio]])
-  * **[[rpd:enchantments|Weapon Enchantments]]**: Poison enchantment can inflict poison on hit
+==== Acquisition ====
+The Poison buff can be inflicted by:
+  * [[rpd:potion_of_toxic_gas_item|Potion of Toxic Gas]] - Creates toxic gas clouds
+  * [[rpd:poison_trap|Poison Trap]] - Environmental hazard
+  * Poisoned weapons and attacks
+  * Certain enemies with poison abilities
+  * Other toxic effects and items
 
-==== Resistance and Immunity ====
-  * **[[rpd:ring_of_elements|Ring of Elements]]**: Provides resistance to poison
-  * **[[rpd:armor_glyphs|Armor Glyphs]]**: Some glyphs provide poison protection
-  * **[[rpd:mobs|Mobs]]**: Some creatures are naturally immune to poison
-  * **[[rpd:buffs|Buffs]]**: Special status effects may provide temporary immunity
+==== Mechanics ====
+  * **Damage Formula:** Typically (target's max HP + level-specific value) / divisor
+  * **Decay:** Poison intensity may decrease over time
+  * **Resistance:** Some characters and items provide poison resistance
+  * **Immunity:** Some characters and items provide complete immunity to poison
+  * **Stacking:** Multiple poison effects may stack depending on the source
 
-==== Countering Poison ====
-  * **[[rpd:potion_of_purity_item|Potion of Purity]]**: Clears poison status immediately
-  * **[[rpd:ring_of_mending|Ring of Mending]]**: May help resist poison effects
-  * **Quick Action**: Using cures quickly before poison becomes severe
+==== Strategy ====
+  * **Curing:** Use [[rpd:potion_of_purity_item|Potion of Purity]] or similar items to cure poison
+  * **Avoidance:** Try to avoid poison sources when possible
+  * **Resistance:** Equip items that provide poison resistance
+  * **Timing:** Be aware that poison damage occurs at the end of each turn
+  * **Tactical:** Can be used against enemies through poisoned weapons
 
-==== Technical Details ====
-  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
-  * Buff system: Part of the buff/debuff system
-  * Damage calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L25-L30|Poison.java damage method]]
+==== Counters ====
+  * [[rpd:potion_of_purity_item|Potion of Purity]] - Cures poison and other harmful effects
+  * [[rpd:ring_of_elements_item|Ring of Elements]] - Provides elemental resistance including poison
+  * Some armor glyphs provide poison resistance
+  * Certain classes and subclasses have poison resistance
 
-==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+==== Data Sources ====
+  * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|com.watabou.pixeldungeon.actors.buffs.Poison]]
+  * **Toxic Gas Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas.java]]
+  * **Damage Calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java#L30-L38|ToxicGas damage calculation]]
 
-==== See Also ====
-  * [[rpd:debuffs|Debuffs]]
-  * [[rpd:buffs|Buffs]]
-  * [[rpd:poison_trap|Poison Trap]]
-  * [[rpd:tengu_mob|Tengu]] (resistant to poison)
-  * [[rpd:potion_of_purity_item|Potion of Purity]]
-  * [[rpd:acidic_scorpio_mob|Acidic Scorpio]]
+==== Related ====
+  * [[rpd:potion_of_toxic_gas_item|Potion of Toxic Gas]] - Source of poison through gas clouds
+  * [[rpd:potion_of_purity_item|Potion of Purity]] - Cures poison effects
+  * [[rpd:toxic_gas|Toxic Gas]] - The gas that inflicts poison
+  * [[rpd:buffs|Buffs]] - Other status effects
+  * [[rpd:buff_mechanics|Buff Mechanics]] - General buff information
+  * [[rpd:traps|Traps]] - Environmental hazards including poison traps
 
-{{tag> rpd mechanics debuffs poison hazardous }}
+{{tag> rpd buffs debuffs status_effects poison damage}}
