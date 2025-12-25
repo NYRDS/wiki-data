@@ -1,5 +1,7 @@
 ====== Chests ======
 
+{{ rpd:images:chest_item.png|Chest }}
+
 Chests are containers that hold treasure in Remixed Dungeon. They are found throughout the dungeon levels and contain valuable items.
 
 ==== Types of Chests ====
@@ -7,6 +9,7 @@ Chests are containers that hold treasure in Remixed Dungeon. They are found thro
   * **Crystal Chests**: [[rpd:crystal_merchant|Crystal Merchant]] exclusive containers with high-value items
   * **Locked Chests**: Require a key to open, contain better treasure
   * **Coffins**: Special containers that are more common in Necropolis
+  * **Skeletons**: Bone remains that may contain items (found in Necropolis)
 
 ==== Treasure Types ====
 Chests may contain:
@@ -18,11 +21,13 @@ Chests may contain:
   * [[rpd:ring_item|Rings]]
   * [[rpd:artifacts|Artifacts]]
   * [[rpd:food|Food]]
+  * [[rpd:keys|Keys]]
 
 ==== Special Chest Mechanics ====
   * Chests can be trapped with various [[rpd:traps|traps]]
   * [[rpd:ring_of_wealth|Ring of Wealth]] increases the quality of chest contents
-  * Locked chests require corresponding [[rpd:keys_and_locks|keys]] to open
+  * Locked chests require corresponding [[rpd:keys|keys]] to open
+  * Crystal chests are guaranteed to be trap-free
   * Some rare items are only found in chests
 
 ==== Strategy ====
@@ -30,11 +35,12 @@ Chests may contain:
   * Use [[rpd:ring_of_awareness|Ring of Awareness]] to detect traps before opening
   * Crystal chests are guaranteed to be trap-free and contain better items
   * Locked chests provide better rewards but require keys to open
+  * Some items like [[rpd:potion_of_strength_item|Potion of Strength]] can only be found in specific chest types
 
-==== Content Verification ====
-  * Information source: Java Classes [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs|Chest Implementation]]
-  * Chest creation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charges.java|Charges.java]] (for some chest mechanics)
+==== Information Sources ====
+  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L602-L611|Hero.openChest() method]]
+  * Chest Actions: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ml/actions/OpenChest.java|OpenChest.java]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L386-L390|Chest-related strings]]
   * Machine-readable data: [[mr:chests|mr:chests]]
-  * Last updated: December 24, 2025
 
-{{tag> rpd mechanics items treasure }}
+{{tag> rpd mechanics items treasure containers }}
