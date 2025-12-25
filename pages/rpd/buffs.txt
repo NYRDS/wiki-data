@@ -1,45 +1,75 @@
-====== Buffs ======
+====== Buffs and Debuffs ======
 
-Buffs and debuffs are temporary status effects in Remixed Dungeon that modify character abilities, attributes, or game mechanics for a limited time.
+{{ rpd:images:buffs_illustration.png|Buffs and Debuffs }}
 
-==== Positive Buffs (Buffs) ====
-  * [[rpd:regeneration|Regeneration]] - Gradually heals HP
-  * [[rpd:haste_spell|Haste]] - Increases movement and attack speed
-  * [[rpd:invisibility_buff|Invisibility]] - Makes you undetectable to enemies
-  * [[rpd:levitation|Levitation]] - Allows movement over traps and special terrain
-  * [[rpd:shield|Shield]] - Provides temporary damage absorption
-  * [[rpd:elemental_charge|Elemental Charge]] - Charges elemental damage for next attack
+**Buffs and Debuffs** are temporary status effects that modify character abilities and stats in Remixed Dungeon. Buffs provide positive effects while debuffs impose negative effects.
 
-==== Negative Buffs (Debuffs) ====
-  * [[rpd:poison|Poison]] - Gradually damages HP
-  * [[rpd:burning|Burning]] - Damages while on fire
-  * [[rpd:bleeding|Bleeding]] - Damages over time
-  * [[rpd:paralysis|Paralysis]] - Prevents all actions
-  * [[rpd:weakness|Weakness]] - Reduces strength and damage
-  * [[rpd:slow_buff|Slow]] - Reduces movement and attack speed
+==== Common Buffs ====
+  * **Healing**: Gradually restores health over time
+  * **Invisibility**: Makes the hero invisible to enemies
+  * **Regeneration**: Faster health recovery
+  * **Haste**: Increases movement and attack speed
+  * **Shield**: Provides temporary damage absorption
+  * **Barkskin**: Reduces all incoming damage
+  * **Light**: Reveals dark areas of the dungeon
+  * **Fury**: Increases damage output temporarily
+  * **Awareness**: Enhances detection of secrets and traps
+  * **Levitation**: Allows movement over traps and special terrain
 
-==== Duration and Stacking ====
-  * Most buffs/debuffs have a timed duration that counts down each turn
-  * Some effects stack, others overwrite previous instances
-  * Powerful effects may override lesser effects of the same type
-  * Some class abilities can extend or intensify buff/debuff effects
+==== Common Debuffs ====
+  * **Poison**: Gradually reduces health over time
+  * **Bleeding**: Deal damage over time with damage increasing each turn
+  * **Burning**: Takes fire damage and some items may be destroyed
+  * **Paralysis**: Prevents all actions for a period
+  * **Blindness**: Prevents vision beyond immediate square
+  * **Slow**: Reduces movement and action speed
+  * **Weakness**: Reduces strength temporarily
+  * **Doom**: Prevents healing for a period
+  * **Charm**: Causes enemies to fight for you temporarily
+  * **Amok**: Makes enemies attack allies aggressively
+  * **Terror**: Forces characters to flee in fear
 
-==== Strategic Use ====
-  * Apply beneficial buffs before challenging encounters
-  * Remove harmful debuffs with appropriate items or abilities
-  * Some enemies are vulnerable to specific debuffs
-  * Certain equipment synergizes well with specific buffs
+==== Buff Duration ====
+  * Buffs last for a specific number of turns
+  * Duration may scale with hero level or effect strength
+  * Some buffs stack with themselves (like healing potions)
+  * Others overwrite when applied again
 
-==== Class Interactions ====
-  * [[rpd:mage_class|Mages]] can apply various elemental buffs/debuffs
-  * [[rpd:rogue_class|Rogues]] have abilities to grant stealth buffs or apply debuffs
-  * [[rpd:priest_class|Priests]] can provide healing and protective buffs
-  * [[rpd:necromancer_class|Necromancers]] can apply and exploit various debuffs
+==== Removal of Debuffs ====
+  * **Potion of Purity**: Removes all harmful effects
+  * **Cleansing items**: Special items that remove specific debuffs
+  * **Time**: Most buffs and debuffs expire after a certain duration
+  * **Water**: Can remove some debuffs like burning
+  * **Resting**: Some temporary effects may end when resting
+
+==== Beneficial Applications ====
+  * **Healing**: Use when health is low or during safe moments
+  * **Invisibility**: Escape dangerous situations or bypass enemies
+  * **Regeneration**: For extended combat situations
+  * **Levitation**: Skip over dangerous floor traps
+  * **Fury**: For final push against tough enemies
+  * **Light**: Explore dark areas without torches
+
+==== Debuff Management ====
+  * **Poison**: Move quickly to minimize damage over time
+  * **Burning**: Find water or use potions to stop the effect
+  * **Paralysis**: Always carry potions of healing for emergency situations
+  * **Blindness**: Try to retreat to known safe areas
+  * **Charm/Amok**: Be aware of crowd control effects during boss fights
+
+==== Technical Details ====
+  * Base Buff class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
+  * Buff management system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L200-L250|Buff handling in Char]]
+  * Positive effects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Positive Buffs]]
+  * Negative effects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Debuff.java|Debuffs]]
+  * Potion of Purity: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfPurity.java|PotionOfPurity.java]]
 
 ==== See Also ====
-  * [[rpd:status_effects|Status Effects]] - General information about status changes
-  * [[rpd:mechanics|Game Mechanics]] - Other core game systems
-  * [[rpd:potion|Potions]] - Items that often provide buffs/debuffs
-  * [[rpd:scroll|Scrolls]] - Items that can apply buffs/debuffs
+  * [[rpd:potions|Potions]] - Items that grant buffs
+  * [[rpd:wands|Wands]] - Equipment that can apply status effects
+  * [[rpd:spells|Spells]] - Magical abilities that affect status
+  * [[rpd:hero_classes|Hero Classes]] - Class-specific buffs
+  * [[rpd:enemies|Enemies]] - Creatures that apply debuffs
+  * [[rpd:combat|Combat]] - Combat mechanics
 
-{{tag> rpd mechanics status effects buffs}}
+{{tag> rpd mechanics buffs status }}

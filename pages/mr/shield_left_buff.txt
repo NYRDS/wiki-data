@@ -1,20 +1,29 @@
-====== Shield Left Buff - Code References ======
+====== Chaos Shield Left Buff - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+This buff is implemented in Lua, not Java.
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/shield_left.json
+This entity does not use JSON configuration.
 
 ===== String Resources =====
 ''<code xml>''
-<string name="ShieldLeft_Name">[Name]</string>
-<string name="ShieldLeft_Info">[Description]</string>
+<string name="ShieldBuffReady_Name">Shield</string>
+<string name="ShieldBuffNotReady_Name">Shield (Not Ready)</string>
+<string name="ShieldBuffReady_Info">Your shield is ready to block the next attack.</string>
+<string name="ShieldBuffNotReady_Info">Your shield is not ready yet. Wait for it to recharge.</string>
 ''</code>''
+These strings are referenced in the Lua script but are defined in the main game resources:
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|values-ru/strings_all.xml]]
+  * And other language files as appropriate
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ShieldLeft.lua|ShieldLeft.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ShieldLeft.lua|ShieldLeft.lua]] - Implements the left half of the Chaos Shield (see [[rpd:chaos_shield_item|Chaos Shield]])
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/shields.lua|shields.lua]] (Shield library with shared functionality)
+
+===== Related Files =====
+  * Lua library: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/buff.lua|buff.lua]]
+  * Shield recharge mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/shields.lua|shields.lua]]
+  * Related to Chaos Shield item: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCrystal.java#L105|ChaosCrystal.java]]
+  * Common classes library: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]]
