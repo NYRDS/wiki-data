@@ -1,42 +1,50 @@
-====== Roots Buff ======
+====== Roots ======
 
-{{ rpd:images:roots_buff.png|Roots Effect }}
+{{ rpd:images:roots_sprite.png|Roots }}
 
-==== Description ====
-Roots is a status effect that immobilizes the target, preventing them from moving freely.
+**Roots** is a negative status effect in Remixed Dungeon that immobilizes the affected character and prevents movement.
 
-==== Effects ====
-  * **Immobilization** - Prevents all movement until the effect ends
-  * **Continues During Turn** - Effect persists until the root breaks or duration ends
-  * **Break on Damage** - Sometimes breaks when the target takes damage
+==== Effect Description ====
+  * **Type:** Negative Status Effect (Debuff)
+  * **Effect:** Prevents movement while active
+  * **Duration:** Varies by source
+  * **Source:** Primarily from enemy attacks or special abilities
 
-==== Duration ====
-  * Standard duration is 10 turns when applied by [[rpd:scroll_of_curse_item|Scroll of Curse]]
-  * Duration may vary based on the source of the effect
-  * Some resistances can shorten the duration
+==== How to Obtain ====
+  * From certain enemy attacks that apply root effects
+  * From environmental effects in specific dungeon areas
+  * From some enemy abilities that restrict movement
 
-==== Sources ====
-  * **[[rpd:scroll_of_curse_item|Scroll of Curse]]** - One of the possible curse effects
-  * **[[rpd:root_trap_level_object|Root Trap]]** - Environmental trap
-  * **[[rpd:earth_enchantment|Earth Enchantment]]** - On armor
-  * **[[rpd:evil_eyes_mob|Evil Eyes]]** - Gaze attack can root targets
-
-==== Countering ====
-  * **Resistance** - Some items provide resistance to root effects
-  * **Potions** - [[rpd:potion_of_purity_item|Potion of Purity]] can remove the effect
-  * **Time** - Effect expires naturally after duration
-  * **Breaking free** - Sometimes possible by spending extra turns
+==== Mechanics ====
+  * Prevents all movement while the effect is active
+  * Character can still perform other actions (attacking, using items, etc.)
+  * Can be detached by the Levitation status effect (which is why Levitation mentions it)
+  * Does not prevent other actions beyond movement
+  * Duration typically decreases with higher Magic Defense
 
 ==== Strategy ====
-  * While rooted, concentrate on ranged attacks or magical abilities
-  * Be especially careful of enemies that attack through melee
-  * Try to position yourself advantageously before becoming rooted
-  * Use the immobility strategically, such as when surrounded by enemies
+  * Be cautious when entering areas with plant-based enemies that may apply roots
+  * If you're about to be rooted, try to position yourself advantageously before the effect ends
+  * Carry Levitation potions if regularly encountering enemies that use roots
+  * Can be dangerous if applied near other enemies or hazards
+  * Useful in limited situations where you want to stay in place for ranged attacks
+
+==== Counters =====
+  * [[rpd:levitation|Levitation]] - Completely removes roots when applied
+  * High-level armor with good magic defense may resist the effect
+  * Some equipment or class abilities may reduce duration
+
+==== Code Reference ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]]
+  * Source Code Location: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java
+  * Class Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java#L12|Roots extends FlavourBuff]]
+  * Visual Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java#L20|Roots.attachVisual() shows "Rooted" status]]
+  * Anti-Flying Check: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java#L15|Roots.attachTo() fails if target is flying]]
+  * Icon Reference: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java#L25|BuffIndicator.ROOTS]]
 
 ==== See Also ====
-  * [[rpd:buffs|Buffs]]
-  * [[rpd:scroll_of_curse_item|Scroll of Curse]]
-  * [[rpd:debuffs|Debuffs]]
-  * [[rpd:immobility|Immobility]]
+  * [[rpd:status_effects|Status Effects]] - Other status changes
+  * [[rpd:levitation|Levitation]] - Effect that counteracts roots
+  * [[rpd:mechanics|Game Mechanics]] - Other core systems
 
-{{tag> rpd buffs debuffs status }}
+{{tag> rpd mechanics status_effects debuffs roots}}

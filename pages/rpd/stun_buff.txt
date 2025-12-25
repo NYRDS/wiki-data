@@ -1,34 +1,55 @@
-====== Stun Buff ======
+====== Stun ======
 
-{{ rpd:images:buff_Stun.png|Stun Status Effect }}
+Stun is a status effect in Remixed Dungeon that prevents a character from taking any actions for a period of time. Despite its name, it functions very similarly to the [[rpd:paralysis_buff|Paralysis]] effect.
 
-**Stun** is a status effect in Remixed Pixel Dungeon that temporarily prevents the affected character from taking actions, similar to paralysis but often with different mechanics.
+==== Description ====
+When a character is stunned, they are completely immobilized and unable to perform any actions until the effect wears off or is cured. This includes movement, attacking, using items, or casting spells.
 
 ==== Effects ====
-  * **Action Prevention**: Affected characters cannot move, attack, or use items/spells
-  * **Turn Skipping**: The affected character's turn is skipped until the effect wears off
-  * **Duration Reduction**: The effect duration decreases each turn until it expires
+  * **Action Prevention:** Stunned characters cannot take any actions
+  * **Duration:** Standard duration is 10 turns, modified by resistance effects
+  * **Vulnerability:** Stunned targets are vulnerable to attacks
+  * **Automatic Recovery:** Effect ends automatically after time expires
+  * **Visual Indicator:** Stunned characters display a specific status animation (CharSprite.State.PARALYSED)
 
 ==== Causes ====
-Stun can be inflicted by:
-  * [[rpd:dread_knight_mob|Dread Knight]] attacks (10% chance to apply stun)
-  * Various other special mob abilities
-  * Specific spells or items that cause stunning effects
+  * [[rpd:paralysis_buff|Paralysis Enchantment]] - Weapon enchantment that applies Stun (not Paralysis as the name suggests)
+  * [[rpd:paralysis_arrow_item|Paralysis Arrow]] - Missile weapon that applies Stun effect, not Paralysis
+  * [[rpd:air_elemental_mob|Air Elemental]] - Can apply stun effect
+  * Certain enemy attacks - Some creatures can stun with their attacks
+  * Special spells - Some spells may cause stun
 
-==== Counters ====
-  * Some creatures may have resistance to stun effects
-  * Potions and items that cure status effects may remove stun
-  * Some classes or subclasses may have abilities to resist or reduce stun duration
+==== Immunities ====
+Some creatures are immune to the Stun effect:
+  * [[rpd:lich_mob|Lich]]
+  * [[rpd:piranha_mob|Piranha]]
+  * [[rpd:undead_mobs|Undead creatures]] - Often have resistance or immunity
+  * [[rpd:mimic_pie_mob|Pie Mimic]] - Immune to paralysis, toxic gas, and stun
+  * [[rpd:warrior_armor_item|Warrior's Class Armor]] - Can apply stun to enemies (via Paralysis effect)
 
-==== Source Code ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]]
-  * String Resources (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2650-L2652|Stun strings (line 2650-2652)]]
-  * String Resources (Russian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2651-L2653|Stun strings (line 2651-2653)]]
+==== Countering the Effect ====
+  * The effect will naturally wear off after the duration expires
+  * [[rpd:ring_of_elements_item|Ring of Elements]] may provide resistance to reduce duration
+  * Some items or abilities may remove negative status effects
 
-==== See Also ====
-  * [[rpd:status_effects|Status Effects]]
-  * [[rpd:dreadknight|Dread Knight]]
-  * [[rpd:buffs|Buffs and Debuffs]]
-  * [[rpd:paralysis|Paralysis]]
+==== Technical Details ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|com.watabou.pixeldungeon.actors.buffs.Stun]]
+  * **Default Duration:** 10 turns (DURATION constant)
+  * **Visual State:** Uses CharSprite.State.PARALYSED state and BuffIndicator.PARALYSIS icon
+  * **Implementation:** Extends FlavourBuff class and mimics Paralysis mechanics
+  * **Mechanics:** Calls target.paralyse(true) to prevent actions when attached
 
-{{tag> rpd status_effects buffs }}
+==== Content Verification ====
+  * Information source: Java Class com.watabou.pixeldungeon.actors.buffs.Stun
+  * Stats verification: Extracted directly from class implementation
+  * Effect descriptions: Based on in-game mechanics and string resources
+  * Source code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]]
+
+==== Related ====
+  * [[rpd:paralysis_buff|Paralysis]] - Similar status effect with identical mechanics in current implementation
+  * [[rpd:status_effects|Status Effects]] - Other condition types
+  * [[rpd:buffs|Buffs and Debuffs]] - Other temporary status effects
+  * [[rpd:paralysis_arrow_item|Paralysis Arrow]] - Item that causes this effect
+  * [[rpd:paralysis_buff|Paralysis Enchantment]] - Weapon enchantment that causes this effect
+
+{{tag> rpd status_effects buffs}}

@@ -1,51 +1,49 @@
-====== Poison Buff ======
+====== Poison ======
 
 {{ rpd:images:poison_buff.png|Poison Buff }}
 
-The **Poison** buff is a negative status effect in Remixed Dungeon that causes continuous damage over time.
+**Poison** is a harmful status effect in Remixed Dungeon that causes damage over time to affected characters.
 
-==== Description ====
-Poison is a harmful debuff that causes damage each turn, with the damage increasing the longer the effect persists. The damage dealt increases as the duration decreases, making it more dangerous the longer it stays active.
+==== Effects ====
+  * **Damage Over Time**: Causes 1 damage per turn while active
+  * **Duration**: Gradually decreases over time until it expires
+  * **Stacking**: Multiple poison effects can stack to increase damage rate
+  * **Weakening**: May impair character's performance in combat
 
-==== Mechanics ====
-  * **Damage Calculation:** Deals (timeLeft / 3) + 1 damage each turn (where timeLeft is the remaining duration) (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L21|Poison.java:L21]])
-  * **Visual Effect:** Shows "Poisoned" status message in red text and emits poison particles (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L42|Poison.java:L42]])
-  * **Icon:** Specific icon in the buff bar (BuffIndicator.POISON) (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L16|Poison.java:L16]])
-  * **Duration:** Variable depending on source, but damage increases over time
-  * **Death Effect:** If poison kills the hero, it triggers a "Death from Poison" failure condition (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L32|Poison.java:L32]])
+==== Sources ====
+  * **[[rpd:poison_trap|Poison Traps]]**: Activated when stepped on
+  * **[[rpd:spells|Spells]]**: Some spells can inflict poison
+  * **[[rpd:wands|Wands]]**: Wand of Poison can inflict poison
+  * **[[rpd:mobs|Mobs]]**: Some enemies have poisonous attacks (e.g., [[rpd:scorpio_mob|Scorpio]])
+  * **[[rpd:enchantments|Weapon Enchantments]]**: Poison enchantment can inflict poison on hit
 
-==== How to Apply ====
-The Poison debuff can be applied through:
-  * [[rpd:poison_trap|Poison Traps]]
-  * [[rpd:poison_dart_item|Poison Darts]]
-  * [[rpd:wand_of_poison_item|Wand of Poison]]
-  * [[rpd:acidic_mob|Acidic enemies]]
-  * Various other enemy abilities
-  * Some status-inflicting items
+==== Resistance and Immunity ====
+  * **[[rpd:ring_of_elements|Ring of Elements]]**: Provides resistance to poison
+  * **[[rpd:armor_glyphs|Armor Glyphs]]**: Some glyphs provide poison protection
+  * **[[rpd:mobs|Mobs]]**: Some creatures are naturally immune to poison
+  * **[[rpd:buffs|Buffs]]**: Special status effects may provide temporary immunity
 
-==== How to Remove ====
-  * [[rpd:potion_of_purity_item|Potion of Purity]] removes all debuffs including Poison
-  * [[rpd:potion_of_healing_item|Potion of Healing]] removes Poison (as mentioned in the healing potion description) (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java#L36|PotionOfHealing.java:L36]])
+==== Countering Poison ====
+  * **[[rpd:potion_of_purity_item|Potion of Purity]]**: Clears poison status immediately
+  * **[[rpd:ring_of_mending|Ring of Mending]]**: May help resist poison effects
+  * **Quick Action**: Using cures quickly before poison becomes severe
+
+==== Technical Details ====
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
+  * Buff system: Part of the buff/debuff system
+  * Damage calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L25-L30|Poison.java damage method]]
 
 ==== Code References ====
-  * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
-  * **Damage Calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L21|charAct method]]
-  * **Icon Reference:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L16|Poison.java:L16]]
-  * **Death Condition:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L32|Poison.java:L32]]
-  * **Duration Factor Method:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java#L29|durationFactor method]]
-
-==== String Resources ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2759|Char_StaPoisoned]]: "Poisoned"
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2760|Poison_Death]]: "Death from poison..."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
 
 ==== See Also ====
-  * [[rpd:status_effects|Status Effects]]
   * [[rpd:debuffs|Debuffs]]
-  * [[rpd:buffs|Buffs and Debuffs]]
-  * [[rpd:potion_of_healing_item|Potion of Healing]]
-  * [[rpd:potion_of_purity_item|Potion of Purity]]
-  * [[rpd:wand_of_poison_item|Wand of Poison]]
+  * [[rpd:buffs|Buffs]]
   * [[rpd:poison_trap|Poison Trap]]
-  * [[rpd:poison_dart_item|Poison Dart]]
+  * [[rpd:tengu_mob|Tengu]] (resistant to poison)
+  * [[rpd:potion_of_purity_item|Potion of Purity]]
+  * [[rpd:acidic_scorpio_mob|Acidic Scorpio]]
 
-{{tag> rpd buffs debuffs status_effects poison damage}}
+{{tag> rpd mechanics debuffs poison hazardous }}
