@@ -7,7 +7,31 @@
 This entity is implemented in Lua, no JSON configuration exists
 
 ===== String Resources =====
-  * No specific string resources for this entity (name and description use default class name)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2622-L2625|strings_all.xml#L2622-L2625]]
+  * ''Backstab_Name'': "Backstab"
+  * ''Backstab_Info'': "Silent hit in the back. Dishonest, but extremely effective, backstab damage will grow with performer skill level.\n\nSuccessful backstab will completely ignore victim armor or special defense abilities."
+  * ''Backstab_TooFar'': "Victim too far for successful hit."
+  * ''Backstab_Aware'': "Victim shouldn't be aware of you for a good backstab."
 
 ===== Lua Scripts =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Backstab.lua|Backstab.lua]]
+
+===== Spell Properties =====
+  * ''magicAffinity'': "Rogue"
+  * ''targetingType'': "self"
+  * ''level'': 2
+  * ''castTime'': 1
+  * ''spellCost'': 2
+  * ''image'': 2
+  * ''imageFile'': "spellsIcons/rogue.png"
+
+===== Spell Mechanics =====
+  * ''Distracted States'': PASSIVE, SLEEPING, FLEEING, HORRIFIED, RUNNINGAMOK
+  * ''Damage Calculation'': math.sqrt(caster:skillLevel()) * (weapon:damageRoll(caster) + secondaryWeapon:damageRoll(caster))
+  * ''Range'': 1 tile distance
+  * ''Requirements'': Target must be distracted or paralyzed
+  * ''Effect'': Shows "backstab" status on victim (color: 0xff2030), deals damage and plays wound effect
+
+===== Related mr Entities =====
+  * [[mr:rogue_class|Rogue (Class)]]
+  * [[mr:assassin_mob|Assassin (Mob)]]
