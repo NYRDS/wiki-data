@@ -1,121 +1,37 @@
-====== AI-Powered Wiki Maintenance Tools ======
+====== AI Wiki Tools and Suggestions ======
 
-This page documents AI-powered tools and processes that could enhance the Remixed Dungeon wiki maintenance workflow.
+This page documents suggestions for additional tools and improvements to the wiki maintenance process.
 
-==== Current AI Workflow ====
+==== Current Process ====
+The current process involves manual verification of wiki pages against code sources, checking for naming consistency, and ensuring all links are valid. This is a time-consuming process that could benefit from additional automation.
 
-The current AI workflow for wiki maintenance includes:
+==== Suggested Improvements ====
 
-  * **Content Verification:** AI tools can verify wiki content against source code (Java, Lua, JSON, strings)
-  * **Link Management:** AI can identify and fix redlinks, ensure proper linking to existing pages
-  * **Content Creation:** AI can generate initial content for new wiki pages based on code analysis
-  * **Format Standardization:** AI ensures consistent formatting across wiki pages
+**1. Automated Wiki Validation Tool**
+Create a comprehensive tool that automatically:
+  * Checks all wiki pages against the current codebase
+  * Verifies proper naming conventions
+  * Identifies obsolete information
+  * Suggests or automatically adds code references
+  * Verifies all links are valid
 
-==== Suggested Additional Tools ====
+**2. Real-time Verification System**
+A system that connects to the source code repository and verifies wiki page accuracy in real-time, flagging pages that need updates when code changes.
 
-===== Automated Redlink Detection =====
+**3. Improved Red Link Detection**
+Enhanced version of find_red_links.py that can:
+  * Automatically suggest similar page names for links that don't exist
+  * Identify content gaps where wiki pages should exist
+  * Suggest content for missing pages based on code information
 
-  * **Tool Purpose:** Automatically scan all wiki pages to identify broken internal links (redlinks)
-  * **Implementation:** A Python script that parses all .txt files in the wiki, extracts double-bracket links, and checks for existence of target pages
-  * **Suggested Location:** ''tools/py-tools/find_red_links.py'' - similar to existing ''find_red_links.py'' but enhanced for dokuwiki syntax
+**4. Content Generation Tool**
+A tool that can generate initial wiki page content from code definitions, which can then be refined by human editors.
 
-===== Code Change Monitor =====
+**5. Automated Cross-Reference Generator**
+A tool that automatically updates cross-references across related pages when a new page is created or existing page is significantly modified.
 
-  * **Tool Purpose:** Monitor changes in the game source code and flag wiki pages that need updates
-  * **Implementation:** A script that compares Git diffs of Java/Lua/JSON files to identify changes that should be reflected in wiki content
-  * **Workflow:** After code changes, run the tool to generate a report of wiki pages that may need updates
-  * **Suggested Integration:** As a Git hook or CI/CD step that flags pages for review
-
-===== Automatic Sprite Generation and Processing =====
-
-  * **Tool Purpose:** Automatically process game sprites for wiki use when new entities are added
-  * **Implementation:** Enhance existing ''scale_sprites_for_wiki.py'' with monitoring capabilities to automatically process new sprites
-  * **Enhancement:** Add automatic naming conversion to match wiki page naming conventions
-
-===== Wiki Content Validator =====
-
-  * **Tool Purpose:** Validate that wiki pages contain required elements like code references and string resource links
-  * **Implementation:** A validation script that checks for presence of GitHub links, string resource references, and other required content
-  * **Validation Checks:**
-    * Presence of Java/Lua source code references
-    * Presence of string resource links
-    * Proper entity naming conventions
-    * Required tags and categories
-    * Missing image references
-
-===== Cross-Reference Generator =====
-
-  * **Tool Purpose:** Automatically identify and create relevant cross-references between related game entities
-  * **Implementation:** A script that analyzes entity relationships in code and suggests relevant links for wiki pages
-  * **Example:** When a damage-dealing item is updated, suggest links to related armor/defense items
-
-===== Content Freshness Tracker =====
-
-  * **Tool Purpose:** Track how recently wiki pages were updated relative to code changes
-  * **Implementation:** Compare the last edit date of wiki pages with the last commit affecting relevant code parts
-  * **Output:** Generate a report highlighting pages that may need updating
-
-==== Best Practices for AI-Assisted Wiki Maintenance ====
-
-  * **Verification First:** Always verify AI-generated content against actual source code before publishing
-  * **Incremental Updates:** Process wiki updates in small batches rather than large sweeping changes
-  * **Code References:** Include direct GitHub permalinks to relevant code sections in all entity pages
-  * **Machine-Readable Pages:** Maintain ''mr:'' namespace pages with raw data that can be used by AI tools
-  * **Consistent Naming:** Ensure all pages follow the established naming conventions with entity type suffixes
-
-==== Implementation Priority ====
-
-===== High Priority: =====
-  * Enhanced redlink detection with automatic suggestions
-  * Content freshness tracker
-  * Automated sprite processing
-
-===== Medium Priority: =====
-  * Code change monitor
-  * Cross-reference generator
-
-===== Low Priority: =====
-  * Full content validator (may be too rigid for creative content)
-
-==== Future Directions ====
-
-  * **AI-Powered Content Generation:** Tools that can automatically generate basic wiki content from JSON configurations
-  * **Multilingual Support:** AI tools that can assist with translations and keep multiple language versions synchronized
-  * **Automated Testing:** Integration of wiki content verification into CI/CD pipelines for the game codebase
-
-==== Additional Suggested Tools Based on Recent Maintenance ====
-
-===== Naming Convention Validator =====
-
-  * **Tool Purpose:** Automatically detect and flag wiki pages that don't follow the established naming conventions (e.g., ''entity_type'' suffixes like ''_mob'', ''_item'', ''_spell'', etc.)
-  * **Implementation:** A script that scans all wiki pages and verifies they follow the naming pattern: ''name_entitytype.txt''
-  * **Example Issues to Catch:**
-    * Pages without proper suffixes (e.g., ''artificernpc.txt'' should be ''artificer_npc.txt'')
-    * Inconsistent NPC naming (some pages using ''_npc'' suffix, others not)
-    * Duplicated content in differently named files
-  * **Validation Checks:**
-    * Verify all mob pages use ''_mob.txt'' suffix
-    * Verify all item pages use ''_item.txt'' suffix
-    * Verify all spell pages use ''_spell.txt'' suffix
-    * Verify all NPC pages use ''_npc.txt'' suffix
-
-===== Duplicate Content Detector =====
-
-  * **Tool Purpose:** Identify wiki pages that contain duplicate or highly similar content
-  * **Implementation:** A script that compares content similarity across pages and flags potential duplicates
-  * **Example:** Previously had both ''charm_buff.txt'' and ''charm_old.txt'' with similar content
-  * **Benefits:** Helps maintain single source of truth for each entity
-
-===== Automated Link Validator =====
-
-  * **Tool Purpose:** Ensure all links to source code in wiki pages are still valid and point to existing code sections
-  * **Implementation:** A script that checks if each GitHub URL in wiki pages returns a 200 status and the referenced code still exists
-  * **Benefits:** Prevents broken links to code that has been refactored or removed
-
-===== Recent Maintenance Improvements =====
-
-  * **Link Consistency Checker:** AI tool that ensures links in English and Russian versions of pages refer to the same entities using correct naming conventions
-  * **Subclass Information Validator:** AI tool that verifies subclass information in wiki pages matches the actual game code implementation
-  * **Multi-language Wiki Synchronization:** Tool to ensure content consistency between language versions of wiki pages (e.g., English and Russian versions of Tome of Mastery both showing correct subclasses)
-
-{{tag> rpd tools ai wiki }}
+==== Process Improvements ====
+  * Implement a continuous integration pipeline for wiki content that runs validation checks on each commit
+  * Create templates for different entity types (items, spells, mobs, etc.) to ensure consistent information coverage
+  * Develop a review system for community contributions to wiki pages
+  * Add more machine-readable data (mr: namespace) for each game entity for easier automated processing
