@@ -83,8 +83,19 @@ Tengu is an exiled assassin who has made his home in the Prison area of the dung
   * Notice/yell logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L105-L116|notice() method]]
   * Hero class gender check: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.getGender()]] determines which Tengu_Info string to use
   * Battle music configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Tengu.json|Tengu.json]] specifies "ost_boss_2_fight" with "ost_boss_fight" fallback
+  * Jump delay timer: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L33|timeToJump variable]] - tracks cooldown between jumps
+  * Close approach behavior: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L50-L56|getCloser method]] - causes Tengu to jump when player comes into view
+  * Attack behavior: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L58-L60|doAttack method]] - handles jump timing during combat
+  * Poison trap creation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L68-L77|jump() method section]] - creates 4 poison traps during each teleport
+  * Movement candidates algorithm: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L80-L92|jump() method section]] - finds valid teleport locations
+  * Boss slain badge: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L48|die method]] - validates Boss_Slain_2 badge
+  * Death dialogue: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L47-L49|die method]] - "Free at last..." message
+  * Field of view check: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L51-L53|getCloser method]] - uses level().fieldOfView[target] to check visibility
+  * Actor movement: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L89|move() method]] - handles the actual position change
+  * Speed calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L94|spend(1/speed())]] - uses movement speed for timing
+  * Visual effects on teleport: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L93|CellEmitter burst]] - creates visual wool effect on teleport
   * Machine-readable data: [[mr:tengu_mob|mr:tengu_mob]]
-  * Last updated: December 24, 2025
+  * Last updated: December 25, 2025
 
 ==== See Also ====
   * [[rpd:bosses|Boss Enemies]]
