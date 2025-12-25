@@ -19,6 +19,7 @@ This spell creates a temporary deathling ally to fight alongside the caster. The
 ==== Mechanics ====
   * Summons a deathling creature to fight alongside the player (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]])
   * Summon limit: 1 + Hero level modifier (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java#L16-L18|SummonDeathling.java:16-18]])
+  * Deathling's HP and damage grow with hero level (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L9|strings_all.xml:9]])
 
 ==== Usage ====
 The Summon Deathling spell is used to:
@@ -29,6 +30,7 @@ The Summon Deathling spell is used to:
 ==== Classes ====
 Classes with Necromancy affinity have primary access to this spell:
   * [[rpd:necromancer_class|Necromancer Class]] - Has Necromancy affinity
+  * [[rpd:lich_subclass|Lich Subclass]] - Advanced Necromancer subclass
 
 ==== Strategy ====
 Summon Deathling is most effective when used in challenging encounters where additional combat assistance is needed. The summoned deathling will fight for the player until its duration expires or it is defeated.
@@ -42,14 +44,16 @@ Summon Deathling is most effective when used in challenging encounters where add
 ==== Code References ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]] - Main implementation
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummoningSpell.java|SummoningSpell.java]] - Parent class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L118|SpellFactory.java:118]] - Spell registration
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L8-L9|strings_all.xml:8-9]] - Name and description
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L754|strings_all.xml:754]] - Additional Necromancy string reference
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L8-L9|strings_all.xml (ru):8-9]] - Russian name and description
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] - Hero starting spell reference
   * [[mr:summon_deathling_spell|Machine-readable reference page]]
 
 ==== Source Strings ====
 Name: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L8|SummonDeathling_Name]] = "Summon Deathling"
-Description: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L9|SummonDeathling_Info]] = "Summons an undead follower. Deathling's hp and damage grows with hero level.
-\n\nSummon limit: %1$d (+ 1 every Magic Level)"
+Description: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L9|SummonDeathling_Info]] = "Summons an undead follower. Deathling's hp and damage grows with hero level.\n\nSummon limit: %1$d (+ 1 every Magic Level)"
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
