@@ -66,7 +66,16 @@ According to the game's string resources: "This is actually a very clever alchem
 ==== Code References ====
   * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java|PotionOfLiquidFlame.java]]
   * **Potion Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]]
-  * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2153-L2156|PotionOfLiquidFlame_Name, PotionOfLiquidFlame_Info, PotionOfLiquidFlame_YouSmell, PotionOfLiquidFlame_Appear]]
+  * **Shatter Mechanics:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L20-L28|shatter method]] - creates 10 units of liquid flame at impact location
+  * **Liquid Flame Effect:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame class]] - handles the ongoing fire damage
+  * **Blob Seed Method:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java#L35-L42|Blob.seed]] - creates the liquid flame effect
+  * **Quality Factor:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L25|qualityFactor()]] - affects the volume of liquid flame produced
+  * **Splash Effect:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L24|splash method]] - visual effect when shattered
+  * **Potion Identification:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L23|setKnown method]] - marks potion as identified when shattered
+  * **Sound Effect:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L25|SND_SHATTER]] - sound when bottle breaks
+  * **Moistening Support:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L32-L38|moistenArrow method]] - enables creation of Fire Arrows
+  * **Base Price:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L30|basePrice method]] - value of 40 gold
+  * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2197-L2198|PotionOfLiquidFlame_Name, PotionOfLiquidFlame_Info]] - displays "This flask contains an unstable compound which will burst violently into flame upon exposure to open air."
 
 ==== Related Items ====
   * [[rpd:potion|Potions]] - General information about potions
