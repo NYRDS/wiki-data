@@ -1,37 +1,34 @@
-====== Assassin ======
+====== Assassin Subclass ======
 
-{{ rpd:images:hero_ROGUE_ASSASSIN.png|Assassin Hero Sprite }}
+{{ rpd:images:hero_ROGUE_ASSASSIN.png|Assassin }}
 
-**Assassin** is a [[rpd:subclass|subclass]] for the [[rpd:rogue_class|Rogue]] class.
+The Assassin is the Rogue's subclass in Remixed Dungeon.
 
-==== Description ====
-The Assassin is a subclass of the Rogue that specializes in stealth and high-damage attacks. This subclass provides enhanced abilities for ambushing enemies and dealing critical damage from stealth.
+==== Unlocking ====
+The Assassin subclass can be unlocked by using a Tome of Mastery after defeating the second boss (Tengu).
 
-==== Special Abilities ====
-  * **Note:** Currently, no specific game mechanics are implemented for the Assassin subclass in the codebase beyond the general Rogue class mechanics
-  * The game description states: "When performing a surprise attack, the _Assassin_ inflicts additional damage to his target," but this is not currently implemented in the code
-  * All special abilities are conceptual based on the class description rather than implemented mechanics
+==== Special Mechanics ====
+When the Assassin is attacked by an enemy while the Assassin is unseen by that enemy, the Assassin gets bonus damage back to the enemy. This happens when the Assassin is invisible or out of the attacking enemy's line of sight. The bonus damage is calculated as a random amount between 1 and the base damage dealt by the enemy.
 
-==== Strategy ====
-  * Since there are no special implemented mechanics, play as a standard Rogue subclass
-  * Focus on the general Rogue playstyle of stealth and positioning
-  * Utilize stealth-enhancing items like the [[rpd:ring_of_shadows_item|Ring of Shadows]]
-  * Use Rogue skills and abilities that are available to all Rogues
+==== Special Armor ====
+Using an [[rpd:armor_kit_item|Armor Kit]] on any armor will transform it into the [[rpd:assassin_armor|Assassin Armor]], which is specifically designed for this subclass.
 
-==== Technical Details ====
-  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
+==== Advantages ====
+  * Bonus damage back to enemies when they attack the unseen Assassin
+  * Effective for stealth-based gameplay
+  * High damage potential when enemies attack an invisible or out-of-sight Assassin
+  * Synergizes well with invisible or out-of-sight positioning
 
-===== String Resources =====
-  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1000-L1001|HeroSubClass_NameAssa and HeroSubClass_DescAssa]]
-  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L986-L987|HeroSubClass_NameAssa and HeroSubClass_DescAssa]]
-  * Other languages available in respective values-* directories
+==== Disadvantages ====
+  * Only effective when enemies attack the unseen Assassin
+  * Requires careful positioning and stealth
+  * Less effective in direct confrontation situations
 
-==== See Also ====
-  * [[rpd:rogue_class|Rogue Class]]
-  * [[rpd:hero_subclasses|Hero Subclasses]]
-  * [[rpd:freerunner_subclass|Freerunner Subclass]]
-  * [[rpd:hero_classes|Hero Classes]]
-  * [[rpd:melee_weapons|Melee Weapons]]
-  * [[rpd:stealth|Stealth Mechanics]]
+==== Code References ====
+  * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L675|Char.java#L675]] - The specific mechanic where bonus damage is calculated
+  * **Subclass Definition:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L46|HeroSubClass.java#L46]]
+  * **Class Armor:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/AssasinArmor.java|AssasinArmor.java]]
+  * **String Resources (English):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1000-L1001|strings_all.xml#L1000-L1001]]
+  * **String Resources (Russian):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L986-L987|strings_all.xml#L986-L987]]
 
-{{tag> rpd subclasses stealth assassin }}
+{{tag> rpd subclasses assassin rogue}}
