@@ -20,8 +20,11 @@ This quick reference guide covers the most common modding tasks you can accompli
 
 ==== Replace a Sprite ====
 1. Find original sprite in game assets
+
 2. Create your new sprite in the same format/dimensions
+
 3. Place in matching directory in your mod:
+
 <code>
 YourMod/
 └── sprites/
@@ -31,6 +34,7 @@ YourMod/
 
 ==== Configure Custom Sprite Animations ====
 Sprites can be configured using JSON files in ''spritesDesc/'' directory. For example, SpiderElite sprite configuration:
+
 <code json>
 {
   "texture": "spiders.png",
@@ -86,6 +90,7 @@ Create ''actors/mobs/rat.json'' in your mod:
 
 ==== Create Custom Mobs with JSON Configuration ====
 Mobs can be configured using JSON files in ''mobsDesc/'' directory. For example, SpiderElite configuration:
+
 <code json>
 {
    "class"         :"com.nyrds.pixeldungeon.mobs.common.MultiKindMob",
@@ -116,6 +121,7 @@ Create ''res/values/strings.json'' in your mod:
 
 ==== Configure Mob Spawning ====
 Mobs can be configured to spawn in specific levels using ''levelsDesc/Bestiary.json''. For example, Spider Nest configuration:
+
 <code json>
 {
   "8s":{"SpiderServant":1,"SpiderExploding":0.5,"SpiderMind":0.2,"SpiderGuard":0.03,"SpiderMindAmber":0.006},
@@ -155,6 +161,7 @@ Mobs can be configured to spawn in specific levels using ''levelsDesc/Bestiary.j
 
 ==== 1. Create the item JSON ====
 ''items/weapon/ice_wand.json'':
+
 <code json>
 {
   "class": "com.watabou.pixeldungeon.items.weapon.missiles.MissileWeapon",
@@ -171,6 +178,7 @@ Mobs can be configured to spawn in specific levels using ''levelsDesc/Bestiary.j
 
 ==== 2. Create the Lua script ====
 ''items/ice_wand.lua'':
+
 <code lua>
 local RPD = require "scripts/lib/commonClasses"
 local item = require "scripts/lib/item"
@@ -281,6 +289,7 @@ end
 
 ==== Mobs with Special Attack Effects ====
 Mobs can have special effects during attacks, similar to how SpiderElite applies the Vertigo debuff:
+
 <code lua>
 function M.attackProc(self, enemy, dmg)
     -- 20% chance to apply Vertigo effect (disorientation)

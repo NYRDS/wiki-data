@@ -48,6 +48,7 @@ Before starting, make sure you have:
   * Modify the properties you want to change (e.g., damage, level requirements)
 
 Example modification:
+
 <code json>
 {
   "class": "com.watabou.pixeldungeon.items.weapon.melee.ShortSword",
@@ -89,6 +90,7 @@ The game's assets follow a specific organization:
 
 ==== Changing Text ====
 To modify in-game text, create a ''res/values/strings.json'' file in your mod:
+
 <code json>
 {
   "DungeonTitle": "My Custom Dungeon",
@@ -98,6 +100,7 @@ To modify in-game text, create a ''res/values/strings.json'' file in your mod:
 
 ==== Modifying Mobs ====
 To change a mob's properties, copy the mob's JSON file to your mod:
+
 <code json>
 {
   "class": "com.watabou.pixeldungeon.actors.mobs.Rat",
@@ -116,6 +119,7 @@ To change a mob's properties, copy the mob's JSON file to your mod:
 For more complex modifications, you can use Lua scripts. The correct approach uses specialized libraries:
 
 Example: ''items/custom_item.lua''
+
 <code lua>
 local RPD = require "scripts/lib/commonClasses"
 local item = require "scripts/lib/item"
@@ -145,12 +149,14 @@ return item.init{
 </code>
 
 Reference the script in your item's JSON using the correct format:
+
 <code json>
 {
   "class": "com.watabou.pixeldungeon.items.Item",
   "name:en": "Explosive Item"
 }
 </code>
+
 Note: Modern Remixed Dungeon uses the library-based approach that's defined entirely in the Lua file rather than through JSON script references.
 
 ===== Testing and Debugging Your Mod =====
