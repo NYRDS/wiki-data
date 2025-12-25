@@ -3,7 +3,7 @@
 {{ rpd:images:warlock_sprite.png|Dwarf Warlock Sprite }}
 
 ==== Description ====
-The **Dwarf Warlock** is a dangerous magical enemy found in the [[rpd:city|City level]] of the dungeon. They are magic users that attack from range and have special abilities to protect themselves when their health is low.
+The **Dwarf Warlock** is a dangerous magical enemy found in the [[rpd:city_level|City Level]] of the dungeon. They are magic users that attack from range and have special abilities to protect themselves when their health is low.
 
 ==== Stats ====
 * **HP**: 70
@@ -18,13 +18,13 @@ The **Dwarf Warlock** is a dangerous magical enemy found in the [[rpd:city|City 
 
 ==== Abilities ====
 * **Blink Escape**: When damaged below 2/3 or 1/3 HP, the warlock will blink away from enemies, taking only half damage
-* **Ranged Attack**: Can attack enemies at range using Ballistica mechanics
-* **Weakness Curse**: Successful attacks have a 50% chance to inflict weakness on the target when they are a hero
-* **Potion Loot**: Drops potions with 83% chance
-* **Immunity**: Immune to Death enchantment on weapons
+* **Ranged Attack**: Can attack enemies at range using [[rpd:ballistica_mechanic|Ballistica]] mechanics
+* **Weakness Curse**: Successful attacks have a 50% chance to inflict [[rpd:weakness_buff|Weakness]] on the target when they are a hero
+* **Potion Loot**: Drops [[rpd:potions|potions]] with 83% chance
+* **Immunity**: Immune to [[rpd:death_enchantment|Death enchantment]] on weapons
 
 ==== Tactics ====
-Dwarf Warlocks are high-level dangerous enemies that use magical attacks. They can blink away to safety when their health gets low, making them difficult to pin down. They also have a chance to curse enemies with weakness. Approach with caution and have good magical resistance.
+Dwarf Warlocks are high-level dangerous enemies that use magical attacks. They can blink away to safety when their health gets low, making them difficult to pin down. They also have a chance to curse enemies with [[rpd:weakness_buff|Weakness]]. Approach with caution and have good magical resistance.
 
 ==== Notes ====
 * This is the Dwarf Warlock mob, not to be confused with the [[rpd:warlock_subclass|Warlock]] hero subclass which is a different entity
@@ -32,12 +32,23 @@ Dwarf Warlocks are high-level dangerous enemies that use magical attacks. They c
 
 ==== Content Verification ====
 * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java|Warlock.java]]
-* Stats verification: Extracted from Warlock.java constructor and methods
+* Stats verification: Extracted from Warlock.java constructor (hp: 70, baseDefenseSkill: 18, baseAttackSkill: 25, dmgMin: 12, dmgMax: 20, dr: 8, expForKill: 11, maxLvl: 21)
 * Effect descriptions: Based on string resources and in-game mechanics
-* String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1356|Warlock_Name]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1359|Warlock_Desc]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1360|Warlock_Killed]]
+* String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1356|Warlock_Name]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1358|Warlock_Name_Objective]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1359|Warlock_Desc]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1360|Warlock_Killed]]
 * Configuration: No specific JSON configuration file found
+* Blink mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L46-L59|defenseProc method]] - triggers when HP drops below 2/3 or 1/3
+* Weakness curse mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L74-L76|zap method]] - 50% chance to inflict weakness
+* Potion loot: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L44|loot method]] - 83% chance to drop potions
+* Death resistance implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L45|addResistance(Death.class)]]
+* Ballistica mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L66-L68|canAttack method]] - uses Ballistica for range attacks
+* Ranged attack implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L71-L79|zap method]] - with shadow bolt magic missile effect
+* Magic missile effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|MagicMissile class]] - used for the shadow bolt effect
+* Blink implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java#L27-L35|CharUtils.blinkAway method]] used via [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mobs/common/BlinkAwayFromChar.java|BlinkAwayFromChar class]]
+* Loot system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java|Treasury system]] - defines potion loot category
+* Death enchantment class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Death.java|Death enchantment]]
+* Weakness buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Weakness.java|Weakness buff class]]
 * Machine-readable data: [[mr:warlock_mob|mr:warlock_mob]]
-* Last updated: December 2025, source: Remixed Dungeon 1.9.3
+* Last updated: December 25, 2025
 
 ==== Source Code ====
 * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java|Warlock.java]]
