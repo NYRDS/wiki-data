@@ -2,31 +2,30 @@
 
 {{ rpd:images:healing_spell_icon.png|Healing Spell Icon }}
 
-**Healing** is a spell in Remixed Dungeon with Priest affinity that restores the target's health.
+**Healing** is a spell in Remixed Dungeon with Common affinity that restores the caster's health.
 
 ==== Description ====
-The Healing spell restores a portion of the target's health based on the caster's skill level. It's a fundamental support spell that can save the hero from dangerous situations or maintain health during prolonged combat.
+The Healing spell restores a portion of the caster's own health. It's a fundamental self-healing spell that can save the hero from dangerous situations.
 
 ==== Stats ====
-  * **Magic Affinity:** Priest
-  * **Targeting:** char
-  * **Level:** 1
-  * **Mana Cost:** 1
+  * **Magic Affinity:** Common
+  * **Targeting:** self
+  * **Level:** 3
+  * **Mana Cost:** 10
 
 ==== Effects ====
-  * Heals the target for (caster's skill level + 1) * 10 HP
-  * Works on both the hero and friendly characters
-  * Caster can target self with this spell
+  * Heals the caster for 30% of their max HP (rounded down)
+  * Self-target only
+  * No scaling based on skill level
 
 ==== Uses ====
   * Restore health during combat
   * Emergency healing in dangerous situations
   * Preserve healing potions for more critical situations
-  * Support for friendly NPCs or summoned units
 
 ==== Classes ====
 Classes that can use this spell include:
-  * Classes with Priest affinity (e.g., [[rpd:priest_class|Priest class]])
+  * Classes with Common affinity
   * Other classes that gain access through special means
 
 ==== Strategy ====
@@ -34,25 +33,23 @@ How to effectively use the Healing spell:
   * Use during combat to maintain health without consuming potions
   * Prioritize healing when health drops below 50% to prevent emergency situations
   * Consider using before difficult encounters to maximize health
-  * In group scenarios, heal allies who are in danger
 
 ==== Content Verification ====
-  * Information source: Lua Script in Remixed Dungeon codebase
+  * Information source: Java code in Remixed Dungeon codebase
   * Stats verified: Yes, extracted directly from spell class properties
   * Effect descriptions: Generated from code analysis and string resources
-  * Last updated: 2025-12-14 based on Heal.lua
+  * Last updated: 2025-12-25 based on Healing.java
 
 ==== Data Sources ====
-  * Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Heal.lua|Heal.lua]]
-  * Spell Definition: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]]
-  * Spell Registry: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2683|Heal_Name]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2684|Heal_Info]]
-  * Russian String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2685|Heal_Name]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2686|Heal_Info]]
+  * Java Source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]]
+  * Spell Registry: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L19-L21|Healing_Name, Healing_Info]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-21|Healing_Name, Healing_Info]] in Russian
+  * String Resource Lines: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L19-L21|strings_all.xml#L19-L21]]
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
   * [[rpd:mechanics|Game Mechanics]]
-  * [[rpd:priest_class|Priest Affinity]]
+  * [[rpd:heal_spell|Heal Spell]] - A different spell that targets any character
   * [[rpd:potion_of_healing_item|Potion of Healing]]
 
-{{tag> rpd spells priest healing support }}
+{{tag> rpd spells common healing support }}
