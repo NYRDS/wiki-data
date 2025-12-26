@@ -1,6 +1,6 @@
 ====== Thief ======
 
-{{ rpd:images:thief_sprite.png|Thief }}
+{{ rpd:images:thief_mob.png|Thief }}
 
 The **Thief** is a common mob found in the early levels of the dungeon. Thieves are agile and cunning enemies that often carry valuable items.
 
@@ -15,6 +15,7 @@ Thieves were once residents of the surface world who descended into the dungeon 
   * **Durability:** 3 (DR)
   * **EXP:** 5
   * **Max Level:** 10
+  * **Attack Delay:** 0.5
   * **Speed:** Standard
 
 ==== Properties ====
@@ -24,39 +25,47 @@ Thieves were once residents of the surface world who descended into the dungeon 
   * **Gold Dropping:** While in fleeing state, the thief drops gold when attacked
 
 ==== Special Abilities ====
-  * **Item Theft:** When successfully hitting a target, the thief will attempt to steal an item from their inventory
+  * **Item Theft:** When successfully hitting a target, the thief will attempt to steal a random unequipped item from their inventory
   * **Fleeing Behavior:** After stealing an item, the thief changes to a fleeing state and will run away
   * **Gold Dropping:** Once in the fleeing state, the thief drops gold when taking damage
+  * **Adjacent Only:** The thief can only steal when adjacent to the target
 
 ==== Loot ====
-  * **Standard Loot:** May drop a random item from the target's inventory after successful attack
+  * **Standard Loot:** May steal a random unequipped item from the target's inventory after successful attack
   * **Ring of Haggler:** 1% chance to drop
   * **Gold:** Drops gold when attacked while in fleeing state
 
 ==== Behavior ====
   * **Aggressive:** Will attack players and other characters on sight
-  * **Stealing Focus:** Prioritizes stealing valuable or useful items from players
+  * **Stealing Focus:** Steals a random unequipped item from the target's inventory (not necessarily the most valuable)
   * **Evasive:** After stealing, becomes evasive and tries to flee from combat
+  * **Fleeing AI:** Uses ThiefFleeing AI state to move away from enemies when in fleeing state
 
 ==== Strategy ====
   * Keep an eye on valuable items in your inventory when fighting thieves
   * Be prepared to lose items if the thief successfully lands an attack
-  * When a thief enters fleeing state, you can corner and attack it to make it drop gold
+  * When a thief enters fleeing state, you can chase and attack it to make it drop gold
   * Consider using ranged weapons or spells to avoid direct combat
   * Be cautious in areas with multiple thieves
+  * Try to keep important items equipped rather than in backpack to prevent theft
+
+==== Content Verification ====
+  * Information Source: Thief.java, ThiefFleeing.java, CharUtils.java
+  * Stats Verification: Based on constructor parameters and values in Thief.java
+  * Effect Descriptions: Extracted from implementation in Thief.java attackProc and defenseProc methods
+  * Last Updated: 26 December 2025
+
+==== Source Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Thief.java|Thief.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/ThiefFleeing.java|ThiefFleeing.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java#L138|CharUtils.steal method]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1353-L1355|String Resources]]
 
 ==== Related ====
   * [[rpd:ring_of_haggler_item|Ring of Haggler]] - Possible drop
   * [[rpd:mobs|Mobs]] - Other dungeon inhabitants
   * [[rpd:gold_item|Gold]] - What they drop when fleeing
   * [[rpd:items|Items]] - What they might steal
-
-==== Source Code ====
-  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Thief.java|Thief.java]]
-  * AI: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/ThiefFleeing.java|ThiefFleeing.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1353|Thief Descriptions]]
-
-==== Notes ====
-Thieves can steal any unequipped item from your inventory. The most valuable or useful items are often the most likely targets. After stealing, the thief enters a fleeing state, and when taking damage in this state, it will drop gold.
+  * [[rpd:items|Backpack]] - Where items are stolen from
 
 {{tag> rpd mobs humanoid thief }}
