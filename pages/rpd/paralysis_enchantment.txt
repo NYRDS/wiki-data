@@ -1,0 +1,34 @@
+====== Paralysis Enchantment ======
+
+{{ rpd:images:enchant_paralysis.png|Paralysis Enchantment }}
+
+==== Description ====
+The Paralysis enchantment has a chance to stun enemies when they are hit by the weapon. Stunned enemies cannot act for a duration.
+
+==== Mechanics ====
+  * **Activation Chance:** 13% at +0 level, increasing to 22% at +1, 30% at +2, etc.
+  * **Effect**: When triggered, applies the [[rpd:stun_buff|Stun]] status effect for 1 to (1.5 + level) turns
+  * **Effectiveness:** Particularly effective against dangerous enemies to temporarily disable them
+  * **Visual:** Has a yellow glowing effect on enchanted weapons
+
+==== Stats ====
+  * **Base Activation Chance:** 13% (at +0 weapon level)
+  * **Chance Scaling:** Increases by approximately 9% per weapon level
+  * **Stun Duration:** 1 to (1.5 + enchantment level) turns
+  * **Visual Glowing:** Yellow (RGB: 0xCCAA44)
+
+==== Source Code ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Paralysis.java|Paralysis.java]]
+  * The effect is applied in the proc() method with probability and duration increasing with weapon level
+  * Note: Despite the name, it applies the Stun effect, not Paralysis
+
+==== String Resources ====
+No specific string resources for this enchantment, as it's identified by name in-game
+
+==== See Also ====
+  - [[rpd:stun_buff|Stun Buff]] - Status effect caused by this enchantment
+  - [[rpd:enchantments|Enchantments]] - List of all weapon enchantments
+  - [[rpd:weapons|Weapons]] - Equipment that can have enchantments
+  - [[rpd:paralysis_buff|Paralysis Buff]] - A different buff that also prevents action
+
+{{tag> rpd items enchantments stun}}
