@@ -1,6 +1,6 @@
 ====== Glaive ======
 
-{{ rpd:images:glaive_sprite.png|Glaive Sprite }}
+{{ rpd:images:glaive_item.png|Glaive }}
 
 ==== Description ====
 A glaive is a polearm weapon consisting of a single-edged blade on the end of a pole. It's a powerful melee weapon with excellent reach. According to the in-game description: "A polearm consisting of a sword blade on the end of a pole."
@@ -16,14 +16,16 @@ A glaive is a polearm weapon consisting of a single-edged blade on the end of a 
   * **Accuracy:** 1.2× (affects hit chance)
   * **Delay:** 1.4 (attack speed multiplier)
   * **Range:** 2 (can attack enemies 2 tiles away)
-  * **Strength Required:** 15 (reduced by upgrades)
+  * **Strength Required:** 18 (reduced by upgrades)
   * **Durability:** 100 (standard for weapons)
+  * **Price:** 320 (unenchanted, increases with enchantment)
 
 ==== Special Properties ====
   * **Extended Reach:** Can attack enemies at range of 2 tiles, allowing safe attacks from a distance
   * **Polearm Category:** Belongs to the "Polearms" archetype, granting increased attack distance
   * **Two-Handed:** Requires both hands to wield (blocks shield slot)
   * **Straight Flight:** When thrown (with boomerang enchantment), it flies straight to the target
+  * **Block Left Hand:** Cannot equip a shield or off-hand item when wielding
 
 ==== Acquisition ====
   * Found in the City level (levels 16-19) of the dungeon
@@ -35,13 +37,27 @@ A glaive is a polearm weapon consisting of a single-edged blade on the end of a 
   * Effective against single targets, but can't hit multiple enemies in one attack
   * Works well in corridors where you can maintain distance from enemies
   * The high max damage makes it powerful against tough enemies when you connect
-  * Upgrades will increase damage and reduce required strength
+  * Upgrades will increase damage and reduce required strength (MIN+1, MAX+tier, STR-1)
   * Consider using with other ranged weapons or magic items for maximum effectiveness
+  * With upgrades, the damage scales significantly (each upgrade: +1 min damage, +5 max damage with tier 5)
+
+==== Content Verification ====
+  * Information Source: Glaive.java, Polearm.java, MeleeWeapon.java
+  * Stats Verification: Based on constructor parameters and calculated values from code
+  * Effect Descriptions: Extracted from string resources (Glaive_Info)
+  * Last Updated: 26 December 2025
+
+==== Source Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Glaive.java|Glaive.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Polearm.java|Polearm.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1114|String Resource]]
 
 ==== Related Items ====
   * [[rpd:polearms|Polearms]] - Other weapons in the same category
-  * [[rpd:spear_item|Spear]] - A similar but lower-tier polearm
-  * [[rpd:halberd|Halberd]] - Another high-tier polearm with different stats
+  * [[rpd:spear_item|Spear]] - A similar but lower-tier polearm (tier 2)
+  * [[rpd:halberd|Halberd]] - Another high-tier polearm with different stats (tier 5)
   * [[rpd:melee_weapons|Melee Weapons]] - All melee weapon types
+  * [[rpd:water_of_transmutation|Water of Transmutation]] - Can create a Glaive
 
 {{tag> rpd items weapons polearms melee}}
