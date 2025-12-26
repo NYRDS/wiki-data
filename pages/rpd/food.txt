@@ -1,44 +1,81 @@
 ====== Food ======
 
-{{ rpd:images:ration_sprite.png|Food }}
+{{ rpd:images:ration_item.png|Food }}
 
 **Food** items in Remixed Dungeon satisfy hunger and keep the hero in good health. Without food, the hero will become hungry, weak, and eventually start losing health.
 
 ==== Food Types ====
-  * [[rpd:ration_item|Iron Ration]] - Standard food item that fully satisfies hunger
-  * [[rpd:overpriced_ration_item|Overpriced Ration]] - Expensive food from shops, smaller effect
-  * [[rpd:rotten_food|Rotten Food]] - Dangerous food that poisons the hero
+  * [[rpd:ration_item|Iron Ration]] - Standard food item that provides 280 hunger points (satiety)
+  * [[rpd:overpriced_ration_item|Overpriced Ration]] - Expensive food from shops, provides 120 hunger points (satiety)
+  * [[rpd:rotten_food|Rotten Food]] - Dangerous food that poisons the hero and causes harmful effects
   * [[rpd:rotten_ration_item|Rotten Ration]] - Rotten version of Iron Ration
-  * [[rpd:freeze_carpaccio|Frozen Carpaccio]] - Special food that heals and cures status effects
-  * [[rpd:mystery_meat|Mystery Meat]] - Food with random effects (good or bad)
-  * [[rpd:chargrilled_meat_item|Chargrilled Meat]] - Cooked meat from cooking Mystery Meat
-  * [[rpd:food|Food]] - The generic food item
+  * [[rpd:freeze_carpaccio_item|Frozen Carpaccio]] - Special food that provides 120 hunger points and gives random beneficial effects
+  * [[rpd:mystery_meat_item|Mystery Meat]] - Food with random effects (good or bad), provides 120 hunger points
+  * [[rpd:chargrilled_meat_item|Chargrilled Meat]] - Cooked meat from cooking Mystery Meat, provides 120 hunger points
+  * [[rpd:pasty_item|Pasty]] - Special food that provides 400 hunger points (full satiety)
+  * [[rpd:pseudo_pasty_item|Pseudo Pasty]] - Special food that provides 400 hunger points (full satiety)
+  * [[rpd:pumpkin_pie_item|Pumpkin Pie]] - Seasonal food that provides 400 hunger points (full satiety)
+  * [[rpd:christmas_turkey_item|Christmas Turkey]] - Seasonal food that provides 400 hunger points (full satiety)
 
 ==== Hunger Mechanics ====
-  * Eating food fully satisfies hunger
-  * Each food item provides 3000 hunger points (satiety)
-  * Without food, hunger increases until the hero starts losing health
+  * Hunger levels: Normal (0-279), Hungry (280-399), Starving (400+)
+  * **Iron Ration** provides 280 hunger points (brings from Starving to Normal)
+  * **Overpriced Ration** provides 120 hunger points (reduces hunger level by 120)
+  * **Frozen Carpaccio** provides 120 hunger points and potential beneficial effects
+  * **Mystery Meat** and **Chargrilled Meat** provide 120 hunger points
+  * **Pasty**, **Pseudo Pasty**, **Pumpkin Pie**, and **Christmas Turkey** provide 400 hunger points (full satiety)
+  * Without food, hunger increases until the hero starts losing health when Starving
   * [[rpd:hunger|Hunger]] system details
+
+==== Effects of Eating Frozen Carpaccio ====
+When eating Frozen Carpaccio, one of these effects occurs randomly:
+  * 20% chance: Gain Invisibility for a short duration
+  * 20% chance: Gain Barkskin (armor increase)
+  * 20% chance: Cure Poison, Cripple, Weakness, and Bleeding
+  * 20% chance: Heal for 25% of max HP and gain some additional HP
+  * 20% chance: Normal food effect only
+
+==== Effects of Eating Mystery Meat ====
+When eating Mystery Meat, one of these effects occurs randomly:
+  * 20% chance: Ignite the hero (Burning)
+  * 20% chance: Root the hero in place (Roots)
+  * 20% chance: Poison the hero
+  * 20% chance: Slow the hero
+  * 20% chance: Normal food effect only
 
 ==== Strategy ====
   * Always carry at least 2-3 food items when entering the dungeon
   * Ration food carefully in longer levels
-  * [[rpd:freeze_carpaccio|Frozen Carpaccio]] is valuable for its healing effects
-  * [[rpd:mystery_meat|Mystery Meat]] can be cooked at a cauldron to make safe food
+  * [[rpd:freeze_carpaccio_item|Frozen Carpaccio]] is valuable for its healing and beneficial effects
+  * [[rpd:mystery_meat_item|Mystery Meat]] can be cooked at a cauldron to make safe food
+  * [[rpd:rotten_food|Rotten food]] items produce harmful gas clouds when thrown on the ground
+  * Higher-value food items like Pasties should be saved for when you're starving
 
-==== Availability ====
-  * Found in stores and special rooms
-  * Sometimes dropped by enemies
-  * Created through cooking [[rpd:mystery_meat|Mystery Meat]]
+==== Acquisition ====
+  * **Iron Ration**: Found in stores and special rooms, sometimes dropped by enemies
+  * **Overpriced Ration**: Sold in stores for higher prices
+  * **Mystery Meat**: Dropped by many enemies, especially meat-based ones
+  * **Chargrilled Meat**: Created by burning Mystery Meat at a cauldron
+  * **Frozen Carpaccio**: Created by freezing Mystery Meat at an Ice Cauldron
+  * **Rotten Food**: Created when food items are contaminated by Rotberry plants or other sources
+
+==== Content Verification ====
+  * Information Source: Food.java, Ration.java, OverpricedRation.java, FrozenCarpaccio.java, MysteryMeat.java, ChargrilledMeat.java, RottenFood.java
+  * Stats Verification: Based on energy values in Hunger.java (HUNGRY = 280, STARVING = 400)
+  * Effect Descriptions: Extracted from the _execute methods in each food implementation
+  * Last Updated: 26 December 2025
+
+==== Source Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Ration.java|Ration.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/FrozenCarpaccio.java|FrozenCarpaccio.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/MysteryMeat.java|MysteryMeat.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]]
 
 ==== Related ====
   * [[rpd:hunger|Hunger]] - Detailed hunger mechanics
   * [[rpd:ration_item|Iron Ration]] - Primary food item
   * [[rpd:items|Items]] - All items in the game
   * [[rpd:shops|Shops]] - Where food can be purchased
-
-==== Content Verification ====
-  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/|Food implementations in Remixed Dungeon]]
-  * All food effects verified against actual game code
 
 {{tag> rpd items food}}
