@@ -15,12 +15,12 @@ Skeletons are reanimated bones of dead adventurers and denizens of the dungeon. 
   * **Armor**: 5 DR (Defense Rating)
   * **EXP for Kill**: 5
   * **Maximum Level**: 10
-  * **Undead**: Yes (immune to certain status effects)
+  * **Undead**: Yes (immune to certain [[rpd:status_effects|status effects]])
 
 ==== Abilities ====
-  * **Weapon Drop**: When defeated (outside Necro levels), has a 20% chance to drop a random melee weapon, rarely upgraded.
-  * **Undead Resistance**: Immune to fear, charm, and sleep effects
-  * **Poison Immunity**: Immune to poison damage and status effects
+  * **Weapon Drop**: When defeated (outside Necro levels), has a 20% chance to drop a random [[rpd:melee_weapon|melee weapon]], rarely upgraded.
+  * **Undead Resistance**: Immune to [[rpd:fear|fear]], [[rpd:charm_spell|charm]], and [[rpd:sleep_buff|sleep]] effects
+  * **Poison Immunity**: Immune to [[rpd:poison_buff|poison]] damage and status effects
   * **Corpse Explosion**: When killed, explodes dealing damage to nearby entities in 4 adjacent cells (horizontal and vertical directions, but not diagonal). The explosion damage is calculated as (skeleton's damage roll - target's defense roll / 2). Never forget about this! Bone damage amounts to 3-8 (armor reduces the average value). Be especially careful when surrounded as they explode on death, potentially harming you.
   * **Sound Effect**: Plays a bone-cracking sound when defeated (Assets.SND_BONES)
 
@@ -35,10 +35,10 @@ Skeletons are aggressive melee enemies that will pursue the player relentlessly.
   * **Necro Level Exception**: In NecroBossLevel, they do not drop weapons
 
 ==== Strategy ====
-  * Use ranged weapons or spells to attack from a distance
+  * Use [[rpd:ranged_weapons|ranged weapons]] or [[rpd:spells|spells]] to attack from a distance
   * Avoid letting them corner you in narrow passages
   * Be careful with fire-based attacks as they cause explosion (though this is not explicitly stated as fire vulnerability)
-  * They're resistant to many status effects, requiring direct damage
+  * They're resistant to many [[rpd:status_effects|status effects]], requiring direct damage
   * Try to avoid being surrounded as they explode on death, potentially harming you
 
 ==== Special Notes ====
@@ -50,11 +50,14 @@ Skeletons are aggressive melee enemies that will pursue the player relentlessly.
 
 ==== Code References ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java|Skeleton.java]] - Primary implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L16-L26|Skeleton.java#L16-L26]] - Stats and properties initialization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L28-L32|Skeleton.java#L28-L32]] - Loot implementation (20% weapon drop chance, null in NecroBossLevel)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L35-L54|Skeleton.java#L35-L54]] - Death explosion mechanics
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1321-L1326|Skeleton strings]] - Name, description, and other text (English)
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1307-L1312|Skeleton strings (Russian)]] - Russian localization
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L12-L15|Bestiary.json]] - Spawn rates in Prison levels (levels 6-9)
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L64|Bestiary.json]] - Spawn rates in necro1 level
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Skeleton.json|Skeleton.json]] - Sprite configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Skeleton.json|MobsDesc/Skeleton.json]] - Skeleton mob configuration
 
 ==== Configuration Files ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - Level spawn configuration
