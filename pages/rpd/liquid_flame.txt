@@ -1,34 +1,47 @@
 ====== Liquid Flame ======
 
-**Liquid Flame** is an environmental effect in Remixed Pixel Dungeon that causes burning damage to characters who come into contact with it.
+**Liquid Flame** is a harmful environmental effect in Remixed Dungeon that causes damage to characters standing within its area.
 
 ==== Description ====
-Liquid Flame is a magical fire effect that appears as a burning liquid on dungeon floors. It typically results from throwing a [[rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] at a location or other fire-based mechanics. Characters standing on Liquid Flame tiles take damage each turn they remain in contact with it.
+Liquid Flame is a burning effect that persists on the floor for several turns, damaging all characters that stand in it. It's created when a [[rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] is shattered on the ground.
 
 ==== Mechanics ====
-  * **Damage:** 1 damage per turn to any character standing on the tile
-  * **Duration:** Typically lasts 5-8 turns before extinguishing naturally
+  * **Damage:** Causes fire damage each turn to characters in the affected area
+  * **Duration:** Persists for several turns before dissipating
+  * **Area of Effect:** Covers a 3x3 area around the impact point where the potion was shattered
   * **Spread:** Can spread to adjacent flammable terrain
-  * **Ignition:** Will ignite any flammable environmental elements it touches
-  * **Area:** Usually affects a 3x3 area when created by a potion
+  * **Fire Resistance:** Enemies with fire resistance take reduced damage
+
+==== Creation ====
+  * **Primary Method:** Created when [[rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] is shattered
+  * **Volume:** Creates an area with 10 units of liquid flame initially
+  * **Quality Factor:** The ''qualityFactor()'' affects the volume of liquid flame produced
+  * **Visual Effect:** Shows fire animation on affected floor tiles
 
 ==== Interactions ====
-  * **Water:** Water-based elements and potions can extinguish Liquid Flame
-  * **Potions:** [[rpd:potion_of_frost_item|Potion of Frost]] and [[rpd:potion_of_purity_item|Potion of Purity]] can extinguish it
-  * **Ice:** Frost-based mechanics can freeze and remove Liquid Flame
-  * **Burning Status:** Characters in Liquid Flame gain the [[rpd:burning_buff|Burning]] status effect
+  * **Terrain:** Can ignite flammable terrain like grass and barricades
+  * **Fire Immunity:** Characters immune to fire take no damage
+  * **Environmental Interaction:** Part of the game's fire mechanics system
+  * **Combustion:** Continues burning until it naturally extinguishes or is put out
 
 ==== Strategy ====
-  * **Offensive:** Use to damage enemies in groups
-  * **Defensive:** Create barriers to prevent enemy approach
-  * **Environmental:** Useful in combination with other area effects
-  * **Caution:** Avoid trapping yourself or allies in the flames
+  * **Offensive Use:** Damage groups of enemies by creating liquid flame areas
+  * **Area Denial:** Block passages with burning areas to prevent enemy approach
+  * **Tactical Positioning:** Avoid standing in liquid flame to prevent damage
+  * **Enemy Considerations:** Fire-immune enemies are unaffected by liquid flame
 
-==== Related ====
-  * [[rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] - Item that creates liquid flame
-  * [[rpd:fire|Fire]] - General fire mechanics
-  * [[rpd:burning_buff|Burning Status Effect]] - Status effect caused by fire
-  * [[rpd:potion_of_purity_item|Potion of Purity]] - Can extinguish liquid flame
-  * [[rpd:potion_of_frost_item|Potion of Frost]] - Can extinguish liquid flame
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java|Blob base class]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java|PotionOfLiquidFlame.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/CellEmitter.java|CellEmitter for visual effects]]
+  * [[mr:liquid_flame|mr:liquid_flame]]
 
-{{tag> rpd mechanics environment fire liquid_flame }}
+==== Related Content ====
+  * [[rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]]
+  * [[rpd:fire|Fire Mechanics]]
+  * [[rpd:burning_buff|Burning Status Effect]]
+  * [[rpd:fire_trap|Fire Trap]]
+  * [[rpd:elemental_damage|Elemental Damage]]
+
+{{tag> rpd mechanics fire liquid_flame blobs }}
