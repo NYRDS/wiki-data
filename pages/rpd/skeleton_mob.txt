@@ -2,37 +2,37 @@
 
 {{ rpd:images:skeleton_mob.png|Skeleton }}
 
-The **Skeleton** is a common undead enemy found throughout the dungeon, typically in the Prison and later levels. A small chance of appearing in the Sewers as well.
+The **Skeleton** is a common [[rpd:undead_mob|undead]] enemy found throughout the dungeon, typically in the [[rpd:prison_level|Prison]] and later levels. A small chance of appearing in the [[rpd:sewers|Sewers]] as well.
 
 ==== Overview ====
-Skeletons are reanimated bones of dead adventurers and denizens of the dungeon. They are persistent enemies that will relentlessly pursue the player character. Skeletons are immune to various status effects due to their undead nature.
+Skeletons are reanimated bones of dead [[rpd:hero|adventurers]] and denizens of the dungeon. They are persistent enemies that will relentlessly pursue the player character. Skeletons are immune to various [[rpd:status_effects|status effects]] due to their [[rpd:undead_mob|undead]] nature.
 
 ==== Stats ====
   * **HP**: 25 (HT: 25)
   * **Defense Skill**: 9
   * **Attack Skill**: 12
-  * **Damage**: 3-8
+  * **Damage**: 3-8 (see [[rpd:melee_combat|melee combat]] mechanics)
   * **Armor**: 5 DR (Defense Rating)
   * **EXP for Kill**: 5
   * **Maximum Level**: 10
   * **Undead**: Yes (immune to certain [[rpd:status_effects|status effects]])
 
 ==== Abilities ====
-  * **Weapon Drop**: When defeated (outside Necro levels), has a 20% chance to drop a random [[rpd:melee_weapon|melee weapon]], rarely upgraded.
+  * **Weapon Drop**: When defeated (outside [[rpd:necropolis_level|Necro levels]]), has a 20% chance to drop a random [[rpd:melee_weapon|melee weapon]], rarely upgraded.
   * **Undead Resistance**: Immune to [[rpd:fear|fear]], [[rpd:charm_spell|charm]], and [[rpd:sleep_buff|sleep]] effects
   * **Poison Immunity**: Immune to [[rpd:poison_buff|poison]] damage and status effects
-  * **Corpse Explosion**: When killed, explodes dealing damage to nearby entities in 4 adjacent cells (horizontal and vertical directions, but not diagonal). The explosion damage is calculated as (skeleton's damage roll - target's defense roll / 2). Never forget about this! Bone damage amounts to 3-8 (armor reduces the average value). Be especially careful when surrounded as they explode on death, potentially harming you.
+  * **Corpse Explosion**: When killed, explodes dealing damage to nearby entities in 4 adjacent cells (horizontal and vertical directions, but not diagonal). The explosion damage is calculated as (skeleton's damage roll - target's [[rpd:defense|defense]] roll / 2). Never forget about this! Bone damage amounts to 3-8 (armor reduces the average value). Be especially careful when surrounded as they explode on death, potentially harming you.
   * **Sound Effect**: Plays a bone-cracking sound when defeated (Assets.SND_BONES)
 
 ==== Combat Tactics ====
-Skeletons are aggressive melee enemies that will pursue the player relentlessly. They cannot be charmed or frightened, making them consistently dangerous throughout the dungeon. Their bony structure provides some physical damage resistance.
+Skeletons are aggressive [[rpd:melee_combat|melee]] enemies that will pursue the player relentlessly. They cannot be charmed or frightened, making them consistently dangerous throughout the dungeon. Their bony structure provides some physical damage resistance.
 
 ==== Occurrence ====
-  * **Primary Location**: Found throughout the Prison level (especially levels 7 and 8) and deeper dungeon levels
+  * **Primary Location**: Found throughout the [[rpd:prison_level|Prison level]] (especially levels 7 and 8) and deeper dungeon levels
   * **Spawn Frequency**: Common in later dungeon levels (specifically levels 6-9 according to Bestiary.json)
-  * **Secondary Location**: Small chance to appear in the Sewers
+  * **Secondary Location**: Small chance to appear in the [[rpd:sewers|Sewers]]
   * **Group Behavior**: Usually found alone or in small groups
-  * **Necro Level Exception**: In NecroBossLevel, they do not drop weapons
+  * **[[rpd:necropolis_level|Necro Level]] Exception**: In [[rpd:necropolis_level|NecroBossLevel]], they do not drop weapons
 
 ==== Strategy ====
   * Use [[rpd:ranged_weapons|ranged weapons]] or [[rpd:spells|spells]] to attack from a distance
@@ -42,30 +42,28 @@ Skeletons are aggressive melee enemies that will pursue the player relentlessly.
   * Try to avoid being surrounded as they explode on death, potentially harming you
 
 ==== Special Notes ====
-  * Skeletons are undead, which affects how certain items and spells interact with them
+  * Skeletons are [[rpd:undead_mob|undead]], which affects how certain items and spells interact with them
   * They're immune to various effects that work on living creatures
-  * Defeating them contributes to the "Skeleton Slayed" badge
+  * Defeating them contributes to the "Skeleton Slayed" [[rpd:badges|badge]]
   * They explode when killed, which can be dangerous to the player if standing too close
-  * In NecroBossLevel, they don't drop weapons, as this level has different rules
+  * In [[rpd:necropolis_level|NecroBossLevel]], they don't drop weapons, as this level has different rules
 
 ==== Code References ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java|Skeleton.java]] - Primary implementation
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L16-L26|Skeleton.java#L16-L26]] - Stats and properties initialization
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L28-L32|Skeleton.java#L28-L32]] - Loot implementation (20% weapon drop chance, null in NecroBossLevel)
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L35-L54|Skeleton.java#L35-L54]] - Death explosion mechanics
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1321-L1326|Skeleton strings]] - Name, description, and other text (English)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1307-L1312|Skeleton strings (Russian)]] - Russian localization
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L12-L15|Bestiary.json]] - Spawn rates in Prison levels (levels 6-9)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L64|Bestiary.json]] - Spawn rates in necro1 level
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Skeleton.json|MobsDesc/Skeleton.json]] - Skeleton mob configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java#L125-L130|Treasury.java#L125-L130]] - Treasury loot handling mechanism
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/NecroBossLevel.java|NecroBossLevel.java]] - Special handling for NecroBossLevel where skeletons don't drop weapons
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind.java]] - Interface for entity identification
 
 ==== Configuration Files ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - Level spawn configuration
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Skeleton.json|Skeleton.json]] - Skeleton mob configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - Level spawn configuration (prison levels 6-9, necro1 level)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Skeleton.json|Skeleton.json]] - Sprite configuration
 
 ==== String Resources ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1321-L1326|Skeleton strings (English)]] - English names and descriptions
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1307-L1312|Skeleton strings (Russian)]] - Russian localization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1307-L1312|Skeleton strings (Russian)]] - Russian localization (Скелет, Скелеты - одни из самых сильных врагов в подземелье)
 
 ==== Related ====
   * [[rpd:undead_mob|Undead]] - Other undead enemies
@@ -75,5 +73,8 @@ Skeletons are aggressive melee enemies that will pursue the player relentlessly.
   * [[rpd:mobs|Mobs]] - All mobs in the game
   * [[rpd:skeleton_key_item|Skeleton Key]] - Item with similar name, but not related to the mob
   * [[rpd:treasury|Treasury]] - For information about dropped items
+  * [[rpd:mechanics|Game Mechanics]] - General game mechanics
+  * [[rpd:combat_mechanics|Combat]] - Combat mechanics
+  * [[rpd:hero|Hero]] - Player character
 
 {{tag> rpd mobs undead prison skeleton skeleton_mob}}
