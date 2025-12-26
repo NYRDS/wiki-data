@@ -6,14 +6,15 @@ The **Rogue** is one of the starting classes in Remixed Dungeon. Known for steal
 
 ==== Class Characteristics ====
   * **Primary Stat**: Dexterity and stealth
-  * **Starting Equipment**: 
-    * [[rpd:dagger_item|Dagger]]
-    * [[rpd:leather_armor_item|Leather Armor]]
-    * [[rpd:ration_item|Food ration]]
-    * [[rpd:potion_of_might_item|Potion of Might]]
-    * [[rpd:scroll_of_identify_item|Scroll of Identify]]
+  * **Starting Equipment**:
+    * [[rpd:cloth_armor_item|Cloth Armor]] (common to all classes)
+    * [[rpd:ring_of_shadows_item|Ring of Shadows]] (specific to Rogue)
+    * [[rpd:ration_item|Food ration]] (common to non-expert difficulty)
+    * [[rpd:scroll_of_magic_mapping_item|Scroll of Magic Mapping]] (specific to Rogue)
+    * 100 [[rpd:gold|Gold]] (common to all classes)
   * **Special Abilities**: Enhanced detection of secrets and traps
-  * **Mana System**: Uses mana for throwing spells like [[rpd:kunai_throw_spell|Kunai Throw]]
+  * **Class Armor**: [[rpd:rogue_armor_item|Rogue Garb]] - Specialized armor with "smoke bomb" ability
+  * **Magic Affinity**: Rogue
 
 ==== Advantages ====
   * **Trap Detection**: Better at avoiding traps due to high awareness
@@ -37,9 +38,14 @@ The Rogue class can specialize in the following subclasses:
   * **Assassin** - Enhanced damage capabilities 
 
 ==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1453-L1467|HeroClass strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Main class definition and initialization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Hero base implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/RogueArmor.java|RogueArmor.java]] - Class armor implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1453-L1467|HeroClass strings]] - English localization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1439-L1451|HeroClass strings (Russian)]] - Russian localization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L41-L48|initHeroes.json]] - Starting equipment configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L78|HeroClass.java#L78]] - Class to armor mapping (ROGUE -> RogueArmor.class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L572|Char.java#L572]] - Rogue-specific awareness calculation
 
 ==== See Also ====
   * [[rpd:hero_classes|Hero Classes]]
