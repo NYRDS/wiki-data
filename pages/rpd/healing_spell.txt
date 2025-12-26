@@ -14,14 +14,14 @@ The Healing spell restores a portion of the caster's own health. It's a fundamen
   * **Spell Cost:** 10
 
 ==== Effects ====
-  * Heals the caster for 30% of their max HP (rounded down)
+  * Heals the caster for 30% of their max HP (specifically (int)(maxHP * 0.3) as implemented in Healing.java)
   * Self-target only
   * No scaling based on skill level
 
 ==== Uses ====
-  * Restore health during combat
+  * Restore health during [[rpd:combat_mechanics|combat]]
   * Emergency healing in dangerous situations
-  * Preserve healing potions for more critical situations
+  * Preserve [[rpd:potion_of_healing_item|healing potions]] for more critical situations
 
 ==== Classes ====
 Classes that can use this spell include:
@@ -30,9 +30,9 @@ Classes that can use this spell include:
 
 ==== Strategy ====
 How to effectively use the Healing spell:
-  * Use during combat to maintain health without consuming potions
+  * Use during [[rpd:combat_mechanics|combat]] to maintain health without consuming [[rpd:potion_of_healing_item|potions]]
   * Prioritize healing when health drops below 50% to prevent emergency situations
-  * Consider using before difficult encounters to maximize health
+  * Consider using before difficult [[rpd:enemies|encounters]] to maximize health
 
 ==== Content Verification ====
   * Information source: Java code in Remixed Dungeon codebase
@@ -42,9 +42,11 @@ How to effectively use the Healing spell:
 
 ==== Data Sources ====
   * Java Source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]]
+  * Java Implementation Details: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L23-L27|Healing.java#L23-L27]] - Exact healing calculation (int)(maxHP * 0.3)
   * Spell Registry: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L19-L21|Healing_Name, Healing_Info]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-21|Healing_Name, Healing_Info]] in Russian
-  * String Resource Lines: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L19-L21|strings_all.xml#L19-L21]]
+  * English String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20-L21|Healing_Name, Healing_Info]] - "Healing" and "This spell is crucial for any adventurer. It will restore 1/3 of the maximum amount of the caster's hp."
+  * Russian String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-21|Healing_Name, Healing_Info]] - "Исцеление" and "Незаменимое заклинание для каждого путешественника. Восстанавливает 1/3 от максимального запаса здоровья заклинателя."
+  * Note: String resources mention "1/3" but the actual implementation heals 30% (0.3) of max HP
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
