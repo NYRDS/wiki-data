@@ -1,42 +1,51 @@
-====== Slow Buff ======
+====== Slow ======
 
-{{ rpd:images:slow_buff.png|Slow Buff }}
+{{ rpd:images:slow_buff.png|Slow Effect }}
 
-Slow is a status effect in Remixed Dungeon that reduces a character's action speed and may have other effects.
+The **Slow** is a negative status effect in Remixed Dungeon that reduces a character's action speed.
 
-==== Effect ====
-When affected by the Slow effect:
-  * **Reduced Action Speed:** Action speed is decreased, causing slower actions
-  * **Duration:** The effect lasts for a specific duration
-  * **Attack Speed:** Attacking speed is reduced, affecting combat effectiveness
-
-==== Application ====
-The Slow effect can be applied through various sources:
-  * [[rpd:wand_of_slowness_item|Wand of Slowness]] - Direct spell effect that applies slow
-  * [[rpd:slow_enchantment|Slow Enchantment]] - On weapons may cause slowness
-  * [[rpd:slow_spell|Slow Spell]] - Direct spell effect
-  * Certain enemies with slow-creating abilities
+==== Effect Overview ====
+  * **Type:** [[rpd:debuff|Debuff]]
+  * **Duration:** Variable, based on source and target level
+  * **Effect:** Reduces action speed significantly
+  * **Removal:** Natural expiration or [[rpd:potion_of_purity_item|Potion of Purity]]
 
 ==== Mechanics ====
-  * Speed reduction affects the rate at which actions are performed
-  * May reduce both attack speed and other action speeds
-  * The effect wears off over time or can be cleared by certain means
-  * Characters can still act while slowed but at a reduced rate
+  * **Speed Reduction:** Affected characters act at reduced speed
+  * **Duration Calculation:** Duration varies based on the source of the effect
+  * **Stacking:** Does not stack with other speed-reducing effects
+  * **Effectiveness:** Makes affected characters move and attack more slowly
+  * **Affected Actions:** Movement, attacks, and other actions are slowed
 
-==== Strategic Considerations ====
-  * **Benefits for enemies:** Can severely limit player's combat effectiveness
-  * **Risks:** Makes the affected character vulnerable to attacks due to slower response
-  * **Counters:** Speed-enhancing effects or items can counteract slowness
+==== Application ====
+  * **Wands:** Applied by [[rpd:wand_of_slowness_item|Wand of Slowness]]
+  * **Spells:** Some spells may apply slow effects
+  * **Enemies:** Certain enemies can apply slow
+  * **Traps:** Some traps may have slow effects
 
-==== Content Verification ====
-  * Core Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
-  * Machine-readable data: [[mr:slow_buff|mr:slow_buff]]
+==== Strategy ====
+  * **As Enemy:** Use to slow down fast enemies that are hard to hit
+  * **Tactical Advantage:** Provides time to plan actions against slowed targets
+  * **Group Control:** Slow groups of enemies to handle them more easily
+  * **Defensive Use:** Slow approaching enemies to buy time
+  * **Combination:** Works well with other control effects
+  * **Self-Handling:** If affected, try to move to safer locations or use instant effects
 
-==== Related Effects ====
-  * [[rpd:speed|Speed Buff]] - Opposite effect that increases speed
-  * [[rpd:paralysis_buff|Paralysis]] - Complete immobilization effect
-  * [[rpd:chill_buff|Chill]] - Milder speed-reducing effect
-  * [[rpd:immobility|Immobility]] - Similar immobilizing effect
+==== Counters ====
+  * [[rpd:potion_of_purity_item|Potion of Purity]] removes the effect instantly
+  * Wait for natural expiration
+  * [[rpd:resistance|Resistances]] may reduce duration
 
-{{tag> rpd status_effects buffs debuffs slowing}}
+==== Code References ====
+  * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]]
+  * **Buff Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
+  * **Duration Calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java#L18-L20|Slow.duration() method]]
+  * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|String resources for Slow buff name/description]]
+
+==== Related Buffs ====
+  * [[rpd:chill_buff|Chill]] - Similar but weaker speed reduction
+  * [[rpd:paralysis_buff|Paralysis]] - More severe movement restriction
+  * [[rpd:freezing_buff|Freezing]] - Similar to paralysis but can be broken by damage
+  * [[rpd:amok_buff|Amok]] - Opposite effect (speeding up)
+
+{{tag> rpd buffs debuffs status_effects}}
