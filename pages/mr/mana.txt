@@ -1,0 +1,42 @@
+====== Mana (Skill Points) - Code References ======
+
+===== Entity Kind =====
+mana
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Contains skill points management (getSkillPoints, setSkillPoints, accumulateSkillPoints)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Base class with skill points methods
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/StatusPane.java|StatusPane.java]] - Displays skill points as "mana" in UI
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/ManaRegeneration.java|ManaRegeneration.java]] - Buff that handles passive regeneration of skill points
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfMana.java|PotionOfMana.java]] - Item that restores skill points
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/drinks/ManaPotion.java|ManaPotion.java]] - Another item that restores skill points
+
+===== JSON Configuration =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json]] - Defines starting skill points for each hero class
+
+===== String Resources =====
+<code xml>
+<string name="Mana_Title">Mana</string>
+<string name="Mana_Cost">Mana Cost: </string>
+<string name="Spells_NotEnoughSP">You do not have enough mana to cast a "%1$s" spell.</string>
+<string name="ClassArmor_LowMana">Insufficient mana!</string>
+<string name="HeroClass_NecromancerPerks_1">Necromancers use mana to cast Death spells.</string>
+<string name="HeroClass_MagPerks_4">Mages use mana to cast Elemental spells.</string>
+</code>
+
+===== Lua Scripts =====
+(No specific Lua script for mana itself, but used in various spell scripts)
+
+===== Code Implementation =====
+  * The game uses skill points instead of traditional "mana" but displays them as "mana" in the UI
+  * Hero class manages skill points with getSkillPoints(), setSkillPoints(), accumulateSkillPoints() methods
+  * The skill points are displayed as "mana" in the status bar using Utils.format("%d/%d",sp, st) in StatusPane.java:249
+  * ManaRegeneration buff handles passive regeneration of skill points
+  * Various items and abilities consume skill points when used
+
+===== Skill Points Mechanics =====
+  * getSkillPoints() - Returns current skill points
+  * getSkillPointsMax() - Returns maximum skill points
+  * setSkillPoints() - Sets skill points to specific value
+  * spendSkillPoints() - Reduces skill points by specified cost
+  * accumulateSkillPoints() - Increases skill points by specified amount
