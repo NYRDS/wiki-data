@@ -1,0 +1,62 @@
+====== Piranha Mob ======
+
+{{ rpd:images:piranha_mob.png|Piranha Sprite }}
+
+The **Piranha** is a fish mob that inhabits flooded areas and underwater chambers in Remixed Dungeon. These carnivorous fish were bred specifically to protect flooded treasure vaults.
+
+==== Description ====
+These carnivorous fish are not natural inhabitants of underground pools. They were bred specifically to protect flooded treasure vaults. They are commonly found in pools of water throughout the dungeon, particularly in the sewers and other flooded areas.
+
+==== Stats ====
+  * **HP:** 10 + (5 × Dungeon depth)
+  * **Attack Skill:** 20 + (2 × Dungeon depth)
+  * **Defense Skill:** 10 + (2 × Dungeon depth)
+  * **Damage:** Dungeon depth to (4 + 2 × Dungeon depth)
+  * **Armor:** Dungeon depth
+  * **Speed:** 2.0x (fast movement in water)
+  * **EXP:** 0 (no experience gained from killing)
+
+==== Behavior ====
+  * **Water-dependent:** Piranhas can only survive in water tiles; they will die if moved to non-water areas
+  * **Fast movement:** Piranhas move at 2x speed in water
+  * **Aquatic:** They use a water-walking movement type
+  * **No reset:** Unlike many other mobs, Piranhas don't reset to their spawn position
+
+==== Immunities ====
+Piranhas have immunities to several status effects:
+  * [[rpd:burning_buff|Fire]] (Burning)
+  * [[rpd:paralysis_buff|Paralysis]]
+  * [[rpd:toxic_gas|Toxic Gas]]
+  * [[rpd:roots_buff|Roots]]
+  * [[rpd:frost_buff|Frost]]
+
+==== Drops ====
+  * [[rpd:raw_fish_item|Raw Fish]] (carcass)
+
+==== Special Features ====
+  * **Badge Eligibility:** Killing 6 piranhas unlocks the "Piranhas" badge
+  * **No Experience:** Killing piranhas grants no experience points
+  * **Carcass Chance:** 0% chance of dropping a carcass for crafting
+
+==== Locations ====
+  * Commonly found in underwater areas throughout the dungeon
+  * Often placed in flooded treasure chambers
+  * Regularly appear in pools painted by PoolPainter during level generation
+
+==== Code References ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Piranha.java|Piranha.java]] - Core implementation
+  * Entity Kind: getEntityKind() returns "Piranha" in Java code
+  * Level Generation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/PoolPainter.java|PoolPainter.java]] - Places piranhas in water pools
+  * Statistics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Statistics.java|Statistics.java]] - Tracks piranhas killed
+  * Badge System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] - Piranha badge validation
+  * String Resources:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1291-L1294|English strings]] - Name and description
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1277-L1280|Russian strings]] - Russian localization
+
+==== See Also ====
+  * [[rpd:mobs|Mobs]]
+  * [[rpd:sewers_level|Sewers Level]]
+  * [[rpd:badges|Badges]]
+  * [[rpd:water_elemental_mob|Water Elemental]]
+
+{{tag> rpd mobs fish underwater water treasure}}
