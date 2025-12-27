@@ -19,15 +19,16 @@ This mob is implemented in JSON/Lua, no specific Java class exists.
 
 ===== Code Implementation Details =====
 This mob has the following properties based on the JSON and Lua implementation:
-  * **HP**: 10
-  * **Defense Skill**: 3
-  * **Attack Skill**: 8
-  * **Damage Range**: 1-4
-  * **Damage Reduction**: 1
-  * **Experience**: 2
-  * **Max Level**: 4
-  * **Base Speed**: 1
-  * **View Distance**: 3
+  * **HP**: 10 (ht field in JSON)
+  * **Defense Skill**: 3 (defenseSkill field in JSON)
+  * **Attack Skill**: 8 (attackSkill field in JSON)
+  * **Damage Range**: 1-4 (dmgMin and dmgMax fields in JSON)
+  * **Damage Reduction**: 1 (dr field in JSON)
+  * **Experience**: 2 (exp field in JSON)
+  * **Max Level**: 4 (maxLvl field in JSON)
+  * **Base Speed**: 1 (baseSpeed field in JSON)
+  * **View Distance**: 3 (viewDistance field in JSON)
+  * **Loot Chance**: 0 (lootChance field in JSON)
   * **Special Abilities**:
-    * Ooze proc: 20% chance to apply Ooze debuff to adjacent attacker on being hit
-  * **Other Properties**: Can be tamed as pet, not flying, not friendly
+    * Ooze proc: 20% chance (math.random() < 0.2) to apply Ooze debuff for self's skill level duration to adjacent attacker when hit (defenceProc function in Lua script)
+  * **Other Properties**: Can be tamed as pet (canBePet: true in JSON), not flying (flying: false in JSON), not friendly (friendly: false in JSON), normal walking type (walkingType: "NORMAL" in JSON)

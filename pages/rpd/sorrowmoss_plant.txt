@@ -3,34 +3,47 @@
 {{ rpd:images:levelObject_Sorrowmoss.png|Sorrowmoss Plant }}
 
 ==== Description ====
-The Sorrowmoss plant produces a toxic effect that can damage enemies when touched. When a character steps on the tile containing a Sorrowmoss plant, it produces a toxic bloom that damages nearby creatures.
+The Sorrowmoss plant produces a toxic effect that can damage enemies when touched. When a character steps on the tile containing a Sorrowmoss plant, it produces a toxic bloom that damages nearby creatures. A Sorrowmoss is a flower (not a moss) with razor-sharp petals, coated with a deadly venom.
 
 ==== Effects ====
-  * Produces a toxic bloom that damages nearby creatures
-  * Causes damage over time to creatures in the area
-  * Particularly effective against enemies
-  * The plant disappears after being touched
+  * **Poison Application**: Applies the [[rpd:poison_buff|Poison]] status effect to any character that steps on it
+  * **Poison Duration**: Duration is calculated as (4 + current dungeon depth / 2) × duration factor
+  * **Damage Over Time**: Poisoned characters take damage equal to (remaining time / 3) + 1 each turn
+  * **Visual Effect**: Emits poison particles in the center of the cell when activated
+  * **Destruction**: The plant disappears after being stepped on (wither effect)
 
 ==== Mechanics ====
-  * Sorrowmoss plants can be found growing in the dungeon
+  * Sorrowmoss plants can be found growing naturally in the dungeon
   * They can also be grown by planting [[rpd:sorrowmoss_seed_item|Sorrowmoss Seeds]]
-  * The toxic effect can be helpful in combat situations
-  * The damage affects all creatures in the immediate area
+  * The toxic effect applies to any character that steps on the plant (hero, mobs, pets, etc.)
+  * When activated by a [[rpd:warden_subclass|Warden]], there's a 20% chance to drop a random seed and 20% chance to drop a [[rpd:dewdrop_item|Dewdrop]]
 
 ==== Strategy ====
   * Sorrowmoss plants can be used tactically to damage groups of enemies
-  * Consider the risk vs reward since the effect affects all creatures in area
-  * Can be useful when surrounded by weaker enemies
-  * Be cautious with health when using, as effects may impact the player too
+  * Be cautious as the effect affects all creatures, including the player and pet companions
+  * Can be useful when surrounded by weaker enemies or to weaken stronger foes
+  * Wardens can benefit from stepping on Sorrowmoss, as it has a chance to drop seeds and dewdrops
+
+==== Code Implementation Details ====
+Based on the Java source code:
+  * **Image Index**: Uses imageIndex = 2 in the plants spritesheet
+  * **Effect Calculation**: Buff.affect(chr, Poison.class, Poison.durationFactor(chr) * (4 + Dungeon.depth / 2))
+  * **Particle Effect**: CellEmitter.center(pos).burst(PoisonParticle.SPLASH, 3) when activated
+  * **Visibility Check**: Only emits particles if the cell is visible to the player
+  * **Step-on Behavior**: Interrupts hero actions when stepped on
+  * **Parent Class**: Extends the Plant base class with its own effect implementation
 
 ==== Code Reference ====
   * Plant Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sorrowmoss.java|Sorrowmoss.java]]
   * Plant Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sorrowmoss.java#L16-L21|Sorrowmoss.effect method]]
+  * Parent Plant Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java|Plant.java]]
+  * Poison Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
 
 ==== Related ====
   * [[rpd:sorrowmoss_seed_item|Sorrowmoss Seed]] - The seed used to grow Sorrowmoss plants
   * [[rpd:plants|Plants]] - Other plants in the game
   * [[rpd:seeds|Seeds]] - Seeds that can be planted to grow useful plants
   * [[rpd:poison_buff|Poison]] - Related status effect
+  * [[rpd:warden_subclass|Warden]] - Hero subclass that benefits from plants
 
 {{tag> rpd plants items level_objects poison}}

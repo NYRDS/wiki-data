@@ -1,20 +1,29 @@
 ====== Health Dart Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthDart.java|HealthDart.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Dart.java|Dart.java]] (parent class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] (grandparent class)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/health_dart.json
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="HealthDart_Name">[Name]</string>
-<string name="HealthDart_Info">[Description]</string>
+<string name="HealthDart_Name">Healing Dart</string>
+<string name="HealthDart_Gender">masculine</string>
+<string name="HealthDart_Info">This dart\'s tip is covered in healing potion.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Code Implementation Details =====
+Based on the HealthDart.java implementation:
+  * **Damage Range**: 1-3 (MIN=1, MAX=3), compared to regular dart (MIN=1, MAX=4)
+  * **Strength Required**: 8 (setSTR(8))
+  * **Price**: 12 gold per dart (price() returns 12 * quantity())
+  * **Special Effect**: When used to attack, it heals the target character by 10% of their max HP via PotionOfHealing.heal(defender,0.1f)
+  * **Default Quantity**: Created with 1 dart by default, but random() generates 2-4 darts
+  * **Image**: Uses image ID 14
+  * **Extends**: Dart class, which extends MissileWeapon class

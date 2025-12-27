@@ -1,120 +1,34 @@
-====== mr:black_cat_npc_mob ======
+====== Black Cat NPC - Code References ======
 
-==== Entity Kind ====
-```lua
+===== Java Classes =====
+This entity may be implemented in JSON/Lua, no specific Java class exists.
 
-getEntityKind() == "BlackCatNPC"
+===== JSON Configuration =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BlackCatNPC.json|BlackCatNPC.json]]
 
-```
+===== String Resources =====
+<code xml>
+<string name="BlackCat_Name">Black cat</string>
+<string name="BlackCat_Gender">feminine</string>
+<string name="BlackCat_Name_Objective">cat</string>
+<string name="BlackCat_Desc">This is a black cat</string>
+<string name="BlackCat_AiStatus">This cat is doing ordinary cat things</string>
+<string name="BlackCat_Phrases_0">Prrrrrrr</string>
+<string name="BlackCat_Phrases_1">Meow...</string>
+<string name="BlackCat_Phrases_2">Meow!</string>
+</code>
 
-==== JSON Configuration ====
-**File**: RemixedDungeon/src/main/assets/mobsDesc/BlackCatNPC.json
-```json
+===== Lua Scripts =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/BlackCat.lua|BlackCat.lua]]
 
-{
-
-   "defenseSkill"  :3,
-
-   "attackSkill"   :8,
-
-   "exp"           :2,
-
-   "maxLvl"        :4,
-
-   "dmgMin"        :1,
-
-   "dmgMax"        :4,
-
-   "dr"            :1,
-
-   "attackDelay"   :1,
-
-   "ht"            :10,
-
-   "baseSpeed"     : 1,
-
-   "spriteDesc"    :"spritesDesc/BlackCat.json",
-
-   "scriptFile"    :"scripts/npc/BlackCat",
-
-   "aiState"       :"Passive",
-
-   "fraction"      :"NEUTRAL",
-
-   "friendly"      :true,
-
-   "immortal"      :true
-
-}
-
-```
-
-==== Lua Script ====
-**File**: RemixedDungeon/src/main/assets/scripts/npc/BlackCat.lua
-```lua
-
-local RPD = require "scripts/lib/commonClasses"
-
-local mob = require"scripts/lib/mob"
-
-return mob.init({
-
-    interact = function(self, chr)
-
-        self:say("BlackCat_Phrases",math.random(0,2))
-
-        self:playExtra("sleep")
-
-    end,
-
-    die = function(self, cause)
-
-        local hero = RPD.Dungeon.hero
-
-        hero:STR(math.max(hero:STR()-1,1))
-
-        hero:getSprite():emitter():burst( RPD.Sfx.ShadowParticle.CURSE, 6 )
-
-        hero:showStatus( 0xFF0000, RPD.textById("Str_lose"))
-
-        RPD.playSound( "snd_cursed" )
-
-    end,
-
-    spawn = function(me, level)
-
-        RPD.setAi(me,"BlackCat")
-
-    end,
-
-    actionsList = function(self, chr)
-
-        return {"pet"}
-
-    end,
-
-    execute = function(self, chr, action)
-
-        if action == "pet" then
-
-            self:say("BlackCat_Phrases",math.random(0,2))
-
-        end
-
-    end,
-
-})
-
-```
-
-==== String Resources ====
-**Key**: BlackCat_Phrases
-**Values**:
-  - English: "Prrrrrrr", "Meow...", "Meow!"
-  - Russian: "Фрррр", "Мяу...", "Мяу!"
-
-==== Code References ====
-  - RemixedDungeon/src/main/assets/mobsDesc/BlackCatNPC.json
-  - RemixedDungeon/src/main/assets/scripts/npc/BlackCat.lua
-  - RemixedDungeon/src/main/res/values/strings_all.xml
-  - RemixedDungeon/src/main/res/values-ru/strings_all.xml
+===== Code Implementation Details =====
+Based on the JSON and Lua implementations:
+  * **Entity Kind**: "BlackCatNPC"
+  * **Stats**: HP: 10 (ht), Defense Skill: 3, Attack Skill: 8, Damage: 1-4 (dmgMin/dmgMax), Damage Reduction: 1 (dr)
+  * **Experience**: 2 (exp), Max Level: 4 (maxLvl), Base Speed: 1
+  * **Behavior**: Passive AI state, Neutral fraction, Friendly, Immortal
+  * **Interactions**:
+    - On interact, says one of three random phrases: "Prrrrrrr", "Meow...", "Meow!" and plays "sleep" animation
+    - Has a "pet" action that says a random phrase when executed
+    - On death, reduces hero's strength by 1 point (minimum 1), causes curse effect with shadow particles, and displays "STR lose" status
+  * **Special Properties**: Can be petted by the player, immortal (won't die permanently from damage)
