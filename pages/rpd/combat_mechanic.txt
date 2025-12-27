@@ -1,0 +1,52 @@
+====== Combat Mechanic ======
+
+**Combat** is the core mechanic governing how attacks, damage, and defensive maneuvers work in Remixed Dungeon.
+
+==== Attack Resolution ====
+Combat follows these steps when an attack occurs:
+  1. Calculate attacker's **Attack Skill** from [[rpd:attack_skill|attack skill]] value
+  2. Calculate defender's **Defense Skill** from [[rpd:defence_skill|defense skill]] value
+  3. Compare values to determine if the attack hits or misses
+  4. If the attack hits, calculate damage based on attacker's damage range and defender's [[rpd:armor_class|armor]]
+
+==== Damage Calculation ====
+  * **Damage Dealt** = Random value between min_damage and max_damage of the weapon
+  * **Damage Received** = Damage dealt reduced by armor value using the formula: armor/(armor+100)
+  * Armor can completely negate damage if high enough
+
+==== Combat Parameters ====
+  * **Attack Delay** - Time between attacks, affected by weapon speed
+  * **Hit Chance** - Probability of hitting based on attack vs defense
+  * **Critical Hits** - Chance to deal extra damage (varies by weapon)
+
+==== Special Combat Mechanics ====
+  * **Dual Wielding** - Attack with two weapons at once with penalties
+  * **Ranged Attacks** - Attack at distance with different mechanics
+  * **Area of Effect** - Abilities that affect multiple targets
+  * **Status Effects** - Conditions that affect combat (stun, paralysis, etc.)
+
+==== Combat-Related Items ====
+  * [[rpd:weapons|Weapons]] - Deal damage to enemies
+  * [[rpd:armor|Armor]] - Reduce incoming damage
+  * [[rpd:rings|Rings]] - Various combat-enhancing effects
+  * [[rpd:potions|Potions]] - Combat-beneficial effects
+  * [[rpd:scrolls|Scrolls]] - Combat-oriented magical effects
+
+==== Strategies ====
+  * Maintain distance when fighting strong melee enemies
+  * Use terrain to your advantage (choking corridors, doors)
+  * Balance attack power with defensive capabilities
+  * Use environmental effects (traps, [[rpd:liquid_flame|fire]], etc.)
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Combat resolution methods
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Hero-specific combat mechanics
+
+==== See Also ====
+  * [[rpd:mechanics|Game Mechanics]] - Other game mechanics
+  * [[rpd:hero|Hero]] - Main playable character
+  * [[rpd:mobs|Mobs]] - Enemies in combat
+  * [[rpd:attack_skill|Attack Skill]] - Attacking mechanics
+  * [[rpd:defence_skill|Defense Skill]] - Defensive mechanics
+
+{{tag> rpd mechanics combat}}
