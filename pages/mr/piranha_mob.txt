@@ -2,15 +2,34 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Piranha.java|Piranha.java]]
+    * Entity Kind: ''getEntityKind()'' returns "Piranha"
+    * Sprite Class: ''spriteClass = "spritesDesc/Piranha.json"''
+    * Walking Type: ''walkingType = WalkingType.WATER''
+    * HP: ''hp(ht(10 + Dungeon.depth * 5))''
+    * Base Defense: ''baseDefenseSkill = 10 + Dungeon.depth * 2''
+    * Base Attack: ''baseAttackSkill = 20 + Dungeon.depth * 2''
+    * Damage Resistance: ''dr = Dungeon.depth''
+    * Damage Range: ''dmgMin = Dungeon.depth; dmgMax = 4 + Dungeon.depth * 2''
+    * Base Speed: ''baseSpeed = 2f''
+    * Experience: ''expForKill = 0''
+    * Immunities: ''Burning.class'', ''Paralysis.class'', ''ToxicGas.class'', ''Roots.class'', ''Frost.class''
+    * Special Behavior: Dies if moved off water tiles in ''act()'' method
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Piranha.json|Piranha.json]]
+  * Not applicable - Mob is implemented in Java code
 
 ===== String Resources =====
 <code xml>
-<string name="Piranha_Name">[Name]</string>
-<string name="Piranha_Info">[Description]</string>
+<string name="Piranha_Name">giant piranha</string>
+<string name="Piranha_Gender">feminine</string>
+<string name="Piranha_Name_Objective">giant piranha</string>
+<string name="Piranha_Desc">These carnivorous fish are not natural inhabitants of underground pools. They were bred specifically to protect flooded treasure vaults.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * Not applicable - Mob is implemented in Java, no custom Lua script
+
+===== Additional References =====
+  * Level Generation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/PoolPainter.java|PoolPainter.java]]
+  * Statistics Tracking: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Statistics.java|Statistics.java]]
+  * Badge System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]]
