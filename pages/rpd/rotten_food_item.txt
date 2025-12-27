@@ -1,0 +1,58 @@
+====== Rotten Food ======
+
+{{ rpd:images:rotten_meat_item.png|Rotten Food }}
+
+**Rotten Food** is a type of food item in Remixed Dungeon that has spoiled and become harmful to consume. These items are created when food items are left uneaten for too long or are otherwise corrupted.
+
+==== Description ====
+According to the game description: "Disgusting!"
+
+==== Class in Code ====
+  * **Java class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]]
+  * **Inherits from:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]]
+  * **Abstract class:** RottenFood is an abstract class that other rotten food items inherit from
+
+==== Properties ====
+  * **Hunger satisfaction:** (Hunger.STARVING - Hunger.HUNGRY)/2 units (60 units)
+  * **Price:** 1 gold per unit
+  * **Type:** Food item
+  * **Stackable:** Yes (inherits from Food)
+  * **Nutrition:** Provides minimal satiety but has negative effects
+
+==== Effects When Consumed ====
+  * Displays message: "Disgusting!"
+  * Randomly creates hazardous gas clouds at the player's location:
+    * Confusion Gas: 25% chance (150 + 10 * dungeon depth potency)
+    * Paralytic Gas: 25% chance (500 potency)
+    * Toxic Gas: 25% chance (500 potency)
+    * No effect: 25% chance
+
+==== Subtypes ====
+  * [[rpd:rotten_meat_item|Rotten Meat]] - Spoiled mystery meat
+  * [[rpd:rotten_ration_item|Rotten Ration]] - Spoiled iron ration
+  * [[rpd:rotten_pasty_item|Rotten Pasty]] - Spoiled pasty
+  * [[rpd:rotten_pumpkin_pie_item|Rotten Pumpkin Pie]] - Spoiled pumpkin pie
+
+==== Mechanics ====
+  * When thrown, may create gas clouds at the landing location (if not in a level object that affects items)
+  * Can be purified using [[rpd:potion_of_purity_item|Potion of Purity]]
+
+==== Content Verified ====
+  * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]]
+  * Effects: Based on implementation in RottenFood.java
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1940|RottenFood_Message]]
+
+==== Related Items ====
+  * [[rpd:food|Food]] - General information about food items
+  * [[rpd:mystery_meat_item|Mystery Meat]] - Can become rotten meat
+  * [[rpd:ration_item|Iron Ration]] - Can become rotten ration
+  * [[rpd:potion_of_purity_item|Potion of Purity]] - Can purify rotten food
+  * [[rpd:chargrilled_meat_item|Chargrilled Meat]] - Safe alternative to mystery meat
+
+==== Related Pages ====
+  * [[rpd:hunger_buff|Hunger]] - Detailed hunger mechanics
+  * [[rpd:confusion_gas_buff|Confusion Gas]] - Gas effect it can cause
+  * [[rpd:paralytic_gas_buff|Paralytic Gas]] - Gas effect it can cause
+  * [[rpd:toxic_gas_buff|Toxic Gas]] - Gas effect it can cause
+
+{{tag> rpd items food rotten }}
