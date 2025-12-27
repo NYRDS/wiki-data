@@ -13,7 +13,7 @@ The Shaman subclass can be unlocked by using a [[rpd:tome_of_mastery_item|Tome o
 ===== Special Mechanics =====
   * Elven _Shamans_ can use [[rpd:wands|wands]] as [[rpd:melee_weapon|melee weapons]]
   * When attacking with a wand equipped as the primary weapon, there's a 25% chance (implemented as Random.Int(4) == 0) to zap the target with the wand's power without consuming a charge
-  * This ability is implemented in the ''attackProc'' method of ''HeroSubClass.java'' (lines 134-143)
+  * This ability is implemented in the ''attackProc'' method of ''HeroSubClass.java'' (lines 171-181)
   * The wand must be equipped as the primary weapon for this mechanic to work
   * +1 dew bonus for enhanced [[rpd:mana_mechanic|mana recovery]]
 
@@ -44,11 +44,26 @@ Using an [[rpd:armor_kit_item|Armor Kit]] on any armor will transform it into th
   * Name verification: Confirmed from string resources ("HeroSubClass_NameShaman")
   * Additional mechanics: Dew bonus verified in ''dewBonus'' method of ''HeroSubClass.java''
 
-===== Source Code =====
+===== Code References =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass definition and mechanics
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L171-L181|HeroSubClass.java#L171-L181]] - Exact implementation of wand-zap mechanic (25% chance when wielding wand)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L234-L236|HeroSubClass.java#L234-L236]] - Dew bonus implementation (+1 for Shaman)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L15-L17|HeroSubClass.java#L15-L17]] - Enum definition with armor class ("ShamanArmor")
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - Wand implementation that enables the mechanic
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1010-L1011|English strings]] - Name and description
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L996-L997|Russian strings]] - Russian localization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L92-L96|Wand.java#L92-L96]] - AffectTarget() method that checks if wand can zap
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L164-L174|Wand.java#L164-L174]] - zapCell() method that performs the zap without consuming charge
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1010-L1011|Shaman string resources (English)]] - Name and description
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L996-L997|Shaman string resources (Russian)]] - Russian localization
+
+===== Configuration Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Class/subclass relationship definitions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L295|ItemFactory.java#L295]] - Registration of Shaman armor
+
+===== String Resources =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1010|HeroSubClass_NameShaman]] - "Shaman" (English)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1011|HeroSubClass_DescShaman]] - "Elven Shamans can use wands as melee weapons. Successful hits have a chance to activate the wand's power on a target without using a charge." (English)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L996|HeroSubClass_NameShaman]] - "Шаман" (Russian)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L997|HeroSubClass_DescShaman]] - "Эльфийские шаманы могут использовать жезлы как оружие ближнего боя. Успешные атаки имеют шанс активировать силу жезла на цели без расхода заряда." (Russian)
 
 ===== See Also =====
   * [[rpd:elf_class|Elf Class]]
@@ -56,5 +71,7 @@ Using an [[rpd:armor_kit_item|Armor Kit]] on any armor will transform it into th
   * [[rpd:playable_classes|Playable Classes]]
   * [[rpd:subclasses|Subclasses]]
   * [[rpd:shaman_armor_item|Shaman Armor]]
+  * [[rpd:hero|Hero]]
+  * [[rpd:mechanics|Game Mechanics]]
 
 {{tag> rpd subclasses shaman elf wand melee}}
