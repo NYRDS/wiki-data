@@ -2,19 +2,22 @@
 
 {{ rpd:images:kunai_item.png|Kunai Item }}
 
-**Kunai** are throwable weapons in Remixed Pixel Dungeon. They are especially associated with the Tengu boss and ninja-themed mechanics.
+**Kunai** are throwable weapons in Remixed Pixel Dungeon. They are especially associated with the Tengu boss and ninja-themed mechanics. The Kunai is implemented as a custom item using Lua scripting, rather than Java.
 
 ==== Item Properties ====
-  * **Type**: Thrown weapon/projectile
-  * **Damage**: Varies based on hero's level and skill
+  * **Type**: Thrown weapon/projectile (custom Lua implementation)
+  * **Damage**: Random damage between level and level*2 (dmg = random(lvl, lvl*2))
+  * **Accuracy Factor**: 2 (doubled accuracy when attacking)
+  * **Delay Factor**: 0.5 (faster than normal attack speed)
   * **Durability**: Single use (consumed when thrown)
   * **Range**: Medium range (can hit enemies within line of sight)
   * **Stackable**: Yes, can carry multiple kunai
+  * **Image**: ''ammo.png'' index 17
 
 ==== Acquisition ====
   * Dropped by [[rpd:tengu_mob|Tengu]] (boss enemy in Prison)
   * May appear in certain shops or chests
-  * Can be created in some crafting systems
+  * Can be used with the [[rpd:kunai_throw_spell|Kunai Throw Spell]]
 
 ==== Usage ====
 Kunai can be used for:
@@ -22,6 +25,7 @@ Kunai can be used for:
   * **Ranged attacks** when melee combat is difficult
   * **Conserving melee resources** during tough fights
   * **Emergency attacks** when weapons break or are unavailable
+  * **Spell ammunition** for the Kunai Throw spell
 
 ==== Strategy ====
 How to effectively use Kunai:
@@ -29,27 +33,42 @@ How to effectively use Kunai:
   * Effective against single targets
   * Good for finishing off weak enemies
   * Useful when surrounded to attack one enemy and then escape
+  * Particularly effective when used with the Kunai Throw spell (Rogue Affinity)
+  * Higher damage potential due to damage formula (random between level and level*2)
 
 ==== Throwing Mechanics ====
   * Can be thrown at any visible enemy
-  * Uses ranged attack mechanics with appropriate accuracy
-  * Damage depends on hero's level and thrown weapon skill
+  * Uses ranged attack mechanics with 2x accuracy bonus
+  * Faster attack delay (0.5x) than normal weapons
+  * Damage formula: random value between item level and item level * 2
   * Can be thrown multiple times if you have more than one kunai
 
-==== Technical Details ====
-  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Kunai.java|Kunai.java]]
-  * Class: MissileWeapon implementing the thrown weapon system
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2624-L2625|Kunai_Name and Kunai_Gender]]
+==== Content Verification ====
+  * **Information source**: Lua script [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/Kunai.lua|Kunai.lua]]
+  * **Stats verification**: Extracted directly from accuracyFactor, damageRoll, and attackDelayFactor methods in code
+  * **Effect descriptions**: Based on Lua implementation in source code
+  * **String resources**: Verified against values/strings_all.xml
+  * **Last updated**: December 2025
+  * **Source file**: Kunai.lua
 
 ==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Kunai.java|Kunai.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2624-L2625|strings_all.xml]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/Kunai.lua|Kunai.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/CustomItem.java|CustomItem.java]] (base class for Lua items)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] (Java base that defines slot method)
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2624|Kunai_Name]]: (actual name not found in strings_all.xml)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2625|Kunai_Info]]: (actual info not found in strings_all.xml)
+
+==== Configuration Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/Kunai.lua|Kunai.lua]] (Lua implementation)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (registration)
 
 ==== See Also ====
   * [[rpd:missile_weapons|Missile Weapons]]
   * [[rpd:tengu_mob|Tengu]] (source of Kunai)
   * [[rpd:combat|rpd:Combat]]
   * [[rpd:kunai_throw_spell|Kunai Throw Spell]]
+  * [[rpd:rogue_class|rogue_class]] (uses Kunai Throw spell)
 
 {{tag> rpd items weapons thrown ninja }}

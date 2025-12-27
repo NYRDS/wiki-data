@@ -2,7 +2,7 @@
 
 {{ rpd:images:smash_spell_icon.png|Smash Spell Icon }}
 
-**Smash Spell** is a Combat affinity spell in Remixed Pixel Dungeon.
+**Smash Spell** is a Combat affinity spell in Remixed Pixel Dungeon. When cast, the caster jumps upwards and creates a powerful smash upon hitting the ground, which temporarily stuns enemies around them and deals weapon-based physical damage. Requires a weapon to be equipped.
 
 ==== Description ====
 Jump upwards and create a powerful smash upon hitting the ground, that temporarily stuns enemies around and at the same time deals physical damage. Requires a weapon to be equipped.
@@ -13,42 +13,67 @@ Jump upwards and create a powerful smash upon hitting the ground, that temporari
   * **Level:** 4
   * **Mana Cost:** 10
   * **Cooldown:** 10
+  * **Image:** ''spellsIcons/warrior.png'' index 3
   * **Cast Time:** 0.5
   * **Special Effects:** stuns enemies in adjacent cells and deals weapon-based physical damage
+
+==== Mechanics ====
+  * Requires a weapon to be equipped (will show "I need a weapon for this move." message if no weapon is equipped)
+  * Creates visual effects: a "smash_fist" at the top and a "smash_blast" at the bottom
+  * Causes the caster to jump 30 pixels upward
+  * Applies the Vertigo buff (stun effect) to all adjacent enemies for a duration equal to the caster's skill level
+  * Deals damage equal to the equipped weapon's damageRoll() to all adjacent enemies
+  * Damage is still subject to the victim's defenseProc() method
 
 ==== Usage ====
 The Smash Spell can be used for:
   * Area damage against multiple adjacent enemies
   * Stunning enemies to gain tactical advantage
   * Physical damage based on equipped weapon
+  * Breaking through groups of enemies
 
 ==== Classes ====
 Classes that can use this spell include:
-  * Classes with Combat affinity
+  * Classes with Combat affinity (Warrior, etc.)
   * Other classes that gain access through special means
 
 ==== Strategy ====
 How to effectively use the Smash Spell:
-  * Most effective when surrounded by enemies
+  * Most effective when surrounded by enemies (affects all 8 adjacent cells)
   * Requires a weapon to be equipped (fails if weaponless)
   * Deals damage based on current weapon's damage roll
   * Stuns enemies with Vertigo effect for caster's skill level duration
-
-==== Data Validation ====
-This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
+  * Provides temporary advantage in combat by stunning enemies
+  * Particularly effective with high-damage weapons
 
 ==== Content Verification ====
-  * Information source: Lua Script in Remixed Dungeon codebase
-  * Stats verified: Yes, extracted directly from spell class properties
-  * Effect descriptions: Generated from code analysis and string resources
-  * Last updated: 2025-12-14 based on Smash.lua
+  * **Information source**: Lua script [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Smash.lua|Smash.lua]]
+  * **Stats verification**: Extracted directly from desc function in code
+  * **Effect descriptions**: Based on cast function implementation in source code
+  * **String resources**: Verified against values/strings_all.xml
+  * **Last updated**: December 2025
+  * **Source file**: Smash.lua
 
-==== Source Code ====
-This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Smash.lua|Smash.lua]]
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Smash.lua|Smash.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/CustomSpell.java|CustomSpell.java]] (base class for Lua spells)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]] (stun effect used)
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2248|SmashSpell_Name]]: Smash
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2249|SmashSpell_Info]]: Jump upwards and create a powerful smash upon hitting the ground,that temporarily stuns enemies around and at the same time deals physical damage.
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2250|SmashSpell_NeedWeapon]]: I need a weapon for this move.
+
+==== Configuration Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Smash.lua|Smash.lua]] (Lua implementation)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua]] (Combat spells list)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (registration)
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
   * [[rpd:mechanics|Game Mechanics]]
   * [[rpd:combat|Combat Affinity]]
+  * [[rpd:vertigo_buff|Vertigo]] - The stun effect applied
+  * [[rpd:warrior_class|Warrior Class]] - Primary user of Combat spells
 
 {{tag> rpd spells combat }}
