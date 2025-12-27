@@ -2,15 +2,39 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java|Warlock.java]]
+    * Entity Kind: ''getEntityKind()'' returns "Warlock"
+    * Sprite Class: ''spriteClass = "spritesDesc/Warlock.json"'' (inherited from Mob)
+    * HP: ''hp(ht(70))''
+    * Base Defense: ''baseDefenseSkill = 18''
+    * Base Attack: ''baseAttackSkill = 25''
+    * Damage Range: ''dmgMin = 12; dmgMax = 20''
+    * Damage Resistance: ''dr = 8''
+    * Experience: ''expForKill = 11''
+    * Max Level: ''maxLvl = 21''
+    * Loot: ''loot(Treasury.Category.POTION, 0.83f)''
+    * Death Message: ''StringsManager.getVar(R.string.Warlock_Killed)''
+    * Resistance: ''addResistance(Death.class)''
+    * Teleport Defense: ''defenseProc()'' method handles teleportation at 2/3 and 1/3 health thresholds
+    * Weakness Effect: ''zap()'' method has 50% chance to apply Weakness to target
+    * Zap Implementation: ''zap()'' method uses ''MagicMissile.whiteLight'' effect
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Warlock.json|Warlock.json]]
+  * Not applicable - Mob is implemented in Java code
 
 ===== String Resources =====
 <code xml>
-<string name="Warlock_Name">[Name]</string>
-<string name="Warlock_Info">[Description]</string>
+<string name="Warlock_Name">dwarf warlock</string>
+<string name="Warlock_Gender">masculine</string>
+<string name="Warlock_Name_Objective">dwarf warlock</string>
+<string name="Warlock_Desc">When dwarves\' interests shifted from engineering to arcane arts, warlocks came to power in the city. They started with elemental magic, but soon switched to demonology and necromancy.</string>
+<string name="Warlock_Killed">%s\'s shadow bolt killed you...</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * Not applicable - Mob is implemented in Java, no custom Lua script
+
+===== Additional References =====
+  * Hero Subclass: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Contains WARLOCK subclass
+  * Mob Registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L180|MobFactory.java]] - Registers Warlock class
+  * Item Registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L425|ItemFactory.java]] - Registers WarlockArmor
+  * Class Sprite: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/RetroHeroSpriteDef.java]] - Contains warlock descriptor
