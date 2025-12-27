@@ -1,41 +1,95 @@
-====== Burning ======
+====== Burning Buff ======
+
+{{ rpd:images:burning_buff.png|Burning }}
 
 Burning is a harmful status effect in Remixed Pixel Dungeon that causes continuous damage to affected characters. It's one of the most common damage-over-time effects in the game.
 
+==== Overview ====
+Burning causes continuous damage each turn and can ignite flammable terrain and items. It can be extinguished by entering water tiles or cured with a [[rpd:potion_of_purity_item|Potion of Purity]].
+
 ==== Burning Mechanics ====
-  * **Damage Type**: Fire damage that stacks with other damage sources
-  * **Duration**: Typically lasts for several turns before expiring
-  * **Damage Rate**: Deals a percentage of max HP as damage each turn
-  * **Spread**: Can spread to adjacent tiles in certain conditions
+  * **Damage Rate**: Takes damage each turn (1 + bonus damage based on depth, specifically Random.Int(1 + bonusDamage, 5 + bonusDamage) where bonusDamage = Dungeon.depth / 2)
+  * **Duration**: Lasts for approximately 8 turns by default (can be modified by Ring of Elements Resistance)
+  * **Spread**: Can spread to adjacent flammable terrain when on a flammable tile
+  * **Item Damage**: Carried items can be burned and destroyed
+  * **Light Effect**: Provides light to the player character (like [[rpd:torch_item|Torch]])
 
 ==== Causes of Burning ====
-  * **Fire-based Attacks**: Many fire spells and wands cause burning
-  * **Fire Traps**: Stepping on fire traps can cause burning
-  * **Environmental Hazards**: Some areas of the dungeon contain burning terrain
-  * **Enemy Abilities**: Certain enemies can inflict burning through attacks
-  * **Self-infliction**: Some items might accidentally cause burning
+  * **Fire-based Attacks**: [[rpd:wand_of_firebolt_item|Wand of Firebolt]], [[rpd:fire_elemental_mob|Fire Elemental]] attacks
+  * **Fire Traps**: Stepping on [[rpd:fire_trap|Fire Trap]]
+  * **Environmental Hazards**: [[rpd:fire|Fire]] terrain
+  * **Enemy Abilities**: [[rpd:fire_elemental_mob|Fire Elementals]], [[rpd:fire_enchantment|Fire Enchantment]] on weapons
+  * **[[rpd:weapon_enchantments|Weapon Enchantments]]**: [[rpd:fire_enchantment_enchantment|Fire Enchantment]]
+  * **[[rpd:arrows|Arrows]]**: [[rpd:fire_arrow_item|Fire Arrows]]
+  * **[[rpd:plants|Plants]]**: [[rpd:firebloom_plant|Firebloom]]
+  * **Self-infliction**: [[rpd:mystery_meat_item|Mystery Meat]], using [[rpd:arcane_stylus_item|Arcane Stylus]] on armor
 
 ==== Burning Immunities and Resistances ====
-  * **Elemental Resistance**: Some characters and items provide fire resistance
-  * **Specific Immunities**: Certain character classes or pets may be immune
-  * **Warding Items**: Some equipment can prevent or reduce burning effects
+  * **[[rpd:immunities|Immunities]]**: [[rpd:fire_elemental_mob|Fire Elementals]], [[rpd:piranha|Piranhas]], [[rpd:spider_queen_mob|Spider Queen]], [[rpd:yogs_brain_mob|Yog's Brain]], [[rpd:yogs_heart_mob|Yog's Heart]], [[rpd:yogs_teeth_mob|Yog's Teeth]], [[rpd:burning_fist_mob|Burning Fist]], [[rpd:rotting_fist_mob|Rotting Fist]], [[rpd:earthen_guardian_mob|Earthen Guardian]], [[rpd:earth_elemental_mob|Earth Elementals]], [[rpd:yogsheart_mob|Yog's Heart]] (duplicate entry), [[rpd:mirror_image_npc|Mirror Images]]
+  * **[[rpd:resistances|Resistances]]**: [[rpd:ring_of_elements_item|Ring of Elements]] can provide resistance
+  * **[[rpd:cure_mechanics|Curing]]**: [[rpd:potion_of_purity_item|Potion of Purity]] removes the effect
 
 ==== Effects of Burning ====
-  * **Continuous Damage**: Takes damage each turn until effect ends
-  * **No Healing**: Cannot heal while burning except through special means
-  * **Item Damage**: May damage flammable items in inventory
-  * **Environmental Impact**: Can ignite oil and other flammable materials
+  * **Continuous Damage**: Takes 1 + (Dungeon.depth / 2) to 5 + (Dungeon.depth / 2) damage each turn
+  * **Item Destruction**: Carried items have a chance to be burned and destroyed
+  * **Terrain Ignition**: Can ignite flammable terrain at the character's position
+  * **Fire Spread**: Spreads to adjacent flammable tiles if standing on flammable terrain
+  * **[[rpd:light|Light Generation]]**: Provides light for the hero character
+  * **[[rpd:haste_spell|Haste]]**: Extinguished when combined with haste effect
+  * **[[rpd:frost_buff|Frost]]**: Frost immediately removes burning effect
 
 ==== Countering Burning ====
-  * **Potion of Purity**: Can cleanse status effects including burning
-  * **Water Terrain**: Standing in water typically extinguishes burning
-  * **Fire Resistance**: Using items that boost fire resistance
-  * **Quick Action**: Moving away from fire sources immediately
+  * **[[rpd:potion_of_purity_item|Potion of Purity]]**: Can cleanse status effects including burning
+  * **Water Terrain**: Standing in water typically extinguishes burning (if not flying)
+  * [[rpd:frost_buff|Frost]]: Removes burning immediately
+  * **[[rpd:ring_of_elements_item|Ring of Elements]]**: Provides resistance reducing duration
+  * **[[rpd:levitation_buff|Levitation]]**: Prevents contact with water (if you're burning and levitating, you can't put the fire out in water)
 
-==== Strategic Uses ====
-  * **Offensive**: Applying to enemies to cause continuous damage
-  * **Environmental Manipulation**: Using fire to block or channel enemies
-  * **Oil Combustion**: Combining with oil for area denial
+==== Extinguishing Conditions ====
+Burning is removed when:
+  * **Water Contact**: Entering water tile while not flying
+  * **[[rpd:frost_buff|Frost]]**: Applied to character (frost removes burning)
+  * **[[rpd:duration|Duration Expires]]**: Random chance based on 2 + (hp/ht) / 3 formula
+  * **[[rpd:potion_of_purity_item|Potion of Purity]]**: Applied to character
+  * **Death**: Character dies while burning
+
+==== Special Mechanics ====
+  * **Hero Death**: Causes "Burned to death" failure message
+  * **Terrain Interaction**: Can ignite flammable terrain at position
+  * **Light Effect**: Activates Light buff for hero with 1.01f duration
+  * **[[rpd:badges|Badge]]**: "Death from fire" badge is validated when hero dies from burning
+  * **Item Burning**: Can burn carried items with visual effects at the character's position
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]] - Primary implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java#L32-L34|Burning.java#L32-L34]] - Duration constant (8f)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java#L55-L65|Burning.java#L55-L65]] - Main action method with damage calculation (damage 1+bonus to 5+bonus where bonus = depth/2)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java#L79-L86|Burning.java#L79-L86]] - Extinguishing conditions (water, duration probability)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java#L40-L44|Burning.java#L40-L44]] - Reignite method to reset duration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java#L88-L90|Burning.java#L88-L90]] - Duration calculation with Ring of Elements resistance factor
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java#L92-L98|Burning.java#L92-L98]] - Hero death handling and badge validation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java#L100-L101|Burning.java#L100-L101]] - Death message and fail condition
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L1005-L1006|Char.java#L1005-L1006]] - List of buffs that prevent healing
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L526-L527|Hero.java#L526-L527]] - Special message when hero gets burning ("You catch fire!")
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java#L54|Fire.java#L54]] - How fire terrain applies burning to characters
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/FireElemental.java#L36|FireElemental.java#L36]] - Fire elemental immunity to burning
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java#L90|CharSprite.java#L90]] - Burning state for character sprites
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java#L37|RingOfElements.java#L37]] - Ring of Elements resistance to burning
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L561-L564|Burning string resources (English)]] - Burning names and descriptions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L561-L564|Burning string resources (Russian)]] - Russian localization
+
+==== Configuration Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L561-L564|strings_all.xml]] - English string resources for burning
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L561-L564|strings_all.xml (Russian)]] - Russian string resources for burning
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L122|BuffFactory.java#L122]] - Factory registration of burning buff
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L561|BurningBuff_Name]] - "Burning"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L562|BurningBuff_Info]] - "The body is engulfed in raging flames!"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L563|Burning_Burns]] - "%s burns up!"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L564|Burning_Death]] - "You burned to death..."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L971|Hero_StaBurning]] - "You catch fire!"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L561-L564|Burning strings (Russian)]] - Russian localization
 
 ==== Related ====
   * [[rpd:fire|Fire]]
@@ -43,5 +97,11 @@ Burning is a harmful status effect in Remixed Pixel Dungeon that causes continuo
   * [[rpd:fire_enchantment|Fire Enchantment]]
   * [[rpd:debuffs|Debuffs]]
   * [[rpd:elemental_damage|Elemental Damage]]
+  * [[rpd:resistances|Resistances]]
+  * [[rpd:immunities|Immunities]]
+  * [[rpd:ring_of_elements_item|Ring of Elements]]
+  * [[rpd:status_effects|Status Effects]]
+  * [[rpd:frost_buff|Frost]]
+  * [[rpd:light|Light]]
 
-{{tag> rpd status_effects fire debuffs }}
+{{tag> rpd status_effects fire debuffs burning }}
