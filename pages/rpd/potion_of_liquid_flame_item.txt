@@ -21,13 +21,13 @@ A glass vial filled with a strange liquid that ignites when exposed to air. When
   * **Usage:** Shatter on ground to create fire damage in area (consumed upon shattering)
 
 ==== Special Mechanics ====
-  * When shattered at any location, creates an area of liquid flame with a volume of 10 units
+  * When shattered at any location, creates an area of [[rpd:liquid_flame|liquid flame]] with a volume of 10 units
   * Fire lasts for a limited duration (typically dissipates over several turns)
   * Can ignite flammable terrain like grass and wooden barricades
-  * Damages any characters standing in the liquid flame each turn
+  * Damages any characters standing in the [[rpd:liquid_flame|liquid flame]] each turn
   * Fire can spread to adjacent flammable terrain
-  * Does not stack with other liquid effects (like Paralytic Gas)
-  * **Area of Effect:** When shattered, creates a patch of liquid flame that damages enemies over time
+  * Does not stack with other liquid effects (like [[rpd:potion_of_paralytic_gas_item|Paralytic Gas]])
+  * **Area of Effect:** When shattered, creates a patch of [[rpd:liquid_flame|liquid flame]] that damages enemies over time
   * **Fire Damage:** Deals damage to all enemies in the affected area each turn
   * **Terrain Ignition:** Can ignite flammable terrain, creating ongoing fire hazards
   * **No Direct Healing:** Cannot be consumed for healing like other potions
@@ -76,6 +76,10 @@ According to the game's string resources: "This is actually a very clever alchem
   * **Moistening Support:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L32-L38|moistenArrow method]] - enables creation of Fire Arrows
   * **Base Price:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L30|basePrice method]] - value of 40 gold
   * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2197-L2198|PotionOfLiquidFlame_Name, PotionOfLiquidFlame_Info]] - displays "This flask contains an unstable compound which will burst violently into flame upon exposure to open air."
+  * **Item Label Index:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L11|labelIndex = 1]] - identifies potion type in UI
+  * **Fire Arrow Creation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L32-L38|moistenArrow method]] - creates FireArrow items from regular arrows
+  * **Game Scene Integration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L27|GameScene.add(fire)]] - adds the created fire blob to the current game scene
+  * **Healing Potion Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|UpgradablePotion]] - provides upgrade mechanics
 
 ==== Related Items ====
   * [[rpd:potion|Potions]] - General information about potions
