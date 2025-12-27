@@ -1,0 +1,36 @@
+====== Elf Affinity - Code References ======
+
+===== Entity Kind =====
+elf_affinity
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Contains magicAffinity field and related methods
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Uses magic affinity for spell selection
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndHeroSpells.java|WndHeroSpells.java]] - Displays spells based on affinity
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]] - Contains affinity mappings and icon assignments
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Base spell class with magicAffinity field
+
+===== JSON Configuration =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json]] - Defines magic affinity for each hero class (in classDesc.optString("magicAffinity", magicAffinity))
+
+===== String Resources =====
+(No specific string resources for "elf_affinity" itself, but related to spell system)
+
+===== Lua Scripts =====
+  * Various spell scripts in RemixedDungeon/src/main/assets/scripts/spells/ - Implement spells that may be associated with elf affinity
+
+===== Code Implementation =====
+In HeroClass.java:
+  * private String magicAffinity = Utils.EMPTY_STRING; (field)
+  * getMagicAffinity() and setMagicAffinity() methods (auto-generated via annotations)
+  * When initializing hero class stats, magic affinity is set from JSON: hero.getHeroClass().setMagicAffinity(classDesc.optString("magicAffinity", magicAffinity))
+
+In SpellHelper.java:
+  * affinityToIcon map includes: affinityToIcon.put("Elf", 19); (maps Elf affinity to icon id 19)
+  * iconIdByAffinity() method returns icon ID based on hero's magic affinity
+
+===== Affinity System Mechanics =====
+  * Magic affinities determine which spells are displayed with appropriate icons in spell selection
+  * Each hero class can have a default magic affinity
+  * Spell classes define their magic affinity which determines which hero classes they're accessible to
+  * The spell system checks hero.getHeroClass().getMagicAffinity() to determine which spells to show
