@@ -1,14 +1,14 @@
 ====== Wind Gust Spell ======
 
-{{ rpd:images:wind_gust_spell_icon.png|Wind Gust Spell Icon }}
+{{ rpd:images:wind_gust_spell.png|Wind Gust Spell }}
 
-**Wind Gust** is an [[rpd:elemental_mob|Elemental]] affinity spell in Remixed Pixel Dungeon that creates a gust of wind to push enemies back.
+**Wind Gust** is an [[rpd:elemental_spell_affinity|Elemental]] affinity spell in Remixed Pixel Dungeon that creates a gust of wind to push enemies back.
 
 ==== Description ====
 Wind Gust creates a gust of wind that pushes enemies back. If an enemy is pushed into an obstacle, they may take damage. This spell has a range that increases with the caster's skill level (distance of skillLevel + 1 up to the target).
 
 ==== Stats ====
-  * **Magic Affinity:** [[rpd:spell_affinities#elemental|Elemental]]
+  * **Magic Affinity:** [[rpd:elemental_spell_affinity|Elemental]]
   * **Targeting:** Cell
   * **Level:** 1
   * **Mana Cost:** 1
@@ -32,14 +32,9 @@ The Wind Gust spell can be used for:
 
 ==== Classes ====
 Classes that can use this spell include:
-  * Classes with [[rpd:spell_affinities#elemental|Elemental]] affinity
-  * [[rpd:mage_class|Mage]] (naturally has [[rpd:spell_affinities#elemental|Elemental]] affinity)
+  * Classes with [[rpd:elemental_spell_affinity|Elemental]] affinity
+  * [[rpd:mage_class|Mage]] (naturally has [[rpd:elemental_spell_affinity|Elemental]] affinity)
   * Other classes that gain access through special means
-
-==== Related Classes ====
-  * [[rpd:mage_class|Mage Class]]
-  * [[rpd:spell_affinities|Spell Affinities]]
-  * [[rpd:elemental_mob|Elemental]]
 
 ==== Strategy ====
 How to effectively use the Wind Gust spell:
@@ -50,30 +45,18 @@ How to effectively use the Wind Gust spell:
   * Can be used to clear projectiles or items out of the way
   * Good for maintaining distance with melee enemies
 
-==== Data Validation ====
-This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
+==== Code References ====
+  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L14-L15|WindGust strings]]
 
 ==== Content Verification ====
   * Information source: Java Class in Remixed Dungeon codebase
   * Stats verified: Yes, extracted directly from spell class properties
   * Effect descriptions: Generated from code analysis and string resources
-  * Last updated: 2025-12-14 based on WindGust.java
-
-==== Source Code ====
-This page content is based on the Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]]
-
-===== Additional Implementation Details =====
-  * The spell creates wind particles: 5 + caster's skill level × 2 particles
-  * Visual burst effect: 3 + caster's skill level particles
-  * Push only occurs if the next cell is valid (level.cellValid(next))
-  * When push fails, damage is dealt: caster's skill level × 2
-  * Range calculation: Math.min(chr.skillLevel() + 2, Ballistica.distance-1)
-  * The spell uses assets: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spellsIcons/elemental.png|elemental.png]]
+  * Last updated: Based on WindGust.java
 
 ==== See Also ====
   * [[rpd:spells|Spells]]
-  * [[rpd:mechanics|Game Mechanics]]
   * [[rpd:spell_affinities|Spell Affinities]]
-  * [[rpd:spell_book_item|Spell Book]]
 
 {{tag> rpd spells elemental }}

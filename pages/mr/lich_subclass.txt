@@ -1,35 +1,40 @@
-====== Lich Subclass ======
+====== Lich Subclass - Code References ======
 
-==== Entity Kind ====
-LICH
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
 
-==== Java Class ====
-[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
+===== JSON Configuration =====
+''<code json>''
+{
+  "LICH": {
+    "immunities": [
+      "Paralysis",
+      "ToxicGas",
+      "Terror",
+      "Death",
+      "Amok",
+      "Blindness",
+      "Sleep",
+      "Poison",
+      "Vertigo",
+      "Bleeding"
+    ]
+  }
+}
+''</code>''
 
-==== JSON Configuration ====
-  * Class armor: NecromancerArmor
-  * Immunities and resistances defined in initHeroes.json under "LICH" section
+===== String Resources =====
+''<code xml>''
+<string name="HeroSubClass_NameLich">lich</string>
+<string name="BlackSkullOfMastery_BecomeLichDesc">The _Lich_ is a necromancer who reached pinnacle of his abilities. Existing between life and death _Lich_ excels in necromancy, but his combat skills are greatly lower than those of an ordinary person.</string>
+<string name="Necromancy_BecameALich">You became a Lich! Your powers grow and your soul capacity has been doubled! But you lost %1$d points of strength.</string>
+<string name="StartScene_UnlockNecromancer">To unlock this character class, slay the Lich with any other class.</string>
+<string name="Badges_Lich_Slain">Lich slain</string>
+''</code>''
 
-==== Lua Script ====
-(No specific Lua script for this subclass)
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists
 
-==== String Resource References ====
-  * ''HeroSubClass_NameLich'': Title for the Lich subclass
-  * ''BlackSkullOfMastery_BecomeLichDesc'': Description when using Black Skull of Mastery
-  * ''Badges_Lich_Slain'': Badge for defeating Lich boss
-
-==== Code Implementation ====
-This is an enum constant in HeroSubClass with the following properties:
-
-  * **armorClass**: "NecromancerArmor" - the exclusive armor for Lich subclass
-  * **titleId**: R.string.HeroSubClass_NameLich
-  * **descId**: R.string.BlackSkullOfMastery_BecomeLichDesc
-  * **immunities**: Set of status effects that the Lich is immune to (defined in JSON)
-  * **resistances**: Set of damage types that the Lich has resistance to (defined in JSON)
-
-==== Behavior ====
-  * Becomes unlocked using Black Skull of Mastery
-  * Grants immunities and resistances defined in the JSON configuration
-  * Provides NecromancerArmor as the class armor
-  * Has no special active combat bonus like other subclasses
-  * Special handling in badge system for LICH_SLAIN badge
+===== Related mr Entities =====
+  * [[mr:necromancer_class|Necromancer (Class)]]
+  * [[mr:lich_mob|Lich (Mob)]]
