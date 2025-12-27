@@ -6,8 +6,8 @@ Frost is a status effect in Remixed Dungeon that temporarily freezes a character
 
 ==== Effect ====
   * **Immobilization:** Affected characters cannot move or perform actions
-  * **Duration:** The freeze lasts for a specific duration (usually 3-4 turns)
-  * **Removal:** The effect wears off over time or can be removed by certain means
+  * **Duration:** The freeze lasts for a specific duration (base duration is 5 turns, modified by Resistance)
+  * **Removal:** The effect wears off over time, can be removed by fire damage, or by certain means
   * **Stacking:** Does not typically stack with other movement-impairing effects
 
 ==== Application ====
@@ -33,6 +33,9 @@ The Frost effect can be applied through various sources:
   * Applied through the [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] blob effect
   * Character remains in place until duration expires
   * Does not interrupt ongoing actions that were already started
+  * Frost effect causes paralysis, completely preventing action
+  * Burning effect is removed when frost is applied
+  * Frost effect is removed when the affected character takes damage
 
 ==== Content Verification ====
   * Core Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]]
@@ -46,6 +49,6 @@ The Frost effect can be applied through various sources:
   * [[rpd:wand_of_frost_item|Wand of Frost]] - Wand that applies frost
   * [[rpd:chill_buff|Chill]] - Reduced effect version of frost
   * [[rpd:paralysis_buff|Paralysis]] - Another immobilizing effect
-  * [[rpd:slowness_buff|Slowness]] - Speed reducing effect
+  * [[rpd:slow_buff|Slowness]] - Speed reducing effect
 
 {{tag> rpd status_effects frost buffs debuffs freezing}}
