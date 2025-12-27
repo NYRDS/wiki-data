@@ -1,4 +1,4 @@
-====== Healing ======
+====== Healing Spell ======
 
 {{ rpd:images:healing_spell_icon.png|Healing Spell Icon }}
 
@@ -12,6 +12,7 @@ The Healing spell restores a portion of the caster's own health. It's a fundamen
   * **Targeting:** self
   * **Level:** 3
   * **Spell Cost:** 10
+  * **Image Index:** 1
 
 ==== Effects ====
   * Heals the caster for 30% of their max HP (specifically (int)(maxHP * 0.3) as implemented in Healing.java)
@@ -38,19 +39,32 @@ How to effectively use the Healing spell:
   * Information source: Java code in Remixed Dungeon codebase
   * Stats verified: Yes, extracted directly from spell class properties
   * Effect descriptions: Generated from code analysis and string resources
-  * Last updated: 2025-12-25 based on Healing.java
+  * Last updated: 2025-12-27 based on Healing.java
 
-==== Data Sources ====
-  * Java Source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]]
-  * Java Implementation Details: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L23-L27|Healing.java#L23-L27]] - Exact healing calculation (int)(maxHP * 0.3)
-  * Spell Registry: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]]
-  * English String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20-L21|Healing_Name, Healing_Info]] - "Healing" and "This spell is crucial for any adventurer. It will restore 1/3 of the maximum amount of the caster's hp."
-  * Russian String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-21|Healing_Name, Healing_Info]] - "Исцеление" and "Незаменимое заклинание для каждого путешественника. Восстанавливает 1/3 от максимального запаса здоровья заклинателя."
-  * Note: String resources mention "1/3" but the actual implementation heals 30% (0.3) of max HP
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - Primary implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L15-L20|Healing.java#L15-L20]] - Stats initialization (targeting, affinity, level, image, cost)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L23-L27|Healing.java#L23-L27]] - Exact healing calculation ((int) (chr.ht()*0.3))
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L126|SpellFactory.java#L126]] - Spell registration in the game
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L763|Char.java#L763]] - Healing visual effects (emitter burst)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20-L21|Healing string resources (English)]] - "Healing" and spell description
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|Healing string resources (Russian)]] - Russian localization
 
-==== See Also ====
+==== Configuration Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L126|SpellFactory.java#L126]] - Spell registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20-L21|strings_all.xml]] - English string resources
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|strings_all.xml (Russian)]] - Russian string resources
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20|Healing_Name]] - "Healing"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L21|Healing_Info]] - "This spell is crucial for any adventurer. It will restore 1/3 of the maximum amount of the caster's hp."
+
+==== Related ====
   * [[rpd:spells|Spells]]
   * [[rpd:mechanics|Game Mechanics]]
   * [[rpd:potion_of_healing_item|Potion of Healing]]
+  * [[rpd:health_mechanic|Health]]
+  * [[rpd:combat_mechanics|Combat]]
+  * [[rpd:spell_system|Spell System]]
 
 {{tag> rpd spells common healing support }}
