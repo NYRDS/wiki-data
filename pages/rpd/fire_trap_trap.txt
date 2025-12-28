@@ -15,7 +15,7 @@ Fire traps are hidden hazards placed throughout the dungeon levels. When a chara
   * **Fire Immunity:** Characters immune to fire damage take no damage from fire traps
 
 ==== Stats ====
-  * **Damage:** Variable, scales with dungeon level
+  * **Damage:** Creates Fire blob with 2 damage units (as per FireTrap.trigger() method)
   * **Radius:** Affects triggering tile and adjacent tiles
   * **Fire Duration:** On adjacent tiles, fire may persist for several turns
 
@@ -46,6 +46,11 @@ According to the game's string resources: "A fire trap ignites when triggered, d
   * **Trap System:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/Level.java|Level.java]] (trap placement logic)
   * **Configuration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelObjects/FireTrap.json|FireTrap.json]] (trap configuration)
   * **Russian String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2925-L2927|FireTrap_Name, FireTrap_Desc, FireTrap_DescNoText]]
+  * **Fire Effect Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]] (fire damage mechanics)
+  * **Fire Trigger Method:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/FireTrap.java#L18-L22|FireTrap.trigger()]] (specific implementation that creates fire blob with 2 damage)
+  * **Flame Particle Effects:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/particles/FlameParticle.java|FlameParticle.java]] (visual effects)
+  * **Game Scene Integration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/scenes/GameScene.java#L120-L125|GameScene.add()]] (adds fire blob to scene)
+  * **Trap Trigger Interface:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/ITrigger.java|ITrigger.java]] (interface that FireTrap implements)
 
 ==== Related Content ====
   * [[rpd:traps|Traps]] - General information about traps
