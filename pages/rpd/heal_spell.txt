@@ -46,16 +46,10 @@ Affinities that can use this spell include:
   * [[rpd:priest_class|Priest]] affinity users
   * [[rpd:plague_doctor_affinity|Plague Doctor]] affinity users
 
-==== Strategy ====
-  * Best used when health is critically low
-  * Can heal allies and pets as well as yourself
-  * Good for supporting pets during challenging fights
-  * The healing scales with your skill level
-  * Be mindful of the 2-turn cooldown when planning healing
-
 ==== Important Note ====
 There is a different Java-based spell called "Healing" (not "Heal") with different mechanics:
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - Heals 30% of target's max HP, targeting self only, costs 10 mana, level 3 spell
+  * For more information on the Java-based Healing spell, see [[rpd:healing_spell|Healing Spell]]
 
 ==== Code References ====
   * **Lua Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Heal.lua|Heal.lua]]
@@ -69,6 +63,10 @@ There is a different Java-based spell called "Healing" (not "Heal") with differe
   * **Russian String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2681-L2682|strings_all.xml#L2681-L2682]]
   * **Java Healing Spell:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - Different Java-based healing spell (30% self-targeted)
   * **Formula verification:** The Lua code shows heal = target:ht() / 5. * caster:skillLevel() with minimum of 1
+  * **Java Healing Spell Code References:**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L15-L20|Healing.java#L15-L20]] - Stats initialization (targeting, affinity, level, image, cost)
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L23-L27|Healing.java#L23-L27]] - Exact healing calculation ((int) (chr.ht()*0.3))
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - Java-based healing spell that heals 30% of target's max HP, targets self only, costs 10 mana, level 3 spell
   * **Last updated:** [[https://github.com/NYRDS/remixed-dungeon/commit/|Latest commit]]
 
 ==== See Also ====
