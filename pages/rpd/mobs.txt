@@ -1,47 +1,84 @@
 ====== Mobs ======
 
-Mobs (mobiles) are any mobile creatures in Remixed Pixel Dungeon. This includes enemies, NPCs, and any other creatures that can move around the dungeon.
+{{ rpd:images:rat_mob.png|Rat Mob }}
 
-==== Types of Mobs ====
-  * **Enemies** - Hostile creatures that attack the player
-  * **NPCs** - Non-player characters with special roles (e.g., [[rpd:shopkeeper_npc|Shopkeeper]], [[rpd:wandmaker_npc|Wandmaker]])
-  * **Pets** - Creatures allied to the player (see [[rpd:pet_mechanic|Pets]])
-  * **Bosses** - Powerful enemies that guard special prizes
+**Mobs** (Mobile Objects) are the enemies and creatures that the hero encounters throughout the dungeon in Remixed Dungeon. They range from simple rats in the sewers to powerful bosses like Yog-Dzewa.
 
-==== Basic Properties ====
-  * **HP/HT** - Hit points (current/max)
-  * **Attack Skill** - Chance to hit the player
-  * **Defense Skill** - Chance to avoid being hit
-  * **Damage** - Range of damage dealt on hit
-  * **EXP** - Experience awarded when killed
-  * **Dr** - Damage reduction (armor)
-  * **Speed** - How many turns per move relative to player
+==== Mob Categories ====
+  * **Basic Mobs**: Common enemies found throughout dungeon levels
+  * **Special Mobs**: Enemies with unique abilities or behaviors
+  * **Bosses**: Powerful enemies that guard important areas
+  * **Minions**: Weaker creatures that support other enemies
 
-==== Special Mob Properties ====
-  * **Immunities** - Status effects the mob is immune to
-  * **Resistances** - Status effects the mob resists
-  * **Special Abilities** - Unique attacks or behaviors
-  * **AI** - Artificial intelligence that governs behavior
+==== Basic Mobs by Level ====
 
-==== Common Mob Categories ====
-  * [[rpd:rats|Rats]] - Early game enemies
-  * [[rpd:elemental_mob|Elementals]] - Magic-themed enemies
-  * [[rpd:undead_mob|Undead]] - Raised corpses and spirits
-  * [[rpd:spiders|Spiders]] - Arachnid enemies
-  * [[rpd:piranhas|Piranhas]] - Aquatic enemies
-  * [[rpd:golems|Golems]] - Construct enemies
+===== Sewers =====
+  * [[rpd:rat_mob|Rat]]
+  * [[rpd:gnoll_mob|Gnoll]]
+  * [[rpd:crab_mob|Crab]]
+  * [[rpd:swarm_mob|Swarm of Flies]]
+
+===== Prison =====
+  * [[rpd:gnoll_mob|Gnoll]]
+  * [[rpd:thief_mob|Thief]]
+  * [[rpd:guard_mob|Guard]]
+  * [[rpd:bat_mob|Bat]]
+  * [[rpd:brute_mob|Brute]]
+
+===== Caves =====
+  * [[rpd:bat_mob|Bat]]
+  * [[rpd:brute_mob|Brute]]
+  * [[rpd:shaman_mob|Shaman]]
+  * [[rpd:spider_mob|Spider]]
+  * [[rpd:eye_mob|Eye]]
+
+===== Necropolis =====
+  * [[rpd:spider_mob|Spider]]
+  * [[rpd:eye_mob|Eye]]
+  * [[rpd:skeleton_mob|Skeleton]]
+  * [[rpd:warlock_mob|Warlock]]
+  * [[rpd:lich_mob|Lich]]
+
+===== Demon Halls =====
+  * [[rpd:skeleton_mob|Skeleton]]
+  * [[rpd:warlock_mob|Warlock]]
+  * [[rpd:lich_mob|Lich]]
+  * [[rpd:assassin_mob|Assassin]]
+  * [[rpd:bandit_mob|Bandit]]
+  * [[rpd:elemental_mob|Elemental]]
+  * [[rpd:succubus_mob|Succubus]]
+  * [[rpd:evil_eye_mob|Evil Eye]]
+
+==== Boss Enemies ====
+  * [[rpd:tengu_mob|Tengu]]
+  * [[rpd:dm300_mob|DM-300]]
+  * [[rpd:king_mob|King of Dwarves]]
+  * [[rpd:yog_mob|Yog-Dzewa]]
+
+==== Mob Stats ====
+Mobs have various statistics that determine their effectiveness in combat:
+  * **HP**: Health pool
+  * **Attack Skill**: Accuracy in combat
+  * **Defense Skill**: Evasion in combat
+  * **Damage**: Attack power
+  * **Defense Rate (DR)**: Damage reduction value
+  * **EXP**: Experience granted when defeated
+
+==== Mob Mechanics ====
+  * **AI Behavior**: Different mobs have unique movement and attack patterns
+  * **Drops**: Mobs have various chances to drop items when defeated
+  * **Spawning**: Different mob types appear in different dungeon levels
+  * **Resistances**: Some mobs have resistances or immunities to certain effects
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Base Mob class]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Character base class]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json configuration]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1000-L1400|Mob strings in localization]]
 
 ==== Related ====
-  * [[rpd:enemies|Enemies]] - Foes that attack the player
-  * [[rpd:npcs|NPCs]] - Non-player characters
-  * [[rpd:pet_mechanic|Pets]] - Allied creatures
-  * [[rpd:bosses|Bosses]] - Major enemies
-  * [[rpd:ai|AI]] - Information about mob behavior and artificial intelligence
-  * [[rpd:immunities|Immunities]] - Effects mobs are immune to
-  * [[rpd:resistances|Resistances]] - Effects mobs resist
+  * [[rpd:enemies|Enemies]]
+  * [[rpd:bosses|Bosses]]
+  * [[rpd:combat|Combat]]
 
-==== Source Code ====
-  * Base mob class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
-  * Mob factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]]
-
-{{tag> rpd mechanics}}
+{{tag> rpd mobs enemies}}

@@ -1,69 +1,57 @@
 ====== Armor ======
 
-{{ rpd:images:armor_hero.png|Armor }}
+{{ rpd:images:armor_tier4.png|Armor }}
 
-**Armor** provides protection against physical attacks in Remixed Dungeon. It reduces incoming damage based on its level and can be enchanted with special properties called glyphs.
+**Armor** provides protection to the hero by reducing the damage taken from attacks. Different types of armor offer varying levels of protection and have different requirements and characteristics.
+
+==== Armor Tiers ====
+  * **Cloth Armor** (Tier 1): Lowest protection, no strength requirement
+  * **Leather Armor** (Tier 2): Basic protection, moderate strength requirement
+  * **Mail Armor** (Tier 3): Good protection, higher strength requirement
+  * **Scale Armor** (Tier 4): Better protection, high strength requirement
+  * **Plate Armor** (Tier 5): Highest protection, very high strength requirement
 
 ==== Armor Properties ====
-  * **Armor Level**: Determines the effectiveness of damage reduction
-  * **Durability**: All armor has durability that decreases with use
-  * **Weight**: Heavier armor can slow down the hero's movement
-  * **Enchantments**: Armor can be enchanted with glyphs that provide special effects
+  * **Defense Rating (DR)**: Reduces incoming physical damage
+  * **Strength Requirement**: Minimum strength needed to wear without penalties
+  * **Durability**: Armor degrades with use
+  * **Weight**: Affects movement speed and hunger consumption
 
-==== Armor Tier System ====
-Armor is organized into 5 tiers:
-  * **Cloth Armor** (Tier 1): Basic protection, lowest armor value
-  * **Leather Armor** (Tier 2): Moderate protection
-  * **Mail Armor** (Tier 3): Good protection
-  * **Plate Armor** (Tier 4): High protection (Scale Armor also belongs to this tier)
-  * **Gothic Armor** (Tier 5): Maximum protection
-
-==== Armor Reduction Formula ====
-The damage reduction formula is: 
-  * Reduction = armorValue * 0.06f / (1 + 0.06f * armorValue)
-  * With glyph enhancements, this can be increased further
+==== Armor Mechanics ====
+  * **Damage Reduction**: Higher armor provides better protection against physical attacks
+  * **Enchantments**: Armor can be enchanted with glyphs for special effects
+  * **Identification**: Armor must be identified to see its exact defense value
+  * **Curses**: Cursed armor cannot be removed until blessed
 
 ==== Armor Enchantments (Glyphs) ====
-Armor can be enchanted with various glyphs that provide special effects:
-  * **Glyph of Affection**: Charms enemies on block
-  * **Glyph of Anti-Entropy**: Heals the hero and chills enemies on block
-  * **Glyph of Bounce**: Reflects damage back to attackers
-  * **Glyph of Displacement**: Teleports attackers away on hit
-  * **Glyph of Entanglement**: Roots the hero but provides armor bonus
-  * **Glyph of Metabolism**: Converts damage to healing
-  * **Glyph of Multiplicity**: Creates mirror images when taking damage
-  * **Glyph of Potential**: Charges hero's wand on hit
-  * **Glyph of Stench**: Releases toxic gas when blocking attacks
-  * **Glyph of Viscosity**: Delays damage until armor is removed
+  * [[rpd:glyph_of_bounce|Glyph of Bounce]]
+  * [[rpd:glyph_of_affection|Glyph of Affection]]
+  * [[rpd:glyph_of_anti_entropy|Glyph of Anti-Entropy]]
+  * [[rpd:glyph_of_multiplicity|Glyph of Multiplicity]]
+  * [[rpd:glyph_of_potential|Glyph of Potential]]
+  * [[rpd:glyph_of_metabolism|Glyph of Metabolism]]
+  * [[rpd:glyph_of_stench|Glyph of Stench]]
+  * [[rpd:glyph_of_viscosity|Glyph of Viscosity]]
+  * [[rpd:glyph_of_displacement|Glyph of Displacement]]
+  * [[rpd:glyph_of_entanglement|Glyph of Entanglement]]
 
-==== Acquisition ====
-  * Found randomly throughout the dungeon
-  * Available in shops
-  * Dropped by certain enemies
-  * Found in chests and other containers
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor base class]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClothArmor.java|ClothArmor]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/LeatherArmor.java|LeatherArmor]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MailArmor.java|MailArmor]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java|ScaleArmor]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/PlateArmor.java|PlateArmor]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1998-L2045|Armor strings in localization]]
 
-==== Upgrade and Identification ====
-  * Armor can be upgraded using [[rpd:scroll_of_upgrade_item|Scroll of Upgrade]]
-  * Higher tier armor is generally better than upgrading lower tier armor
-  * Unidentified armor shows as "armor" with unknown stats
+==== Related ====
+  * [[rpd:equipment|Equipment]]
+  * [[rpd:armor_glyphs|Armor Glyphs]]
+  * [[rpd:clothing_armor_item|Cloth Armor]]
+  * [[rpd:leather_armor_item|Leather Armor]]
+  * [[rpd:mail_armor_item|Mail Armor]]
+  * [[rpd:scale_armor_item|Scale Armor]]
+  * [[rpd:plate_armor_item|Plate Armor]]
+  * [[rpd:armor_upgrades|Armor Upgrades]]
 
-==== Strategy ====
-  * Higher tier armor provides exponentially better protection
-  * Consider the weight of armor and its effect on movement speed
-  * Choose glyphs based on your playstyle and character build
-  * Balance armor level with mobility for your character class
-  * Prioritize armor upgrades for early game survival
-
-==== Technical Details ====
-  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1998-L2050|Armor-related strings]]
-  * Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor base class]]
-  * Entity Kind Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind interface]]
-  * All armor tiers: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor|Armor tier implementations]]
-
-==== See Also ====
-  * [[rpd:armor_glyphs|Armor Glyphs]] - Special effects for armor
-  * [[rpd:items|Items]] - Other equipment and consumables
-  * [[rpd:combat|Combat]] - General combat mechanics
-
-{{tag> rpd items armor }}
+{{tag> rpd items armor equipment protection}}
