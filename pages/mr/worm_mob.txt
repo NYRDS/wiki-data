@@ -1,18 +1,36 @@
 ====== Worm Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/Worm.java|Worm.java]]
 
 ===== JSON Configuration =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Worm.json|Worm.json]]
 
 ===== String Resources =====
 <code xml>
-<string name="Worm_Name">[Name]</string>
-<string name="Worm_Info">[Description]</string>
+<string name="Worm_Name">worm</string>
+<string name="Worm_Gender">masculine</string>
+<string name="Worm_Name_Objective">worm</string>
+<string name="Worm_Desc">There is no way to tell how big this worm is. Partially emerging from the floor, body of that creature is covered in lumps of rotten flesh and slime. Giant mandibles gives you a clear idea of how that monster makes his way through the surface.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Implementation Notes =====
+  * **HP:** 195 (ht - hit points)
+  * **Defense:** 15 (baseDefenseSkill)
+  * **Attack:** 20 (baseAttackSkill)
+  * **Damage:** 22-45 (dmgMin-dmgMax)
+  * **DR:** 50 (damage reduction)
+  * **Exp:** 18 (expForKill)
+  * **Max Level:** 35 (maxLvl)
+  * **Loot:** Gold with 0.4f chance
+  * **Immunities:** Paralysis, Stun, ToxicGas
+  * **Special Attacks:**
+    * Roots enemy with 1/7 chance
+    * Poison enemy for 7-9 turns with 1/5 chance
+  * **Location:** Found in Guts (lower dungeon levels)
+
+===== Related mr Entities =====
+  * [[mr:larva_mob|Larva (Mob)]]
