@@ -1,0 +1,49 @@
+====== Death Enchantment ======
+
+{{ rpd:images:death_enchantment.png|Death Enchantment }}
+
+The **Death Enchantment** is a powerful enchantment for weapons in Remixed Dungeon that can instantly kill enemies under specific conditions.
+
+==== Description ====
+The Death enchantment has a chance to instantly kill any enemy when they are struck with the enchanted weapon. The chance depends on the health of the target enemy, with lower health enemies having a higher probability of being instantly killed.
+
+==== Mechanics ====
+  * **Instant Kill Chance:** The chance to instantly kill an enemy is calculated based on the enemy's remaining health percentage - the lower the health, the higher the chance
+  * **Maximum Effectiveness:** Most effective against weakened enemies
+  * **Resistance:** Some enemies (like the Warlock) have resistance to death-related effects
+
+==== Affected Items ====
+  * Can be applied to any weapon that supports enchantments
+
+==== Acquisition ====
+  * **Scroll of Upgrade:** Can appear on upgraded weapons
+  * **Scroll of Enchantment:** Available as a possible enchantment through enchantment scrolls
+  * **Shops:** May appear in shops on randomly generated enchanted weapons
+
+==== Strategy ====
+  * Most effective when fighting weakened enemies
+  * Combines well with other damage-over-time effects to weaken enemies before delivering the final blow
+  * Consider using when you encounter enemies that are already damaged
+  * Be aware that some enemies have resistances to death effects
+
+==== Code References ====
+  * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Death.java|Death.java]]
+  * **Enchantment Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Enchantment.java|Enchantment.java]]
+  * **Probability Calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Death.java#L25-L30|Damage calculation and instant kill chance]]
+  * **Enemy Resistance:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L36|Warlock resistance to Death enchantment]]
+  * **String Resources:**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2204|Death_Name]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2205|Death_Info]]
+  * **Enchantment Registration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Enchantment.java#L33|Enchantment constants]]
+  * **Instant Kill Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Death.java#L40-L45|kill() method]]
+  * **Damage Modification:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Death.java#L20-L23|Damage multiplier]]
+  * **Target Resistance System:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L154-L159|Char.resist() method]] - handles resistance to death effects
+  * **Machine-readable data:** [[mr:death_enchantment|mr:death_enchantment]]
+
+==== See Also ====
+  * [[rpd:enchantments|Weapon Enchantments]]
+  * [[rpd:weapon_enchantments|Weapon Enchantments Overview]]
+  * [[rpd:warlock_mob|Warlock]] - Enemy with resistance to death effects
+  * [[rpd:enchantments_mechanic|Enchantment Mechanics]]
+
+{{tag> rpd items weapons enchantments death instant_kill}}
