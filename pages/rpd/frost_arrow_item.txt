@@ -9,12 +9,13 @@ The Frost Arrow is a special type of missile weapon that causes the Slow status 
   * **Delay**: 0.75 (baseDly: 0.75)
   * **Min Strength Required**: 9 (setSTR: 9)
   * **Price**: 5 gold per arrow
-  * **Image**: ''ammo.png'' index 6
+  * **Image**: ammo.png, index 6 (FROST_ARROW_IMAGE constant)
+  * **Random Quantity**: 15-30 arrows when randomly generated
 
 ==== Special Abilities ====
-  * **Slowing Effect**: When the arrow hits a target, it has a 25% chance to apply the Slow status effect for 5 turns
+  * **Slowing Effect**: When the arrow hits a target, it has a 25% chance to apply the [[rpd:slow_buff|Slow]] status effect for 5 turns
   * **Mechanism**: Uses Buff.prolong(defender, Slow.class, DURATION) where DURATION = 5f
-  * **Chance Activation**: The special effect only triggers with a 25% probability on successful hits
+  * **Chance Activation**: The special effect only triggers with 25% probability on successful hits (activateSpecial() method)
   * **Bows**: When fired from a bow, damage, accuracy, and delay are affected by the bow's properties
 
 ==== Acquisition ====
@@ -61,5 +62,6 @@ The Frost Arrow is a special type of missile weapon that causes the Slow status 
   * [[rpd:missile_weapons|Missile Weapons]] - Other throwing weapons
   * [[rpd:fire_arrow_item|Fire Arrow]] - Other special arrow type
   * [[rpd:poison_arrow_item|Poison Arrow]] - Other special arrow type
+  * [[rpd:paralysis_arrow_item|Paralysis Arrow]] - Other special arrow type
 
 {{tag> rpd items arrows missiles ice }}
