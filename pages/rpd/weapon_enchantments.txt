@@ -2,36 +2,125 @@
 
 {{ rpd:images:weapon_enchantments.png|Weapon Enchantments }}
 
-**Weapon Enchantments** are special properties that can be added to weapons to provide various combat advantages. Each weapon can have at most one enchantment.
+**Weapon Enchantments** are special magical properties that can be added to weapons in Remixed Dungeon. These enchantments provide additional effects on each successful attack, making them valuable for customizing your combat strategy.
 
-==== List of Enchantments ====
+==== Common Enchantments ====
 
-  * [[rpd:fire_enchantment_enchantment|Fire]]: Adds fire damage and can burn enemies
-  * [[rpd:poison_enchantment_enchantment|Poison]]: Applies poison damage over time
-  * [[rpd:luck_enchantment_enchantment|Luck]]: Increases effectiveness of other enchantments
-  * [[rpd:slow_enchantment_enchantment|Slow]]: Reduces enemy speed temporarily
-  * [[rpd:horror_enchantment_enchantment|Horror]]: Causes enemies to flee in terror
-  * [[rpd:death_enchantment_enchantment|Death]]: Can instantly kill non-boss enemies
-  * [[rpd:instability_enchantment_enchantment|Instability]]: Redirects damage back to the wielder
-  * [[rpd:leech_enchantment_enchantment|Leech]]: Heals the wielder when damaging enemies
-  * [[rpd:paralysis_enchantment|Paralysis]]: Temporarily stuns enemies
-  * [[rpd:piercing_enchantment_enchantment|Piercing]]: Damage passes through enemies
-  * [[rpd:swing_enchantment_enchantment|Swing]]: Increases damage with 2x2 area of effect
+  * **[[rpd:fire_enchantment_enchantment|Fire]]**: Causes burning damage over time to enemies
+    * Chance to ignite the enemy on hit
+    * Damage scales with enchantment level
+    * Particularly effective against undead enemies
 
-==== Acquisition ====
-  * **Scroll of Upgrade**: Can add enchantments to weapons (with random chance)
-  * **Smithing**: The blacksmith can add enchantments to weapons
-  * **Special Items**: Some items may provide guaranteed enchantments
+  * **[[rpd:poison_enchantment_enchantment|Poison]]**: Poisons the enemy, causing damage over time
+    * Inflicts poison damage each turn
+    * Duration and damage increase with level
+    * Particularly effective against high-health enemies
 
-==== Mechanics ====
-  * **Upgrading**: Upgrading an enchanted weapon has a chance to preserve the enchantment
-  * **Curses**: Cursed weapons have negative enchantments that can't be removed without a Scroll of Remove Curse
-  * **Level Scaling**: Some enchantments become more powerful as the hero levels up
+  * **[[rpd:shocking_enchantment_enchantment|Shocking]]**: Electric effect that damages adjacent enemies
+    * Damages all adjacent creatures with electricity
+    * Can chain between enemies
+    * Effective against groups of enemies
 
-==== Content Verification ====
-  * Java Classes: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/|Weapon Enchantments in GitHub]]
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
-  * Configuration: Individual enchantment implementations in the enchantments package
-  * Machine-readable data: [[mr:weapon_enchantments|mr:weapon_enchantments]]
+  * **[[rpd:death_enchantment_enchantment|Death]]**: Instantly kills low-health enemies
+    * Chance to instantly kill enemies below 25% health
+    * Higher chance at higher enchantment levels
+    * Most effective against weak minions
 
-{{tag> rpd items weapons enchantments }}
+  * **[[rpd:luck_enchantment_enchantment|Lucky]]**: Increases damage consistency
+    * Attacks deal closer to maximum damage more frequently
+    * Makes damage more predictable
+    * Particularly useful for weapons with high variance
+
+  * **[[rpd:paralysis_enchantment_enchantment|Paralysis]]**: Temporarily paralyzes the enemy
+    * Chance to paralyze the target
+    * Removes enemy's turn for a period
+    * Can be crucial in difficult fights
+
+==== Uncommon Enchantments ====
+
+  * **[[rpd:chilling_enchantment_enchantment|Chilling]]**: Slows enemy movement and attacks
+    * Reduces enemy speed and accuracy
+    * Makes it easier to avoid difficult enemies
+    * Provides tactical advantages
+
+  * **[[rpd:horror_enchantment_enchantment|Horror]]**: Causes enemy to flee in fear
+    * Terrorizes the enemy, making it run away
+    * Allows time for healing or escape
+    * May cause enemies to flee to other areas of level
+
+  * **[[rpd:instability_enchantment_enchantment|Instability]]**: Randomly applies various effects
+    * Randomly applies different enchantment effects each hit
+    * Unpredictable but potentially very powerful
+    * High risk, high reward enchantment
+
+==== Rare Enchantments ====
+
+  * **[[rpd:leech_enchantment_enchantment|Leech]]**: Absorbs health from the enemy
+    * Heals the wielder for a portion of damage dealt
+    * Provides sustainable healing in long fights
+    * Particularly valuable for solo dungeon runs
+
+  * **[[rpd:piercing_enchantment_enchantment|Piercing]]**: Attacks pass through enemies
+    * Damage affects multiple enemies in a line
+    * Particularly effective against groups
+    * Allows for chain attacks
+
+  * **[[rpd:slow_enchantment_enchantment|Slow]]**: Reduces enemy speed
+    * Slows enemy movement and attack speed
+    * Provides combat advantage
+    * Synergizes well with other control effects
+
+==== Obtaining Enchantments ====
+
+  * **[[rpd:scroll_of_enchantment_item|Scroll of Enchantment]]**: Primary method to add enchantments
+    * Can be found throughout dungeon levels
+    * Available in shops for purchase
+    * Higher chance for better enchantments at higher levels
+    * Cursed when used on already-enchanted weapons
+
+  * **[[rpd:scroll_of_upgrade_item|Scrolls of Upgrade]]**: May improve existing enchantment
+    * Higher upgrade levels may enhance enchantment effect
+    * Maximum enhancement possible with multiple upgrades
+    * Risk of losing enchantment when upgrading cursed weapons
+
+  * **Starting Equipment**: Some hero classes start with enchanted weapons
+    * [[rpd:warrior_class|Warrior]] starts with [[rpd:sword_item|Worn Short Sword]] that may be enchanted
+    * [[rpd:hero_subclasses|Subclasses]] may have special starting enchantments
+    * Special class synergies with certain enchantments
+
+==== Strategy and Usage ====
+
+  * **Class Synergy**: Choose enchantments that work well with your [[rpd:hero_class|hero class]]
+    * [[rpd:warrior_class|Warrior]] benefits from consistent damage enchantments
+    * [[rpd:mage_class|Mage]] benefits from area and control enchantments
+    * [[rpd:rogue_class|Rogue]] benefits from high-damage burst enchantments
+
+  * **Enemy Type**: Consider enemy resistances and weaknesses
+    * Fire enchantments are less effective against fire-resistant enemies
+    * Poison enchantments can be resisted by poison-resistant enemies
+    * Some bosses are particularly vulnerable to specific enchantments
+
+  * **Combat Style**: Match enchantments to your preferred combat approach
+    * Control-based builds work well with paralysis and horror
+    * Sustainable builds benefit from leech enchantments
+    * Aggressive builds excel with consistent damage enchantments
+
+==== Technical Details ====
+
+  * Enchantment system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Enchantment.java|Enchantment base class]]
+  * All enchantments: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments|Weapon Enchantments package]]
+  * Enchantment application: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java#L150-L180|Enchantment application in Weapon class]]
+  * Scroll implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfEnchantment.java|ScrollOfEnchantment.java]]
+  * Russian strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1800-L1900|Enchantment strings]]
+
+==== See Also ====
+
+  * [[rpd:weapon_item|Weapons]] - General weapon information
+  * [[rpd:enchantments|Enchantments]] - Other enchanted items
+  * [[rpd:scroll_of_enchantment_item|Scroll of Enchantment]] - Item to add enchantments
+  * [[rpd:scroll_of_upgrade_item|Scrolls of Upgrade]] - Item to improve weapons
+  * [[rpd:equipment_mechanic|Equipment]] - General equipment mechanics
+  * [[rpd:combat_mechanics|Combat]] - How combat works
+  * [[rpd:items|Items]] - All items in the game
+
+{{tag> rpd items weapons enchantments equipment }}
