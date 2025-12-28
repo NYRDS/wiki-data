@@ -1,86 +1,53 @@
 ====== Potion ======
 
-{{ rpd:images:item_PotionOfHealing.png|Potion }}
+Potions are consumable items in Remixed Dungeon that provide various beneficial or detrimental effects when consumed.
 
-**Potions** are consumable items in Remixed Dungeon that provide various beneficial or harmful effects when drunk.
+==== Description ====
+Potions are single-use items that provide a variety of effects when consumed. Most potions must be identified before their effects are known, though some provide immediate feedback when drunk.
 
-==== Common Potions ====
+==== Types of Potions ====
   * [[rpd:potion_of_healing_item|Potion of Healing]] - Restores health
+  * [[rpd:potion_of_experience_item|Potion of Experience]] - Provides experience points
+  * [[rpd:potion_of_frost_item|Potion of Frost]] - Freezes nearby enemies
+  * [[rpd:potion_of_invisibility_item|Potion of Invisibility]] - Makes the hero temporarily invisible
+  * [[rpd:potion_of_levitation_item|Potion of Levitation]] - Levitates the hero
+  * [[rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] - Creates fire on nearby tiles
+  * [[rpd:potion_of_mana_item|Potion of Mana]] - Restores mana for magic classes
+  * [[rpd:potion_of_might_item|Potion of Might]] - Permanently increases strength
+  * [[rpd:potion_of_overhealing_item|Potion of Overhealing]] - Provides healing with a buffer
+  * [[rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] - Releases paralyzing gas
+  * [[rpd:potion_of_purity_item|Potion of Purity]] - Cures toxic or poisonous effects
   * [[rpd:potion_of_strength_item|Potion of Strength]] - Permanently increases strength
-  * [[rpd:potion_of_experience_item|Potion of Experience]] - Grants experience points
-  * [[rpd:potion_of_invisibility_item|Potion of Invisibility]] - Grants temporary invisibility
-  * [[rpd:potion_of_might_item|Potion of Might]] - Permanently increases damage and health
-  * [[rpd:potion_of_purity_item|Potion of Purity]] - Neutralizes harmful gases and curses
-
-==== Special Potions ====
-  * [[rpd:potion_of_levitation_item|Potion of Levitation]] - Grants temporary levitation
-  * [[rpd:potion_of_frost_item|Potion of Frost]] - Freezes enemies in an area
-  * [[rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] - Creates an explosion of fire
-  * [[rpd:potion_of_overhealing_item|Potion of Overhealing]] - Overheals with health regeneration
-  * [[rpd:potion_of_toxic_gas_item|Potion of Toxic Gas]] - Releases a cloud of poisonous gas
-  * [[rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] - Creates paralyzing gas
+  * [[rpd:potion_of_toxic_gas_item|Potion of Toxic Gas]] - Releases toxic gas
 
 ==== Mechanics ====
-  * **Drinking**: Potions can be drunk directly for their effect
-  * **Moistening**: Potions can be used with [[rpd:arrows_item|arrows]] to create special ammunition
-  * **Alchemy**: Potions can be used in alchemy recipes
-  * **Identifying**: Unidentified potions must be thrown or drunk to learn their effect
-  * **Shattering**: When thrown at terrain other than traps or pits, potions shatter and have no effect
+  * Potions must often be identified before their effect is known
+  * Most potions become identified when consumed
+  * Some potions can be thrown to affect enemies or other characters
+  * Thrown potions generally affect only the tile they land on
+  * Shattering potions on the ground can provide alternative effects
 
 ==== Identification ====
-  * Potions have different colors that hint at their effects
-  * Once identified, the color becomes fixed for that character
-  * Identification is permanent for that specific potion type
-  * Harmful potions (Liquid Flame, Frost, Toxic Gas, Paralytic Gas) default to throwing action when known
+Potions come unidentified and must be sampled to determine their effect. This can be done by:
+  * Drinking the potion
+  * Throwing it at an enemy or ally to see the effect
+  * Using certain items or spells that identify items
 
-==== Data Validation ====
-  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]]
-  * All potion types extend the base Potion class
-
-==== Source Code ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]] - Base potion class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/|Potions directory]] - Individual potion implementations
+==== Strategy ====
+  * Identifying potions early can save resources and avoid dangerous effects
+  * Some potions, like healing, are always safe to drink when needed
+  * Throwing potions at enemies can be tactically useful
+  * Consider saving important potions for critical moments
 
 ==== Code References ====
-  * **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]] - Implements base mechanics for all potions
-  * **Potion Types Array:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L43-L55|potions array]] - Contains all potion classes in the game
-  * **Image Handling:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L57-L60|images array]] - Defines the 13 different potion sprites
-  * **Color System:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L170-L173|color() method]] - Gets color name from string resources
-  * **Identification System:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L139-L150|ItemStatusHandler]] - Manages potion identification state
-  * **Harmful Potions:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L81-L87|knownHamful() method]] - Logic for harmful potions (Liquid Flame, Toxic Gas, Paralytic Gas, Frost)
-  * **Drink Confirmation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L91-L106|drink confirmation dialog]] - For harmful potions
-  * **Throw Confirmation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L109-L122|throw confirmation dialog]] - For beneficial potions
-  * **Shatter Mechanics:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L158-L165|onThrow method]] - Handles when potions shatter
-  * **Splash Effect:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L198-L208|splash method]] - Visual effect when potions shatter
-  * **Quality Factor:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L246-L248|qualityFactor method]] - Affects effects in subclasses
-  * **Moistening System:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L217-L244|moisten mechanism]] - Converts potions to special arrows
-  * **Potion Belt Integration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L253-L255|bag method]] - Potions can be stored in Potion Belt
-  * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2174-L2218|Potion string resources]] - Names and descriptions for all potions
-  * **Potion Colors:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2565-L2576|Potion color arrays]] - 13 different color names for potions
-  * **Drink Action:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L80|AC_DRINK]] - Action to drink potions
-  * **Moisten Action:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L32|AC_MOISTEN]] - Action to moisten items with potions
-  * **Shatter Sound:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Assets.java#L7|Assets.SND_SHATTER]] - Sound when potions shatter
-  * **Drink Sound:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Assets.java#L7|Assets.SND_DRINK]] - Sound when potions are drunk
-  * **Color Determination:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L58-L60|color determination]] - Gets colors from R.array.Potion_Colors string resource
-  * **Price Calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L240-L242|price method]] - Base price is 20 gold
-  * **Stackability:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L39|stackable = true]] - Potions can be stacked
-  * **Item Overlay Labels:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L251-L252|overlayIndex method]] - Shows label index for identified potions
-  * **Time to Drink:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L35|TIME_TO_DRINK]] - Takes 1 turn to drink
-  * **Time to Moisten:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L36|TIME_TO_MOISTEN]] - Takes 1 turn to moisten items
-  * **Badge Tracking:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L145|Badges.validateAllPotionsIdentified]] - Tracks when all potions are identified
-  * **Potion Images:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemsSlices.txt#L33-L45|ItemsSlices.txt]] - Defines potion sprite locations in items/potions.png
-  * **Potion Types Initialization:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L63-L65|initColors() method]] - Initializes potion color mapping
-  * **Splash Colors:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L233-L240|splashColors array]] - Extracts colors from potion sprites for splash effects
-  * **Item Status Handler:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ItemStatusHandler.java|ItemStatusHandler class]] - Handles the identification system for potions
-  * **Frost Protection:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/bags/PotionBelt.java|PotionBelt class]] - Protects potions from freezing
-  * **Moistenable Items:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L217-L244|moisten system]] - Supports arrows, scrolls, and rotten food
-  * **Action System:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L71-L77|actions() method]] - Adds drink and moisten actions to hero actions
-  * **Default Action:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L42|setDefaultAction(CommonActions.AC_DRINK)]] - Default is to drink unless the potion is known to be harmful
-  * **Machine-readable data:** [[mr:potion_mechanic|mr:potion_mechanic]]
+  * Base class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]]
+  * All potion implementations: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/|potion directory]]
+  * Identification system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java#L42-L48|Item identification system]]
 
 ==== See Also ====
-  * [[rpd:potions|Potions]] - List of all potions
-  * [[rpd:moisten_mechanic|Moistening]] - Using potions to create special arrows
-  * [[rpd:alchemy_mechanic|Alchemy]] - Using potions in recipes
+  * [[rpd:items|Items]]
+  * [[rpd:consumables|Consumables]]
+  * [[rpd:identification|Identification]]
+  * [[rpd:scrolls|Scrolls]]
 
-{{tag> rpd items potions consumables}}
+{{tag> rpd items potions}}
