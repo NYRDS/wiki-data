@@ -1,0 +1,39 @@
+====== Костяная броня ======
+
+==== Описание ====
+  * Классовая броня [[ru:rpd:necromancer|Некроманта]].
+  * Позволяет призвать [[ru:rpd:deathling|Смертеныша]]. (В более ранних версиях)
+
+==== Способность Некротизм ====
+  * При использовании некромант заражает себя на 5 ходов магической чумой, которая наносит периодический урон, равный примерно 3% от текущего запаса здоровья.
+  * Каждый ход, с вероятностью 50%, этот эффект может заразить любого моба в радиусе двух клеток.
+  * Болезнь так же передаётся от моба к мобу, но не может передиться обратно герою.
+  * Каждый раз как болезнь передаётся время её действия увеличивается на один ход, а урон возрастает (если текущий запас здоровья цели слишком низок, то может быть нанесена максимум 1 единица урона).
+  * Боссы получают фиксированный урон, вне зависимости от того, через сколько носителей передалась болезнь, но длительность эффекта растёт как и у простых мобов.
+
+==== Исходный код ====
+  * Костяная броня реализована в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/NecromancerArmor.java|NecromancerArmor.java]]
+  * Буфф Некротизм, используемый броней, реализован в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/Necrotism.java|Necrotism.java]]
+
+==== Строковые ресурсы ====
+<code xml>
+<string name="NecromancerArmor_Name">Костяная броня</string>
+<string name="NecromancerArmor_Info">Это броня позволит Некроманту призывать до двух Смертёнышей, по 5 душ за каждого. Эти прислужники-нежить будут следовать за своим хозяином и атаковать его врагов. Смертёныши становятся сильнее с каждым уровнем героя. </string>
+<string name="NecromancerArmor_Info2">В этой броне некромант может призвать \"Некротизм\", ужасающую болезнь поражающую любое существо в поле зрения, мертвое или живое.</string>
+<string name="NecromancerArmor_NotNecromancer">Только некроманты могут использовать эту броню!</string>
+</code>
+
+<code xml>
+<string name="NecromancerArmor_Name">Bone armor</string>
+<string name="NecromancerArmor_Info">This armor will allow the Necromancer to summon up to two Deathlings at a cost of 5 souls each. These undead servants will follow their master and attack his foes. The Deathlings become stronger with each hero level.</string>
+<string name="NecromancerArmor_Info2">Wearing this armor allows the necromancer to use the \"Necrotism\" ability, which will spread a magic plague, which may infect any creature in the vicinity, dead or alive.</string>
+<string name="NecromancerArmor_NotNecromancer">Only necromancers can use this armor!</string>
+</code>
+
+==== См. также ====
+  * [[ru:rpd:necromancer|Некромант]]
+  * [[ru:rpd:deathling|Смертеныш]]
+  * [[ru:rpd:necrotism_buff|Некротизм]]
+  * [[ru:rpd:soul_item|Душа]]
+
+{{tag> ru:rpd items armor necromancer}}
