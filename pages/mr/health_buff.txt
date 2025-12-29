@@ -1,24 +1,22 @@
-====== Health Buff - Code References ======
+====== Health Buff (Sungrass) - Code References ======
 
 ===== Java Classes =====
-This entity does not appear to be a specific buff in the game. The term "health" might refer to general health mechanics.
-  * Health mechanics are implemented in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] with methods like hp(), ht() for current and max health
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] contains hero-specific health mechanics
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java#L68-L112|Sungrass.java]] - Health buff implementation (nested class)
+  * Actual buff name is Sungrass$Health but represents a health-increasing buff
 
 ===== JSON Configuration =====
-No specific JSON configuration exists for health as a buff.
+No specific JSON configuration exists for this buff as it's part of the Sungrass plant effect.
 
 ===== String Resources =====
-No specific health buff strings exist in the resources, but general health-related strings may be found in:
-
 <code xml>
-<string name="Health_Bar">Health</string>
+<string name="SungrassBuff_Name">Herbal healing</string>
+<string name="SungrassBuff_Info">Roots have sprouted from the ground providing healing herbs.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is not implemented as a specific buff in Lua.
+This entity is implemented in Java, no Lua script exists.
 
-===== Related Entities =====
-  * [[mr:healing_spell|Healing Spell]] - Increases health
-  * [[mr:potion_of_healing_item|Potion of Healing Item]] - Restores health
-  * [[mr:health_dart_item|Health Dart Item]] - Health-related item
+===== Buff Mechanics =====
+  * Heals Math.max(target.ht() / 10, 1) health points every 5 turns
+  * Detaches when character moves from original position or reaches full health
+  * Uses BuffIndicator.HEALING icon
