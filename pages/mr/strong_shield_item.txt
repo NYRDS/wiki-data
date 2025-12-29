@@ -1,20 +1,53 @@
 ====== Strong Shield Item - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
-
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/strong_shield.json
+===== Lua Scripts =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/StrongShield.lua|StrongShield.lua]] - Main implementation of the shield
 
 ===== String Resources =====
 <code xml>
-<string name="StrongShield_Name">[Name]</string>
-<string name="StrongShield_Info">[Description]</string>
+<string name="StrongShield_name">Bronze Plated Shield</string>
+<string name="StrongShield_desc">This rectangular shield is plated with bronze sheets and decorated with colored cloth. It is significantly heavier, but can block much more incoming damage.</string>
 </code>
 
-===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/StrongShield.lua|StrongShield.lua]]
+[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2591-L2592|English string resources]]
+[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2592-L2593|Russian string resources]]
+[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L2421-L2422|German string resources]]
+[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L2578-L2579|French string resources]]
+[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L2436-L2437|Spanish string resources]]
+[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L2429-L2430|Chinese string resources]]
+[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml#L2437-L2438|Japanese string resources]]
+[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-in/strings_all.xml#L2421-L2422|Indonesian string resources]]
+[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L2425-L2426|Portuguese string resources]]
+[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-uk/strings_all.xml#L2520|Ukrainian string resources]]
+
+===== Related Libraries =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/shields.lua|shields.lua]] - Shield library with common shield mechanics
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/item.lua|item.lua]] - Common item library used by all items
+
+===== Implementation Details =====
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+
+local item = require "scripts/lib/item"
+
+local shields = require "scripts/lib/shields"
+
+local shieldLevel = 3
+local shieldDesc  = "StrongShield_desc"
+
+local baseDesc = shields.makeShield(shieldLevel,shieldDesc)
+
+baseDesc.desc = function (self, item)
+    return {
+        image         = 2,
+        imageFile     = "items/shields.png",
+        name          = "StrongShield_name",
+        info          = shieldDesc,
+        price         = 80 * shieldLevel,
+        equipable     = "left_hand",
+        upgradable    = true
+    }
+end
+
+return item.init(baseDesc)
+</code>
