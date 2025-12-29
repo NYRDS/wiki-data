@@ -1,109 +1,56 @@
 ====== Dungeon Levels ======
 
-{{ rpd:images:levels_illustration.png|Dungeon Levels }}
+Dungeon **Levels** in Remixed Dungeon are distinct floors of the dungeon that players explore. Each level has a specific theme, layout, enemies, and challenges.
 
-**Dungeon Levels** are the distinct floors of the dungeon in Remixed Dungeon, each with its own theme, enemies, and challenges. The dungeon has 25 floors divided into 5 distinct areas, with 5 levels each.
+==== Level Structure ====
+The dungeon consists of multiple levels, each representing a different area with unique characteristics:
+  * **Depth**: Levels increase in number as you progress deeper into the dungeon
+  * **Themes**: Each area (Sewers, Prison, Caves, City, Halls) has multiple levels
+  * **Layout**: Procedurally generated using various room types and connections
+  * **Enemies**: Enemy difficulty and types scale with depth
 
-==== Level Progression ====
-  * **Floors 1-5**: The Sewers - Basic enemies like rats and gnolls
-  * **Floors 6-10**: The Prison - Humanoid enemies and magic users
-  * **Floors 11-15**: The Caves - Dwarven and mechanical enemies
-  * **Floors 16-20**: The City - Elite enemies and merchants
-  * **Floors 21-25**: The Halls - Demon enemies and the final boss
+==== Level Areas ====
+  * [[rpd:sewers_level|Sewers]] (Levels 1-5): The starting area with basic enemies and simple layouts
+  * [[rpd:prison_level|Prison]] (Levels 6-10): Abandoned prison with more challenging enemies
+  * [[rpd:caves_level|Caves]] (Levels 11-15): Underground caves with tougher monsters
+  * [[rpd:city_level|City]] (Levels 16-20): The Dungeon's center with elite enemies
+  * [[rpd:halls_level|Halls]] (Levels 21-25): The deepest area with the most dangerous creatures
 
-==== Sewer Level (Floors 1-5) ====
-{{ rpd:images:sewers_level.png|Sewers Level }}
-  * **Theme**: Watery sewer environment
-  * **Enemies**: Rats, Gnolls, Crabs, and Slimes
-  * **Special Features**: Pools of water, basic traps
-  * **Key Items**: Found on these levels include basic equipment
-  * **Boss**: Goo (Floor 5) - A blob-like creature that uses water mechanics
-
-==== Prison Level (Floors 6-10) ====
-{{ rpd:images:prison_level.png|Prison Level }}
-  * **Theme**: Ancient underground prison
-  * **Enemies**: Skeletons, Thieves, Guards, and magical enemies
-  * **Special Features**: Bars, cells, and more complex traps
-  * **Key Items**: Higher tier upgrades and useful consumables
-  * **Boss**: Tengu (Floor 10) - A ninja-like assassin boss
-
-==== Caves Level (Floors 11-15) ====
-{{ rpd:images:caves_level.png|Caves Level }}
-  * **Theme**: Underground caves with gold mines
-  * **Enemies**: Bats, Brutes, Spinsters, and Elementals
-  * **Special Features**: More gold, gems, and dangerous terrain
-  * **Key Items**: Better equipment and rare items
-  * **Boss**: DM-300 (Floor 15) - A large mechanical construct
-
-==== City Level (Floors 16-20) ====
-{{ rpd:images:city_level.png|City Level }}
-  * **Theme**: Dwarven metropolis
-  * **Enemies**: Dwarven ghosts, Golems, Monks, and Warlocks
-  * **Special Features**: Shops, more complex architecture
-  * **Key Items**: High-tier equipment and powerful artifacts
-  * **Boss**: King of Dwarves (Floor 20) - The undead ruler of the city
-
-==== Halls Level (Floors 21-25) ====
-{{ rpd:images:halls_level.png|Halls Level }}
-  * **Theme**: Hell-like demonic realm
-  * **Enemies**: Demons, Wraiths, Yog's Eyes, and special enemies
-  * **Special Features**: Unique terrain, challenging layouts
-  * **Key Items**: Powerful artifacts and unique equipment
-  * **Boss**: Yog-Dzewa (Floor 25) - The final god-like boss
-
-==== Level Features ====
-  * **Stairs**: Connect to the next lower or previous higher level
-  * **Shopkeepers**: Sell valuable items (in some levels)
-  * **Altars**: Various altars with special functions
-  * **Fountains**: Special interaction points
-  * **Traps**: Dangerous floor tiles that activate when stepped on
-  * **Secrets**: Hidden rooms and passages
-  * **Environmental Hazards**: Pits, water, and other terrain effects
-
-==== Special Level Types ====
-  * **Regular Levels**: Standard dungeon levels with enemies and items
-  * **Shop Levels**: Levels with merchant NPCs selling items
-  * **Goo Level**: Special level with the Goo boss fight
-  * **Tengu Level**: Special level with the Tengu boss fight
-  * **Boss Levels**: Levels designed around the boss encounter
-  * **Special Levels**: Unique layouts with special mechanics
+==== Level Mechanics ====
+  * **Scaling**: Enemy stats, HP, and damage increase with level depth
+  * **Item Drops**: Better items appear on deeper levels
+  * **Stairs**: Downward stairs lead to deeper levels, upward stairs return to the surface
+  * **Bosses**: Each area (except Sewers) has a boss on the last level
+  * **Special Features**: Each level type may have unique terrain, traps, or interactive elements
 
 ==== Level Generation ====
-  * **Procedural**: Each level layout is randomly generated
-  * **Themed**: Each area has consistent visual and gameplay theme
-  * **Balanced**: Generation ensures fair but challenging layouts
-  * **Connected**: All areas are reachable via stairs and passages
-  * **Special Rooms**: Includes unique room layouts like libraries
+Levels are procedurally generated using:
+  * Room-based layout algorithms
+  * Special room types (shops, gardens, armories, etc.)
+  * Connection algorithms to ensure all areas are reachable
+  * Weighted spawning of items, traps, and features
 
-==== Level Challenges ====
-  * **Navigation**: Finding optimal paths through levels
-  * **Resource Management**: Balancing consumables and equipment
-  * **Enemy Management**: Dealing with various enemy types
-  * **Trap Avoidance**: Navigating dangerous floor elements
-  * **Time Pressure**: Managing health and resources during long expeditions
-  * **Item Identification**: Using scrolls efficiently to identify equipment
+==== Content Verification ====
+  * **Information Source**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]]
+  * **Mechanics Verification**: Extracted from Level.java and area-specific level classes
+  * **Effect Descriptions**: Based on code analysis and gameplay
+  * **Last Updated**: December 29, 2025
+  * **Source File**: Level.java, Dungeon.java, and area-specific level classes
 
-==== Level-Specific Mechanics ====
-  * **Water**: In sewers, can be used for special healing effects
-  * **Gold**: In caves, used for equipment and upgrades
-  * **Traps**: More prevalent in higher levels
-  * **Shops**: Available in caves and city levels
-  * **Environmental Hazards**: Increase in complexity in higher levels
+==== Source Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]] - Base level implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] - Dungeon management
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/SewerLevel.java|SewerLevel.java]] - Sewers level implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/PrisonLevel.java|PrisonLevel.java]] - Prison level implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/CavesLevel.java|CavesLevel.java]] - Caves level implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/CityLevel.java|CityLevel.java]] - City level implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/HallsLevel.java|HallsLevel.java]] - Halls level implementation
 
-==== Technical Details ====
-  * Level generation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]]
-  * Sewer level: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/SewerLevel.java|SewerLevel.java]]
-  * Prison level: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/PrisonLevel.java|PrisonLevel.java]]
-  * Caves level: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/CavesLevel.java|CavesLevel.java]]
-  * City level: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/CityLevel.java|CityLevel.java]]
-  * Halls level: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/HallsLevel.java|HallsLevel.java]]
+==== Related ====
+  * [[rpd:dungeon|Dungeon]] - Overview of the dungeon structure
+  * [[rpd:stairs|Stairs]] - Navigation between levels
+  * [[rpd:sewers_level|Sewers Level]] - First area of the dungeon
+  * [[rpd:boss|Boss]] - Major enemies found at area endings
+  * [[rpd:rooms|Rooms]] - Types of rooms found in levels
 
-==== See Also ====
-  * [[rpd:enemies|Enemies]] - Enemies encountered on different levels
-  * [[rpd:traps|Traps]] - Hazardous floor elements
-  * [[rpd:items|Items]] - Equipment found throughout the dungeon
-  * [[rpd:bosses|Bosses]] - Major enemies on boss levels
-  * [[rpd:shops|Shops]] - Merchant locations on certain levels
-  * [[rpd:stairs|Stairs]] - Level connection mechanisms
-
-{{tag> rpd levels dungeon }}
+{{tag> rpd levels dungeon gameplay}}
