@@ -1,66 +1,67 @@
 ====== Ice Caves Level ======
 
-{{ rpd:images:level_ice_caves.png|Ice Caves Level }}
-
-The **Ice Caves** are a special level in Remixed Dungeon that features freezing mechanics and ice-themed enemies. This level is challenging due to the cold environment and unique enemies found here.
-
-==== Description ====
-The Ice Caves level is a specialized area of the dungeon with unique cold-themed mechanics. The level is inhabited by ice-based creatures and features environmental hazards related to cold.
+The Ice Caves is a level in Remixed Dungeon that appears in the later parts of the dungeon. This frozen environment presents unique challenges with its icy terrain and special features.
 
 ==== Level Characteristics ====
-  * **Level ID**: IceCavesLevel
-  * **Level Type**: Specialized ice-themed level
-  * **Floor Range**: ice1, ice2, ice3, ice4 (based on Bestiary.json configuration)
-  * **Environment**: Cold-themed with freezing mechanics
-  * **Unique Elements**: Ice-themed enemies and mechanics
+  * **Visual Theme**: Frozen caves with ice-themed tiles
+  * **Water Texture**: ''Assets.WATER_ICE_CAVES'' - "water_ice_caves.png"
+  * **Tile Textures**: 
+    * ''Assets.TILES_ICE_CAVES_X'' - "tiles_ice_caves_x.png"
+    * ''Assets.TILES_ICE_CAVES_XYZ'' - "tilesets/tiles_ice_caves_xyz.png"
+  * **View Distance**: 6 tiles (limited visibility)
+  * **Color Scheme**: 
+    * Primary: 0x534f3e
+    * Secondary: 0xb9d661
+  * **Object Kind**: 8 (controls the spawning of level objects)
 
-==== Enemies ====
-  * [[rpd:kobold_icemancer_mob|Kobold Icemancer]] - Magic-using mob that can apply [[rpd:slow_buff|Slow]] effect
-  * [[rpd:ice_elemental_mob|Ice Elemental]] - Resistant to various effects and can slow enemies
-  * [[rpd:cold_spirit_mob|Cold Spirit]] - Fast-moving spirit creature
-  * Other ice-themed creatures
+==== Level Features ====
+  * **Special Decorations**: Ice-themed wall decorations with visual effects
+  * **Chasms**: Random chasms may form between adjacent standard rooms
+  * **Ice Veins**: Special visual effects on wall deco tiles
+  * **Narrow Corners**: Decorative wall tiles may form at room corners
+  * **Grass Generation**: Patchy grass areas with probability based on level feeling
+  * **Water Generation**: Patchy water areas with probability based on level feeling
+
+==== Level Generation ====
+The Ice Caves level uses a special decoration algorithm:
+  * Corners may be decorated with additional wall tiles
+  * Chasms form between standard rooms under certain conditions
+  * Special north wall decorations appear (10-12% chance)
 
 ==== Special Mechanics ====
-  * Cold environment that may affect gameplay mechanics
-  * Unique freezing effects
-  * Ice-themed challenges and hazards
+  * **Limited Visibility**: View distance is reduced to 6 tiles
+  * **Ice-themed Terrain**: Special tile names and descriptions for ice-themed elements
 
-==== Items and Resources ====
-  * Items related to cold and ice mechanics
-  * Potential for finding [[rpd:frozen_carpaccio_item|Frozen Carpaccio]]
-  * Unique equipment that functions well in cold environments
+==== Tile Descriptions ====
+  * **Grass**: [[rpd:grass_tile|Grass]] (Ice Caves variant)
+  * **High Grass**: [[rpd:high_grass_tile|High Grass]] (Ice Caves variant)
+  * **Water**: [[rpd:water_tile|Water]] (Caves variant)
+  * **Statue**: [[rpd:statue_tile|Statue]] (Ice Caves variant)
+  * **Wall Deco**: [[rpd:wall_deco_tile|Wall Decoration]] with ice vein effects
 
-==== Strategies ====
-  * Be aware of freezing effects that can slow or immobilize
-  * Prepare for cold-based attacks
-  * Consider items that counter freezing effects
-  * Manage food resources carefully as cold may increase consumption
-  * Watch out for ranged attacks from ice-themed enemies
-
-==== Location in Dungeon ====
-  * The Ice Caves level is located after the City level in the game progression
-  * Serves as a transition between surface levels and deeper dungeon areas
-  * Precedes the Halls level in the dungeon progression
+==== Known Issues or Special Cases ====
+  * At depth 18, a [[rpd:caged_kobold_npc|Caged Kobold]] spawns in the exit room
 
 ==== Code References ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/IceCavesLevel.java|IceCavesLevel.java]] - Core implementation
-  * Level Factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/LevelFactory.java|LevelFactory.java]] - Level registration
-  * Level Generation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/IceCavesLevel.java#L23-L50|IceCavesLevel constructor]] - Level setup and initialization
-  * String Resources:
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1275-L1277|Level names]] - IceCaves_Name, IceCaves_Desc, IceCaves_Desc_Obj
-  * Spawn Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L73-L77|Bestiary.json]] - Defines spawn rates for ice1-ice4 floors
-  * Level Objects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/IceCavesLevel.java#L32-L40|IceCavesLevel.createLevelObjects()]] - Special objects on this level
-  * Level Decorations: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/IceCavesLevel.java#L41-L45|IceCavesLevel.decorate()]] - Level-specific decorations
-  * Enemy Spawn Logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/IceCavesLevel.java#L28-L30|IceCavesLevel.mobSpawnFactor()]] - How mobs spawn on this level
-  * Room Generation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/IceCavesLevel.java#L47-L49|generateRoomInstances()]] - Special room types for this level
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/IceCavesLevel.java|IceCavesLevel.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/IceCavesBossLevel.java|IceCavesBossLevel.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Assets.java|Assets.java]] (tile definitions)
 
-==== See Also ====
-  * [[rpd:kobold_icemancer_mob|Kobold Icemancer]]
-  * [[rpd:ice_elemental_mob|Ice Elemental]]
-  * [[rpd:cold_spirit_mob|Cold Spirit]]
-  * [[rpd:ice_guardian_core_mob|Ice Guardian Core]] - Boss of this level
-  * [[rpd:mobs|Mobs]] - Other creatures in the dungeon
-  * [[rpd:levels|Levels]] - Other dungeon levels
-  * [[rpd:slow_buff|Slow Buff]] - Status effect featured in this level
+==== Related Strings ====
+  * ''IceCaves_TileGrass'': Descriptive text for ice cave grass
+  * ''IceCaves_TileHighGrass'': Descriptive text for ice cave high grass
+  * ''IceCaves_TileStatue'': Descriptive text for ice cave statues
+  * ''IceCaves_TileDescHighGrass'': Description for high grass tiles
+  * ''IceCaves_TileDescDeco'': Description for wall decorations
+  * ''IceCaves_TileDescStatue'': Description for statue tiles
+  * ''Caves_TileWater'': Water tile description (shared with other cave levels)
+  * ''Caves_TileDescEntrance'': Entrance tile description (shared)
+  * ''Caves_TileDescExit'': Exit tile description (shared)
 
-{{tag> rpd levels ice caves }}
+==== Related ====
+  * [[rpd:caves_level|Caves Level]]
+  * [[rpd:levels_mechanic|Levels Mechanic]]
+  * [[rpd:terrain_mechanic|Terrain Mechanic]]
+  * [[rpd:caged_kobold_npc|Caged Kobold NPC]]
+
+{{tag> rpd levels ice_caves cave dungeon }}

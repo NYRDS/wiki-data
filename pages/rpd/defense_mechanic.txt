@@ -1,0 +1,124 @@
+====== Defense Mechanic ======
+
+Defense is a core combat mechanic in Remixed Dungeon that determines the chance to successfully evade incoming attacks.
+
+==== Defense Skill Formula ====
+
+The defense skill is calculated in the ''Char.java'' file as part of the ''defenseSkill'' method:
+
+<code java>
+public int defenseSkill(Char enemy) {
+
+    int defenseSkill = baseDefenseSkill + lvl();
+
+    final int[] bf = {0};
+    forEachBuff(b -> bf[0] += b.defenceSkillBonus(this));
+
+    int bonus = bf[0];
+
+    float evasion = (float) Math.pow(1.2, bonus);
+    if (paralysed) {
+        evasion /= 2;
+    }
+
+    int aEnc = getItemFromSlot(Belongings.Slot.ARMOR).requiredSTR() - effectiveSTR();
+
+    if (aEnc > 0) {
+        return (int) (defenseSkill * evasion / Math.pow(1.5, aEnc));
+    } else {
+
+        if (getHeroClass() == HeroClass.ROGUE) {
+
+            if (getCurAction() != null && getSubClass() == HeroSubClass.FREERUNNER && !isStarving()) {
+                evasion *= 2;
+            }
+
+            return (int) ((defenseSkill - aEnc) * evasion);
+        } else {
+            return (int) (defenseSkill * evasion);
+        }
+    }
+}
+</code>
+
+==== Defense Skill Components ====
+
+==== Base Defense Skill ====
+  * **Definition**: The character's base defense skill value
+  * **Storage**: ''baseDefenseSkill'' field in Char class
+  * **Examples**: 
+    * Rat: 3
+    * Warrior: 5 (in Hero class)
+    * Thief: 12
+    * Goo: 12
+    * King: 25
+    * Yog's Heart: 40
+  * **Function**: Provides the foundational defense value before modifiers
+
+==== Level Bonus ====
+  * **Formula**: ''baseDefenseSkill + lvl()''
+  * **Effect**: Each level increases defense skill by 1 point
+  * **Implementation**: ''baseDefenseSkill + lvl()'' in the calculation
+
+==== Buff Bonuses ====
+  * **Mechanism**: Each buff with ''defenceSkillBonus'' increases the skill
+  * **Formula**: Bonuses are summed and applied as exponential modifier to evasion: ''Math.pow(1.2, bonus)''
+  * **Examples**: Various buffs can provide defense skill bonuses
+
+==== Paralysis Penalty ====
+  * **Condition**: When character is paralyzed
+  * **Effect**: Evasion is halved (''evasion /= 2'')
+  * **Purpose**: Reduces defensive capabilities while paralyzed
+
+==== Armor Encumbrance ====
+  * **Calculation**: ''aEnc = getItemFromSlot(Belongings.Slot.ARMOR).requiredSTR() - effectiveSTR()''
+  * **Effect**: If ''aEnc > 0'' (armor requires more STR than available), defense is reduced by a factor of ''Math.pow(1.5, aEnc)''
+  * **Impact**: Wearing armor that requires more strength than available significantly reduces defense
+
+==== Class-Specific Mechanics ====
+  * **Hero Classes**: Non-rogues use basic formula ''defenseSkill * evasion''
+  * **Rogues**: Use modified formula ''(defenseSkill - aEnc) * evasion'' and get additional bonuses
+  * **Freerunner Subclass**: When not starving and moving, evasion is doubled (''evasion *= 2'')
+
+==== Combat Calculation ====
+  * **Hit Chance**: The attacker's attack skill is compared against the defender's defense skill
+  * **Calculation**: ''Random.Float(attacker.attackSkill(defender)) > Random.Float(defender.defenseSkill(attacker))''
+  * **Result**: If true, the attack hits; if false, the attack misses
+
+==== Hero Defense Skill Enhancement ====
+The Hero class has a special defense skill calculation:
+
+<code java>
+// In Hero.java
+public int defenseSkill(Char enemy) {
+    float skillFactor = 1;
+    
+    if (getSubClass() == HeroSubClass.BRIGAND) {
+        skillFactor *= 1.2;
+    }
+    
+    return (int) (super.defenseSkill(enemy) * skillFactor);
+}
+</code>
+
+==== Defense in Combat ====
+  * **Evasion**: The primary means of avoiding damage is through the defense skill system
+  * **Hit Calculation**: ''Random.Float(attacker.attackSkill(defender)) > Random.Float(defender.defenseSkill(attacker))''
+  * **Result**: If the attacker's roll is higher, the hit succeeds; otherwise, the defender evades
+
+==== Related String Resource ====
+  * ''Char_StaDodged'': Text displayed when a character successfully dodges an attack
+
+==== Code References ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]]
+
+==== Related ====
+  * [[rpd:attack_skill_mechanic|Attack Skill Mechanic]]
+  * [[rpd:evasion_mechanic|Evasion Mechanic]]
+  * [[rpd:combat_mechanic|Combat Mechanic]]
+  * [[rpd:accuracy_mechanic|Accuracy Mechanic]]
+  * [[rpd:armor_item|Armor Item]]
+
+{{tag> rpd mechanics combat defense skill }}

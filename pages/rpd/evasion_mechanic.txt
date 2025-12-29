@@ -1,39 +1,98 @@
 ====== Evasion Mechanic ======
 
-Evasion is a core combat mechanic in Remixed Pixel Dungeon that represents a character's ability to avoid attacks entirely. Higher evasion increases the chance to dodge enemy attacks, making it particularly valuable against strong enemies.
+Evasion is a core combat mechanic in Remixed Dungeon that represents the ability to dodge incoming attacks, primarily determined by the character's defense skill.
 
-==== Evasion Calculation ====
-Evasion is implemented through the defenseSkill method in Char.java, where defensive bonus is calculated using the formula:
+==== Evasion Formula ====
 
-```
+The evasion calculation is part of the defense skill system in the ''Char.java'' file:
 
-float evasion = (float) Math.pow(1.2, bonus)
+<code java>
+public int defenseSkill(Char enemy) {
+    // ... base calculation ...
+    
+    final int[] bf = {0};
+    forEachBuff(b -> bf[0] += b.defenceSkillBonus(this));
 
-```
+    int bonus = bf[0];
 
-Where 'bonus' is the sum of any defenceSkillBonus from active buffs.
+    float evasion = (float) Math.pow(1.2, bonus);
+    if (paralysed) {
+        evasion /= 2;
+    }
+
+    // ... armor encumbrance calculation ...
+    int aEnc = getItemFromSlot(Belongings.Slot.ARMOR).requiredSTR() - effectiveSTR();
+
+    if (aEnc > 0) {
+        return (int) (defenseSkill * evasion / Math.pow(1.5, aEnc));
+    } else {
+
+        if (getHeroClass() == HeroClass.ROGUE) {
+
+            if (getCurAction() != null && getSubClass() == HeroSubClass.FREERUNNER && !isStarving()) {
+                evasion *= 2;
+            }
+
+            return (int) ((defenseSkill - aEnc) * evasion);
+        } else {
+            return (int) (defenseSkill * evasion);
+        }
+    }
+}
+</code>
+
+==== Evasion Mechanics ====
+
+==== Base Evasion ====
+  * **Calculation**: ''Math.pow(1.2, bonus)'' where bonus is the sum of all ''defenceSkillBonus'' from buffs
+  * **Effect**: Each point of defense bonus multiplies evasion by 1.2
+  * **Exponential Growth**: The evasion bonus increases exponentially with more defense bonuses
+
+==== Paralysis Effect ====
+  * **Penalty**: When paralyzed, evasion is halved (''evasion /= 2'')
+  * **Impact**: Reduces the character's ability to dodge attacks significantly
+  * **Implementation**: ''if (paralysed) { evasion /= 2; }''
+
+==== Armor Encumbrance ====
+  * **Calculation**: ''getItemFromSlot(Belongings.Slot.ARMOR).requiredSTR() - effectiveSTR()''
+  * **Effect**: If armor requires more strength than available (''aEnc > 0''), evasion is reduced by ''Math.pow(1.5, aEnc)''
+  * **Impact**: Heavy armor that requires more strength than available reduces evasion significantly
+
+==== Class-Specific Evasion ====
+  * **Rogues**: Have the potential for additional evasion bonuses
+  * **Freerunner Subclass**: When not starving and moving, evasion is doubled (''evasion *= 2'')
+  * **Non-Rogues**: Use standard evasion calculation
+
+==== Evasion in Combat ====
+  * **Hit Calculation**: ''Random.Float(attacker.attackSkill(defender)) > Random.Float(defender.defenseSkill(attacker))''
+  * **Success**: When the defender's defense skill roll is higher, the attack is evaded
+  * **Result**: The attack misses entirely, dealing no damage
 
 ==== Factors Affecting Evasion ====
-  * **Dexterity**: Higher level characters naturally have better defense
-  * **Armor Penalty**: If armor required STR exceeds effective STR, evasion is reduced by 1.5^penalty
-  * **Equipment**: Rings and other items can provide defenceSkillBonus
-  * **Buff Effects**: Temporary evasion boosts from various status effects
+  * **Defense Skill Bonuses**: From buffs and equipment
+  * **Paralysis Status**: Reduces evasion by 50%
+  * **Armor Encumbrance**: Heavy armor reduces evasion when STR is insufficient
+  * **Hero Class**: Rogues have special evasion mechanics
+  * **Hero Subclass**: Freerunner gets double evasion under specific conditions
 
-==== Equipment with Evasion Bonuses ====
-  * **[[rpd:ring_of_evasion_item|Ring of Evasion]]**: Provides +1 defenceSkillBonus per ring level
-  * **[[rpd:freerunner_subclass|Freerunner Subclass]]**: Doubles evasion bonus when not starving and in motion
+==== Equipment with Evasion Effects ====
+  * [[rpd:ring_of_evasion_item|Ring of Evasion]] - Provides direct evasion bonuses
+  * [[rpd:armor_item|Armor items]] - May have encumbrance that affects evasion
+  * [[rpd:hero_subclass|Hero subclasses]] - Some provide evasion bonuses
+
+==== Related Buffs ====
+  * Any buff that implements ''defenceSkillBonus'' will affect evasion
+  * [[rpd:ring_of_evasion_item|Ring of Evasion]] provides such a buff
 
 ==== Code References ====
-  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L552-L583|defenseSkill method in Char.java]]
-  * Ring Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfEvasion.java|RingOfEvasion.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L51-L52|RingOfEvasion_Name, RingOfEvasion_Info]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
 
 ==== Related ====
-  * [[rpd:combat|Combat]]
-  * [[rpd:melee_combat|Melee Combat]]
-  * [[rpd:ranged_combat|Ranged Combat]]
-  * [[rpd:defense|Defense]]
-  * [[rpd:accuracy|Accuracy]]
-  * [[rpd:attack_skill|Attack Skill]]
+  * [[rpd:defense_mechanic|Defense Mechanic]]
+  * [[rpd:attack_skill_mechanic|Attack Skill Mechanic]]
+  * [[rpd:combat_mechanic|Combat Mechanic]]
+  * [[rpd:accuracy_mechanic|Accuracy Mechanic]]
+  * [[rpd:ring_of_evasion_item|Ring of Evasion]]
 
-{{tag> rpd mechanics evasion dexterity }}
+{{tag> rpd mechanics combat evasion defense }}

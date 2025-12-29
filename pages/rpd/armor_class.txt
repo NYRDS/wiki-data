@@ -1,0 +1,94 @@
+====== Armor Class ======
+
+Armor Class (AC) in Remixed Dungeon represents the protective value of armor that reduces incoming physical damage. It is distinct from the defense skill which determines evasion.
+
+==== Armor Class Formula ====
+
+The armor class system works by reducing the damage taken from physical attacks. The calculation is implemented in the ''Char.java'' file:
+
+<code java>
+public int absorb( int damage, Char attacker ) {
+    // Armor can be bypassed by accuracy, and can overcap
+    float effectiveArmor = armorLevel() * (1 + Hero.getBonus( getHeroClass(), getSubClass(), Buffs.ARMOR ));
+
+    if (attacker != null) {
+        float armorBreakRatio = (float)attacker.attackSkill(this) / (attacker.attackSkill(this) + effectiveArmor);
+
+        // Cap the effective armor to the damage being dealt
+        effectiveArmor = Math.min(effectiveArmor, damage*2);
+
+        // Reduce damage based on armor break ratio
+        damage = (int) Math.ceil(damage * (1f - armorBreakRatio));
+    }
+
+    return damage;
+}
+</code>
+
+==== Armor Class Mechanics ====
+
+==== Base Armor Level ====
+  * **Calculation**: Derived from the equipped armor item using ''getItemFromSlot(Belongings.Slot.ARMOR).DR()''
+  * **Definition**: Each armor type has a base damage reduction value
+  * **Examples**:
+    * [[rpd:cloth_armor_item|Cloth Armor]]: 2-3 points
+    * [[rpd:leather_armor_item|Leather Armor]]: 3-4 points
+    * [[rpd:mail_armor_item|Mail Armor]]: 5-6 points
+    * [[rpd:plate_armor_item|Plate Armor]]: 7-8 points
+
+==== Armor Bonus Buffs ====
+  * **Mechanism**: Bonuses from effects like armor potions or enchantments
+  * **Formula**: ''armorLevel() * (1 + Hero.getBonus( getHeroClass(), getSubClass(), Buffs.ARMOR ))''
+  * **Effect**: Multiplies the base armor level by the bonus factor
+
+==== Armor Penetration ====
+  * **Mechanism**: Attacker's accuracy can reduce the effectiveness of armor
+  * **Formula**: ''armorBreakRatio = (float)attacker.attackSkill(this) / (attacker.attackSkill(this) + effectiveArmor)''
+  * **Effect**: Higher attack skill reduces the armor's effectiveness proportionally
+
+==== Damage Reduction Calculation ====
+  * **Effective Armor Cap**: ''Math.min(effectiveArmor, damage*2)'' - Armor can't reduce damage beyond 50% of the original amount
+  * **Damage Reduction**: ''damage * (1f - armorBreakRatio)'' - Reduces damage based on the armor break ratio
+  * **Final Damage**: ''(int) Math.ceil(damage * (1f - armorBreakRatio))'' - Rounded up to ensure at least 1 damage is dealt
+
+==== Armor vs Defense ====
+  * **Armor Class**: Reduces incoming damage after a hit is successful
+  * **Defense Skill**: Determines the chance to avoid being hit entirely
+  * **Relationship**: Both systems work together - defense skill prevents hits, armor reduces damage from hits that land
+
+==== Armor Class in Combat ====
+  * **Hit Occurs**: When an attack successfully connects (attack skill > defense skill)
+  * **Armor Absorption**: The armor class applies its damage reduction
+  * **Final Damage**: The remaining damage after armor reduction is applied
+
+==== Factors Affecting Armor Class ====
+  * **Armor Type**: Different armor classes provide different base DR values
+  * **Armor Level**: Upgraded armor provides better protection
+  * **Glyphs**: Enchantments on armor can affect its effectiveness
+  * **Armor Buffs**: Temporary effects that increase armor effectiveness
+  * **Hero Classes**: Some classes have bonuses to armor effectiveness
+  * **Hero Subclasses**: Some subclasses provide armor bonuses
+
+==== Related Buffs and Effects ====
+  * Armor-boosting buffs will multiply the base armor value
+  * [[rpd:potion_of_shielding_item|Potion of Shielding]] provides temporary armor bonus
+  * [[rpd:ring_of_shielding_item|Ring of Shielding]] provides ongoing armor enhancement
+
+==== Equipment with Armor Effects ====
+  * [[rpd:armor_item|Armor items]] - Primary source of armor class
+  * [[rpd:ring_of_shielding_item|Ring of Shielding]] - Provides armor bonus
+  * [[rpd:potion_of_shielding_item|Potion of Shielding]] - Temporary armor boost
+
+==== Code References ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings.java]]
+
+==== Related ====
+  * [[rpd:defense_mechanic|Defense Mechanic]]
+  * [[rpd:combat_mechanic|Combat Mechanic]]
+  * [[rpd:armor_item|Armor Item]]
+  * [[rpd:armor_enchantments|Armor Enchantments]]
+  * [[rpd:glyphs|Glyphs]]
+
+{{tag> rpd mechanics combat armor defense }}

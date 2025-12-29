@@ -1,52 +1,200 @@
 ====== Combat Mechanic ======
 
-**Combat** is the core mechanic governing how attacks, damage, and defensive maneuvers work in Remixed Dungeon.
+Combat in Remixed Dungeon is a complex system that combines attacking, defending, and damage calculation mechanics.
 
-==== Attack Resolution ====
-Combat follows these steps when an attack occurs:
-  1. Calculate attacker's **Attack Skill** from [[rpd:attack_skill|attack skill]] value
-  2. Calculate defender's **Defense Skill** from [[rpd:defence_skill|defense skill]] value
-  3. Compare values to determine if the attack hits or misses
-  4. If the attack hits, calculate damage based on attacker's damage range and defender's [[rpd:armor_class|armor]]
+==== Combat Overview ====
+
+Combat in Remixed Dungeon involves a two-step process:
+  1. **Hit Detection**: Determine if an attack successfully hits the target
+  2. **Damage Calculation**: Calculate the final damage after considering armor and other factors
+
+==== Hit Detection System ====
+
+The hit detection is calculated in ''CharUtils.java'':
+
+<code java>
+// In CharUtils.java
+float acuRoll = Random.Float(attacker.attackSkill(defender));
+float defRoll = Random.Float(defender.defenseSkill(attacker));
+
+if (acuRoll > defRoll) {
+    // Attack hits
+    int damage = attacker.damageRoll();
+    defender.damage(damage, attacker);
+} else {
+    // Attack misses
+    defender.defenseProc(attacker, 0);
+}
+</code>
+
+==== Attack Skill Calculation ====
+
+The attack skill is calculated in ''Char.java'':
+
+<code java>
+public int attackSkill(Char target) {
+    int[] bf = {0};
+    forEachBuff(b -> bf[0] += b.attackSkillBonus(this));
+
+    int bonus = bf[0];
+    float accuracy = (float) Math.pow(1.4, bonus);
+
+    if (target == null) {
+        target = CharsList.DUMMY;
+    }
+
+    if (rangedWeapon.valid() && level().distance(getPos(), target.getPos()) == 1) {
+        accuracy *= 0.5f;
+    }
+
+    float mainAccuracyFactor = getActiveWeapon().accuracyFactor(this);
+    float secondaryAccuracyFactor = getSecondaryWeapon().accuracyFactor(this);
+
+    float skillFactor = Utils.min(20f, mainAccuracyFactor, secondaryAccuracyFactor);
+
+    int aSkill = (int) ((baseAttackSkill + lvl()) * accuracy * skillFactor);
+
+    return aSkill;
+}
+</code>
+
+==== Defense Skill Calculation ====
+
+The defense skill is also calculated in ''Char.java'':
+
+<code java>
+public int defenseSkill(Char enemy) {
+    int defenseSkill = baseDefenseSkill + lvl();
+
+    final int[] bf = {0};
+    forEachBuff(b -> bf[0] += b.defenceSkillBonus(this));
+
+    int bonus = bf[0];
+
+    float evasion = (float) Math.pow(1.2, bonus);
+    if (paralysed) {
+        evasion /= 2;
+    }
+
+    int aEnc = getItemFromSlot(Belongings.Slot.ARMOR).requiredSTR() - effectiveSTR();
+
+    if (aEnc > 0) {
+        return (int) (defenseSkill * evasion / Math.pow(1.5, aEnc));
+    } else {
+        if (getHeroClass() == HeroClass.ROGUE) {
+            if (getCurAction() != null && getSubClass() == HeroSubClass.FREERUNNER && !isStarving()) {
+                evasion *= 2;
+            }
+
+            return (int) ((defenseSkill - aEnc) * evasion);
+        } else {
+            return (int) (defenseSkill * evasion);
+        }
+    }
+}
+</code>
 
 ==== Damage Calculation ====
-  * **Damage Dealt** = Random value between min_damage and max_damage of the weapon
-  * **Damage Received** = Damage dealt reduced by armor value using the formula: armor/(armor+100)
-  * Armor can completely negate damage if high enough
 
-==== Combat Parameters ====
-  * **Attack Delay** - Time between attacks, affected by weapon speed
-  * **Hit Chance** - Probability of hitting based on attack vs defense
-  * **Critical Hits** - Chance to deal extra damage (varies by weapon)
+After a successful hit, damage is calculated in the ''absorb'' method:
 
-==== Special Combat Mechanics ====
-  * **Dual Wielding** - Attack with two weapons at once with penalties
-  * **Ranged Attacks** - Attack at distance with different mechanics
-  * **Area of Effect** - Abilities that affect multiple targets
-  * **Status Effects** - Conditions that affect combat (stun, paralysis, etc.)
+<code java>
+public int absorb( int damage, Char attacker ) {
+    float effectiveArmor = armorLevel() * (1 + Hero.getBonus( getHeroClass(), getSubClass(), Buffs.ARMOR ));
 
-==== Combat-Related Items ====
-  * [[rpd:weapons|Weapons]] - Deal damage to enemies
-  * [[rpd:armor|Armor]] - Reduce incoming damage
-  * [[rpd:rings|Rings]] - Various combat-enhancing effects
-  * [[rpd:potions|Potions]] - Combat-beneficial effects
-  * [[rpd:scrolls|Scrolls]] - Combat-oriented magical effects
+    if (attacker != null) {
+        float armorBreakRatio = (float)attacker.attackSkill(this) / (attacker.attackSkill(this) + effectiveArmor);
 
-==== Strategies ====
-  * Maintain distance when fighting strong melee enemies
-  * Use terrain to your advantage (choking corridors, doors)
-  * Balance attack power with defensive capabilities
-  * Use environmental effects (traps, [[rpd:liquid_flame|fire]], etc.)
+        effectiveArmor = Math.min(effectiveArmor, damage*2);
+
+        damage = (int) Math.ceil(damage * (1f - armorBreakRatio));
+    }
+
+    return damage;
+}
+</code>
+
+==== Combat Elements ====
+
+==== Attack Skill ====
+  * **Function**: Determines the chance to successfully hit an enemy
+  * **Factors**: Base attack skill, level, attack skill bonuses from buffs, weapon accuracy factors
+  * **Formula**: ''(baseAttackSkill + lvl()) * Math.pow(1.4, attackSkillBonuses) * weaponAccuracyFactor''
+  * **Reference**: [[rpd:attack_skill_mechanic|Attack Skill Mechanic]]
+
+==== Defense Skill ====
+  * **Function**: Determines the chance to successfully evade an attack
+  * **Factors**: Base defense skill, level, defense skill bonuses from buffs, armor encumbrance, paralysis status
+  * **Formula**: ''(baseDefenseSkill + lvl()) * Math.pow(1.2, defenseSkillBonuses) * class_modifiers''
+  * **Reference**: [[rpd:defense_mechanic|Defense Mechanic]]
+
+==== Armor Class ====
+  * **Function**: Reduces incoming damage from successful hits
+  * **Factors**: Base armor value from equipped armor, armor bonuses from buffs
+  * **Formula**: Damage reduction based on armor value relative to attack skill
+  * **Reference**: [[rpd:armor_class|Armor Class]]
+
+==== Evasion ====
+  * **Function**: Complete avoidance of damage when defense skill roll > attack skill roll
+  * **Result**: No damage taken
+  * **Reference**: [[rpd:evasion_mechanic|Evasion Mechanic]]
+
+==== Combat Phases ====
+
+==== Phase 1: Hit Determination ====
+  1. Attacker rolls a random value between 0 and ''attackSkill(defender)''
+  2. Defender rolls a random value between 0 and ''defenseSkill(attacker)''
+  3. If ''attackerRoll > defenderRoll'', the attack hits
+  4. If ''defenderRoll >= attackerRoll'', the attack is evaded
+
+==== Phase 2: Damage Application ====
+  1. If attack hits, damage is calculated considering armor
+  2. Armor reduces the damage according to the damage reduction formula
+  3. The final damage is applied to the defender's health
+
+==== Combat Modifiers ====
+
+==== Status Effects ====
+  * **Paralysis**: Reduces evasion by 50% for the paralyzed character
+  * **Blessed**: Increases attack skill bonus
+  * **Other Buffs**: Various temporary effects that modify combat stats
+
+==== Weapon Properties ====
+  * **Accuracy Factor**: Affects attack skill calculation
+  * **Damage Range**: Determines the potential damage dealt
+  * **Speed**: Affects attack frequency
+
+==== Equipment Effects ====
+  * **Armor**: Reduces incoming damage
+  * **Rings**: Various combat-relevant bonuses
+  * **Enchantments**: Weapon and armor enchantments provide special effects
+
+==== Combat Outcomes ====
+
+==== Hit ====
+  * Attack skill > Defense skill roll
+  * Damage is calculated with armor reduction
+  * Target takes reduced damage
+
+==== Miss ====
+  * Defense skill > Attack skill roll
+  * Target takes no damage
+  * Some classes may have special effects on evade
+
+==== Critical Hit ====
+  * Not a standard mechanic in Remixed Dungeon (unlike some other roguelikes)
+  * Damage is determined by weapon damage range and modifiers
 
 ==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Combat resolution methods
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Hero-specific combat mechanics
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
 
-==== See Also ====
-  * [[rpd:mechanics|Game Mechanics]] - Other game mechanics
-  * [[rpd:hero|Hero]] - Main playable character
-  * [[rpd:mobs|Mobs]] - Enemies in combat
-  * [[rpd:attack_skill|Attack Skill]] - Attacking mechanics
-  * [[rpd:defence_skill|Defense Skill]] - Defensive mechanics
+==== Related ====
+  * [[rpd:attack_skill_mechanic|Attack Skill Mechanic]]
+  * [[rpd:defense_mechanic|Defense Mechanic]]
+  * [[rpd:evasion_mechanic|Evasion Mechanic]]
+  * [[rpd:armor_class|Armor Class]]
+  * [[rpd:accuracy_mechanic|Accuracy Mechanic]]
 
-{{tag> rpd mechanics combat}}
+{{tag> rpd mechanics combat fighting }}
