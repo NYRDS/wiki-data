@@ -187,4 +187,52 @@ The current AI workflow for wiki maintenance includes:
   * **Sprite-Name Alignment Validator:** A tool that ensures image references in wiki pages match the entity's page name according to the naming convention system (e.g., ''fire_elemental_mob.txt'' should reference ''fire_elemental_mob.png'')
   * **Content Verification Assistant:** A specialized AI tool that cross-references every claim in a wiki page with the relevant source code sections and highlights any potentially outdated or incorrect information
 
+==== AI Tool Development Ideas Based on Manual Maintenance Process ====
+
+Based on the recent manual wiki maintenance process performed by AI, here are additional specific tools that could be developed to enhance the workflow:
+
+===== Automated Entity Page Generator =====
+
+  * **Tool Purpose:** Automatically generate initial wiki content for new game entities by analyzing source code, JSON configs, and string resources
+  * **Implementation:** A script that examines Java class files, JSON configurations, and string resource files to create comprehensive initial wiki page content
+  * **Example Usage:** When a new mob like ''IceGuardian'' is added to the game, automatically create ''ice_guardian_mob.txt'' with all relevant stats, abilities, and code references
+  * **Benefits:** Significantly reduces time needed for initial wiki page creation while ensuring accuracy from the start
+
+===== Real-time Code-Wiki Sync Tool =====
+
+  * **Tool Purpose:** Automatically detect when game code changes affect wiki content and flag pages that need updates
+  * **Implementation:** A system that monitors Git commits in the main repository and cross-references changes to game mechanics with existing wiki pages
+  * **Benefits:** Keeps wiki content synchronized with game updates more quickly and efficiently
+
+===== Automated Content Verification Tool =====
+
+  * **Tool Purpose:** Systematically compare wiki content against the actual game source code to detect inconsistencies
+  * **Implementation:** A script that parses wiki pages, extracts numerical values and mechanics descriptions, and verifies them against the source code implementation
+  * **Example:** The manual process identified that the Necromancer unlock requirement was incorrectly documented; this tool would automatically flag such discrepancies
+  * **Benefits:** Ensures content accuracy and catches outdated information
+
+===== Wiki Completeness Analyzer =====
+
+  * **Tool Purpose:** Analyze wiki pages against game entities to identify content gaps
+  * **Implementation:** A script that scans the game codebase for all implemented entities (mobs, items, spells, etc.) and cross-references them with existing wiki pages to identify missing documentation
+  * **Benefits:** Ensures comprehensive coverage of all game content
+
+===== Automated Redlink Resolution Tool =====
+
+  * **Tool Purpose:** Automatically resolve broken internal links by suggesting the correct page names based on established naming conventions
+  * **Implementation:** A system that detects invalid links and uses the naming convention system (_mob, _item, _spell, etc.) to suggest the correct page name
+  * **Benefits:** Reduces manual work required to fix internal linking issues
+
+===== Naming Convention Enforcement Tool =====
+
+  * **Tool Purpose:** Automatically detect and flag wiki pages that don't follow established naming conventions
+  * **Implementation:** A verification script that checks all wiki filenames and suggests renaming to follow the ''entityname_entitytype.txt'' pattern (e.g., ''frost_arrow_item.txt'', ''lich_mob.txt'')
+  * **Benefits:** Maintains consistency across the entire wiki structure
+
+===== Code Reference Auto-Updater =====
+
+  * **Tool Purpose:** Automatically add and update GitHub links in wiki pages based on the current codebase structure
+  * **Implementation:** A script that parses wiki pages, identifies missing code references, and adds appropriate links to GitHub source files
+  * **Benefits:** Ensures all wiki pages maintain up-to-date code references without manual effort
+
 {{tag> rpd tools ai wiki }}
