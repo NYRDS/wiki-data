@@ -1,24 +1,80 @@
-====== Frost Arrow - Code References ======
+====== Frost Arrow Item - Machine Readable Data ======
 
-===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java|FrostArrow.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
+This page contains raw code fragments, configuration excerpts, and string resource references for the Frost Arrow item.
 
-===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+==== Java Implementation (FrostArrow.java) ====
+```
+package com.watabou.pixeldungeon.items.weapon.missiles;
 
-===== String Resources =====
-<code xml>
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.buffs.Slow;
+
+public class FrostArrow extends Arrow {
+
+	public static final float DURATION	= 5f;
+
+	public FrostArrow() {
+		this( 1 );
+	}
+
+	public FrostArrow( int number ) {
+		super();
+		quantity(number);
+
+		baseMin = 0;
+		baseMax = 6;
+		baseDly = 0.75;
+
+		image = FROST_ARROW_IMAGE;
+
+		updateStatsForInfo();
+	}
+
+	@Override
+	public int price() {
+		return quantity() * 5;
+	}
+
+	@Override
+	public void attackProc(Char attacker, Char defender, int damage ) {
+		if(activateSpecial(attacker, defender, damage)) {
+			Buff.prolong( defender, Slow.class, DURATION );
+		}
+		super.attackProc( attacker, defender, damage );
+	}
+}
+```
+
+==== Base Class Implementation (Arrow.java) ====
+```
+// From Arrow.java base class
+public static final int FROST_ARROW_IMAGE		= 6;
+
+// Image definition
+case FROST_ARROW_IMAGE:
+    image = ItemSpriteSheet.AMMO;
+    index = FROST_ARROW_IMAGE;
+    break;
+```
+
+==== String Resources (English) ====
+```
 <string name="FrostArrow_Name">frost arrow</string>
 <string name="FrostArrow_Info">You can feel a freezing aura emanating from the arrow head.</string>
 <string name="FrostArrow_Gender">feminine</string>
-</code>
+```
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+==== String Resources (Russian) ====
+```
+<string name="FrostArrow_Name">ледяная стрела</string>
+<string name="FrostArrow_Info">Вы чувствуете холодную ауру, исходящую от наконечника стрелы.</string>
+<string name="FrostArrow_Gender">feminine</string>
+```
 
-===== Related mr Entities =====
-  * [[mr:slow_buff|Slow (Buff)]]
-  * [[mr:potion_of_frost_item|Potion of Frost (Item)]]
-  * [[mr:common_arrow_item|Common Arrow (Item)]]
-  * [[mr:arrow_class|Arrow (Class)]]
+==== Related Code Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java|FrostArrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]]
+
+{{tag> mr frost arrow item code }}

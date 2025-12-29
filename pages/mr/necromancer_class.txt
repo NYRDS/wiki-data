@@ -1,0 +1,87 @@
+====== Necromancer Class - Machine Readable Data ======
+
+This page contains raw code fragments, configuration excerpts, and string resource references for the Necromancer class.
+
+==== Java Implementation ====
+```
+// HeroClass enum definition
+public enum HeroClass implements CharModifier {
+    // ...
+    NECROMANCER(R.string.HeroClass_Necromancer, NecromancerArmor.class),
+    // ...
+}
+
+// Class initialization in HeroClass.java
+NECROMANCER: {
+    return Badges.Badge.MASTERY_NECROMANCER;
+}
+
+NECROMANCER: {
+    return StringsManager.getVars(R.array.HeroClass_NecromancerPerks);
+}
+```
+
+==== JSON Configuration (initHeroes.json) ====
+```
+"NECROMANCER": {
+    "armor": {
+      "kind": "NecromancerRobe",
+      "identified": true
+    },
+    "items": [
+      {
+        "kind": "SkeletonKey",
+        "levelId": "7"
+      }
+    ],
+    "quickslot": [
+      {
+        "spell": "SummonDeathling"
+      }
+    ],
+    "hp": 15,
+    "knownItems": [
+      {
+        "kind": "PotionOfHealing"
+      }
+    ],
+    "magicAffinity": "Necromancy"
+  }
+```
+
+==== String Resources (English) ====
+```
+<string name="HeroClass_Necromancer">Necromancer</string>
+
+<string-array name="HeroClass_NecromancerPerks">
+    <item>Necromancers start with 15 points of Health</item>
+    <item>Necromancers use mana to cast Death spells</item>
+    <item>Necromancer\'s robe grants 1 mana point for each slain creature</item>
+    <item>Starts with a level 7 skeleton key</item>
+    <item>Potion of Healing are identified from the beginning</item>
+    <item>Has a magic affinity for Necromancy</item>
+</string-array>
+```
+
+==== String Resources (Russian) ====
+```
+<string name="HeroClass_Necromancer">Некромант</string>
+
+<string-array name="HeroClass_NecromancerPerks">
+    <item>Некромант начинает с 15 очками здоровья</item>
+    <item>Некромант использует ману для колдовства смерти</item>
+    <item>Роба некроманта дает 1 очко маны за каждого убитого существо</item>
+    <item>Начинает с ключом от 7 уровня</item>
+    <item>Зелья исцеления опознаны с самого начала</item>
+    <item>Магическое родство с некромантией</item>
+</string-array>
+```
+
+==== Related Code Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/NecromancerArmor.java|NecromancerArmor.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/NecromancerRobe.java|NecromancerRobe.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/SummonDeathling.lua|SummonDeathling.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]]
+
+{{tag> mr necromancer class code }}
