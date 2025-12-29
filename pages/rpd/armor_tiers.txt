@@ -1,7 +1,5 @@
 ====== Armor Tiers ======
 
-{{ rpd:images:armor_tiers.png|Armor Tiers }}
-
 **Armor Tiers** refer to the classification system used for armor items in Remixed Dungeon, determining their overall protection level and basic attributes.
 
 ==== Description ====
@@ -19,7 +17,7 @@ The tiers are as follows:
 ==== Attributes by Tier ====
   * **Armor Level:** Directly correlates to the tier number (1-5), determining damage reduction
   * **Weight:** Generally increases with tier, affecting movement speed
-  * **Price:** Selling price is typically calculated as tier * 20 gold
+  * **Price:** Calculated as 10 * (2^(tier-1)) for regular armor, with +50% for enchanted armor
   * **Durability:** All armor types have the same basic durability mechanics regardless of tier
 
 ==== Special Armor Types ====
@@ -36,6 +34,7 @@ All armor tiers can be enchanted with glyphs that provide special effects, regar
   * **Tier Definition:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L18-L21|materialType field in Armor class]]
   * **Armor Level Calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L28|Armor level in constructor]]
   * **Weight Calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L29|Armor weight by tier]]
+  * **Price Calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L187-L195|Armor.java price() method]]
   * **Cloth Armor (Tier 1):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClothArmor.java|ClothArmor.java]]
   * **Leather Armor (Tier 2):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/LeatherArmor.java|LeatherArmor.java]]
   * **Mail Armor (Tier 3):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MailArmor.java|MailArmor.java]]
@@ -43,6 +42,7 @@ All armor tiers can be enchanted with glyphs that provide special effects, regar
   * **Plate Armor (Tier 5):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/PlateArmor.java|PlateArmor.java]]
   * **Damage Reduction Formula:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L120-L130|DR calculation in Char class]]
   * **Machine-readable data:** [[mr:armor_tiers|mr:armor_tiers]]
+  * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1987-L2016|Armor descriptions]]
 
 ==== See Also ====
   * [[rpd:armor|Armor]] - General armor information
