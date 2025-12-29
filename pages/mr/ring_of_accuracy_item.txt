@@ -1,14 +1,23 @@
 ====== RingOfAccuracy Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/RingOfAccuracy.java|RingOfAccuracy.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfAccuracy.java|RingOfAccuracy.java]] - Main item class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java|Ring.java]] - Base ring class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.RingBuff.java#L19-L24|Ring.RingBuff.java]] - Base buff class for rings
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfAccuracy.java#L11-L15|RingOfAccuracy.Accuracy]] - Specific buff class that increases attack skill bonus
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/RingOfAccuracy.json|RingOfAccuracy.json]] - Item configuration
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/RingOfAccuracy.json|RingOfAccuracy.json]] - Sprite configuration
+There are no specific JSON configuration files for this ring in the current assets directory.
 
 ===== String Resources =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - Entity name and description
+<code xml>
+<string name="RingOfAccuracy_Name">Ring of Accuracy</string>
+<string name="RingOfAccuracy_Info">This ring increases your chance to hit the enemy.</string>
+</code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RingOfAccuracy.lua|RingOfAccuracy.lua]] - Item script (if applicable)
+This entity is implemented in Java, no Lua script exists.
+
+===== Item Mechanics =====
+  * Provides attack skill bonus equal to ring level: level() bonus to attackSkill
+  * Implemented through the Accuracy nested buff class
