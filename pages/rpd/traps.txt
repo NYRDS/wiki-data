@@ -1,95 +1,44 @@
-====== Traps ======
+====== Ловушки ======
 
-{{ rpd:images:traps_illustration.png|Traps }}
+**Ловушки** - это скрытые устройства, активирующиеся при наступлении на них и создающие различные негативные эффекты.
 
-**Traps** are dangerous mechanisms hidden throughout the dungeon in Remixed Dungeon. They activate when stepped on or triggered in other ways, potentially causing serious harm or death to unwary adventurers.
+==== Типы ловушек ====
+  * [[rpd:poison_trap_trap|Ловушка с ядом]] - Создаёт облако ядовитого газа
+  * [[rpd:fire_trap_trap|Огненная ловушка]] - Вызывает взрыв огня
+  * [[rpd:paralytic_gas_trap_level_object|Ловушка парализующего газа]] - Создаёт облако парализующего газа
+  * [[rpd:toxic_gas_trap_level_object|Ловушка токсичного газа]] - Создаёт облако токсичного газа
+  * [[rpd:alarm_trap_level_object|Сигнальная ловушка]] - Пробуждает всех мобов на уровне
+  * [[rpd:lightning_trap_level_object|Ловушка молнии]] - Наносит урон электричеством
+  * [[rpd:gravel_trap_level_object|Ловушка гравия]] - Создаёт шум, привлекающий мобов
+  * [[rpd:frost_trap_level_object|Ловушка мороза]] - Создаёт облако замораживающего газа
+  * [[rpd:confusion_trap_level_object|Ловушка дезориентации]] - Создаёт облако дезориентирующего газа
+  * [[rpd:summoning_trap_level_object|Ловушка призыва]] - Призывает мобов в области
+  * [[rpd:teleportation_trap_level_object|Ловушка телепортации]] - Телепортирует героя
+  * [[rpd:rockfall_trap_level_object|Ловушка камнепада]] - Вызывает обвал камней
+  * [[rpd:dart_trap_level_object|Ловушка дротика]] - Выпускает отравленный дротик
+  * [[rpd:ward_trap_level_object|Охранная ловушка]] - Создаёт барьер, отражающий магию
 
-==== Common Traps ====
-  * **Poison Trap**: Inflicts the poison debuff
-  * **Fire Trap**: Deals fire damage and may ignite flammable items
-  * **Paralytic Trap**: Paralyzes the hero for several turns
-  * **Lightning Trap**: Deals electric damage to the hero and adjacent creatures
-  * **Flock Trap**: Summons a flock of magical sheep (generally harmless)
-  * **Teleport Trap**: Teleports the hero to a random location on the level
-  * **Rockfall Trap**: Causes rocks to fall, damaging all characters in the affected area
-  * **Spear Trap**: Deals physical damage with spears
-  * **Summoning Trap**: Summons several enemies at the trap location
-  * **Alarm Trap**: Alerts all enemies on the level to your presence
-  * **Gripping Trap**: Deals damage and roots the hero in place
-  * **Burning Trap**: Creates a large area of fire damage
-  * **Chilling Trap**: Deals damage and applies a slow debuff
-  * **Explosive Trap**: Creates an explosion similar to a bomb blast
-  * **Flash Trap**: Blinds the hero temporarily
-  * **Gravitational Trap**: Pulls the hero and other creatures to the trap location
-  * **Disintegration Trap**: Deals significant damage and can destroy items
-  * **Distortion Trap**: Creates a random combination of various trap effects
+==== Обнаружение ====
+  * Ловушки изначально скрыты от игрока
+  * [[rpd:ring_of_detection_item|Кольцо обнаружения]] помогает обнаруживать ловушки
+  * [[rpd:hero|Герой]] с высоким [[rpd:searching|навыком поиска]] может обнаруживать ловушки
+  * [[rpd:scroll_of_magic_mapping_item|Свиток волшебной карты]] открывает все ловушки на уровне
 
-==== Trap Detection ====
-  * **Search Skill**: Standing still increases the chance to detect nearby traps
-  * **Awareness Buff**: Significantly improves trap detection
-  * **Ring of Detection**: Enhances the ability to see hidden things
-  * **Wand of Magic Detection**: Reveals traps in an area when used
-  * **Scroll of Magic Mapping**: Reveals the entire level layout, including traps
+==== Активация ====
+  * Ловушки активируются при наступлении на них
+  * Некоторые [[rpd:mobs|мобы]] также активируют ловушки
+  * [[rpd:hero|Герой]] может безопасно пройти рядом с ловушкой без активации
 
-==== Trap Avoidance ====
-  * **Careful Movement**: Move slowly and check areas before entering
-  * **Search Function**: Stop and search to reveal nearby traps
-  * **Pre-emptive Disabling**: Use ranged attacks to trigger traps safely
-  * **Equipment**: Wear appropriate gear to minimize trap effects
-  * **Potions**: Carry healing potions for trap damage recovery
+==== Проверка содержимого ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap.java]] (базовый класс)
+  * Entity Kind: Various trap types implement getEntityKind() method
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] contains trap name and description strings
+  * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelObjects/|levelObjects/]] directory contains JSON configuration for different traps
 
-==== Trap Disabling ====
-  * **Stepping**: Most traps activate when stepped on
-  * **Ranged Attacks**: Some traps can be triggered from a distance
-  * **Wands**: Certain wands can trigger or disable traps
-  * **Stones**: Thrown stones can set off traps safely
-  * **Awareness**: Some characters have special abilities to disable traps
+==== См. также ====
+  * [[rpd:levels|Уровни]] - Где можно встретить ловушки
+  * [[rpd:searching|Поиск]] - Механика обнаружения ловушек
+  * [[rpd:ranged_enemies|Дальнобойные враги]] - Механика дротиковых ловушек
+  * [[rpd:resistances|Сопротивления]] - Защита от эффектов ловушек
 
-==== Trap Mechanics ====
-  * **Hidden**: Traps are initially invisible until discovered
-  * **Area of Effect**: Some traps affect a larger area around the trigger point
-  * **One-time**: Most traps can only be triggered once
-  * **Regenerating**: Some traps reset after a period (in modded games)
-  * **Environmental**: Some traps are more common in specific areas
-
-==== Dangerous Traps ====
-  * **Disintegration Trap**: Potentially destroys items and deals high damage
-  * **Rockfall Trap**: Can be deadly in narrow corridors
-  * **Burning Trap**: Can ignite flammable items in inventory
-  * **Explosive Trap**: High damage over an area
-  * **Lightning Trap**: High damage that can arc to nearby creatures
-
-==== Less Dangerous Traps ====
-  * **Flock Trap**: Generally harmless, creates sheep
-  * **Teleport Trap**: Annoying but not usually dangerous
-  * **Summoning Trap**: Dangerous if you can't fight the summoned enemies
-  * **Alarm Trap**: Doesn't harm directly but brings enemies to you
-
-==== Trap Strategy ====
-  * **Scouting Ahead**: Use wands or thrown stones to check areas
-  * **Awareness Potions**: Use before exploring unknown areas
-  * **Health Management**: Always have recovery options when exploring
-  * **Escape Routes**: Identify safe paths when entering new areas
-  * **Item Protection**: Use resistant containers for important items
-
-==== Special Trap Interactions ====
-  * **Armor**: Some armor can reduce damage from certain traps
-  * **Resistance**: Some characters have resistances to specific trap types
-  * **Immunities**: Certain statuses provide temporary immunity to trap effects
-  * **Synergies**: Some items or abilities work well with specific trap types
-
-==== Technical Details ====
-  * Base Trap class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap.java]]
-  * Trap implementations: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java#L50-L200|Trap Types]]
-  * Trap activation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L300-L350|Trigger Mechanism]]
-  * Trap detection system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L200-L250|Detection Implementation]]
-
-==== See Also ====
-  * [[rpd:levels|Dungeon Levels]] - Where traps are commonly found
-  * [[rpd:scrolls|Scrolls]] - Items that help with trap detection
-  * [[rpd:wands|Wands]] - Equipment that can detect or trigger traps
-  * [[rpd:combat|Combat]] - General combat mechanics
-  * [[rpd:items|Items]] - Equipment that provides protection
-  * [[rpd:potions|Potions]] - Consumables that help with trap effects
-
-{{tag> rpd mechanics traps hazards }}
+{{tag> rpd traps mechanics}}

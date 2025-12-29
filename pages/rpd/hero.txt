@@ -1,65 +1,41 @@
-====== Hero ======
+====== Герой ======
 
-The Hero is the player character in Remixed Dungeon. The hero begins their journey at the surface and attempts to reach the Amulet of Yendor at the bottom of the dungeon.
+**Герой** - это ваш персонаж в подземелье. От его действий зависит успех прохождения игры.
 
-==== Classes ====
-The hero can choose from several different classes, each with unique abilities and playstyles:
-  * [[rpd:warrior_class|Warrior]] - High health and melee damage, starts with a unique short sword
-  * [[rpd:mage_class|Mage]] - Powerful magic abilities, starts with a unique staff
-  * [[rpd:rogue_class|Rogue]] - Stealth and evasion, starts with a unique cloak of shadows
-  * [[rpd:huntress_class|Huntress]] - Ranged combat and tracking, starts with unique throwing weapons
-  * [[rpd:elf_class|Elf]] - Balanced abilities with magical aptitude, starts with a unique bow
-  * [[rpd:necromancer_class|Necromancer]] - Necromancy abilities and pet summons, starts with a unique staff
-  * [[rpd:doctor_class|Doctor]] - Alchemy mastery and toxic abilities, starts with special items
+==== Атрибуты героя ====
+  * **Здоровье:** Текущее и максимальное здоровье героя. При достижении 0 герой умирает
+  * **Сила:** Влияет на возможность использовать [[rpd:armor|броню]] и наносимый [[rpd:damage|урон]]
+  * **Уровень:** Текущий уровень героя, повышается с получением [[rpd:experience|опыта]]
+  * **Опыт:** Необходим для получения уровней и улучшения характеристик
+  * **Снаряжение:** [[rpd:weapon|Оружие]], [[rpd:armor|броня]] и [[rpd:accessories|аксессуары]]
 
-==== Attributes ====
-The hero has several key attributes:
-  * **Strength (STR)** - Affects ability to wear armor and wield weapons
-  * **Health Points (HP)** - Damage tolerance before death
-  * **Level** - Character progression and power
-  * **Experience** - Points gained through combat and exploration
-  * **Hunger** - Food requirement system
+==== Основные механики ====
+  * [[rpd:hunger_mechanic|Голод]] - Необходимо следить за уровнем голода героя
+  * [[rpd:health_mechanics|Здоровье]] - Управление здоровьем и лечение
+  * [[rpd:inventory|Инвентарь]] - Управление предметами
+  * [[rpd:quickslots|Быстрые слоты]] - Быстрый доступ к предметам
+  * [[rpd:belongings|Снаряжение]] - Управление надетыми предметами
 
-==== Equipment ====
-The hero can carry and use various equipment:
-  * [[rpd:weapon|Weapons]] - For combat
-  * [[rpd:armor|Armor]] - For protection
-  * [[rpd:rings|Rings]] - Accessories with special properties
-  * [[rpd:artifacts|Artifacts]] - Powerful unique items
-  * [[rpd:belongings|Belongings]] - Inventory system
+==== Классы и подклассы ====
+  * [[rpd:hero_classes|Классы героев]] - Выбор начального класса
+  * [[rpd:hero_subclasses|Подклассы]] - Развитие героя через подклассы
+  * [[rpd:mastery|Мастерство]] - Использование томов мастерства
 
-==== Mechanics ====
-  * [[rpd:hero_level|Leveling]] - Gaining experience and power
-  * [[rpd:health_mechanic|Health]] - Managing health and healing
-  * [[rpd:hunger|Hunger]] - Food consumption system
-  * [[rpd:inventory|Inventory]] - Item management
-  * [[rpd:quickslots|Quickslots]] - Fast item access
-  * [[rpd:subclasses|Subclasses]] - Advanced class specializations
+==== Статистика ====
+  * **[[rpd:achievements|Достижения]]** - Статистика прохождений
+  * **[[rpd:badges|Значки]]** - Специальные награды за выполнение сложных задач
+  * **[[rpd:records|Рекорды]]** - Лучшие результаты по различным параметрам
 
-==== Skills and Abilities ====
-  * [[rpd:melee_combat|Melee Combat]] - Close combat techniques
-  * [[rpd:ranged_combat|Ranged Combat]] - Distance combat techniques
-  * [[rpd:stealth|Stealth]] - Hiding and sneaking
-  * [[rpd:evasion|Evasion]] - Dodging attacks
-  * [[rpd:magic|Magic]] - Spell casting and magical abilities
+==== Проверка содержимого ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
+  * Entity Kind: Returns "Hero" via getEntityKind()
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] contains hero-related strings
+  * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/|hero/]] directory contains various hero configuration files
 
-==== Progression ====
-  * [[rpd:mastery|Mastery]] - Class mastery system
-  * [[rpd:subclasses|Subclasses]] - Advanced specializations
-  * [[rpd:talents|Talents]] - Special abilities and improvements
-  * [[rpd:skills|Skills]] - Character abilities and proficiencies
+==== См. также ====
+  * [[rpd:combat_mechanics|Бой]] - Механики боя
+  * [[rpd:turns|Ходы]] - Система ходов в игре
+  * [[rpd:movement|Движение]] - Перемещение героя по уровням
+  * [[rpd:inventory|Инвентарь]] - Управление предметами
 
-==== Code References ====
-  * **Main Hero Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Core hero character implementation
-  * **Hero Classes:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Available hero classes and their characteristics
-  * **Hero Actions:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroAction.java|HeroAction.java]] - Action system for hero characters
-  * **Hero Inventory:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings.java]] - Hero inventory and equipment system
-  * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1055-L1080|Hero-related strings]] - Names and descriptions for hero classes
-
-==== Related ====
-  * [[rpd:classes|Classes]] - Detailed class information
-  * [[rpd:gameplay|Gameplay]] - General gameplay information
-  * [[rpd:dungeon|Dungeon]] - The environment the hero explores
-  * [[rpd:items|Items]] - Equipment and consumables the hero uses
-
-{{tag> rpd hero character gameplay}}
+{{tag> rpd hero mechanics}}

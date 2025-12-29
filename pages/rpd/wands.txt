@@ -1,54 +1,52 @@
-====== Wands ======
+====== Палочки ======
 
-{{ rpd:images:wand.png|Wand }}
+**Палочки** - это магические [[rpd:items|предметы]], которые выпускают магические заряды с различными эффектами.
 
-**Wands** are magical items in Remixed Dungeon that can be charged and discharged to cast spells. They are an important part of the game's magic system and provide various magical effects.
+==== Типы палочек ====
+  * [[rpd:wand_of_magic_missile_item|Палочка волшебных снарядов]] - Наносит умеренный урон (начинает с [[rpd:mage_class|Магом]])
+  * [[rpd:wand_of_lightning_item|Палочка молний]] - Наносит урон электричеством
+  * [[rpd:wand_of_fireblast_item|Палочка огнеплюя]] - Создает взрыв огня
+  * [[rpd:wand_of_cold_snap_item|Палочка холода]] - Наносит урон холодом
+  * [[rpd:wand_of_poison_item|Палочка яда]] - Создает облако яда
+  * [[rpd:wand_of_disintegration_item|Палочка дезинтеграции]] - Пронзает цели и препятствия
+  * [[rpd:wand_of_blink_item|Палочка скачка]] - Телепортирует героя
+  * [[rpd:wand_of_teleportation_item|Палочка телепортации]] - Перемещает цель
+  * [[rpd:wand_of_regeneration_item|Палочка регенерации]] - Восстанавливает здоровье
+  * [[rpd:wand_of_slowness_item|Палочка замедления]] - Замедляет цели
+  * [[rpd:wand_of_fear_item|Палочка страха]] - Заставляет цели убегать
+  * [[rpd:wand_of_avalanche_item|Палочка камнепада]] - Вызывает обвал
+  * [[rpd:wand_of_amok_item|Палочка буйства]] - Заставляет мобов атаковать всех подряд
+  * [[rpd:wand_of_telekinesis_item|Палочка телекинеза]] - Притягивает предметы и отталкивает мобов
+  * [[rpd:wand_of_scorching_ray_item|Палочка жгучего луча]] - Выпускает мощный огненный луч
+  * [[rpd:wand_of_prismatic_light_item|Палочка призменного света]] - Наносит урон и освещает тьму
 
-==== Common Wands ====
-  * [[rpd:wand_of_magic_missile_item|Wand of Magic Missile]]: Basic elemental damage wand
-  * [[rpd:wand_of_lightning_item|Wand of Lightning]]: Electric damage that can arc between enemies
-  * [[rpd:wand_of_disintegration_item|Wand of Disintegration]]: Pierces armor and multiple enemies
-  * [[rpd:wand_of_fireblast_item|Wand of Fireblast]]: Creates a cone of fire damage
-  * [[rpd:wand_of_cold_ray_item|Wand of Cold Ray]]: Deals damage and slows enemies
-  * [[rpd:wand_of_poison_item|Wand of Poison]]: Creates poisonous clouds
-  * [[rpd:wand_of_avalanche_item|Wand of Avalanche]]: Causes an explosion that stuns enemies
-  * [[rpd:wand_of_telekinesis_item|Wand of Telekinesis]]: Pulls items and enemies toward you
-  * [[rpd:wand_of_fear_item|Wand of Fear]]: Frightens enemies
-  * [[rpd:wand_of_living_earth_item|Wand of Living Earth]]: Summons earth armor that fights alongside you
-  * [[rpd:wand_of_prismatic_light_item|Wand of Prismatic Light]]: Deals damage and reveals illusions
-  * [[rpd:wand_of_blink_item|Wand of Blink]]: Teleports to the target location
-  * [[rpd:wand_of_regrowth_item|Wand of Regrowth]]: Grows vegetation that eventually turns to grass
+==== Заряд и перезарядка ====
+  * Палочки имеют ограниченное количество зарядов
+  * Заряды восстанавливаются с течением времени
+  * [[rpd:scroll_of_recharging_item|Свиток перезарядки]] мгновенно восстанавливает заряды
+  * [[rpd:ring_of_power_item|Кольцо власти]] увеличивает эффективность палочек
 
-==== Wand Mechanics ====
-  * **Charges**: Wands have charges that can be replenished through various means
-  * **Identify**: Wands must be identified to know their effect
-  * **Damage**: More charged wands typically do more damage
-  * **Curses**: Cursed wands may have negative effects
+==== Улучшение палочек ====
+  * Палочки можно улучшать с помощью [[rpd:scroll_of_upgrade_item|Свитка улучшения]]
+  * Уровни улучшения увеличивают урон и эффективность
+  * [[rpd:wand_of_magic_missile_item|Палочку волшебных снарядов]] можно развоплотить для улучшения других палочек
 
-==== Charging Wands ====
-  * **Natural Recharge**: Wands gradually recharge during hero's rest (1 charge per 12 turns)
-  * **Scrolls of Recharging**: Immediately recharge all wands
-  * **Wand of Recharging**: Self-recharging wand provides charges to other wands
-  * **Other effects**: Some items or abilities can also recharge wands
+==== Использование ====
+  * Палочки используются с помощью действия "ВЗМАХНУТЬ"
+  * Использование палочки требует один [[rpd:turns|ход]]
+  * Направление атаки выбирается игроком
+  * Палочки можно использовать как оружие ближнего боя
 
-==== Upgrading Wands ====
-  * Wands can be upgraded using [[rpd:scroll_of_upgrade_item|Scrolls of Upgrade]]
-  * Upgraded wands have more charges and may be more accurate
+==== Проверка содержимого ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] (базовый класс)
+  * Entity Kind: Various wand types implement getEntityKind() method
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] contains wand name and description strings
+  * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/|itemsDesc/]] directory contains JSON configuration for different wands
 
-==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Base Wand class]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfMagicMissile.java|WandOfMagicMissile]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfLightning.java|WandOfLightning]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfDisintegration.java|WandOfDisintegration]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfFirebolt.java|WandOfFirebolt]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfColdRay.java|WandOfColdRay]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2799-L2850|Wand strings in localization]]
+==== См. также ====
+  * [[rpd:items|Предметы]] - Общая информация о предметах
+  * [[rpd:spells|Заклинания]] - Альтернативные магические способности
+  * [[rpd:hero_classes|Классы героев]] - Особенности использования магии
+  * [[rpd:charges|Заряды]] - Механика использования магических предметов
 
-==== Related ====
-  * [[rpd:items|Items]]
-  * [[rpd:equipment|Equipment]]
-  * [[rpd:magic|Magic]]
-  * [[rpd:scrolls|Scrolls]]
-  * [[rpd:wizard_tower|Wizard Tower]]
-
-{{tag> rpd items wands magic equipment}}
+{{tag> rpd items wands magic}}

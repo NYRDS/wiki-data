@@ -1,75 +1,50 @@
-====== Buffs and Debuffs ======
+====== Баффы и дебаффы ======
 
-{{ rpd:images:buffs_illustration.png|Buffs and Debuffs }}
+**Баффы** и **дебаффы** - это временные эффекты, влияющие на характеристики героя, мобов или окружение.
 
-**Buffs and Debuffs** are temporary status effects that modify character abilities and stats in Remixed Dungeon. Buffs provide positive effects while debuffs impose negative effects.
+==== Баффы (положительные эффекты) ====
+  * [[rpd:haste_buff|Ускорение]] - Увеличивает скорость действия
+  * [[rpd:invisibility_buff|Невидимость]] - Делает персонажа невидимым для врагов
+  * [[rpd:levitation_buff|Левитация]] - Позволяет проходить через ловушки и жидкости
+  * [[rpd:regeneration_buff|Регенерация]] - Постепенно восстанавливает здоровье
+  * [[rpd:shield_buff|Щит]] - Временная защита от урона
+  * [[rpd:mana_shield_buff|Мана-щит]] - Защита с использованием маны
 
-==== Common Buffs ====
-  * **Healing**: Gradually restores health over time
-  * **Invisibility**: Makes the hero invisible to enemies
-  * **Regeneration**: Faster health recovery
-  * **Haste**: Increases movement and attack speed
-  * **Shield**: Provides temporary damage absorption
-  * **Barkskin**: Reduces all incoming damage
-  * **Light**: Reveals dark areas of the dungeon
-  * **Fury**: Increases damage output temporarily
-  * **Awareness**: Enhances detection of secrets and traps
-  * **Levitation**: Allows movement over traps and special terrain
+==== Дебаффы (отрицательные эффекты) ====
+  * [[rpd:burning_buff|Горение]] - Наносит периодический урон и может сжечь предметы
+  * [[rpd:poison_buff|Отравление]] - Постепенно уменьшает здоровье
+  * [[rpd:paralysis_buff|Паралич]] - Останавливает все действия персонажа
+  * [[rpd:weakness_buff|Слабость]] - Уменьшает силу и урон
+  * [[rpd:slow_buff|Замедление]] - Уменьшает скорость действий
+  * [[rpd:terror_buff|Ужас]] - Принуждает персонажа убегать от противника
+  * [[rpd:charmed_buff|Очарование]] - Временно заставляет врага сражаться за героя
+  * [[rpd:amok_buff|Бешенство]] - Заставляет мобов атаковать всех подряд
+  * [[rpd:corruption_buff|Порча]] - Преобразует моба в враждебного соратника
+  * [[rpd:bleeding_buff|Кровотечение]] - Наносит урон, зависящий от максимального здоровья
 
-==== Common Debuffs ====
-  * **Poison**: Gradually reduces health over time
-  * **Bleeding**: Deal damage over time with damage increasing each turn
-  * **Burning**: Takes fire damage and some items may be destroyed
-  * **Paralysis**: Prevents all actions for a period
-  * **Blindness**: Prevents vision beyond immediate square
-  * **Slow**: Reduces movement and action speed
-  * **Weakness**: Reduces strength temporarily
-  * **Doom**: Prevents healing for a period
-  * **Charm**: Causes enemies to fight for you temporarily
-  * **Amok**: Makes enemies attack allies aggressively
-  * **Terror**: Forces characters to flee in fear
+==== Получение эффектов ====
+  * [[rpd:potion_item|Зелья]] - Баффы и дебаффы через зелья
+  * [[rpd:scrolls|Свитки]] - Эффекты от использования свитков
+  * [[rpd:wands|Палочки]] - Волшебные эффекты от палочек
+  * [[rpd:traps|Ловушки]] - Негативные эффекты от активации ловушек
+  * [[rpd:mobs|Мобы]] - Специальные атаки мобов
+  * [[rpd:levels|Уровни]] - Окружение уровня может накладывать эффекты
 
-==== Buff Duration ====
-  * Buffs last for a specific number of turns
-  * Duration may scale with hero level or effect strength
-  * Some buffs stack with themselves (like healing potions)
-  * Others overwrite when applied again
+==== Продолжительность и снятие ====
+  * Эффекты имеют различную продолжительность в зависимости от источника
+  * [[rpd:potion_of_purity_item|Зелье чистоты]] может снять нежелательные эффекты
+  * [[rpd:status_effect_duration|Длительность эффектов]] зависит от уровня героя и других факторов
 
-==== Removal of Debuffs ====
-  * **Potion of Purity**: Removes all harmful effects
-  * **Cleansing items**: Special items that remove specific debuffs
-  * **Time**: Most buffs and debuffs expire after a certain duration
-  * **Water**: Can remove some debuffs like burning
-  * **Resting**: Some temporary effects may end when resting
+==== Проверка содержимого ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/Buff.java|Buff.java]] (базовый класс)
+  * Entity Kind: Each buff has its own getEntityKind() implementation
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] contains buff names and descriptions
+  * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/|buffs/]] directory contains various buff implementations
 
-==== Beneficial Applications ====
-  * **Healing**: Use when health is low or during safe moments
-  * **Invisibility**: Escape dangerous situations or bypass enemies
-  * **Regeneration**: For extended combat situations
-  * **Levitation**: Skip over dangerous floor traps
-  * **Fury**: For final push against tough enemies
-  * **Light**: Explore dark areas without torches
+==== См. также ====
+  * [[rpd:status_effects|Статусные эффекты]] - Подробная информация о статусах
+  * [[rpd:resistances|Сопротивления]] - Защита от эффектов
+  * [[rpd:potions|Зелья]] - Источники эффектов
+  * [[rpd:spells|Заклинания]] - Магические эффекты
 
-==== Debuff Management ====
-  * **Poison**: Move quickly to minimize damage over time
-  * **Burning**: Find water or use potions to stop the effect
-  * **Paralysis**: Always carry potions of healing for emergency situations
-  * **Blindness**: Try to retreat to known safe areas
-  * **Charm/Amok**: Be aware of crowd control effects during boss fights
-
-==== Technical Details ====
-  * Base Buff class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
-  * Buff management system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L200-L250|Buff handling in Char]]
-  * Positive effects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Positive Buffs]]
-  * Negative effects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Debuff.java|Debuffs]]
-  * Potion of Purity: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfPurity.java|PotionOfPurity.java]]
-
-==== See Also ====
-  * [[rpd:potions|Potions]] - Items that grant buffs
-  * [[rpd:wands|Wands]] - Equipment that can apply status effects
-  * [[rpd:spells|Spells]] - Magical abilities that affect status
-  * [[rpd:hero_classes|Hero Classes]] - Class-specific buffs
-  * [[rpd:enemies|Enemies]] - Creatures that apply debuffs
-  * [[rpd:combat|Combat]] - Combat mechanics
-
-{{tag> rpd mechanics buffs status }}
+{{tag> rpd buffs debuffs status_effects}}

@@ -1,57 +1,47 @@
-====== Armor ======
+====== Броня ======
 
-{{ rpd:images:armor_tier4.png|Armor }}
+**Броня** - это тип снаряжения, который уменьшает урон, получаемый героем от физических атак. Каждый тип брони имеет свой уровень защиты, который определяет, насколько хорошо она защищает от урона.
 
-**Armor** provides protection to the hero by reducing the damage taken from attacks. Different types of armor offer varying levels of protection and have different requirements and characteristics.
+==== Типы брони ====
+  * [[rpd:cloth_armor_item|Тканевая броня]] - Наименее защищённая броня, но не мешает передвижению
+  * [[rpd:leather_armor_item|Кожаная броня]] - Обычная броня с умеренной защитой
+  * [[rpd:mail_armor_item|Кольчужная броня]] - Броня среднего уровня
+  * [[rpd:plate_armor_item|Пластинчатая броня]] - Самая защищённая, но тяжёлая броня
+  * [[rpd:warrior_armor_item|Броня воина]] - Специальная броня для [[rpd:warrior_class|Воина]]
+  * [[rpd:rogue_armor_item|Броня разбойника]] - Специальная броня для [[rpd:rogue_class|Разбойника]]
+  * [[rpd:mage_armor_item|Броня мага]] - Специальная броня для [[rpd:mage_class|Мага]]
+  * [[rpd:huntress_armor_item|Броня охотницы]] - Специальная броня для [[rpd:huntress_class|Охотницы]]
+  * [[rpd:gnoll_armor_item|Броня гнолла]] - Редкая броня, получаемая через [[rpd:armor_kit_item|Комплект брони]]
 
-==== Armor Tiers ====
-  * **Cloth Armor** (Tier 1): Lowest protection, no strength requirement
-  * **Leather Armor** (Tier 2): Basic protection, moderate strength requirement
-  * **Mail Armor** (Tier 3): Good protection, higher strength requirement
-  * **Scale Armor** (Tier 4): Better protection, high strength requirement
-  * **Plate Armor** (Tier 5): Highest protection, very high strength requirement
+==== Защита ====
+  * Уровень защиты брони определяет, насколько эффективно она уменьшает получаемый урон
+  * Чем выше уровень защиты, тем больший урон она может поглотить
+  * Формула уменьшения урона: Урон = Базовый урон * (1 - (защита / (защита + 10)))
 
-==== Armor Properties ====
-  * **Defense Rating (DR)**: Reduces incoming physical damage
-  * **Strength Requirement**: Minimum strength needed to wear without penalties
-  * **Durability**: Armor degrades with use
-  * **Weight**: Affects movement speed and hunger consumption
+==== Зачарования ====
+  * Броня может быть [[rpd:glyphs|зачарована]] с помощью [[rpd:scroll_of_enchantment_item|Свитка зачарования]]
+  * [[rpd:glyph_of_affection|Глиф очарования]]
+  * [[rpd:glyph_of_antientropy|Глиф антиэнтропии]]
+  * [[rpd:glyph_of_bounce|Глиф отскока]]
+  * [[rpd:glyph_of_displacement|Глиф перемещения]]
+  * [[rpd:glyph_of_entanglement|Глиф опутывания]]
+  * [[rpd:glyph_of_multiplicity|Глиф множественности]]
+  * [[rpd:glyph_of_potential|Глиф потенциала]]
+  * [[rpd:glyph_of_metabolism|Глиф метаболизма]]
+  * [[rpd:glyph_of_stench|Глиф вони]]
+  * [[rpd:glyph_of_viscosity|Глиф вязкости]]
 
-==== Armor Mechanics ====
-  * **Damage Reduction**: Higher armor provides better protection against physical attacks
-  * **Enchantments**: Armor can be enchanted with glyphs for special effects
-  * **Identification**: Armor must be identified to see its exact defense value
-  * **Curses**: Cursed armor cannot be removed until blessed
+==== Проверка содержимого ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]]
+  * Entity Kind: Various armor types implement getEntityKind() method
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] contains armor name and description strings
+  * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/|itemsDesc/]] directory contains JSON configuration for different armor types
 
-==== Armor Enchantments (Glyphs) ====
-  * [[rpd:glyph_of_bounce|Glyph of Bounce]]
-  * [[rpd:glyph_of_affection|Glyph of Affection]]
-  * [[rpd:glyph_of_anti_entropy|Glyph of Anti-Entropy]]
-  * [[rpd:glyph_of_multiplicity|Glyph of Multiplicity]]
-  * [[rpd:glyph_of_potential|Glyph of Potential]]
-  * [[rpd:glyph_of_metabolism|Glyph of Metabolism]]
-  * [[rpd:glyph_of_stench|Glyph of Stench]]
-  * [[rpd:glyph_of_viscosity|Glyph of Viscosity]]
-  * [[rpd:glyph_of_displacement|Glyph of Displacement]]
-  * [[rpd:glyph_of_entanglement|Glyph of Entanglement]]
+==== См. также ====
+  * [[rpd:equipment|Снаряжение]] - Общая информация о снаряжении
+  * [[rpd:combat_mechanics|Бой]] - Механики получения урона
+  * [[rpd:glyphs|Зачарования]] - Зачарования брони
+  * [[rpd:repairing|Ремонт]] - Восстановление прочности брони
+  * [[rpd:armor_kit_item|Комплект брони]] - Получение редкой брони
 
-==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor base class]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClothArmor.java|ClothArmor]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/LeatherArmor.java|LeatherArmor]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MailArmor.java|MailArmor]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java|ScaleArmor]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/PlateArmor.java|PlateArmor]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1998-L2045|Armor strings in localization]]
-
-==== Related ====
-  * [[rpd:equipment|Equipment]]
-  * [[rpd:armor_glyphs|Armor Glyphs]]
-  * [[rpd:clothing_armor_item|Cloth Armor]]
-  * [[rpd:leather_armor_item|Leather Armor]]
-  * [[rpd:mail_armor_item|Mail Armor]]
-  * [[rpd:scale_armor_item|Scale Armor]]
-  * [[rpd:plate_armor_item|Plate Armor]]
-  * [[rpd:armor_upgrades|Armor Upgrades]]
-
-{{tag> rpd items armor equipment protection}}
+{{tag> rpd items equipment armor}}

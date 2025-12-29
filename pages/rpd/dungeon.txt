@@ -1,41 +1,51 @@
-====== Dungeon ======
+====== Подземелье ======
 
-The Dungeon is the main gameplay area in Remixed Dungeon, consisting of multiple levels with increasing difficulty and challenges.
+**Подземелье** - это основное игровое пространство в Remixed Dungeon.
 
-==== Structure ====
-The dungeon consists of several distinct levels:
+==== Структура подземелья ====
+  * Подземелье состоит из 26 уровней (с первого по 26-й)
+  * Каждый уровень представляет собой отдельное подземелье с уникальной генерацией
+  * Уровни разделены на несколько [[rpd:areas|зон]]:
+    * [[rpd:sewers_level|Канализация]] (уровни 1-5)
+    * [[rpd:prison_level|Тюрьма]] (уровни 6-10)
+    * [[rpd:caves_level|Пещеры]] (уровни 11-15)
+    * [[rpd:city_level|Город]] (уровни 16-20)
+    * [[rpd:halls_level|Чертоги]] (уровни 21-25)
+    * [[rpd:throne_level|Тронный зал]] (уровень 26)
 
-  * **Sewers (Floors 1-5)**: The starter area with relatively weak enemies and simple layout
-  * **Prison (Floors 6-10)**: A more challenging area with varied enemies and traps
-  * **Caves (Floors 11-15)**: Dark, dangerous area with stronger enemies
-  * **City (Floors 16-20)**: An urban environment with advanced enemies
-  * **Halls (Floors 21-25)**: The final vanilla dungeon area with powerful enemies
-  * **Guts (Floors 26-30)**: Post-game content exclusive to Remixed Dungeon with the strongest challenges
+==== Поверхность ====
+  * Игра начинается на [[rpd:town_level|поверхности]] в [[rpd:town|городе]]
+  * [[rpd:town_level|Город]] служит стартовой точкой и безопасной зоной
+  * Содержит [[rpd:shops|магазины]], [[rpd:npc|NPC]] и [[rpd:services|услуги]]
 
-==== Dungeon Features ====
-  * **Random Generation**: Each playthrough features a randomly generated dungeon layout
-  * **Progressive Difficulty**: Each floor is more challenging than the previous
-  * **Limited Resources**: Food and healing items become scarcer at deeper levels
-  * **Unique Challenges**: Each area has its own special mechanics and dangers
+==== Механики подземелья ====
+  * [[rpd:stairs|Лестницы]] - Позволяют перемещаться между уровнями
+  * [[rpd:depth|Глубина]] - Чем глубже, тем сильнее враги и лучше добыча
+  * [[rpd:portals|Порталы]] - Специальные точки телепортации между уровнями
+  * [[rpd:challenges|Испытания]] - Специальные модификаторы игры
 
-==== Mechanics ====
-  * **Shop Areas**: Certain floors contain shops where players can purchase useful items
-  * **Secret Areas**: Hidden rooms and passages may contain valuable items
-  * **Traps**: Various types of traps throughout the dungeon pose threats
-  * **Altars**: Special locations for specific game mechanics
+==== Особенности ====
+  * [[rpd:level_generation|Генерация]] - Каждый уровень генерируется случайным образом
+  * [[rpd:lighting|Освещение]] - На разных уровнях разный уровень освещённости
+  * [[rpd:traps|Ловушки]] - Скрытые опасности на большинстве уровней
+  * [[rpd:shops|Магазины]] - Могут появляться на некоторых уровнями
+  * [[rpd:bosses|Боссы]] - Мощные враги в конце каждой зоны
 
-==== Content Verification ====
-  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]]
-  * Level generation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]]
-  * Last updated: December 2025
+==== Прохождение ====
+  * Цель игрока - дойти до 26 уровня и получить [[rpd:amulet_of_yendor_item|Амулет Йендора]]
+  * Спуститься на следующий уровень можно через [[rpd:stairs|лестницы]]
+  * На каждом уровне появляется босс, которого нужно победить для получения [[rpd:key_item|ключа]]
 
-==== See Also ====
-  * [[rpd:levels|Levels]]
-  * [[rpd:sewers|Sewers]]
-  * [[rpd:prison|Prison]]
-  * [[rpd:caves|Caves]]
-  * [[rpd:city|City]]
-  * [[rpd:halls|Halls]]
-  * [[rpd:guts|Guts]]
+==== Проверка содержимого ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]]
+  * Entity Kind: Dungeon is the main game state container
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] contains dungeon-related strings
+  * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/|levels/]] directory contains level implementations
 
-{{tag> rpd mechanics dungeon }}
+==== См. также ====
+  * [[rpd:levels|Уровни]] - Подробная информация о каждом уровне
+  * [[rpd:areas|Области]] - Группы уровней
+  * [[rpd:stairs|Лестницы]] - Перемещение между уровнями
+  * [[rpd:amulet_of_yendor_item|Амулет Йендора]] - Конечная цель
+
+{{tag> rpd dungeon levels}}

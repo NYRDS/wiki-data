@@ -1,89 +1,46 @@
-====== Scrolls ======
+====== Свитки ======
 
-{{ rpd:images:scrolls_illustration.png|Scrolls }}
+**Свитки** - это расходуемые [[rpd:items|предметы]], которые при использовании производят магические эффекты.
 
-**Scrolls** are magical parchments in Remixed Dungeon that provide various effects when read. Each scroll can typically only be used once, making them valuable resources that must be managed carefully.
+==== Типы свитков ====
+  * [[rpd:scroll_of_identify_item|Свиток опознания]] - Опознаёт неизвестные предметы
+  * [[rpd:scroll_of_magic_mapping_item|Свиток волшебной карты]] - Открывает карту уровня
+  * [[rpd:scroll_of_teleportation_item|Свиток телепортации]] - Перемещает героя на уровень
+  * [[rpd:scroll_of_recharging_item|Свиток перезарядки]] - Восстанавливает заряды палочек
+  * [[rpd:scroll_of_remove_curse_item|Свиток снятия проклятия]] - Снимает проклятие с предметов
+  * [[rpd:scroll_of_upgrade_item|Свиток улучшения]] - Улучшает предмет
+  * [[rpd:scroll_of_weapon_upgrade_item|Свиток улучшения оружия]] - Улучшает оружие
+  * [[rpd:scroll_of_enchantment_item|Свиток зачарования]] - Зачаровывает оружие или броню
+  * [[rpd:scroll_of_terror_item|Свиток ужаса]] - Заставляет врагов убегать
+  * [[rpd:scroll_of_amok_item|Свиток буйства]] - Приводит врагов в бешенство
+  * [[rpd:scroll_of_psionic_blast_item|Свиток ментального удара]] - Массовая атака разума
+  * [[rpd:scroll_of_lullaby_item|Свиток колыбельной]] - Усыпляет врагов
+  * [[rpd:scroll_of_mirror_image_item|Свиток двойника]] - Создаёт копии героя
+  * [[rpd:scroll_of_curse_item|Свиток проклятия]] - Проклинает предметы или врагов
+  * [[rpd:scroll_of_domination_item|Свиток подчинения]] - Временно подчиняет врага
+  * [[rpd:scroll_of_fool_item|Свиток дурака]] - Печально известен среди игроков
 
-==== Common Scrolls ====
-  * **[[rpd:scroll_of_identify_item|Scroll of Identify]]**: Identifies all items in your inventory
-  * **[[rpd:scroll_of_teleportation_item|Scroll of Teleportation]]**: Teleports to a random location on the current level
-  * **[[rpd:scroll_of_magic_mapping_item|Scroll of Magic Mapping]]**: Reveals the entire level layout and secrets
-  * **[[rpd:scroll_of_upgrade_item|Scroll of Upgrade]]**: Improves a single item's quality
-  * **[[rpd:scroll_of_recharging_item|Scroll of Recharging]]**: Recharges wands and other charged items
-  * **[[rpd:scroll_of_remove_curse_item|Scroll of Remove Curse]]**: Removes curse effects from all equipped items
-  * **[[rpd:scroll_of_treasure_detection_item|Scroll of Treasure Detection]]**: Reveals the location of all treasures
-  * **[[rpd:scroll_of_lullaby_item|Scroll of Lullaby]]**: Puts nearby enemies to sleep
-  * **[[rpd:scroll_of_psionic_blast_item|Scroll of Psionic Blast]]**: Damages all visible creatures
-  * **[[rpd:scroll_of_teleportation_item|Scroll of Challenge]]**: Summons enemies and creates an arena
-  * **[[rpd:scroll_of_wipe_out_item|Scroll of Wipe Out]]**: Removes all enemies from the current level
+==== Использование ====
+  * Свитки можно использовать в бою или в безопасной ситуации
+  * Использование свитка требует один [[rpd:turns|ход]]
+  * Многие свитки имеют область действия, показываемую при использовании
+  * Некоторые свитки могут быть опознаны для постоянного использования
 
-==== Scroll Mechanics ====
-  * **Single Use**: Most scrolls are consumed after use
-  * **Candle Required**: Some scrolls require a candle of vision to read
-  * **Targeting**: Some scrolls require targeting (like Upgrade)
-  * **Area Effects**: Many scrolls affect a larger area
-  * **Random Effects**: Some scrolls have variable outcomes
-  * **Cursed Effects**: Cursed scrolls may have negative effects
+==== Редкость ====
+  * Каждый свиток имеет свою редкость и частоту появления
+  * На более глубоких [[rpd:levels|уровнях]] могут встречаться более редкие свитки
+  * Свитки можно найти в [[rpd:loot|добыче]] от мобов или в сундуках
 
-==== Scroll Identification ====
-  * **Initial Unknown**: All scrolls are initially identified only by their glow
-  * **Reading Method**: Reading a scroll identifies it but consumes it
-  * **Candle Identification**: Candles of vision can safely identify scrolls
-  * **Degrading Knowledge**: Some characters may recognize scrolls more easily
-  * **Risk Assessment**: Identifying unknown scrolls involves potential risks
+==== Проверка содержимого ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]] (базовый класс)
+  * Entity Kind: Various scroll types implement getEntityKind() method
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] contains scroll name and description strings
+  * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/|itemsDesc/]] directory contains JSON configuration for different scrolls
 
-==== Strategic Scroll Usage ====
-  * **Preparation**: Use utility scrolls before challenging situations
-  * **Emergency Scenarios**: Keep teleportation scrolls for dangerous situations
-  * **Resource Management**: Balance scroll usage with availability
-  * **Situational Awareness**: Use appropriate scrolls for current situations
-  * **Inventory Management**: Maintain a balanced collection of scroll types
+==== См. также ====
+  * [[rpd:items|Предметы]] - Общая информация о предметах
+  * [[rpd:potions|Зелья]] - Другие расходуемые магические предметы
+  * [[rpd:wands|Палочки]] - Альтернативные магические предметы
+  * [[rpd:spells|Заклинания]] - Магические эффекты без расходуемых предметов
 
-==== Scroll Risks ====
-  * **Cursed Scrolls**: Some scrolls may have harmful effects
-  * **Wrong Situations**: Using the wrong scroll type in critical moments
-  * **Wasted Utility**: Using powerful scrolls on minor threats
-  * **Revealing Position**: Some scrolls alert all enemies on the level
-  * **Limited Supply**: Scrolls are finite and difficult to replace
-
-==== Scroll Acquisition ====
-  * **Dungeon Exploration**: Found randomly throughout dungeon levels
-  * **Shop Purchases**: Available from shopkeepers in certain levels
-  * **Enemy Drops**: Sometimes dropped by defeated enemies
-  * **Altar Interactions**: Certain altars may provide scrolls
-  * **Special Locations**: Found in specific areas or containers
-
-==== Scroll Categories ====
-  * **Utility Scrolls**: Provide helpful effects (Teleportation, Magic Mapping)
-  * **Combat Scrolls**: Aid in combat situations (Challenge, Psionic Blast)
-  * **Identification Scrolls**: Help identify items (Identify)
-  * **Enhancement Scrolls**: Improve equipment (Upgrade, Weapon Upgrade)
-  * **Support Scrolls**: Provide healing or protective effects (Terror, Lullaby)
-
-==== Special Scroll Interactions ====
-  * **Candle of Visions**: Allows safe identification of scrolls
-  * **Equipment Synergy**: Some equipment provides benefits when using scrolls
-  * **Environmental Impact**: Some scrolls affect the level environment
-  * **Status Effects**: Scroll effects may interact with existing status effects
-
-==== Advanced Scroll Usage ====
-  * **Scroll Combinations**: Using multiple scrolls for combined effects
-  * **Timing**: Using scrolls at optimal moments for maximum benefit
-  * **Positioning**: Using scrolls to improve tactical positioning
-  * **Emergency Protocols**: Keeping specific scrolls for specific dangers
-  * **Resource Conversion**: Using scrolls to convert one resource to another
-
-==== Technical Details ====
-  * Base Scroll class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]]
-  * Scroll implementations: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls|Scroll Classes]]
-  * Scroll system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java#L50-L200|Scroll Mechanics]]
-  * Identification system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java#L100-L200|Item Identification]]
-
-==== See Also ====
-  * [[rpd:potions|Potions]] - Liquid magical items
-  * [[rpd:items|Items]] - General item information
-  * [[rpd:consumables|Consumables]] - All consumable items
-  * [[rpd:wands|Wands]] - Reusable magical items
-  * [[rpd:identification|Identification]] - How to identify unknown items
-
-{{tag> rpd items scrolls consumables magic }}
+{{tag> rpd items scrolls magic}}

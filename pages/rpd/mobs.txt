@@ -1,84 +1,44 @@
-====== Mobs ======
+====== Мобы ======
 
-{{ rpd:images:rat_mob.png|Rat Mob }}
+**Мобы** (мобильные объекты) - это враждебные и нейтральные существа, с которыми герой сталкивается в подземелье.
 
-**Mobs** (Mobile Objects) are the enemies and creatures that the hero encounters throughout the dungeon in Remixed Dungeon. They range from simple rats in the sewers to powerful bosses like Yog-Dzewa.
+==== Основные типы мобов ====
+  * [[rpd:rats|Крысы]] - Простые враги на начальных уровнях
+  * [[rpd:gnoll_mob|Гноллы]] - Существа с различными специализациями
+  * [[rpd:crab_mob|Крабы]] - Сильные враги с высокой защитой
+  * [[rpd:spider_mob|Пауки]] - Ядовитые существа, распространённые в пещерах
+  * [[rpd:elemental_mob|Элементали]] - Магические существа различных стихий
+  * [[rpd:undead_mobs|Нежить]] - Существа, уязвимые к святой воде
+  * [[rpd:mechanical_enemies|Механические враги]] - Роботы и механизмы
+  * [[rpd:bosses|Боссы]] - Мощные враги, требующие особых стратегий
 
-==== Mob Categories ====
-  * **Basic Mobs**: Common enemies found throughout dungeon levels
-  * **Special Mobs**: Enemies with unique abilities or behaviors
-  * **Bosses**: Powerful enemies that guard important areas
-  * **Minions**: Weaker creatures that support other enemies
+==== Статистика и механики ====
+  * **Здоровье:** Текущее и максимальное количество здоровья
+  * **Урон:** Урон, который моб может нанести герою
+  * **Защита:** Способность избежать урона
+  * **Скорость:** Влияет на частоту действий моба
+  * **ИИ:** Поведение моба в бою и при перемещении
 
-==== Basic Mobs by Level ====
+==== Специальные атаки ====
+  * [[rpd:ranged_enemies|Дальнобойные враги]] - Мобы, способные атаковать на расстоянии
+  * [[rpd:mechanical_enemies|Механические враги]] - Имеют особые свойства
+  * [[rpd:aoe_attacks|Атаки по области]] - Поражают несколько целей
 
-===== Sewers =====
-  * [[rpd:rat_mob|Rat]]
-  * [[rpd:gnoll_mob|Gnoll]]
-  * [[rpd:crab_mob|Crab]]
-  * [[rpd:swarm_mob|Swarm of Flies]]
+==== Поведение ====
+  * **Агрессия:** Как мобы реагируют на присутствие героя
+  * **Патрулирование:** Движение моба по территории
+  * **Отступление:** Условия, при которых моб убегает
 
-===== Prison =====
-  * [[rpd:gnoll_mob|Gnoll]]
-  * [[rpd:thief_mob|Thief]]
-  * [[rpd:guard_mob|Guard]]
-  * [[rpd:bat_mob|Bat]]
-  * [[rpd:brute_mob|Brute]]
+==== Проверка содержимого ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] (базовый класс)
+  * Entity Kind: Each mob has its own getEntityKind() implementation
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] contains mob names and descriptions
+  * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/|mobsDesc/]] directory contains JSON configuration for different mobs
 
-===== Caves =====
-  * [[rpd:bat_mob|Bat]]
-  * [[rpd:brute_mob|Brute]]
-  * [[rpd:shaman_mob|Shaman]]
-  * [[rpd:spider_mob|Spider]]
-  * [[rpd:eye_mob|Eye]]
-
-===== Necropolis =====
-  * [[rpd:spider_mob|Spider]]
-  * [[rpd:eye_mob|Eye]]
-  * [[rpd:skeleton_mob|Skeleton]]
-  * [[rpd:warlock_mob|Warlock]]
-  * [[rpd:lich_mob|Lich]]
-
-===== Demon Halls =====
-  * [[rpd:skeleton_mob|Skeleton]]
-  * [[rpd:warlock_mob|Warlock]]
-  * [[rpd:lich_mob|Lich]]
-  * [[rpd:assassin_mob|Assassin]]
-  * [[rpd:bandit_mob|Bandit]]
-  * [[rpd:elemental_mob|Elemental]]
-  * [[rpd:succubus_mob|Succubus]]
-  * [[rpd:evil_eye_mob|Evil Eye]]
-
-==== Boss Enemies ====
-  * [[rpd:tengu_mob|Tengu]]
-  * [[rpd:dm300_mob|DM-300]]
-  * [[rpd:king_mob|King of Dwarves]]
-  * [[rpd:yog_mob|Yog-Dzewa]]
-
-==== Mob Stats ====
-Mobs have various statistics that determine their effectiveness in combat:
-  * **HP**: Health pool
-  * **Attack Skill**: Accuracy in combat
-  * **Defense Skill**: Evasion in combat
-  * **Damage**: Attack power
-  * **Defense Rate (DR)**: Damage reduction value
-  * **EXP**: Experience granted when defeated
-
-==== Mob Mechanics ====
-  * **AI Behavior**: Different mobs have unique movement and attack patterns
-  * **Drops**: Mobs have various chances to drop items when defeated
-  * **Spawning**: Different mob types appear in different dungeon levels
-  * **Resistances**: Some mobs have resistances or immunities to certain effects
-
-==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Base Mob class]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Character base class]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json configuration]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1000-L1400|Mob strings in localization]]
-
-==== Related ====
-  * [[rpd:enemies|Enemies]]
-  * [[rpd:bosses|Bosses]]
-  * [[rpd:combat|Combat]]
+==== См. также ====
+  * [[rpd:combat_mechanics|Бой]] - Механики сражений
+  * [[rpd:levels|Уровни]] - Где можно встретить различных мобов
+  * [[rpd:bestiary|Бестиарий]] - Полный список мобов
+  * [[rpd:ai|ИИ]] - Искусственный интеллект мобов
 
 {{tag> rpd mobs enemies}}
