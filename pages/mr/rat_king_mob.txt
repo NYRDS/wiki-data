@@ -1,20 +1,29 @@
 ====== Rat King Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/RatKing.java|RatKing.java]] - Main implementation of the Rat King mob
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L152|MobFactory.java]] - Registers the RatKing class
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/rat_king.json
+No specific JSON configuration file found for this mob.
 
 ===== String Resources =====
 <code xml>
-<string name="RatKing_Name">[Name]</string>
-<string name="RatKing_Info">[Description]</string>
+<string name="RatKing_Name">rat king</string>
+<string name="RatKing_Desc">This rat is a bit larger than a regular marsupial rat, and it wears a tiny crown on its head.</string>
+<string name="RatKing_Info1">I'm not sleeping!</string>
+<string name="RatKing_Info2">What is it? I have no time for this foolishness. My kingdom won't rule itself!</string>
+<string name="RatKing_Info3">How dare you, puny creature, disturb Our Ratness?!</string>
+<string name="RatKing_Died">The King is dead. Long live the King!</string>
+<string name="RatKing_Name_Objective">rat king</string>
+<string name="RatKing_Gender">masculine</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Additional Information =====
+  * The RatKing class extends NPC, not a regular mob
+  * Found in the npcs package rather than the mobs package
+  * Interacts with the player and can become hostile based on player actions
+  * Drops the Rat King Crown artifact

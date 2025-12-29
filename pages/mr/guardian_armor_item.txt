@@ -1,20 +1,25 @@
 ====== Guardian Armor Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GuardianArmor.java|GuardianArmor.java]] - Main implementation of the Guardian armor, extends GnollArmor
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L445|ItemFactory.java]] - Registers the GuardianArmor class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L55|HeroSubClass.java]] - References GuardianArmor in GUARDIAN subclass
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/guardian_armor.json
+No specific JSON configuration file found for this item.
 
 ===== String Resources =====
 <code xml>
-<string name="GuardianArmor_Name">[Name]</string>
-<string name="GuardianArmor_Info">[Description]</string>
+<string name="GuardianArmor_Name">guardian armor</string>
+<string name="GuardianArmor_Info">This medium armor is made of roughly-woven animal bones and equipped with a shield. It provides extra protection and enables the use of shields.</string>
+<string name="GuardianArmor_Name_Objective">guardian armor</string>
+<string name="GuardianArmor_Gender">neuter</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Additional Information =====
+  * The GuardianArmor extends GnollArmor
+  * Used by the Guardian subclass which is a subclass of the Necromancer class
+  * Provides extra protection and enables the use of shields
