@@ -1,60 +1,61 @@
-====== Weapon ======
+====== Weapon Item ======
 
-{{ rpd:images:weapon_item.png|Weapon }}
-
-**Weapons** are items in Remixed Dungeon that allow the hero to attack enemies. Each weapon has different stats that affect combat effectiveness.
+{{ rpd:images:short_sword_item.png|Weapon }}
 
 ==== Description ====
-Weapons are equipment items held in the hero's main hand. They determine attack skill, damage range, and may have special properties or enchantments.
+Weapons are items used by the hero to attack enemies. Each weapon has specific damage range, speed, and accuracy characteristics.
 
-==== Stats ====
-  * **Attack Skill:** Bonus to hit chance
-  * **Damage Range:** Minimum and maximum damage dealt
-  * **Durability:** How many uses before breaking (if applicable)
-  * **Enchantment:** Special magical effect (for upgraded weapons)
-  * **Upgrade Level:** Level of upgrade applied to the weapon
+==== Weapon Categories ====
+  * [[rpd:melee_weapon_item|Melee Weapons]] - Close combat weapons
+  * [[rpd:ranged_weapon_item|Ranged Weapons]] - Weapons for distant combat
+  * [[rpd:sword_item|Swords]] - Balanced melee weapons
+  * [[rpd:axe_item|Axes]] - Heavy damage weapons
+  * [[rpd:dagger_item|Daggers]] - Fast light weapons
+  * [[rpd:bow_item|Bows and Crossbows]] - Ranged projectile weapons
+  * [[rpd:spear_item|Spears]] - Mid-range thrusting weapons
 
-==== Weapon Types ====
-  * **[[rpd:melee_weapon_item|Melee Weapons]]** - Close combat weapons
-  * **[[rpd:ranged_weapon_item|Ranged Weapons]]** - Weapons for distance combat (projectiles, wands)
-  * **[[rpd:sword_item|Swords]]** - Versatile bladed weapons
-  * **[[rpd:dagger_item|Daggers]]** - Fast, light piercing weapons
-  * **[[rpd:axe_item|Axes]]** - Heavy-hitting weapons
-  * **[[rpd:mace_item|Maces]]** - Blunt weapons with crushing damage
-  * **[[rpd:spear_item|Spears]]** - Thrusting weapons with reach
-  * **[[rpd:bow_item|Bows and Crossbows]]** - Projectile weapons
-  * **[[rpd:wand_item|Wands]]** - Magic missile weapons
+==== Common Weapons ====
+  * [[rpd:short_sword_item|Short Sword]] - Basic melee weapon
+  * [[rpd:wooden_bow_item|Wooden Bow]] - Basic ranged weapon
+  * [[rpd:dart_item|Dart]] - Basic throwing weapon
+  * [[rpd:boomerang_item|Boomerang]] - Returning throwing weapon
+  * [[rpd:wand_item|Wands]] - Magic-based weapons
+  * [[rpd:staff_item|Staffs]] - Magic-enhanced weapons
 
-==== Weapon Classes ====
-  * **[[rpd:swords|Swords]]** - Standard slashing weapons
-  * **[[rpd:daggers|Daggers]]** - Light, quick piercing weapons
-  * **[[rpd:axes|Axes]]** - Heavy impact weapons
-  * **[[rpd:maces|Maces]]** - Blunt crushing weapons
-  * **[[rpd:spears|Spears]]** - Reach weapons
-  * **[[rpd:bows|Bows]]** - Projectile weapons
+==== Weapon Mechanics ====
+  * **Damage:** Affects the amount of damage dealt to enemies
+  * **Speed:** Determines how quickly the weapon attacks
+  * **Accuracy:** Affects chance to hit enemies
+  * **Strength Requirement:** Minimum strength needed to wield effectively
+  * **Upgrades:** Weapons can be upgraded to improve stats
+  * **Enchantments:** Can be added via [[rpd:scroll_of_enchantment_item|Scroll of Enchantment]]
 
-==== Upgrades ====
-  * Weapons can be [[rpd:upgrade|upgraded]] using [[rpd:scroll_of_upgrade_item|Scrolls of Upgrade]]
-  * [[rpd:enchantments|Enchantments]] can be applied to provide special effects
-  * Higher levels provide better stats
+==== Enchantments ====
+  * [[rpd:fire_enchantment|Fire]] - Chance to ignite enemies
+  * [[rpd:shocking_enchantment|Shocking]] - Chance to deal lightning damage
+  * [[rpd:chilling_enchantment|Chilling]] - Chance to slow enemies
+  * [[rpd:bleeding_enchantment|Bleeding]] - Chance to cause bleeding
+  * [[rpd:luck_enchantment|Luck]] - Improves item drops
+  * [[rpd:poison_enchantment|Poison]] - Chance to poison enemies
+  * [[rpd:regrowth_enchantment|Regrowth]] - Grows plants around impact
 
-==== Strategy ====
-  * Choose weapons based on your [[rpd:hero_class|hero class]] and fighting style
-  * Early game: Focus on weapons with higher damage output
-  * Mid game: Consider durability and special properties
-  * Late game: Look for weapons with useful [[rpd:enchantments|enchantments]]
+==== Technical Details ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|com.watabou.pixeldungeon.items.weapon.Weapon]]
+  * **Base Class:** Extends EquipableItem
+  * **Implementation:** Abstract class with specific implementations for each weapon type
 
 ==== Code References ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] - Base weapon class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/WeaponFactory.java|WeaponFactory.java]] - Weapon creation factory
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1586-L1700|Weapon strings]] - English names and descriptions
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1527-L1631|Weapon strings (Russian)]] - Russian localization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/|weapon package]] - All weapon implementations
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/EquipableItem.java|EquipableItem.java]] - Base class for equipment
 
-==== Related ====
-  * [[rpd:equipment|Equipment]]
-  * [[rpd:combat_mechanics|Combat Mechanics]]
-  * [[rpd:enchantments|Enchantments]]
-  * [[rpd:hero_class|Hero Classes]]
-  * [[rpd:melee_weapon_item|Melee Weapon]]
+==== String Resource References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Weapon-related strings]]
 
-{{tag> rpd items weapons equipment melee ranged }}
+==== See Also ====
+  * [[rpd:items|Items]] - General information about items
+  * [[rpd:enchantments|Enchantments]] - Item enchantment system
+  * [[rpd:equipment|Equipment]] - Other equipment types
+  * [[rpd:armor|Armor]] - Protective equipment
+
+{{tag> rpd items weapons equipment}}
