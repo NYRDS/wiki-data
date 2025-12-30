@@ -1,0 +1,55 @@
+====== Левитация ======
+
+{{ rpd:images:levitation_buff.png|Левитация }}
+
+**Левитация** - положительный статусный эффект в Remixed Dungeon, который позволяет персонажу парить над землей.
+
+==== Описание эффекта ====
+  * **Тип:** Положительный статусный эффект (Бафф)
+  * **Эффект:** Позволяет парить над уровнем земли
+  * **Продолжительность:** 20 ходов (Levitation.DURATION = 20f)
+  * **Источник:** В основном из [[ru:rpd:potion_of_levitation_item|Зелья левитации]]
+
+==== Получение ====
+  * Из выпитого [[ru:rpd:potion_of_levitation_item|Зелья левитации]]
+  * Из определённых заклинаний или классовых способностей
+  * Из специальных предметов или эффектов окружения
+
+==== Механика ====
+  * Позволяет перемещаться по ловушкам без их активации
+  * Даёт возможность проходить по специальным поверхностям, которые обычно затрудняют передвижение
+  * Предотвращает воздействие некоторых эффектов, связанных с землёй
+  * Блокирует эффект [[ru:rpd:roots_buff|Корни]] (отсоединяет существующие корни)
+  * Когда эффект заканчивается, вызывается Dungeon.level.press(), что может активировать эффекты пола на позиции персонажа
+  * Спрайт персонажа показывается как CharSprite.State.LEVITATING
+  * Использует BuffIndicator.LEVITATION для иконки в интерфейсе
+
+==== Стратегия ====
+  * Отлично подходит для безопасного прохождения областей с ловушками
+  * Позволяет обходить определённые препятствия и сложные участки местности
+  * Полезно для избегания вредных эффектов, связанных с землёй
+  * Хорошо для навигации по опасным клеткам пола
+  * Важно рассчитать время окончания эффекта, чтобы не приземлиться в опасной зоне
+
+==== Ссылки ====
+  * Java класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java|Levitation.java]]
+  * Константа продолжительности: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java#L7|Levitation.DURATION = 20f]]
+  * Связанный класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]] (отсоединяется при начале левитации)
+  * Наследование: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]]
+  * Индикатор интерфейса: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java#L22|BuffIndicator.LEVITATION]]
+  * Состояние спрайта: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java#L59|CharSprite.State.LEVITATING]]
+
+==== Строковые ресурсы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3021|Levitation_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3022|Levitation_Info]]
+
+==== См. также ====
+  * [[ru:rpd:status_effects|Статусные эффекты]] - другие статусные изменения
+  * [[ru:rpd:potion_of_levitation_item|Зелье левитации]] - основной источник левитации
+  * [[ru:rpd:roots_buff|Корни]] - эффект, который Левитация нейтрализует
+  * [[ru:rpd:mechanics|Игровые механики]] - другие основные системы
+  * [[ru:rpd:traps|Ловушки]] - ловушки, которые можно избежать с помощью левитации
+  * [[ru:rpd:buffs|Баффы]] - другие полезные эффекты
+  * [[ru:rpd:flavour_buff|Вкусовой Бафф]] - родительский класс для этого баффа
+
+{{tag> rpd mechanics status_effects buffs levitation}}

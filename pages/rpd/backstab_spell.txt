@@ -16,8 +16,9 @@ Successful backstab will completely ignore victim armor or special defense abili
   * **Mana Cost:** 2
   * **Cast Time:** 1 turn
   * **Special Effects:** damages a target
-  * **Damage Formula:** sqrt(caster's skill level) * (weapon damage roll + secondary weapon damage roll)
+  * **Damage Formula:** sqrt(caster's skill level) * (main weapon damage roll + secondary weapon damage roll)
   * **Conditions:** Only works on distracted enemies (PASSIVE, SLEEPING, FLEEING, HORRIFIED, RUNNINGAMOK) or paralyzed targets
+  * **Range:** 1 tile distance from caster
 
 ==== Usage ====
 The Backstab spell can be used for:
@@ -32,9 +33,11 @@ Classes that can use this spell include:
 
 ==== Strategy ====
 How to effectively use the Backstab spell:
-  * Best situations to use the spell
-  * Synergies with other abilities
-  * Timing considerations
+  * Best used when enemy is in a distracted state or paralyzed
+  * Works with both main hand and off-hand (shield) weapons
+  * Damage scales with your skill level
+  * Guaranteed to work only on enemies that cannot respond immediately
+  * Ignores enemy armor completely when successful
 
 ==== Data Validation ====
 This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
@@ -48,14 +51,26 @@ This information is extracted directly from the game code and validated against 
 ==== Source Code ====
 This spell is implemented as a Lua script:
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Backstab.lua|Backstab.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]] - Spell library implementation
 
-String resources:
+==== String Resources ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2622|Backstab_Name]]
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2623|Backstab_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2624|Backstab_TooFar]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2625|Backstab_Aware]]
+
+==== Russian String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2623|Backstab_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2624|Backstab_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2625|Backstab_TooFar]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2626|Backstab_Aware]]
 
 ==== See Also ====
-  * [[rpd:spells|Spells]]
-  * [[rpd:mechanics|Game Mechanics]]
-  * [[rpd:rogue_affinity|rogue_affinity]]
+  * [[rpd:spells|Spells]] - Other magical abilities
+  * [[rpd:mechanics|Game Mechanics]] - Core game systems
+  * [[rpd:rogue_affinity|Rogue Affinity]] - Rogue class abilities and mechanics
+  * [[rpd:melee_weapons|Melee Weapons]] - Information about weapons used in backstab
+  * [[rpd:ranged_weapons|Ranged Weapons]] - Alternative weapon options
+  * [[rpd:status_effects|Status Effects]] - Other game status effects
 
 {{tag> rpd spells rogue }}

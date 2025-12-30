@@ -5,7 +5,7 @@
 ==== Effect Description ====
   * **Type:** Beneficial Status Effect (Buff)
   * **Effect:** Allows floating above ground level
-  * **Duration:** 20 turns (standard duration)
+  * **Duration:** 20 turns (Levitation.DURATION = 20f)
   * **Source:** Primarily from drinking a [[rpd:potion_of_levitation_item|Potion of Levitation]]
 
 ==== How to Obtain ====
@@ -17,8 +17,10 @@
   * Allows movement over traps without triggering them
   * Enables passage over special terrain that would normally impede movement
   * Prevents certain ground-based effects from affecting the character
-  * Blocks the Roots status effect (detaches any roots currently affecting the character)
+  * Blocks the Roots status effect (detaches any roots currently affecting the character via Roots.detach())
   * When effect ends, the game calls Dungeon.level.press() which may trigger floor effects at the character's position
+  * Character sprite shows as CharSprite.State.LEVITATING
+  * Uses BuffIndicator.LEVITATION for icon in UI
 
 ==== Strategy ====
   * Excellent for safely crossing trap-filled areas
@@ -27,23 +29,34 @@
   * Good for navigating dangerous floor tiles
   * Timing the end of the effect is important to avoid landing in dangerous areas
 
-==== Counters =====
+==== Counters ====
   * Air-based attacks may still affect levitating characters
   * Some effects are not prevented by levitation
   * Effect ends automatically after 20 turns
 
 ==== Code Reference ====
   * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java|Levitation.java]]
-  * Source Code Location: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java
-  * Duration is fixed at 20 turns; removes Roots when attached and calls press() when detached
-  * Extends: FlavourBuff class
-  * Icon: BuffIndicator.LEVITATION
-  * Sprite State: Sets character sprite to CharSprite.State.LEVITATING
+  * Duration constant: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java#L7|Levitation.DURATION = 20f]]
+  * Related Classes: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]] (detached when levitation starts)
+  * Extension: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]]
+  * UI Indicator: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java#L22|BuffIndicator.LEVITATION]]
+  * Sprite State: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java#L59|CharSprite.State.LEVITATING]]
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3020|Levitation_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3021|Levitation_Info]]
+
+==== Russian String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3021|Levitation_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3022|Levitation_Info]]
 
 ==== See Also ====
   * [[rpd:status_effects|Status Effects]] - Other status changes
   * [[rpd:potion_of_levitation_item|Potion of Levitation]] - Primary source of levitation
   * [[rpd:roots_buff|Roots]] - Effect that Levitation counteracts
   * [[rpd:mechanics|Game Mechanics]] - Other core systems
+  * [[rpd:traps|Traps]] - Traps that can be avoided with levitation
+  * [[rpd:buffs|Buffs]] - Other helpful status effects
+  * [[rpd:flavour_buff|Flavour Buff]] - Parent class for this buff
 
 {{tag> rpd mechanics status_effects buffs levitation}}

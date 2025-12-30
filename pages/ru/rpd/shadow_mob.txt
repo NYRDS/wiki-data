@@ -6,10 +6,21 @@
 **Тени** - загадочные сущности, живущие внутри тюремных стен. Также связаны с [[ru:rpd:shadow_lord|Лордом Теней]].
 
 ==== Особенности ====
+  * **Тип перемещения:** Тени могут перемещаться по стенам (walkingType = WalkingType.WALL)
   * **Перемещение сквозь стены:** Главная особенность теней - способность перемещаться внутри стен
   * **Невосприимчивость к дальним атакам:** Из-за этого тень практически невозможно атаковать метательным оружием или палочками
   * **Атака только в проемах:** Дальнобойную атаку можно применить только если тень стоит в дверном проеме
-  * **Высокая скорость:** Тени двигаются и атакуют в два раза быстрее игрока
+  * **Высокая скорость:** Тени двигаются в два раза быстрее игрока (speed() = 2.0f)
+  * **Быстрая атака:** Атака происходит вдвое быстрее обычной (attackDelay = 0.5f)
+  * **Статистика:**
+    * **Здоровье:** 20 HP (hp(ht(20)))
+    * **Мин. урон:** 5
+    * **Макс. урон:** 10
+    * **Навык атаки:** 10
+    * **Навык защиты:** 15
+    * **Опыт за убийство:** 5
+    * **Макс. уровень:** 10
+    * **Шанс на труп:** 0 (carcassChance = 0)
   * **Особое поведение:** При ошеломлении тени могут выйти из стен и ходить по полу
 
 ==== История создания ====
@@ -17,15 +28,23 @@
 
 ==== Проверка контента ====
   * Источник информации: Java класс [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shadow.java|Shadow.java]]
-  * Специальные механики: Извлечено из реализации Shadow.java
+  * Специальные механики: Извлечено из реализации Shadow.java и WalkingType.java
   * Последнее обновление: Декабрь 2025, источник: Remixed Dungeon 1.9.3
 
-==== Исходный код ====
+==== Класс реализации ====
   * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shadow.java|Shadow.java]]
+  * Walking Mechanic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/WalkingType.java|WalkingType.java]]
+
+==== Строковые ресурсы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1293|Shadow_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1295|Shadow_Name_Objective]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1296|Shadow_Desc]]
 
 ==== См. также ====
   * [[ru:rpd:shadow_lord|Лорд Теней]] - Связанный босс-моб
   * [[ru:rpd:mobs|Мобы]] - Другие враждебные существа
-  * [[ru:rpd:prison|Тюрьма]] - Уровень, где встречается существо
+  * [[ru:rpd:prison_level|Тюремный уровень]] - Уровень, где встречается существо
+  * [[ru:rpd:walking_type|Тип передвижения]] - Механика передвижения по разным поверхностям
+  * [[ru:rpd:enemies|Враги]] - Общая информация о типах врагов
 
 {{tag> rpd mobs prison shadow}}
