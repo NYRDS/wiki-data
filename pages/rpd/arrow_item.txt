@@ -1,70 +1,45 @@
-====== Arrow Item ======
+====== Arrow ======
 
 {{ rpd:images:arrow_item.png|Arrow }}
 
-Arrows are common ranged ammunition items in Remixed Dungeon. They can be fired from bows and other ranged weapons that accept arrows as ammunition.
-
-==== General Information ====
-  * **Type:** [[rpd:ammo|Ammunition]] / [[rpd:items|Item]]
-  * **Category:** [[rpd:ranged_weapons|Ranged Weapon]] consumable
-  * **Stackable:** Yes
-  * **Durability:** Single use (consumed on firing impact)
-
-==== Description ====
-Arrows are the most common form of ammunition in Remixed Dungeon. They can be found as random loot throughout the dungeon or crafted using various alchemy methods. Standard arrows can be fired from bows to deal piercing damage to enemies.
+The **Arrow** is a basic ranged ammunition used with bows. It forms the base class for specialized arrows.
 
 ==== Stats ====
-  * **Damage:** Base damage varies by type, typically 1-3 points
-  * **Delay:** 0.5x (relative to weapon firing speed)
-  * **Accuracy:** +0 (no accuracy bonus or penalty)
-  * **Required Strength:** 0
-  * **Durability:** Single use (consumed on impact)
-  * **Price:** 1 gold per arrow
-  * **Weight:** 1
+  * **Damage**: 0 (base damage is 0)
+  * **Delay**: 1.0 (baseDly: 1.0)
+  * **Min Strength Required**: 9 (setSTR: 9)
+  * **Default quantity**: Typically ranges from 15-30 when randomly generated
 
-==== Properties ====
-  * **Type:** Throwing/Ammunition (Standard)
-  * **Usage:** For use with ranged weapons like [[rpd:bow_item|bows]]
-  * **Consumable:** Each arrow is consumed after being shot
-  * **Stackable:** Can stack up to very high quantities
-  * **Upgradable when fired:** Damage increases with the bow's level
-
-==== Arrow Types ====
-  * [[rpd:common_arrow_item|Common Arrow]] - Basic arrows, can be moistened to create special arrows
-  * [[rpd:fire_arrow_item|Fire Arrow]] - Deals fire damage and may ignite targets
-  * [[rpd:frost_arrow_item|Frost Arrow]] - Freezes targets
-  * [[rpd:poison_arrow_item|Poison Arrow]] - Poisons targets
-  * [[rpd:paralysis_arrow_item|Paralysis Arrow]] - Paralyzes targets
-  * [[rpd:health_arrow_item|Health Arrow]] - Healing effect when hitting allies
+==== Special Abilities ====
+  * **Base Class**: Arrow serves as the base class for specialized arrow types like Fire Arrow, Poison Arrow, and Amok Arrow
+  * **Mechanism**: Each specialized arrow type adds its own special effect on successful hit
+  * **Behavior**: Functions as standard ranged ammunition
 
 ==== Acquisition ====
-  * **Loot:** Found in chests and as enemy drops
-  * **Alchemy:** Can be created by moistening regular arrows with various potions
-  * **Shops:** Occasionally available in [[rpd:shops|shops]]
-
-==== Mechanics ====
-  * Damage increases when fired from upgraded bows
-  * Arrow properties remain constant regardless of bow level
-  * Base accuracy and delay are unaffected by bow level
-  * Arrows are consumed after a single use
+  * Can be found in various treasure locations throughout the dungeon
+  * Quantity typically ranges from 15-30 when randomly generated
+  * Price: 5 gold per arrow
 
 ==== Strategy ====
-  * Efficient for ranged combat when enemies are at distance
-  * Consider using special arrows for specific tactical advantages
-  * Good for conserving weapon durability when fighting at range
-  * Can be used to trigger traps from a safe distance
+  * Essential for using with bow weapons
+  * Specialized arrows provide different tactical advantages
+  * Ammunition management is important for bow users
 
-==== Code Reference ====
-  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L840-L850|Arrow strings (lines 840-850)]]
-  * Base Missile Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]]
+==== Technical Details ====
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
+  * Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]]
 
-==== Related ====
-  * [[rpd:ammo|Ammunition]] - All ammunition types
-  * [[rpd:bow_item|Bow]] - Compatible weapon type
-  * [[rpd:ranged_weapons|Ranged Weapons]] - All ranged weapon types
-  * [[rpd:arrows|All Arrow Types]] - Complete list of arrow variants
-  * [[rpd:alchemy|Alchemy]] - Creating special arrows
-  * [[rpd:common_arrow_item|Common Arrow]] - Basic arrow type
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
 
-{{tag> rpd items missiles ranged ammunition arrows }}
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L286|Arrow_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L288|Arrow_Info]]
+
+==== See Also ====
+  * [[rpd:amok_arrow_item|Amok Arrow]] - Specialized arrow type
+  * [[rpd:fire_arrow_item|Fire Arrow]] - Specialized arrow type
+  * [[rpd:bow_item|Bow]] - Weapon that uses arrows
+  * [[rpd:missile_weapons|Missile Weapons]] - Other throwing weapons
+
+{{tag> rpd items arrows missiles ammunition }}
