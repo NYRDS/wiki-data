@@ -1,0 +1,41 @@
+====== Accuracy ======
+
+**Accuracy** is a core combat statistic in Remixed Dungeon that determines the chance to successfully hit a target with attacks. Higher accuracy increases the probability of landing hits on enemies.
+
+==== Calculation ====
+Accuracy is calculated in the ''Char.java'' file in the ''attackSkill'' method. The formula involves:
+
+  * **Base Attack Skill**: Determined by character level and class
+  * **Equipment Bonus**: From items like [[rpd:ring_of_accuracy_item|Ring of Accuracy]]
+  * **Enchantment Bonus**: From weapon enchantments that affect accuracy
+  * **Exponential Scaling**: The formula uses ''Math.pow(1.4, bonus)'' to calculate accuracy multipliers
+
+==== Impact on Combat ====
+  * **Hit Chance**: Higher accuracy means more attacks successfully connect
+  * **Combat Efficiency**: Critical for maximizing damage output
+  * **Wand Usage**: Important for ensuring wand shots connect
+  * **Melee and Ranged**: Affects both types of attacks
+
+==== Equipment with Accuracy Benefits ====
+  * [[rpd:ring_of_accuracy_item|Ring of Accuracy]] - Increases attack skill bonus directly
+  * [[rpd:weightstone_item|Weightstone]] - Can be used to imbue weapons with accuracy
+  * [[rpd:compound_bow_item|Compound Bow]] - Has improved accuracy over basic bows
+  * Various weapons that can be imbued with accuracy enhancement
+
+==== Related Mechanics ====
+  * [[rpd:evasion|Evasion]] - The opposing stat that determines avoidance
+  * [[rpd:attack_skill_mechanic|Attack Skill]] - Related combat statistic
+  * [[rpd:combat_mechanic|Combat]] - Overall combat system
+  * [[rpd:ranged_combat|Ranged Combat]] - Accuracy is especially important in ranged combat
+
+==== Technical Details ====
+  * **Implementation Location:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] (attackSkill method)
+  * **Exponential Factor:** Accuracy bonuses use exponential scaling: ''Math.pow(1.4, bonus)''
+
+==== Code References ====
+  * **Accuracy Calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L200-L220|Char.java attackSkill method]]
+  * **Ring of Accuracy:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfAccuracy.java|RingOfAccuracy.java]]
+  * **String resources (English):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1480-L1483|RingOfAccuracy strings]]
+  * **String resources (Russian):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1558-L1561|RingOfAccuracy strings]]
+
+{{tag> rpd mechanics combat accuracy}}
