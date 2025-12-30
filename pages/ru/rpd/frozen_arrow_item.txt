@@ -1,0 +1,20 @@
+====== Морозная Стрела ======
+  * При удачном попадание замедляет противника.
+  * Нельзя найти на уровнях.
+  * Можно получить [[ru:rpd:moisten|Смазав]] [[ru:rpd:common_arrow|Обычную Стрелу]] [[ru:rpd:potion_of_frost_item|Зельем Мороза]].
+  * Наносит урон только если выпущена из лука или арбалета.
+
+==== Код реализации ====
+  * **Java-класс:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java|FrostArrow.java]]
+  * **Создание:** См. метод [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java#L59-L65|PotionOfFrost.moistenArrow()]] - как Зелье Мороза превращает обычные стрелы в морозные
+  * **Механика замедления:** См. [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java#L33-L37|FrostArrow.attackProc()]] - вызывает [[ru:rpd:slow_buff|Замедление]] на 5 ходов
+  * **Строковые ресурсы:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2281-L2282|FrostArrow_Name, FrostArrow_Info в strings_all.xml]]
+
+==== См. также ====
+  * [[ru:rpd:moisten|Смазка]] - Механизм создания особых стрел
+  * [[ru:rpd:common_arrow|Обычная стрела]] - Базовая стрела для смазки
+  * [[ru:rpd:potion_of_frost_item|Зелье мороза]] - Зелье, используемое для создания морозной стрелы
+  * [[ru:rpd:slow_buff|Замедление]] - Эффект, который накладывается на противника
+  * [[ru:rpd:arrows|Стрелы]] - Информация о различных типах стрел
+
+{{tag> rpd items arrows frost }}

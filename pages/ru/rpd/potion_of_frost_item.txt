@@ -1,25 +1,27 @@
 ====== Зелье мороза ======
 
-{{ rpd:images:potion_of_frost_item.png|Зелье мороза }}
+**Зелье мороза** - это зелье в Remixed Dungeon, которое замораживает врагов и может использоваться для создания [[ru:rpd:frozen_arrow_item|морозных стрел]].
 
-**Зелье мороза** - это магическое [[ru:rpd:potion_item|зелье]] в Remixed Dungeon, которое при разбивании создает ледяное облако, замораживающее врагов на месте.
+==== Использование ====
+  * **Замораживание:** При разбивании враг замораживается и не может действовать на некоторое время
+  * **Смазка стрел:** Может быть использовано для превращения обычных стрел в морозные стрелы
+  * **Обнаружение секретов:** При разбивании может обнаружить скрытые проходы и предметы
 
-==== Описание ====
-При разбивании бутылочки зелья в воздухе образуется облако ледяного пара, которое замораживает всех существ в радиусе действия, лишая их возможности двигаться или атаковать на короткое время.
+==== Особенности ====
+  * При броске создает облако морозного газа
+  * Может заморозить врага, сделав его уязвимым
+  * Замороженные враги не могут двигаться и действовать на определенное время
 
-==== Эффект ====
-  * **[[ru:rpd:frost_buff|Заморозка]]** - накладывает эффект, лишающий цель возможности действовать
-  * **Охлаждение огня** - тушит [[ru:rpd:burning_buff|горение]] и другие огненные эффекты
-  * **Охлаждение луж** - гасит лужи [[ru:rpd:liquid_flame|жидкого пламени]]
+==== Код реализации ====
+  * **Java-класс:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java|PotionOfFrost.java]]
+  * **Смазка стрел:** См. [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java#L59-L65|PotionOfFrost.moistenArrow()]] - как используется для создания морозных стрел
+  * **Эффект заморозки:** См. [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java|PotionOfFrost.java]] для реализации эффекта
+  * **Строковые ресурсы:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2187-L2189|PotionOfFrost_Name, PotionOfFrost_Info в strings_all.xml]]
 
-==== Стратегия ====
-  * **Контроль толпы** - особенно эффективно против большого числа врагов
-  * **Контроль урона** - полезно, когда вы не можете позволить себе прямую схватку
-  * **Смазывание стрел** - можно использовать для создания [[ru:rpd:frost_arrow_item|стрел мороза]]
+==== См. также ====
+  * [[ru:rpd:potions|Зелья]] - Общая информация о зельях
+  * [[ru:rpd:frozen_arrow_item|Морозная стрела]] - Создается с помощью этого зелья
+  * [[ru:rpd:moisten|Смазка]] - Механизм создания особых стрел
+  * [[ru:rpd:ice_elemental_mob|Ледяной элементаль]] - Связанный элементаль
 
-==== Связанные страницы ====
-  * [[ru:rpd:potion_item|Зелья]] - Общая информация о зельях
-  * [[ru:rpd:frost_arrow_item|Стрела мороза]] - Стрела, созданная с помощью этого зелья
-  * [[ru:rpd:frost_buff|Заморозка]] - Эффект, который накладывает зелье
-
-{{tag> ru:rpd items potions alchemy }}
+{{tag> rpd items potions ice }}
