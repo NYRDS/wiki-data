@@ -59,17 +59,76 @@ When fighting elementals, consider their resistances and vulnerabilities:
   * Air Elementals: They keep distance and use ranged attacks, try to corner them or fight from afar
   * Earth Elementals: Resist status effects and physical damage, most resilient of elementals
 
-==== Technical Details ====
-  * Fire Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/FireElemental.java|FireElemental.java]]
-  * Air Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]]
-  * Water Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/WaterElemental.java|WaterElemental.java]]
-  * Earth Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java|EarthElemental.java]]
-
 ==== Code References ====
-  * [[code:RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/FireElemental.java|FireElemental.java]]
-  * [[code:RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]]
-  * [[code:RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/WaterElemental.java|WaterElemental.java]]
-  * [[code:RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java|EarthElemental.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/FireElemental.java|FireElemental.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/WaterElemental.java|WaterElemental.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java|EarthElemental.java]]
+
+==== Technical Details ====
+===== Fire Elemental Technical =====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/FireElemental.java|com.watabou.pixeldungeon.actors.mobs.FireElemental]]
+  * **HP:** 65 (ht(65))
+  * **Attack Speed:** Normal (same as standard mobs)
+  * **Defense:** 20 (baseDefenseSkill = 20)
+  * **Attack:** 25 (baseAttackSkill = 25)
+  * **Damage:** 16-20 (dmgMin = 16, dmgMax = 20)
+  * **Damage Reduction:** 5 (dr = 5)
+  * **Experience:** 10 (expForKill = 10)
+  * **Max Level:** 20 (maxLvl = 20)
+  * **Immunities:** [[rpd:fire_enchantment|Fire]], [[rpd:burning_buff|Burning]], [[rpd:wand_of_firebolt_item|Wand of Firebolt]], [[rpd:scroll_of_psionic_blast_item|Scroll of Psionic Blast]], [[rpd:bleeding_buff|Bleeding]]
+
+===== Air Elemental Technical =====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|com.nyrds.pixeldungeon.mobs.elementals.AirElemental]]
+  * **HP:** Depth * 3 + 1 (dynamic based on dungeon depth)
+  * **Attack Speed:** Normal
+  * **Defense:** Depth * 2 + 1 (dynamic based on dungeon depth)
+  * **Attack:** (defense * 2) + 1 (dynamic based on defense)
+  * **Damage:** 0 to (hp/4) (dmgMin = 0, dmgMax = ht()/4)
+  * **Damage Reduction:** (depth+1)/5 (dynamic based on dungeon depth)
+  * **Experience:** Depth + 1 (dynamic based on dungeon depth)
+  * **Max Level:** Depth + 2 (dynamic based on dungeon depth)
+  * **Immunities:** [[rpd:bleeding_buff|Bleeding]]
+  * **Special Attack:** Uses [[rpd:wind_gust_spell|Wind Gust]] spell instead of normal attack
+  * **Range:** Skill level (3 + lvl/10) - keeps distance of at least skillLevel()-1 from enemies
+  * **AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Hunting.java|Hunting]] - actively hunts targets but maintains distance
+
+===== Water Elemental Technical =====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/WaterElemental.java|com.nyrds.pixeldungeon.mobs.elementals.WaterElemental]]
+  * **HP:** Depth * 5 + 1 (dynamic based on dungeon depth)
+  * **Attack Speed:** Normal
+  * **Defense:** Depth * 2 + 1 (dynamic based on dungeon depth)
+  * **Attack:** (defense/2) + 1 (dynamic based on defense)
+  * **Damage:** Equal to HP divided by 2 (dmgMin = ht()/2, dmgMax = ht()/2)
+  * **Damage Reduction:** (depth+1)/3 (dynamic based on dungeon depth)
+  * **Experience:** Depth + 1 (dynamic based on dungeon depth)
+  * **Max Level:** Depth + 2 (dynamic based on dungeon depth)
+  * **Immunities:** [[rpd:frost_buff|Frost]], [[rpd:scroll_of_psionic_blast_item|Scroll of Psionic Blast]], [[rpd:bleeding_buff|Bleeding]]
+  * **Speed on Water:** Doubled when on liquid terrain
+  * **Speed on Other Terrain:** Halved on non-liquid terrain
+  * **Healing:** Heals expForKill when standing on water tiles
+  * **AI:** Standard mob behavior with special interaction on water
+
+===== Earth Elemental Technical =====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java|com.nyrds.pixeldungeon.mobs.elementals.EarthElemental]]
+  * **HP:** Depth * 10 + 1 (dynamic based on dungeon depth)
+  * **Attack Speed:** Normal
+  * **Defense:** Depth / 2 + 1 (dynamic based on dungeon depth)
+  * **Attack:** (defense/2) + 1 (dynamic based on defense)
+  * **Damage:** Equal to HP divided by 5 (dmgMin = ht()/5, dmgMax = ht()/5)
+  * **Damage Reduction:** Equal to expForKill (dynamic based on dungeon depth)
+  * **Experience:** Depth + 1 (dynamic based on dungeon depth)
+  * **Max Level:** Depth + 2 (dynamic based on dungeon depth)
+  * **Immunities:** [[rpd:roots_buff|Roots]], [[rpd:paralysis_buff|Paralysis]], [[rpd:stun_buff|Stun]], [[rpd:toxic_gas_buff|Toxic Gas]], [[rpd:burning_buff|Burning]], [[rpd:bleeding_buff|Bleeding]]
+  * **Speed on Liquid:** Halved when on liquid terrain
+  * **Regrowth Chance:** 50% chance to create [[rpd:regrowth_spell|Regrowth]] when attacking
+  * **AI:** Standard mob behavior with regrowth special attack
+
+==== String Resource References ====
+  * **Fire Elemental:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|FireElemental_Name, FireElemental_Info]]
+  * **Air Elemental:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|AirElemental_Name, AirElemental_Info]]
+  * **Water Elemental:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|WaterElemental_Name, WaterElemental_Info]]
+  * **Earth Elemental:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|EarthElemental_Name, EarthElemental_Info]]
 
 ==== See Also ====
   * [[rpd:mobs|Mobs]]
