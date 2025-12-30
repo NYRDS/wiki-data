@@ -1,41 +1,57 @@
-====== Potions ======
+====== Potion Item ======
 
-Potions in Remixed Dungeon are consumable items that provide various effects when quaffed. Potions are identified through use or by Scrolls of Identify.
+[[rpd:images:potion_red.png|Potion]]
+
+==== Description ====
+Potions are consumable items that provide beneficial effects to the player when used. Each potion has a unique effect and can be identified through various means.
 
 ==== Common Potions ====
-  * [[rpd:potion_of_healing_item|Potion of Healing]]: Restores health
-  * [[rpd:potion_of_experience_item|Potion of Experience]]: Grants experience points
-  * [[rpd:potion_of_strength_item|Potion of Strength]]: Permanently increases strength
-  * [[rpd:potion_of_might_item|Potion of Might]]: Increases strength and health permanently
-  * [[rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]]: Creates fire damage in an area
-  * [[rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]]: Creates paralyzing gas
-  * [[rpd:potion_of_toxic_gas_item|Potion of Toxic Gas]]: Creates poisonous gas
-  * [[rpd:potion_of_invisibility_item|Potion of Invisibility]]: Makes you temporarily invisible
-  * [[rpd:potion_of_mind_vision_item|Potion of Mind Vision]]: Reveals monsters and items on the level
-  * [[rpd:potion_of_purity_item|Potion of Purity]]: Neutralizes harmful gases and effects
-  * [[rpd:potion_of_blessing_item|Potion of Blessing]]: Provides temporary combat buffs
-  * [[rpd:potion_of_overhealing_item|Potion of Overhealing]]: Heals above maximum health
+  * [[rpd:potion_of_healing_item|Potion of Healing]] - Restores health
+  * [[rpd:potion_of_experience_item|Potion of Experience]] - Provides experience points
+  * [[rpd:potion_of_strength_item|Potion of Strength]] - Increases strength
+  * [[rpd:potion_of_might_item|Potion of Might]] - Permanently increases strength and health
+  * [[rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] - Creates fire in an area
+  * [[rpd:potion_of_frost_item|Potion of Frost]] - Freezes and damages enemies
+  * [[rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] - Releases paralyzing gas
+  * [[rpd:potion_of_toxic_gas_item|Potion of Toxic Gas]] - Releases toxic gas
+  * [[rpd:potion_of_holy_water_item|Potion of Holy Water]] - Uncurses items
+  * [[rpd:potion_of_purity_item|Potion of Purity]] - Clears harmful gases
+  * [[rpd:potion_of_invisibility_item|Potion of Invisibility]] - Provides invisibility
+  * [[rpd:potion_of_mind_vision_item|Potion of Mind Vision]] - Allows seeing through walls
+  * [[rpd:potion_of_shielding_item|Potion of Shielding]] - Provides temporary damage reduction
+  * [[rpd:potion_of_overhealing_item|Potion of Overhealing]] - Provides healing and temporary health
+  * [[rpd:potion_of_blessing_item|Potion of Blessing]] - Provides various positive effects
 
-==== Potion Mechanics ====
-  * Potions are consumed automatically and provide immediate effects
-  * unidentified potions have randomized appearances
-  * Some potions require careful timing for effective use
-  * Potions can be thrown at enemies to provide effects to them
-
-==== Thrown Potions ====
-Some potions gain different effects when thrown rather than drunk:
-  * **Liquid Flame**: Can ignite enemies and terrain when thrown
-  * **Toxic Gas**: Creates area-effect damage when thrown
-  * **Paralytic Gas**: Can paralyze enemies in an area when thrown
+==== Mechanics ====
+  * Potions can be identified by using them, throwing them, or through certain other items/abilities
+  * Throwing a potion will activate its effect at the location it breaks
+  * Identified potions can be used directly for their effect
+  * Most potions become "Unclassified" when the player has not seen them before
+  * Potions have random colors when unidentifed
 
 ==== Identification ====
-  * Potions must be identified to know their effects
-  * Can be identified by drinking, using Scroll of Identify, or Crystal Ball
-  * Once identified, all potions of the same type show their effects
+  * [[rpd:scroll_of_identify_item|Scroll of Identify]] - Identifies a single item
+  * [[rpd:scroll_of_mind_vision_item|Scroll of Mind Vision]] - Reveals items on the level
+  * Throwing the potion - Reveals its effect through the result
+  * [[rpd:alchemy|Alchemy]] - Can be used to identify potions through brewing
+
+==== Technical Details ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|com.watabou.pixeldungeon.items.potions.Potion]]
+  * **Base Class:** Extends Item class
+  * **Implementation:** Abstract class with specific implementations for each potion type
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]] - Base class for all potions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/|potion package]] - All potion implementations
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - Base item class
+
+==== String Resource References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Potion-related strings]]
 
 ==== See Also ====
-  * [[rpd:items|Items]]
-  * [[rpd:scrolls|Scrolls]]
-  * [[rpd:alchemy_mechanic|Alchemy]]
+  * [[rpd:items|Items]] - General information about items
+  * [[rpd:alchemy|Alchemy]] - Creating potions through brewing
+  * [[rpd:scroll_item|Scrolls]] - Similar consumable items with different effects
+  * [[rpd:collectibles|Collectibles]] - Other consumable items
 
 {{tag> rpd items potions}}
