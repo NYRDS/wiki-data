@@ -34,7 +34,8 @@ When attacking an enemy with the Sacrificial Sword, there is a chance to convert
   * Only triggers on direct hits (not on missed attacks)
 
 ==== Mechanics ====
-  * The sword emits a red glow that pulses more rapidly as the conversion chance increases
+  * The sword emits a red glow (0xFF4466) that pulses with a period of max(0.1, 0.1/baseChance) which increases as the conversion chance increases
+  * The glow pulses more rapidly as the conversion chance increases
   * The glow period is inversely proportional to the base conversion chance
   * Successfully converting an enemy triggers the [[rpd:pet_mechanic|pet]] creation mechanics
   * Does not work on enemies that are already pets
@@ -47,16 +48,21 @@ When attacking an enemy with the Sacrificial Sword, there is a chance to convert
   * The pulsing glow can indicate the current conversion chance visually
   * Consider using debuffs to reduce enemy defense before attempting conversion
 
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/SacrificialSword.java|SacrificialSword.java]] - Main implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java#L442-L448|Mob.makePet()]] - Pet creation implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings.java]] - For accessing hero's armor DR
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Hero class definitions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Hero subclass definitions
+
+==== String Resource References ====
+  * **Name:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|SacrificialSword_Name]] (automatically generated name)
+  * **Information:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|SacrificialSword_Info]]
+
 ==== Related ====
   * [[rpd:pet_mechanic|Pets]] - Information about pets created by this weapon
   * [[rpd:hero_subclasses|Hero Subclasses]] - How different subclasses affect the conversion chance
   * [[rpd:armor|Armor]] - How armor damage reduction affects conversion chance
-
-==== Source Code ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/SacrificialSword.java|SacrificialSword.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|SacrificialSword strings]]
-  * Russian String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|Russian SacrificialSword strings]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java#L442-L448|Mob.makePet()]] - Pet creation implementation
-  * **mr: namespace:** Check [[mr:sacrificial_sword_item]] for machine-readable data
+  * [[rpd:weapons|Weapons]] - Other weapons in the game
 
 {{tag> rpd items weapons artifacts melee warden shaman necromancer}}
