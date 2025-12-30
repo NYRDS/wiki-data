@@ -8,6 +8,7 @@ Armor in Remixed Dungeon provides protection by reducing damage from physical at
   * **Level/Upgrades**: Armor can be upgraded to improve its defense rating
   * **Speed Penalty**: Heavier armor may slow hero movement
   * **Stealth Penalty**: Heavier armor may reduce stealth effectiveness
+  * **Required Strength**: Minimum strength needed to wear armor without penalties (calculated by ''requiredSTR()'' method)
 
 ==== Types of Armor ====
   * [[rpd:cloth_armor_item|Cloth Armor]] - Lightest armor with minimal protection
@@ -22,6 +23,10 @@ Armor in Remixed Dungeon provides protection by reducing damage from physical at
   * **Identification**: Most armor must be identified to show full stats
   * **Upgrading**: Armor can be upgraded using [[rpd:scroll_of_upgrade_item|Scroll of Upgrade]] or similar items
   * **Glyphping**: Armor can be enchanted with [[rpd:glyphs|Glyphs]] to gain special properties
+  * **Defense Calculation**: Effective defense is calculated in ''effectiveDr()'' method: ''tier * 2 + level() * tier + (glyph != null ? tier : 0)''
+  * **Strength Requirement**: Calculated in ''requiredSTR()'' method: ''Math.max(typicalSTR() - level(),2)''
+  * **Typical Defense**: ''typicalDR()'' method returns ''tier * 2''
+  * **Typical Strength**: ''typicalSTR()'' method returns ''7 + tier * 2''
 
 ==== Special Armors ====
   * [[rpd:class_armor|Class-specific armor]] - Unique armor for each hero class with special abilities
@@ -29,9 +34,17 @@ Armor in Remixed Dungeon provides protection by reducing damage from physical at
   * [[rpd:armor_upgrades|Upgrades]] - Increasing armor effectiveness through scrolls and other means
 
 ==== Code References ====
-  * **Base class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Armor.java|Armor.java]]
+  * **Base class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]]
   * **Armor implementations**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/|Armor Implementations Directory]]
   * **Glyph system**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/|Armor Glyphs Directory]]
+  * **Defense calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L137-L139|effectiveDr() method]]
+  * **Strength calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L149-L150|requiredSTR() method]]
+  * **Defense formula**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L133-L135|typicalDR() and typicalSTR() methods]]
+  * **Glyphping implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L120-L122|inscribe() method]]
+  * **Damage defense processing**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L73-L84|defenceProc() method]]
+  * **Armor upgrade process**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L57-L69|upgrade() method]]
+  * **String resources (English)**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1926-L1941|Armor strings]]
+  * **String resources (Russian)**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1970-L1985|Armor strings]]
 
 ==== Related ====
   * [[rpd:items|Items]]
