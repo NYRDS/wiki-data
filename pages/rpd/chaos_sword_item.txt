@@ -27,13 +27,25 @@ Chaos Sword is a unique weapon that converts any melee weapon into a chaotic var
 
 ==== Source Code References ====
   * Core implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosSword.java|ChaosSword.java]]
+  * Level increase mechanism: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosSword.java#L54-L65|ownerDoesDamage() method]] - Increases level when dealing damage
+  * Level downgrade mechanism: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosSword.java#L42-L52|ownerTakesDamage() method]] - Downgrades to +0 at level 4+ when charge reaches 0
+  * Charge calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosSword.java#L38-L40|chargeForLevel() method]] - Calculated as `5 * (current_level^1.5)`
+  * Image selection: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosSword.java#L77-L79|selectImage() method]] - Changes sprite based on level
   * Creation mechanism: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCrystal.java|ChaosCrystal.java]] (Fuse action)
   * Item factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+  * **String Resources (English):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1177-L1179|strings_all.xml#L1177-L1179]] - ChaosSword_Name, ChaosSword_Info, ChaosSword_Gender
+  * **String Resources (Russian):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1163-L1165|strings_all.xml#L1163-L1165]] - ChaosSword_Name, ChaosSword_Info, ChaosSword_Gender
 
 ==== Related ====
   * [[rpd:chaos_crystal_item|Chaos Crystal]] - Item used to create Chaos Sword
   * [[rpd:chaos_armor_item|Chaos Armor]] - Other chaotic equipment
+  * [[rpd:chaos_bow_item|Chaos Bow]] - Chaotic ranged weapon
   * [[rpd:chaos_staff_item|Chaos Staff]] - Other chaotic equipment
+  * [[rpd:chaos_shield_item|Chaos Shield]] - Chaotic shield
   * [[rpd:melee_weapons|Melee Weapons]] - Base weapon types that can be fused
+  * [[rpd:chaos_set_item|Chaos Set]] - Equipment set containing chaotic items
+  * [[rpd:items|Items]] - Other items in the game
+  * [[rpd:weapons|Weapons]] - Other weapons in the game
+  * [[rpd:enchantments|Enchantments]] - Enchantments that can be lost when downgrading
 
 {{tag> rpd items weapons chaos }}
