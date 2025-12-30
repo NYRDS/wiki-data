@@ -15,7 +15,7 @@ This monstrous creature looks like a cloud of living darkness. It's gigantic eye
   * **Defense Rating:** 25
   * **Exp for Kill:** 45
   * **Max Level:** 30
-  * **AI State:** Wandering
+  * **AI State:** [[rpd:wandering_ai|Wandering]]
   * **Special:** Cannot become a pet
 
 ==== Abilities ====
@@ -40,11 +40,23 @@ This monstrous creature looks like a cloud of living darkness. It's gigantic eye
   * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/TreacherousSpirit.java|com.nyrds.pixeldungeon.mobs.guts.TreacherousSpirit]]
   * **Implementation:** Extends the base Mob class
   * **Summoning Chance:** 25% chance (Random.Int(4) == 1) to summon a Spirit of Pain on attack
+  * **HP:** 200 (hp(ht(200)) in constructor)
+  * **Base Defense Skill:** 35 (baseDefenseSkill = 35 in constructor)
+  * **Base Attack Skill:** 35 (baseAttackSkill = 35 in constructor)
+  * **Damage Range:** 30-45 (dmgMin = 30, dmgMax = 45 in constructor)
+  * **Damage Resistance:** 25 (dr = 25 in constructor)
+  * **Experience Value:** 45 exp for kill (expForKill = 45 in constructor)
+  * **Maximum Level:** 30 (maxLvl = 30 in constructor)
+  * **AI State:** Wandering (setState(MobAi.getStateByClass(Wandering.class)) in constructor)
+  * **Special:** Cannot become a pet (canBePet() returns false)
+  * **Drop:** Heart of Darkness (collect(new HeartOfDarkness()) in constructor)
 
 ==== Content Verification ====
   * Information source: Java Class com.nyrds.pixeldungeon.mobs.guts.TreacherousSpirit
   * Stats verification: Extracted directly from class implementation
   * Effect descriptions: Based on in-game mechanics and string resources
   * Source code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/TreacherousSpirit.java|TreacherousSpirit.java]]
+  * Related entities: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/SpiritOfPain.java|SpiritOfPain.java]] (summoned minion)
+  * NPC Connection: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]] (references TreacherousSpirit)
 
 {{tag> rpd mobs spirits guts}}
