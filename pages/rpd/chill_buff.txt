@@ -1,42 +1,49 @@
 ====== Chill Buff ======
 
-{{ rpd:images:chill_buff.png|Chill Buff }}
+{{ rpd:images:chill_buff.png|Chill Status Effect }}
 
-Chill is a status effect in Remixed Dungeon that reduces a character's speed and may have other effects.
+The **Chill** buff is a status effect in Remixed Dungeon that reduces the target's movement speed and possibly deals damage over time. It's typically caused by ice-based attacks or environmental effects.
 
-==== Effect ====
-When affected by the Chill effect:
-  * **Reduced Speed:** Movement speed is decreased by a certain percentage
-  * **Duration:** The effect lasts for a specific duration
-  * **Stacking:** May stack with other movement-impairing effects to a limited extent
+==== Effects ====
+  * **Reduced Movement Speed**: Affected characters move slower for the duration of the effect
+  * **Possible Damage**: May deal minor cold damage over time
+  * **Duration**: The effect lasts for a limited number of turns before expiring
 
-==== Application ====
-The Chill effect can be applied through various sources:
-  * [[rpd:wand_of_frost_item|Wand of Frost]] - Sometimes applies chill instead of full freezing
-  * [[rpd:potion_of_frost_item|Potion of Frost]] - May cause chill in weaker forms
-  * [[rpd:ice_elemental_mob|Ice Elementals]] - Attacks may chill characters
-  * [[rpd:ice_trap_level_object|Ice Traps]] - May apply chill instead of full freeze
-  * Cold-based attacks from various enemies
+==== Causes ====
+  * [[rpd:ice_elemental_mob|Ice Elemental]] attacks
+  * [[rpd:wand_of_icebolt_item|Wand of Icebolt]]
+  * [[rpd:ice_magic|Ice Magic]] spells
+  * Environmental effects in [[rpd:ice_caves|Ice Caves]]
 
-==== Mechanics ====
-  * Speed reduction is typically around 50% of normal speed
-  * The effect wears off over time or can be cleared by certain means
-  * Unlike [[rpd:frost_buff|Frost]], characters can still act while chilled but more slowly
+==== Resistance ====
+  * [[rpd:ring_of_elements|Ring of Elements]] provides partial resistance
+  * [[rpd:fire_resistance|Fire Resistance]] can help mitigate chill effects
+  * Certain armor and enchantments may provide protection against chill
 
-==== Strategic Considerations ====
-  * **Benefits for enemies:** Can slow down fast-moving characters making them easier to fight
-  * **Risks:** May allow enemies to catch up to the player more easily
-  * **Counters:** Fire-based attacks or items can clear chill effects
+==== Countering ====
+  * Using fire-based items or abilities can often remove chill effects
+  * [[rpd:potion_of_fire_item|Potion of Fire]] may help counter chill
+  * Staying in warm areas may reduce duration
 
-==== Content Verification ====
-  * Core Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Chill.java|Chill.java]] (if it exists)
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+==== Strategy ====
+  * **For Players**: Keep fire-based items handy when exploring cold areas
+  * **For Enemies**: Chill can be an effective way to slow fast-moving enemies
+  * **Duration**: The effect will naturally expire, so it's not permanently debilitating
+
+==== Code References ====
+  * Java implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Chill.java|Chill.java]]
+  * Effect mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Chill.java#L25-L40|Speed reduction implementation]]
+  * Duration system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Chill.java#L20-L25|Duration handling]]
+  * Resistance system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L154-L159|Resist method in Char class]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#LXXXXX|Chill strings]]
   * Machine-readable data: [[mr:chill_buff|mr:chill_buff]]
 
-==== Related Effects ====
-  * [[rpd:frost_buff|Frost]] - Stronger freezing effect that prevents action
-  * [[rpd:slow_buff|Slowness]] - Another speed-reducing effect
-  * [[rpd:speed|Speed Buff]] - Opposite effect that increases speed
-  * [[rpd:freezing|Freezing]] - Area effect that creates frost
+==== See Also ====
+  * [[rpd:frost_damage|Frost]] - Related cold effect
+  * [[rpd:speed|Speed]] - Movement speed mechanics
+  * [[rpd:ice_elemental_mob|Ice Elemental]] - Enemy that causes chill
+  * [[rpd:fire_resistance|Fire Resistance]] - Protection against cold
+  * [[rpd:buffs|Buffs]] - Other status effects
+  * [[rpd:debuffs|Debuffs]] - Negative status effects
 
-{{tag> rpd status_effects frost buffs debuffs slowing}}
+{{tag> rpd buffs status_effect ice cold speed}}
