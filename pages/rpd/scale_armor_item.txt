@@ -7,10 +7,10 @@
 ==== Armor Properties ====
   * **Armor Level**: 4 (Medium armor)
   * **Type**: Medium armor with balanced protection and mobility
-  * **Durability**: Standard armor durability (degrades with use)
-  * **Enchantments**: Can be enchanted with glyphs like other armor types
+  * **Durability**: Standard [[rpd:armor_durability|armor durability]] (degrades with use)
+  * **Enchantments**: Can be enchanted with [[rpd:armor_glyphs|glyphs]] like other armor types
   * **Weight**: 10 (affects movement speed slightly)
-  * **Price**: 40 gold (when sold to shops)
+  * **Price**: 80 gold (when sold to shops - price calculated as armor level * 20)
 
 ==== Description ====
 The metal scales sewn onto a leather vest create a flexible, yet protective armor. This design offers a good balance between protection and mobility, making it suitable for various playstyles.
@@ -30,25 +30,27 @@ The metal scales sewn onto a leather vest create a flexible, yet protective armo
 
 ==== Code References ====
   * **Java Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java|ScaleArmor.java]]
-  * **Stats verification**: Extracted directly from ScaleArmor.java constructor (armor level: 4, image: 3)
+  * **Constructor Data**: ScaleArmor() sets armor level to 4 and image index to 3
+  * **Stats verification**: Armor level: 4 (super(4) in constructor), Weight: 10 (default for armor level 4), Image: 3
   * **String Resources**:
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2013|ScaleArmor_Name]]
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2014|ScaleArmor_Desc]]
     * Available in multiple languages (ru, de, fr, es, etc.)
-  * **Registration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+  * **Registration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (registerItemClass(ScaleArmor.class))
   * **Base Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor base class]]
   * **Armor System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] (base implementation)
-  * **Armor Level Calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L28|armor level = 4]]
-  * **Weight Calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L29|default weight = 10]]
-  * **Sprite Index**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java#L12|image = 3]]
-  * **String Localization**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java#L15|StringsManager.getVar(R.string.ScaleArmor_Desc)]]
+  * **Armor Level Calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L28|armor level = 4]] (determines protection and weight)
+  * **Weight Calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L29|weight = armor level * 2.5]] (weight = 4 * 2.5 = 10)
+  * **Sprite Index**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java#L11|image = 3]] (determines visual representation)
+  * **String Localization**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java#L17|desc() method returns StringsManager.getVar(R.string.ScaleArmor_Desc)]]
   * **Entity Kind Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind interface]]
-  * **Armor Durability**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor durability system]]
-  * **Armor Price**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L97|Armor price calculation]] (price = armor level * 20)
-  * **Armor Enchantments**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/|Armor Glyph system]]
-  * **Material Types**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L27|materialType field]] - indicates armor material properties
-  * **Equipment System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings class]] - handles armor equipment
-  * **Armor Classifications**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L18-L21|Tier classifications]] - defines armor tiers (1-5)
+  * **Armor Durability**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor durability system]] (based on degradation mechanics)
+  * **Armor Price**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L97|Armor price calculation]] (price = armor level * 20 = 80 gold when sold)
+  * **Armor Enchantments**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/|Armor Glyph system]] (compatibility with glyphs)
+  * **Material Types**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L27|materialType field]] - indicates armor material properties (medium armor)
+  * **Equipment System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings class]] - handles armor equipment in armor slot
+  * **Armor Classifications**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L18-L21|Tier classifications]] - defines armor tiers (tier 4 = medium armor)
+  * **Shop Availability**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java#L90|ShopPainter.java]] (appears in shops)
   * **Machine-readable data**: [[mr:scale_armor_item|mr:scale_armor_item]]
 
 ==== Related ====
