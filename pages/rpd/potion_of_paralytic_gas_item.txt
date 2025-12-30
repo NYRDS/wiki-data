@@ -24,7 +24,7 @@ When shattered, this potion releases a numbing cloud of paralytic gas that paral
   * Part of the Doctor class starting equipment
   * Excellent for crowd control situations
 {{tag> rpd items potion paralytic_gas throwable control}}
-{{ :rpd:potion_of_paralytic_gas.png?nolink&50|}}
+{{ rpd:images:potion_of_paralytic_gas.png?nolink&50|Potion of Paralytic Gas }}
 The Potion of Paralytic Gas is a consumable item that releases a cloud of gas that can paralyze enemies caught within its area of effect.
 
 When thrown, this potion releases a cloud of paralytic gas that spreads in the area, potentially paralyzing all creatures within its range. Paralyzed creatures are unable to take actions for a period of time.
@@ -48,7 +48,7 @@ When thrown, this potion releases a cloud of paralytic gas that spreads in the a
   * Useful during equipment changes or healing
   * Can be used to bypass enemies entirely
 ==== Related ====
-  * [[rpd:potion|Potions]] - Other consumable items
+  * [[rpd:potion_item|Potions]] - Other consumable items
   * [[rpd:potion_of_toxic_gas_item|Potion of Toxic Gas]] - Similar gas-based item
   * [[rpd:plague_doctor_mob|Plague Doctor]] - Class that specializes in gas effects
   * [[rpd:paralysis_buff|Paralysis]] - The status effect created
@@ -71,6 +71,19 @@ This potion will release a paralyzing gas cloud when shattered. Creatures caught
   * Can be used to neutralize dangerous enemies temporarily
   * Effective against groups of enemies
   * Provides tactical advantages by immobilizing foes
+
+==== Code References ====
+  * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java|PotionOfParalyticGas.java]]
+  * **Potion Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]]
+  * **Paralytic Gas Effect:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ParalyticGas.java|ParalyticGas.java]] - handles the gas cloud effect
+  * **Paralysis Buff:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]] - the actual paralysis status effect
+  * **Shatter Mechanics:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L20-L26|shatter method]] - creates the gas cloud when potion breaks
+  * **Blob Seed Method:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java#L35-L42|Blob.seed]] - creates the paralytic gas effect
+  * **Splash Effect:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L22|splash method]] - visual effect when shattered
+  * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2189-L2190|PotionOfParalyticGas_Name, PotionOfParalyticGas_Info]] - displays "This is a flask of potent paralytic gas, which will freeze any creature that breathes it."
+  * **Price Reference:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L28|basePrice method]] - value of 40 gold
+  * **Moistening Support:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L34-L40|moistenArrow method]] - enables creation of Paralysis Arrows
+  * **Machine-readable data:** [[mr:potion_of_paralytic_gas_item|mr:potion_of_paralytic_gas_item]]
 
 ==== Notes ====
 Potion of Paralytic Gas is a powerful tactical tool that can neutralize threats temporarily, allowing the player to escape or attack immobilized enemies.

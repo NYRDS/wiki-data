@@ -13,14 +13,15 @@ The Shaman subclass can be unlocked by using a [[rpd:tome_of_mastery_item|Tome o
 ===== Special Mechanics =====
   * Elven _Shamans_ can use [[rpd:wands|wands]] as [[rpd:melee_weapon|melee weapons]]
   * When attacking with a wand equipped as the primary weapon, there's a 25% chance (implemented as Random.Int(4) == 0) to zap the target with the wand's power without consuming a charge
-  * This ability is implemented in the ''attackProc'' method of ''HeroSubClass.java'' (lines 171-181)
-  * The wand must be equipped as the primary weapon for this mechanic to work
+  * This ability is implemented in the ''attackProc'' method of ''HeroSubClass.java'' (lines 144-153)
+  * The wand must be equipped as the primary weapon (active weapon) for this mechanic to work
+  * The wand needs to have charges available and the ''affectTarget()'' method must return true
   * +1 dew bonus for enhanced [[rpd:mana_mechanic|mana recovery]]
 
 ===== Technical Details =====
-  * **Implementation:** The Shaman's special mechanics are implemented in the ''attackProc'' method of ''HeroSubClass.java''
-  * **Wand Activation:** When a Shaman attacks with a wand equipped, there's a 25% chance to activate the wand on the target without consuming a charge
-  * **Code Reference:** The specific implementation checks if the primary weapon is a wand and has charges, then activates it at the enemy's position
+  * **Implementation:** The Shaman's special mechanics are implemented in the ''attackProc'' method of ''HeroSubClass.java'' (lines 144-153)
+  * **Wand Activation:** When a Shaman attacks with a wand equipped as the active weapon, there's a 25% chance to zap the enemy with the wand's effect without consuming a charge
+  * **Code Reference:** The specific implementation checks if the primary weapon is a wand, and if ''affectTarget()'' returns true and ''Random.Int(4) == 0'', then ''zapCell()'' is called to zap the enemy without consuming charges
 
 ===== Special Armor =====
 Using an [[rpd:armor_kit_item|Armor Kit]] on any armor will transform it into the [[rpd:shaman_armor_item|Shaman Armor]], which is specifically designed for this subclass.
@@ -46,9 +47,9 @@ Using an [[rpd:armor_kit_item|Armor Kit]] on any armor will transform it into th
 
 ===== Code References =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass definition and mechanics
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L171-L181|HeroSubClass.java#L171-L181]] - Exact implementation of wand-zap mechanic (25% chance when wielding wand)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L234-L236|HeroSubClass.java#L234-L236]] - Dew bonus implementation (+1 for Shaman)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L15-L17|HeroSubClass.java#L15-L17]] - Enum definition with armor class ("ShamanArmor")
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L144-L153|HeroSubClass.java#L144-L153]] - Exact implementation of wand-zap mechanic (25% chance when wielding wand)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L257-L261|HeroSubClass.java#L257-L261]] - Dew bonus implementation (+1 for Shaman)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L19-L21|HeroSubClass.java#L19-L21]] - Enum definition with armor class ("ShamanArmor")
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - Wand implementation that enables the mechanic
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L92-L96|Wand.java#L92-L96]] - AffectTarget() method that checks if wand can zap
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L164-L174|Wand.java#L164-L174]] - zapCell() method that performs the zap without consuming charge

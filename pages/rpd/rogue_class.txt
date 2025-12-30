@@ -1,59 +1,93 @@
 ====== Rogue Class ======
 
-{{ rpd:images:rogue_hero.png|Rogue Hero }}
+{{ rpd:images:hero_ROGUE.png|Rogue Class }}
 
-The **Rogue** is one of the starting classes in Remixed Dungeon. Known for stealth, agility, and unique throwing spells like Kunai Throw.
+The **Rogue** is one of the starting playable classes in Remixed Dungeon. He is a master of stealth and cunning, specializing in stealth, detection, and agility. Known for high evasion and detection capabilities.
 
-==== Class Characteristics ====
-  * **Primary Stat**: Dexterity and stealth
+==== Class Overview ====
+  * **Primary Focus**: Stealth and agility
+  * **Special Ability**: Enhanced detection and high evasion
+  * **Playstyle**: Evasive combat with detection advantages
+  * **Magic Affinity**: [[rpd:rogue_affinity|Rogue]]
+
+==== Starting Stats and Equipment ====
+  * **Starting HP**: 20
+  * **Starting STR**: 10
   * **Starting Equipment**:
-    * [[rpd:cloth_armor_item|Cloth Armor]] (common to all classes)
-    * [[rpd:ring_of_shadows_item|Ring of Shadows]] (specific to Rogue)
-    * [[rpd:ration_item|Food ration]] (common to non-expert difficulty)
-    * [[rpd:scroll_of_magic_mapping_item|Scroll of Magic Mapping]] (specific to Rogue)
-    * 100 [[rpd:gold|Gold]] (common to all classes)
-  * **Special Abilities**: Enhanced detection of secrets and traps
-  * **Class Armor**: [[rpd:rogue_armor_item|Rogue Garb]] - Specialized armor with "smoke bomb" ability
-  * **Magic Affinity**: Rogue
+    * +1 [[rpd:ring_of_shadows_item|Ring of Shadows]] (identified)
+    * [[rpd:cloth_armor_item|Cloth Armor]] (identified)
+    * [[rpd:gold_item|100 Gold]]
+    * [[rpd:cloak_spell|Cloak spell]] (in quickslot)
+    * [[rpd:scroll_of_magic_mapping_item|Scroll of Magic Mapping]] (known item)
+
+==== Class Perks ====
+  * **Ring of Shadows +1**: Starts with a [[rpd:ring_of_shadows_item|Ring of Shadows]] +1 (from ''initHeroes.json'', ROGUE section)
+  * **Ring Identification**: Identifies the type of a ring on equipping it (from ''Ring.java:180'' where ''getHeroClass() == HeroClass.ROGUE'')
+  * **Light Armor Proficiency**: Proficient with light armor, dodging better while wearing it (from ''HeroClass_RogPerks_2'' in string resources)
+  * **Detection Expertise**: Proficient in detecting hidden doors and traps (from ''HeroClass_RogPerks_3'' in string resources)
+  * **Slow Hunger**: Can go without food longer (from ''HeroClass_RogPerks_4'' in string resources)
+  * **Identified Maps**: Scrolls of Magic Mapping are identified from the beginning (from ''HeroClass_RogPerks_5'' in string resources)
+
+==== Class Abilities ====
+  * **High Evasion**: Higher chance to dodge enemy attacks (from ''HeroClass_RogPerks_2'' in string resources)
+  * **Detection**: Better at finding hidden doors and traps (from ''HeroClass_RogPerks_3'' in string resources)
+  * **Deception**: Special [[rpd:rogue_armor_item|class armor]] ability for invisibility (from ''RogueArmor.java'' - "smoke bomb" ability)
 
 ==== Advantages ====
-  * **Trap Detection**: Better at avoiding traps due to high awareness
-  * **Stealth**: Better at avoiding random encounters
-  * **Stealing**: Can steal from shops if caught
-  * **Exploration**: Starts with an item that can identify equipment
+  * High evasion makes difficult to hit
+  * Better at detecting traps and secret doors
+  * Fast weapons for more frequent attacks
+  * Special abilities for stealth and escape
+  * Good for players who prefer strategic positioning
+  * [[rpd:ring_of_shadows_item|Ring of Shadows]] is pre-identified and enhanced
+  * Resists effects that slow down the hero (from ''Char.java:572'' where ''getHeroClass() == HeroClass.ROGUE'' - hunger step is 1.2x normal)
 
 ==== Disadvantages ====
-  * **Weaker Armor**: Starts with leather armor which has lower protection
-  * **Average Weapon**: Starts with a dagger which has modest damage
-  * **Mana Resource**: Requires managing an additional resource (mana)
+  * Lower direct combat effectiveness than Warrior
+  * [[rpd:ring_of_shadows_item|Ring of Shadows]] requires energy to be effective
+  * Lower health than Warrior
+  * More dependent on finding good equipment quickly
 
-==== Abilities ====
-  * **Sneak Detection**: Reveals nearby hidden doors and traps
-  * **Enhanced Awareness**: Better chance to detect secret areas
-  * **Mana System**: Access to magical throwing spells that use mana
+==== Subclasses ====
+  * [[rpd:assassin_subclass|Assassin]]: When performing a surprise attack, inflicts additional damage to the target
+  * [[rpd:freerunner_subclass|Free Runner]]: Can move almost twice as fast as most monsters; when running, is much harder to hit (requires being unencumbered and not starving)
 
-==== Specializations ====
-The Rogue class can specialize in the following subclasses:
-  * **Freerunner** - Enhanced movement capabilities
-  * **Assassin** - Enhanced damage capabilities 
+==== Class Armor ====
+Rogues have access to [[rpd:rogue_armor_item|Rogue Armor]] (obtained by using the [[rpd:armor_kit_item|Armor Kit]] on any regular armor) that grants temporary invisibility, allowing for escape or strategic positioning.
 
-==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Main class definition and initialization
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Hero base implementation
+==== Strategy ====
+  * Use high evasion to avoid taking damage
+  * Rely on detection to navigate safely
+  * Use fast weapons frequently for potential combo attacks
+  * Take advantage of stealth abilities when needed
+  * Look for opportunities to backstab or gain advantage
+  * Consider mastery path based on playstyle preferences
+
+==== Content Verification ====
+  * **Information Source**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]]
+  * **Stats Verification**: Extracted directly from initHeroes.json ROGUE section and HeroClass_RogPerks in string resources
+  * **Effect Descriptions**: Based on code analysis and string resource entries
+  * **Last Updated**: December 29, 2025
+  * **Source File**: HeroClass.java, initHeroes.json
+
+==== Source Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Main hero class definition
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] - Starting equipment and stats
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/RogueArmor.java|RogueArmor.java]] - Class armor implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1453-L1467|HeroClass strings]] - English localization
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1439-L1451|HeroClass strings (Russian)]] - Russian localization
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L41-L48|initHeroes.json]] - Starting equipment configuration
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L78|HeroClass.java#L78]] - Class to armor mapping (ROGUE -> RogueArmor.class)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L572|Char.java#L572]] - Rogue-specific awareness calculation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java#L180|Ring.java:180]] - Ring identification perk
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L572|Char.java:572]] - Hunger rate perk
 
-==== See Also ====
-  * [[rpd:hero_classes|Hero Classes]]
-  * [[rpd:warrior_class|Warrior Class]]
-  * [[rpd:mage_class|Mage Class]]
-  * [[rpd:huntress_class|Huntress Class]]
-  * [[rpd:freerunner_subclass|Freerunner Subclass]]
-  * [[rpd:assassin_subclass|Assassin Subclass]]
-  * [[rpd:kunai_throw_spell|Kunai Throw Spell]]
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L945|HeroClass_Rog]] - Class name
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2293-L2298|HeroClass_RogPerks_0-5]] - Class perk descriptions
 
-{{tag> rpd classes hero rogue }}
+==== Related ====
+  * [[rpd:playable_class|Playable Classes]] - Other character options
+  * [[rpd:assassin_subclass|Assassin]] - Mastery path 1
+  * [[rpd:freerunner_subclass|FreeRunner]] - Mastery path 2
+  * [[rpd:ring_of_shadows_item|Ring of Shadows]] - Starting equipment
+  * [[rpd:cloak_spell|Cloak Spell]] - Quickslot ability
+  * [[rpd:rogue_armor_item|Rogue Armor]] - Class armor
+  * [[rpd:rogue_affinity|Rogue Affinity]] - Magic affinity
+
+{{tag> rpd playable_classes rogue}}
