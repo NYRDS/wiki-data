@@ -1,0 +1,57 @@
+====== Caged Kobold NPC ======
+
+{{ rpd:images:cagedkobold_sprite.png|Caged Kobold }}
+
+The **Caged Kobold** is an NPC found in the [[rpd:ice_caves|Ice Caves]] level. He is imprisoned and requires an [[rpd:ice_key_item|Ice Key]] to be freed. In exchange for being released, he transforms into a [[rpd:candle_of_visions|Candle of Visions]].
+
+==== Description ====
+The Caged Kobold is a special NPC located in the Ice Caves. When approached, he requests help in escaping his confinement. If the player brings an Ice Key to free him, he rewards them by transforming into a Candle of Visions. This is part of a special quest mechanism in the game.
+
+==== Mechanics ====
+  * **Interaction**: Can be interacted with when approached
+  * **Quest Requirement**: Requires an [[rpd:ice_key_item|Ice Key]] to free him
+  * **Reward**: Transforms into a [[rpd:candle_of_visions|Candle of Visions]] when freed
+  * **Location**: [[rpd:ice_caves|Ice Caves]] level
+  * **Quest State**: The quest tracks whether it's given, processed, or completed
+  * **Spawn Condition**: Only spawns once per game run and only if not already spawned
+  * **Journal Entry**: Adds an entry to the journal when first interacted with, removes it when completed
+
+==== Dialog ====
+When first approached, the Caged Kobold says:
+  * "Hey...Hey! You're that one adventurer thing, right? Help me out, pall, these damn militarists locked me up in here! They intend to reactivate an ancient weapon to conquer these human things on the surface! But considering how dangerous it is, I opposed it, but they just threw me out and locked me in a cage! I beg you to find the key to the cell, and in return, I will help you to the best of my ability."
+
+When freed, he says:
+  * "Oh, thank you, thank you so much! How you managed to find the key? You... you destroyed the weapon?! That's incredible! You know what, I said I'll help you, and I think I know the best way to do it. I'll stick with you for a while. *Caged Kobold has turned into a candle*"
+
+==== Additional Messages ====
+While imprisoned, the Caged Kobold may say:
+  * [[rpd:cagedkobold_message1|Please...]]
+  * [[rpd:cagedkobold_message2|You gotta help me out, buddy]]
+  * [[rpd:cagedkobold_message3|I hate everything about this cage]]
+
+==== Location ====
+The Caged Kobold can be found in the [[rpd:ice_caves|Ice Caves]] level, usually in a corner area where he is imprisoned.
+
+==== Notes ====
+  * This is a unique quest NPC with a fixed interaction sequence
+  * The reward is valuable as it provides a [[rpd:candle_of_visions|Candle of Visions]]
+  * Only appears once per game, and disappears when freed or if the player leaves the level without freeing him
+  * Part of the [[rpd:ice_caves|Ice Caves]] level special content
+  * Spawns in a random location within a room of the Ice Caves (not on EXIT tiles)
+  * The quest is tracked in the journal until completed
+  * Once freed, the Caged Kobold transforms into a [[rpd:candle_of_visions|Candle of Visions]] and gives the player light for 3 turns of exploration
+
+==== Code Reference ====
+  * **Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/CagedKobold.java|CagedKobold.java]]
+  * **Quest Logic**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/CagedKobold.java#L83|CagedKobold.java]] - Quest save/restore logic
+  * **Spawning**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/IceCavesLevel.java#L161|IceCavesLevel.java]] - How the NPC is spawned in the level
+  * **String Resources**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1011-L1021|strings_all.xml]] - CagedKobold related strings
+  * **Journal Integration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Journal.java#L30|Journal.java]] - Journal feature entry
+
+==== See Also ====
+  * [[rpd:ice_caves|Ice Caves]] - The level where he appears
+  * [[rpd:ice_key_item|Ice Key]] - Required item to free him
+  * [[rpd:candle_of_visions|Candle of Visions]] - Reward obtained
+  * [[rpd:npcs|NPCs]] - Other non-player characters in the game
+
+{{tag> rpd npcs quest ice_caves}}
