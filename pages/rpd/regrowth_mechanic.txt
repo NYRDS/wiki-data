@@ -2,45 +2,45 @@
 
 {{ rpd:images:regrowth_mechanic.png|Regrowth Mechanic }}
 
-Regrowth is a blob effect in Remixed Dungeon that causes high grass to grow in an area, immobilizing creatures within it.
+**Regrowth** is a mechanic in Remixed Dungeon that allows certain plants to grow or regenerate in specific areas of the dungeon when watered or under certain conditions.
 
 ==== Description ====
-Regrowth is an environmental effect that transforms the terrain by causing grass to grow rapidly. It's primarily created by special abilities and items that affect the dungeon environment.
+The regrowth mechanic involves special plants and seeds that can be planted in certain areas of the dungeon and will grow over time when watered by the player. This system allows for farming of items and resources throughout dungeon exploration.
 
-==== Effects ====
-When regrowth occurs in an area:
-  * **Grass Generation:** High grass grows rapidly in the affected area
-  * **Immobilization:** All creatures in the area become temporarily immobilized
-  * **Environmental Change:** The terrain permanently changes to grass
+==== How Regrowth Works ====
+  * Seeds can be planted on specific terrain (usually soil/dirt tiles)
+  * Plants require watering to grow (using water sources like potions or wells)
+  * Different seeds grow into different types of plants with various effects
+  * Fully grown plants can be harvested for their useful items or effects
 
-==== Application ====
-The Regrowth effect can be applied through various sources:
-  * [[rpd:elf_armor_item|Elven Mantle]] - The Elf class armor special ability "NATURE CALL"
-  * [[rpd:wand_of_regrowth_item|Wand of Regrowth]] - Direct spell effect
-  * [[rpd:regrowth_spell|Regrowth Spell]] - If it exists
-  * Special abilities of nature-themed enemies
-
-==== Mechanics ====
-  * When activated, creates a large area filled with regrowth
-  * Affects all creatures in the line of sight of the user
-  * Creatures remain immobilized until the regrowth effect ends
-  * Creates high grass terrain that blocks ranged attacks
+==== Seeds and Plants ====
+  * [[rpd:firebloom_seed|Firebloom Seed]] - Grows into Firebloom plant that deals fire damage
+  * [[rpd:icecap_seed|Icecap Seed]] - Grows into Icecap plant that causes chilling effects
+  * [[rpd:sorrowmoss_seed|Sorrowmoss Seed]] - Grows into Sorrowmoss plant that poisons enemies
+  * [[rpd:sungrass_seed|Sungrass Seed]] - Grows into Sungrass plant that provides healing
+  * [[rpd:fadeleaf_seed|Fadeleaf Seed]] - Grows into Fadeleaf plant that provides invisibility
+  * [[rpd:dreamweed_seed|Dreamweed Seed]] - Grows into Dreamweed plant that causes sleep
+  * [[rpd:rotberry_seed|Rotberry Seed]] - Grows into Rotberry plant that creates a heart
 
 ==== Strategy ====
-  * **Elf Class:** Essential ability for crowd control and escape
-  * **Mobs:** Can be used defensively to block enemy advancement
-  * **Environmental:** Changes the battlefield by creating grass that blocks ranged attacks
-  * **Tactical:** Effective for creating temporary barriers or escape routes
+  * Carry water sources (potion of liquid flame, water from wells, etc.) to water plants
+  * Plant seeds in safe, defensible positions where enemies can be drawn
+  * Some plants can be used to clear rooms or deal damage to groups of enemies
+  * Time management is important - allow enough time for plants to grow before harvesting
+  * Some plants provide beneficial effects for the player (healing, invisibility)
 
-==== Content Verification ====
-  * Core Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Regrowth.java|Regrowth.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
-  * Machine-readable data: [[mr:regrowth_mechanic|mr:regrowth_mechanic]]
+==== Code References ====
+  * **Base Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Plant.java|Plant.java]]
+  * **Seed Implementations:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/seeds/|Seeds directory]]
+  * **Plant Implementations:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/plants/|Plants directory]]
+  * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2800-L2850|Plant-related strings]]
+  * **Russian String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2800-L2850|Plant-related strings in Russian]]
 
-==== Related Effects ====
-  * [[rpd:elf_armor_item|Elven Mantle]] - Creates regrowth through special ability
-  * [[rpd:wand_of_regrowth_item|Wand of Regrowth]] - Wand that creates regrowth
-  * [[rpd:grass|Grass Terrain]] - Terrain created by regrowth
-  * [[rpd:blobs|Blobs]] - Other environmental effects
+==== Related ====
+  * [[rpd:plants|Plants]] - List of all plants
+  * [[rpd:seeds|Seeds]] - List of all seeds
+  * [[rpd:alchemy|Alchemy]] - Related crafting system
+  * [[rpd:gardening|Gardening]] - Advanced farming techniques
+  * [[rpd:potions|Potions]] - Water sources for plants
 
-{{tag> rpd mechanics environment blobs}}
+{{tag> rpd mechanics farming alchemy gardening}}
