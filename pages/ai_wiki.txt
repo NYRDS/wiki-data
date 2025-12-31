@@ -128,6 +128,46 @@ The Remixed Dungeon wiki currently uses a combination of manual content creation
   * **Naming Convention Enforcement Tool**: Automated tool to scan for and fix pages that don't follow the proper naming convention (snake_case with entity type suffixes like _mob, _item, _spell, etc.), as was manually done renaming lich.txt to lich_subclass.txt and others during recent maintenance
   * **Code Reference Integration Tool**: Tool to automatically add appropriate GitHub links to source code, JSON configs, and string resources based on the entity being documented, similar to the manual process of adding code references to pages during recent verification
 
+==== Additional Tools Identified During Recent Maintenance ====
+
+===== 1. Wiki File Naming Convention Checker =====
+  * **Purpose**: Identify files that don't follow the prescribed naming convention (snake_case with entity type suffixes)
+  * **Features**:
+  * Scans all wiki files to find those with incorrect naming patterns
+  * Provides automated suggestions for correct naming
+  * Can optionally perform bulk rename operations while updating all internal references
+  * Validates that _mob, _item, _spell, _buff, _npc, _level, etc. suffixes are properly used
+
+===== 2. Bulk Page Rename Tool =====
+  * **Purpose**: Safely rename multiple wiki pages while updating all references to them
+  * **Features**:
+  * Maintains internal link integrity when renaming pages
+  * Creates automated backup of original files before renaming
+  * Updates all internal links to point to new page names
+  * Supports renaming based on entity type detection or provided mapping
+
+===== 3. Cross-Language Consistency Verifier =====
+  * **Purpose**: Ensure consistency across different language versions of wiki pages
+  * **Features**:
+  * Compares English and Russian versions of pages for consistency
+  * Flags content that may be outdated in one language version
+  * Helps identify missing translations or updates that haven't propagated across languages
+
+===== 4. Image Reference Verification Tool =====
+  * **Purpose**: Verify that all image references in wiki pages point to existing files
+  * **Features**:
+  * Checks for broken image links in wiki pages
+  * Verifies image files exist in the media directory
+  * Validates that image naming follows the expected convention based on entity type
+
+===== 5. Content Accuracy Verification Assistant =====
+  * **Purpose**: Compare information in wiki pages with actual game implementation
+  * **Features**:
+  * Automatically extracts stats, mechanics, and descriptions from source code
+  * Compares with wiki content to flag potential inaccuracies
+  * Highlights discrepancies between documented and actual game mechanics
+  * Flags content that may be outdated following game updates
+
 ==== See Also ====
   * [[rpd:development|Development]]
   * [[rpd:wiki|Wiki]]
