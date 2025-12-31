@@ -1,0 +1,31 @@
+====== Walking Type ======
+
+**Walking Type** is a property of mobs that determines what types of terrain they can move on in Remixed Dungeon.
+
+==== Walking Types ====
+  * **NORMAL** - standard movement, only on passable tiles
+  * **WATER** - movement on water tiles
+  * **WALL** - movement through walls (e.g., [[rpd:shadow_mob|Shadows]])
+  * **GRASS** - movement on grass tiles
+  * **CHASM** - movement over chasms
+  * **ABSOLUTE** - absolute movement, can move on any tile
+
+==== Application ====
+  * Walking type determines where a mob can spawn
+  * Affects the pathfinding algorithm when a mob moves
+  * Determines the ability to move on specific types of terrain
+  * Each walking type allows movement on different terrain types (normal, water, walls, grass, chasms, or all terrain)
+
+==== Technical Implementation ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/WalkingType.java|WalkingType.java]]
+  * **Mechanics:** Each type has a different passableCells array determining where they can move
+  * **Spawning:** Different types use different respawnCell methods to determine spawn locations
+  * **Movement:** Used in pathfinding algorithms to determine valid movement locations
+
+==== Related ====
+  * [[rpd:shadow_mob|Shadow]] - example of mob with wall-walking ability
+  * [[rpd:mobs|Mobs]] - other creatures in the game
+  * [[rpd:mechanics|Mechanics]] - other game mechanics
+  * [[rpd:terrain|Terrain]] - different terrain types in the dungeon
+
+{{tag> rpd mechanics movement}}
