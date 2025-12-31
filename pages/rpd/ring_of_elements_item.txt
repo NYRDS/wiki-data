@@ -50,11 +50,24 @@ This ring provides resistance to different elements, such as fire, electricity, 
 ===== Source Code =====
   * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]]
   * Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L49-L50|Ring of Elements strings]]
+  * Base Ring Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java|Ring.java]] - Contains common ring mechanics
+
+===== Data Validation =====
+  * Resisted Elements (Java): The Resistance class specifically protects against Burning, ToxicGas, Poison, LightningTrap.Electricity, Warlock, Eye, BurningFist, and LiquidFlame classes
+  * Resistance Chance Formula: ''Random.Int( level() + 3 ) >= 3'' - meaning at level 0 or above, resistance is always active
+  * Duration Factor Formula: ''(2 + 0.5f * level()) / (2 + level())'' - reduces negative effect duration with higher levels
+  * String Resources: ''RingOfElements_Info'' in strings_all.xml
+  * Gem Name Resources: ''Ring_Gems'' array in strings_all.xml defines the gem name displayed in the ring's name
 
 ===== See Also =====
   * [[rpd:rings|Rings]] - Other ring types in the game
   * [[rpd:wands|Wands]] - The effects this ring helps resist
   * [[rpd:equipment|Equipment]] - Other equipment options
   * [[rpd:immunities|Immunities]] - Complete list of immunities and resistances
+  * [[rpd:resistances|Resistances]] - Complete list of resistances and damage reduction
+  * [[rpd:poison_buff|Poison]] - One of the effects this ring provides resistance against
+  * [[rpd:burning_buff|Burning]] - One of the effects this ring provides resistance against
+  * [[rpd:toxic_gas_buff|Toxic Gas]] - One of the effects this ring provides resistance against
+  * [[rpd:lightning_trap|Lightning Trap]] - One of the effects this ring provides resistance against
 
 {{tag> rpd items rings equipment ring_of_elements ring_of_elements_item }}
