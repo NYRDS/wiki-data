@@ -114,11 +114,26 @@ public int defenseSkill(Char enemy) {
   * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
   * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]]
 
+==== Data Validation ====
+  * Defense Formula (Java): ''defenseSkill'' method in Char.java calculates defense with baseDefenseSkill + lvl() + buff bonuses
+  * Evasion Multiplier: ''Math.pow(1.2, bonus)'' where bonus comes from buffs with ''defenceSkillBonus'' method
+  * Armor Encumbrance: ''aEnc = getItemFromSlot(Belongings.Slot.ARMOR).requiredSTR() - effectiveSTR()''
+  * Encumbrance Reduction Factor: ''Math.pow(1.5, aEnc)'' when armor requires more STR than available
+  * Paralysis Effect: ''evasion /= 2'' when character is paralyzed
+  * Freerunner Bonus: ''evasion *= 2'' when not starving and moving
+  * Combat Hit Calculation: ''Random.Float(attacker.attackSkill(defender)) > Random.Float(defender.defenseSkill(attacker))''
+  * String Resources: ''Char_StaDodged'' array in strings_all.xml provides dodge text messages
+
 ==== Related ====
   * [[rpd:attack_skill_mechanic|Attack Skill Mechanic]]
   * [[rpd:evasion_mechanic|Evasion Mechanic]]
   * [[rpd:combat_mechanic|Combat Mechanic]]
   * [[rpd:accuracy_mechanic|Accuracy Mechanic]]
   * [[rpd:armor_item|Armor Item]]
+  * [[rpd:encumbrance|Encumbrance]] - How armor weight affects movement and defense
+  * [[rpd:strength|Strength]] - How strength affects armor requirements
+  * [[rpd:buffs|Buffs]] - How buffs affect defense skill
+  * [[rpd:paralysis_buff|Paralysis]] - Effect on defense when paralyzed
+  * [[rpd:freerunner_subclass|Freerunner]] - Class with special defense mechanics
 
 {{tag> rpd mechanics combat defense skill }}
