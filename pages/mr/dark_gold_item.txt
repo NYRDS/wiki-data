@@ -1,20 +1,24 @@
 ====== Dark Gold Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * **Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DarkGold.java|DarkGold.java]]
+  * **Inheritance:** Inherits from [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]]
+  * **Sprite:** Uses [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L15|ItemSpriteSheet.ORE]] as sprite
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/dark_gold.json
+This item is implemented purely in Java, no JSON configuration found.
 
 ===== String Resources =====
 <code xml>
-<string name="DarkGold_Name">[Name]</string>
-<string name="DarkGold_Info">[Description]</string>
+<string name="DarkGold_Name">dark gold ore</string>
+<string name="DarkGold_Info">This metal is called dark not because of its color (it doesn\'t differ from normal gold), but because it melts under the daylight, making it useless on the surface.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Additional References =====
+  * **Blacksmith Quest:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Blacksmith.java#L84|Blacksmith.java]] - used in blacksmith quest requiring 15 dark gold
+  * **Dropping Behavior:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DarkGold.java#L33-L42|DarkGold.doDrop()]] - melts when dropped on surface
+  * **Throwing Behavior:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DarkGold.java#L44-L52|DarkGold.onThrow()]] - melts when thrown on surface
+  * **Mining:** Found in caves and can be mined with [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/quest/Pickaxe.java|Pickaxe]]
