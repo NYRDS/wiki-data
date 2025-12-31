@@ -1,20 +1,27 @@
 ====== Scroll Of Terror Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * **Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfTerror.java|ScrollOfTerror.java]]
+  * **Inheritance:** Inherits from [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]]
+  * **Item Registration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L264|ItemFactory.java]] - registers ScrollOfTerror class
+  * **Scroll Registration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java#L39|Scroll.java]] - registers ScrollOfTerror in the scroll type list
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/scroll_of_terror.json
+This item is implemented purely in Java, no JSON configuration found.
 
 ===== String Resources =====
 <code xml>
-<string name="ScrollOfTerror_Name">[Name]</string>
-<string name="ScrollOfTerror_Info">[Description]</string>
+<string name="ScrollOfTerror_Name">Scroll of Terror</string>
+<string name="ScrollOfTerror_Info">A flash of red light will overwhelm all creatures in your field of view with terror, and they will turn and flee. Attacking a fleeing enemy will dispel the effect.</string>
+<string name="ScrollOfTerror_Info1">The scroll emits a brilliant flash of red light</string>
+<string name="ScrollOfTerror_Info2">The scroll emits a brilliant flash of red light and the %s flees!</string>
+<string name="ScrollOfTerror_Info3">The scroll emits a brilliant flash of red light and the monsters flee!</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Additional References =====
+  * **Treasury Configs:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L115|Treasury.json]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L112|SpidersTreasury.json]]
+  * **Terror Buff:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java|Terror.java]] - applies terror effect
+  * **Effects:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/Flare.java|Flare.java]] - creates the red light effect
