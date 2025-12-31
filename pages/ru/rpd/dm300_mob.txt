@@ -61,8 +61,18 @@
   * [[ru:rpd:chaos_crystal|Кристалл хаоса]] - Возможный предмет в награду
   * [[ru:rpd:ring_of_thorns|Кольцо шипов]] - Возможный предмет в награду
   * [[ru:rpd:huntress|Охотница]] - Класс, разблокируемый при победе над ДМ-300
+  * [[ru:rpd:immunities|Иммунитеты]] - Механики, которыми обладает ДМ-300
+  * [[ru:rpd:traps|Ловушки]] - Как ДМ-300 взаимодействует с ловушками
 
-==== Ссылка на исходный код ====
+==== Ссылки на исходный код ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/DM300.java|DM300.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1217-L1223|Russian String Resources]]
+
+==== Данные из исходного кода ====
+  * Статистика (Java): ''hp(ht(200)); expForKill = 30; baseDefenseSkill = 18; baseAttackSkill = 28; dmgMin = 18; dmgMax = 24; dr = 10''
+  * Иммунитеты (Java): ''addImmunity(ToxicGas.class); addImmunity(Bleeding.class); addImmunity(Terror.class)''
+  * Награды (Java): ''loot(new ChaosCrystal(), 0.333f)'' или ''loot(new RingOfThorns().random(), 0.333f)''
+  * Поведение (Java): ''act()'' метод генерирует 30 единиц ядовитого газа каждый ход, ''move()'' метод активирует ловушки и восстанавливает здоровье
+  * Строковые ресурсы (Russian): ''DM300_Name'', ''DM300_Desc'', ''DM300_Info1'', ''DM300_Info2'', ''DM300_Info3''
 
 {{tag> rpd mobs bosses mechanical }}
