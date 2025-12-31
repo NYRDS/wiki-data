@@ -10,8 +10,10 @@ The Speed buff increases movement speed, allowing the character to move more qui
   * Allows faster traversal of dungeon levels
   * May improve ability to avoid certain attacks or hazards
   * Reduces the time needed to move between locations
+  * **Speed Multiplier:** Speed multiplier is 7.27254 (based on hasteLevel() method returning 7.27254f)
 
 ==== Duration ====
+  * Base duration: 10 turns (defined as Speed.DURATION = 10f)
   * The duration of the Speed buff varies depending on the source that applied it
   * When the buff expires, movement speed returns to normal
 
@@ -23,11 +25,16 @@ The Speed buff increases movement speed, allowing the character to move more qui
 
 ==== Code Reference ====
   * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Speed.java|Speed.java]]
+  * Base duration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Speed.java#L5|Speed.DURATION = 10f]]
+  * Speed multiplier: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Speed.java#L7|hasteLevel() method returns 7.27254f]]
+  * Movement integration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L205|Char.moveTime() method]] uses hasteLevel() for movement speed calculation
+  * Machine-readable data: [[mr:speed_buff|mr:speed_buff]]
 
 ==== Related ====
   * [[rpd:potion_of_speed_item|Potion of Speed]] - Common source of the Speed buff
   * [[rpd:hero|Hero]] - The character affected by this buff
   * [[rpd:movement|Movement]] - Core mechanic affected by this buff
   * [[rpd:haste_spell|Haste]] - Similar effect that may also increase attack speed
+  * [[rpd:buffs|Buffs]] - Other status effects
 
 {{tag> rpd buffs status_effects movement}}
