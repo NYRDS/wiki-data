@@ -1,18 +1,44 @@
 ====== Blacksmith Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Blacksmith.java|Blacksmith.java]] - Main implementation
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Blacksmith.json|Blacksmith.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Blacksmith.json|Blacksmith.json]] - Sprite configuration
 
 ===== String Resources =====
 <code xml>
-<string name="Blacksmith_Name">[Name]</string>
-<string name="Blacksmith_Info">[Description]</string>
+<string name="Blacksmith_Gold1">I can forge a special item for you, but I need 15 dark gold coins and a pickaxe for the process</string>
+<string name="Blacksmith_Blood1">I can forge a special item for you, but I need a pickaxe covered with fresh blood of the cave dweller</string>
+<string name="Blacksmith_Txt2">Bring me a pickaxe! Forged in the depths of the dungeon!</string>
+<string name="Blacksmith_Txt3">These dark gold coins are of good quality. Now I can start the forging process!</string>
+<string name="Blacksmith_Txt4">Good blood! Fresh and warm! Now I can start forging!</string>
+<string name="Blacksmith_Completed">Great! The item is ready!</string>
+<string name="Blacksmith_GetLost">I've done my job, now leave me alone!</string>
+<string name="Blacksmith_Verify1">The items should be different!</string>
+<string name="Blacksmith_Verify2">The items should be of the same type!</string>
+<string name="Blacksmith_Verify3">I need to know exactly what I'm working with!</string>
+<string name="Blacksmith_Verify4">I don't work with cursed items!</string>
+<string name="Blacksmith_Verify5">This item is not suitable for reforge!</string>
+<string name="Blacksmith_Verify6">This item can't be upgraded!</string>
+<string name="Blacksmith_LooksBetter">%s looks better now!</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Implementation Notes =====
+  * **Class:** Extends NPC (Non-Player Character)
+  * **Role:** Provides item reforge service
+  * **Spawn:** Appears in Caves level (depth > 11) with probability (15 - depth)
+  * **Quest:** Has a quest system requiring either dark gold coins or blood-stained pickaxe
+  * **Functionality:** Can upgrade two items of the same type to create a higher-level item, with a chance of receiving a Scroll of Upgrade
+  * **Sprite:** Uses sprite configuration defined in spritesDesc/Blacksmith.json
+  * **Quest States:** Has multiple quest states - given, completed, reforged
+
+===== Entity Kind =====
+  * Entity Kind: Blacksmith
+
+===== Related Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/BlacksmithPainter.java|BlacksmithPainter.java]] - Room painter for Blacksmith room type
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndBlacksmith.java|WndBlacksmith.java]] - Window for the Blacksmith interaction
