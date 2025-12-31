@@ -24,15 +24,25 @@ The experience system tracks how much experience characters have gained and dete
 
 ==== Code References ====
   * Experience System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - How experience is tracked
-  * Hero Experience: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - How heroes gain and use experience
-  * Mob Experience: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - How mobs provide experience when defeated
+  * Hero Experience: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - How heroes gain and use experience (see setExp() and getExpForLevelUp() methods)
+  * Mob Experience: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - How mobs provide experience when defeated (expForKill field)
   * Leveling Calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L150-L200|Leveling code]] - Implementation of the level-up process
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All experience-related text
+  * Experience Potion: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfExperience.java|PotionOfExperience.java]] - Item that grants experience
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L340-L341|strings_all.xml]] - Experience potion text (PotionOfExperience_Name, PotionOfExperience_Info)
+
+==== Detailed Implementation ====
+  * **Hero.java** contains EXP field and getExpForLevelUp(), setExp() methods
+  * **Char.java** contains level() method that calculates character level
+  * **Mob.java** has expForKill field determining experience granted when defeated
+  * Experience is stored in Hero's bundle as "exp" during serialization
+  * Level progression formula: expForLevelUp increases as hero levels up
+  * Experience potion grants 1/2 of the experience needed to reach next level
 
 ==== See Also ====
   * [[rpd:hero|Hero]]
   * [[rpd:leveling|Leveling]]
   * [[rpd:mobs|Mobs]]
   * [[rpd:combat_mechanics|Combat]]
+  * [[rpd:potion_of_experience_item|Potion of Experience]]
 
 {{tag> rpd mechanics experience leveling }}
