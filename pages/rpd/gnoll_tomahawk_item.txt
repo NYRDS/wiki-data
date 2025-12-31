@@ -2,37 +2,39 @@
 
 {{ rpd:images:gnolltamahawk_sprite.png|Gnoll Tomahawk }}
 
-The **Gnoll Tomahawk** (//GnollTamahawk// in code) is a unique throwing weapon specifically associated with the [[rpd:gnoll_class|Gnoll]] playable class. It's the starting weapon for the Gnoll class and represents their distinctive combat style.
+The **Gnoll Tomahawk** (//GnollTamahawk// in code) is a unique throwing weapon specifically associated with the [[rpd:gnoll_class|Gnoll]] playable class. It's the starting weapon for the [[rpd:gnoll_class|Gnoll]] class and represents their distinctive combat style.
 
 ==== Description ====
-The Gnoll Tomahawk is a specialized throwing axe that represents the gnoll's native weapon. It combines the functionality of both a melee and throwing weapon, though it excels in the latter role. Created by Gnoll masters, each clan has its own unique design. This Tomahawk is slightly lighter than its counterparts.
+The Gnoll Tomahawk is a specialized throwing axe that represents the gnoll's native weapon. It combines the functionality of both a melee and throwing weapon, though it excels in the latter role. Created by Gnoll masters, each clan has its own unique design. This Tomahawk is slightly lighter than its counterparts. In the game code, this item is implemented as a subclass of [[rpd:tomahawk_item|Tomahawk]] with specific differences.
 
 ==== Stats ====
-  * **Damage:** 3-17 points
-  * **Strength Required:** 15
-  * **Durability:** Normal
-  * **Speed:** 1.0x (base weapon speed)
-  * **Accuracy:** 1.0x (base accuracy)
+  * **Damage:** 3-17 points (from code: MIN=3, MAX=17)
+  * **Strength Required:** 15 (from code: setSTR(15))
+  * **Durability:** Normal (does not break when thrown)
+  * **Speed:** 1.0x (inherits base weapon speed)
+  * **Accuracy:** 1.0x (inherits base accuracy)
+  * **Image:** Randomly selected from 8 different sprites (from code: Random.Int(0,8))
 
 ==== Properties ====
-  * **Type:** Throwing/melee weapon
+  * **Type:** Throwing/melee weapon (inherits from [[rpd:tomahawk_item|Tomahawk]])
   * **Class:** [[rpd:gnoll_class|Gnoll]] (specific starting weapon)
   * **Base Damage:** Moderate to high for early game
-  * **Durability:** Unlike regular [[rpd:tomahawk|Tomahawks]], does not break when thrown at a target
+  * **Durability:** Unlike regular [[rpd:tomahawk_item|Tomahawks]], does not break when thrown at a target
   * **Accuracy:** High accuracy when thrown
-  * **Upgradable:** Yes, can be upgraded with Scrolls of Upgrade
+  * **Upgradable:** Yes, can be upgraded with Scrolls of Upgrade (from code: isUpgradable() returns true)
 
 ==== Special Properties ====
   * Unique starting weapon for the [[rpd:gnoll_class|Gnoll]] class
   * Thrown weapon with good range
-  * Unlike regular [[rpd:tomahawk|Tomahawks]], does not break when thrown at a target
-  * Can be upgraded like other weapons
+  * Unlike regular [[rpd:tomahawk_item|Tomahawks]], does not break when thrown at a target (from code: onThrow method implementation)
+  * Can be used in melee combat (from code: notUsableInMelee() returns false)
+  * Each copy has one of 8 randomly selected images (from code: imageIndex = Random.Int(0,8))
 
 ==== Special Features ====
-  * **Dual Functionality:** Can be used for both throwing and melee combat
+  * **Dual Functionality:** Can be used for both throwing and melee combat (unlike regular Tomahawks which are throwing-only)
   * **Starting Equipment:** Exclusive to the [[rpd:gnoll_class|Gnoll]] class
   * **Durability:** Unlike regular Tomahawks, doesn't break when thrown
-  * **Not Usable in Melee:** Returns false for //notUsableInMelee()//, meaning it can be used in melee combat
+  * **Melee Capability:** Returns false for notUsableInMelee(), meaning it can be used in melee combat
 
 ==== Combat Usage ====
   * **Ranged:** Effective at range when thrown
@@ -40,11 +42,18 @@ The Gnoll Tomahawk is a specialized throwing axe that represents the gnoll's nat
   * **Damage:** Good damage output for its level (3-17 vs 4-20 of regular Tomahawk)
   * **Str Requirement:** Lower STR requirement (15 vs 17 of regular Tomahawk)
 
+==== Implementation ====
+  * Extends the [[rpd:tomahawk_item|Tomahawk]] class with modified stats and behavior
+  * Overrides onThrow() method for custom throwing behavior
+  * Overrides notUsableInMelee() to return false (allowing melee use)
+  * Overrides isUpgradable() to return true
+  * Random image selection from 8 different sprites
+
 ==== Related ====
   * [[rpd:gnoll_class|Gnoll]] - The class that starts with this weapon
   * [[rpd:throwing_weapons|Throwing Weapons]] - General category
-  * [[rpd:tomahawk|Tomahawk]] - General weapon type
-  * [[rpd:gnoll_brute|Gnoll Brute]] - Enemy that may use similar weapons
+  * [[rpd:tomahawk_item|Tomahawk]] - General weapon type (parent class)
+  * [[rpd:missile_weapon|Missile Weapon]] - Base weapon category
   * [[rpd:playable_class|Playable Classes]] - Part of the class-specific equipment system
 
 ==== Strategy ====
@@ -54,11 +63,21 @@ The Gnoll Tomahawk is a specialized throwing axe that represents the gnoll's nat
   * Take advantage of its durability to conserve other throwing items
   * Upgrade it to increase damage and effectiveness in both melee and ranged combat
 
-==== Source Code ====
-  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/GnollTamahawk.java|GnollTamahawk.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2165|String Definitions]]
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/GnollTamahawk.java|GnollTamahawk.java]] - Implementation of the Gnoll Tomahawk
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Tamahawk.java|Tamahawk.java]] - Parent class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] - Base class for missile weapons
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2165-L2167|GnollTamahawk_Name]] - Name of the weapon
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2165-L2167|GnollTamahawk_Info]] - Description of the weapon
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2166-L2168|Russian strings]] - Russian localization
+
+==== Configuration Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L435|ItemFactory.java]] - Registration of the item class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L164|initHeroes.json]] - Starting equipment for the Gnoll hero class
 
 ==== Notes ====
-The Gnoll Tomahawk is the signature weapon of the [[rpd:gnoll_class|Gnoll]] class, providing a powerful ranged option for these hyena-like warriors. Unlike the regular Tomahawk, it doesn't break when thrown and can be used in melee combat.
+The Gnoll Tomahawk is the signature weapon of the [[rpd:gnoll_class|Gnoll]] class, providing a powerful ranged option for these hyena-like warriors. Unlike the regular Tomahawk, it doesn't break when thrown and can be used in melee combat, making it a versatile weapon for the Gnoll class.
 
 {{tag> rpd items weapons throwing melee gnoll }}
