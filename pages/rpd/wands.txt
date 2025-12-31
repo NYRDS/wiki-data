@@ -1,54 +1,51 @@
 ====== Wands ======
 
-{{ rpd:images:wand.png|Wand }}
+Wands are magical items that channel energy for various effects in Remixed Dungeon.
 
-**Wands** are magical items in Remixed Dungeon that can be charged and discharged to cast spells. They are an important part of the game's magic system and provide various magical effects.
+==== Description ====
+Wands are magical implements that store and channel magical energy. Each wand type has a specific effect and requires charges to function. Charges slowly regenerate over time, allowing for repeated use.
 
-==== Common Wands ====
-  * [[rpd:wand_of_magic_missile_item|Wand of Magic Missile]]: Basic elemental damage wand
-  * [[rpd:wand_of_lightning_item|Wand of Lightning]]: Electric damage that can arc between enemies
-  * [[rpd:wand_of_disintegration_item|Wand of Disintegration]]: Pierces armor and multiple enemies
-  * [[rpd:wand_of_fireblast_item|Wand of Fireblast]]: Creates a cone of fire damage
-  * [[rpd:wand_of_cold_ray_item|Wand of Cold Ray]]: Deals damage and slows enemies
-  * [[rpd:wand_of_poison_item|Wand of Poison]]: Creates poisonous clouds
-  * [[rpd:wand_of_avalanche_item|Wand of Avalanche]]: Causes an explosion that stuns enemies
-  * [[rpd:wand_of_telekinesis_item|Wand of Telekinesis]]: Pulls items and enemies toward you
-  * [[rpd:wand_of_fear_item|Wand of Fear]]: Frightens enemies
-  * [[rpd:wand_of_living_earth_item|Wand of Living Earth]]: Summons earth armor that fights alongside you
-  * [[rpd:wand_of_prismatic_light_item|Wand of Prismatic Light]]: Deals damage and reveals illusions
-  * [[rpd:wand_of_blink_item|Wand of Blink]]: Teleports to the target location
-  * [[rpd:wand_of_regrowth_item|Wand of Regrowth]]: Grows vegetation that eventually turns to grass
+==== Base Properties ====
+  * **Charges**: Each wand has limited charges that recharge over time
+  * **Type**: Each wand produces different magical effects
+  * **Zapping**: Used by targeting a location or enemy
+  * **Upgrading**: Can be upgraded to increase power and capacity
 
-==== Wand Mechanics ====
-  * **Charges**: Wands have charges that can be replenished through various means
-  * **Identify**: Wands must be identified to know their effect
-  * **Damage**: More charged wands typically do more damage
-  * **Curses**: Cursed wands may have negative effects
+==== Wand Types ====
+  * **Offensive Wands** - Deal damage to enemies
+  * **Utility Wands** - Provide beneficial effects or environmental changes
+  * **Defensive Wands** - Protect the hero or hinder enemies
 
-==== Charging Wands ====
-  * **Natural Recharge**: Wands gradually recharge during hero's rest (1 charge per 12 turns)
-  * **Scrolls of Recharging**: Immediately recharge all wands
-  * **Wand of Recharging**: Self-recharging wand provides charges to other wands
-  * **Other effects**: Some items or abilities can also recharge wands
-
-==== Upgrading Wands ====
-  * Wands can be upgraded using [[rpd:scroll_of_upgrade_item|Scrolls of Upgrade]]
-  * Upgraded wands have more charges and may be more accurate
+==== Common Mechanics ====
+  * **Charging**: Wands slowly regenerate charges when not in use
+  * **Zapping**: Direct the wand's power at a target or location
+  * **Upgrading**: Increases damage, range, or other effects
+  * **Cursing**: Some wands may be cursed and malfunction
 
 ==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Base Wand class]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfMagicMissile.java|WandOfMagicMissile]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfLightning.java|WandOfLightning]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfDisintegration.java|WandOfDisintegration]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfFirebolt.java|WandOfFirebolt]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfColdRay.java|WandOfColdRay]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2799-L2850|Wand strings in localization]]
+  * Wand Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - Base implementation
+  * Charge System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L50-L60|Charge mechanics]] - How wand charges work
+  * Zapping System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L75-L90|Zapping mechanics]] - How wands are used
+  * Item System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - General item mechanics
+  * Sprite System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - Wand sprites
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All wand names and descriptions
 
-==== Related ====
+==== Common Wands ====
+  * [[rpd:wand_of_magic_missile_item|Wand of Magic Missile]]
+  * [[rpd:wand_of_lightning_item|Wand of Lightning]]
+  * [[rpd:wand_of_disintegration_item|Wand of Disintegration]]
+  * [[rpd:wand_of_fireblast_item|Wand of Fireblast]]
+  * [[rpd:wand_of_cold_item|Wand of Cold]]
+  * [[rpd:wand_of_poison_item|Wand of Poison]]
+  * [[rpd:wand_of_teleportation_item|Wand of Teleportation]]
+  * [[rpd:wand_of_slowness_item|Wand of Slowness]]
+  * [[rpd:wand_of_regrowth_item|Wand of Regrowth]]
+  * [[rpd:wand_of_transfusion_item|Wand of Transfusion]]
+
+==== See Also ====
   * [[rpd:items|Items]]
-  * [[rpd:equipment|Equipment]]
-  * [[rpd:magic|Magic]]
-  * [[rpd:scrolls|Scrolls]]
-  * [[rpd:wizard_tower|Wizard Tower]]
+  * [[rpd:consumables|Consumables]]
+  * [[rpd:zapping|Zapping]]
+  * [[rpd:charges|Charges]]
 
-{{tag> rpd items wands magic equipment}}
+{{tag> rpd items wands magic }}

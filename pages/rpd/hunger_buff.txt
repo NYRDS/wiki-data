@@ -1,71 +1,48 @@
-====== Hunger Buff ======
+====== Hunger ======
 
-{{ rpd:images:buff_Hunger.png|Hunger }}
-
-The **Hunger** buff is a status effect that gradually increases the player's hunger level over time, leading to negative effects if not managed properly.
+Hunger is a status condition that affects the hero over time in Remixed Dungeon.
 
 ==== Description ====
-Hunger is a status effect that accumulates over time. As the hunger level increases, the hero's health gradually decreases. If the hunger level reaches the "Starving" threshold, the hero will start taking damage each turn.
+Hunger is a gradual status effect that represents the hero's need for sustenance. As hunger increases, it begins to negatively affect the hero's health. Managing hunger through food consumption is essential for long-term survival.
 
-==== Mechanics ====
-  * **Hunger Thresholds:**
-    * **Normal**: No penalties
-    * **Hungry**: 280 units (defined as Hunger.HUNGRY constant)
-    * **Starving**: 400 units (defined as Hunger.STARVING constant)
-  * **Damage:** When starving, the hero takes damage equal to max(1, effectiveSTR() - 10) in higher difficulties (difficulty ≥ 3)
-  * **Recovery:** Eating food items reduces the hunger level by the food's energy value
-  * **Special Effects:** In difficulty 3+, starving also has chances to apply Weakness or Vertigo
-  * **Step Rate:** The rate of hunger accumulation varies based on character class (Rogues accumulate faster) and whether in safe areas (dungeons only)
-  * **Rings:** Ring of Satiety reduces the rate of hunger accumulation
+==== Hunger Stages ====
+  * **Satiated** - No effect, recently eaten
+  * **Not Hungry** - No effect, normal state
+  * **Hungry** - No immediate effects but approaching danger
+  * **Starving** - Begins to lose health over time
+  * **Severe Starvation** - Rapid health loss (if applicable in mod)
 
-==== Food Values ====
-  * **Ration**: Provides 280 energy units (Hunger.HUNGRY value)
-  * **Overpriced Ration**: Provides 140 energy units (Hunger.STARVING - Hunger.HUNGRY)
-  * **Rotten Ration**: Provides 60 energy units (calculated as (HUNGRY - STARVING)/2)
-  * **Frozen Carpaccio**: Provides 60 energy units (Hunger.STARVING - Hunger.HUNGRY)
-  * **Mystery Meat**: Provides 60 energy units (Hunger.STARVING - Hunger.HUNGRY)
-  * **Chargrilled Meat**: Provides 60 energy units (Hunger.STARVING - Hunger.HUNGRY)
-  * **Pasty**: Provides 400 energy units (Hunger.STARVING value)
-  * **Pumpkin Pie**: Provides 400 energy units (Hunger.STARVING value)
-  * **Christmas Turkey**: Provides 400 energy units (Hunger.STARVING value)
+==== Hunger Mechanics ====
+  * **Natural Increase**: Hunger increases over time as the game progresses
+  * **Health Drain**: When starving, health slowly decreases
+  * **Food Consumption**: Eating food resets hunger level
+  * **Duration**: Different foods provide different amounts of satiety
 
-==== Strategic Considerations ====
-  * Higher difficulties accelerate the hunger rate and cause more significant damage when starving
-  * Carrying multiple food items is essential for survival in deep dungeon runs
-  * Food can be preserved by storing it in special containers to prevent spoilage
-  * Using a Ring of Satiety will slow down hunger accumulation
-  * Safe areas (shops, etc.) stop hunger accumulation
+==== Food Items ====
+  * [[rpd:ration_item|Ration]] - Basic food supply
+  * [[rpd:overpriced_ration_item|Overpriced Ration]] - Shop-bought food
+  * [[rpd:meat_pie_item|Meat Pie]] - More nutritious food
+  * [[rpd:fruit_item|Fruit]] - Light sustenance
+  * [[rpd:mystery_meat_item|Mystery Meat]] - Meat from defeated creatures
+  * [[rpd:frozen_carpaccio_item|Frozen Carpaccio]] - Long-lasting food that doesn't spoil
 
-==== Data Validation ====
-  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]]
-  * Constants verified in code implementation: HUNGRY = 280f, STARVING = 400f
-  * Last updated: December 2025
+==== Hunger Management ====
+  * **Conservation**: Preserve food for times when it's most needed
+  * **Diversity**: Different foods may provide different benefits
+  * **Planning**: Consider hunger when planning for long expeditions
+  * **Rationing**: Balance between satiation and conservation
 
-==== Source Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L1044-L1067|Char.hunger() method]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L237-L238|Hero adding Hunger buff on creation]]
-
-==== String Resources ====
-  * <code xml>
-<string name="HungerBuff_Name1">Hungry</string>
-<string name="HungerBuff_Info1">You\'re hungry!</string>
-<string name="HungerBuff_Name2">Starving</string>
-<string name="HungerBuff_Info2">You\'re starving! You need to eat food!</string>
-<string name="Hunger_Hungry_0">You are hungry.</string>
-<string name="Hunger_Hungry_1">You are hungry.</string>
-<string name="Hunger_Hungry_2">You are hungry.</string>
-<string name="Hunger_Starving_0">You are starving!</string>
-<string name="Hunger_Starving_1">You are starving!</string>
-<string name="Hunger_Starving_2">You are starving!</string>
-<string name="Hunger_Death">You starved to death...</string>
-</code>
+==== Code References ====
+  * Hunger System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]] - Hunger implementation
+  * Hunger Stages: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java#L15-L30|Hunger stage definitions]] - How hunger stages are defined
+  * Food Effects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]] - How food affects hunger
+  * Hero Mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - How hunger affects the hero
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All hunger-related text
 
 ==== See Also ====
-  * [[rpd:food_item|Food]]
-  * [[rpd:rotten_food_item|Rotten Food]]
-  * [[rpd:rations_item|Ration]]
-  * [[rpd:ring_of_satiety_item|Ring of Satiety]]
-  * [[rpd:fast_food_mechanic|Fast Food Mechanic]]
+  * [[rpd:food|Food]]
+  * [[rpd:buffs|Buffs]]
+  * [[rpd:debuffs|Debuffs]]
+  * [[rpd:hero|Hero]]
 
-{{tag> rpd buffs status hunger }}
+{{tag> rpd mechanics hunger status_effects }}

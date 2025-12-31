@@ -1,49 +1,42 @@
 ====== Missile Weapons ======
 
+Missile weapons are ammunition-based weapons used for ranged combat in Remixed Dungeon.
+
 ==== Description ====
-Missile weapons are a category of weapons in Remixed Pixel Dungeon that can be thrown at enemies. Unlike regular thrown items, missile weapons have specific stats and can be upgraded like other weapons.
+Missile weapons are ranged weapons that require ammunition to function. They include bows, crossbows, and various thrown weapons. These weapons allow for combat at a distance with different tactical benefits and requirements.
 
-==== Types ====
-  * [[rpd:boomerang_item|Boomerang]] - Returns to the player after being thrown
-  * [[rpd:arrow_item|Arrows]] - Ammunition for ranged weapons (abstract class)
-  * [[rpd:javelin_item|Javelin]] - Thrown spear
-  * [[rpd:dart_item|Dart]] - Basic throwing projectile
-  * [[rpd:shuriken_item|Shuriken]] - Ninja throwing stars
-  * [[rpd:tamahawk_item|Tamahawk]] - Thrown axe weapon
+==== Common Missile Weapons ====
+  * [[rpd:bow_item|Bow]] - Standard ranged weapon using arrows
+  * [[rpd:crossbow_item|Crossbow]] - Heavy ranged weapon using bolts
+  * [[rpd:dart_item|Dart]] - Light thrown weapon
+  * [[rpd:throwing_knife_item|Throwing Knife]] - Sharp projectile weapon
+  * [[rpd:shuriken_item|Shuriken]] - Star-shaped throwing weapon
+  * [[rpd:throwing_stone_item|Throwing Stone]] - Basic projectile
 
-==== Mechanics ====
-  * Missile weapons can be aimed at enemies to deal damage
-  * Thrown weapons use the player's accuracy stat to determine if they hit
-  * Most missile weapons have durability and will be lost after use (except for the boomerang)
-  * Missile weapons can benefit from accuracy bonuses like rings of accuracy
-  * Some missile weapons can be enchanted like regular weapons
+==== Missile Weapon Properties ====
+  * **Damage**: The range of damage dealt per hit
+  * **Speed**: How quickly the weapon can be used
+  * **Ammunition Type**: Type of ammo required (arrows, bolts, etc.)
+  * **Range**: Maximum effective range of the weapon
+  * **Durability**: How long the weapon lasts before breaking
 
-==== Upgradable Missile Weapons ====
-  * [[rpd:boomerang_item|Boomerang]] is the only missile weapon that can be upgraded
-  * Each upgrade increases its damage range (MIN += 1, MAX += 2)
+==== Ammunition Considerations ====
+  * **Supply Management**: Need to maintain adequate ammo supplies
+  * **Special Ammunition**: Different ammo types provide different effects
+  * **Stacking**: Ammo typically stacks to conserve inventory space
+  * **Cost**: Ammunition can be expensive to maintain in large quantities
 
-==== Throwing Speed ====
-  * Different missile weapons have different throwing speeds
-  * Throwing speed affects how quickly the weapon travels to the target
-  * Speed values are defined in the weapon's DLY (delay) stat
+==== Code References ====
+  * Missile Weapon System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] - Base missile weapon implementation
+  * Ammunition System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] - Example ammunition implementation
+  * Combat System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - How missile combat works
+  * Ballistica System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]] - How projectiles travel
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All missile weapon names and descriptions
 
-==== Special Properties ====
-  * The **Boomerang** has the unique property of returning to the player after being thrown
-  * **Arrows** must be used with compatible ranged weapons like bows
-  * Some missile weapons have special effects when they hit
+==== See Also ====
+  * [[rpd:ranged_weapons|Ranged Weapons]]
+  * [[rpd:weapon_item|Weapons]]
+  * [[rpd:combat_mechanics|Combat]]
+  * [[rpd:ammunition|Ammunition]]
 
-==== Related ====
-  * [[rpd:weapons|Weapons]] - General information about weapons
-  * [[rpd:enchantments|Enchantments]] - Information about weapon enchantments
-  * [[rpd:accuracy|Accuracy]] - How missile weapon accuracy works
-  * [[rpd:bow|Bows]] - Ranged weapons that use arrows
-
-==== Source Code ====
-  * Base missile weapon class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]]
-  * Arrows implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
-  * Boomerang implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Boomerang.java|Boomerang.java]]
-
-==== String Resources ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1144-L1151|MissileWeapon strings]] - String resources for missile weapons
-
-{{tag> rpd items weapons throwing}}
+{{tag> rpd items weapons missile }}

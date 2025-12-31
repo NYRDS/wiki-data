@@ -1,37 +1,47 @@
-====== Arrow Item ======
+====== Arrow ======
 
-Arrows are ammunition items used with bows in Remixed Dungeon. Different types of arrows provide various effects.
+Arrow is the base class for all arrow items in Remixed Dungeon.
 
 ==== Description ====
-Arrows are a type of ammunition required for bows to function. They come in various types, each with different properties and effects. Arrows are consumed when firing a bow at an enemy.
+Arrows are ammunition items used with bows for ranged combat. Different types of arrows provide various effects when fired at enemies or used in alchemy.
 
-==== Types of Arrows ====
-  * [[rpd:common_arrow_item|Common Arrow]] - Basic arrow with no special effects
-  * [[rpd:poison_dart_item|Poison Dart]] - Causes poison effect on hit
-  * [[rpd:fire_arrow_item|Fire Arrow]] - Causes burning effect on hit
-  * [[rpd:ice_arrow_item|Ice Arrow]] - Causes chilling/slowing effect on hit
-  * [[rpd:paralysis_arrow_item|Paralysis Arrow]] - Causes paralysis on hit
-  * [[rpd:health_arrow_item|Health Arrow]] - Provides healing effect on hit
+==== Base Properties ====
+  * **Stackable**: Yes - arrows can be stacked up to 99 items per slot
+  * **Type**: Ammunition for ranged weapons
+  * **Usage**: Consumed when fired from a bow
+  * **Weight**: 1 per unit
 
-==== Acquisition ====
-  * Found in [[rpd:level|dungeon levels]], especially [[rpd:sewers_level|Sewers]]
-  * Dropped by certain enemies
-  * Created through [[rpd:alchemy|Alchemy]] with appropriate recipes
-  * Occasionally found in [[rpd:shopkeeper_mob|shops]]
+==== Arrow Types ====
+  * **Standard Arrows** - Basic damage arrows
+  * **Special Arrows** - Provide additional effects like fire, poison, or paralysis
+  * **Alchemy Arrows** - Used as ingredients in alchemy recipes
 
-==== Usage ====
-  * Used with [[rpd:bow_item|bows]] to make ranged attacks
-  * Each shot consumes one arrow
-  * Special arrows provide additional effects beyond normal damage
-  * Quantity affects sustainability of ranged combat
+==== Common Mechanics ====
+  * **Crafting**: Arrows can be created through alchemy using specific recipes
+  * **Enchantments**: Some arrows can be enchanted through alchemy
+  * **Compatibility**: Designed to work with all types of bows
+  * **Damage**: Base damage is typically 1-4 points
 
-==== Strategy ====
-  * Maintain adequate arrow supplies when using bow-based builds
-  * Different arrow types are useful in different situations
-  * Consider carrying multiple arrow types for versatility
-  * Some enemies may be especially vulnerable to specific arrow types
+==== Code References ====
+  * Java Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] - Base implementation
+  * Item System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - General item mechanics
+  * Missile Weapons: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] - Base for all ranged weapons
+  * Sprite System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - Arrow sprites
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All arrow names and descriptions
 
-===== Source Code =====
-  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] - Base arrow class
+==== Common Arrows ====
+  * [[rpd:fire_arrow_item|Fire Arrow]]
+  * [[rpd:ice_arrow_item|Ice Arrow]]
+  * [[rpd:poison_arrow_item|Poison Arrow]]
+  * [[rpd:paralysis_arrow_item|Paralysis Arrow]]
+  * [[rpd:health_arrow_item|Health Arrow]]
+  * [[rpd:blindness_arrow_item|Blindness Arrow]]
 
-{{tag> rpd items ammunition ranged }}
+==== See Also ====
+  * [[rpd:items|Items]]
+  * [[rpd:missile_weapons|Missile Weapons]]
+  * [[rpd:bows|Bows]]
+  * [[rpd:alchemy_mechanic|Alchemy]]
+  * [[rpd:weapon_item|Weapons]]
+
+{{tag> rpd items arrows ammunition base_class }}

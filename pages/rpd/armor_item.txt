@@ -1,37 +1,51 @@
 ====== Armor ======
 
-Armor in Remixed Dungeon provides protection against physical damage. The protection level depends on the armor's tier and any enchantments applied.
+Armor is the base class for all armor items in Remixed Dungeon.
+
+==== Description ====
+Armor items protect the hero from physical damage. Different types of armor provide varying levels of protection and different penalties or benefits.
+
+==== Base Properties ====
+  * **Type**: Equipment for armor slot
+  * **Protection**: Reduces incoming physical damage
+  * **Tier**: Armor comes in different tiers affecting protection and weight
+  * **Enchantments**: Can be enchanted with special glyphs for additional effects
+  * **Durability**: Depletes with use and time
 
 ==== Armor Tiers ====
-  * **Cloth Armor**: The lowest tier armor (tier 1)
-  * **Leather Armor**: Medium-low tier armor (tier 2)  
-  * **Mail Armor**: Medium tier armor (tier 3)
-  * **Scale Armor**: Medium-high tier armor (tier 4)
-  * **Plate Armor**: The highest tier armor (tier 5)
+  * **Cloth Armor (Tier 1)** - Lightest armor with minimal protection
+  * **Leather Armor (Tier 2)** - Balanced protection and weight
+  * **Mail Armor (Tier 3)** - Good protection with moderate weight
+  * **Scale Armor (Tier 4)** - Heavy armor with good protection
+  * **Plate Armor (Tier 5)** - Heaviest armor with maximum protection
 
-==== Armor Properties ====
-  * **Defense Rating**: Reduces damage taken from attacks
-  * **Durability**: Armor degrades with use over time
-  * **Weight**: Affects movement speed and stealth
-  * **Enchantments**: Can be enchanted with glyphs for special effects
+==== Common Mechanics ====
+  * **Defense Rate**: Reduces damage taken from physical attacks
+  * **Speed Penalty**: Heavier armor may slow movement
+  * **Enchantments**: Can be upgraded with armor glyphs
+  * **Identification**: Armor must be identified to see its level and enchantment
 
-==== Defense Calculation ====
-The damage reduction formula is: **Damage Reduction = Armor Rating / (Armor Rating + 12)**
+==== Code References ====
+  * Java Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] - Base implementation
+  * Item System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - General item mechanics
+  * Equipment System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings.java]] - How armor is equipped
+  * Sprite System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - Armor sprites
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All armor names and descriptions
 
-==== Armor Materials ====
-  * **Cloth**: Fabric-based armor with minimal protection
-  * **Leather**: Made from processed monster hides
-  * **Mail**: Metal rings sewn onto a leather backing
-  * **Scale**: Metal scales sewn onto a leather backing
-  * **Plate**: Solid metal plates for maximum protection
-
-==== See Also ====
-  * [[rpd:clothing_armor_item|Cloth Armor]]
+==== Common Armors ====
+  * [[rpd:cloth_armor_item|Cloth Armor]]
   * [[rpd:leather_armor_item|Leather Armor]]
   * [[rpd:mail_armor_item|Mail Armor]]
   * [[rpd:scale_armor_item|Scale Armor]]
   * [[rpd:plate_armor_item|Plate Armor]]
-  * [[rpd:armor_glyphs|Armor Glyphs]]
-  * [[rpd:armor_durability|Armor Durability]]
+  * [[rpd:dragon_armor_item|Dragon Armor]]
+  * [[rpd:class_armor_item|Class Armor]]
 
-{{tag> rpd items armor protection}}
+==== See Also ====
+  * [[rpd:items|Items]]
+  * [[rpd:equipment|Equipment]]
+  * [[rpd:armor_glyphs|Armor Glyphs]]
+  * [[rpd:armor_tiers|Armor Tiers]]
+  * [[rpd:defense_mechanic|Defense]]
+
+{{tag> rpd items armor base_class }}

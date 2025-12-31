@@ -1,40 +1,38 @@
 ====== Evasion ======
 
-**Evasion** is a core combat statistic in Remixed Dungeon that determines the chance to avoid being hit by enemy attacks. It works in opposition to [[rpd:accuracy|Accuracy]] to determine whether attacks land successfully.
+Evasion is the ability to avoid attacks in Remixed Dungeon.
 
-==== Calculation ====
-Evasion is calculated in the ''Char.java'' file in the ''defenseSkill'' method. The formula involves:
+==== Description ====
+Evasion is a defensive mechanic that determines the chance to completely avoid incoming attacks. Higher evasion increases the likelihood of dodging enemy attacks, reducing damage taken.
 
-  * **Base Defense Skill**: Determined by character level and class
-  * **Equipment Bonus**: From items like [[rpd:ring_of_evasion_item|Ring of Evasion]]
-  * **Mobility**: Affected by the character's movement speed
-  * **Armor Penalty**: Heavier armor may reduce evasion effectiveness
+==== Evasion Mechanics ====
+  * **Chance Based**: Evasion works as a percentage chance to completely avoid damage
+  * **Calculation**: Chance to evade is based on defender's evasion vs attacker's accuracy
+  * **Application**: Successful evasion results in no damage taken from the attack
+  * **Equipment**: Certain items can enhance evasion capabilities
 
-==== Impact on Combat ====
-  * **Hit Avoidance**: Higher evasion means more enemy attacks miss
-  * **Survivability**: Critical for surviving encounters with powerful enemies
-  * **Passive Defense**: Provides protection without requiring active player input
-  * **Melee vs Ranged**: Affects both types of incoming attacks
+==== Evasion Sources ====
+  * **Equipment**: Some armor and accessories provide evasion bonuses
+  * **Rings**: [[rpd:ring_of_evasion_item|Ring of Evasion]] specifically increases evasion
+  * **Enchantments**: Certain armor glyphs can enhance evasion
+  * **Buffs**: Temporary effects may increase evasion during certain situations
 
-==== Equipment with Evasion Benefits ====
-  * [[rpd:ring_of_evasion_item|Ring of Evasion]] - Primary source of evasion bonus
-  * Lightweight armor that doesn't impose significant penalties
-  * Certain [[rpd:boots_item|Boots]] that provide movement benefits
-
-==== Related Mechanics ====
-  * [[rpd:accuracy|Accuracy]] - The opposing stat that determines hit chance
-  * [[rpd:defence|Defense]] - Reduces damage from successful hits
-  * [[rpd:combat_mechanic|Combat]] - Overall combat system
-  * [[rpd:mechanics#enemy_ai|Enemy AI]] - Some enemies may have special mechanics against evasion
-
-==== Technical Details ====
-  * **Implementation Location:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] (defenseSkill method)
-  * **Combat Resolution:** Combined with accuracy to determine if attacks connect
+==== Evasion Factors ====
+  * **Armor**: Some armor types provide better evasion than others
+  * **Agility**: Some character classes have natural agility bonuses
+  * **Speed**: Faster characters may have slightly better evasion
+  * **Positioning**: Tactical positioning can complement high evasion
 
 ==== Code References ====
-  * **Evasion Calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L220-L230|Char.java defenseSkill method]]
-  * **Ring of Evasion:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfEvasion.java|RingOfEvasion.java]]
-  * **String resources (English):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1484-L1487|RingOfEvasion strings]]
-  * **String resources (Russian):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1562-L1565|RingOfEvasion strings]]
+  * Evasion System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - How evasion is calculated in combat
+  * Defense Calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L120-L140|Defense mechanics]] - How evasion is factored into defense
+  * Equipment Effects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - How equipment affects evasion
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All evasion-related text
 
-{{tag> rpd mechanics combat evasion defense}}
+==== See Also ====
+  * [[rpd:combat_mechanics|Combat]]
+  * [[rpd:accuracy|Accuracy]]
+  * [[rpd:armor_item|Armor]]
+  * [[rpd:rings|Rings]]
+
+{{tag> rpd mechanics evasion defense }}

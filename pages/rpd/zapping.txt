@@ -1,43 +1,39 @@
-====== Zapping Mechanics ======
+====== Zapping ======
 
-**Zapping** refers to the ranged magical attacks performed by certain characters and creatures in Remixed Dungeon, particularly by mages and magic-using mobs.
+Zapping is the action of using wands and other charged items to produce magical effects in Remixed Dungeon.
 
 ==== Description ====
-Zapping is the term used to describe ranged magical attacks that can be performed by characters with certain abilities. This mechanism allows for ranged attacks without needing physical projectiles like arrows or darts.
+Zapping refers to the act of using a wand or other magical implement to direct its power toward a specific target or location. This action consumes charges and produces the wand's specific magical effect.
 
-==== Mechanics ====
-  * **Range:** Typically has a limited range determined by the game's line-of-sight system
-  * **Targeting:** Uses the Ballistica system to determine line of sight and range to targets
-  * **Accuracy:** Accuracy can be affected by various factors including the attacker's skill and the defender's evasion
-  * **Damage:** Damage dealt may vary based on the zapping ability being used
+==== Zapping Mechanics ====
+  * **Targeting**: Most zaps require selecting a target or location on the map
+  * **Charge Consumption**: Zapping typically consumes one or more charges from the item
+  * **Effect Application**: The wand's specific effect is applied to the target
+  * **Range**: Most wands have limited range for effective zapping
 
-==== Zapping Creatures ====
-  * **Warlock:** Uses shadow bolt zapping attacks against enemies, with a 50% chance to apply Weakness
-  * **Other magic-using mobs:** Various other spellcasting enemies also use zapping attacks
+==== Zapping Considerations ====
+  * **Accuracy**: Some wands may miss their intended target
+  * **Collateral Effects**: Some zap effects may affect nearby creatures or terrain
+  * **Enemy Response**: Using magic may attract attention from nearby enemies
+  * **Tactical Positioning**: Effective zapping often requires strategic positioning
 
-==== Zapping Ability ====
-  * **Ballistica System:** Uses the Ballistica system for line-of-sight calculations to determine if a target is within range
-  * **Visual Effects:** Often accompanied by visual effects like magic missiles or sparks
-  * **Sound Effects:** May be accompanied by distinctive sound effects when cast
-
-==== Player Zapping ====
-  * **Wands:** Players can zap enemies using wands which are a primary form of ranged magical attack
-  * **Spells:** Some spells also function as zapping abilities
+==== Zapping Tips ====
+  * **Aiming**: Consider splash effects when targeting near allies
+  * **Conservation**: Use zaps efficiently, especially when charges are low
+  * **Timing**: Zapping during combat should factor in enemy retaliation
+  * **Safety**: Avoid zapping when enemies are adjacent when possible
 
 ==== Code References ====
-  * **Zapping Interface:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/IZapper.java|IZapper interface]] - defines zapping capability
-  * **Ballistica System:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]] - handles line-of-sight and range calculations
-  * **Zapping Implementation in Warlock:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L75-L85|Warlock zap method]]
-  * **Wand Zapping:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand zap implementation]]
-  * **Magic Missile Effect:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|MagicMissile class]] - visual effects for zapping
-  * **Zapping Targeting:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java#L85-L92|Actor targeting system]]
-  * **Zapping Sound Effects:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L40-L44|Warlock sound effects for zapping]]
-  * **Machine-readable data:** [[mr:zapping_mechanic|mr:zapping_mechanic]]
+  * Zapping System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - How zapping is implemented
+  * Targeting: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L70-L90|Zap targeting code]] - How zap targets are determined
+  * Effect Application: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L95-L130|Zap effect code]] - How zap effects are applied
+  * Actor System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - How zaps affect characters
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All zapping-related text
 
 ==== See Also ====
-  * [[rpd:ballistica_mechanic|Ballistica System]]
   * [[rpd:wands|Wands]]
-  * [[rpd:warlock_mob|Warlock]] - Example of a zapping mob
-  * [[rpd:magic_missile|Magic Missile Effect]]
+  * [[rpd:charges|Charges]]
+  * [[rpd:mechanics|Mechanics]]
+  * [[rpd:combat_mechanics|Combat]]
 
-{{tag> rpd mechanics magic ranged zapping ballistica}}
+{{tag> rpd mechanics zapping wands magic }}

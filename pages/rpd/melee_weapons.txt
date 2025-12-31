@@ -1,71 +1,41 @@
 ====== Melee Weapons ======
 
-{{ rpd:images:item_short_sword.png|Short Sword }}
+Melee weapons are weapons used for close combat in Remixed Dungeon.
 
-**Melee Weapons** are close-combat weapons that require the hero to be adjacent to enemies to attack. These are the most common weapon type in Remixed Dungeon.
+==== Description ====
+Melee weapons are items designed for close combat situations. They are used against adjacent enemies and typically offer different damage, speed, and special properties depending on the specific weapon type.
 
-===== Types of Melee Weapons =====
-  * **Swords**: [[rpd:short_sword_item|Short Sword]], [[rpd:longsword|Longsword]], [[rpd:sword_item|Sword]]
-  * **Axes**: [[rpd:war_hammer|War Hammer]], [[rpd:battle_axe_item|Battle Axe]]
-  * **Maces**: [[rpd:mace|Mace]], [[rpd:knuckles_item|Knuckleduster]]
-  * **Daggers**: [[rpd:dagger_item|Dagger]], [[rpd:elven_dagger_item|Elven Dagger]]
-  * **Polearms**: [[rpd:glaive_item|Glaive]], [[rpd:spear_item|Spear]], [[rpd:quarterstaff_item|Quarterstaff]]
-  * **Special**: [[rpd:kusarigama_item|Kusarigama]]
+==== Common Melee Weapons ====
+  * [[rpd:sword_item|Swords]] - Balanced weapons with good damage and speed
+  * [[rpd:axe_item|Axes]] - High damage, slower weapons
+  * [[rpd:dagger_item|Daggers]] - Fast, lower damage weapons
+  * [[rpd:mace_item|Maces]] - Moderate damage with good side effects
+  * [[rpd:staff_item|Staves]] - Versatile weapons with magical properties
+  * [[rpd:spear_item|Spears]] - Weapons with extended reach
+  * [[rpd:war_hammer_item|War Hammer]] - High damage, slow weapon
 
-===== Melee Weapon Stats =====
-  * **Damage Range**: Minimum and maximum damage values
-  * **Speed**: Attack speed (lower numbers are faster)
-  * **Accuracy**: Bonus to hit enemies in combat
-  * **Strength**: Required strength to use without penalties
-  * **Durability**: How long the weapon will last in combat
+==== Melee Weapon Properties ====
+  * **Damage**: The range of damage dealt per hit
+  * **Speed**: How quickly the weapon can be used
+  * **Durability**: How long the weapon lasts before breaking
+  * **Special Effects**: Some weapons have unique properties
 
-===== Special Melee Weapons =====
-  * [[rpd:kusarigama_item|Kusarigama]] - Extended range (2 tiles) and special mechanics
-  * [[rpd:knuckles_item|Knuckleduster]] - Fast attack speed and low strength requirement
-  * [[rpd:quarterstaff_item|Quarterstaff]] - Bonus when fighting bare-handed
+==== Melee Combat Considerations ====
+  * **Reach**: Consider the range of the weapon in combat
+  * **Speed vs Damage**: Balance between attack speed and damage output
+  * **Enchantments**: How enchantments affect melee weapons differently
+  * **Class Synergy**: How different hero classes work with specific weapons
 
-===== Strategy =====
-  * Melee combat requires positioning and tactical thinking
-  * Consider weapon reach when fighting multiple enemies
-  * Higher tier weapons have better damage-to-speed ratios
-  * [[rpd:enchantments|Enchantments]] can greatly improve weapon effectiveness
-  * Always have a backup weapon when upgrading
-  * Consider strength requirements before choosing a weapon
-  * Higher damage weapons can be more efficient for resource management
+==== Code References ====
+  * Melee Weapon System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] - Base weapon implementation
+  * Combat System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - How melee combat works
+  * Weapon Properties: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java#L50-L100|Weapon stats code]] - How weapon properties are implemented
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All weapon names and descriptions
 
-===== Advantages =====
-  * No need to carry ammunition
-  * Often have better damage potential than ranged alternatives
-  * Can be used in tight spaces where ranged attacks are difficult
-  * More reliable in challenging terrain
-  * Enchantments affect melee weapons more significantly compared to ranged options
+==== See Also ====
+  * [[rpd:weapon_item|Weapons]]
+  * [[rpd:weapon_enchantments|Weapon Enchantments]]
+  * [[rpd:combat_mechanics|Combat]]
+  * [[rpd:ranged_weapons|Ranged Weapons]]
 
-===== Disadvantages =====
-  * Requires close combat, increasing risk
-  * Can't attack enemies from a safe distance
-  * More dangerous against ranged enemies
-  * Vulnerable to enemies with special abilities at close range
-  * Some enemies have mechanics that trigger on close combat
-
-===== Data Validation =====
-  * Information source: Java Classes in ''com.watabou.pixeldungeon.items.weapon.melee'' package
-  * Mechanics verification: All melee weapon implementations extend ''MeleeWeapon'' class
-  * Stats and descriptions: Based on string resources from values/strings_all.xml
-  * Additional custom weapons: Various custom melee weapons in other packages (guts, necropolis, chaos, etc.)
-
-===== Source Code =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]] - Base melee weapon class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/ShortSword.java|ShortSword.java]] - Example melee weapon implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Longsword.java|Longsword.java]] - Example melee weapon implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1107-L1143|English strings]] - Names and descriptions for core melee weapons
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml]] - Russian localization
-
-===== See Also =====
-  * [[rpd:weapons|Weapons]] - All weapon types
-  * [[rpd:enchantments|Enchantments]] - Magical properties for weapons
-  * [[rpd:combat|Combat]] - General combat mechanics
-  * [[rpd:ranged_weapons|Ranged Weapons]] - Alternative to melee combat
-  * [[rpd:items|Items]] - All items in the game
-  * [[rpd:armor|Armor]] - Defensive equipment to complement melee weapons
-
-{{tag> rpd items weapons melee combat}}
+{{tag> rpd items weapons melee }}

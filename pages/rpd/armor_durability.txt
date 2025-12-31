@@ -1,36 +1,43 @@
 ====== Armor Durability ======
 
-Armor Durability is a system in Remixed Dungeon that causes armor to degrade with use over time, eventually reducing its effectiveness.
+Armor durability is the system that governs how armor degrades with use in Remixed Dungeon.
 
 ==== Description ====
-Armor Durability is a mechanic that causes armor to degrade each time it absorbs damage. As durability decreases, the armor's effectiveness may be reduced until it eventually breaks completely.
+Armor durability represents how much wear and tear an armor piece has sustained. As armor is used in combat and exploration, it slowly degrades until it eventually breaks and becomes unusable.
 
-==== Mechanics ====
-  * **Degradation Rate:** Armor degrades when it absorbs damage from attacks
-  * **Protection Reduction:** As durability decreases, armor may provide less protection
-  * **Complete Failure:** When durability reaches zero, the armor may break completely or become ineffective
+==== Durability Mechanics ====
+  * **Degradation Rate**: Armor slowly loses durability during gameplay
+  * **Combat Degradation**: Taking and dealing damage contributes to durability loss
+  * **Time-Based Loss**: Some minor degradation occurs over time
+  * **Breakage**: When durability reaches zero, the armor breaks and is destroyed
 
-==== Implementation ====
-  * **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]]
-  * **Durability Tracking:** Integrated into the base Armor class
-  * **Damage Absorption:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L136|Armor absorb() method]]
+==== Factors Affecting Durability ====
+  * **Combat Frequency**: More combat results in faster degradation
+  * **Damage Taken**: Higher damage taken accelerates degradation
+  * **Damage Dealt**: Dealing damage also contributes to wear
+  * **Armor Type**: Different armor types may have different durability properties
 
-==== Affected Items ====
-  * All armor types have durability mechanics:
-    * [[rpd:cloth_armor_item|Cloth Armor]]
-    * [[rpd:leather_armor_item|Leather Armor]]
-    * [[rpd:scale_armor_item|Scale Armor]]
-    * [[rpd:mail_armor_item|Mail Armor]]
-    * [[rpd:plate_armor_item|Plate Armor]]
-    * [[rpd:dragon_armor_item|Dragon Armor]]
+==== Durability Management ====
+  * **Monitoring**: Keep track of armor durability to avoid unexpected breakage
+  * **Replacement**: Plan for armor replacement when durability is low
+  * **Upgrading**: Higher-level armor typically has better durability
+  * **Backup Plans**: Consider having spare armor for important expeditions
 
-==== Maintenance ====
-  * **Repairing:** Armor can potentially be repaired using repair tools or services
-  * **Prevention:** Using shields or other defensive measures may reduce armor wear
+==== Durability Preservation ====
+  * **Avoiding Combat**: Reducing unnecessary fights can preserve armor
+  * **Efficient Combat**: Finishing fights quickly may reduce overall wear
+  * **Alternative Protection**: Using buffs and other defenses when possible
+  * **Strategic Upgrades**: Upgrading armor may extend its effective lifespan
 
-==== Related ====
-  * [[rpd:armor|Armor]]
+==== Code References ====
+  * Durability System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Armor.java|Armor.java]] - How durability is implemented
+  * Degradation Mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Armor.java#L70-L100|Durability loss code]] - How armor degrades during gameplay
+  * Item System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - General item mechanics
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All durability-related text
+
+==== See Also ====
+  * [[rpd:armor_item|Armor]]
   * [[rpd:equipment|Equipment]]
-  * [[rpd:weapon_durability|Weapon Durability]]
+  * [[rpd:armor_tiers|Armor Tiers]]
 
-{{tag> rpd mechanics equipment armor }}
+{{tag> rpd mechanics durability armor }}

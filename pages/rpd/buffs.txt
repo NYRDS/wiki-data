@@ -1,75 +1,47 @@
-====== Buffs and Debuffs ======
+====== Buffs ======
 
-{{ rpd:images:buffs_illustration.png|Buffs and Debuffs }}
+Buffs are positive status effects that provide beneficial conditions to characters in Remixed Dungeon.
 
-**Buffs and Debuffs** are temporary status effects that modify character abilities and stats in Remixed Dungeon. Buffs provide positive effects while debuffs impose negative effects.
+==== Description ====
+Buffs are temporary beneficial status effects that enhance a character's capabilities for a limited duration. They can increase combat effectiveness, provide protection, or enable special abilities.
 
 ==== Common Buffs ====
-  * **Healing**: Gradually restores health over time
-  * **Invisibility**: Makes the hero invisible to enemies
-  * **Regeneration**: Faster health recovery
-  * **Haste**: Increases movement and attack speed
-  * **Shield**: Provides temporary damage absorption
-  * **Barkskin**: Reduces all incoming damage
-  * **Light**: Reveals dark areas of the dungeon
-  * **Fury**: Increases damage output temporarily
-  * **Awareness**: Enhances detection of secrets and traps
-  * **Levitation**: Allows movement over traps and special terrain
+  * [[rpd:invisibility_buff|Invisibility]] - Makes the character invisible to enemies
+  * [[rpd:regeneration_buff|Regeneration]] - Gradually restores health
+  * [[rpd:heroism_buff|Heroism]] - Increases damage and health
+  * [[rpd:levitation_buff|Levitation]] - Allows flying over terrain and traps
+  * [[rpd:shadows_buff|Shadows]] - Provides stealth and protection
+  * [[rpd:freerunning_buff|Freerunning]] - Increases movement speed
+  * [[rpd:shield_buff|Shield]] - Provides temporary damage reduction
+  * [[rpd:haste_buff|Haste]] - Increases action speed
+  * [[rpd:light_buff|Light]] - Increases vision radius
+  * [[rpd:barrier_buff|Barrier]] - Provides damage absorption
 
-==== Common Debuffs ====
-  * **Poison**: Gradually reduces health over time
-  * **Bleeding**: Deal damage over time with damage increasing each turn
-  * **Burning**: Takes fire damage and some items may be destroyed
-  * **Paralysis**: Prevents all actions for a period
-  * **Blindness**: Prevents vision beyond immediate square
-  * **Slow**: Reduces movement and action speed
-  * **Weakness**: Reduces strength temporarily
-  * **Doom**: Prevents healing for a period
-  * **Charm**: Causes enemies to fight for you temporarily
-  * **Amok**: Makes enemies attack allies aggressively
-  * **Terror**: Forces characters to flee in fear
+==== Buff Mechanics ====
+  * **Duration**: Most buffs last for a specific number of turns
+  * **Stacking**: Some buffs can stack, others have their duration refreshed
+  * **Application**: Buffs can be self-applied or applied by allies
+  * **Removal**: Buffs naturally expire after their duration
 
-==== Buff Duration ====
-  * Buffs last for a specific number of turns
-  * Duration may scale with hero level or effect strength
-  * Some buffs stack with themselves (like healing potions)
-  * Others overwrite when applied again
+==== Common Sources ====
+  * **Potions**: Many potions provide beneficial buffs when consumed
+  * **Wands**: Some wands can apply buffs to allies
+  * **Rings**: Certain rings provide permanent or temporary buffs
+  * **Food**: Some food items provide temporary effects
+  * **Artifacts**: Special items that provide various buffs
 
-==== Removal of Debuffs ====
-  * **Potion of Purity**: Removes all harmful effects
-  * **Cleansing items**: Special items that remove specific debuffs
-  * **Time**: Most buffs and debuffs expire after a certain duration
-  * **Water**: Can remove some debuffs like burning
-  * **Resting**: Some temporary effects may end when resting
-
-==== Beneficial Applications ====
-  * **Healing**: Use when health is low or during safe moments
-  * **Invisibility**: Escape dangerous situations or bypass enemies
-  * **Regeneration**: For extended combat situations
-  * **Levitation**: Skip over dangerous floor traps
-  * **Fury**: For final push against tough enemies
-  * **Light**: Explore dark areas without torches
-
-==== Debuff Management ====
-  * **Poison**: Move quickly to minimize damage over time
-  * **Burning**: Find water or use potions to stop the effect
-  * **Paralysis**: Always carry potions of healing for emergency situations
-  * **Blindness**: Try to retreat to known safe areas
-  * **Charm/Amok**: Be aware of crowd control effects during boss fights
-
-==== Technical Details ====
-  * Base Buff class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
-  * Buff management system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L200-L250|Buff handling in Char]]
-  * Positive effects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Positive Buffs]]
-  * Negative effects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Debuff.java|Debuffs]]
-  * Potion of Purity: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfPurity.java|PotionOfPurity.java]]
+==== Code References ====
+  * Buff System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Base implementation
+  * Actor System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - How characters interact with buffs
+  * Duration System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java#L25-L50|Buff duration code]] - How buff durations are calculated
+  * Application System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java#L55-L80|Buff application code]] - How buffs are applied
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All buff names and descriptions
 
 ==== See Also ====
-  * [[rpd:potions|Potions]] - Items that grant buffs
-  * [[rpd:wands|Wands]] - Equipment that can apply status effects
-  * [[rpd:spells|Spells]] - Magical abilities that affect status
-  * [[rpd:hero_classes|Hero Classes]] - Class-specific buffs
-  * [[rpd:enemies|Enemies]] - Creatures that apply debuffs
-  * [[rpd:combat|Combat]] - Combat mechanics
+  * [[rpd:debuffs|Debuffs]]
+  * [[rpd:status_effects|Status Effects]]
+  * [[rpd:potions|Potions]]
+  * [[rpd:wands|Wands]]
+  * [[rpd:rings|Rings]]
 
-{{tag> rpd mechanics buffs status }}
+{{tag> rpd mechanics buffs status_effects }}

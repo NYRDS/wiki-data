@@ -1,46 +1,43 @@
 ====== Identification ======
 
-**Identification** is the process of discovering the properties and effects of unidentified items in Remixed Dungeon.
+Identification is the process of revealing the properties of items in Remixed Dungeon.
 
-==== Unidentified Items ====
-  * Most items found in the dungeon are initially unidentified
-  * Unidentified items have uncertain effects when used
-  * Unidentified items show as generic placeholders in inventory
+==== Description ====
+Identification is the system by which unknown items have their properties revealed. Most items in the dungeon start unidentified, and their specific stats, enchantments, or effects are unknown until they are identified.
 
-==== Methods of Identification ====
-  * [[rpd:scroll_of_identify_item|Scroll of Identify]] - Identifies a single item completely
-  * [[rpd:scrolls|Scroll of Knowledge]] - Identifies an item and provides additional information
-  * Using an item reveals its properties (but consumes or degrades the item)
-  * [[rpd:shopkeeper_mob|Shopkeeper]] identification in shops
-  * [[rpd:alchemy|Alchemy]] can reveal item properties
+==== Identification Methods ====
+  * **Use**: Using an item (drinking, reading, zapping, etc.) reveals its properties
+  * [[rpd:scroll_of_identify_item|Scroll of Identify]]: Reveals properties of a single item without using it
+  * **Shopkeepers**: Items sold by shopkeepers are typically already identified
+  * **Enchanting**: Enchanting an item reveals its properties
+  * **Upgrading**: Upgrading an item reveals its properties
+  * **Inherent Knowledge**: Some items, like gold, don't require identification
 
-==== Item Classes That Need Identification ====
-  * [[rpd:potions|Potions]] - Color reveals the type after identification
-  * [[rpd:scrolls|Scrolls]] - Title reveals the type after identification
-  * [[rpd:rings|Rings]] - Gem and properties revealed after identification
-  * [[rpd:wands|Wands]] - Type and remaining charges revealed after identification
-  * [[rpd:armor|Armor]] and [[rpd:weapons_mechanic|Weapons]] - May have hidden [[rpd:enchantments|Enchantments]] or [[rpd:armor_glyphs|Glyphs]]
+==== Identifiable Item Properties ====
+  * **Equipment Level**: The upgrade level of weapons and armor
+  * **Enchantments**: Special properties of weapons and armor
+  * **Effects**: The specific effect of potions and scrolls
+  * **Quality**: Value and effectiveness of items
+  * **Curses**: Whether an item is cursed
 
-==== Strategy ====
-  * Save [[rpd:scroll_of_identify_item|Scrolls of Identify]] for valuable items
-  * Identify [[rpd:potions|Potions]] and [[rpd:scrolls|Scrolls]] before critical use
-  * Identify [[rpd:weapons_mechanic|Weapons]] and [[rpd:armor|Armor]] to reveal hidden properties
-  * [[rpd:rings|Ring of Haggler]] provides one free identification for rings bought in shops
+==== Identification Strategy ====
+  * **Risk Management**: Be cautious when using unidentified items as they may be harmful
+  * **Scroll Conservation**: Use scrolls of identify strategically on valuable items
+  * **Practical Use**: Sometimes using an item is the best way to identify it if it's safe
+  * **Inventory Management**: Identify items systematically to avoid confusion
 
-==== Risks ====
-  * Using unidentified items may have harmful effects
-  * Cursed items activate their curse when used or equipped
-  * Some [[rpd:potions|Potions]] and [[rpd:scrolls|Scrolls]] have dangerous effects
+==== Code References ====
+  * Identification System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - Base identification mechanics
+  * Item Status: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ItemStatusHandler.java|ItemStatusHandler.java]] - How item status is tracked
+  * Scroll Identification: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfIdentify.java|ScrollOfIdentify.java]] - How scroll-based identification works
+  * Item Knowledge: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java#L60-L80|Item knowledge code]] - How item knowledge is stored
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All identification-related text
 
-==== Related ====
-  * [[rpd:items|Items]] - All items that can be identified
-  * [[rpd:scrolls|Scrolls]] - Items that aid identification
-  * [[rpd:shops|Shops]] - Places where items can be identified
-  * [[rpd:enchantments|Enchantments]] - Properties revealed through identification
-  * [[rpd:armor_glyphs|Glyphs]] - Armor properties revealed through identification
+==== See Also ====
+  * [[rpd:scroll_of_identify_item|Scroll of Identify]]
+  * [[rpd:items|Items]]
+  * [[rpd:equipment|Equipment]]
+  * [[rpd:potions|Potions]]
+  * [[rpd:scrolls|Scrolls]]
 
-==== Content Verification ====
-  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Heap.java|Heap.java]]
-  * Identification mechanics verified against actual game code
-
-{{tag> rpd mechanics identification items}}
+{{tag> rpd mechanics identification items }}

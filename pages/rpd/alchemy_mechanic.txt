@@ -1,43 +1,43 @@
 ====== Alchemy ======
 
-{{ rpd:images:item_PotionOfHealing.png|Alchemy Pot }}
-
-**Alchemy** is the system in Remixed Dungeon that allows players to convert seeds into potions.
+Alchemy is the system for crafting items using the Cauldron in Remixed Dungeon.
 
 ==== Description ====
-Alchemy is a crafting system that uses alchemy pots found in various levels to convert seeds into potions. It requires 3 or more seeds of the same type to create a potion. The system is primarily used for converting excess seeds into useful potions.
+Alchemy allows players to craft new items by combining ingredients in a cauldron with water. It provides a way to create consumables, upgrade existing items, or create entirely new items.
 
-==== Alchemy Pot Locations ====
-  * Found in laboratory levels
-  * Sometimes generated in special crafting areas
-  * Not commonly found in regular dungeon levels
+==== Alchemy Locations ====
+  * **Alchemy Potions** - Found in the Prison level and deeper areas
+  * **Water Sources** - Used to start the alchemy process
+  * **Ingredients** - Various items can be used as alchemical components
 
-==== Alchemy Process ====
-  * **Seed to Potion** - Place 3 or more seeds of the same type on an alchemy pot
-  * When using 3 or more seeds, there is a base chance to create a random potion from the game's potion selection
-  * If successful, there is an additional chance to generate the specific potion associated with the seed type (e.g., Firebloom seeds have a chance to create Potion of Liquid Flame)
+==== Common Recipes ====
+  * **Potions**: Seeds combined with water to make potions
+  * **Upgraded Food**: Seeds combined with food items
+  * **Special Items**: Unique combinations for rare items
+  * **Missile Weapons**: Creating special arrows by combining items
+
+==== Alchemy Mechanics ====
+  * **Water Requirement**: Most recipes require water to begin
+  * **Ingredient Combinations**: Specific items must be combined in the right order
+  * **Cauldron Interaction**: Items are placed in cauldron for processing
+  * **Result Variety**: Different combinations produce different results
 
 ==== Code References ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Alchemy.java|Alchemy.java]]
-  * Alchemy Pot: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/AlchemyPot.java|AlchemyPot.java]]
-  * Seed Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Seed.java|Seed.java]]
-  * Each seed type has an alchemyClass property that defines what potion it can potentially create (e.g., Firebloom seeds can create Potion of Liquid Flame)
+  * Alchemy System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/AlchemyPot.java|AlchemyPot.java]] - How alchemy works
+  * Recipe System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/AlchemyPot.java#L50-L100|Recipe implementation]] - How recipes are processed
+  * Item Processing: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/AlchemyPot.java#L100-L150|Item transformation code]] - How items are transformed
+  * Level Objects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObject.java|LevelObject.java]] - How the cauldron is placed
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All alchemy-related text
 
-==== Strategy ====
-  * Convert excess seeds into useful potions to save inventory space
-  * Prioritize seeds that create more valuable potions
-  * Use alchemy when you have an abundance of one seed type
+==== Alchemy Ingredients ====
+  * **Seeds**: Used to create specific potions
+  * **Food Items**: Can be enhanced with seeds
+  * **Other Items**: Various combinations for unique results
 
-==== Tips ====
-  * Always have 3 or more seeds of the same type to craft a potion
-  * The chance to create the specific potion tied to the seed increases with more seeds used
-  * If you don't have enough of one seed type, the result will be a random potion
-  * Alchemy pots can be used to dispose of unwanted items (though not as efficiently as other methods)
+==== See Also ====
+  * [[rpd:potions|Potions]]
+  * [[rpd:consumables|Consumables]]
+  * [[rpd:items|Items]]
+  * [[rpd:seeds|Seeds]]
 
-==== Related ====
-  * [[rpd:potions|Potions]] - Items that can be created via alchemy
-  * [[rpd:seeds|Seeds]] - Ingredients for potion creation
-  * [[rpd:moisten|Moistening]] - Separate process for creating special arrows
-  * [[rpd:shops|Shops]] - Where alchemy pots can sometimes be found
-
-{{tag> rpd mechanics alchemy crafting}}
+{{tag> rpd mechanics alchemy crafting }}

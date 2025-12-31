@@ -1,95 +1,41 @@
 ====== Ranged Weapons ======
 
-{{ rpd:images:bow_item.png|Ranged Weapon }}
+Ranged weapons are weapons used for combat at a distance in Remixed Dungeon.
 
-Ranged weapons allow the hero to attack enemies from a distance without entering adjacent squares. These are important for tactical advantage and avoiding dangerous close combat.
-
-==== Types of Ranged Weapons ====
-  * [[rpd:bow_item|Bows]] - Basic ranged weapons that require ammunition
-  * [[rpd:crossbow_item|Crossbows]] - More powerful than bows, also require ammunition
-  * [[rpd:throwing_weapons|Throwing Weapons]] - Can be thrown without ammunition
-  * [[rpd:dart_item|Darts]] - Simple throwing projectiles
-  * [[rpd:javelin_item|Javelins]] - Thrown spears with good range
-  * [[rpd:boomerang_item|Boomerangs]] - Return after being thrown
-  * [[rpd:shuriken_item|Shurikens]] - Fast-throwing throwing stars
+==== Description ====
+Ranged weapons allow the hero to attack enemies from a distance, typically requiring ammunition like arrows or bolts. They're essential for fighting enemies from a safe distance or when direct combat would be disadvantageous.
 
 ==== Common Ranged Weapons ====
-  * [[rpd:wooden_bow_item|Wooden Bow]] - Basic bow for ranged combat
-  * [[rpd:elven_bow_item|Elven Bow]] - Enhanced bow with better stats
-  * [[rpd:boomerang_item|Boomerang]] - Thrown weapon that returns to user
-  * [[rpd:dart_item|Dart]] - Basic thrown weapon
-  * [[rpd:shuriken_item|Shuriken]] - Fast throwing weapon
-  * [[rpd:throwing_knife_item|Throwing Knife]] - Balanced throwing weapon
-  * [[rpd:javelin_item|Javelin]] - Heavier throwing weapon with more damage
-  * [[rpd:throwing_stone_item|Throwing Stone]] - Basic low-damage throwing weapon
+  * [[rpd:bow_item|Bows]] - Standard ranged weapons requiring arrows
+  * [[rpd:crossbow_item|Crossbows]] - High-damage ranged weapons requiring bolts
+  * [[rpd:sling_item|Sling]] - Simple ranged weapon using stones
+  * [[rpd:dart_item|Darts]] - Thrown weapons for short to medium range
+  * [[rpd:throwing_knife_item|Throwing Knives]] - Sharp projectiles for close to medium range
 
-==== Mechanics ====
-  * **Line of Sight:** Requires clear line of sight to target
-  * **Range:** Ranged weapons have a maximum effective range (typically 4-8 cells)
-  * **Accuracy:** Generally lower than melee weapons, but some have special accuracy bonuses
-  * **Ammunition:** Bows and crossbows require ammunition (arrows, bolts) to function
-  * **No Ammunition:** The [[rpd:huntress_class|Huntress]] class can use ranged weapons without consuming ammunition
-  * **Ammunition Dependent:** Requires ammunition (for bows/crossbows)
-  * **Limited Range:** Most ranged weapons have limited effective range
-  * **No Physical Contact Effects:** Cannot trigger effects that require melee combat
-  * **Damage:** Varies by weapon type
-  * **Speed:** Varies by weapon type
+==== Ranged Weapon Properties ====
+  * **Damage**: The range of damage dealt per hit
+  * **Speed**: How quickly the weapon can be used
+  * **Accuracy**: How likely the weapon is to hit its target
+  * **Range**: Maximum distance for effective use
+  * **Ammunition**: Type of ammunition required for use
 
-==== Advantages ====
-  * **Safety:** Allows attacking enemies from a safe distance
-  * **Control:** Can pick and choose targets without engaging all nearby enemies
-  * **Tactical Options:** Can attack while in safe positions (like behind doors)
-  * **Enemy Testing:** Can assess enemy strengths before engaging in melee
-  * **Trap Avoidance:** No need to move adjacent to trigger traps
-  * **Effective for whittling down tough enemies before engaging in melee**
-  * **Critical for fighting enemies immune to physical attacks**
-  * **Can be used to activate switches or other distant mechanisms**
-
-==== Disadvantages ====
-  * **Ammunition Dependent:** Requires ammunition (for bows/crossbows)
-  * **Limited Range:** Most ranged weapons have limited effective range
-  * **No Physical Contact Effects:** Cannot trigger effects that require melee combat
-  * **Line of Sight:** Blocked by walls and other obstacles
-  * **Less Damage:** Often less damage than comparable melee weapons
-
-==== Strategy ====
-  * **Ammunition Management:** Keep sufficient ammunition for ranged weapons
-  * **Positioning:** Use ranged weapons from safe positions
-  * **Target Selection:** Focus on most dangerous enemies first
-  * **Melee Backup:** Always have a melee weapon as backup
-  * **Ammo Conservation:** Don't waste ammunition on low-value targets
-  * **Enemy Movement:** Consider that enemies will typically move toward you
-  * **Bottleneck Usage:** Use narrow passages to limit enemy approach options
-  * **Trap Consideration:** Ranged weapons allow attacking without triggering nearby traps
-  * **Effective for whittling down tough enemies before engaging in melee**
-  * **Useful for fighting dangerous enemies from safe positions**
-  * **Ammo management is important for bow users**
-
-==== Class Compatibility ====
-  * **Huntress:** Best compatibility, gets bonuses with thrown weapons
-  * **Elf:** Good compatibility, can use ranged in melee as well
-  * **Rogue:** Moderate compatibility, may prefer stealth over ranged
-  * **Warrior:** Moderate compatibility, primarily a melee class
-  * **Mage:** Moderate compatibility, may prefer wands over weapons
-  * **Necromancer:** Moderate compatibility, focuses on undead allies
-
-==== Combat with Ranged Weapons ====
-Ranged combat works similarly to melee combat but with different accuracy calculations and range limitations. Ranged attacks can be affected by accuracy items like [[rpd:ring_of_accuracy_item|Ring of Accuracy]].
+==== Ranged Combat Considerations ====
+  * **Ammunition Management**: Ensuring adequate supply of appropriate ammunition
+  * **Positioning**: Strategic positioning to maximize effectiveness while minimizing risk
+  * **Enemy Count**: More effective against groups of enemies
+  * **Environmental Factors**: Walls and obstacles block ranged attacks
 
 ==== Code References ====
-  * **Ranged Weapon Base:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/ranges/RangeWeapon.java|RangeWeapon.java]]
-  * **Ranged Weapon Mechanics:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L150-L200|Ranged combat in Hero.java]]
-  * **Accuracy Calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java#L200-L250|Actor accuracy mechanics]]
+  * Ranged Weapon System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] - Base ranged weapon implementation
+  * Ammunition System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] - Example ammunition implementation
+  * Combat System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - How ranged combat works
+  * Ballistica System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]] - How projectiles travel through the dungeon
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All ranged weapon names and descriptions
 
-==== Related ====
-  * [[rpd:melee_weapons|Melee Weapons]] - Weapons for close combat
-  * [[rpd:weapon_item|Weapons]] - General weapon information
-  * [[rpd:arrows|Arrows]] - Ammunition for bows
-  * [[rpd:ranged_combat|Ranged Combat]] - Combat strategies for ranged weapons
-  * [[rpd:darts_item|Darts]] - Basic throwing weapons
-  * [[rpd:bows_crossbows_arrows|Bows, Crossbows and Arrows]] - Detailed information about bow mechanics
-  * [[rpd:equipment|Equipment]] - All equipment types
-  * [[rpd:accuracy|Accuracy]] - How hit chance is calculated
-  * [[rpd:evasion|Evasion]] - How defense works
+==== See Also ====
+  * [[rpd:weapon_item|Weapons]]
+  * [[rpd:melee_weapons|Melee Weapons]]
+  * [[rpd:combat_mechanics|Combat]]
+  * [[rpd:missile_weapons|Missile Weapons]]
 
-{{tag> rpd items weapons ranged throwing}}
+{{tag> rpd items weapons ranged }}

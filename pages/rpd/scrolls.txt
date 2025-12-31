@@ -1,89 +1,53 @@
 ====== Scrolls ======
 
-{{ rpd:images:scrolls_illustration.png|Scrolls }}
+Scrolls are magical items that produce powerful effects when read in Remixed Dungeon.
 
-**Scrolls** are magical parchments in Remixed Dungeon that provide various effects when read. Each scroll can typically only be used once, making them valuable resources that must be managed carefully.
+==== Description ====
+Scrolls are magic items inscribed with powerful spells. When used, they activate a magical effect that can be beneficial or harmful depending on the type of scroll. Each scroll contains a single use of its effect and is consumed upon activation.
+
+==== Base Properties ====
+  * **Stackable**: Yes - scrolls can be stacked up to 6 items per slot
+  * **Type**: Single-use magical item
+  * **Weight**: 1 per scroll
+  * **Usage**: Read to activate the scroll's effect
+
+==== Scroll Types ====
+  * **Beneficial Scrolls** - Provide positive effects to the hero
+  * **Utility Scrolls** - Affect the environment or dungeon layout
+  * **Harmful Scrolls** - Create negative effects that can be useful against enemies
+
+==== Common Mechanics ====
+  * **Identifying**: Scrolls start unidentified and must be used to become known
+  * **Reading**: Activates the scroll's effect when read
+  * **Blinding**: Some scrolls produce light that can blind the hero temporarily
+  * **Area Effects**: Many scrolls affect an area rather than a single target
+
+==== Code References ====
+  * Java Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]] - Base implementation
+  * Scroll System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java#L40-L50|Reading mechanics]] - How scrolls are used
+  * Item System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - General item mechanics
+  * Sprite System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - Scroll sprites
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All scroll names and descriptions
 
 ==== Common Scrolls ====
-  * **[[rpd:scroll_of_identify_item|Scroll of Identify]]**: Identifies all items in your inventory
-  * **[[rpd:scroll_of_teleportation_item|Scroll of Teleportation]]**: Teleports to a random location on the current level
-  * **[[rpd:scroll_of_magic_mapping_item|Scroll of Magic Mapping]]**: Reveals the entire level layout and secrets
-  * **[[rpd:scroll_of_upgrade_item|Scroll of Upgrade]]**: Improves a single item's quality
-  * **[[rpd:scroll_of_recharging_item|Scroll of Recharging]]**: Recharges wands and other charged items
-  * **[[rpd:scroll_of_remove_curse_item|Scroll of Remove Curse]]**: Removes curse effects from all equipped items
-  * **[[rpd:scroll_of_treasure_detection_item|Scroll of Treasure Detection]]**: Reveals the location of all treasures
-  * **[[rpd:scroll_of_lullaby_item|Scroll of Lullaby]]**: Puts nearby enemies to sleep
-  * **[[rpd:scroll_of_psionic_blast_item|Scroll of Psionic Blast]]**: Damages all visible creatures
-  * **[[rpd:scroll_of_teleportation_item|Scroll of Challenge]]**: Summons enemies and creates an arena
-  * **[[rpd:scroll_of_wipe_out_item|Scroll of Wipe Out]]**: Removes all enemies from the current level
-
-==== Scroll Mechanics ====
-  * **Single Use**: Most scrolls are consumed after use
-  * **Candle Required**: Some scrolls require a candle of vision to read
-  * **Targeting**: Some scrolls require targeting (like Upgrade)
-  * **Area Effects**: Many scrolls affect a larger area
-  * **Random Effects**: Some scrolls have variable outcomes
-  * **Cursed Effects**: Cursed scrolls may have negative effects
-
-==== Scroll Identification ====
-  * **Initial Unknown**: All scrolls are initially identified only by their glow
-  * **Reading Method**: Reading a scroll identifies it but consumes it
-  * **Candle Identification**: Candles of vision can safely identify scrolls
-  * **Degrading Knowledge**: Some characters may recognize scrolls more easily
-  * **Risk Assessment**: Identifying unknown scrolls involves potential risks
-
-==== Strategic Scroll Usage ====
-  * **Preparation**: Use utility scrolls before challenging situations
-  * **Emergency Scenarios**: Keep teleportation scrolls for dangerous situations
-  * **Resource Management**: Balance scroll usage with availability
-  * **Situational Awareness**: Use appropriate scrolls for current situations
-  * **Inventory Management**: Maintain a balanced collection of scroll types
-
-==== Scroll Risks ====
-  * **Cursed Scrolls**: Some scrolls may have harmful effects
-  * **Wrong Situations**: Using the wrong scroll type in critical moments
-  * **Wasted Utility**: Using powerful scrolls on minor threats
-  * **Revealing Position**: Some scrolls alert all enemies on the level
-  * **Limited Supply**: Scrolls are finite and difficult to replace
-
-==== Scroll Acquisition ====
-  * **Dungeon Exploration**: Found randomly throughout dungeon levels
-  * **Shop Purchases**: Available from shopkeepers in certain levels
-  * **Enemy Drops**: Sometimes dropped by defeated enemies
-  * **Altar Interactions**: Certain altars may provide scrolls
-  * **Special Locations**: Found in specific areas or containers
-
-==== Scroll Categories ====
-  * **Utility Scrolls**: Provide helpful effects (Teleportation, Magic Mapping)
-  * **Combat Scrolls**: Aid in combat situations (Challenge, Psionic Blast)
-  * **Identification Scrolls**: Help identify items (Identify)
-  * **Enhancement Scrolls**: Improve equipment (Upgrade, Weapon Upgrade)
-  * **Support Scrolls**: Provide healing or protective effects (Terror, Lullaby)
-
-==== Special Scroll Interactions ====
-  * **Candle of Visions**: Allows safe identification of scrolls
-  * **Equipment Synergy**: Some equipment provides benefits when using scrolls
-  * **Environmental Impact**: Some scrolls affect the level environment
-  * **Status Effects**: Scroll effects may interact with existing status effects
-
-==== Advanced Scroll Usage ====
-  * **Scroll Combinations**: Using multiple scrolls for combined effects
-  * **Timing**: Using scrolls at optimal moments for maximum benefit
-  * **Positioning**: Using scrolls to improve tactical positioning
-  * **Emergency Protocols**: Keeping specific scrolls for specific dangers
-  * **Resource Conversion**: Using scrolls to convert one resource to another
-
-==== Technical Details ====
-  * Base Scroll class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]]
-  * Scroll implementations: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls|Scroll Classes]]
-  * Scroll system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java#L50-L200|Scroll Mechanics]]
-  * Identification system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java#L100-L200|Item Identification]]
+  * [[rpd:scroll_of_identify_item|Scroll of Identify]]
+  * [[rpd:scroll_of_magic_mapping_item|Scroll of Magic Mapping]]
+  * [[rpd:scroll_of_teleportation_item|Scroll of Teleportation]]
+  * [[rpd:scroll_of_recharging_item|Scroll of Recharging]]
+  * [[rpd:scroll_of_remove_curse_item|Scroll of Remove Curse]]
+  * [[rpd:scroll_of_upgrade_item|Scroll of Upgrade]]
+  * [[rpd:scroll_of_enchantment_item|Scroll of Enchantment]]
+  * [[rpd:scroll_of_terror_item|Scroll of Terror]]
+  * [[rpd:scroll_of_amok_item|Scroll of Amok]]
+  * [[rpd:scroll_of_lullaby_item|Scroll of Lullaby]]
+  * [[rpd:scroll_of_psionic_blast_item|Scroll of Psionic Blast]]
+  * [[rpd:scroll_of_mirror_image_item|Scroll of Mirror Image]]
 
 ==== See Also ====
-  * [[rpd:potions|Potions]] - Liquid magical items
-  * [[rpd:items|Items]] - General item information
-  * [[rpd:consumables|Consumables]] - All consumable items
-  * [[rpd:wands|Wands]] - Reusable magical items
-  * [[rpd:identification|Identification]] - How to identify unknown items
+  * [[rpd:items|Items]]
+  * [[rpd:consumables|Consumables]]
+  * [[rpd:alchemy_mechanic|Alchemy]]
+  * [[rpd:potions|Potions]]
+  * [[rpd:wands|Wands]]
 
-{{tag> rpd items scrolls consumables magic }}
+{{tag> rpd items scrolls base_class }}

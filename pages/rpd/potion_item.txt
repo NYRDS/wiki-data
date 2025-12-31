@@ -1,39 +1,51 @@
-====== Potion Item ======
+====== Potion ======
 
-Potions are consumable items in Remixed Dungeon that provide various beneficial or harmful effects when consumed. Each potion has a unique effect and can be identified through various means.
+Potion is the base class for all potion items in Remixed Dungeon.
 
 ==== Description ====
-Potions are single-use consumable items that provide instant effects when drunk by the hero. There are various types of potions in the game, each with unique effects. Potions start unidentified and must be identified to know their effect before use.
+Potions are consumable items that provide various beneficial or harmful effects when consumed. Some potions can only be consumed, while others can be thrown at enemies or terrain to create area effects.
 
-==== Types of Potions ====
-  * [[rpd:potion_of_healing_item|Potion of Healing]] - Restores health
-  * [[rpd:potion_of_experience_item|Potion of Experience]] - Provides experience points
-  * [[rpd:potion_of_might_item|Potion of Might]] - Permanently increases strength
-  * [[rpd:potion_of_strength_item|Potion of Strength]] - Alternative name for Potion of Might
-  * [[rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] - Creates fire in an area
-  * [[rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] - Creates paralyzing gas
-  * [[rpd:potion_of_purity_item|Potion of Purity]] - Neutralizes harmful gases
-  * [[rpd:potion_of_mind_vision_item|Potion of Mind Vision]] - Reveals nearby secrets
-  * [[rpd:potion_of_frost_item|Potion of Frost]] - Creates freezing area
-  * [[rpd:potion_of_invisibility_item|Potion of Invisibility]] - Provides temporary invisibility
-  * [[rpd:potion_of_toxic_gas_item|Potion of Toxic Gas]] - Creates toxic gas cloud
-  * [[rpd:potion_of_holy_water_item|Potion of Holy Water]] - Cleanses curses
+==== Base Properties ====
+  * **Stackable**: Yes - potions can be stacked up to 6 items per slot
+  * **Type**: Consumable item with various effects
+  * **Storage**: Can be stored in Potion Belt if available
+  * **Identification**: Most potions start unidentified and must be used to become known
 
-==== Identification ====
-Potions start unidentified and appear as "potion of unknown" with a random color. They can be identified by:
-  * Drinking them (risky!)
-  * Using a [[rpd:scroll_of_identify_item|Scroll of Identify]]
-  * Throwing them at walls or enemies
-  * Using certain [[rpd:ring_of_detection_item|Ring of Detection]]
+==== Potion Types ====
+  * **Beneficial Potions** - Provide positive effects like healing or stat boosts
+  * **Harmful Potions** - Create negative effects that can be useful against enemies
+  * **Utility Potions** - Provide special environmental or situational effects
 
-==== Strategy ====
-  * Always carry identification scrolls to safely identify potions
-  * Some potions like [[rpd:potion_of_healing_item|Potion of Healing]] can save your life
-  * Others like [[rpd:potion_of_frost_item|Potion of Frost]] can be used tactically against enemies
-  * [[rpd:alchemy|Alchemy]] allows creating potions from ingredients
+==== Common Mechanics ====
+  * **Identifying**: Potions become identified after being used (consumed or thrown)
+  * **Throwing**: Most potions can be thrown to create area effects
+  * **Alchemy**: Some potions can be used in alchemy recipes
+  * **Brewing**: Potions can be combined with seeds to create new items
 
-===== Source Code =====
-  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Potion.java|Potion.java]] - Base potion class
-  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/PotionOfHealing.java|PotionOfHealing.java]] - Example potion implementation
+==== Code References ====
+  * Java Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]] - Base implementation
+  * Upgradable Base: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|UpgradablePotion.java]] - Base for upgradable potions
+  * Item System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - General item mechanics
+  * Blob Effects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java|Blob.java]] - Environmental effects from thrown potions
+  * Sprite System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - Potion sprites
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All potion names and descriptions
 
-{{tag> rpd items potions }}
+==== Common Potions ====
+  * [[rpd:potion_of_healing_item|Potion of Healing]]
+  * [[rpd:potion_of_experience_item|Potion of Experience]]
+  * [[rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]]
+  * [[rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]]
+  * [[rpd:potion_of_frost_item|Potion of Frost]]
+  * [[rpd:potion_of_mind_vision_item|Potion of Mind Vision]]
+  * [[rpd:potion_of_purity_item|Potion of Purity]]
+  * [[rpd:potion_of_strength_item|Potion of Strength]]
+  * [[rpd:potion_of_invisibility_item|Potion of Invisibility]]
+
+==== See Also ====
+  * [[rpd:items|Items]]
+  * [[rpd:consumables|Consumables]]
+  * [[rpd:alchemy_mechanic|Alchemy]]
+  * [[rpd:scrolls|Scrolls]]
+  * [[rpd:wands|Wands]]
+
+{{tag> rpd items potions base_class }}

@@ -1,60 +1,46 @@
 ====== Shops ======
 
-{{ rpd:images:shopkeeper_npc.png|Shopkeeper }}
-
-Shops are special locations in Remixed Dungeon where players can purchase items, equipment, and services using [[rpd:gold|gold]].
+Shops are areas in the dungeon where the hero can buy and sell items in Remixed Dungeon.
 
 ==== Description ====
-Shops are areas of the dungeon where merchants sell various goods. They provide access to items that might be difficult to find randomly throughout the dungeon, as well as special items exclusive to shops.
+Shops are special areas of the dungeon where the hero can trade gold for useful items or sell unwanted equipment. They provide valuable services that can be crucial for survival.
 
-==== Types of Shops ====
-  * **General Shop** - Sells basic equipment, foods, potions, and scrolls
-  * **Wand Shop** - Specializes in wands and magical items
-  * **Armor Shop** - Focuses on armor and protective gear
-  * **Weapon Shop** - Specializes in weapons and ammunition
-  * **Rare Shop** - Sells rare and exotic items
-  * **Specialty Shops** - Various themed shops with unique inventories
-
-==== Shop Locations ====
-  * Shops typically appear on levels 2, 3, 4, and 6 of each region
-  * Each region (Sewers, Prison, Caves, Necropolis) has its own shop levels
-  * Some special shops may appear on other levels
+==== Shop Types ====
+  * **General Stores** - Sell basic items like food and potions
+  * **Wand Shops** - Specialized in magical wands
+  * **Armor Shops** - Sell various types of armor
+  * **Weapon Shops** - Specialized in weapons
+  * **Rare Shops** - Feature unique or hard-to-find items
 
 ==== Shop Mechanics ====
-  * **Pricing:** Items are typically priced at 2-3x their value when identified
-  * **Identification:** Unidentified items are sold at lower prices
-  * **Limited Stock:** Each shop has limited inventory that doesn't replenish
-  * **Upgrading:** Shopkeepers can upgrade equipment (in some shops)
-  * **Selling:** Players can sell items to shopkeepers for gold
+  * **Currency**: Items are bought and sold using gold
+  * **Inventory**: Shops stock different items depending on the dungeon level
+  * **Limited Supply**: Some items are available in limited quantities
+  * **Quality**: Items in deeper shops are generally better quality
 
-==== Shop Inhabitants ====
-  * [[rpd:shopkeeper_npc|Shopkeeper]] - The primary merchant
-  * [[rpd:bat_mob|Bats]] - Sometimes found protecting shopkeepers
-  * Other NPCs may occasionally appear in shops
+==== Common Shop Items ====
+  * **Potions**: Healing and utility potions
+  * **Scrolls**: Various magical scrolls
+  * **Food**: Rations and special food items
+  * **Equipment**: Weapons and armor
+  * **Upgrades**: Scrolls to enhance equipment
 
-==== Strategy ====
-  * Visit shops early to secure important items for progression
-  * Identify valuable items before selling them
-  * Buy essential consumables like food, potions, and scrolls
-  * Look for good deals on equipment upgrades
-  * Be careful when entering shops, as some may be guarded
-
-==== Special Features ====
-  * **Currency:** All transactions use [[rpd:gold|gold]]
-  * **Identify Service:** Some shopkeepers can identify items
-  * **Upgrading Service:** Some shops offer equipment upgrading
-  * **Unique Items:** Shops often have items not found elsewhere
+==== Shopkeepers ====
+  * **Shopkeeper NPCs**: Each shop is operated by a friendly NPC
+  * **Services**: Shopkeepers provide information and services
+  * **Locations**: Shops appear as special rooms in dungeon levels
 
 ==== Code References ====
-  * Shop generation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Patch.java|Patch.java]] and related level code
-  * Shopkeeper AI: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npc/Shopkeeper.java|Shopkeeper.java]]
-  * Shop mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndTradeItem.java|WndTradeItem.java]]
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1550-L1570|Shop-related strings]]
+  * Shop System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/painters/ShopPainter.java|ShopPainter.java]] - How shops are created
+  * Shop Items: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/painters/ShopPainter.java#L30-L60|Shop inventory code]] - How items are stocked
+  * Shopkeeper: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Shopkeeper.java|Shopkeeper.java]] - NPC shop operator
+  * Item Pricing: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java#L90-L100|Item pricing code]] - How item prices are calculated
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All shop-related text
 
 ==== See Also ====
-  * [[rpd:gold|Gold]] - The currency used in shops
-  * [[rpd:shopkeeper_npc|Shopkeeper]] - The NPC shop owner
-  * [[rpd:items|Items]] - All types of items
-  * [[rpd:levels|Levels]] - Dungeon level types where shops appear
+  * [[rpd:npc|NPCs]]
+  * [[rpd:items|Items]]
+  * [[rpd:gold_item|Gold]]
+  * [[rpd:levels|Levels]]
 
-{{tag> rpd shops gold trading }}
+{{tag> rpd mechanics shops trading }}

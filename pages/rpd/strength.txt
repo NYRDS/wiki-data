@@ -1,48 +1,44 @@
 ====== Strength ======
 
-**Strength** is a primary attribute in Remixed Dungeon that determines a character's ability to wield equipment.
+Strength determines the hero's ability to wear armor and use weapons effectively in Remixed Dungeon.
 
 ==== Description ====
-Strength is a fundamental stat that determines how much equipment a character can effectively use. Each piece of equipment has a strength requirement, and using equipment with a higher requirement than your current strength will result in penalties.
+Strength is a key attribute in Remixed Dungeon that determines the hero's ability to effectively use armor and weapons. If the hero's strength is insufficient for a piece of equipment, the equipment will be harder to use and less effective.
 
-==== Functions ====
-  * **Equipment Requirement:** Determines what weapons and armor can be used effectively
-  * **Penalties:** Using equipment above your strength requirement results in slower speed and attack rate
-  * **Carrying Capacity:** Affects how much weight the character can carry without penalties
+==== Strength Mechanics ====
+  * **Equipment Requirement**: Each piece of armor and weapon has a strength requirement
+  * **Penalties**: Using equipment with insufficient strength results in penalties
+  * **Growth**: Strength can be increased using [[rpd:potion_of_strength_item|Potion of Strength]]
+  * **Base Value**: All heroes start with 10 Strength (varies by class)
 
-==== Equipment Requirements ====
-  * **Weapons:** All weapons have strength requirements that increase with item level
-  * **Armor:** All armor pieces have strength requirements that increase with armor level
-  * **Rings:** Most rings don't have strength requirements
+==== Equipment Strength Requirements ====
+  * **Armor**: Higher tier armor requires more strength to wear effectively
+  * **Weapons**: Heavier weapons require more strength for full damage
+  * **Penalties**: Insufficient strength results in reduced effectiveness and slower action speeds
 
-==== Effects of Insufficient Strength ====
-  * **Slower Movement:** Character moves more slowly
-  * **Slower Attacks:** Attack speed is reduced
-  * **Reduced Effectiveness:** Equipment doesn't perform at full capacity
+==== Strength Considerations ====
+  * **Equipment Planning**: Plan equipment choices around current strength
+  * **Potion Usage**: Save [[rpd:potion_of_strength_item|Potions of Strength]] for important moments
+  * **Class Synergy**: Some classes require more strength than others
+  * **Timing**: Strength potions might be used early to get access to better gear
 
-==== Increasing Strength ====
-  * **Leveling Up:** Each level gives a chance to increase strength
-  * **Rings:** Ring of Might provides gradual strength increase over time
-  * **Items:** Some items can temporarily increase strength
-  * **Starting Stats:** Different hero classes start with different strength values
+==== Strength Effects ====
+  * **Armor Penalty**: Wearing armor with insufficient strength reduces defense and speed
+  * **Weapon Penalty**: Using weapons with insufficient strength reduces damage and speed
+  * **Encumbrance**: Lower strength may reduce mobility with heavy equipment
 
-==== Typical Strength Requirements ====
-  * **Level 1 Weapon:** Usually requires 5-6 strength
-  * **Level 1 Armor:** Usually requires 7-8 strength
-  * **Higher-level items:** Requirements increase with item level
+==== Code References ====
+  * Strength System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - How strength is managed
+  * Equipment Requirements: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - How strength requirements are enforced
+  * Penalty System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L150-L180|Strength penalty code]] - How penalties are calculated
+  * Potion of Strength: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfStrength.java|PotionOfStrength.java]] - How strength can be increased
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All strength-related text
 
-==== Strategy ====
-  * **Planning:** Match equipment upgrades with strength increases
-  * **Ring of Might:** Consider using Ring of Might to increase effective strength over time
-  * **Timing:** Upgrade equipment when you have sufficient strength to use it effectively
-  * **Balance:** Balance between getting stronger equipment and maintaining effectiveness
+==== See Also ====
+  * [[rpd:potion_of_strength_item|Potion of Strength]]
+  * [[rpd:hero|Hero]]
+  * [[rpd:equipment|Equipment]]
+  * [[rpd:armor_item|Armor]]
+  * [[rpd:weapon_item|Weapons]]
 
-==== Related Pages ====
-  * [[rpd:stats|Stats]] - Other character statistics
-  * [[rpd:equipment_mechanic|Equipment]] - Information about equipment
-  * [[rpd:weapons|Weapons]] - Information about weapons
-  * [[rpd:armor|Armor]] - Information about armor
-  * [[rpd:ring_of_might_item|Ring of Might]] - Equipment that increases strength over time
-  * [[rpd:hero|Hero]] - The player character
-
-{{tag> rpd stats strength }}
+{{tag> rpd mechanics strength attributes }}

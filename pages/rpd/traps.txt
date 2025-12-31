@@ -1,95 +1,48 @@
 ====== Traps ======
 
-{{ rpd:images:traps_illustration.png|Traps }}
+Traps are hidden mechanisms that activate when triggered in Remixed Dungeon.
 
-**Traps** are dangerous mechanisms hidden throughout the dungeon in Remixed Dungeon. They activate when stepped on or triggered in other ways, potentially causing serious harm or death to unwary adventurers.
+==== Description ====
+Traps are hidden hazards placed throughout the dungeon that activate when stepped on or triggered from a distance. They can cause various harmful effects and require careful navigation to avoid.
+
+==== Trap Types ====
+  * **Damage Traps** - Deal direct damage to the hero
+  * **Status Effect Traps** - Apply harmful status effects
+  * **Environmental Traps** - Change the environment or dungeon layout
+  * **Utility Traps** - Have mixed or situational effects
 
 ==== Common Traps ====
-  * **Poison Trap**: Inflicts the poison debuff
-  * **Fire Trap**: Deals fire damage and may ignite flammable items
-  * **Paralytic Trap**: Paralyzes the hero for several turns
-  * **Lightning Trap**: Deals electric damage to the hero and adjacent creatures
-  * **Flock Trap**: Summons a flock of magical sheep (generally harmless)
-  * **Teleport Trap**: Teleports the hero to a random location on the level
-  * **Rockfall Trap**: Causes rocks to fall, damaging all characters in the affected area
-  * **Spear Trap**: Deals physical damage with spears
-  * **Summoning Trap**: Summons several enemies at the trap location
-  * **Alarm Trap**: Alerts all enemies on the level to your presence
-  * **Gripping Trap**: Deals damage and roots the hero in place
-  * **Burning Trap**: Creates a large area of fire damage
-  * **Chilling Trap**: Deals damage and applies a slow debuff
-  * **Explosive Trap**: Creates an explosion similar to a bomb blast
-  * **Flash Trap**: Blinds the hero temporarily
-  * **Gravitational Trap**: Pulls the hero and other creatures to the trap location
-  * **Disintegration Trap**: Deals significant damage and can destroy items
-  * **Distortion Trap**: Creates a random combination of various trap effects
+  * [[rpd:fire_trap_trap|Fire Trap]] - Creates burning flames
+  * [[rpd:poison_trap_trap|Poison Trap]] - Releases poisonous gas
+  * [[rpd:alarm_trap_trap|Alarm Trap]] - Creates a loud noise attracting enemies
+  * [[rpd:lightning_trap_trap|Lightning Trap]] - Strikes with electric current
+  * [[rpd:gravel_trap_trap|Gravel Trap]] - Reveals invisible enemies and items
+  * [[rpd:summoning_trap_trap|Summoning Trap]] - Summons enemies
+  * [[rpd:teleportation_trap_trap|Teleportation Trap]] - Teleports the hero to random location
+  * [[rpd:ward_trap_trap|Ward Trap]] - Creates protective wards
 
-==== Trap Detection ====
-  * **Search Skill**: Standing still increases the chance to detect nearby traps
-  * **Awareness Buff**: Significantly improves trap detection
-  * **Ring of Detection**: Enhances the ability to see hidden things
-  * **Wand of Magic Detection**: Reveals traps in an area when used
-  * **Scroll of Magic Mapping**: Reveals the entire level layout, including traps
+==== Common Mechanics ====
+  * **Stealth**: Traps are hidden until triggered or discovered
+  * **Disarming**: Some characters can disarm traps for benefits
+  * **Detection**: Hero can learn to detect nearby traps as they level up
+  * **Activation**: Usually triggered by stepping on them or passing by
 
-==== Trap Avoidance ====
-  * **Careful Movement**: Move slowly and check areas before entering
-  * **Search Function**: Stop and search to reveal nearby traps
-  * **Pre-emptive Disabling**: Use ranged attacks to trigger traps safely
-  * **Equipment**: Wear appropriate gear to minimize trap effects
-  * **Potions**: Carry healing potions for trap damage recovery
+==== Code References ====
+  * Trap Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap.java]] - Base implementation
+  * Level Objects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObject.java|LevelObject.java]] - How traps fit into level objects
+  * Detection System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L200-L220|Hero trap detection]] - How heroes detect traps
+  * Dungeon System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] - How traps are placed
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All trap-related text
 
-==== Trap Disabling ====
-  * **Stepping**: Most traps activate when stepped on
-  * **Ranged Attacks**: Some traps can be triggered from a distance
-  * **Wands**: Certain wands can trigger or disable traps
-  * **Stones**: Thrown stones can set off traps safely
-  * **Awareness**: Some characters have special abilities to disable traps
-
-==== Trap Mechanics ====
-  * **Hidden**: Traps are initially invisible until discovered
-  * **Area of Effect**: Some traps affect a larger area around the trigger point
-  * **One-time**: Most traps can only be triggered once
-  * **Regenerating**: Some traps reset after a period (in modded games)
-  * **Environmental**: Some traps are more common in specific areas
-
-==== Dangerous Traps ====
-  * **Disintegration Trap**: Potentially destroys items and deals high damage
-  * **Rockfall Trap**: Can be deadly in narrow corridors
-  * **Burning Trap**: Can ignite flammable items in inventory
-  * **Explosive Trap**: High damage over an area
-  * **Lightning Trap**: High damage that can arc to nearby creatures
-
-==== Less Dangerous Traps ====
-  * **Flock Trap**: Generally harmless, creates sheep
-  * **Teleport Trap**: Annoying but not usually dangerous
-  * **Summoning Trap**: Dangerous if you can't fight the summoned enemies
-  * **Alarm Trap**: Doesn't harm directly but brings enemies to you
-
-==== Trap Strategy ====
-  * **Scouting Ahead**: Use wands or thrown stones to check areas
-  * **Awareness Potions**: Use before exploring unknown areas
-  * **Health Management**: Always have recovery options when exploring
-  * **Escape Routes**: Identify safe paths when entering new areas
-  * **Item Protection**: Use resistant containers for important items
-
-==== Special Trap Interactions ====
-  * **Armor**: Some armor can reduce damage from certain traps
-  * **Resistance**: Some characters have resistances to specific trap types
-  * **Immunities**: Certain statuses provide temporary immunity to trap effects
-  * **Synergies**: Some items or abilities work well with specific trap types
-
-==== Technical Details ====
-  * Base Trap class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap.java]]
-  * Trap implementations: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java#L50-L200|Trap Types]]
-  * Trap activation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L300-L350|Trigger Mechanism]]
-  * Trap detection system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L200-L250|Detection Implementation]]
+==== Trap Interaction ====
+  * **Triggering**: Usually occurs when stepping on the trap
+  * **Avoidance**: Can sometimes be spotted before triggering
+  * **Disarming**: Some classes can safely disarm traps
+  * **Effects**: Various harmful, helpful or mixed effects possible
 
 ==== See Also ====
-  * [[rpd:levels|Dungeon Levels]] - Where traps are commonly found
-  * [[rpd:scrolls|Scrolls]] - Items that help with trap detection
-  * [[rpd:wands|Wands]] - Equipment that can detect or trigger traps
-  * [[rpd:combat|Combat]] - General combat mechanics
-  * [[rpd:items|Items]] - Equipment that provides protection
-  * [[rpd:potions|Potions]] - Consumables that help with trap effects
+  * [[rpd:levels|Levels]]
+  * [[rpd:mechanics|Mechanics]]
+  * [[rpd:status_effects|Status Effects]]
 
-{{tag> rpd mechanics traps hazards }}
+{{tag> rpd traps hazards mechanics }}

@@ -1,57 +1,45 @@
 ====== Dungeon ======
 
-{{ rpd:images:caves_level.png|Dungeon}}
+The dungeon is the main environment where the game takes place in Remixed Dungeon.
 
-The **Dungeon** is the main gameplay area in Remixed Dungeon. It is a multi-level structure that players explore from top to bottom, facing increasingly difficult challenges.
+==== Description ====
+The dungeon is a procedurally generated underground complex where the hero's adventure takes place. It consists of multiple levels with increasing difficulty, filled with monsters, treasures, and hazards.
 
-==== Structure ====
-The dungeon is organized into several distinct areas, each with multiple levels:
+==== Dungeon Structure ====
+  * [[rpd:levels|Levels]] - The different floors of the dungeon
+  * [[rpd:stairs|Stairs]] - Connecting passages between levels
+  * **Areas** - Different themed sections within levels
+  * **Rooms** - Distinct sections within dungeon levels
 
-  * [[rpd:sewers_level|Sewers]] (Levels 1-5): The entry area, featuring basic monsters and simple layouts
-  * [[rpd:prison_level|Prison]] (Levels 6-10): An abandoned prison with more challenging enemies
-  * [[rpd:caves_level|Caves]] (Levels 11-15): Underground caverns with tougher monsters
-  * [[rpd:city_level|City]] (Levels 16-20): The dungeon's center with elite enemies
-  * [[rpd:halls_level|Halls]] (Levels 21-25): The deepest area with the most dangerous creatures
+==== Dungeon Elements ====
+  * [[rpd:mobs|Mobs]] - Enemies and creatures that populate the dungeon
+  * [[rpd:items|Items]] - Objects that can be found and collected
+  * [[rpd:traps|Traps]] - Hidden hazards throughout the dungeon
+  * [[rpd:level_objects|Level Objects]] - Interactive and decorative features
+  * [[rpd:shops|Shops]] - Areas where items can be bought and sold
 
-==== Progression ====
-  * Players start at the top of the dungeon and work their way down
-  * Each area concludes with a [[rpd:boss|boss fight]]
-  * After defeating each boss, players receive a key to access deeper areas
-  * The ultimate goal is to defeat the final boss in the Halls area
+==== Dungeon Goals ====
+  * **Amulet of Yendor**: The primary objective is to reach the bottom and claim the legendary Amulet
+  * **Survival**: Avoiding death while navigating through increasingly dangerous levels
+  * **Exploration**: Discovering all secrets and areas within each level
+  * **Progression**: Growing stronger to face greater challenges
 
-==== Features ====
-  * **Procedural Generation**: Each level layout is randomly generated
-  * **Scaling Difficulty**: Enemies and challenges become more difficult at deeper levels
-  * **Unique Areas**: Each dungeon area has its own theme, enemies, and special features
-  * **Vertical Progression**: Players must find stairs to advance between levels
+==== Dungeon Mechanics ====
+  * **Procedural Generation**: Each game features a unique dungeon layout
+  * **Increasing Difficulty**: Each level is more challenging than the previous
+  * **Limited Resources**: Items left behind cannot be recovered once descended
+  * **Permadeath**: Death ends the current game permanently
 
-==== Special Locations ====
-  * [[rpd:town|Town]]: Starting location where players begin their journey
-  * [[rpd:shops|Shops]]: Found randomly throughout the dungeon, selling items and services
-  * [[rpd:shops|Special Rooms]]: Unique room types like gardens, libraries, and armories
+==== Code References ====
+  * Dungeon System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] - Core dungeon implementation
+  * Generation System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java#L100-L200|Level generation code]] - How dungeon levels are created
+  * Dungeon State: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java#L50-L90|Dungeon state management]] - How dungeon state is tracked
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All dungeon-related text
 
-==== Mechanics ====
-  * [[rpd:hunger_buff|Hunger]] - Gradually increases as you descend
-  * [[rpd:light|Light]] - Vision is limited without light sources
-  * [[rpd:stairs|Stairs]] - Primary method of moving between levels
-  * [[rpd:challenges|Challenges]] - Optional modifiers that increase difficulty for greater rewards
+==== See Also ====
+  * [[rpd:levels|Levels]]
+  * [[rpd:hero|Hero]]
+  * [[rpd:amulet_item|Amulet of Yendor]]
+  * [[rpd:stairs|Stairs]]
 
-==== Content Verification ====
-  * **Information Source**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]]
-  * **Mechanics Verification**: Extracted from Dungeon.java and related level classes
-  * **Effect Descriptions**: Based on code analysis and gameplay
-  * **Last Updated**: December 29, 2025
-  * **Source File**: Dungeon.java
-
-==== Source Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] - Core dungeon implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]] - Base level implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/GamesInProgress.java|GamesInProgress.java]] - Save game and progress tracking
-
-==== Related ====
-  * [[rpd:levels|Levels]] - Individual dungeon floors
-  * [[rpd:hero|Hero]] - The player character
-  * [[rpd:town|Town]] - Starting area
-  * [[rpd:stairs|Stairs]] - Navigation between levels
-
-{{tag> rpd dungeon gameplay structure}}
+{{tag> rpd dungeon environment game }}

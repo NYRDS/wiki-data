@@ -1,52 +1,41 @@
 ====== Stairs ======
 
-{{ rpd:images:stairs.png|Stairs}}
+Stairs connect different levels of the dungeon in Remixed Dungeon.
 
-**Stairs** are essential elements in Remixed Dungeon that allow the hero to travel between dungeon levels. There are two main types of stairs that facilitate vertical movement through the dungeon.
+==== Description ====
+Stairs are passageways that allow travel between dungeon levels. They are essential for progression as the hero must use stairs to advance deeper into the dungeon or return to previous levels.
 
-==== Types of Stairs ====
+==== Stair Types ====
+  * **Stairs Down**: Lead to deeper levels of the dungeon
+  * **Stairs Up**: Lead to higher levels of the dungeon
+  * **Prize Stairs**: Special stairs that lead to special areas
 
-==== Downward Stairs ====
-  * Allow the hero to descend to deeper levels of the dungeon
-  * Appear automatically on each level except the final level (Halls level 25)
-  * Marked with a '>' symbol on the dungeon map
-  * Required to progress deeper into the dungeon
-  * Once descended, can only be returned to using an [[rpd:amulet_item|Amulet of Yendor]]
+==== Stair Mechanics ====
+  * **One-Way**: Once the hero descends past a level, they cannot return to it
+  * **Location**: Stairs are randomly placed within each level
+  * **Uniqueness**: Each level has one exit and one entrance
+  * **Visibility**: Stairs are visible but may be surrounded by enemies
 
-==== Upward Stairs ====
-  * Allow the hero to ascend to higher levels of the dungeon
-  * Appear on most levels (except the first level of each area)
-  * Marked with a '<' symbol on the dungeon map
-  * Allow retreat to higher levels or return to town
-  * Can be used to backtrack to previous levels (until the hero goes deeper)
+==== Navigation Considerations ====
+  * **Timing**: It's important to explore adequately before descending
+  * **Preparation**: Ensure sufficient supplies before advancing
+  * **Strategy**: Sometimes it's beneficial to return to earlier levels
+  * **Special Areas**: Some stairs may lead to secret or special areas
 
-==== Special Properties ====
-  * Stairs are always visible on the dungeon map (not hidden behind fog of war)
-  * They're safe tiles - no random events occur when standing on stairs
-  * Stairs cannot be destroyed or blocked by enemies
-  * When entering a level, the hero appears on the upward stairs (or the entrance on level 1)
+==== Code References ====
+  * Stair System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java#L200-L250|Level stairs code]] - How stairs are placed
+  * Dungeon System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] - How stairs function in dungeon progression
+  * Stair Interaction: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L400-L450|Hero stair interaction]] - How the hero uses stairs
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All stair-related text
 
-==== Usage Strategy ====
-  * It's often beneficial to explore a level fully before descending
-  * Upward stairs can be used to retreat from dangerous situations
-  * Some players use upward stairs to rest (regenerate HP/MP) away from wandering monsters
-  * In challenges that prevent return to town, upward stairs stop appearing after level 1
+==== Related Elements ====
+  * [[rpd:levels|Levels]]
+  * [[rpd:amulet_item|Amulet of Yendor]]
 
-==== Content Verification ====
-  * **Information Source**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]]
-  * **Mechanics Verification**: Extracted from Level.java stair generation methods and Dungeon.java descent/ascent methods
-  * **Effect Descriptions**: Based on code analysis and gameplay
-  * **Last Updated**: December 29, 2025
-  * **Source File**: Level.java, Dungeon.java
+==== See Also ====
+  * [[rpd:levels|Levels]]
+  * [[rpd:dungeon|Dungeon]]
+  * [[rpd:mobs|Mobs]]
+  * [[rpd:items|Items]]
 
-==== Source Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]] - Stair generation logic
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] - Descent/Ascent mechanics
-
-==== Related ====
-  * [[rpd:levels|Levels]] - Information about dungeon levels
-  * [[rpd:dungeon|Dungeon]] - Overview of the dungeon structure
-  * [[rpd:amulet_item|Amulet of Yendor]] - Special item for returning to surface
-  * [[rpd:town|Town]] - Starting area accessible via surface stairs
-
-{{tag> rpd stairs dungeon mechanics}}
+{{tag> rpd mechanics stairs levels }}

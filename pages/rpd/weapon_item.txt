@@ -1,61 +1,52 @@
-====== Weapon Item ======
+====== Weapon ======
 
-{{ rpd:images:short_sword_item.png|Weapon }}
+Weapon is the base class for all weapon items in Remixed Dungeon.
 
 ==== Description ====
-Weapons are items used by the hero to attack enemies. Each weapon has specific damage range, speed, and accuracy characteristics.
+Weapon items are equipped to enhance the hero's combat capabilities. They can be melee weapons for close combat or ranged weapons for distance attacks.
+
+==== Base Properties ====
+  * **Type**: Equipment for main hand slot
+  * **Damage**: Increases damage dealt to enemies
+  * **Tier**: Weapons come in different tiers affecting damage and weight
+  * **Enchantments**: Can be enchanted with special effects
+  * **Durability**: Depletes with use and time
+  * **Speed**: Affects attack speed
 
 ==== Weapon Categories ====
-  * [[rpd:melee_weapon_item|Melee Weapons]] - Close combat weapons
-  * [[rpd:ranged_weapon_item|Ranged Weapons]] - Weapons for distant combat
-  * [[rpd:sword_item|Swords]] - Balanced melee weapons
-  * [[rpd:axe_item|Axes]] - Heavy damage weapons
-  * [[rpd:dagger_item|Daggers]] - Fast light weapons
-  * [[rpd:bow_item|Bows and Crossbows]] - Ranged projectile weapons
-  * [[rpd:spear_item|Spears]] - Mid-range thrusting weapons
+  * **Melee Weapons** - Used for close combat
+  * **Ranged Weapons** - For distance attacks using ammunition
+  * **Special Weapons** - Unique mechanics and effects
 
-==== Common Weapons ====
-  * [[rpd:short_sword_item|Short Sword]] - Basic melee weapon
-  * [[rpd:wooden_bow_item|Wooden Bow]] - Basic ranged weapon
-  * [[rpd:dart_item|Dart]] - Basic throwing weapon
-  * [[rpd:boomerang_item|Boomerang]] - Returning throwing weapon
-  * [[rpd:wand_item|Wands]] - Magic-based weapons
-  * [[rpd:staff_item|Staffs]] - Magic-enhanced weapons
-
-==== Weapon Mechanics ====
-  * **Damage:** Affects the amount of damage dealt to enemies
-  * **Speed:** Determines how quickly the weapon attacks
-  * **Accuracy:** Affects chance to hit enemies
-  * **Strength Requirement:** Minimum strength needed to wield effectively
-  * **Upgrades:** Weapons can be upgraded to improve stats
-  * **Enchantments:** Can be added via [[rpd:scroll_of_enchantment_item|Scroll of Enchantment]]
-
-==== Enchantments ====
-  * [[rpd:fire_enchantment|Fire]] - Chance to ignite enemies
-  * [[rpd:shocking_enchantment|Shocking]] - Chance to deal lightning damage
-  * [[rpd:chilling_enchantment|Chilling]] - Chance to slow enemies
-  * [[rpd:bleeding_enchantment|Bleeding]] - Chance to cause bleeding
-  * [[rpd:luck_enchantment|Luck]] - Improves item drops
-  * [[rpd:poison_enchantment|Poison]] - Chance to poison enemies
-  * [[rpd:regrowth_enchantment|Regrowth]] - Grows plants around impact
-
-==== Technical Details ====
-  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|com.watabou.pixeldungeon.items.weapon.Weapon]]
-  * **Base Class:** Extends EquipableItem
-  * **Implementation:** Abstract class with specific implementations for each weapon type
+==== Common Mechanics ====
+  * **Damage Range**: Specifies minimum and maximum damage dealt
+  * **Speed Factor**: Affects how quickly attacks can be made
+  * **Enchantments**: Can be upgraded with weapon enchantments
+  * **Identification**: Weapons must be identified to see their level and enchantment
+  * **Upgrading**: Weapons can be enchanted to improve stats
 
 ==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] - Base weapon class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/|weapon package]] - All weapon implementations
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/EquipableItem.java|EquipableItem.java]] - Base class for equipment
+  * Java Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] - Base implementation
+  * Item System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - General item mechanics
+  * Equipment System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings.java]] - How weapons are equipped
+  * Sprite System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - Weapon sprites
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All weapon names and descriptions
 
-==== String Resource References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Weapon-related strings]]
+==== Common Weapons ====
+  * [[rpd:sword_item|Sword]]
+  * [[rpd:axe_item|Axe]]
+  * [[rpd:dagger_item|Dagger]]
+  * [[rpd:mace_item|Mace]]
+  * [[rpd:bow_item|Bow]]
+  * [[rpd:crossbow_item|Crossbow]]
+  * [[rpd:staff_item|Staff]]
 
 ==== See Also ====
-  * [[rpd:items|Items]] - General information about items
-  * [[rpd:enchantments|Enchantments]] - Item enchantment system
-  * [[rpd:equipment|Equipment]] - Other equipment types
-  * [[rpd:armor|Armor]] - Protective equipment
+  * [[rpd:items|Items]]
+  * [[rpd:equipment|Equipment]]
+  * [[rpd:weapon_enchantments|Weapon Enchantments]]
+  * [[rpd:melee_weapons|Melee Weapons]]
+  * [[rpd:ranged_weapons|Ranged Weapons]]
+  * [[rpd:weapon_types_mechanic|Weapon Types]]
 
-{{tag> rpd items weapons equipment}}
+{{tag> rpd items weapons base_class }}

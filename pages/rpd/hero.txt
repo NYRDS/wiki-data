@@ -1,63 +1,61 @@
 ====== Hero ======
 
-The Hero is the player character in Remixed Dungeon, representing the adventurer exploring the dungeon.
+The Hero is the player character in Remixed Dungeon.
 
 ==== Description ====
-The Hero is the controllable character in Remixed Dungeon representing the player. The Hero can be one of several [[rpd:hero_class|classes]], each with unique starting equipment and abilities.
+The Hero is the main character controlled by the player. There are different hero classes with unique starting abilities and strengths.
 
 ==== Hero Classes ====
-  * [[rpd:warrior_class|Warrior]] - Melee-focused class with high health and starting equipment
-  * [[rpd:mage_class|Mage]] - Magic-focused class with wand and scroll affinity
-  * [[rpd:rogue_class|Rogue]] - Stealth and trap-discovery focused class
-  * [[rpd:huntress_class|Huntress]] - Ranger class with thrown weapon bonuses
-  * [[rpd:elf_class|Elf]] - Natural magic and ranged combat class
-  * [[rpd:necromancer_class|Necromancer]] - Undead summoning and dark magic class
-  * [[rpd:gnoll_class|Gnoll]] - High strength but low health class
-  * [[rpd:priest_class|Priest]] - Healing and support focused class
-  * [[rpd:doctor_class|Doctor]] - Chemistry-focused class with specialized equipment
+  * [[rpd:warrior_class|Warrior]]
+  * [[rpd:mage_class|Mage]]
+  * [[rpd:rogue_class|Rogue]]
+  * [[rpd:elf_class|Elf]]
+  * [[rpd:necromancer_class|Necromancer]]
 
-==== Attributes ====
-  * **Health (HP)** - Current and maximum hit points
-  * **Strength (STR)** - Affects how much equipment the hero can carry and melee damage
-  * **Level** - Affects stats and spell power
-  * **Experience** - Earned by defeating enemies and completing objectives
-  * **Gold** - Currency for purchasing items in shops
+==== Base Properties ====
+  * **Starting HP**: Varies by class (typically 20)
+  * **Starting Strength**: 10 (can vary by class)
+  * **Attack Skill**: 10
+  * **Defense Skill**: 5
+  * **Speed**: 1 (standard speed)
+  * **Level Cap**: No theoretical maximum level
 
-==== Core Mechanics ====
-  * [[rpd:inventory|Inventory]] - Item carrying and management
-  * [[rpd:equipment|Equipment]] - Weapon, armor, and accessories
-  * [[rpd:stats|Stats]] - Detailed attribute information
-  * [[rpd:level|Leveling]] - Experience and advancement system
-  * [[rpd:hunger_buff|Hunger]] - Hunger system affecting performance
-  * [[rpd:quickslots|Quick Slots]] - Fast access to items
+==== Basic Mechanics ====
+  * **Leveling**: Gain experience by killing enemies and performing certain actions
+  * **Strength**: Affects ability to wear armor and use weapons
+  * **Health**: Determined by class and level, can be restored with healing items
+  * **Hunger**: Gradually decreases and affects performance when too low
+  * **Healing**: Can be done through various methods including potions and rest
 
-==== Starting Equipment ====
-Each hero class begins with different equipment:
-  * [[rpd:warrior_class|Warrior]]: Short sword, armor, potion of strength
-  * [[rpd:mage_class|Mage]]: Wand of magic missile, scroll of identify, cloth armor
-  * [[rpd:rogue_class|Rogue]]: Ring of shadows +1, cloth armor
-  * [[rpd:huntress_class|Huntress]]: Boomerang, studded armor
-  * [[rpd:elf_class|Elf]]: Elven bow and arrows, cloth armor
-  * Other classes have their own starting equipment
+==== Core Attributes ====
+  * **HP (Health Points)**: Current health status
+  * **EXP (Experience)**: For leveling up
+  * **STR (Strength)**: Affects ability to use equipment
+  * **Level**: Character's overall power and HP
+  * **Hunger**: Affects performance when low
 
-==== Hero Subclasses ====
-Each class can unlock a mastery subclass after certain conditions:
-  * [[rpd:warrior_class|Warrior]]: [[rpd:gladiator_subclass|Gladiator]], [[rpd:berserker_subclass|Berserker]]
-  * [[rpd:mage_class|Mage]]: [[rpd:warlock_subclass|Warlock]], [[rpd:battle_mage_subclass|Battle Mage]]
-  * [[rpd:rogue_class|Rogue]]: [[rpd:assassin_subclass|Assassin]], [[rpd:freerunner_subclass|Freerunner]]
-  * [[rpd:huntress_class|Huntress]]: [[rpd:sniper_subclass|Sniper]], [[rpd:warden_subclass|Warden]]
-  * [[rpd:elf_class|Elf]]: [[rpd:scout_subclass|Scout]], [[rpd:shaman_subclass|Shaman]]
-  * [[rpd:necromancer_class|Necromancer]]: [[rpd:lich_subclass|Lich]], [[rpd:witch_doctor_subclass|Witch Doctor]]
-  * [[rpd:gnoll_class|Gnoll]]: [[rpd:guardian_subclass|Guardian]], [[rpd:witch_doctor_subclass|Witch Doctor]]
+==== Code References ====
+  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Core hero class
+  * Hero Class Definitions: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - All hero classes
+  * Subclass System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Hero mastery paths
+  * Belongings System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings.java]] - Inventory and equipment
+  * Action System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroAction.java|HeroAction.java]] - Hero actions
+  * Leveling Mechanism: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L200-L215|Hero.java leveling code]] - Implementation of leveling system
+  * Death Handling: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L245-L265|Hero death handling]] - What happens when hero dies
+  * Hunger System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]] - Hero hunger mechanics
+  * Sprite System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/HeroSprite.java|HeroSprite.java]] - Hero visual appearance
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All hero-related text
 
-==== Strategy ====
-  * Choose a hero class that matches your playstyle
-  * Each class has unique advantages and challenges
-  * Consider starting equipment when planning your approach
-  * Learn class-specific mechanics and synergies
+==== Hero Mechanics ====
+  * [[rpd:leveling|Leveling]]
+  * [[rpd:strength|Strength]]
+  * [[rpd:hunger_buff|Hunger]]
+  * [[rpd:experience_system|Experience]]
 
-===== Source Code =====
-  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Main hero implementation
-  * JSON: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] - Starting stats and equipment for each class
+==== See Also ====
+  * [[rpd:hero_classes|Hero Classes]]
+  * [[rpd:hero_subclasses|Hero Subclasses]]
+  * [[rpd:equipment|Equipment]]
+  * [[rpd:combat_mechanics|Combat]]
 
-{{tag> rpd character hero }}
+{{tag> rpd hero character player }}

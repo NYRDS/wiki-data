@@ -1,36 +1,37 @@
 ====== Level Objects ======
 
-**Level Objects** are interactive or decorative elements that can be placed on dungeon levels in Remixed Dungeon. These include traps, statues, barricades, wells, and other environmental features.
+Level objects are interactive and decorative elements found throughout dungeon levels in Remixed Dungeon.
 
 ==== Description ====
-Level objects are special entities that exist on dungeon levels and can interact with characters and items. They are configured through JSON files in the `levelObjects/` directory and may have custom behaviors implemented in Lua scripts in the `scripts/objects/` directory.
+Level objects are elements that appear on dungeon levels beyond just empty floors, walls, items, and mobs. They include both interactive objects that can be used by the hero and decorative elements that enhance the dungeon's appearance and atmosphere.
 
-==== Types of Level Objects ====
-  * **Traps:** Dangerous objects that activate when triggered
-  * **Statues:** Decorative or interactive stone figures
-  * **Wells:** Sources of special effects or benefits
-  * **Barricades:** Obstacles that block movement
-  * **Pedestals:** Platforms that hold items or have special properties
-  * **Plants:** Level objects like Firebloom, Icecap, Sorrowmoss, etc. that can be harvested
-  * **Doors:** Locked or sealed passages
+==== Common Level Objects ====
+  * [[rpd:well_of_awareness|Well of Awareness]] - Reveals item properties
+  * [[rpd:well_of_health|Well of Health]] - Restores health and removes negative effects
+  * [[rpd:well_of_transmutation|Well of Transmutation]] - Changes item properties
+  * [[rpd:alchemy_mechanic|Alchemy Pot]] - Allows crafting of new items
+  * [[rpd:statue_level_object|Statue]] - Decorative or interactive features
+  * [[rpd:pedestal_level_object|Pedestal]] - Special placement for items
+  * [[rpd:barricade_level_object|Barricade]] - Blocks movement until destroyed
+  * [[rpd:trap_fire_level_object|Fire Trap]] - Activates when stepped on
 
-==== Mechanics ====
-  * **Placement:** Level objects are defined in JSON configuration files
-  * **Interaction:** Many objects respond to character proximity or actions
-  * **Lua Scripts:** Custom behaviors can be implemented using Lua scripts
-  * **Destruction:** Some objects can be destroyed or activated
+==== Level Object Categories ====
+  * **Wells** - Special fountains with beneficial or transformative effects
+  * **Containers** - Boxes, chests, and other containers with items
+  * **Decorative** - Visual elements that enhance the dungeon environment
+  * **Interactive** - Objects that respond to hero actions
+  * **Traps** - Hidden hazards that activate when triggered
 
 ==== Code References ====
-  * Base implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObject.java|LevelObject.java]]
-  * Factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObjectsFactory.java|LevelObjectsFactory.java]]
-  * Configuration files: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelObjects/|levelObjects/ directory]]
-  * Lua scripts: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/objects/|scripts/objects/ directory]]
+  * Level Objects System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObject.java|LevelObject.java]] - Base implementation
+  * Objects Factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObjectsFactory.java|LevelObjectsFactory.java]] - How objects are created
+  * Level Integration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]] - How objects fit into levels
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All object-related text
 
-==== Related Pages ====
-  * [[rpd:traps|Traps]] - Dangerous level objects
-  * [[rpd:statues|Statues]] - Stone figures with special properties
-  * [[rpd:plants|Plants]] - Harvestable level objects
-  * [[rpd:potion_of_purity_item|Potion of Purity]] - Can neutralize harmful level objects
-  * [[rpd:alchemy|Alchemy]] - Level objects used in brewing
+==== See Also ====
+  * [[rpd:levels|Levels]]
+  * [[rpd:traps|Traps]]
+  * [[rpd:alchemy_mechanic|Alchemy]]
+  * [[rpd:wells|Wells]]
 
-{{tag> rpd mechanics level_objects}}
+{{tag> rpd mechanics level_objects }}

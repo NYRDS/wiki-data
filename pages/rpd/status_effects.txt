@@ -1,83 +1,51 @@
 ====== Status Effects ======
 
-Status effects in Remixed Dungeon are temporary conditions that modify character abilities, attributes, or game mechanics. They can be beneficial (buffs) or harmful (debuffs).
+Status effects are temporary conditions that affect characters in Remixed Dungeon.
 
-==== Beneficial Effects (Buffs) ====
-  * [[rpd:regeneration_buff|Regeneration]] - Gradually heals HP (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Regeneration.java|Regeneration.java]])
-  * [[rpd:haste_spell|Haste]] - Increases movement and attack speed (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Haste.java|Haste.java]])
-  * [[rpd:invisibility_buff|Invisibility]] - Makes you undetectable to enemies (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java|Invisibility.java]])
-  * [[rpd:levitation_buff|Levitation]] - Allows movement over traps and special terrain (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java|Levitation.java]])
-  * [[rpd:shield_buff|Shield]] - Provides temporary damage absorption (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Shield.java|Shield.java]])
-  * [[rpd:strength_buff|Strength Boost]] - Temporary increase in strength (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Strength.java|Strength.java]])
-  * [[rpd:heroism_buff|Heroism]] - Enhances all combat abilities (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Heroism.java|Heroism.java]])
-  * [[rpd:barkskin_buff|Barkskin]] - Reduces physical damage taken (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Barkskin.java|Barkskin.java]])
-  * [[rpd:blessed_buff|Blessed]] - Increases accuracy and evasion (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Blessed.java|Blessed.java]])
-  * [[rpd:candle_of_mind_vision_buff|Candle of Mind Vision]] - Reveals nearby dungeon layout (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/CandleOfMindVisionBuff.java|CandleOfMindVisionBuff.java]])
-  * [[rpd:awareness_buff|Awareness]] - Reveals all creatures on the level (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Awareness.java|Awareness.java]])
-  * [[rpd:light_buff|Light]] - Provides light in dark areas (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Light.java|Light.java]])
-  * [[rpd:mind_vision_buff|Mind Vision]] - See all creatures on the level (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/MindVision.java|MindVision.java]])
-  * [[rpd:mana_regeneration_buff|Mana Regeneration]] - Restores mana over time (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/ManaRegeneration.java|ManaRegeneration.java]])
-  * [[rpd:shadows_buff|Shadows]] - Hides you in darkness, reducing detection (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Shadows.java|Shadows.java]])
-  * [[rpd:speed_buff|Speed]] - Increases movement speed (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Speed.java|Speed.java]])
-  * [[rpd:snipers_mark_buff|Sniper's Mark]] - Increases accuracy against marked target (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/SnipersMark.java|SnipersMark.java]])
-  * [[rpd:combo_buff|Combo]] - Increases damage based on consecutive attacks (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Combo.java|Combo.java]])
-  * [[rpd:fury_buff|Fury]] - Increases damage but prevents healing (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Fury.java|Fury.java]])
-  * [[rpd:item_action_buff|Item Action]] - Allows quick item usage (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/ItemAction.java|ItemAction.java]])
+==== Description ====
+Status effects are temporary conditions that alter a character's capabilities, appearance, or behavior. They can be beneficial, harmful, or neutral, and typically last for a limited number of turns.
 
-==== Harmful Effects (Debuffs) ====
-  * [[rpd:poison_buff|Poison]] - Gradually damages HP (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]])
-  * [[rpd:burning_buff|Burning]] - Damages while on fire (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]])
-  * [[rpd:bleeding_buff|Bleeding]] - Damages over time (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Bleeding.java|Bleeding.java]])
-  * [[rpd:paralysis_buff|Paralysis]] - Prevents all actions (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]])
-  * [[rpd:weakness_buff|Weakness]] - Reduces strength and damage (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Weakness.java|Weakness.java]])
-  * [[rpd:slow_buff|Slow]] - Reduces movement and attack speed (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]])
-  * [[rpd:blindness_buff|Blindness]] - Reduces accuracy and prevents identification (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Blindness.java|Blindness.java]])
-  * [[rpd:charm_buff|Charm]] - Makes enemies fight for you temporarily (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charm.java|Charm.java]])
-  * [[rpd:roots_buff|Roots]] - Prevents movement (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]])
-  * [[rpd:ooze_buff|Ooze]] - Deals continuous damage until cleaned (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Ooze.java|Ooze.java]])
-  * [[rpd:stun_buff|Stun]] - Temporarily disables actions (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]])
-  * [[rpd:terror_buff|Terror]] - Forces character to flee in fear (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java|Terror.java]])
-  * [[rpd:vertigo_buff|Vertigo]] - Causes disorientation, random movement (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]])
-  * [[rpd:frost_buff|Frost]] - Causes cold damage and prevents action (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]])
-  * [[rpd:sleep_buff|Sleep]] - Puts character to sleep (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Sleep.java|Sleep.java]])
-  * [[rpd:amok_buff|Amok]] - Forces character to attack randomly (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Amok.java|Amok.java]])
-  * [[rpd:cripple_buff|Cripple]] - Reduces movement speed by 50% (Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Cripple.java|Cripple.java]])
+==== Beneficial Effects ====
+  * [[rpd:invisibility_buff|Invisibility]] - Makes the character invisible to enemies
+  * [[rpd:regeneration_buff|Regeneration]] - Gradually restores health
+  * [[rpd:heroism_buff|Heroism]] - Increases damage and health
+  * [[rpd:levitation_buff|Levitation]] - Allows flying over terrain and traps
+  * [[rpd:shadows_buff|Shadows]] - Provides stealth and protection
+  * [[rpd:freerunning_buff|Freerunning]] - Increases movement speed
 
-==== Duration and Mechanics ====
-  * Most status effects have a timed duration that counts down each turn
-  * Some effects stack, others overwrite previous instances of the same type
-  * Powerful effects may override lesser effects of the same type
-  * Duration can be affected by certain class abilities or equipment
-  * Some effects have special removal methods (e.g., water removes Ooze)
+==== Harmful Effects ====
+  * [[rpd:burning_buff|Burning]] - Causes ongoing fire damage
+  * [[rpd:poison_buff|Poison]] - Causes ongoing damage over time
+  * [[rpd:weakness_buff|Weakness]] - Reduces strength and damage
+  * [[rpd:paralysis_buff|Paralysis]] - Prevents all actions
+  * [[rpd:blindness_buff|Blindness]] - Reduces vision radius
+  * [[rpd:charmed_buff|Charmed]] - Makes enemies friendly temporarily
+  * [[rpd:terror_buff|Terror]] - Forces character to flee
+  * [[rpd:amok_buff|Amok]] - Makes character attack everything
 
-==== Remedies and Prevention ====
-  * [[rpd:potion_of_healing_item|Potion of Healing]] can cure poison, bleeding, blindness, and paralysis
-  * [[rpd:scroll_of_remove_curse_item|Scroll of Remove Curse]] can cure cursed status
-  * [[rpd:potion_of_might_item|Potion of Might]] can remove debuffs
-  * [[rpd:potion_of_frost_item|Potion of Frost]] can extinguish burning
-  * Stepping into water removes burning and ooze effects
-  * Some class abilities provide resistance to specific effects
-  * Certain equipment provides protection against common status effects
+==== Neutral Effects ====
+  * [[rpd:roots_buff|Roots]] - Prevents movement but allows other actions
+  * [[rpd:slow_buff|Slow]] - Reduces action speed
+  * [[rpd:haste_buff|Haste]] - Increases action speed
+  * [[rpd:light_buff|Light]] - Increases vision radius
 
-==== Strategic Use ====
-  * Apply beneficial effects before challenging encounters
-  * Remove harmful effects with appropriate items or abilities
-  * Some enemies are particularly vulnerable to specific status effects
-  * Certain equipment synergizes well with specific status effects
-  * Timing is critical for maximum effect from buffs
-  * Debuffs can turn the tide of difficult battles
+==== Common Mechanics ====
+  * **Duration**: Most effects last for a specific number of turns
+  * **Stacking**: Some effects can stack, others have their duration refreshed
+  * **Resistance**: Characters may resist or be immune to certain effects
+  * **Removal**: Some items and abilities can remove negative status effects
 
-==== Class Interactions ====
-  * [[rpd:mage_class|Mages]] can apply various elemental status effects
-  * [[rpd:rogue_class|Rogues]] have abilities to grant stealth or apply debuffs
-  * [[rpd:priest_class|Priests]] can provide healing and protective buffs
-  * [[rpd:necromancer_class|Necromancers]] can apply and exploit various debuffs
-  * [[rpd:warrior_class|Warriors]] can use certain buffs to enhance combat effectiveness
-  * [[rpd:huntress_class|Huntresses]] have abilities that interact with several status effects
+==== Code References ====
+  * Buff System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Base implementation
+  * Actor System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - How characters interact with buffs
+  * Duration System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java#L25-L50|Buff duration code]] - How buff durations are calculated
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All status effect names and descriptions
 
 ==== See Also ====
-  * [[rpd:mechanics|Game Mechanics]] - Other core game systems
-  * [[rpd:potion|Potions]] - Items that often provide status effects
-  * [[rpd:scroll|Scrolls]] - Items that can apply status effects
+  * [[rpd:buffs|Buffs]]
+  * [[rpd:debuffs|Debuffs]]
+  * [[rpd:combat_mechanics|Combat]]
+  * [[rpd:mobs|Mobs]]
+  * [[rpd:hero|Hero]]
 
-{{tag> rpd mechanics status effects}}
+{{tag> rpd mechanics status_effects buffs debuffs }}

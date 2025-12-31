@@ -1,46 +1,58 @@
-====== Enchantment Mechanics ======
+====== Enchantments ======
+
+Enchantments are special properties that can be applied to weapons and armor in Remixed Dungeon.
 
 ==== Description ====
-Enchantment mechanics in Remixed Dungeon refer to the magical properties that can be applied to weapons to enhance their combat effectiveness. These enchantments provide special effects that trigger during combat, adding an additional layer of strategy to weapon selection and upgrading.
+Enchantments are magical properties that can be added to weapons and armor to enhance their effectiveness. They provide various beneficial effects that can be crucial for survival in the deeper levels of the dungeon.
 
 ==== Weapon Enchantments ====
-Enchantments are special magical properties that can be applied to weapons. Each weapon can have at most one enchantment at a time. Enchantments can be applied when upgrading weapons with certain scrolls.
+  * [[rpd:fire_enchantment|Fire]] - Causes target to burn
+  * [[rpd:shocking_enchantment|Shocking]] - Damages nearby enemies
+  * [[rpd:poison_enchantment|Poison]] - Poisons the target
+  * [[rpd:slow_enchantment|Slow]] - Slows the target's movement
+  * [[rpd:bleeding_enchantment|Bleeding]] - Causes damage over time
+  * [[rpd:chilling_enchantment|Chilling]] - Slows and weakens the target
+  * [[rpd:instability_enchantment|Instability]] - Unpredictable effects
+  * [[rpd:luck_enchantment|Luck]] - Increases critical hit chance
+  * [[rpd:projecting_enchantment|Projecting]] - Extends melee range
+  * [[rpd:vorpal_enchantment|Vorpal]] - Causes massive damage on critical hits
 
-==== How Enchantments Work ====
-  * Enchantments are applied to weapons using [[rpd:scroll_of_weapon_upgrade_item|Scrolls of Weapon Upgrade]]
-  * A weapon can only have one enchantment at a time
-  * Enchantments do not directly increase damage but provide special effects
-  * When a weapon with an enchantment is upgraded, the enchantment level also increases
-  * Some enchantments become more powerful at higher levels
+==== Armor Enchantments (Glyphs) ====
+  * [[rpd:affection_glyph|Affection]] - Charms enemies temporarily
+  * [[rpd:antientropy_glyph|Anti-Entropy]] - Cools and warms the wearer
+  * [[rpd:bounce_glyph|Bounce]] - Prevents attacks from hitting enemies
+  * [[rpd:displacement_glyph|Displacement]] - Teleports attackers away
+  * [[rpd:entanglement_glyph|Entanglement]] - Protects with bark armor
+  * [[rpd:metabolism_glyph|Metabolism]] - Converts damage to healing
+  * [[rpd:multiplicity_glyph|Multiplicity]] - Creates illusions of the wearer
+  * [[rpd:potential_glyph|Potential]] - Charges wands when damaged
+  * [[rpd:repulsion_glyph|Repulsion]] - Pushes enemies away
+  * [[rpd:stench_glyph|Stench]] - Creates toxic gas
+  * [[rpd:viscosity_glyph|Viscosity]] - Delays damage taken
 
-==== Obtaining Enchanted Weapons ====
-  * Use [[rpd:scroll_of_weapon_upgrade_item|Scrolls of Weapon Upgrade]] on unenchanted weapons (has a chance to add a random enchantment)
-  * Find weapons with enchantments already applied in the dungeon
-  * Purchase enchanted weapons from shops (rarely available)
+==== Enchantment Mechanics ====
+  * **Application**: Enchantments are applied using scrolls of enchantment
+  * **Levels**: Enchantments can be enhanced up to +3 levels
+  * **Identification**: Enchanted items must be identified to see the enchantment
+  * **Balancing**: Negative effects may occur if item level is too low
 
-==== List of Enchantments ====
-  * [[rpd:fire_enchantment|Fire]] - Adds fire damage and burning effect
-  * [[rpd:poison_enchantment_enchantment|Poison]] - Poisons the target
-  * [[rpd:slow_enchantment|Slow]] - Slows the target
-  * [[rpd:luck_enchantment_enchantment|Luck]] - Increases damage randomly
-  * [[rpd:death_enchantment|Death]] - Chance to instantly kill enemies
-  * [[rpd:horror_enchantment_enchantment|Horror]] - Fears the target
-  * [[rpd:instability_enchantment_enchantment|Instability]] - Randomly applies other enchantment effects
-  * [[rpd:leech_enchantment_enchantment|Leech]] - Heals the hero on hit
-  * [[rpd:paralysis_enchantment|Paralysis]] - Paralyzes the target
-  * [[rpd:piercing_enchantment_enchantment|Piercing]] - Damages targets behind the primary target
-  * [[rpd:swing_enchantment_enchantment|Swing]] - Damages nearby enemies
+==== Enchantment Sources ====
+  * **Scrolls**: Scrolls of enchantment can add random properties
+  * **Upgrades**: Continuing to enchant items may increase their power
+  * **Special Items**: Some items come pre-enchanted
+  * **Crafting**: Certain enchantments may be craftable in advanced alchemy
 
 ==== Code References ====
-  * **Base Enchantment System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java enchantment system]]
-  * **Scroll Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfWeaponUpgrade.java|ScrollOfWeaponUpgrade.java]]
-  * **All Enchantments**: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments|Enchantments directory]]
-  * **Enchantment Application**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java#L55-L80|Weapon.java enchantment application]]
+  * Enchantment System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Enchantment.java|Enchantment.java]] - Base weapon enchantment system
+  * Weapon Enchantments: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Enchantment.java#L50-L100|Weapon enchantment code]] - How weapon enchantments work
+  * Armor Glyphs: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Glyph.java|Glyph.java]] - Base armor enchantment system
+  * Item Identification: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - How enchanted items are identified
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All enchantment names and descriptions
 
 ==== See Also ====
-  * [[rpd:weapon_enchantments|Weapon Enchantments]] - Detailed list of all weapon enchantments
-  * [[rpd:scroll_of_weapon_upgrade_item|Scroll of Weapon Upgrade]] - Scroll that can apply enchantments
-  * [[rpd:weapon_item|Weapons]] - General information about weapons
-  * [[rpd:armor_glyphs|Armor Glyphs]] - Similar system for armor
+  * [[rpd:weapon_item|Weapons]]
+  * [[rpd:armor_item|Armor]]
+  * [[rpd:scroll_of_enchantment_item|Scroll of Enchantment]]
+  * [[rpd:equipment|Equipment]]
 
-{{tag> rpd mechanics enchantment weapon}}
+{{tag> rpd mechanics enchantments weapons armor }}
