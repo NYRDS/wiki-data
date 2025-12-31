@@ -1,16 +1,40 @@
 ====== bandit_mob ======
 
 ===== Entity Information =====
-  * **Entity Kind**: bandit
+  * **Entity Kind**: Bandit
   * **Class**: com.watabou.pixeldungeon.actors.mobs.Bandit
   * **Entity Type**: mob
+  * **Parent Class**: com.watabou.pixeldungeon.actors.mobs.Thief
 
 ===== Code References =====
   * **Java**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Bandit.java|Bandit.java]]
+  * **Parent Java**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Thief.java|Thief.java]]
 
 ===== Configuration Files =====
   * **JSON**: This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
-  * **Name**: @string/mob_Bandit
-  * **Description**: @string/mobd_Bandit
+  * **Description**: @string/Thief_Desc
+  * **Carries**: @string/Thief_Carries
+
+===== Implementation Details =====
+  * **HP**: 20 (from parent Thief class)
+  * **Defense Skill**: 12 (from parent Thief class)
+  * **Attack Skill**: 12 (from parent Thief class)
+  * **Damage**: 1-7 (from parent Thief class)
+  * **DR (Damage Reduction)**: 3 (from parent Thief class)
+  * **Exp for Kill**: 5 (from parent Thief class)
+  * **Max Level**: 10 (from parent Thief class)
+  * **Attack Delay**: 0.5f (from parent Thief class)
+
+===== Special Abilities =====
+  * **Steal Effect**: When attacking, if successfully steal() is triggered, the Bandit flees and inflicts Blindness for 5-12 turns
+  * **Fleeing**: After stealing, the Bandit enters ThiefFleeing AI state
+  * **Drop on Defense**: When in flee state and attacked, drops Gold
+  * **Loot**: Has 0.01f chance to drop Ring of Haggler (from parent Thief class)
+
+===== Game Mechanics =====
+  * Inherits all Thief mechanics and behaviors
+  * When stealing from player, causes Blindness to the player character
+  * Carries a random non-equipped item that can be stolen by player
+  * Uses ThiefFleeing AI state after attempting to steal
