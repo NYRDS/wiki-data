@@ -22,10 +22,10 @@ Shields provide defensive bonuses and blocking capabilities when equipped in the
   * **Damage Mechanics**: When wielded as a weapon, damage is calculated as random value between damageMin and damageMax functions based on strength and shield level
 
 ==== Types of Shields ====
-  * Wooden Shield - Basic shield (Level 1)
-  * Tough Shield - Reinforced shield (Level 2)
-  * Strong Shield - Heavy shield (Level 3)
-  * Royal Shield - Elite shield (Level 4)
+  * [[rpd:wooden_shield_item|Wooden Shield]] - Basic shield (Level 1)
+  * [[rpd:tough_shield_item|Tough Shield]] - Reinforced shield (Level 2)
+  * [[rpd:strong_shield_item|Strong Shield]] - Heavy shield (Level 3)
+  * [[rpd:royal_shield_item|Royal Shield]] - Elite shield (Level 4)
   * [[rpd:chaos_shield_item|Chaos Shield]] - Special shield created by fusing a Chaos Crystal with a regular shield
 
 ==== Combat Strategy ====
@@ -43,17 +43,25 @@ Using shields changes the combat approach significantly:
   * Stats verified: Yes (from strForLevel, chanceForLevel, blockForLevel arrays)
   * Mechanics verified: Yes (from shield functions in shields.lua)
   * Last updated: December 15, 2025
-  * Source code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/shields.lua|shields.lua]]
-  * Stats source code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/stats/shields.lua|shields stats]]
-  * Related Java code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GuardianArmor.java|GuardianArmor.java]] for Guardian subclass interaction with shields
+  * Lua Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/shields.lua|shields.lua]]
+  * Stats Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/stats/shields.lua|shields stats]]
+  * Individual Shield Scripts: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/WoodenShield.lua|WoodenShield.lua]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/ToughShield.lua|ToughShield.lua]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/StrongShield.lua|StrongShield.lua]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RoyalShield.lua|RoyalShield.lua]]
+  * Guardian Subclass: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GuardianArmor.java|GuardianArmor.java]] for Guardian subclass interaction with shields
+
+==== Shield Stats Reference ====
+  * **Strength Requirements**: { 12, 14, 16, 18 } for levels 1-4 (strForLevel array)
+  * **Block Chances**: { 30%, 40%, 40%, 50% } for levels 1-4 (chanceForLevel array)
+  * **Block Values**: { 4, 6, 8, 10 } base damage reduction for levels 1-4 (blockForLevel array)
+  * **Damage when Wielded as Weapon**: Random value between damageMin(str, shieldLevel) and damageMax(str, shieldLevel)
 
 ==== Modding Support ====
-Remixed Dungeon's modding system supports custom shields with various special properties and effects, allowing for extensive equipment customization.
+Remixed Dungeon's modding system supports custom shields with various special properties and effects, allowing for extensive equipment customization using the shields library.
 
 ==== See Also ====
   * [[rpd:equipment_slots_mechanic|Equipment Slots]]
   * [[rpd:mechanics|Game Mechanics]]
   * [[rpd:items|Items]]
   * [[rpd:dual_wielding|Dual Wielding]]
+  * [[rpd:guardian_subclass|Guardian Subclass]]
 
 {{tag> rpd shields equipment defensive}}
