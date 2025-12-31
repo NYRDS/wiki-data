@@ -14,3 +14,19 @@
 
 ===== Lua Scripts =====
   * This buff is implemented in Java, no Lua script exists
+
+===== Special Properties =====
+  * Doubles damage dealt (attackProc method returns damage * 2)
+  * Has 10% chance per turn to damage the affected character when HP > 1/5 max HP
+  * Extends ArtifactBuff (artifact-related buff)
+  * Self-removes when target dies (act method checks target.isAlive())
+  * Buff icon is BuffIndicator.BLOODLUST
+  * Uses CorpseDust item name for display (name() method)
+  * Prevents multiple instances on same target (attachTo method checks for existing buff)
+
+===== Source Code Reference =====
+  * attackProc() method doubles all damage dealt by the affected character
+  * act() method implements periodic self-damage when HP > ht()/5
+  * attachTo() method prevents duplicate buffs on same target
+  * icon() returns BuffIndicator.BLOODLUST
+  * name() and desc() methods retrieve strings from CorpseDustBundle
