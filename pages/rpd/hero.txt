@@ -1,65 +1,63 @@
 ====== Hero ======
 
-{{ rpd:images:hero_warrior.png|Hero }}
+The Hero is the player character in Remixed Dungeon, representing the adventurer exploring the dungeon.
 
 ==== Description ====
-The Hero is the player character in Remixed Dungeon. The hero begins their journey in the Sewers and must descend through increasingly dangerous levels to reach the Amulet of Yendor at the bottom of the dungeon.
+The Hero is the controllable character in Remixed Dungeon representing the player. The Hero can be one of several [[rpd:hero_class|classes]], each with unique starting equipment and abilities.
 
 ==== Hero Classes ====
-  * [[rpd:warrior_class|Warrior]] - Balanced fighter with healing potion bonus
-  * [[rpd:mage_class|Mage]] - Powerful spellcaster with staff bonus
-  * [[rpd:rogue_class|Rogue]] - Stealthy fighter with light armor and invisibility bonuses
-  * [[rpd:huntress_class|Huntress]] - Ranger with bonus throwing weapon
-  * [[rpd:elf_class|Elf]] - Magic-resistant archer with magical resistance
-  * [[rpd:necromancer_class|Necromancer]] - Undead summoner with soul mechanics
-  * [[rpd:doctor_class|Doctor]] - Healing specialist with alchemy focus
+  * [[rpd:warrior_class|Warrior]] - Melee-focused class with high health and starting equipment
+  * [[rpd:mage_class|Mage]] - Magic-focused class with wand and scroll affinity
+  * [[rpd:rogue_class|Rogue]] - Stealth and trap-discovery focused class
+  * [[rpd:huntress_class|Huntress]] - Ranger class with thrown weapon bonuses
+  * [[rpd:elf_class|Elf]] - Natural magic and ranged combat class
+  * [[rpd:necromancer_class|Necromancer]] - Undead summoning and dark magic class
+  * [[rpd:gnoll_class|Gnoll]] - High strength but low health class
+  * [[rpd:priest_class|Priest]] - Healing and support focused class
+  * [[rpd:doctor_class|Doctor]] - Chemistry-focused class with specialized equipment
 
-==== Hero Subclasses ====
-  * [[rpd:gladiator_subclass|Gladiator]] (Warrior) - Focuses on melee combat
-  * [[rpd:berserker_subclass|Berserker]] (Warrior) - Powerful melee with bloodthirst
-  * [[rpd:battlemage_subclass|Battlemage]] (Mage) - Combines staff abilities with spells
-  * [[rpd:warlock_subclass|Warlock]] (Mage) - Focuses on enemy debuffs
-  * [[rpd:freerunner_subclass|Freerunner]] (Rogue) - High mobility and evasion
-  * [[rpd:assassin_subclass|Assassin]] (Rogue) - Powerful critical strikes
-  * [[rpd:sniper_subclass|Sniper]] (Huntress) - Enhanced ranged combat
-  * [[rpd:warden_subclass|Warden]] (Huntress) - Nature-based abilities
-  * [[rpd:shaman_subclass|Shaman]] (Elf) - Elemental magic
-  * [[rpd:scout_subclass|Scout]] (Elf) - Mobility and detection
-  * [[rpd:lich_subclass|Lich]] (Necromancer) - Undead form with magic bonuses
-  * [[rpd:plague_doctor_subclass|Plague Doctor]] (Doctor) - Disease and poison expertise
+==== Attributes ====
+  * **Health (HP)** - Current and maximum hit points
+  * **Strength (STR)** - Affects how much equipment the hero can carry and melee damage
+  * **Level** - Affects stats and spell power
+  * **Experience** - Earned by defeating enemies and completing objectives
+  * **Gold** - Currency for purchasing items in shops
 
 ==== Core Mechanics ====
-  * **Health:** Hit points that can be restored through various means
-  * **Strength:** Affects ability to wear armor and upgrade items
-  * **Level:** Gained through combat and completing quests
-  * **Hunger:** Gradually decreases and affects health if not addressed
-  * **Experience:** Earned by defeating enemies and completing objectives
-  * **Inventory:** Limited slots for carrying equipment and consumables
+  * [[rpd:inventory|Inventory]] - Item carrying and management
+  * [[rpd:equipment|Equipment]] - Weapon, armor, and accessories
+  * [[rpd:stats|Stats]] - Detailed attribute information
+  * [[rpd:level|Leveling]] - Experience and advancement system
+  * [[rpd:hunger_buff|Hunger]] - Hunger system affecting performance
+  * [[rpd:quickslots|Quick Slots]] - Fast access to items
 
-==== Equipment ====
-  * [[rpd:weapon_item|Weapons]] - For melee and ranged combat
-  * [[rpd:armor|Armor]] - To reduce damage taken
-  * [[rpd:rings|Accessories]] - Special items with various effects
-  * [[rpd:artifacts|Artifacts]] - Powerful unique items with special mechanics
+==== Starting Equipment ====
+Each hero class begins with different equipment:
+  * [[rpd:warrior_class|Warrior]]: Short sword, armor, potion of strength
+  * [[rpd:mage_class|Mage]]: Wand of magic missile, scroll of identify, cloth armor
+  * [[rpd:rogue_class|Rogue]]: Ring of shadows +1, cloth armor
+  * [[rpd:huntress_class|Huntress]]: Boomerang, studded armor
+  * [[rpd:elf_class|Elf]]: Elven bow and arrows, cloth armor
+  * Other classes have their own starting equipment
 
-==== Technical Details ====
-  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|com.watabou.pixeldungeon.actors.hero.Hero]]
-  * **Base Class:** Extends Hero class
-  * **Implementation:** Central game class managing player character state
+==== Hero Subclasses ====
+Each class can unlock a mastery subclass after certain conditions:
+  * [[rpd:warrior_class|Warrior]]: [[rpd:gladiator_subclass|Gladiator]], [[rpd:berserker_subclass|Berserker]]
+  * [[rpd:mage_class|Mage]]: [[rpd:warlock_subclass|Warlock]], [[rpd:battle_mage_subclass|Battle Mage]]
+  * [[rpd:rogue_class|Rogue]]: [[rpd:assassin_subclass|Assassin]], [[rpd:freerunner_subclass|Freerunner]]
+  * [[rpd:huntress_class|Huntress]]: [[rpd:sniper_subclass|Sniper]], [[rpd:warden_subclass|Warden]]
+  * [[rpd:elf_class|Elf]]: [[rpd:scout_subclass|Scout]], [[rpd:shaman_subclass|Shaman]]
+  * [[rpd:necromancer_class|Necromancer]]: [[rpd:lich_subclass|Lich]], [[rpd:witch_doctor_subclass|Witch Doctor]]
+  * [[rpd:gnoll_class|Gnoll]]: [[rpd:guardian_subclass|Guardian]], [[rpd:witch_doctor_subclass|Witch Doctor]]
 
-==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Main hero class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Hero class definitions
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Hero subclass definitions
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings.java]] - Hero inventory system
+==== Strategy ====
+  * Choose a hero class that matches your playstyle
+  * Each class has unique advantages and challenges
+  * Consider starting equipment when planning your approach
+  * Learn class-specific mechanics and synergies
 
-==== String Resource References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Hero-related strings]]
+===== Source Code =====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Main hero implementation
+  * JSON: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] - Starting stats and equipment for each class
 
-==== See Also ====
-  * [[rpd:hero_classes|Hero Classes]] - Detailed class information
-  * [[rpd:hero_subclasses|Hero Subclasses]] - Detailed subclass information
-  * [[rpd:items|Items]] - Equipment for heroes
-  * [[rpd:dungeon|Dungeon]] - The environment where heroes explore
-
-{{tag> rpd hero classes}}
+{{tag> rpd character hero }}
