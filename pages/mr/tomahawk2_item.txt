@@ -1,21 +1,27 @@
-====== Tomahawk Item - Code References ======
+====== Tomahawk2 Item - Code References ======
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Tamahawk.java|Tamahawk.java]] - Standard Tomahawk implementation
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/GnollTamahawk.java|GnollTamahawk.java]] - Gnoll-specific variant
 
+===== Lua Script Implementation =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/Tomahawk2.lua|Tomahawk2.lua]] - Lua script implementation
+
 ===== JSON Configuration =====
 No specific JSON configuration for this item found.
 
 ===== String Resources =====
+  * Uses generic name reference "Tomahawk_name" (no direct string resource)
+  * Uses generic info reference "Tomahawk_desc" (no direct string resource)
+  * Falls back to standard tomahawk strings if needed:
 <code xml>
 <string name="Tamahawk_Name">tomahawk</string>
-<string name="Tamahawk_Info">This heavy throwing axe deals significant damage to enemies.</string>
+<string name="Tamahawk_Info">While this throwing axe is not that heavy, yet still it requires significant strength to be used effectively.</string>
 </code>
 
-===== Lua Scripts =====
-No Lua script exists for this item - implemented in Java.
-
 ===== Additional Information =====
-  * Sprite: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L49|ItemSpriteSheet.TOMAHAWK]]
-  * Shop availability: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java#L90|ShopPainter.java]] - appears in shops
+  * Entity Kind: "Tomahawk2" (registered in ItemFactory from Lua filename)
+  * Sprite: Uses sprites from gnoll_tomahawks.png sprite sheet
+  * Equipment slot: "left_hand"
+  * Price: 20 gold
+  * Created via Lua scripting system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] automatically registers all Lua scripts in scripts/items/ directory
