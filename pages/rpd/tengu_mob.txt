@@ -107,6 +107,11 @@ Tengu is an exiled assassin who has made his home in the Prison area of the dung
   * Russian string resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1330|Tengu_Name (русс.)]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1333|Tengu_Desc (русс.)]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1334|Tengu_Info1 (русс.)]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1335|Tengu_Info2 (русс.)]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1897|Tengu_Info3 (русс.)]]
   * Tengu Liver item script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/TenguLiver.lua|TenguLiver.lua]] - custom behavior for Tengu drop
   * Machine-readable data: [[mr:tengu_mob|mr:tengu_mob]]
+  * Additional mechanics details: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L50-L56|getCloser method]] - when player enters field of view, Tengu jumps immediately to reset distance
+  * Special attack pattern: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L58-L60|doAttack method]] - Tengu will jump when adjacent to the player during combat to prevent close-range attacks
+  * Trap creation quantity: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L68-L77|jump() method]] - During each teleport, Tengu creates exactly 4 poison traps on random tiles
+  * Movement strategy: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L80-L92|jump() method]] - Tengu moves to positions that are not adjacent to the enemy to maintain distance
+  * Healing behavior: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L91-L92|jump() method]] - When no valid positions are found, Tengu heals 10% of max HP and spends 1/speed() turns
   * Last updated: December 25, 2025
 
 ==== See Also ====
@@ -122,5 +127,9 @@ Tengu is an exiled assassin who has made his home in the Prison area of the dung
   * [[rpd:evasion_mechanic|Evasion]] - Important for fighting Tengu
   * [[rpd:mechanics|Turns]] - Understanding combat timing
   * [[rpd:ranged_combat|Ranged Combat]] - Relevant for attacks with distance
+  * [[rpd:tome_of_mastery_item|Tome of Mastery]] - One of Tengu's drops
+  * [[rpd:tengu_liver_item|Tengu Liver]] - Special drop for Gnoll class
+  * [[rpd:skeleton_key_item|Skeleton Key]] - Key dropped by Tengu
+  * [[rpd:gold_item|Gold]] - Standard boss drop
 
 {{tag> rpd mobs boss ninja assassin prison}}
