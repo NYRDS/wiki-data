@@ -1,0 +1,84 @@
+====== Bows and Arrows Item ======
+
+In Remixed Pixel Dungeon there is a new type of weapons - bows. Any class can use a bow, but only an elf can do damage by firing arrows at close range. Arrows are required in order to use a bow. Bows can also perform melee attacks, but they are completely ineffective in close combat for all classes except elves.
+
+==== How Bows Work ====
+  * Bows are ranged weapons that require arrows to function
+  * When equipped with arrows, bows allow the player to attack enemies at range
+  * Only elves can deal significant damage when firing arrows at close range (adjacent squares)
+  * Other classes deal very little damage when shooting arrows at close range
+  * Bows have specific accuracy and delay factors that affect their performance
+  * Bow performance is enhanced by the bow's level and attributes
+
+==== Quiver ====
+  * The [[en:rpd:quiver|Quiver]] is a special bag that can store any amount of arrows
+  * It is sold by the shopkeeper in the Town level for 50 gold
+  * Unlike what some sources might suggest, the quiver does not specifically protect arrows from burning
+  * It simply provides unlimited storage for arrows
+
+===== Bows List =====
+
+  * [[en:rpd:wooden_bow_item|Wooden Bow]] - The simplest bow. Requires 9 strength. Has dynamic accuracy factor that increases by 0.1 per level and dynamic damage factor that increases by 0.25 per level. Burns in fire (returns null when burned).
+  * [[en:rpd:compound_bow|Compound Bow]] - A more advanced bow. Requires 11 strength. Has dynamic accuracy factor that increases by 0.2 per level and dynamic damage factor that increases by 0.5 per level. Delay factor is 1.1. Also burns in fire like the wooden bow.
+  * [[en:rpd:ruby_bow|Ruby Bow]] - The most powerful bow with the highest base damage. Requires 13 strength to use. Has standard accuracy factor. Base damage factor increases by 1 per level (much higher than other bows). Delay factor increases by 0.2 per level. Also burns in fire.
+
+===== Arrows List =====
+  * [[en:rpd:common_arrow_item|Common Arrow]] - Regular arrow without any special effect. Base damage 2-5. Base delay 0.75. Base min 2, base max 5. All other types of arrows are obtained by using potions on them.
+  * [[en:rpd:fire_arrow_item|Fire Arrow]] - Ignites the enemy on hit. Base damage 1-6. Base delay 0.75. Base min 1, base max 6. Has a 25% chance to apply burning effect when hitting an enemy.
+  * [[en:rpd:frost_arrow_item|Frost Arrow]] - Slows down the enemies affected. Base damage 0-6. Base delay 0.75. Base min 0, base max 6. Has a 25% chance to apply slow effect when hitting an enemy.
+  * [[en:rpd:poison_arrow_item|Poison Arrow]] - Poisons the enemy. Base damage 3-4. Base delay 0.75. Base min 3, base max 4. Has a 25% chance to apply poison effect when hitting an enemy. Poison duration increases with the bow's level.
+  * [[en:rpd:paralysis_arrow_item|Paralysis Arrow]] - Paralyzes opponents. Base damage 0-4. Base delay 0.75. Base min 0, base max 4. Has a 25% chance to apply paralysis effect when hitting an enemy.
+  * [[en:rpd:health_arrow_item|Health Arrow]] - Heals the hero when used by a hero. Base damage not specified. Base delay 1.0. Has a 25% chance to provide healing when hitting an enemy.
+  * [[en:rpd:amok_arrow_item|Amok Arrow]] - Causes the target to attack random creatures. Base damage not specified. Base delay 1.0. Has a 25% chance to cause amok effect when hitting an enemy.
+
+==== Obtaining Special Arrows ====
+  * Special arrows (Fire, Frost, Poison, Paralysis, Health, Amok) are created by using potions on regular arrows
+  * [[en:rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] on regular arrows creates [[en:rpd:fire_arrow_item|Fire Arrows]]
+  * [[en:rpd:potion_of_frost_item|Potion of Frost]] on regular arrows creates [[en:rpd:frost_arrow_item|Frost Arrows]]
+  * [[en:rpd:potion_of_toxic_gas_item|Potion of Toxic Gas]] on regular arrows creates [[en:rpd:poison_arrow_item|Poison Arrows]]
+  * [[en:rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] on regular arrows creates [[en:rpd:paralysis_arrow_item|Paralysis Arrows]]
+  * [[en:rpd:potion_of_healing_item|Potion of Healing]] on regular arrows creates [[en:rpd:health_arrow_item|Health Arrows]]
+  * [[en:rpd:potion_of_strength_item|Potion of Strength]] on regular arrows creates [[en:rpd:amok_arrow_item|Amok Arrows]]
+
+==== Code References ====
+  * **Java Implementations:**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/WoodenBow.java|WoodenBow.java]] - Wooden bow implementation
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/CompoundBow.java|CompoundBow.java]] - Compound bow implementation
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/RubyBow.java|RubyBow.java]] - Ruby bow implementation
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Bow.java|Bow.java]] - Base bow class
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/KindOfBow.java|KindOfBow.java]] - Kind of bow implementation
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] - Base arrow class
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CommonArrow.java|CommonArrow.java]] - Common arrow implementation
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FireArrow.java|FireArrow.java]] - Fire arrow implementation
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java|FrostArrow.java]] - Frost arrow implementation
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/PoisonArrow.java|PoisonArrow.java]] - Poison arrow implementation
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|ParalysisArrow.java]] - Paralysis arrow implementation
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthArrow.java|HealthArrow.java]] - Health arrow implementation
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/AmokArrow.java|AmokArrow.java]] - Amok arrow implementation
+  * **String Resources:**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L841-L843|WoodenBow_Name, WoodenBow_Info, WoodenBow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L844-L846|CompoundBow_Name, CompoundBow_Info, CompoundBow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L847-L849|RubyBow_Name, RubyBow_Info, RubyBow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L853-L855|CommonArrow_Name, CommonArrow_Info, CommonArrow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L856-L858|FireArrow_Name, FireArrow_Info, FireArrow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L859-L861|FrostArrow_Name, FrostArrow_Info, FrostArrow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L862-L864|PoisonArrow_Name, PoisonArrow_Info, PoisonArrow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L865-L867|ParalysisArrow_Name, ParalysisArrow_Info, ParalysisArrow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L868-L870|HealthArrow_Name, HealthArrow_Info, HealthArrow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L871-L873|AmokArrow_Name, AmokArrow_Info, AmokArrow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L664-L666|Quiver_Name, Quiver_Info, Quiver_Gender]]
+  * **Shop Availability:**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/TownShopLevel.java#L88|TownShopLevel.java#L88]] - Quiver sold for 50 gold
+  * **Russian String Resources:**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L828-L830|WoodenBow strings in Russian]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L831-L833|CompoundBow strings in Russian]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L834-L836|RubyBow strings in Russian]]
+
+==== Related ====
+  * [[en:rpd:quiver|Quiver]] - Special bag for storing arrows
+  * [[en:rpd:hero|Hero]] - Main playable character
+  * [[en:rpd:ranged_weapons|Ranged Weapons]] - Other ranged weapon types
+  * [[en:rpd:melee_weapons|Melee Weapons]] - Close combat weapons
+  * [[en:rpd:hero_class|Hero Classes]] - Different playable classes that can use bows
+
+{{tag> rpd items weapons ranged item}}

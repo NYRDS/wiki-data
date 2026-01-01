@@ -1,0 +1,57 @@
+====== Armor Mechanic ======
+
+Armor in Remixed Dungeon provides protection by reducing damage from physical attacks. Each piece of armor has a defense rating that contributes to the hero's overall survivability.
+
+==== Armor Stats ====
+  * **Defense Rating (DR)**: How much damage is reduced from incoming attacks
+  * **Durability**: How much damage the armor can take before breaking
+  * **Level/Upgrades**: Armor can be upgraded to improve its defense rating
+  * **Speed Penalty**: Heavier armor may slow hero movement
+  * **Stealth Penalty**: Heavier armor may reduce stealth effectiveness
+  * **Required Strength**: Minimum strength needed to wear armor without penalties (calculated by ''requiredSTR()'' method)
+
+==== Types of Armor ====
+  * [[en:rpd:cloth_armor_item|Cloth Armor]] - Lightest armor with minimal protection
+  * [[en:rpd:leather_armor_item|Leather Armor]] - Balanced protection and mobility
+  * [[en:rpd:mail_armor_item|Mail Armor]] - Good protection with moderate penalties
+  * [[en:rpd:plate_armor_item|Plate Armor]] - Maximum protection with significant penalties
+  * [[en:rpd:class_armor|Class Armor]] - Special armor for each hero class
+
+==== Armor Mechanics ====
+  * **Absorption**: Armor absorbs a percentage of incoming physical damage
+  * **Durability**: All armor takes damage when absorbing hits and can break if not maintained
+  * **Identification**: Most armor must be identified to show full stats
+  * **Upgrading**: Armor can be upgraded using [[en:rpd:scroll_of_upgrade_item|Scroll of Upgrade]] or similar items
+  * **Glyphping**: Armor can be enchanted with [[en:rpd:glyphs|Glyphs]] to gain special properties
+  * **Defense Calculation**: Effective defense is calculated in ''effectiveDr()'' method: ''tier * 2 + level() * tier + (glyph != null ? tier : 0)''
+  * **Strength Requirement**: Calculated in ''requiredSTR()'' method: ''Math.max(typicalSTR() - level(),2)''
+  * **Typical Defense**: ''typicalDR()'' method returns ''tier * 2''
+  * **Typical Strength**: ''typicalSTR()'' method returns ''7 + tier * 2''
+
+==== Special Armors ====
+  * [[en:rpd:class_armor|Class-specific armor]] - Unique armor for each hero class with special abilities
+  * [[en:rpd:armor_glyphs|Glyphs]] - Magical properties that can be added to armor
+  * [[en:rpd:armor_upgrades|Upgrades]] - Increasing armor effectiveness through scrolls and other means
+
+==== Code References ====
+  * **Base class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]]
+  * **Armor implementations**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/|Armor Implementations Directory]]
+  * **Glyph system**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/|Armor Glyphs Directory]]
+  * **Defense calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L137-L139|effectiveDr() method]]
+  * **Strength calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L149-L150|requiredSTR() method]]
+  * **Defense formula**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L133-L135|typicalDR() and typicalSTR() methods]]
+  * **Glyphping implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L120-L122|inscribe() method]]
+  * **Damage defense processing**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L73-L84|defenceProc() method]]
+  * **Armor upgrade process**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L57-L69|upgrade() method]]
+  * **String resources (English)**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1926-L1941|Armor strings]]
+  * **String resources (Russian)**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1970-L1985|Armor strings]]
+
+==== Related ====
+  * [[en:rpd:items|Items]]
+  * [[en:rpd:equipment|Equipment]]
+  * [[en:rpd:combat|Combat]]
+  * [[en:rpd:defence|Defense]]
+  * [[en:rpd:glyphs|Glyphs]]
+  * [[en:rpd:upgrading|Upgrading]]
+
+{{tag> rpd items armor mechanics defense}}

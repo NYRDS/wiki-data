@@ -1,0 +1,55 @@
+====== Necrotism ======
+
+{{ rpd:images:buff_Necrotism.png|Necrotism }}
+
+Necrotism is a harmful debuff that causes damage-over-time and spreads to nearby creatures.
+
+==== Description ====
+Necrotism is a powerful magical plague that deals damage to affected creatures and spreads to adjacent creatures. It is primarily applied through the [[en:rpd:necromancer_armor_item|Necromancer Armor]]'s special ability.
+
+==== Mechanics ====
+  * **Duration:** Base duration of 3 turns (duration constant from code)
+  * **Spread:** Affects creatures in adjacent 16 neighboring cells (Level.NEIGHBOURS16 from code)
+  * **Iteration:** Each spread increases the damage potency
+  * **Targeting:** Affects all non-player characters (mobs and NPCs)
+
+==== Damage Calculation ====
+  * **Boss targets:** 1 damage per 200 HP (minimum 1)
+  * **Non-boss targets:** 1 damage per max(3, (21 - iteration)) HP
+  * **Final damage:** (calculated damage * iteration), minimum 1
+
+==== Spread Mechanism ====
+  * Each turn, has a 50% chance to spread from an infected creature to each adjacent creature
+  * Cannot spread to Heroes or NPCs
+  * Each spread increases the iteration counter, making subsequent damage more potent
+
+==== Effects ====
+  * **Damage Over Time:** Causes increasing damage based on target's HP
+  * **Infectious Spread:** May spread from creature to adjacent creatures
+  * **Visual Effect:** Purple burst effect (0x6935a5) on affected creatures
+  * **Iteration Counter:** Each spread increases damage for subsequent ticks
+
+==== Application ====
+  * **Primary Source:** Activated via [[en:rpd:necromancer_armor_item|Necromancer Armor]] special ability
+  * **Auto-termination:** Ends when target dies or duration expires
+
+==== Visuals ====
+  * Shows as purple/black icon in buff bar
+  * Purple particle burst on affected creature each turn
+
+==== Content Verification ====
+  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/Necrotism.java|Necrotism.java]]
+  * NEIGHBOURS16 reference: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java#L33|Level.java (NEIGHBOURS16 constant)]]
+  * Doom interface: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Doom.java|Doom.java]]
+  * Mechanics verified from code implementation
+  * Last updated: December 15, 2025
+
+==== Related ====
+  * [[en:rpd:necromancer_class|Necromancer]] - The class that benefits from necrotism
+  * [[en:rpd:necromancer_armor_item|Necromancer Armor]] - Source of necrotism application
+  * [[en:rpd:buffs|Buffs]] - List of all status effects
+
+==== See Also ====
+  * [[en:rpd:doom|Doom]]
+
+{{tag> rpd buffs debuff necromancy }}

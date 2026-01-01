@@ -1,0 +1,80 @@
+====== Accuracy Mechanic ======
+
+Accuracy is a combat mechanic in Remixed Pixel Dungeon that determines the chance to successfully hit a target with attacks. Higher accuracy increases the probability of landing hits on enemies.
+
+==== Accuracy Formula ====
+In the game's code, accuracy is calculated in the ''Char.java'' file as part of the ''attackSkill'' method:
+
+<code java>
+public int attackSkill(Char target) {
+    int[] bf = {0};
+    forEachBuff(b -> bf[0] += b.attackSkillBonus(this));
+
+    int bonus = bf[0];
+
+    float accuracy = (float) Math.pow(1.4, bonus);
+
+    if (target == null) { // Mainly to mask bug in Remixed RPG
+        target = CharsList.DUMMY;
+    }
+
+    if (rangedWeapon.valid() && level().distance(getPos(), target.getPos()) == 1) {
+        accuracy *= 0.5f;
+    }
+
+    float mainAccuracyFactor = getActiveWeapon().accuracyFactor(this);
+    float secondaryAccuracyFactor = getSecondaryWeapon().accuracyFactor(this);
+
+    float skillFactor = Utils.min(20f, mainAccuracyFactor, secondaryAccuracyFactor);
+
+    int aSkill = (int) ((baseAttackSkill + lvl()) * accuracy * skillFactor);
+
+    GLog.debug("%s attacking %s with factor %2.2f, resulting skill %d", getEntityKind(), target.getEntityKind(), skillFactor, aSkill);
+
+    return aSkill;
+}
+</code>
+
+==== Key Factors Affecting Accuracy ====
+  * **Attack Skill**: The primary factor determining hit probability
+  * **Buff Bonuses**: Each bonus point increases accuracy exponentially using the formula ''Math.pow(1.4, bonus)'' (from ''RingOfAccuracy'' or similar items)
+  * **Weapon Accuracy Factor**: Different weapons have different ''accuracyFactor'' values (e.g., ''RingOfAccuracy'' provides a bonus)
+  * **Ranged Penalty**: When using a ranged weapon at melee distance (distance = 1), accuracy is halved (0.5f multiplier)
+  * **Weapon Enchantments**: Some enchantments affect accuracy
+  * **Status Effects**: Negative effects like blindness can reduce accuracy
+
+==== Equipment with Accuracy Benefits ====
+  * **[[en:rpd:ring_of_accuracy_item|Ring of Accuracy]]**: Increases attack skill bonus equal to the ring's level (directly improving accuracy)
+  * **[[en:rpd:weightstone_item|Weightstone]]**: Can be used to imbue weapons with accuracy at the cost of speed
+  * **Weapon Imbue ACCURACY**: Using a weightstone with the "For accuracy" option will imbue a weapon with accuracy (+1.5x multiplier)
+  * **[[en:rpd:compound_bow_item|Compound Bow]]**: Has improved accuracy over a wooden bow at the cost of some speed
+
+==== Related Strings ====
+  * ''RingOfAccuracy_Name'': "Ring of Accuracy"
+  * ''RingOfAccuracy_Info'': "This ring increases your chance to hit the enemy."
+  * ''Weightstone_WndAccuracy'': "For accuracy"
+  * ''CompoundBow_Info'': "Arrows launched from this compound bow deal a great amount of damage and have improved accuracy over a wooden bow at the cost of some speed."
+
+==== Class Considerations ====
+  * **Warrior**: Benefits from high accuracy to land consistent hits
+  * **Mage**: Important for ensuring wand shots connect
+  * **Rogue**: High accuracy helps with stealth-based attacks
+  * **Huntress**: Essential for ranged weapons effectiveness
+  * **Plague Doctor**: Suffers accuracy penalties without the Bone Saw equipped (string: ''HeroClass_PlagueDoctorPerks_4'')
+
+==== Code References ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfAccuracy.java|RingOfAccuracy.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Weightstone.java|Weightstone.java]]
+
+==== Related ====
+  * [[en:rpd:combat_mechanic|Combat]]
+  * [[en:rpd:melee_combat_mechanic|Melee Combat]]
+  * [[en:rpd:ranged_combat_mechanic|Ranged Combat]]
+  * [[en:rpd:attack_skill_mechanic|Attack Skill]]
+  * [[en:rpd:defense_mechanic|Defense]]
+  * [[en:rpd:evasion_mechanic|Evasion]]
+  * [[en:rpd:weapon_enchantments_mechanic|Weapon Enchantments]]
+  * [[en:rpd:ring_of_accuracy_item|Ring of Accuracy]]
+
+{{tag> rpd mechanics accuracy attack combat}}

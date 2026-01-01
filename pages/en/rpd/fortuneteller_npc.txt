@@ -1,0 +1,42 @@
+====== Fortune Teller NPC ======
+
+{{ rpd:images:fortunetellernpc_sprite.png|Fortune Teller NPC Sprite }}
+
+The **Fortune Teller NPC** is a special NPC in Remixed Dungeon that helps players identify unID'd items in their inventory in exchange for gold.
+
+==== Interaction ====
+  * When talked to, presents a dialog with options to identify items
+  * Requires 50 gold per item identification (modified by difficulty factor and Ring of Haggler)
+  * If the player has the [[en:rpd:ring_of_haggler_item|Ring of Haggler]], the cost is reduced by 10%
+
+==== Services ====
+  * **Single Item Identification**: Select one unID'd item to identify for 50 gold
+  * **All Item Identification**: Identify all unID'd items in inventory for 50 gold per item
+  * If no unID'd items are present, the NPC shows a message that there are no items to identify
+
+==== Behavior ====
+  * **Faction**: Neutral
+  * **Movement**: Immovable (base speed 0)
+  * **AI State**: Passive
+  * **Friendly**: Yes (does not attack player)
+
+==== Technical Details ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/FortuneTellerNPC.java|FortuneTellerNPC.java]]
+  * **Interaction Window:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndFortuneTeller.java|WndFortuneTeller.java]]
+  * **Mob Description:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Fortune.json|Fortune.json]]
+  * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2505-L2514|Fortune Teller strings (lines 2505-2514)]]
+  * **Identification Mechanics:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndFortuneTeller.java|WndFortuneTeller.java]]
+  * **Gold Cost:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndFortuneTeller.java#L32-L34|Gold cost calculation]]
+  * **Haggler Ring Effect:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfHaggler.java|RingOfHaggler.java]]
+
+==== Strategy ====
+  * Cost-effective when you have many unidentified items
+  * Consider the Ring of Haggler to reduce identification costs
+  * Useful alternative to [[en:rpd:scroll_of_identify_item|Scroll of Identify]] when scrolls are scarce
+
+==== Related Content ====
+  * [[en:rpd:npcs|NPCs]]
+  * [[en:rpd:scroll_of_identify_item|Scroll of Identify]]
+  * [[en:rpd:ring_of_haggler_item|Ring of Haggler]]
+
+{{tag> rpd npcs fortune_teller identify }}

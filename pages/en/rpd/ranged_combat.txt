@@ -1,0 +1,89 @@
+====== Ranged Combat ======
+
+{{ rpd:images:ranged_combat_illustration.png|Ranged Combat }}
+
+**Ranged Combat** in Remixed Dungeon involves attacking enemies from a distance using various weapons, wands, and spells. This combat style allows the hero to deal damage without being in immediate physical danger.
+
+==== Ranged Weapons ====
+  * **Bows**: Use arrows as ammunition, require a free hand to wield
+  * **Crossbows**: More powerful than bows but slower, can be used with shield
+  * **Throwing Weapons**: One-time use weapons like shurikens, darts, and javelins
+  * **Special Ranged Weapons**: Unique weapons with special properties
+
+==== Ranged Combat Mechanics ====
+  * Uses [[en:rpd:ballistica_mechanic|Ballistica]] for line-of-sight calculation
+  * Range is generally limited (usually just a few tiles)
+  * Accuracy is affected by the same attack/defense mechanics as melee
+  * Some ranged weapons can pierce through multiple enemies
+
+==== Ballistica System ====
+  * Determines line of sight between attacker and target
+  * Checks for obstacles that might block the attack path
+  * Allows for various types of line-of-sight calculation (projectile, death, light)
+  * Used by both ranged weapons and certain spells
+
+==== Ranged Combat Advantages ====
+  * Safety: Attack enemies without being in their attack range
+  * Positioning: Pull enemies away from groups to fight them one at a time
+  * Damage: Some ranged weapons deal significant damage
+  * Utility: Can trigger traps or activate mechanisms from a safe distance
+
+==== Ranged Combat Disadvantages ====
+  * Ammunition: Most ranged weapons require consumable ammunition
+  * Range: Limited range compared to melee in some situations
+  * Obstacles: Walls and doors block ranged attacks
+  * Lower damage potential in close quarters
+
+==== Ranged Weapon Types ====
+  * **Bows**: Standard ranged weapons using arrows
+  * **Crossbows**: More powerful but slower than bows
+  * **Specialized Bows**: Enhanced bows with unique properties
+  * **Throwing Weapons**: Single-use items like shurikens, darts
+  * **Javelins**: Thrown spears with good range and damage
+  * **Boomerangs**: Return after being thrown, reusable
+
+==== Wands and Ranged Magic ====
+  * **Wands**: Magical ranged weapons with charges
+  * **Spells**: Magic attacks that can target enemies at range
+  * **Ranged Buffs**: Spells that enhance ranged combat effectiveness
+
+==== Ammunition Management ====
+  * Ammunition is consumed when attacking
+  * Different ranged weapons require different types of ammo
+  * Ammunition can be found in the dungeon or crafted
+  * Running out of ammunition forces switching to melee or other options
+
+==== Ranged Combat Strategy ====
+  * **Conservation**: Use ranged attacks judiciously to preserve ammunition
+  * **Positioning**: Maintain distance from enemies while having clear line of sight
+  * **Grouping**: Pull enemies away from groups to prevent being surrounded
+  * **Environment**: Use doors and narrow passages to your advantage
+  * **Surprise**: Attack from safe positions before engaging in melee
+
+==== Ranged vs. Melee Considerations ====
+  * Ranged: Safer but consumes resources
+  * Melee: More sustainable but riskier
+  * Ranged: Better for weak enemies and hit-and-run tactics
+  * Melee: Better for strong single enemies and sustained combat
+
+==== Special Ranged Abilities ====
+  * **Piercing**: Some ranged attacks can hit multiple enemies in a line
+  * **Splash Damage**: Certain ranged weapons affect multiple targets
+  * **Silent Attacks**: Some ranged attacks don't alert other enemies
+  * **Enhanced Range**: Special enchantments can extend effective range
+
+==== Technical Details ====
+  * Ballistica system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]]
+  * Ranged weapon mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java#L125-L180|Ranged attack implementation]]
+  * Ammunition system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]]
+  * Ranged combat algorithms: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+
+==== See Also ====
+  * [[en:rpd:melee_combat|Melee Combat]] - Close combat mechanics
+  * [[en:rpd:combat|Combat]] - General combat information
+  * [[en:rpd:mechanics|Game Mechanics]] - General game mechanics
+  * [[en:rpd:ranged_weapons|Ranged Weapons]] - List of ranged weapons
+  * [[en:rpd:ballistica_mechanic|Ballistica]] - Line-of-sight calculation system
+  * [[en:rpd:enemies|Enemies]] - Information about dungeon creatures
+
+{{tag> rpd combat mechanics ranged }}

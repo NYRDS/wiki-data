@@ -1,0 +1,89 @@
+====== Combat ======
+
+{{ rpd:images:combat_illustration.png|Combat System }}
+
+**Combat** in Remixed Dungeon involves interactions between the player character and various dungeon creatures. This system determines how attacks, damage, and defensive actions work in the game.
+
+==== Basic Combat Mechanics ====
+  * **Attack Skill**: Determines the chance to hit an enemy (see [[en:rpd:accuracy_mechanic|Accuracy]])
+  * **Defense Skill**: Determines the chance to dodge an attack (see [[en:rpd:evasion|Evasion]])
+  * **Damage**: The amount of damage dealt when an attack connects
+  * **Armor**: Reduces incoming physical damage based on armor level and [[en:rpd:glyphs|Glyphs]]
+
+==== Attack System ====
+In combat, the chance to hit is calculated as:
+  * Hit chance = Attack Skill / (Attack Skill + Defense Skill)
+  * Minimum hit chance is 5% (always possible to hit)
+  * Maximum hit chance is 95% (always possible to miss)
+
+==== Damage Calculation ====
+  * **Weapon Damage**: Base damage range from equipped [[en:rpd:weapon_item|weapon]]
+  * **Hero Strength**: Additional damage based on hero's [[en:rpd:strength_attribute|Strength]]
+  * **Weapon Upgrades**: Each upgrade level adds +1 to damage range (see [[en:rpd:upgrading|Upgrading]])
+  * Final damage = Random value in weapon's damage range + strength bonus
+
+==== Defensive Actions ====
+  * **Dodging**: Based on Defense Skill and can avoid all damage from an attack
+  * **Blocking**: [[en:rpd:armor_item|Armor]] reduces incoming damage by a percentage
+  * **Evasion**: Special skills and items can increase dodge chance (see [[en:rpd:evasion|Evasion]])
+  * **Resistances**: Certain [[en:rpd:buffs|buffs]] and equipment provide resistance to specific damage types (see [[en:rpd:resistances|Resistances]])
+
+==== Combat Types ====
+  * **Melee Combat**: Close-range attacks using [[en:rpd:swords|swords]], [[en:rpd:melee_weapons|axes]], and maces (see [[en:rpd:melee_combat|Melee Combat]])
+  * **Ranged Combat**: Attacks from a distance using [[en:rpd:bow|ranged weapons]], [[en:rpd:wands|wands]], or [[en:rpd:spells|spells]] (see [[en:rpd:ranged_combat|Ranged Combat]])
+  * **Magical Combat**: Offensive [[en:rpd:spells|spells]] and abilities that bypass physical armor
+
+==== Combat Strategies ====
+  * **Positioning**: Use narrow corridors to fight [[en:rpd:enemies|enemies]] one at a time
+  * **Tactical Retreat**: Use doors to separate enemies and fight them individually
+  * **Status Effects**: Use [[en:rpd:blindness_buff|blindness]], [[en:rpd:paralysis_buff|paralysis]], or other [[en:rpd:debuffs|debuffs]] to gain advantages
+  * **Environmental Awareness**: Use [[en:rpd:traps|traps]], chasms, and other environmental features to your advantage
+
+==== Special Combat Mechanics ====
+  * **Surprise Attack**: Backstabbing [[en:rpd:enemies|enemies]] from behind for bonus damage (see [[en:rpd:assassin_subclass|Assassin]] subclass)
+  * **Critical Hits**: Random chance to deal maximum possible damage
+  * **Elemental Damage**: Some [[en:rpd:weapon_item|weapons]] and [[en:rpd:spells|spells]] ignore [[en:rpd:armor_item|armor]] entirely
+  * **Status Effects**: Various effects like [[en:rpd:burning_buff|burning]], [[en:rpd:poison_buff|poisoning]], or [[en:rpd:paralysis_buff|paralysis]] can change combat dynamics
+
+==== Ranged Combat Specifics ====
+  * Uses [[en:rpd:ballistica_mechanic|Ballistica]] for line-of-sight calculation
+  * Ranged weapons have limited ammunition
+  * Some ranged weapons have special effects like piercing or area damage
+  * Wands and spells provide magical ranged options
+
+==== Equipment Influence ====
+  * **Weapons**: Affect damage output and special effects (see [[en:rpd:weapon_item|Weapons]])
+  * **Armor**: Reduces incoming physical damage (see [[en:rpd:armor_item|Armor]])
+  * **Rings**: Provide various combat bonuses (damage, [[en:rpd:accuracy_mechanic|accuracy]], [[en:rpd:evasion|evasion]], etc.) (see [[en:rpd:rings|Rings]])
+  * **Artifacts**: Special items with unique combat capabilities (see [[en:rpd:artifacts|Artifacts]])
+
+==== Combat-Related Buffs ====
+  * **Fury**: Increases damage output temporarily (see [[en:rpd:fury_buff|Fury]])
+  * **Invisibility**: Allows attacks without retaliation (see [[en:rpd:invisibility_buff|Invisibility]])
+  * **Paralysis**: Disables enemy actions (see [[en:rpd:paralysis_buff|Paralysis]])
+  * **Terror**: Forces enemies to flee (see [[en:rpd:terror_buff|Terror]])
+
+==== Technical Details ====
+  * Core combat logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]]
+  * Attack mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java#L125-L180|Attack implementation]]
+  * Damage calculations: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java#L150-L175|Damage calculation]]
+  * Ballistica system (ranged combat): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]]
+  * Hit chance calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L240-L250|Char.java#hitChance calculation]]
+  * Defense calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L230-L235|Char.java#defense calculation]]
+  * Combat damage system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L90-L120|Char.java#damage processing]]
+  * Critical hit implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Mace.java#L45-L50|critical hit example]]
+  * Evasion mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L260-L270|Char.java#evasion implementation]]
+  * Armor damage reduction: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L100-L110|Armor.java#damage reduction]]
+  * Combat AI decision making: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java#L100-L150|Mob.java#combat AI methods]]
+  * Surprise attack mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L35-L40|HeroSubClass.java#backstab implementation]]
+  * Combat-related string resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2394-L2400|Hit strings]] (Char_Hit_0, Char_Hit_1, Char_Hit_2), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L326-L327|Miss strings]] (Char_YouMissed, Char_SmbMissed), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1219|Defense strings]] (various mob defense strings like Bat_Defense, Crab_Defense, etc.), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2263|AttackSkill string]] (WndHero_AttackSkill), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1089-L1090|Damage strings]] (MeleeWeapon_Info2a, MeleeWeapon_Info2b), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1973-L1976|Armor strings]] (Armor_Info1-Armor_Info4)
+
+==== See Also ====
+  * [[en:rpd:melee_combat|Melee Combat]] - Details about close combat
+  * [[en:rpd:ranged_combat|Ranged Combat]] - Details about distance combat
+  * [[en:rpd:enemies|Enemies]] - Information about dungeon creatures
+  * [[en:rpd:buffs|Buffs and Debuffs]] - Status effects in combat
+  * [[en:rpd:weapon_enchantments|Weapon Enchantments]] - Special weapon effects
+  * [[en:rpd:armor_glyphs|Armor Glyphs]] - Special armor effects
+
+{{tag> rpd combat mechanics }}

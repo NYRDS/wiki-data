@@ -1,0 +1,164 @@
+====== Modding ======
+
+===== How-to install custom mod =====
+
+Mods are typically packed in zip archives (sometime file extension changed to something like zipp if this is the case rename it to plain zip)
+
+To install mod on Remixed Dungeon manually:
+
+Android version >= 11 (requires remixed 32.1+)
+
+option 1 (If you delevoping mod):
+  * unpack mod archive to any directory under Downloads folder
+  * In game Mod -> Install local mod -> pick mod directory (refer to [[https://www.youtube.com/shorts/hJq-7vVaf4o|video]] if in doubt)
+
+option 2 (To install mod developed by someone else):
+  * place mod archive in rpd format on device
+  * navigate to it in file manager (refer to [[https://www.youtube.com/shorts/wyPVbAdbWXQ|video]] if in doubt)
+  * tap to open
+  * choose Remixed Dungeon app
+  * In app: confirm mod installation
+
+Android version < 11
+
+  * unpack mod archive to **Android/data/com.nyrds.pixeldungeon.ml/files/**
+  * done.
+
+===== How-to create custom mod =====
+
+In order to be able to play your mod (or any other non-official mod), you need to place your modified files in a folder named the way you want your mod to be named (example: "My mod").
+
+Don't forget to add at least minimal [[en:rpd:version_json|version.json]] file with something like {"version":1} as content.
+
+Place that folder into the "files" directory of the game.
+
+Approximate path on typical android system looks like this:
+
+**Android/data/com.nyrds.pixeldungeon.ml/files/** .
+
+===== Getting Started with Resource Modding =====
+
+[[en:rpd:modding_getting_started|New to modding? Check out our getting started guide]]
+
+===== Non-Java Modding Approaches =====
+
+Remixed Dungeon offers extensive modding capabilities without writing Java code. Focus on these approaches:
+
+==== Resource Overrides ====
+  * Replace any game sprites, sounds, or music by placing new files in the matching directory structure
+  * No coding required - just replace the original files with your custom versions
+
+==== JSON Configuration ====
+  * Modify game mechanics, item properties, mob stats, dungeon structure and more
+  * Create completely new content by defining it in JSON files
+  * All game text and localization can be changed through JSON
+
+==== Lua Scripting ====
+  * Create custom behaviors for items, mobs, and game systems
+  * Implement new mechanics and effects without Java knowledge
+  * Hook into game events like item use, mob actions, and level events
+
+[[en:rpd:modding_non_java_techniques|Detailed guide to non-Java modding techniques]]
+
+===== Modding Tutorials =====
+
+  * [[en:rpd:modding_getting_started|Getting Started]] - Your first simple mod
+  * [[en:rpd:modding_custom_items|Creating Custom Items]] - Making new weapons, armor, potions, and scrolls
+  * [[en:rpd:modding_custom_mobs|Creating Custom Mobs]] - Designing new creatures and enemies
+  * [[en:rpd:modding_custom_levels|Creating Custom Levels]] - Building new dungeon areas
+  * [[en:rpd:modding_ui_elements|Creating Custom UI Elements]] - Making interfaces for your mod
+  * [[en:rpd:modding_platform_abstraction|Platform Abstraction]] - Understanding cross-platform features
+  * [[en:rpd:mods_limitations|Possibilities and Limitations]] - What can and can't be done
+
+===== Basic Idea =====
+  * Every PD flavors source has assets folder [[https://github.com/watabou/pixel-dungeon/tree/master/assets|vanilla for example]]
+  * Remixed can load game resources not only from apk assets but also from external storage ( typically located at  Android/data/com.nyrds.pixeldungeon.ml/files/ ), so mods can override some (or all) of its content (also it must contain [[en:rpd:version_json|version.json]] file)
+  * In Remixed [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets|assets]] contains not only graphics & music but also data such as Dungeon structure, levels description, animation sequences and so on.
+
+Each mod is resource overlay, that is they replace game assets such as textures, sounds, json configuration files and lua scripts while leaving java code intact.
+
+The simplest way to get a better view at Remixed is to download one of the bundled mods and examine its structure. [[https://github.com/NYRDS/Maze-RPD-MOD|Maze]] is good to start from.
+
+===== Brief features list =====
+
+Maybe it's worth for you to check Remixed PD mods mechanics. It is far from complete, completely lacks documentation, full of bugs, etc. But at this point, it allows to do the following (without touching the java code):
+
+By just overriding resources you can:
+
+  * Replace any sprite, sound or music
+
+Using json configuration files you can:
+
+  * Replace any text for any language already in
+  * Assign file & index for item sprites
+  * Change animation sequences for mobs ( not all special effects implemented yet )
+  * Change dungeon structure ( levels graph, kind, size )
+  * Assign custom level music
+  * Assign custom music for boss fight
+  * Add predesigned levels to dungeon ( you can use [[Tiled]] to define floor layout, place mobs and items)
+  * Add random levels ( this feature somewhat similar to YourPD custom maps but no gui available yet )
+  * Create custom bestiary ( mob|level probability )
+  * Add signs and codexes with arbitrary texts
+
+With some lua scripts you can:
+
+  * Create custom traps
+  * Create custom level actors
+  * Create custom mobs with unique abilities
+  * Create custom spells
+  * Create custom items
+  * Create custom buffs
+  * Create custom AI for mobs and NPC's
+
+
+You can check how other mods are structured, to get a better idea.
+
+==== Existing mods ====
+
+For example, you can see : ( https://github.com/NYRDS/PD_mini-RPD-MOD )
+
+  * [[https://github.com/NYRDS/Remixed-Additions-RPD-MOD|Remixed Additions]]
+  * [[https://github.com/NYRDS/Remixed-RPG-RPD-MOD|Remixed RPG]]
+  * [[https://github.com/NYRDS/The-Epic-Dungeon-RPD-MOD|The Epic Dungeon]]
+  * [[https://github.com/NYRDS/Maze-RPD-MOD|Maze]]
+
+==== Gameplay with mods ====
+Since mod can drastically change the game difficulty, you cannot earn badges while playing the mod.
+
+==== List of resources ====
+  * assets (images, sounds, maps and dungeon layout):
+  * https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets
+
+  * res (texts):
+  * https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/res/values
+
+  * example of a level:
+  * https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/TestLevelGuts.json
+
+  * example of a level created with modified Tiled:
+  * https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Town.json
+
+  * Dungeon layout:
+  * https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Dungeon.json
+
+  * Bestiary:
+  * https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json
+
+  * Hero initial stats & equipment:
+  * https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json
+
+==== Additional Modding Guides ====
+
+  * [[en:rpd:modding_quick_reference|Quick Reference]] - Fast solutions for common modding tasks
+  * [[en:rpd:modding_ui_elements|Creating Custom UI Elements]] - How to create custom interfaces for your mod
+  * [[en:rpd:modding_platform_abstraction|Platform Abstraction System]] - Understanding cross-platform modding
+
+==== Tools ====
+
+[[en:rpd:tiled|Tiled]] - map editor
+
+=== Text editors for android ===
+To edit json configs or lua scripts
+
+  * [[https://play.google.com/store/apps/details?id=com.maskyn.fileeditor|Turbo Editor // Text Editor]]
+  * [[https://play.google.com/store/apps/details?id=xyz.iridiumion.enlightened|Enlightened (Code Editor)]]

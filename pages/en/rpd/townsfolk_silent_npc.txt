@@ -1,0 +1,51 @@
+====== Townsfolk Silent NPC ======
+
+{{ rpd:images:townsfolk_silent_npc_mob.png|Townsfolk Silent NPC }}
+
+The Townsfolk Silent NPC is a special non-player character found in the town area in Remixed Dungeon.
+
+===== Description =====
+The **Townsfolk Silent NPC** is one of the locals. Even though this is clearly a commoner, those clothes do look expensive. This NPC is unique in that they have minimal dialogue - they are deliberately "silent" with only non-verbal responses to player interaction.
+
+===== Behavior =====
+When interacted with, the Townsfolk Silent NPC will respond with short, non-verbal responses:
+  * **Response 1:** "Hmph!"
+  * **Response 2:** "..."
+  * **Response 3:** "Hmmm..."
+
+This behavior is implemented in the ''interact()'' method of the NPC class, which shows a quest window with these message strings using ''WndQuest''.
+
+===== Technical Details =====
+  * **Class:** ''TownsfolkSilentNPC'' extends ''ImmortalNPC'', making it an immortal character that cannot be killed
+  * **Implementation:** Located in ''com.nyrds.pixeldungeon.mobs.npc.TownsfolkSilentNPC.java''
+  * **Interaction:** When player interacts with the NPC, it calls ''GameScene.show'' with ''WndQuest'' showing the three message strings
+  * **Sprite:** Uses standard NPC sprite as defined in ''spritesDesc/'' directory
+
+===== Data Validation =====
+  * Information source: Java class ''com.nyrds.pixeldungeon.mobs.npc.TownsfolkSilentNPC''
+  * Name verification: Confirmed from string resources ("TownsfolkSilentNPC_Name", "TownsfolkSilentNPC_Desc")
+  * Dialogue verification: Confirmed from string resources ("TownsfolkSilentNPC_Message1/2/3")
+  * Effect descriptions: Based on string resources from values/strings_all.xml
+
+===== Code References =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/TownsfolkSilentNPC.java|TownsfolkSilentNPC.java]] - Main NPC implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]] - Parent class (immortal behavior)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1616-L1622|TownsfolkSilentNPC string resources (English)]] - Name, description, and dialogue strings
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1617-L1623|TownsfolkSilentNPC string resources (Russian)]] - Russian localization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L243|MobFactory.java#L243]] - Registration of the mob class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/TownsfolkSilentNPC.java#L8-L19|TownsfolkSilentNPC class and interact method]] - Implementation details
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndQuest.java|WndQuest.java]] - The dialogue window implementation
+
+===== String Resources =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1616|TownsfolkSilentNPC_Name]] - "townsfolk" (English)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1619|TownsfolkSilentNPC_Desc]] - "One of the locals. Even though this is clearly a commoner, those clothes do look expensive." (English)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1620-L1622|TownsfolkSilentNPC_Message1/2/3]] - "Hmph!", "...", "Hmmm..." (English dialogue)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1617-L1623|TownsfolkSilentNPC strings]] - Russian localization
+
+===== See Also =====
+  * [[en:rpd:immortal_npc|Immortal NPC]]
+  * [[en:rpd:townsfolk_npc|Townsfolk NPC]]
+  * [[en:rpd:town_level|Town Level]]
+  * [[en:rpd:npc|NPCs]]
+
+{{tag> rpd npcs townsfolk silent immortal}}

@@ -1,0 +1,38 @@
+====== Evasion ======
+
+Evasion is the ability to avoid attacks in Remixed Dungeon.
+
+==== Description ====
+Evasion is a defensive mechanic that determines the chance to completely avoid incoming attacks. Higher evasion increases the likelihood of dodging enemy attacks, reducing damage taken.
+
+==== Evasion Mechanics ====
+  * **Calculation Formula**: Evasion multiplier = 1.2^bonus, where bonus comes from evasion-enhancing equipment/buffs
+  * **Armor Penalty**: Heavier armor (with required STR higher than hero's STR) reduces evasion by dividing it by 1.5^encumbrance
+  * **Class Bonus**: Rogues get a 2x evasion multiplier when they are a Freerunner subclass and not starving
+  * **Paralysis Effect**: When paralyzed, evasion is halved
+  * **Application**: Successful evasion results in no damage taken from the attack
+
+==== Evasion Sources ====
+  * **Rings**: [[en:rpd:ring_of_evasion_item|Ring of Evasion]] provides bonus to evasion calculation
+  * **Buffs**: Various buffs can provide evasion bonuses
+  * **Hero Subclass**: [[en:rpd:freerunner_subclass|Freerunner]] subclass provides evasion bonus for Rogues
+
+==== Evasion Factors ====
+  * **Equipment Bonus**: Evasion bonus is calculated as 1.2^bonus, where bonus is the sum of all evasion-enhancing equipment
+  * **Armor Weight**: Heavier armor reduces evasion based on the formula: evasion / (1.5^encumbrance)
+  * **Rogue Subclass**: Freerunner subclass doubles evasion when not starving
+  * **Paralysis Status**: Halves evasion when paralyzed
+
+==== Code References ====
+  * **Evasion Calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L575-L594|Char.java:defenseSkill()]] - How evasion is calculated in the defenseSkill method
+  * **Ring Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfEvasion.java|RingOfEvasion.java]] - Ring that provides evasion bonuses
+  * **Buff System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/RingBuff.java|RingBuff.java]] - Base class for ring effects like evasion
+  * **Treasury Configs**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L78|Treasury.json]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L77|SpidersTreasury.json]] - Where Ring of Evasion appears
+
+==== See Also ====
+  * [[en:rpd:combat_mechanics|Combat]]
+  * [[en:rpd:accuracy|Accuracy]]
+  * [[en:rpd:armor_item|Armor]]
+  * [[en:rpd:rings|Rings]]
+
+{{tag> rpd mechanics evasion defense }}

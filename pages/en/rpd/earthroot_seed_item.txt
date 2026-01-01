@@ -1,0 +1,48 @@
+====== Seed of Earthroot ======
+
+{{ rpd:images:item_Earthroot.Seed.png|Earthroot Seed }}
+
+==== Description ====
+A seed from the Earthroot plant that can be planted or consumed for various effects. When consumed, it provides defensive capabilities by applying the [[en:rpd:roots_buff|Roots]] debuff for 25 turns and the [[en:rpd:barkskin_buff|Barkskin]] buff equal to 1/4 the player's strength.
+
+==== Special Properties ====
+  * Can be planted to grow Earthroot plants
+  * Can be consumed to apply [[en:rpd:roots_buff|Roots]] debuff (25 turns) and [[en:rpd:barkskin_buff|Barkskin]] buff (equal to 1/4 of player's strength)
+  * Part of the game's farming/alchemy system
+  * Dropped by [[en:rpd:earth_elemental_mob|Earth Elementals]] with 10% chance
+  * Used in the [[en:rpd:sprout_spell|Sprout Spell]] which randomly plants one of various seeds
+
+==== Usage ====
+  * **Planting:** Can be planted on any tile to grow an Earthroot plant that provides [[en:rpd:barkskin_buff|Barkskin]] buff when touched
+  * **Consuming:** When eaten, applies [[en:rpd:roots_buff|Roots]] for 25 turns (preventing movement) and [[en:rpd:barkskin_buff|Barkskin]] buff (armor equal to 1/4 of player's strength)
+  * **Spell Component:** Used in [[en:rpd:sprout_spell|Sprout Spell]] as part of the random seed generation
+
+==== Crafting & Alchemy ====
+  * **Potion Creation:** Used to craft [[en:rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] in alchemy system
+  * **Treasury Item:** Can be found in treasure rooms (Treasury levels)
+
+==== Strategy ====
+  * Consuming provides significant armor but locks you in place for 25 turns - only use when safe
+  * Planting is useful when you need defensive benefits in a specific location
+  * Consider carrying for emergency protection in safe areas
+
+==== Code Reference ====
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java|Earthroot.java]]
+  * Seed Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L34-L56|Earthroot.Seed class]]
+  * Consumption Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L48-L52|Earthroot.Seed._execute method]]
+  * Plant Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L16-L27|Earthroot.effect method]]
+  * Armor Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L58-L94|Earthroot.Armor class]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2039-L2042|Earthroot strings]]
+  * Earth Elemental (Drop Source): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java#L28|EarthElemental.java - loot method]]
+  * Sprout Spell (Usage): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Sprout.lua|Sprout.lua]]
+  * Treasury Placement: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L107|Treasury.json]]
+
+==== Related ====
+  * [[en:rpd:earth_elemental_mob|Earth Elemental]] - Common source of Earthroot seeds
+  * [[en:rpd:seeds|Seeds]] - Other seed types in the game
+  * [[en:rpd:earthroot_plant|Earthroot]] - The plant that grows from this seed
+  * [[en:rpd:barkskin_buff|Barkskin]] - Buff provided by Earthroot plants
+  * [[en:rpd:roots_buff|Roots]] - Immobilizing effect applied when consuming seed
+  * [[en:rpd:sprout_spell|Sprout Spell]] - Spell that uses seeds as component
+
+{{tag> rpd items seeds plants}}

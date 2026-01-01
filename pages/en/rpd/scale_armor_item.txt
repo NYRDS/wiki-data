@@ -1,0 +1,66 @@
+====== Scale Armor ======
+
+{{ rpd:images:item_ScaleArmor.png|Scale Armor }}
+
+**Scale Armor** is a medium-tier armor in Remixed Dungeon. It's made of metal scales sewn onto a leather vest, creating a flexible but protective armor.
+
+==== Armor Properties ====
+  * **Armor Level**: 4 (Medium armor)
+  * **Type**: Medium armor with balanced protection and mobility
+  * **Durability**: Standard [[en:rpd:armor_durability|armor durability]] (degrades with use)
+  * **Enchantments**: Can be enchanted with [[en:rpd:armor_glyphs|glyphs]] like other armor types
+  * **Weight**: 10 (affects movement speed slightly)
+  * **Price**: 80 gold (when sold to shops - price calculated as armor level * 20)
+
+==== Description ====
+The metal scales sewn onto a leather vest create a flexible, yet protective armor. This design offers a good balance between protection and mobility, making it suitable for various playstyles.
+
+==== Acquisition ====
+  * Found randomly throughout the dungeon
+  * Available in shops
+  * Dropped by certain enemies
+  * Found in chests and other containers
+
+==== Strategy ====
+  * Provides good protection for mid-game progression
+  * The flexible nature allows for reasonable movement speed
+  * Good for characters who need moderate protection without sacrificing too much mobility
+  * Can be upgraded with armor scrolls to improve protection
+  * Compatible with armor glyphs for additional special effects
+
+==== Code References ====
+  * **Java Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java|ScaleArmor.java]]
+  * **Constructor Data**: ScaleArmor() sets armor level to 4 and image index to 3
+  * **Stats verification**: Armor level: 4 (super(4) in constructor), Weight: 10 (default for armor level 4), Image: 3
+  * **String Resources**:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2013|ScaleArmor_Name]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2014|ScaleArmor_Desc]]
+    * Available in multiple languages (ru, de, fr, es, etc.)
+  * **Registration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (registerItemClass(ScaleArmor.class))
+  * **Base Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor base class]]
+  * **Armor System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] (base implementation)
+  * **Armor Level Calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L28|armor level = 4]] (determines protection and weight)
+  * **Weight Calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L29|weight = armor level * 2.5]] (weight = 4 * 2.5 = 10)
+  * **Sprite Index**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java#L11|image = 3]] (determines visual representation)
+  * **String Localization**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java#L17|desc() method returns StringsManager.getVar(R.string.ScaleArmor_Desc)]]
+  * **Entity Kind Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind interface]]
+  * **Armor Durability**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor durability system]] (based on degradation mechanics)
+  * **Armor Price**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L97|Armor price calculation]] (price = armor level * 20 = 80 gold when sold)
+  * **Armor Enchantments**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/|Armor Glyph system]] (compatibility with glyphs)
+  * **Material Types**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L27|materialType field]] - indicates armor material properties (medium armor)
+  * **Equipment System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings class]] - handles armor equipment in armor slot
+  * **Armor Classifications**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L18-L21|Tier classifications]] - defines armor tiers (tier 4 = medium armor)
+  * **Shop Availability**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java#L90|ShopPainter.java]] (appears in shops)
+  * **Machine-readable data**: [[mr:scale_armor_item|mr:scale_armor_item]]
+
+==== Related ====
+  * [[en:rpd:armor|Armor]] - All armor types information
+  * [[en:rpd:armor_glyphs|Armor Glyphs]] - Special effects for armor
+  * [[en:rpd:leather_armor_item|Leather Armor]] - Lower tier armor
+  * [[en:rpd:mail_armor_item|Mail Armor]] - Higher tier armor
+  * [[en:rpd:plate_armor_item|Plate Armor]] - Higher tier armor
+  * [[en:rpd:dragon_armor_item|Dragon Armor]] - Highest tier armor
+  * [[en:rpd:cloth_armor_item|Cloth Armor]] - Lowest tier armor
+  * [[en:rpd:armor_tiers|Armor Tiers]] - Information about armor classifications
+
+{{tag> rpd items armor scale tier4}}

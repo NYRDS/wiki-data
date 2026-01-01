@@ -1,0 +1,48 @@
+====== Lightning Bolt ======
+
+{{ rpd:images:lightning_bolt_spell_icon.png|Lightning Bolt Spell Icon }}
+
+**Lightning Bolt** is a spell in Remixed Pixel Dungeon (Witchcraft Affinity).
+
+==== Description ====
+A spell that is shared among ancient shamans, that will shock your enemies twice as effectively, especially if they are foolish enough to be standing on water. The spell deals random damage based on the caster's level and skill, and this damage is doubled if the target is standing in water and not flying.
+
+==== Stats ====
+  * **Magic Affinity:** Witchcraft
+  * **Targeting:** char_not_self
+  * **Level:** 2
+  * **Mana Cost:** 5
+  * **Cooldown:** 2 turns
+  * **Cast Time:** 1 turn
+
+==== Damage Calculation ====
+The spell deals damage calculated as:
+  * Minimum damage: equal to caster's level (lvl)
+  * Maximum damage: (caster's skill level) * sqrt(caster's level) + (caster's level)
+
+==== Special Properties ====
+  * Damage is doubled when target is standing in water (and not flying)
+  * Creates visual lightning effect between caster and target
+  * Causes flash and spark particle effects on target
+  * If target is the hero, creates camera shake effect
+
+==== Classes ====
+Classes that can use this spell include:
+  * Classes with Witchcraft affinity
+
+==== Strategy ====
+How to effectively use the LightningBolt spell:
+  * Use on enemies standing in water for double damage
+  * Effective for ranged damage without engaging in melee
+  * Particularly useful in areas with water terrain
+
+==== Source Code References ====
+  * Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/LightningBolt.lua|LightningBolt.lua]]
+  * Mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java#L108-L133|CharUtils.java lightningProc method]]
+
+==== See Also ====
+  * [[en:rpd:spells|Spells]]
+  * [[en:rpd:mechanics|Game Mechanics]]
+  * [[en:rpd:spell_affinities|Spell Affinities]]
+
+{{tag> rpd spells witchcraft }}

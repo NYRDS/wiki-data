@@ -1,0 +1,61 @@
+====== Necromancer's Robe ======
+
+{{ rpd:images:necromancer_robe_item.png|Necromancer's Robe }}
+
+**Necromancer's Robe** is a class-specific armor in Remixed Pixel Dungeon for the [[en:rpd:necromancer_class|Necromancer]] class.
+
+==== Description ====
+The **Necromancer's Robe** is the starting armor for the [[en:rpd:necromancer_class|Necromancer]] class. It provides unique necromantic abilities that enhance the Necromancer's core gameplay mechanic of collecting and using souls.
+
+==== Stats ====
+  * **Armor Class**: Cloth armor
+  * **Durability**: Standard for cloth armor
+  * **Special Ability**: "Necromancy" - consumes souls to perform necromantic actions
+  * **Soul Collection**: Grants 1 soul point for each monster killed
+
+==== Special Properties ====
+  * **Soul Collection**: Automatically grants 1 soul each time the wearer defeats a monster
+  * **Necromantic Abilities**: Enables the use of necromantic abilities that consume souls
+  * **Class-exclusive**: Only the [[en:rpd:necromancer_class|Necromancer]] can wear this armor effectively
+  * **Pet Summoning**: Allows use of soul-consuming abilities to summon undead pets like [[en:rpd:deathling_mob|Deathlings]]
+
+==== Mechanics ====
+  * Functions as a core part of the [[en:rpd:necromancer_class|Necromancer]]'s gameplay loop of collecting souls through combat and using them for abilities
+  * The soul collection is fundamental to the [[en:rpd:souls|Souls]] resource system
+  * Works in conjunction with other necromantic items and the [[en:rpd:necromancy_spell|Necromancy Spell]]
+
+==== Classes ====
+  * [[en:rpd:necromancer_class|Necromancer]] - Designed specifically for this class
+
+==== Strategy ====
+  * Essential for maximizing the [[en:rpd:necromancer_class|Necromancer]] class effectiveness
+  * Focus on combat to collect souls efficiently
+  * Balance offensive and defensive necromantic abilities
+  * Consider upgrading soul-generating capabilities
+
+==== Code References ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/NecromancerRobe.java|NecromancerRobe.java]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L739-L742|NecromancerRobe_Name, NecromancerRobe_Info, NecromancerArmor_NotNecromancer]]
+  * String Resources (RU): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L739-L742|NecromancerRobe strings in Russian]]
+  * Related Robe: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/NecromancerArmor.java|NecromancerArmor.java]]
+  * Soul Collection Mechanism: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/NecromancerRobe.java#L30-L32|charDied method implementation]]
+  * Hero Class Check: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/NecromancerRobe.java#L24-L26|doEquip method for Necromancer class verification]]
+  * Armor Tier Definition: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/NecromancerRobe.java#L19|Constructor with tier 1 (cloth armor)]]
+
+==== Additional Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L398|ItemFactory.java]] - Registration of NecromancerRobe class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Definition of Necromancer hero class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Base character class that handles soul accumulation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/NecromancerRobe.java#L19|Constructor]] - Defines armor tier (tier 1 - cloth armor)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/NecromancerRobe.java#L24-L26|charDied method]] - Implementation of soul collection when enemies die
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L210-L212|Hero.java accumulateSkillPoints]] - Method called by NecromancerRobe for soul collection
+
+==== See Also ====
+  * [[en:rpd:necromancer_class|Necromancer Class]]
+  * [[en:rpd:souls|Souls Resource]]
+  * [[en:rpd:necromancy_spell|Necromancy Spell]]
+  * [[en:rpd:deathling_mob|Deathling]]
+  * [[en:rpd:lich_subclass|Lich Subclass]]
+  * [[en:rpd:armor|Armor]]
+
+{{tag> rpd items armor necromancer robe }}

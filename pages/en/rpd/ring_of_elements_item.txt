@@ -1,0 +1,73 @@
+====== ring_of_elements ======
+
+{{ rpd:images:ringofelements_sprite.png|Ring of Elements }}
+
+**Ring of Elements** is a ring in Remixed Dungeon that provides resistance to various elemental and magical effects, and reduces the duration of negative status effects.
+
+===== Description =====
+This ring provides resistance to different elements, such as fire, electricity, gases etc. Also it decreases duration of negative effects.
+
+===== Effects =====
+  * Provides resistance to elemental and magical attacks
+  * Reduces damage from elemental sources
+  * Provides protection against status effects from magical sources
+  * Reduces duration of negative status effects
+
+===== Stats =====
+  * **Primary Effect:** Resistance to elemental effects (chance-based, increases with level)
+  * **Secondary Effect:** Reduced effect duration from negative status effects ((2 + 0.5*level) / (2 + level))
+  * **Upgrade Benefits:** Higher upgrades provide stronger resistance chance and duration reduction
+
+===== Mechanics =====
+  * Resistance effect chance: Random chance of (level + 3) >= 3, meaning for positive levels (or 0), the ring always provides resistance
+  * Duration factor: (2 + 0.5 * level) / (2 + level) - with positive levels, this reduces duration of debuffs
+  * The ring provides resistance against: Burning, ToxicGas, Poison, LightningTrap.Electricity, Warlock, Eye, BurningFist, LiquidFlame
+  * At level 0 or higher, resistance is always active
+
+===== Acquisition =====
+  * Found in treasure rooms
+  * May be sold in shops in later levels
+  * Sometimes obtained as quest rewards
+
+===== Strategy =====
+  * Extremely valuable against magic-using enemies and elemental attacks
+  * Helps against various status effects and elemental traps
+  * Particularly valuable for classes that face many magical enemies
+  * Good for players who frequently encounter elemental hazards
+  * Provides consistent protection against common debuffs when upgraded
+
+===== Identification =====
+  * Like all rings, starts unidentified and must be identified
+  * Effects become clearer after identification
+  * Quality affects the strength of the resistance
+
+===== Content Verification =====
+  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]]
+  * Stats verification: Extracted from RingOfElements.java constructor and Resistance inner class
+  * Effect descriptions: Based on string resources and in-game mechanics
+  * Last updated: December 2025, source: Remixed Dungeon 1.9.3
+
+===== Source Code =====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]]
+  * Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L49-L50|Ring of Elements strings]]
+  * Base Ring Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java|Ring.java]] - Contains common ring mechanics
+
+===== Data Validation =====
+  * Resisted Elements (Java): The Resistance class specifically protects against Burning, ToxicGas, Poison, LightningTrap.Electricity, Warlock, Eye, BurningFist, and LiquidFlame classes
+  * Resistance Chance Formula: ''Random.Int( level() + 3 ) >= 3'' - meaning at level 0 or above, resistance is always active
+  * Duration Factor Formula: ''(2 + 0.5f * level()) / (2 + level())'' - reduces negative effect duration with higher levels
+  * String Resources: ''RingOfElements_Info'' in strings_all.xml
+  * Gem Name Resources: ''Ring_Gems'' array in strings_all.xml defines the gem name displayed in the ring's name
+
+===== See Also =====
+  * [[en:rpd:rings|Rings]] - Other ring types in the game
+  * [[en:rpd:wands|Wands]] - The effects this ring helps resist
+  * [[en:rpd:equipment|Equipment]] - Other equipment options
+  * [[en:rpd:immunities|Immunities]] - Complete list of immunities and resistances
+  * [[en:rpd:resistances|Resistances]] - Complete list of resistances and damage reduction
+  * [[en:rpd:poison_buff|Poison]] - One of the effects this ring provides resistance against
+  * [[en:rpd:burning_buff|Burning]] - One of the effects this ring provides resistance against
+  * [[en:rpd:toxic_gas_buff|Toxic Gas]] - One of the effects this ring provides resistance against
+  * [[en:rpd:lightning_trap|Lightning Trap]] - One of the effects this ring provides resistance against
+
+{{tag> rpd items rings equipment ring_of_elements ring_of_elements_item }}

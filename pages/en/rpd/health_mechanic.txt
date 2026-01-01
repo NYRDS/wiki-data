@@ -1,0 +1,38 @@
+====== Health Mechanic ======
+
+**Health** (or Hit Points/HP) represents the amount of damage a character can take before dying. Heroes start with different base HP depending on difficulty: 30 HP on normal difficulty and 20 HP on higher difficulties. This can be increased by finding a [[en:rpd:potion_of_might_item|Potion of Might]] or through other game mechanics.
+
+==== Mechanics ====
+  * **Maximum HP**: The upper limit of health a character can have
+  * **Current HP**: The amount of health currently remaining
+  * **Restoration**: Health can be restored through various means:
+    * [[en:rpd:potion_of_healing_item|Potion of Healing]] and similar potions
+    * [[en:rpd:heal_spell|Heal Spell]]
+    * [[en:rpd:ring_of_mending_item|Ring of Mending]]
+    * [[en:rpd:wand_of_regrowth_item|Wand of Regrowth]]
+    * [[en:rpd:herbalism|Herbalism]] (eating raw vegetables)
+
+==== Effects on Low Health ====
+  * If health reaches 0, the character dies
+
+==== Related Pages ====
+  * [[en:rpd:potion_of_healing_item|Potion of Healing]]
+  * [[en:rpd:potion_of_might_item|Potion of Might]]
+  * [[en:rpd:heal_spell|Heal Spell]]
+  * [[en:rpd:ring_of_mending_item|Ring of Mending]]
+  * [[en:rpd:hunger|Hunger]]
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Base character class with health mechanics (hp(), ht() methods)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Hero-specific health implementation including starting HP
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L120-L126|Hero.java#L120-L126]] - Starting HP based on difficulty level
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L1312-L1320|Char.java#L1312-L1320]] - HP and HT getter/setter methods
+
+==== JSON Configuration ====
+  * Various mob configuration files in ''RemixedDungeon/src/main/assets/mobsDesc/'' define HP values for enemies
+  * ''RemixedDungeon/src/main/assets/hero/initHeroes.json'' - Defines starting health for hero classes
+
+==== String Resources ====
+  * Health-related strings can be found in ''RemixedDungeon/src/main/res/values-ru/strings_all.xml'' and other language resource files
+
+{{tag> rpd mechanics stats}}

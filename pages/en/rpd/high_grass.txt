@@ -1,0 +1,54 @@
+====== High Grass ======
+
+{{ rpd:images:high_grass_terrain.png|High Grass }}
+
+**High Grass** is a terrain feature found throughout the dungeon that provides special properties and interactions. It has the following characteristics:
+
+==== Properties ====
+  * **Movement**: Passable terrain that characters can move through normally
+  * **Line of Sight**: Blocks line of sight (LOS_BLOCKING flag)
+  * **Flammable**: Can be burned by fire-based effects
+  * **Trampling**: When trampled, converts to regular grass terrain
+  * **Visibility**: Does not typically block line of sight for the player
+
+==== Contents ====
+  * **Drops**: Trampling may yield dewdrops (chance increases with Herbalism ring level)
+  * **Seeds**: Trampling may yield random seeds (chance increases with Herbalism ring level)
+  * **Hidden Items**: Some items may be hidden until the grass is trampled
+  * **Traps**: Some traps may be concealed in high grass until triggered
+
+==== Interaction ====
+  * Moving over high grass tramples it, converting it to regular grass
+  * Trampling generates leaf particles (4 particles normally, 2 for Scout, 8 for Warden)
+  * Some hero subclasses have special interactions when trampling high grass:
+    * **Scout**: Gains 5 turns of invisibility when trampling high grass
+    * **Warden**: Gains barkskin (HP/3) for a short duration when trampling high grass
+  * Ring of Herbalism increases chances of dewdrop and seed drops when trampling
+
+==== Mechanics ====
+  * **Terrain ID**: 15 (Terrain.HIGH_GRASS constant)
+  * **Flags**: PASSABLE | LOS_BLOCKING | FLAMMABLE
+  * **Trample Effect**: Converts to regular grass (Terrain.GRASS)
+  * **Drops**: Random dewdrops and seeds based on Herbalism buff level
+
+==== Strategy ====
+  * Use high grass strategically for concealment during combat
+  * Consider subclass abilities when planning movement through high grass areas
+  * Trample carefully if you want to preserve the concealment benefit
+  * Be aware that some enemies may be hidden in high grass until you step on it
+
+==== Related Pages ====
+  * [[en:rpd:grass|Grass]] - Regular grass terrain (what high grass becomes when trampled)
+  * [[en:rpd:scout_subclass|Scout]] - Hero subclass with special interaction with high grass
+  * [[en:rpd:warden_subclass|Warden]] - Hero subclass with special interaction with high grass
+  * [[en:rpd:ring_of_herbalism_item|Ring of Herbalism]] - Item that affects drops from high grass
+  * [[en:rpd:terrain|Terrain]] - Other terrain features in the dungeon
+  * [[en:rpd:seeds|Seeds]] - Items that may be found when trampling high grass
+  * [[en:rpd:dewdrop_item|Dewdrop]] - Items that may be found when trampling high grass
+
+==== Source Code ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Terrain.java|Terrain.java]] - Terrain constants definition
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/TerrainFlags.java|TerrainFlags.java]] - Terrain properties
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java|HighGrass.java]] - Trampling mechanics
+
+{{tag> rpd terrain}}

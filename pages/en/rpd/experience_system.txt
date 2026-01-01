@@ -1,0 +1,48 @@
+====== Experience System ======
+
+The experience system governs how characters gain levels and grow stronger in Remixed Dungeon.
+
+==== Description ====
+The experience system tracks how much experience characters have gained and determines when they level up. Experience is primarily gained by defeating enemies, but some other activities also grant experience points.
+
+==== Experience Mechanics ====
+  * **Gain**: Characters earn experience points for defeating enemies
+  * **Storage**: Experience is tracked and accumulates until enough is earned
+  * **Level Thresholds**: Specific amounts of experience are needed to reach each level
+  * **Application**: Upon gaining a level, characters receive benefits like increased health
+
+==== Experience Sources ====
+  * **Enemy Defeat**: The primary source of experience for the hero
+  * **Quest Completion**: Some quests provide experience rewards
+  * **Special Events**: Rare events or interactions may grant experience
+  * **NPC Interactions**: Some NPCs may provide experience for special tasks
+
+==== Experience Values ====
+  * **Scaling**: More powerful enemies grant more experience
+  * **Efficiency**: Experience per health point tends to be consistent across enemy types
+  * **Level Relevance**: Experience values are appropriate to character level progression
+
+==== Code References ====
+  * Experience System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - How experience is tracked
+  * Hero Experience: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - How heroes gain and use experience (see setExp() and getExpForLevelUp() methods)
+  * Mob Experience: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - How mobs provide experience when defeated (expForKill field)
+  * Leveling Calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L150-L200|Leveling code]] - Implementation of the level-up process
+  * Experience Potion: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfExperience.java|PotionOfExperience.java]] - Item that grants experience
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L340-L341|strings_all.xml]] - Experience potion text (PotionOfExperience_Name, PotionOfExperience_Info)
+
+==== Detailed Implementation ====
+  * **Hero.java** contains EXP field and getExpForLevelUp(), setExp() methods
+  * **Char.java** contains level() method that calculates character level
+  * **Mob.java** has expForKill field determining experience granted when defeated
+  * Experience is stored in Hero's bundle as "exp" during serialization
+  * Level progression formula: expForLevelUp increases as hero levels up
+  * Experience potion grants 1/2 of the experience needed to reach next level
+
+==== See Also ====
+  * [[en:rpd:hero|Hero]]
+  * [[en:rpd:leveling|Leveling]]
+  * [[en:rpd:mobs|Mobs]]
+  * [[en:rpd:combat_mechanics|Combat]]
+  * [[en:rpd:potion_of_experience_item|Potion of Experience]]
+
+{{tag> rpd mechanics experience leveling }}

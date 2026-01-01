@@ -1,0 +1,61 @@
+====== Undead ======
+
+**Undead** is a mob in Remixed Dungeon summoned by the Dwarf King boss. These are reanimated dwarf warriors that serve the King in the final dungeon levels.
+
+==== Statistics ====
+  * **HP:** 28
+  * **Defense Skill:** 15
+  * **Attack Skill:** 16
+  * **Damage:** 12-16
+  * **Armor Class:** 5
+  * **EXP for Kill:** 0
+  * **Undead Status:** Yes (immune to status effects targeting living creatures)
+
+==== Description ====
+The Undead are reanimated dwarf warriors that serve the Dwarf King. They are summoned by the King during combat and fight alongside him. They are former members of the Dwarf King's army, brought back through dark magic.
+
+==== Behavior ====
+  * **Summoned:** Created by the King during combat when he needs additional forces
+  * **Attack:** Has a chance to [[en:rpd:stun_buff|stun]] targets on hit (1 in MAX_ARMY_SIZE chance)
+  * **Toxic Gas Interaction:** When damaged by [[en:rpd:toxic_gas_level_object|toxic gas]], the gas blob is cleared
+  * **Death Sound:** Plays a bone-cracking death sound when killed
+
+==== Strategy ====
+  * The King will summon Undead when his army size is below maximum
+  * They are not particularly dangerous individually but can overwhelm if many are summoned
+  * Focus on the King to prevent more from being summoned
+  * Consider using AoE attacks when multiple Undead are present
+  * Be aware that [[en:rpd:heal_spell|Heal]] spells will not work on them
+
+==== Interactions ====
+  * **Immunities:** Immune to [[en:rpd:poison_buff|Poison]] and [[en:rpd:bleeding_buff|Bleeding]]
+  * **Vulnerabilities:** Vulnerable to holy/light-based attacks and [[en:rpd:healing_spell|healing magic]] (which damages them)
+  * **Status Effects:** Immune to status effects that target living creatures (sleep, paralysis, charm)
+
+==== Code References ====
+  * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L164|King.Undead.java]]
+  * **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * **King's Summoning:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L141-L147|King.java - summoning logic]]
+  * **Stats Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L167-L178|King.Undead constructor]] - defines HP (28), defense skill (15), attack skill (16), damage (12-16), armor (5), and EXP (0)
+  * **Stun Attack:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L181-L185|attackProc method]] - has 1 in MAX_ARMY_SIZE (5) chance to stun target for 1 turn
+  * **Toxic Gas Interaction:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L187-L191|damage method]] - clears toxic gas when damaged by it
+  * **Death Sound:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L193-L198|die method]] - plays bone-cracking sound when killed
+  * **Undead Status:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L176|setUndead method]] - marks as undead creature
+  * **Wandering AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L177|Wandering.class]] - uses wandering AI behavior
+  * **MAX_ARMY_SIZE Constant:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L13|MAX_ARMY_SIZE = 5]] - defines maximum number of undead king can summon
+  * **Summoning Mechanics:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L120-L134|summon() method]] - handles the spawning of new Undead mobs
+  * **Counting Servants:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L89-L97|countServants() method]] - counts existing Undead to prevent exceeding MAX_ARMY_SIZE
+  * **Special Visual Effects:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L152-L154|Flare effect]] - visual effect when spawning Undead
+  * **Teleportation on Spawn:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L150-L151|WandOfBlink.appear]] - teleports Undead to their position when summoned
+  * **Spawn Mechanics:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/Level.java#L321-L323|Level.spawnMob]] - handles the actual spawning of the mob
+  * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1295-L1297|Undead_Name, Undead_Name_Objective, Undead_Desc]] - English names and descriptions
+  * **Russian String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1284-L1286|Undead_Name (русс.), Undead_Desc (русс.)]] - Russian localization
+  * **Sprite Configuration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Undead.json|Undead.json]] - sprite dimensions, animations and texture
+  * **Machine-readable data:** [[mr:undead_mob|mr:undead_mob]]
+
+==== Related Mobs ====
+  * [[en:rpd:king_mob|King]] - The boss that summons Undead
+  * [[en:rpd:skeleton_mob|Skeleton]] - Another undead creature
+  * [[en:rpd:zombie_mob|Zombie]] - Another type of undead creature
+
+{{tag> rpd mobs undead boss_minion}}

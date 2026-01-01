@@ -1,0 +1,58 @@
+====== Air Elemental ======
+
+{{ rpd:images:air_elemental_mob.png|Air Elemental }}
+
+Air Elementals are flying magic beings made of living air. They appear in the [[en:rpd:chasm_level|Chasm level feeling]], and are immune to [[en:rpd:bleeding_buff|Bleeding]]. They use the [[en:rpd:wind_gust_spell|Wind Gust spell]] to attack enemies. Though they might be weak fighters in close combat, their ranged wind breath makes them a dangerous enemy to deal with.
+
+==== Stats ====
+  * **HP**: Depth * 3 + 1 (calculated in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L41|adjustStats method]])
+  * **Attack Skill**: Base defense skill * 2 + 1 (calculated in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L42|adjustStats method]])
+  * **Defense Skill**: Depth * 2 + 1 (calculated in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L43|adjustStats method]])
+  * **Min Damage**: 0 (set in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L47|adjustStats method]])
+  * **Max Damage**: ht() / 4 (set in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L47|adjustStats method]])
+  * **Exp for Kill**: Depth + 1 (calculated in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L45|adjustStats method]])
+  * **Max Level**: Depth + 2 (set in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L46|adjustStats method]])
+  * **Damage Reduction**: expForKill / 5 (set in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L46|adjustStats method]])
+  * **Carcass Chance**: 0% (set in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L19|constructor]])
+  * **Flying**: Yes (set in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L22|constructor]])
+
+==== Abilities ====
+  * **Flight**: Air elementals are flying creatures and can move over any terrain
+  * **Wind Gust**: When attacking enemies at range, Air elementals will cast Wind Gust, pushing the target away
+  * **Distance Preference**: When in hunting state and at a distance less than skillLevel() - 1 from target, will move away
+  * **Range Attack**: Uses Wind Gust on distant enemies, which can cause the player to fall from bridges or other elevated areas
+  * **Immunities**: Completely immune to [[en:rpd:bleeding_buff|Bleeding]]
+
+==== Behavior ====
+  * Air Elementals have a unique movement pattern - when they get too close to the target (distance < skillLevel - 1), they move away instead of approaching
+  * They can attack from a distance (up to skillLevel range) but won't attack adjacent enemies
+  * When they attack, they cast Wind Gust which creates wind particles and burst effects on the target
+  * They only appear in the [[en:rpd:chasm_level|Chasm level feeling]], which has a 20% chance to appear on dungeon levels
+
+==== Drops ====
+  * [[en:rpd:potion_of_levitation_item|Potion of Levitation]] (10% chance)
+
+==== Strategy ====
+  * Air Elementals use ranged [[en:rpd:wind_gust_spell|Wind Gust]] attacks that can push you off ledges, so be careful around [[en:rpd:chasm_level|chasms]]
+  * They prefer to stay at a distance and will move away when you get too close
+  * Their damage output is relatively low (0 to ht() / 4), making them less threatening in close combat
+  * Since they fly, they can traverse any terrain and cannot be blocked by physical obstacles
+  * They are immune to effects that require physical contact or ground presence
+  * They can be challenging to fight in narrow corridors due to push effects
+  * They move erratically due to their unique movement pattern
+
+==== Source Code References ====
+  * Java implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]]
+  * Wind Gust spell: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]]
+  * Spawn rates: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L93|Bestiary.json]]
+  * Immunities implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L34|Bleeding immunity]]
+  * Stats calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L41|adjustStats method]]
+
+==== See Also ====
+  * [[en:rpd:wind_gust_spell|Wind Gust Spell]]
+  * [[en:rpd:water_elemental_mob|Water Elemental]]
+  * [[en:rpd:earth_elemental_mob|Earth Elemental]]
+  * [[en:rpd:fire_elemental_mob|Fire Elemental]]
+  * [[en:rpd:elemental_mob|Elementals]]
+
+{{tag> rpd mobs elementals air }}

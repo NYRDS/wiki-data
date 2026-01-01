@@ -1,0 +1,45 @@
+====== Town Guard NPC ======
+
+{{ rpd:images:townguardnpc_sprite.png|Town Guard }}
+
+==== Description ====
+The Town Guard is a non-player character (NPC) found in the town area of Remixed Dungeon. These guards are static NPCs that provide flavor text when interacted with.
+
+==== Behavior ====
+  * **Immobile**: Town Guards cannot move (movable = false)
+  * **Dialogue**: When interacted with, they show a dialogue window with one of three random messages
+  * **Static positioning**: They remain in fixed positions in the town area
+
+==== Interaction ====
+When the player interacts with a Town Guard, the character will turn to face the player and display a dialogue window containing three possible messages:
+
+  * "Move along." (Generic dismissal)
+  * "Thanks to adventurers like you, it became really peaceful up here." (Gratitude for clearing the dungeon)
+  * "You think there are too many guards in this town? Well, that's because this is the only town with a gigantic monster-infested dungeon, isn't it?" (Acknowledging the unusual security situation)
+
+==== Location ====
+  * Found in the [[en:rpd:town_level|Town level]]
+  * Also appears in the [[en:rpd:portal_shrine_level|Portal Shrine level]]
+  * Positioned in fixed locations within town areas
+
+==== Implementation ====
+  * Inherits from [[en:rpd:immortal_npc|ImmortalNPC]] class
+  * Uses string resources for dialogue messages
+  * Implemented as a simple dialogue display with no other functionality
+
+==== Strategy ====
+  * Town Guards are friendly NPCs that provide lore and flavor text
+  * They do not provide quests or items
+  * Simply interact to read their messages
+
+==== Source Code References ====
+  * Java implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/TownGuardNPC.java|TownGuardNPC.java]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1651|TownGuardNPC strings in strings_all.xml]]
+
+==== See Also ====
+  * [[en:rpd:immortal_npc|Immortal NPC]] - Base class
+  * [[en:rpd:town_level|Town Level]] - Location
+  * [[en:rpd:portal_shrine_level|Portal Shrine Level]] - Additional location
+  * [[en:rpd:npcs|NPCs]] - List of all NPCs
+
+{{tag> rpd npcs town guards}}

@@ -1,0 +1,62 @@
+====== Rotten Meat ======
+
+{{ rpd:images:rotten_meat_item.png|Rotten Meat }}
+
+**Rotten Meat** is a food item in Remixed Dungeon that results from Mystery Meat that has spoiled. Unlike its original form, consuming Rotten Meat has harmful effects.
+
+==== Description ====
+Rotten Meat is spoiled Mystery Meat that has become unsafe to consume. Unlike [[en:rpd:mystery_meat_item|Mystery Meat]], which has random effects, Rotten Meat reliably produces negative effects when consumed.
+
+==== Class in Code ====
+  * **Java class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenMeat.java|RottenMeat.java]]
+  * **Inherits from:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]]
+
+==== Properties ====
+  * **Hunger satisfaction:** (Hunger.STARVING - Hunger.HUNGRY)/2 units (60 units)
+  * **Price:** 1 gold per unit
+  * **Type:** Food item
+  * **Stackable:** Yes
+  * **Nutrition:** Minimal satiety but with negative effects
+
+==== Effects When Consumed ====
+  * Displays message: "Disgusting!"
+  * Randomly creates hazardous gas clouds at the player's location:
+    * Confusion Gas: 25% chance (150 + 10 * dungeon depth potency)
+    * Paralytic Gas: 25% chance (500 potency)
+    * Toxic Gas: 25% chance (500 potency)
+    * No effect: 25% chance
+
+==== Obtaining ====
+  * **Spoilage:** Mystery Meat can become Rotten Meat if left uneaten for too long
+  * **Natural occurrence:** May occasionally appear as dungeon loot (rare)
+
+==== Purification ====
+  * When purified using [[en:rpd:potion_of_purity_item|Potion of Purity]], transforms back into [[en:rpd:mystery_meat_item|Mystery Meat]]
+
+==== Strategy ====
+  * **Avoid consumption:** Never eat Rotten Meat due to the harmful gas effects
+  * **Purification:** Purify with [[en:rpd:potion_of_purity_item|Potion of Purity]] to get back Mystery Meat
+  * **Strategic placement:** Can be thrown at enemies to create gas clouds in combat
+  * **Safe alternative:** Always cook [[en:rpd:mystery_meat_item|Mystery Meat]] to get [[en:rpd:chargrilled_meat_item|Chargrilled Meat]] instead of risking it becoming rotten
+
+==== Content Verified ====
+  * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenMeat.java|RottenMeat.java]]
+  * Effects: Inherited from RottenFood parent class
+  * Purification: Based on implementation in RottenMeat.java
+  * Sprite reference: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L136|ItemSpriteSheet.ROTTEN_MEAT]]
+
+==== Related Items ====
+  * [[en:rpd:mystery_meat_item|Mystery Meat]] - Original form before spoiling
+  * [[en:rpd:chargrilled_meat_item|Chargrilled Meat]] - Safe cooked alternative to Mystery Meat
+  * [[en:rpd:potion_of_purity_item|Potion of Purity]] - Can purify Rotten Meat back to Mystery Meat
+  * [[en:rpd:rotten_food_item|Rotten Food]] - Abstract parent class
+
+==== Related Pages ====
+  * [[en:rpd:food|Food]] - General information about food items
+  * [[en:rpd:hunger_buff|Hunger]] - Detailed hunger mechanics
+  * [[en:rpd:confusion_gas_buff|Confusion Gas]] - Gas effect it can cause
+  * [[en:rpd:paralytic_gas_buff|Paralytic Gas]] - Gas effect it can cause
+  * [[en:rpd:toxic_gas_buff|Toxic Gas]] - Gas effect it can cause
+  * [[en:rpd:cooking|Cooking]] - How to prevent Mystery Meat from spoiling
+
+{{tag> rpd items food rotten meat }}

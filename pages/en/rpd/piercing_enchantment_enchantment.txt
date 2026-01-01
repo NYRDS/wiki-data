@@ -1,0 +1,37 @@
+====== Piercing Enchantment ======
+
+{{ rpd:images:enchant_piercing.png|Piercing Enchantment }}
+
+==== Description ====
+The Piercing enchantment allows attacks to damage multiple enemies in a straight line. When hitting an enemy, the attack can continue through them to hit other enemies in the same direction, dealing reduced damage to each subsequent target.
+
+==== Mechanics ====
+  - On a successful hit, the damage can continue through the target in a straight line
+  - Each subsequent target receives reduced damage compared to the previous one
+  - The damage reduction is calculated as: maxDamage = (int)(damage * Math.pow(2, -1d / (level + 1)))
+  - Can potentially hit multiple enemies in the same direction until the damage falls below 1 or the edge of the level is reached
+  - Damage dealt to subsequent targets uses the same damage calculation as the original hit
+
+==== Technical Details ====
+  - The damage reduction is based on the weapon's level
+  - Higher-level weapons maintain more of the original damage when piercing
+  - The line of effect continues until it reaches the edge of the level or encounters no more targets
+  - The effect is limited by a minimum damage threshold (below 1 damage prevents further piercing)
+
+==== Source Code ====
+  - Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Piercing.java|Piercing.java]]
+  - The effect applies damage to enemies in a straight line continuation from the initial target
+  - The direction is calculated as: direction = target_pos - attacker_pos
+
+==== Configuration Files ====
+  - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Piercing.json|Piercing.json]] - Sprite configuration for piercing enchantment visual effect
+
+==== String Resources ====
+  - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3750-L3755|Piercing strings]] - English names and descriptions
+  - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3750-L3755|Russian Piercing strings]] - Russian localization
+
+==== See Also ====
+  - [[en:rpd:enchantments|Enchantments]] - List of all weapon enchantments
+  - [[en:rpd:weapons|Weapons]] - Equipment that can have enchantments
+
+{{tag> rpd items enchantments piercing damage multiple}}

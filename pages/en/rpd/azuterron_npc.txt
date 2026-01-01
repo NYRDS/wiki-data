@@ -1,0 +1,59 @@
+====== Azuterron NPC ======
+
+{{ rpd:images:azuterronnpc_sprite.png|Azuterron NPC }}
+
+Azuterron is a mysterious NPC found in shops throughout the dungeon. He appears as a stranger shrouded in black mist and offers a unique quest for players to complete.
+
+==== Description ====
+A mysterious figure shrouded by black mist that appears in shop levels. Azuterron appears to be an outcast from the dark entities in the dungeon, and offers assistance to the hero in exchange for help with a personal problem.
+
+==== Quest Mechanics ====
+  * **Quest Start:** When first interacting with Azuterron, he asks for help finding and defeating a _Treacherous Spirit_ on the current level
+  * **Spirit Spawn:** After accepting the quest, a [[en:rpd:treacherous_spirit_mob|Treacherous Spirit]] will spawn somewhere on the level
+  * **Required Item:** Must defeat the Treacherous Spirit and obtain its [[en:rpd:heart_of_darkness_item|Heart of Darkness]]
+  * **Quest Reward:** Return the Heart of Darkness to Azuterron to receive a [[en:rpd:potion_of_might_item|Potion of Might]]
+  * **Shop Access:** After completing the quest, Azuterron functions as a regular [[en:rpd:shopkeeper_mob|Shopkeeper]]
+
+==== Stats ====
+  * **Immunities:** Immune to Paralysis, Stun, and Roots (cannot be immobilized)
+  * **Defense:** Cannot be damaged by normal means (defenseSkill returns 1000)
+  * **Speed:** Moves at half normal speed (speed = 0.5f)
+  * **Mobility:** Cannot move from position (movable = false)
+
+==== Behavior ====
+  * Does not move from position (stationary shopkeeper)
+  * Will not engage in combat as normal enemies do
+  * Provides quest dialog when interacted with
+  * Offers regular shop services after quest completion
+
+==== Technical Details ====
+  * **Class:** ''com.nyrds.pixeldungeon.mobs.npc.AzuterronNPC''
+  * **Parent Class:** Extends ''Shopkeeper'' class
+  * **Sprite Configuration:** Uses external JSON description at ''spritesDesc/AzuterronNPC.json''
+  * **Quest System:** Implements static ''Quest'' class to manage quest state across game saves
+  * **Journal Entry:** Added to journal when quest begins (Feature.AZUTERRON)
+
+==== Related ====
+  * [[en:rpd:shopkeeper_mob|Shopkeeper]] - Standard shop NPC that Azuterron becomes after quest completion
+  * [[en:rpd:treacherous_spirit_mob|Treacherous Spirit]] - Monster that must be defeated for the quest
+  * [[en:rpd:heart_of_darkness_item|Heart of Darkness]] - Item required to complete the quest
+  * [[en:rpd:potion_of_might_item|Potion of Might]] - Reward for completing the quest
+  * [[en:rpd:spirit_of_pain_mob|Spirit of Pain]] - Minion that Treacherous Spirit can summon during combat
+
+==== Source Code ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/TreacherousSpirit.java|TreacherousSpirit.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java|ShopPainter.java]] - Where AzuterronNPC is instantiated in shop levels
+
+==== Configuration Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L694-L700|strings_all.xml]] - English string resources for Azuterron NPC name, description and quest dialog
+
+==== String Resources ====
+  * ''AzuterronNPC_Name'' - "Stranger" (R.string.AzuterronNPC_Name)
+  * ''AzuterronNPC_Desc'' - NPC description "A mysterious figure shrouded by black mist." (R.string.AzuterronNPC_Desc)
+  * ''AzuterronNPC_Quest_Start'' - Quest start dialog (R.string.AzuterronNPC_Quest_Start)
+  * ''AzuterronNPC_Quest_Reminder'' - Quest reminder dialog (R.string.AzuterronNPC_Quest_Reminder)
+  * ''AzuterronNPC_Quest_End'' - Quest completion dialog (R.string.AzuterronNPC_Quest_End)
+  * ''AzuterronNPC_Gender'' - "masculine" (R.string.AzuterronNPC_Gender)
+
+{{tag> rpd npc quest}}

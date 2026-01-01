@@ -1,0 +1,72 @@
+====== Warlock Mob ======
+
+{{ rpd:images:warlock_mob.png|Warlock Sprite }}
+
+The **Warlock** is a magic-using mob in Remixed Dungeon, typically appearing as a dwarf warlock with advanced magical abilities. When dwarves' interests shifted from engineering to arcane arts, warlocks came to power in the city.
+
+==== Description ====
+When dwarves' interests shifted from engineering to arcane arts, warlocks came to power in the city. They started with elemental magic, but soon switched to demonology and necromancy. Warlocks are formidable spellcasters found in the deeper parts of the dungeon.
+
+==== Stats ====
+  * **HP:** 70
+  * **Attack Skill:** 25
+  * **Defense Skill:** 18
+  * **Damage:** 12-20
+  * **Defense Rate (DR):** 8
+  * **EXP for Kill:** 11
+  * **Max Level:** 21
+
+==== Behavior ====
+  * **Magic-focused:** Warlocks primarily use magical attacks rather than physical combat
+  * **Teleportation Defense:** When health drops below certain thresholds (2/3 and 1/3), warlocks can blink away from attackers
+  * **Blink Mechanics:** 
+    * At 2/3 health remaining, warlock teleports away when taking damage that would drop them below this threshold
+    * At 1/3 health remaining, warlock teleports again when taking damage that would drop below this threshold
+  * **Zapping attacks:** Uses shadow bolt attacks against enemies
+
+==== Special Abilities ====
+  * **Weakness Curse:** When successfully zapping an enemy, has a 50% chance to afflict the target with [[en:rpd:weakness_buff|Weakness]]
+  * **Death Resistance:** Has resistance to death-related effects (Immunity to [[en:rpd:death_enchantment|Death]] enchantment)
+  * **Dodge mechanics:** Uses teleportation as a defensive mechanism rather than traditional dodging
+
+==== Drops ====
+  * [[en:rpd:potion_item|Potion]] (83% chance) - Category: Potion
+
+==== Strategies ====
+  * **Close Combat:** Warlocks are vulnerable in melee combat where they can't zap effectively
+  * **Blink Disruption:** The teleportation ability can be unpredictable, so plan your positioning carefully
+  * **Ranged Caution:** Be careful when engaging from range as warlocks can cast shadow bolts effectively
+
+==== Code References ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java|Warlock.java]] - Core implementation
+  * Entity Kind: getEntityKind() returns "Warlock" in Java code
+  * Stats verification: Extracted directly from Warlock.java constructor (hp: 70, attack skill: 25, defense skill: 18, damage: 12-20, defense rate: 8, exp: 11, maxLvl: 21)
+  * Blink Mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L46-L56|defenseProc method]] handles teleportation at health thresholds (2/3 and 1/3)
+  * Zapping Ability: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L75-L85|zap method]] with Weakness effect
+  * Weakness Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L78-L79|Random.Int(2) == 0]] for 50% chance to apply Weakness
+  * Death Resistance: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L36|addResistance(Death.class)]] - immunity to Death enchantment
+  * Blink Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/BlinkAwayFromChar.java|BlinkAwayFromChar class]] - handles the actual teleportation
+  * Loot System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L38|loot(Treasury.Category.POTION, 0.83f)]] - 83% chance for potion drop
+  * Treasury System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java|Treasury class]] - manages random loot drops
+  * Ballistica System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L70-L72|canAttack method]] - handles ranged attack targeting
+  * Zap Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L40-L44|fx method]] - visual and sound effects for zapping
+  * Death Reporting: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L81-L83|checkDeathReport]] - handles death messages
+  * String Resources:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1356-L1361|English strings]] - Name, gender, objective, description, and killed messages
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1341-L1346|Russian strings]] - Russian localization
+  * Magic Missile Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|MagicMissile class]] - visual zap effect
+  * Weakness Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Weakness.java|Weakness class]] - implementation of weakness effect
+  * Hero Class Gender Check: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L78|getHeroClass()]] - checks hero gender for weakness effect
+  * Machine-readable data: [[mr:warlock_mob|mr:warlock_mob]]
+
+==== See Also ====
+  * [[en:rpd:mobs|Mobs]]
+  * [[en:rpd:weakness_buff|Weakness Buff]]
+  * [[en:rpd:hero_subclasses|Hero Subclasses]]
+  * [[en:rpd:mage_class|Mage Class]]
+  * [[en:rpd:warlock_subclass|Warlock Subclass]]
+  * [[en:rpd:death_enchantment|Death Enchantment]]
+  * [[en:rpd:zapping|Zapping Mechanics]]
+  * [[en:rpd:ballistica_mechanic|Ballistica System]]
+
+{{tag> rpd mobs magic warlock dwarf spellcaster necromancy shadow}}

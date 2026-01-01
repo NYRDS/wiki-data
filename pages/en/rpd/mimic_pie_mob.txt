@@ -1,0 +1,127 @@
+====== Mimic Pie ======
+
+{{ rpd:images:mimicpie_sprite.png|Mimic Pie }}
+
+Mimic Pie is a magical creature that disguises itself as a large, delicious-looking pasty to trick adventurers. It is a variant of the Mimic mob that takes the form of food instead of treasure chests.
+
+==== Description ====
+In Remixed PD, mimics can sometimes take the appearance of a big and delicious Pasty. They can even hide in chests or on rare occasions inside of a chest-mimic. On top of that, these creatures can fly.
+
+==== Properties ====
+  * **HP**: (3 + current level depth) * 5
+  * **Attack Skill**: 9 + current level depth
+  * **Defense Skill**: 2 * attack skill / 3
+  * **Damage**: ht()/10 to ht()/4
+  * **EXP**: 2 + 2 * (current level depth - 1) / 5
+  * **Speed**: 1.25 (faster than normal)
+  * **Flight**: Yes (can fly over obstacles)
+  * **Carcass Chance**: 0 (does not leave a corpse)
+  * **Cursed**: Yes (cannot be made into a pet)
+
+==== Special Abilities ====
+  * **Flight**: Can fly over all types of terrain and obstacles
+  * **Mimic Behavior**: Disguises as food to trick players
+  * **Rotten Pasty Drop**: Carries a Rotten Pasty in its inventory
+  * **Gas Immunity**: Immune to Toxic Gas, Paralysis and Stun effects
+  * **No Corpse**: Does not leave a carcass upon death (carcassChance = 0)
+  * **Depth Scaling**: Stats automatically adjust based on dungeon level depth
+
+==== Mechanics ====
+  * The Mimic Pie flies and can move over all types of terrain and obstacles
+  * Immune to gas-based attacks (Toxic Gas), paralysis, and stun effects
+  * Starts with the Rotten Pasty already in its inventory
+  * Stats scale with dungeon depth similar to other enemies
+  * When the mimic activates, it doesn't take off at once; if a Mimic Pie appears on a trap or a plant - their flying ability will be activated immediately
+  * When this mob activates, the attack button does not appear immediately, but only after clicking once on the screen
+
+==== Strategy ====
+  * **Identification**: Be cautious when finding unattended food items in the dungeon, as they may be mimics in disguise
+  * **Attack Pattern**: Unlike other enemies, Mimic Pie doesn't behave passively - it will actively hunt the player once activated
+  * **Immunities**: Cannot be affected by gas-based attacks, paralysis, or stun effects
+  * **Loot**: Will always drop a [[en:rpd:rotten_food|Rotten Pasty]] upon death, which can be eaten but provides no nutritional value
+  * Be cautious around unattended food items in the dungeon, as they may be Mimic Pies in disguise
+  * Since it can fly, terrain advantages are less effective against it
+  * Gas-based attacks, paralysis, and stun effects won't work against this mob
+
+==== Code References ====
+<code java>
+package com.watabou.pixeldungeon.actors.mobs;
+
+import com.nyrds.pixeldungeon.mobs.common.IDepthAdjustable;
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.actors.blobs.ToxicGas;
+import com.watabou.pixeldungeon.actors.buffs.Paralysis;
+import com.watabou.pixeldungeon.actors.buffs.Stun;
+import com.watabou.pixeldungeon.items.food.RottenPasty;
+
+public class MimicPie extends Mob implements IDepthAdjustable {
+
+	private int level;
+
+	public MimicPie() {
+		baseSpeed = 1.25f;
+
+		flying = true;
+
+		level = Dungeon.depth;
+		carcassChance = 0;
+
+		collect(new RottenPasty());
+
+		addImmunity( ToxicGas.class );
+		addImmunity( Paralysis.class );
+		addImmunity( Stun.class );
+		adjustStats(level);
+	}
+
+	public void adjustStats( int level ) {
+		this.level = level;
+
+		hp(ht((3 + level) * 5));
+		expForKill = 2 + 2 * (level - 1) / 5;
+		baseAttackSkill = 9 + level;
+		baseDefenseSkill = 2 * baseAttackSkill / 3;
+
+		dmgMin = ht()/10;
+		dmgMax = ht()/4;
+
+		enemySeen = true;
+	}
+
+	@Override
+	public boolean canBePet() {
+		return false;
+	}
+}
+</code>
+
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/MimicPie.java|MimicPie.java]] - Main implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/IDepthAdjustable.java|IDepthAdjustable.java]] - Depth scaling interface
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Registration
+
+==== Technical Details ====
+  * **Implementation**: Extends the base [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob]] class and implements [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/IDepthAdjustable.java|IDepthAdjustable]] interface
+  * **AI State**: Initially passive until triggered, then switches to Hunting behavior
+  * **Depth Scaling**: Stats automatically adjust based on dungeon level depth
+
+==== Related Mobs ====
+  * [[en:rpd:mimic_mob|Chest Mimic]] - The more common variant that disguises as treasure chests
+  * [[en:rpd:mimicamulet|Mimic Amulet]] - Another variant of mimic mob
+
+==== Notes ====
+Mimic Pie appears as a food item but is actually an enemy. Be careful when finding unattended food items in the dungeon, as they may be mimics in disguise.
+
+Mimic Pie idea and design belongs to Dmitriy Denisov aka ThEnigma314
+
+==== Content Verification ====
+  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/MimicPie.java|MimicPie.java]]
+  * Stats verification: Extracted directly from MimicPie constructor and adjustStats() method
+  * Effect descriptions: Based on in-game mechanics and string resources
+  * Last updated: December 2025, source: Remixed Dungeon 1.9.3
+
+==== See Also ====
+  * [[en:rpd:food|Food]]
+  * [[en:rpd:pasty_item|Pasty]]
+  * [[en:rpd:rotten_food|Rotten Pasty]]
+
+{{tag> rpd mobs mimic_pie}}

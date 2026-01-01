@@ -1,0 +1,42 @@
+====== Line of Sight ======
+
+**Line of Sight** is a fundamental game mechanic that determines what areas and entities the hero can see and interact with.
+
+==== Basic Concept ====
+  * Line of sight determines which tiles are visible to the hero
+  * The hero can typically see in a circular radius around their position
+  * Walls and other solid obstacles block line of sight
+  * Some effects can extend or restrict the hero's line of sight
+
+==== Applications ====
+  * **Movement**: The hero can only move to adjacent visible tiles
+  * **Ranged Attacks**: Ranged weapons require an unobstructed line of sight to the target
+  * **Spells**: Many spells require line of sight to affect targets
+  * **Detection**: Enemies and items are only visible when in line of sight
+
+==== Mechanics ====
+  * Light sources can affect line of sight in dark areas
+  * Some abilities or items can grant extended vision
+  * Darkness or fog effects can reduce line of sight
+  * Certain terrain features may block or redirect line of sight
+  * Implemented using the **ShadowCaster** class which calculates visibility from a central point
+
+==== Technical Implementation ====
+  * The game maintains a boolean array `fieldOfView` for each level which tracks visibility
+  * Uses ShadowCaster algorithm to determine visible cells from character position
+  * LOS blocking terrain is flagged using TerrainFlags.LOS_BLOCKING
+  * Level objects can also block line of sight with the `losBlocker()` method
+
+==== Code References ====
+  * Core implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/ShadowCaster.java|ShadowCaster.java]]
+  * Level visibility: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java#L1488-L1525|updateFieldOfView in Level.java]]
+  * LOS blocking flags: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/TerrainFlags.java#L8|TerrainFlags.java]]
+  * Level objects LOS: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Deco.java#L83|losBlocker method]]
+
+==== Related Pages ====
+  * [[en:rpd:range|Range]] - Distance mechanics for attacks
+  * [[en:rpd:ranged_weapons|Ranged Weapons]] - Weapons affected by line of sight
+  * [[en:rpd:spells|Spells]] - Many spells require line of sight
+  * [[en:rpd:light|Light]] - Related to visibility
+
+{{tag> rpd mechanics}}

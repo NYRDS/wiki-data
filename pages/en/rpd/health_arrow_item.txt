@@ -1,0 +1,45 @@
+====== Health Arrow ======
+
+{{ rpd:images:healtharrow_item.png|Health Arrow }}
+
+The Health Arrow is a special type of missile weapon that heals the target when it hits, rather than causing damage.
+
+==== Stats ====
+  * **Damage**: 0 (base damage is 0)
+  * **Delay**: 1.0 (baseDly: 1.0)
+  * **Min Strength Required**: 9 (setSTR: 9)
+
+==== Special Abilities ====
+  * **Healing Effect**: When the arrow hits a target, it heals the target by 15% of their max HP
+  * **Mechanism**: Uses PotionOfHealing.heal(defender, 0.15f)
+
+==== Acquisition ====
+  * Can be found in various treasure locations throughout the dungeon
+  * Quantity typically ranges from 15-30 when randomly generated (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java#L103-L104|Arrow.java#L103-L104]])
+  * Price: 10 gold per arrow - the most expensive arrow type (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthArrow.java#L17-L19|HealthArrow.java#L17-L19]])
+
+==== Strategy ====
+  * Useful for healing allies or pets during combat
+  * Can be used to heal yourself when fighting friendly creatures
+  * Particularly valuable when used with pets or summoned creatures
+  * The healing effect has a 25% chance to activate when the arrow hits a target
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthArrow.java|HealthArrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (base class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]] (healing mechanism)
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1557|HealthArrow_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1558|HealthArrow_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1559|HealthArrow_Gender]]
+
+==== Configuration Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (base missile implementation)
+
+==== See Also ====
+  * [[en:rpd:potion_of_healing_item|Potion of Healing]] - Base healing mechanism
+  * [[en:rpd:arrows|Arrows]] - Other arrow types
+  * [[en:rpd:missile_weapons|Missile Weapons]] - Other throwing weapons
+
+{{tag> rpd items arrows missiles healing }}

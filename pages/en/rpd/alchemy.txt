@@ -1,0 +1,76 @@
+====== Alchemy ======
+
+{{ rpd:images:potions.png|Alchemy Lab }}
+
+Alchemy is a system in Remixed Dungeon that allows players to create useful items by combining ingredients. It's typically found in the [[en:rpd:sewers_level|Sewers]] and involves brewing potions, creating food, and making various other items.
+
+==== Alchemy Mechanics ====
+  * Alchemy is performed at an alchemy pot found in the [[en:rpd:sewers_level|Sewers Level]]
+  * Players must find or collect ingredients to use in alchemy recipes
+  * Different combinations of ingredients produce different items
+  * Common alchemy involves brewing potions from seeds and other ingredients
+  * Some recipes require specific combinations of items
+
+==== Common Alchemy Recipes ====
+  * [[en:rpd:potion_of_might_item|Potion of Might]] - From [[en:rpd:rat_tail_item|rat tail]] and [[en:rpd:firebloom_seed_item|firebloom seed]]
+  * [[en:rpd:potion_of_frost_item|Potion of Frost]] - From [[en:rpd:icecap_seed_item|icecap seed]] and water
+  * [[en:rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] - From [[en:rpd:firebloom_seed_item|firebloom seed]] and water
+  * [[en:rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] - From [[en:rpd:sorrowmoss_seed_item|sorrowmoss seed]] and water
+  * [[en:rpd:potion_of_toxic_gas_item|Potion of Toxic Gas]] - From [[en:rpd:earthroot_seed_item|earthroot seed]] or [[en:rpd:fadeleaf_seed_item|fadeleaf seed]] and water
+  * [[en:rpd:potion_of_healing_item|Potion of Healing]] - From [[en:rpd:sungrass_seed_item|sungrass seed]] and water
+  * [[en:rpd:potion_of_invisibility_item|Potion of Invisibility]] - From [[en:rpd:sorrowmoss_seed_item|sorrowmoss seed]] and water
+  * [[en:rpd:potion_of_mind_vision_item|Potion of Mind Vision]] - From [[en:rpd:dreamweed_seed_item|dreamweed seed]] and water
+  * [[en:rpd:potion_of_purity_item|Potion of Purity]] - From [[en:rpd:rotberry_seed_item|rotberry seed]] and water
+  * [[en:rpd:potion_of_strength_item|Potion of Strength]] - From [[en:rpd:starflower_seed_item|starflower seed]] and water
+
+==== Arrow Creation ====
+  * Alchemy can create specialized arrows from regular arrows and potions:
+    * [[en:rpd:fire_arrow_item|Fire Arrow]] - From regular arrows and [[en:rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]]
+    * [[en:rpd:health_arrow_item|Health Arrow]] - From regular arrows and [[en:rpd:potion_of_healing_item|Potion of Healing]]
+    * [[en:rpd:paralysis_arrow_item|Paralysis Arrow]] - From regular arrows and [[en:rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]]
+    * [[en:rpd:toxic_arrow_item|Toxic Arrow]] - From regular arrows and [[en:rpd:potion_of_toxic_gas_item|Potion of Toxic Gas]]
+
+==== Alchemy Ingredients ====
+  * [[en:rpd:seed_item|Seeds]] - Most common ingredient, obtained from plants
+  * [[en:rpd:rat_tail_item|Rat Tails]] - Dropped by sewer rats
+  * [[en:rpd:rotberry_seed_item|Rotberry Seeds]] - From rotberry plants
+  * Water - Basic ingredient for most potion brewing
+
+==== Alchemy Benefits ====
+  * Provides access to potions that might be rare on dungeon floors
+  * Allows production of utility arrows for ranged combat
+  * Enables efficient use of collected seeds
+  * Can provide emergency healing potions when needed
+  * Offers a way to dispose of unwanted seeds
+
+==== Challenges ====
+  * Requires finding alchemy pot in the sewers
+  * Needs specific ingredients which may be rare or hard to find
+  * Some recipes may require multiple ingredients that are difficult to obtain simultaneously
+
+==== Code References ====
+  * Alchemy implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Alchemy.java|Alchemy.java]] - The core alchemy blob mechanics
+  * Recipe definitions: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Alchemy.java#L72-L106|Alchemy.java#L72-L106]] - transmute() method that handles the seed-to-potion conversion
+  * Alchemy pot object: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/AlchemyPot.java|AlchemyPot.java]] - The feature that allows players to interact with the alchemy system
+  * Recipe data: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java|Plant.java]] - Each plant defines its own alchemy recipe via the alchemyClass property
+  * Seed-to-potion conversion: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Alchemy.java#L72-L106|Alchemy.java transmute method]] - Details how seeds are converted to potions
+  * Plant alchemy classes: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java#L46|Example: Sungrass alchemyClass]] - Each plant defines what potion it creates when alchemized
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2500-L2600|Alchemy-related strings]]
+  * Alchemy success mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Alchemy.java#L85-L103|Alchemy.java#L85-L103]] - How the success probability and result selection work
+  * Treasury system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java|Treasury.java]] - How random potions are selected during alchemical transmutation
+  * Statistics tracking: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Statistics.java#L28|Statistics.potionsCooked]] - Tracks the number of potions created through alchemy
+  * Badge validation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java#L155|Badges.validatePotionsCooked()]] - Awards badges for alchemical achievements
+  * Machine-readable data: [[mr:alchemy|mr:alchemy]]
+
+==== See Also ====
+  * [[en:rpd:potions|Potions]] - Information about potions
+  * [[en:rpd:seeds|Seeds]] - Information about seeds
+  * [[en:rpd:items|Items]] - Other items in the game
+  * [[en:rpd:sewers_level|Sewers Level]] - Where alchemy is performed
+  * [[en:rpd:alchemy_mechanic|Alchemy Mechanic]] - Detailed mechanics of the alchemy system
+  * [[en:rpd:alchemy_pot_level_object|Alchemy Pot]] - The object used for alchemy
+  * [[en:rpd:alchemy_brewing|Alchemy Brewing]] - Brewing process details
+  * [[en:rpd:plant_item|Plants]] - Sources of seeds for alchemy
+  * [[en:rpd:brewing_recipes|Brewing Recipes]] - All alchemy recipes
+
+{{tag> rpd alchemy potions recipes crafting seeds }}

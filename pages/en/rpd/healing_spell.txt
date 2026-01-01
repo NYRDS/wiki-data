@@ -1,0 +1,77 @@
+====== Healing Spell ======
+
+{{ rpd:images:healing_spell_icon.png|Healing Spell Icon }}
+
+**Healing** is a spell in Remixed Dungeon with Common affinity that restores the caster's health.
+
+==== Description ====
+The Healing spell restores a portion of the caster's own health. It's a fundamental self-healing spell that can save the hero from dangerous situations.
+
+==== Stats ====
+  * **Magic Affinity:** Common
+  * **Targeting:** self
+  * **Level:** 3
+  * **Spell Cost:** 10
+  * **Image Index:** 1
+
+==== Effects ====
+  * Heals the caster for 30% of their max HP (specifically (int)(maxHP * 0.3) as implemented in Healing.java)
+  * Note: The in-game description says "1/3 of maximum HP" but the actual implementation heals 30% (0.3) of max HP, which is slightly less than 1/3 (33.33%)
+  * Self-target only
+  * No scaling based on skill level
+
+==== Uses ====
+  * Restore health during [[en:rpd:combat_mechanics|combat]]
+  * Emergency healing in dangerous situations
+  * Preserve [[en:rpd:potion_of_healing_item|healing potions]] for more critical situations
+
+==== Classes ====
+Classes that can use this spell include:
+  * Classes with Common affinity
+  * Other classes that gain access through special means
+
+==== Strategy ====
+How to effectively use the Healing spell:
+  * Use during [[en:rpd:combat_mechanics|combat]] to maintain health without consuming [[en:rpd:potion_of_healing_item|potions]]
+  * Prioritize healing when health drops below 50% to prevent emergency situations
+  * Consider using before difficult [[en:rpd:enemies|encounters]] to maximize health
+
+==== Content Verification ====
+  * Information source: Java code in Remixed Dungeon codebase
+  * Stats verified: Yes, extracted directly from spell class properties
+  * Effect descriptions: Generated from code analysis and string resources
+  * Note: Healing amount discrepancy - code implements 30% of max HP but string resource says "1/3 of maximum HP"
+  * Last updated: 2025-12-27 based on Healing.java
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - Primary implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L8-L12|Healing.java#L8-L12]] - Stats initialization (targeting, affinity, level, image, cost)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L17-L21|Healing.java#L17-L21]] - Exact healing calculation ((int) (chr.ht()*0.3))
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L126|SpellFactory.java#L126]] - Spell registration in the game
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L763|Char.java#L763]] - Healing visual effects (emitter burst)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20-L21|Healing string resources (English)]] - "Healing" and spell description
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|Healing string resources (Russian)]] - Russian localization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Base spell class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]] - Spell helper constants and utilities
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|Healing_Name, Healing_Info]] - Russian string resources (name and description)
+  * **mr: namespace:** Check [[mr:healing_spell]] for machine-readable data
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L15-L16|targetingType and magicAffinity]] - Self-targeting and Common affinity
+
+==== Configuration Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L126|SpellFactory.java#L126]] - Spell registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20-L21|strings_all.xml]] - English string resources
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|strings_all.xml (Russian)]] - Russian string resources
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20|Healing_Name]] - "Healing"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L21|Healing_Info]] - "This spell is crucial for any adventurer. It will restore 1/3 of the maximum amount of the caster's hp."
+
+==== Related ====
+  * [[en:rpd:spells|Spells]]
+  * [[en:rpd:mechanics|Game Mechanics]]
+  * [[en:rpd:potion_of_healing_item|Potion of Healing]]
+  * [[en:rpd:health_mechanic|Health]]
+  * [[en:rpd:combat_mechanics|Combat]]
+  * [[en:rpd:spell_system|Spell System]]
+
+{{tag> rpd spells common healing support }}

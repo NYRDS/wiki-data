@@ -1,0 +1,76 @@
+====== Kobold Icemancer ======
+
+{{ rpd:images:koboldicemancer_sprite.png|Kobold Icemancer }}
+
+The **Kobold Icemancer** is a magic-using mob found in the Ice Caves level. It is an upgraded variant of the regular Kobold that uses ice-based attacks.
+
+==== Description ====
+Kobold Icemancers were the elite of society. Notable warriors, wizards and most importantly, scientists. Ancient ice-masters seized the art of commanding ice, creating complex mechanisms strengthened with special spells.
+
+==== Stats ====
+  * **HP/HT**: 70
+  * **Defense Skill**: 18
+  * **Attack Skill**: 25
+  * **Damage**: 15-17
+  * **DR (Damage Reduction)**: 11
+  * **EXP for Kill**: 11
+  * **Max Level**: 21
+
+==== Abilities ====
+  * **Ranged Attack**: Can attack enemies at range using zapping mechanics with [[en:rpd:ballistica_mechanic|Ballistica]] line-of-sight calculation
+  * **Slow Effect**: Has a 50% chance to inflict [[en:rpd:slow_buff|Slow]] status effect on enemies for 1 turn when hitting with its ranged attack
+  * **Death Resistance**: Immune to [[en:rpd:death_enchantment|Death]] enchantment and instant death effects
+  * **Death Reporting**: Tracks when the Kobold Icemancer kills an enemy with custom message
+
+==== Combat Mechanics ====
+  * **Zapping Attack**: Uses ranged attacks calculated via [[en:rpd:ballistica_mechanic|Ballistica.cast]] method (line-of-sight)
+  * **Hit Detection**: When zap hits target, has 50% chance (Random.Int(2) == 0) to apply Slow effect
+  * **Slow Duration**: Targeted enemies are slowed for exactly 1 turn
+  * **Death Message**: Uses string resource 'KoboldIcemancer_Killed' when killing a character: "%s's ice bolt killed you..."
+
+==== Drops ====
+  * **Potion Category**: Has an 83% chance to drop a random potion from the potion category on death
+
+==== Location ====
+Found in the [[en:rpd:ice_caves_level|Ice Caves]] level (floors ice2-ice4) based on Bestiary.json configuration:
+  * **ice2**: 1 spawn (vs 2 regular [[en:rpd:kobold_mob|Kobolds]])
+  * **ice3**: 1 spawn (vs 2 regular [[en:rpd:kobold_mob|Kobolds]], 1 [[en:rpd:cold_spirit_mob|ColdSpirit]])
+  * **ice4**: 1 spawn (vs 2 regular [[en:rpd:kobold_mob|Kobolds]], 1 [[en:rpd:cold_spirit_mob|ColdSpirit]], 0.6 [[en:rpd:ice_elemental_mob|IceElemental]])
+
+==== Code References ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/KoboldIcemancer.java|KoboldIcemancer.java]] - Core implementation
+  * Entity Kind: getEntityKind() returns "KoboldIcemancer" in Java code
+  * Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - General mob behavior
+  * Zapping Interface: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/IZapper.java|IZapper.java]] - Ranged attack interface
+  * Line of Sight: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]] - Path calculation for ranged attacks
+  * Stats Verification: Extracted directly from KoboldIcemancer.java constructor (hp/ht: 70, defense skill: 18, attack skill: 25, damage: 15-17, dr: 11, exp: 11, maxLvl: 21)
+  * Zapping Method: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/KoboldIcemancer.java#L30-L40|zap method]] - Implementation of ranged attack and slow effect
+  * Attack Range Check: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/KoboldIcemancer.java#L26-L28|canAttack method]] - Uses Ballistica for line of sight
+  * Slow Effect Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow class]] - Duration and mechanics of slow effect
+  * Random Chance: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/KoboldIcemancer.java#L32|Random.Int(2) == 0]] - 50% chance for slow effect
+  * Death Resistance: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/KoboldIcemancer.java#L24|addResistance(Death.class)]] - Immunity to death enchantment
+  * Drop System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/KoboldIcemancer.java#L23|loot(Treasury.Category.POTION, 0.83f)]] - 83% chance for potion drop
+  * Treasury System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java|Treasury class]] - Manages random loot drops
+  * Death Reporting: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/KoboldIcemancer.java#L48|checkDeathReport]] - Tracks when icemancer kills enemy
+  * String Resources:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1020-L1024|English strings]] - Name, gender, objective, description, and killed messages
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1006-L1010|Russian strings]] - Russian localization
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L978-L981|German strings]] - German localization
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L1007-L1011|French strings]] - French localization
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L976-L979|Spanish strings]] - Spanish localization
+  * Mob Factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L229|MobFactory]] - Registration of KoboldIcemancer class
+  * Spawn Rates: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L74-L76|Bestiary.json]] - Defines spawn rates across Ice Caves levels
+  * Lua Script References: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/PlagueDoctor.lua#L70|PlagueDoctor.lua]] - Used as requirement in NPC quests (5 Carcass of KoboldIcemancer)
+
+==== See Also ====
+  * [[en:rpd:kobold_mob|Kobold]] - Regular variant of this mob
+  * [[en:rpd:ice_caves_level|Ice Caves Level]] - Where this mob spawns
+  * [[en:rpd:mobs|Mobs]] - Other creatures in the dungeon
+  * [[en:rpd:slow_buff|Slow Buff]] - Status effect applied by this mob
+  * [[en:rpd:ballistica_mechanic|Ballistica]] - Line-of-sight calculation system
+  * [[en:rpd:death_enchantment|Death Enchantment]] - What this mob resists
+  * [[en:rpd:ice_elemental_mob|Ice Elemental]] - Other ice-themed mob
+  * [[en:rpd:cold_spirit_mob|Cold Spirit]] - Other ice-themed mob
+  * [[en:rpd:ice_guardian_core_mob|Ice Guardian Core]] - Boss of Ice Caves
+
+{{tag> rpd mobs magic ice icecaves }}

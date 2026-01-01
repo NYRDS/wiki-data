@@ -1,0 +1,86 @@
+====== Trap Mechanic ======
+
+Trap mechanics are hidden mechanisms that activate when triggered in Remixed Dungeon.
+
+==== Description ====
+Traps are hidden hazards placed throughout the dungeon that activate when stepped on or triggered from a distance. They can cause various harmful effects and require careful navigation to avoid.
+
+==== Trap Types ====
+  * **Fire Trap** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/FireTrap.java|FireTrap.java]] - Creates burning flames that deal fire damage
+  * **Poison Trap** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java]] - Releases poisonous darts that apply poison status effect
+  * **Alarm Trap** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/AlarmTrap.java|AlarmTrap.java]] - Creates a loud alarm that attracts all monsters in the dungeon
+  * **Lightning Trap** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/LightningTrap.java|LightningTrap.java]] - Strikes with electric current dealing damage based on % of HP
+  * **Toxic Trap** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ToxicTrap.java|ToxicTrap.java]] - Releases toxic gas that applies poison effect
+  * **Paralytic Trap** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ParalyticTrap.java|ParalyticTrap.java]] - Releases gas that paralyzes the target
+  * **Gripping Trap** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/GrippingTrap.java|GrippingTrap.java]] - Damages and roots the target in place
+  * **Summoning Trap** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/SummoningTrap.java|SummoningTrap.java]] - Summons enemies around the hero
+
+==== Common Traps ====
+  * [[en:rpd:fire_trap_trap|Fire Trap]] - Creates burning flames
+  * [[en:rpd:poison_trap_trap|Poison Trap]] - Releases poisonous gas
+  * Alarm Trap - Creates a loud noise attracting enemies
+  * Lightning Trap - Strikes with electric current
+  * Gravel Trap - Reveals invisible enemies and items
+  * Summoning Trap - Summons enemies
+  * Teleportation Trap - Teleports the hero to random location
+  * Ward Trap - Creates protective wards
+  * Toxic Trap - Releases toxic gas
+  * Paralytic Trap - Paralyzes targets
+  * Gripping Trap - Grips and damages targets
+
+==== Common Mechanics ====
+  * **Stealth**: Traps are hidden until triggered or discovered
+  * **Disarming**: Some characters can disarm traps for benefits
+  * **Detection**: Hero can learn to detect nearby traps as they level up
+  * **Activation**: Usually triggered by stepping on them or passing by
+
+==== Code References ====
+  * **Trap Base Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java|Trap.java]] - Base implementation
+  * **Level Objects**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObject.java|LevelObject.java]] - How traps fit into level objects
+  * **Trap Implementations**:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/FireTrap.java|FireTrap.java]] - Fire trap mechanics
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java]] - Poison dart trap mechanics
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/AlarmTrap.java|AlarmTrap.java]] - Alarm trap mechanics
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/LightningTrap.java|LightningTrap.java]] - Lightning trap mechanics
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ToxicTrap.java|ToxicTrap.java]] - Toxic gas trap mechanics
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ParalyticTrap.java|ParalyticTrap.java]] - Paralytic gas trap mechanics
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/GrippingTrap.java|GrippingTrap.java]] - Gripping trap mechanics
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/SummoningTrap.java|SummoningTrap.java]] - Summoning trap mechanics
+  * **Detection System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L200-L220|Hero trap detection]] - How heroes detect traps
+  * **Dungeon System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] - How traps are placed
+  * **String Resources**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All trap-related text
+
+==== String Resource References ====
+<code xml>
+<string name="Level_TileToxicTrap">Toxic gas trap</string>
+<string name="Level_TileFireTrap">Fire trap</string>
+<string name="Level_TileParalyticTrap">Paralytic gas trap</string>
+<string name="Level_TilePoisonTrap">Poison dart trap</string>
+<string name="Level_TileAlarmTrap">Alarm trap</string>
+<string name="Level_TileLightningTrap">Lightning trap</string>
+<string name="Level_TileGrippingTrap">Gripping trap</string>
+<string name="Level_TileSummoningTrap">Summoning trap</string>
+<string name="Level_TileInactiveTrap">Triggered trap</string>
+<string name="Level_TileDescTrap">Stepping onto a hidden pressure plate will activate the trap.</string>
+<string name="Level_TileDescInactiveTrap">The trap has been triggered before and it's not dangerous any more.</string>
+<string name="AlarmTrap_Desc">The trap emits a piercing sound that echoes throughout the dungeon!</string>
+<string name="LightningTrap_Name">lightning trap</string>
+<string name="LightningTrap_Desc">You were killed by a discharge of a lightning trap...</string>
+</code>
+
+==== Trap Interaction ====
+  * **Triggering**: Usually occurs when stepping on the trap
+  * **Avoidance**: Can sometimes be spotted before triggering
+  * **Disarming**: Some classes can safely disarm traps
+  * **Effects**: Various harmful, helpful or mixed effects possible
+
+==== See Also ====
+  * [[en:rpd:levels|Levels]]
+  * [[en:rpd:mechanics|Mechanics]]
+  * [[en:rpd:status_effects|Status Effects]]
+  * [[en:rpd:level_objects|Level Objects]]
+  * [[en:rpd:detection|Detection]]
+  * [[en:rpd:hero|Hero]] (trap interactions)
+  * [[en:rpd:challenges|Challenges]] (trap-related challenges)
+
+{{tag> rpd traps hazards mechanics }}

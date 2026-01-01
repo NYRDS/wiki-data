@@ -1,0 +1,61 @@
+====== Wand of Poison ======
+
+{{ rpd:images:item_WandOfPoison.png|Wand of Poison }}
+
+The **Wand of Poison** is a magical wand in Remixed Dungeon that inflicts the [[en:rpd:poison_buff|Poison]] status effect on targeted enemies.
+
+==== Stats ====
+  * **Charges:** 2 (base) + 1 per upgrade level (max 9 charges)
+  * **Recharge:** Gradual recharge during gameplay when below maximum charges
+  * **Effect Duration:** 5 + effective level turns (affected by target's poison resistance)
+
+==== Description ====
+The Wand of Poison releases a bolt of toxic energy that poisons its target. When used against an enemy, it inflicts the poison status effect causing damage over time. The poison will last for 5 + the wand's effective level turns, with the duration affected by the target's resistance (e.g., from [[en:rpd:ring_of_elements_item|Ring of Elements]]).
+
+==== Mechanics ====
+  * **Effect:** Applies the Poison status effect for (5 + effective level) turns
+  * **Target:** Single target in line of sight
+  * **Range:** Limited by Ballistica distance calculation
+  * **Effectiveness:** Duration affected by target's poison resistance (from Ring of Elements, etc.)
+  * **Damage:** Poison damage is (time remaining / 3) + 1 per turn
+  * **Recharge:** Recharges gradually during gameplay when below maximum charges
+
+==== Strategy ====
+  * Excellent for dealing sustained damage without direct engagement
+  * Particularly effective against enemies that don't kill you immediately, allowing the poison to work
+  * Good against groups when enemies are adjacent to each other (poison may spread)
+  * Less effective against poison-immune creatures or undead
+  * Use to soften powerful enemies before direct combat
+  * Effective against high-HP enemies that take time to defeat
+
+==== Availability ====
+  * Found in stores and occasionally as dungeon loot
+  * Can be used by the [[en:rpd:wandmaker_npc|Wandmaker]] NPC to create upgraded versions
+  * Relatively common wand type
+
+==== Related ====
+  * [[en:rpd:wands|Wands]] - List of all wands
+  * [[en:rpd:poison_buff|Poison]] - The status effect it inflicts
+  * [[en:rpd:ring_of_elements_item|Ring of Elements]] - Provides resistance to poison
+  * [[en:rpd:spells|Spells]] - Alternative magical options
+  * [[en:rpd:equipment|Equipment]] - Other magical items
+
+==== Content Verification ====
+  * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfPoison.java|WandOfPoison.java]]
+  * Mechanics verified directly from source code
+  * Last updated: December 2025
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfPoison.java|WandOfPoison.java]] - Implementation class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L180-L182|Wand.java#L180-L182]] - Base wand class with charging mechanics
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]] - Poison status effect implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/SimpleWand.java#L15|SimpleWand.java#L15]] - Wand registration in game
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/WandMaker.java#L122|WandMaker.java#L122]] - Wand availability from NPC
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L229-L231|WandOfPoison strings]] - Wand of Poison name, description, and messages
+
+==== Configuration Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/Treasury.json]] - Loot generation configuration
+
+{{tag> rpd items wands poison magic}}

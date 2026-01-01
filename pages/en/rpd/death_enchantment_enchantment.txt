@@ -1,0 +1,34 @@
+====== Death Enchantment ======
+
+{{ rpd:images:enchant_death.png|Death Enchantment }}
+
+==== Description ====
+The Death enchantment has a chance to instantly kill non-boss enemies when they are hit by the weapon. This is one of the most powerful enchantments but does not work on bosses.
+
+==== Mechanics ====
+  - The chance to instantly kill an enemy is based on the weapon's level (base 8% at +0, +1% per level)
+  - Only affects non-boss enemies (does not work on minibosses and bosses due to resistance system)
+  - Higher-level weapons have a higher chance to trigger
+  - Provides significant advantage against regular enemies
+  - Bosses and minibosses are immune to instant death due to resistance system, but take normal damage
+
+==== Code References ====
+  - Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Death.java|Death.java]]
+  - The effect is applied in the proc() method with probability increasing with weapon level (base 8% at +0, +1% per level)
+  - Boss immunity to Death enchantment is implemented through resistance system - Boss mobs call addResistance(Death.class) in their constructor
+  - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java|Boss.java]] - Boss immunity implementation
+  - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Resistance system foundation
+
+==== Configuration Files ====
+  - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Death.json|Death.json]] - Sprite configuration for death enchantment visual effect
+
+==== String Resources ====
+  - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3750-L3755|Death enchantment strings]] - English names and descriptions
+  - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3750-L3755|Russian Death strings]] - Russian localization
+
+==== See Also ====
+  - [[en:rpd:enchantments|Enchantments]] - List of all weapon enchantments
+  - [[en:rpd:weapons|Weapons]] - Equipment that can have enchantments
+  - [[en:rpd:bosses|Bosses]] - Information about boss enemies
+
+{{tag> rpd items enchantments death boss}}

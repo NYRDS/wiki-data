@@ -1,0 +1,47 @@
+====== Dread Knight Mob ======
+
+{{ rpd:images:dread_knight_mob.png|Dread Knight }}
+
+The **Dread Knight** is a rare variant of the Death Knight, found in the Necropolis area of Remixed Dungeon. It has enhanced stats and additional abilities compared to the regular Death Knight.
+
+==== Mechanics ====
+  * **HP**: 40
+  * **Defense**: 15
+  * **Attack**: 17
+  * **Damage**: 8-16
+  * **Armor**: 12 (DR - Damage Resistance)
+  * **Experience**: 8
+  * **Max Level**: 15
+  * **Type**: Undead
+  * **Special 1**: 1 in 4 chance to deal double damage on attack
+  * **Special 2**: 1 in 10 chance to cause stun on attack
+
+==== Behavior ====
+  * Dread Knight has a 1 in 4 chance to deal double damage on attack
+  * When the double damage proc activates, it also applies a visual effect using ``DeathStroke.hit(enemy)``
+  * Additionally has a 1 in 10 chance to apply Stun effect to the target on attack
+
+==== Implementation Details ====
+  * **Class**: ''com.nyrds.pixeldungeon.mobs.necropolis.DreadKnight''
+  * **Parent Class**: Extends ''Mob'' class
+  * **Undead Status**: Marked as undead with ''setUndead(true)''
+  * **Loot**: Has a 2% chance to drop Gold on death
+  * **Note**: Described as rare variant of the Death Knight in source code
+
+==== Source Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DreadKnight.java|DreadKnight.java - Implementation]]
+
+==== Strategy ====
+  * Much more dangerous than regular Death Knights due to higher stats
+  * Can deal double damage more frequently (25% vs ~14%)
+  * Has a chance to stun, which can be particularly problematic during combat
+  * Consider taking these down quickly to avoid their dangerous procs
+
+==== See Also ====
+  * [[en:rpd:death_knight_mob|Death Knight]] - The base mob that Dread Knight is a rare variant of
+  * [[en:rpd:necropolis_level|Necropolis]] - Area where this mob appears
+  * [[en:rpd:undead_mobs|Undead Mobs]] - Other undead creatures in the game
+  * [[en:rpd:mobs|Mobs]] - Other monsters in the game
+  * [[en:rpd:stun_buff|Stun]] - Status effect that Dread Knight can apply
+
+{{tag> rpd mobs necropolis undead dread_knight rare }}

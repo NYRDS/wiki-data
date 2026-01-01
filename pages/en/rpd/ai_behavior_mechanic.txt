@@ -1,0 +1,170 @@
+====== AI Behavior Mechanic ======
+
+==== Description ====
+AI Behavior refers to the artificial intelligence systems that control how non-player characters (NPCs) and monsters behave in Remixed Dungeon. The AI system is implemented as state-based behaviors that can be dynamically changed during gameplay.
+
+==== AI System Code ====
+
+The AI system is implemented using the ''AiState.java'' interface:
+
+<code java>
+// In AiState.java
+public interface AiState {
+    void act(@NotNull Char me);
+    String status(Char me);
+    String getTag();
+    void gotDamage(Char me, NamedEntityKind src, int dmg);
+    void onDie(@NotNull Char me);
+}
+</code>
+
+==== Common AI Types ====
+
+==== Wandering AI ====
+  * **Class**: ''Wandering.java''
+  * **Behavior**: Moves randomly around the dungeon
+  * **Mechanics**:
+    * If enemy is in field of view (FOV), transitions to hunting
+    * Otherwise moves to random destinations
+    * If damaged, seeks revenge and transitions to hunting
+  * **Status String**: ''Mob_StaWanderingStatus'' → "%s is wandering"
+  * **Usage**: Default AI for most mobs when not in combat
+
+==== Hunting AI ====
+  * **Class**: ''Hunting.java''
+  * **Behavior**: Actively pursues enemies
+  * **Mechanics**:
+    * If enemy is in FOV and in attack range, attacks
+    * Otherwise moves toward enemy
+    * If enemy is lost, transitions back to wandering
+    * Returns to owner if too far (for pets/summons)
+  * **Status String**: ''Mob_StaHuntingStatus'' or ''Mob_StaHuntingStatus2''
+  * **Usage**: Used when mobs are in combat, or when they spot the player
+
+==== Sleeping AI ====
+  * **Class**: ''Sleeping.java''
+  * **Behavior**: Remains dormant until woken
+  * **Mechanics**:
+    * Only wakes up if enemy is in FOV (with 50% detection chance)
+    * If damaged, wakes up and transitions to hunting (with delay)
+    * Spends ''Mob.TIME_TO_WAKE_UP'' time to wake up
+  * **Status String**: ''Mob_StaSleepingStatus'' → "%s is sleeping"
+  * **Usage**: Initial AI for many dungeon enemies
+
+==== Passive AI ====
+  * **Class**: ''Passive.java''
+  * **Behavior**: Does not initiate combat
+  * **Mechanics**:
+    * Never actively seeks enemies
+    * Only attacks if damaged (after seeking revenge)
+    * Does not respond to enemies in FOV
+  * **Status String**: ''Mob_StaPassiveStatus'' → "%s is passive"
+  * **Usage**: For neutral NPCs or defensive objects
+
+==== Fleeing AI ====
+  * **Class**: ''Fleeing.java''
+  * **Behavior**: Runs away from enemies
+  * **Mechanics**:
+    * Moves away from the enemy position
+    * Continuously tracks enemy position while fleeing
+    * If damaged, may seek revenge and transition to hunting
+  * **Status String**: ''Mob_StaFleeingStatus'' or ''Mob_StaFleeingStatus2''
+  * **Usage**: Used by certain mobs when low on health or by thieves
+
+==== Other AI Types ====
+
+==== RunningAmok AI ====
+  * **Class**: ''RunningAmok.java''
+  * **Behavior**: Moves randomly while attacking everything in range
+
+==== Horrified AI ====
+  * **Class**: ''Horrified.java''
+  * **Behavior**: Frightened state that makes mob flee
+
+==== ThiefFleeing AI ====
+  * **Class**: ''ThiefFleeing.java''
+  * **Behavior**: Specialized fleeing AI for thief-type mobs
+
+==== ControlledAI AI ====
+  * **Class**: ''ControlledAi.java''
+  * **Behavior**: AI that can be controlled by the player (for summoned creatures)
+
+==== AI Implementation ====
+The AI system uses a state pattern managed in ''MobAi.java'' and ''Mob.java'':
+
+<code java>
+// In Mob.java
+public void setState(String state) {
+    setState(MobAi.getStateByTag(state));
+}
+
+// In Mob.java - AI state transitions
+public void beckon(int cell) {
+    // ... code that may change AI state based on context
+    if (state.getTag().equals("WANDERING")) {
+        // ... may change to hunting state
+    }
+}
+</code>
+
+==== AI Transition Triggers ====
+  * **Damage**: When a mob takes damage, it typically seeks revenge and changes to Hunting AI
+  * **Sight**: When a mob sees an enemy while sleeping or wandering, it transitions to Hunting AI
+  * **Health**: When a mob's health drops low, it may transition to Fleeing AI
+  * **Scripted Events**: Lua scripts can change AI states in certain conditions
+
+==== AI in Mob Initialization ====
+  * Most mobs start with ''Sleeping'' AI
+  * Some special mobs start with ''Wandering'' or other AIs
+  * AI can be specified in the mob's JSON descriptor with "aiState" parameter
+
+==== AI-Related String Resources ====
+  * ''Mob_StaWanderingStatus'': "%s is wandering"
+  * ''Mob_StaHuntingStatus'': "%s is hunting"
+  * ''Mob_StaHuntingStatus2'': "%s is hunting %s"
+  * ''Mob_StaSleepingStatus'': "%s is sleeping"
+  * ''Mob_StaPassiveStatus'': "%s is passive"
+  * ''Mob_StaFleeingStatus'': "%s is fleeing"
+  * ''Mob_StaFleeingStatus2'': "%s is fleeing from %s"
+
+==== AI Mechanics ====
+  * **Detection** - How enemies notice the player (sight, sound, etc.)
+  * **Movement Patterns** - How enemies navigate the dungeon
+  * **Combat Tactics** - How enemies approach fighting
+  * **Escape Behavior** - When and how enemies retreat
+  * **State Transitions** - How AI changes based on game events
+
+==== Factors Affecting AI ====
+  * **Distance to Player** - How far the enemy will search
+  * **Visibility** - Lighting and stealth effects
+  * **Health Status** - How the enemy behaves when injured
+  * **Environmental Awareness** - Interaction with level objects
+  * **Sound Detection** - Some actions can alert nearby enemies
+
+==== Player Interaction ====
+  * **Line of Sight** - Most enemies only notice the player if they can see them
+  * **Noise** - Some actions create sound that attracts enemies
+  * **Stealth** - Certain equipment or abilities can reduce detection chances
+  * **Taunting** - Some items or abilities can manipulate enemy targeting
+
+==== Exploiting AI ====
+  * **Kiting** - Moving to fight enemies one at a time
+  * **Blocking** - Using doorways to fight enemies one at a time
+  * **Distraction** - Using items to misdirect enemy attention
+  * **Ambush Tactics** - Using stealth and positioning
+
+==== Code References ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/AiState.java|AiState.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Hunting.java|Hunting.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Wandering.java|Wandering.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Sleeping.java|Sleeping.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Passive.java|Passive.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Fleeing.java|Fleeing.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/MobAi.java|MobAi.java]]
+
+==== See Also ====
+  * [[en:rpd:mobs_mechanic|Mobs]]
+  * [[en:rpd:stealth_mechanics|Stealth Mechanics]]
+  * [[en:rpd:combat_mechanic|Combat]]
+
+{{tag> rpd mechanics ai }}
