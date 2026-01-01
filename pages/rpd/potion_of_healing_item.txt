@@ -63,18 +63,20 @@ According to the game's string resources: "An elixir that will instantly return 
   * **Shop Treasury:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/TownShopTreasury.json#L31|TownShopTreasury.json#L31]] - Shop availability configuration (probability 1)
   * **Starting Items:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L157|initHeroes.json#L157]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L226|initHeroes.json#L226]] - Used as starting item for some hero classes
   * **NPC Rewards:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/PlagueDoctor.lua#L40|PlagueDoctor.lua#L40]] - Used as reward from Plague Doctor NPC quest
-  * **English String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2203-L2205|PotionOfHealing_Name, PotionOfHealing_Info, PotionOfHealing_Apply]] (PotionOfHealing_Name, PotionOfHealing_Info, and PotionOfHealing_Apply)
-  * **Russian String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2210-L2212|PotionOfHealing_Name, PotionOfHealing_Info, PotionOfHealing_Apply]] (Russian localization)
-  * **Spanish String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L2203-L2205|PotionOfHealing strings]] (Spanish localization)
-  * **French String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L2237-L2239|PotionOfHealing strings]] (French localization)
-  * **German String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L2208-L2210|PotionOfHealing strings]] (German localization)
-  * **Chinese String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L2203-L2205|PotionOfHealing strings]] (Chinese localization)
+  * **English String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2188-L2190|PotionOfHealing_Name, PotionOfHealing_Info, PotionOfHealing_Apply]] (PotionOfHealing_Name, PotionOfHealing_Info, and PotionOfHealing_Apply)
+  * **Russian String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2189-L2191|PotionOfHealing_Name, PotionOfHealing_Info, PotionOfHealing_Apply]] (Russian localization)
+  * **Spanish String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L2035-L2037|PotionOfHealing strings]] (Spanish localization)
+  * **French String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L2178-L2180|PotionOfHealing strings]] (French localization)
+  * **German String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L2026-L2028|PotionOfHealing strings]] (German localization)
+  * **Chinese String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L2025-L2027|PotionOfHealing strings]] (Chinese localization)
   * **Stats verification:** Extracted directly from PotionOfHealing.java class methods
   * **Effect descriptions:** Based on code analysis and string resources
   * **mr: namespace:** Check [[mr:potion_of_healing_item]] for machine-readable data
+  * **Implementation details:** The heal method in the Java implementation uses heal(ch, 1f) where the 1f parameter means 100% of max HP is restored
+  * **Alchemical production:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Alchemy.java#L72-L106|Alchemy.java#L72-L106]] - Details of how potions are created from seeds at alchemy pot
 
 ==== Related Items ====
-  * [[rpd:potion|Potions]] - General information about potions
+  * [[rpd:potion_item|Potions]] - General information about potions
   * [[rpd:status_effects|Status Effects]] - Information about statuses cured by this potion
   * [[rpd:potion_of_overhealing_item|Potion of Overhealing]] - Alternative healing potion
   * [[rpd:mechanics|Game Mechanics]] - Health system
@@ -85,5 +87,8 @@ According to the game's string resources: "An elixir that will instantly return 
   * [[rpd:items|Items]] - All items in the game
   * [[rpd:consumables|Consumables]] - Consumable items
   * [[rpd:alchemy_mechanic|Alchemy]] - Alchemy mechanics for creating potions
+  * [[rpd:seeds|Seeds]] - Ingredients for alchemical creation
+  * [[rpd:sungrass_seed_item|Sungrass Seed]] - Primary ingredient for brewing
+  * [[rpd:gold_item|Gold]] - Currency used in shops
 
 {{tag> rpd items potions healing arrows}}
