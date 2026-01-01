@@ -6,24 +6,42 @@ The **Stranger** (also known as **AzuterronNPC**) is a mysterious quest NPC that
 
 ==== Overview ====
   * **Type**: Quest NPC / Shopkeeper
-  * **Location**: Appears on specific levels (typically in the Guts level area)
-  * **Behavior**: Immune to paralysis, stunning, and root effects; does not take damage from attacks
+  * **Base Class**: Extends Shopkeeper class
+  * **Location**: Appears in special shop levels via ShopPainter
+  * **Movement**: Immovable (movable = false)
+  * **Behavior**: Immune to paralysis, stunning, and root effects; does not take damage from attacks (damage() method does nothing)
+  * **Defense**: Defense skill is set to 1000 (cannot be hit in combat)
+  * **Speed**: Moves at half normal speed (speed() = 0.5f)
   * **Quest**: Asks the player to defeat a Treacherous Spirit and bring back its heart
 
 ==== Quest Mechanics ====
   * Upon first interaction, the Stranger gives a quest to defeat a **Treacherous Spirit**
-  * The Treacherous Spirit spawns somewhere on the current level when the quest is accepted
-  * After defeating the Treacherous Spirit, the player must return with the **Heart of Darkness** item
-  * Completing the quest rewards the player with a **Potion of Might**
+  * The Treacherous Spirit spawns somewhere on the current level when the quest is accepted (Quest.process() method)
+  * After defeating the Treacherous Spirit, the player must return with the **HeartOfDarkness** item
+  * Completing the quest rewards the player with a **PotionOfMight** item
+  * The quest is tracked through static variables in the Quest inner class (given, completed, processed)
+  * The quest appears in the Journal under AZUTERRON feature
+
+==== Interaction Process ====
+  * If quest is not given: Shows the start dialog and sets Quest.given = true
+  * If quest is given but not completed: Checks for HeartOfDarkness item and gives PotionOfMight in return if found
+  * If quest is completed: Functions as a regular shopkeeper
 
 ==== Code Reference ====
   * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]]
   * The Stranger extends the Shopkeeper class with special quest mechanics
-  * String references: AzuterronNPC_Name, AzuterronNPC_Desc, AzuterronNPC_Quest_Start, AzuterronNPC_Quest_End
+  * String references: AzuterronNPC_Name, AzuterronNPC_Desc, AzuterronNPC_Quest_Start, AzuterronNPC_Quest_End, AzuterronNPC_Quest_Reminder
+
+==== Content Verification ====
+  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]]
+  * Quest mechanics verified against Quest inner class in the code
+  * Special behaviors verified from methods like interact(), damage(), defenseSkill() in the code
+  * Last updated: Based on Remixed Dungeon source code analysis
 
 ==== Related Entities ====
-  * [[rpd:treacherous_spirit|Treacherous Spirit]] - The boss monster the player must defeat for the quest
+  * [[rpd:treacherous_spirit_mob|Treacherous Spirit]] - The boss monster the player must defeat for the quest
   * [[rpd:heart_of_darkness_item|Heart of Darkness]] - The quest item required to complete the quest
   * [[rpd:potion_of_might_item|Potion of Might]] - The reward for completing the quest
+  * [[rpd:shopkeeper_npc|Shopkeeper]] - Base class that AzuterronNPC extends
 
 {{tag> rpd npcs quest}}
