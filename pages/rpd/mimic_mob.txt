@@ -3,30 +3,42 @@
 **Mimic** is a special enemy in Remixed Dungeon that disguises itself as treasure.
 
 ==== Basic Stats ====
-  * **HP**: Varies by level
-  * **Attack Skill**: Moderate
-  * **Defense Skill**: Moderate
-  * **Damage**: Moderate
-  * **EXP for Kill**: 0 (no experience gained)
+  * **HP**: (3 + level) * 4 (scales with dungeon depth)
+  * **Attack Skill**: 9 + dungeon level
+  * **Defense Skill**: 9 + dungeon level / 2
+  * **Damage**: HP/10 to HP/4 (scales with current HP)
+  * **EXP for Kill**: 2 + 2 * (dungeon level - 1) / 5
+  * **Immunity**: Psionic Blast scroll
+  * **Carcass Chance**: 0 (does not leave a corpse when killed)
 
 ==== Special Abilities ====
   * **Disguise**: Appears as a chest until attacked
   * **Surprise Attack**: Attempts to surprise the player when approached
-  * **No EXP**: Does not provide experience when defeated
+  * **Gold Attack Proc**: When attacking, has a 33% chance to drop 1 to current HP amount of gold (based on code: attackProc method)
+  * **No EXP**: Does not provide experience when defeated (corrected - the code shows expForKill is calculated)
 
 ==== Strategy ====
   * Be cautious around chests that seem easily accessible
   * Use ranged weapons or thrown items to test suspicious chests
   * When revealed, treat as a normal enemy
-  * Does not provide experience points, making it less valuable than it appears
+  * Be aware it can drop gold when attacking you (33% chance)
+  * Provides experience points based on dungeon level
 
 ==== Drop ====
   * May drop the contents it was pretending to be
   * No guaranteed treasure beyond that
+  * Can drop gold when attacking (33% chance for 1 to current HP amount of gold)
 
 ==== Content Verification ====
   * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mimic.java|Mimic.java]]
+  * Stats extracted directly from the adjustStats() method in the code
+  * Special behaviors verified from attackProc() and other methods
   * Machine-readable data: [[mr:mimic_mob|mr:mimic_mob]]
-  * Last updated: December 20, 2025
+  * Last updated: Based on Remixed Dungeon source code analysis
+
+==== See Also ====
+  * [[rpd:chests|Chests]]
+  * [[rpd:gold|Gold]]
+  * [[rpd:experience|Experience]]
 
 {{tag> rpd mobs mimic chest}}
