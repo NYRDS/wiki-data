@@ -1,33 +1,31 @@
 ====== Zap Effects ======
 
-Zap Effects are visual effects used in Remixed Dungeon to indicate ranged attacks, spells, and other interactions between characters and targets.
+**Zap Effects** are visual effects used in Remixed Pixel Dungeon when ranged attacks or spells are cast between two points.
 
 ==== Description ====
-Zap Effects are animated lines or beams that travel from a source position to a target position, providing visual feedback for various game mechanics including:
-  * Ranged weapon attacks (bows, throwing weapons)
-  * Spell effects (like Kunai Throw)
-  * Wand activations
-  * Other ranged interactions
+Zap Effects are visual lines or beams that connect a caster or attacker to their target, providing visual feedback when ranged abilities are used. Different types of zap effects are used for different types of attacks and spells.
+
+==== Types of Zap Effects ====
+  * **Arrow** - Used for ranged weapon attacks
+  * **Wand** - Generic effect for most wand types
+  * **Lightning** - Used for lightning-based wands and spells
+  * **Kunai** - Used specifically for the [[rpd:kunai_throw_spell|Kunai Throw]] spell
+  * **Shuriken** - Used for shuriken and other throwing weapons
+  * **Magic Missile** - Used for magic missile effects
+  * **Fire** - Used for fire-based weapons and spells
+  * **Frost** - Used for frost-based weapons and spells
+  * **Teleportation** - Used for blink and teleportation effects
 
 ==== Implementation ====
-  * **API Function:** RPD.zapEffect(ownPos, tgt:getPos(), "effect_name")
-  * **Parameters:** 
-    * **ownPos**: Source position where the effect originates
-    * **tgt:getPos()**: Target position where the effect ends
-    * **"effect_name"**: A string identifier for the specific visual effect to display
+  * Base implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/ZapGlow.java|ZapGlow.java]]
+  * Effect definition: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/platform/specific/Implementations.java#L34-L69|Implementations.java]]
+  * Usage in spells: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L32|RPD.zapEffect()]]
+  * RPD API: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/Utils/RpdScriptUtils.java|RpdScriptUtils.java]]
 
-==== Known Zap Effects ====
-  * **"Kunai"**: Used by the [[rpd:kunai_throw_spell|Kunai Throw]] spell
-  * Other zap effect types may be used by different weapons, wands, and spells
-
-==== Technical Details ====
-  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/Effects.java|Effects.java]]
-  * Zap effect system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/ZapEffect.java|ZapEffect.java]]
-  * Used in Lua scripts via RPD.zapEffect() function
-
-==== See Also ====
-  * [[rpd:spells|Spells]]
-  * [[rpd:ranged_weapons|Ranged Weapons]]
-  * [[rpd:wands|Wands]]
+==== Related Mechanics ====
+  * [[rpd:spells|Spells]] - Abilities that use zap effects
+  * [[rpd:wands|Wands]] - Items that use zap effects
+  * [[rpd:ranged_combat|Ranged Combat]] - General ranged attack mechanics
+  * [[rpd:effects|Visual Effects]] - Other visual effects in the game
 
 {{tag> rpd mechanics effects visuals }}
