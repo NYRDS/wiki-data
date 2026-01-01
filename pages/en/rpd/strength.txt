@@ -1,44 +1,95 @@
 ====== Strength ======
 
-Strength determines the hero's ability to wear armor and use weapons effectively in Remixed Dungeon.
+**Strength** is one of the primary attributes of the [[en:rpd:hero|hero]] in Remixed Pixel Dungeon. It affects the hero's ability to wield heavy weapons and armor, as well as their overall physical capabilities.
 
-==== Description ====
-Strength is a key attribute in Remixed Dungeon that determines the hero's ability to effectively use armor and weapons. If the hero's strength is insufficient for a piece of equipment, the equipment will be harder to use and less effective.
+==== Mechanics ====
+  * **Weapon Usage:** Determines the maximum [[en:rpd:weapon|weapon]] [[en:rpd:strength|strength]] requirement the hero can wield without penalties
+  * **Armor Usage:** Determines the maximum [[en:rpd:armor|armor]] [[en:rpd:strength|strength]] requirement the hero can wear without penalties
+  * **Carrying Capacity:** Affects the hero's ability to carry heavier items
+  * **Physical Damage:** Contributes to the damage dealt with melee weapons
 
-==== Strength Mechanics ====
-  * **Equipment Requirement**: Each piece of armor and weapon has a strength requirement
-  * **Penalties**: Using equipment with insufficient strength results in penalties
-  * **Growth**: Strength can be increased using [[en:rpd:potion_of_strength_item|Potion of Strength]]
-  * **Base Value**: All heroes start with 10 Strength (varies by class)
+==== Starting Values by Class ====
+Different hero classes have varying starting strength:
+
+  * [[en:rpd:warrior_class|Warrior]]: 12
+  * [[en:rpd:mage_class|Mage]]: 8
+  * [[en:rpd:rogue_class|Rogue]]: 10
+  * [[en:rpd:elf_class|Elf]]: 10
+  * [[en:rpd:necromancer_class|Necromancer]]: 9
+  * [[en:rpd:gnoll_class|Gnoll]]: 13
+  * [[en:rpd:priest_class|Priest]]: 10
+  * [[en:rpd:doctor_class|Doctor]]: 9
+
+==== Increasing Strength ====
+Ways to increase strength:
+
+  * **[[en:rpd:potion_of_strength_item|Potion of Strength]]:** Permanently increases strength by 1 point when consumed (can be consumed multiple times)
+  * **[[en:rpd:scroll_of_mind_vision_item|Scroll of Mind Vision]]** (rare effect): May provide temporary strength boost in some versions
+  * **[[en:rpd:talents|Talents]]:** Some talents provide strength bonuses
+  * **[[en:rpd:buffs|Buffs]]:** Temporary strength bonuses from various sources
+
+==== Strength Requirements ====
+Equipment has strength requirements:
+
+  * **Weapons:** If the hero's strength is below the required amount, damage is reduced
+  * **Armor:** If the hero's strength is below the required amount, armor effectiveness is reduced and [[en:rpd:encumbrance|encumbrance]] penalties apply
+  * **Penalties:** Wearing equipment below strength requirement results in reduced accuracy, evasion, and damage output
+
+==== Strength Calculations ====
+How strength affects gameplay:
+
+  * **Effective Strength:** Base strength + temporary bonuses from [[en:rpd:buffs|buffs]] and [[en:rpd:equipment|equipment]]
+  * **Strength Delta:** Difference between effective strength and equipment requirement determines penalty severity
+  * **Penalties:** For every point below the requirement, there's a 25% penalty to effectiveness
 
 ==== Equipment Strength Requirements ====
-  * **Armor**: Higher tier armor requires more strength to wear effectively
-  * **Weapons**: Heavier weapons require more strength for full damage
-  * **Penalties**: Insufficient strength results in reduced effectiveness and slower action speeds
+Standard strength requirements by equipment tier:
 
-==== Strength Considerations ====
-  * **Equipment Planning**: Plan equipment choices around current strength
-  * **Potion Usage**: Save [[en:rpd:potion_of_strength_item|Potions of Strength]] for important moments
-  * **Class Synergy**: Some classes require more strength than others
-  * **Timing**: Strength potions might be used early to get access to better gear
+  * **[[en:rpd:weapon|Weapons]]:**
+    * Light weapons: 3-8 strength
+    * Medium weapons: 8-12 strength  
+    * Heavy weapons: 12+ strength
+  * **[[en:rpd:armor|Armor]]:**
+    * Cloth: 1 strength required
+    * Leather: 6 strength required
+    * Mail: 11 strength required
+    * Scale: 16 strength required
+    * Plate: 21 strength required
 
-==== Strength Effects ====
-  * **Armor Penalty**: Wearing armor with insufficient strength reduces defense and speed
-  * **Weapon Penalty**: Using weapons with insufficient strength reduces damage and speed
-  * **Encumbrance**: Lower strength may reduce mobility with heavy equipment
+==== Related Mechanics ====
+Strength interacts with other game systems:
+
+  * **[[en:rpd:weapon|Weapon]]** effectiveness and damage calculation
+  * **[[en:rpd:armor|Armor]]** effectiveness and penalty systems
+  * **[[en:rpd:encumbrance|Encumbrance]]** calculation and movement penalties
+  * **[[en:rpd:carrying_capacity|Carrying Capacity]]** and inventory management
+  * **[[en:rpd:mechanics#lifting|Lifting]]** heavy objects in the dungeon
+
+==== Strategy Tips ====
+Using strength effectively:
+
+  * **Early Game:** Use [[en:rpd:potion_of_strength_item|Potions of Strength]] early if starting with a low-strength class
+  * **Equipment Choice:** Select weapons and armor with requirements you can meet
+  * **Balancing:** Balance strength gain with other advancement priorities
+  * **Planning:** Consider future strength when choosing equipment upgrades
 
 ==== Code References ====
-  * Strength System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - How strength is managed
-  * Equipment Requirements: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - How strength requirements are enforced
-  * Penalty System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L150-L180|Strength penalty code]] - How penalties are calculated
-  * Potion of Strength: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfStrength.java|PotionOfStrength.java]] - How strength can be increased
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All strength-related text
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L158-L160|Hero.java#L158-L160]] - Strength attribute definition
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java#L123-L135|Item.java#L123-L135]] - Strength requirement implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java#L92-L105|Weapon.java#L92-L105]] - Weapon strength mechanics
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L78-L85|Armor.java#L78-L85]] - Armor strength mechanics
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfStrength.java|PotionOfStrength.java]] - Strength-increasing potion implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2521-L2523|Strength Strings]] - String resources for strength-related text
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L15-L40|HeroClass.java#L15-L40]] - Base strength values by class
 
 ==== See Also ====
-  * [[en:rpd:potion_of_strength_item|Potion of Strength]]
-  * [[en:rpd:hero|Hero]]
-  * [[en:rpd:equipment|Equipment]]
-  * [[en:rpd:armor_item|Armor]]
-  * [[en:rpd:weapon_item|Weapons]]
+  * [[en:rpd:hero|Hero]] - The main playable character
+  * [[en:rpd:potion_of_strength_item|Potion of Strength]] - Item that permanently increases strength
+  * [[en:rpd:weapon|Weapon]] - Equipment affected by strength requirements
+  * [[en:rpd:armor|Armor]] - Equipment affected by strength requirements
+  * [[en:rpd:attributes|Attributes]] - Other hero attributes
+  * [[en:rpd:equipment|Equipment]] - General equipment information
+  * [[en:rpd:stats|Stats]] - All hero statistics
+  * [[en:rpd:encumbrance|Encumbrance]] - How strength affects movement
 
-{{tag> rpd mechanics strength attributes }}
+{{tag> rpd stats strength attribute hero}}
