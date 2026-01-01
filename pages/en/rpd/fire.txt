@@ -4,28 +4,28 @@
 **Fire** is an environmental hazard in Remixed Dungeon that damages characters and spreads to flammable terrain.
 
 ==== Description ====
-Fire is a harmful environmental effect that damages any character that enters burning cells. Fire originates from various sources and spreads to adjacent flammable terrain each turn. When fire expires on natural terrain, it becomes embers.
+Fire is a harmful environmental effect that damages any character that enters burning cells. Fire originates from various sources and spreads to adjacent flammable terrain each turn. When fire expires on natural terrain, it becomes [[en:rpd:embers_level_object|embers]].
 
 ==== Mechanics ====
   * **Damage:** Fire damages characters each turn they remain in the burning cell
   * **Spread:** Fire spreads to adjacent flammable terrain each turn
   * **Duration:** Fire burns for 4 turns at each location (decreases by 1 each turn)
-  * **Terrain Change:** When fire expires on natural terrain, it becomes embers
+  * **Terrain Change:** When fire expires on natural terrain, it becomes [[en:rpd:embers_level_object|embers]]
   * **Item Burning:** Fire burns items in heaps and carried items of affected characters
   * **Status Effect:** Characters in fire receive the [[en:rpd:burning_buff|Burning]] status effect with 8-turn duration
-  * **Level Objects:** Fire affects level objects (chests, statues, etc.) as well as characters
+  * **Level Objects:** Fire affects [[en:rpd:level_objects|level objects]] (chests, statues, etc.) as well as characters
 
 ==== Sources of Fire ====
 Fire can be created by:
   * [[en:rpd:ignite_spell|Ignite Spell]] - Creates 5-turn fire blob (special implementation)
   * [[en:rpd:wand_of_firebolt_item|Wand of Firebolt]] - Attacks ignite targets
   * [[en:rpd:fire_arrow_item|Fire Arrows]] - Missile weapons that ignite targets
-  * [[en:rpd:fire_enchantment|Fire Enchantment]] - Weapon enchantment
-  * [[en:rpd:firebloom_seed|Firebloom Seeds]] - Plants that ignite characters
+  * [[en:rpd:fire_enchantment|Fire Enchantment]] - [[en:rpd:weapon_enchantments|Weapon enchantment]]
+  * [[en:rpd:firebloom_plant|Firebloom]] - [[en:rpd:plants|Plants]] that ignite characters
   * [[en:rpd:fire_elemental_mob|Fire Elementals]] - Enemies that attack with fire
   * [[en:rpd:mage_armor_item|Mage Armor]] - Special armor effect
-  * [[en:rpd:incendiary_dart|Incendiary Darts]] and other fire-based items
-  * Environmental sources and traps
+  * [[en:rpd:incendiary_dart_item|Incendiary Darts]] and other fire-based items
+  * Environmental sources and [[en:rpd:traps|traps]]
 
 ==== Effects on Characters ====
 Characters standing in fire receive:
@@ -33,28 +33,29 @@ Characters standing in fire receive:
   * The [[en:rpd:burning_buff|Burning]] status effect with 8-turn duration
   * Visual flame particle effects on their sprite
   * Burning sound effects
+  * [[en:rpd:damage_over_time|Damage over time]]
 
 ==== Strategy ====
 How to effectively use fire:
   * **For Players:** Use to damage enemies and create area denial
   * **For Defense:** Be aware that fire will damage you as well as enemies
-  * **Combat:** Force enemies into fire to gain damage advantage
+  * **Combat:** Force enemies into fire to gain [[en:rpd:damage|damage]] advantage
   * **Terrain:** Use in flammable areas to spread the effect
-  * **Environmental:** Set grass and other flammable terrain on fire to create lasting obstacles
+  * **Environmental:** Set [[en:rpd:high_grass|grass]] and other flammable terrain on fire to create lasting obstacles
 
 ==== Countering Fire ====
   * Avoid standing in fire when possible
-  * Use Frost-based items or spells to extinguish fire
+  * Use [[en:rpd:frost_buff|Frost]]-based items or [[en:rpd:spells|spells]] to extinguish fire
   * Use flying abilities to avoid ground-based fire
-  * Remove burning status effect with appropriate items
+  * Remove [[en:rpd:burning_buff|burning status effect]] with appropriate items
 
 ==== Immunities ====
-  * [[en:rpd:fire_elemental_mob|Fire Elementals]] - Immune to fire and burning
+  * [[en:rpd:fire_elemental_mob|Fire Elementals]] - Immune to fire and [[en:rpd:burning_buff|burning]]
   * [[en:rpd:ice_elemental_mob|Ice Elementals]] - May be resistant
   * Some [[en:rpd:undead_mob|undead]] creatures may have resistance
-  * [[en:rpd:mechanical|Mechanical]] creatures might be immune
+  * [[en:rpd:mechanical_enemies_mob|Mechanical]] creatures might be immune
   * Characters with frost-based protection
-  * [[en:rpd:champions|Champions]] with the fire champion effect
+  * [[en:rpd:champions_mechanic|Champions]] with the fire champion effect
 
 ==== Content Verification ====
   * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]]
@@ -63,8 +64,15 @@ How to effectively use fire:
   * Last updated: December 2025, source: Remixed Dungeon 1.9.3
 
 ==== Source Code ====
-  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]]
-  * Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L541|Fire strings]]
+  * Core mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]]
+  * Burning effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L541|Fire strings]]
+  * Terrain interaction: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java#L23-L48|Burn implementation in Fire.java]]
+
+==== Related Code ====
+  * Items that create fire: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/IncendiaryDart.java|IncendiaryDart.java]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Firebloom.java|Firebloom.java]]
+  * Spells that create fire: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Ignite.java|Ignite.java]]
+  * Mobs with fire immunity: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/FireElemental.java#L35|FireElemental.java immunity]]
 
 ==== See Also ====
   * [[en:rpd:spells|Spells]]
