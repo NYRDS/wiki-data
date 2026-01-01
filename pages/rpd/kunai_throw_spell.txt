@@ -64,6 +64,20 @@ How to effectively use the Kunai Throw spell:
   * Number of Kunai calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L25|local n = spellTier(caster)]] - calculates kunai count based on caster's skill level
   * Spell casting validation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L27-L28]] - checks if any visible enemies exist before casting
   * Class availability: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L12|spells["Rogue"] = {"Cloak","Backstab","KunaiThrow","Haste"}]] - available to Rogue class
+  * Zap effect types: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/platform/specific/Implementations.java#L34-L69|Implementations.java]] - defines available zap effects including "Kunai" effect
+  * Damage system reference: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L85-L88|Char:damage() method]] - handles damage calculation and application
+  * Character level reference: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L12-L13|Char:lvl() method]] - caster level affects damage calculation
+  * Target position: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L10-L11|Char:getPos() method]] - gets character position for zap effect
+  * Random enemy selection: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L15-L25|CharUtils:randomEnemy() method]] - provides random enemy selection functionality
+  * Visible enemies check: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L27-L35|CharUtils:visibleEnemies() method]] - checks for visible enemies in the level
+  * Character interface: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - base class for all characters (player, mobs, etc.)
+  * Skill level reference: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L12-L13|CharUtils:skillLevel() method]] - gets the character's skill level
+  * RPD API: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/Utils/RpdScriptUtils.java|RPDScriptUtils.java]] - provides Lua interface for game functionality
+  * Zap effects implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/ZapGlow.java|ZapGlow.java]] - renders zap effects
+  * Lua integration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/platform/specific/LuaEngine.java|LuaEngine.java]] - integrates Lua scripts with game engine
+  * Spell casting flow: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/spells/LuaSpell.java#L15-L25|LuaSpell:cast() method]] - handles Lua spell invocation
+  * Spell system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/spells/Spell.java|Spell.java]] - base spell class in Java
+  * Machine-readable data: [[mr:kunai_throw_spell|mr:kunai_throw_spell]]
 
 ==== Flavor Text ====
 From the game: "This Deadly Kunai throw will be done extremely fast, so fast that you won't even be able to select a target.\n\nTrue Masters able to throw more than one Kunai at once."
