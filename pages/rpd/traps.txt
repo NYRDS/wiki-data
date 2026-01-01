@@ -40,9 +40,15 @@ Traps are hidden dangers found throughout the dungeon that activate when stepped
   * Some classes have special trap avoidance abilities
 
 ==== Code References ====
-  * Java implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap.java]]
-  * Trap definitions: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelObjects/|levelObjects/ directory]]
-  * Trap activation mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java#L350-L360|Level.java trap activation]]
+  * Java implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java|Trap.java]]
+  * Trap definitions: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java#L31-L43|Trap.java trap classes array]] - The list of all trap classes available in the game
+  * Trap activation mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java#L113-L135|Trap.java activate method]] - How traps are triggered and affect characters
+  * Individual trap implementations: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/|levels/traps/ directory]] - Each specific trap type implementation
+  * Trap trigger conditions: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java#L100-L109|Trap.java stepOn and bump methods]] - How different types of entities can trigger traps
+  * Trap properties: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java#L23-L43|Trap.java fields]] - Defines properties like kind, uses, targetCell, activatedByItem, activatedByMob, secret, etc.
+  * Trap configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java#L137-L155|Trap.java setupFromJson method]] - How traps are initialized from level object configuration
+  * Trap discovery: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java#L157-L163|Trap.java discover method]] - How traps are revealed to the player
+  * Trap script support: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java#L143-L147|Trap.java ScriptTrap implementation]] - How script-based traps are handled
   * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1680-L1720|Trap-related strings]]
   * Machine-readable data: [[mr:traps|mr:traps]]
 
@@ -50,5 +56,11 @@ Traps are hidden dangers found throughout the dungeon that activate when stepped
   * [[rpd:mechanics|Mechanics]] - Other game systems
   * [[rpd:items|Items]] - Items that interact with traps
   * [[rpd:level_objects|Level Objects]] - Other objects found on dungeon levels
+  * [[rpd:trap_mechanic|Trap Mechanic]] - Detailed trap mechanics
+  * [[rpd:trap_detection|Trap Detection]] - How to detect traps
+  * [[rpd:trap_disarming|Trap Disarming]] - How to safely disarm traps
+  * [[rpd:trap_resistance|Trap Resistance]] - Equipment that provides trap resistance
+  * [[rpd:ring_of_detection_item|Ring of Detection]] - Item for trap detection
+  * [[rpd:scroll_of_magic_mapping_item|Scroll of Magic Mapping]] - Reveals all traps on a level
 
 {{tag> rpd traps level_objects hazards }}
