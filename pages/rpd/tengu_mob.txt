@@ -8,7 +8,7 @@ Tengu is a member of the ancient assassins clan, which is also called Tengu. The
   * **[[rpd:health_mechanic|HP]]:** 120
   * **[[rpd:combat_mechanics|Attack Skill]]:** 20
   * **[[rpd:combat_mechanics|Defense Skill]]:** 20
-  * **[[rpd:damage_over_time|Damage]]:** 8-15
+  * **[[rpd:damage_system|Damage]]:** 8-15
   * **[[rpd:armor|Defense Rate (DR)]]:** 5
   * **[[rpd:experience_system|EXP for Kill]]:** 20
 
@@ -72,7 +72,7 @@ Tengu is an exiled assassin who has made his home in the Prison area of the dung
   * Effect descriptions: Based on code analysis and string resources
   * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1344|Tengu_Name]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1346|Tengu_Name_Objective]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1347|Tengu_Desc]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1348|Tengu_Info1]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1349|Tengu_Info2]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1896|Tengu_Info3]]
   * Additional String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2773|TenguLiver_Name]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2774|TenguLiver_Info]]
-  * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Tengu.json|Tengu.json]]
+  * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Tengu.json|Tengu.json]] - sprite configuration
   * Mechanics reference: Uses [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica]] for distance attacks
   * Trap mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap system]]
   * Jump cooldown: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L31|JUMP_DELAY = 5]]
@@ -89,7 +89,7 @@ Tengu is an exiled assassin who has made his home in the Prison area of the dung
   * Healing mechanism: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.heal()]] called with 0.1f percentage when no valid position available
   * Notice/yell logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L105-L116|notice() method]]
   * Hero class gender check: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.getGender()]] determines which Tengu_Info string to use
-  * Battle music configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Tengu.json|Tengu.json]] specifies "ost_boss_2_fight" with "ost_boss_fight" fallback
+  * Battle music configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Tengu.json|Tengu.json]] specifies "ost_boss_2_fight" with "ost_boss_fight" fallback
   * Jump delay timer: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L33|timeToJump variable]] - tracks cooldown between jumps
   * Close approach behavior: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L50-L56|getCloser method]] - causes Tengu to jump when player comes into view
   * Attack behavior: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L58-L60|doAttack method]] - handles jump timing during combat
@@ -101,6 +101,10 @@ Tengu is an exiled assassin who has made his home in the Prison area of the dung
   * Actor movement: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L89|move() method]] - handles the actual position change
   * Speed calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L94|spend(1/speed())]] - uses movement speed for timing
   * Visual effects on teleport: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L93|CellEmitter burst]] - creates visual wool effect on teleport
+  * JSON configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Tengu.json|Tengu.json]] - sprite dimensions (width: 14, height: 16), animation frames
+  * Level spawn configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L18|Bestiary.json]] - spawn rate in prison area
+  * Russian string resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1330|Tengu_Name (русс.)]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1333|Tengu_Desc (русс.)]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1334|Tengu_Info1 (русс.)]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1335|Tengu_Info2 (русс.)]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1897|Tengu_Info3 (русс.)]]
+  * Tengu Liver item script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/TenguLiver.lua|TenguLiver.lua]] - custom behavior for Tengu drop
   * Machine-readable data: [[mr:tengu_mob|mr:tengu_mob]]
   * Last updated: December 25, 2025
 
