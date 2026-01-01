@@ -1,24 +1,26 @@
 ====== Zombie Mob - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/Zombie.java|Zombie.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Zombie.java|Zombie.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] (Parent class)
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Zombie.json|Zombie.json]]
+This entity may have JSON configuration for spawning. Check:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]
 
 ===== String Resources =====
 <code xml>
 <string name="Zombie_Name">zombie</string>
-<string name="Zombie_Name_Objective">zombie</string>
-<string name="Zombie_Desc">The dungeon was always a dangerous place to begin with and many adventurers have met their doom here. But lives of the most unlucky ones ended up in the Necropolis, and now they are doomed to wander these halls as undead.</string>
+<string name="Zombie_Desc">An animated corpse reanimated by the negative energies of a Dwarf King's crown. It is powered by pure hate.</string>
+<string name="Zombie_Info">A zombie is rising!</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
-===== Related Information =====
-  * The Zombie has 33 HP and 10 armor/DR
-  * It has a 33% chance to inflict poison damage (3-5 turns) on successful attack
-  * It can be found in necro1-necro3 levels according to spawn rates: {"necro1":{"Zombie":1, "Skeleton":1, "EnslavedSoul":0.9}, "necro2":{"Zombie":1, "ExplodingSkull":0.6, "EnslavedSoul":0.9, "DeathKnight":0.5,"DreadKnight":0.015}, "necro3":{"Zombie":2, "ExplodingSkull":1.2, "EnslavedSoul":0.9, "DeathKnight":0.5,"DreadKnight":0.015}}
-  * The Zombie is an undead mob with 10 base attack and defense skills
-  * It drops gold with 2% chance
+===== Entity Kind =====
+  * getEntityKind(): Returns "Zombie" (class name)
+
+===== Additional Code References =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Undead.java|Undead.java]] - Undead parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Interaction with hero

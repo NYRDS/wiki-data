@@ -1,29 +1,29 @@
 ====== Rat King Mob - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/RatKing.java|RatKing.java]] - Main implementation of the Rat King mob
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L152|MobFactory.java]] - Registers the RatKing class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/RatKing.java|RatKing.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/NPC.java|NPC.java]] (Parent class)
 
 ===== JSON Configuration =====
-No specific JSON configuration file found for this mob.
+This entity does not have separate JSON configuration as it's implemented in Java.
 
 ===== String Resources =====
 <code xml>
 <string name="RatKing_Name">rat king</string>
-<string name="RatKing_Desc">This rat is a bit larger than a regular marsupial rat, and it wears a tiny crown on its head.</string>
-<string name="RatKing_Info1">I'm not sleeping!</string>
-<string name="RatKing_Info2">What is it? I have no time for this foolishness. My kingdom won't rule itself!</string>
-<string name="RatKing_Info3">How dare you, puny creature, disturb Our Ratness?!</string>
-<string name="RatKing_Died">The King is dead. Long live the King!</string>
-<string name="RatKing_Name_Objective">rat king</string>
-<string name="RatKing_Gender">masculine</string>
+<string name="RatKing_Desc">The Rat King is the ruler of all rats in the sewers. He is much larger than the normal rats and wears a tiny crown on his head.</string>
+<string name="RatKing_Info1">"What? What? Who dares to disturb my rest?"</string>
+<string name="RatKing_Info2">"You must be here for my treasure! No! It\'s mine! All mine!"</string>
+<string name="RatKing_Info3">"Guards! Take care of this one!"</string>
+<string name="RatKing_Died">"This is impossible! I\'m a king! I can not die!"</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
-===== Additional Information =====
-  * The RatKing class extends NPC, not a regular mob
-  * Found in the npcs package rather than the mobs package
-  * Interacts with the player and can become hostile based on player actions
-  * Drops the Rat King Crown artifact
+===== Entity Kind =====
+  * getEntityKind(): Returns "RatKing" (class name)
+
+===== Additional Code References =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Base mob class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/RatKingCrown.java|RatKingCrown.java]] - Item that Rat King drops
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/SewerBossLevel.java|SewerBossLevel.java]] - Where Rat King appears
