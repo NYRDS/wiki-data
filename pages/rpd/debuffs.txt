@@ -16,6 +16,9 @@ Debuffs are temporary harmful status effects that hinder a character's abilities
   * [[rpd:amok_buff|Amok]] - Makes character attack everything
   * [[rpd:corruption_buff|Corruption]] - Gradually turns the character into an enemy
   * [[rpd:bleeding_buff|Bleeding]] - Causes damage over time that increases
+  * [[rpd:stun_buff|Stun]] - Briefly disables action
+  * [[rpd:fear_buff|Fear]] - Causes fleeing behavior
+  * [[rpd:drowsy_buff|Drowsy]] - Makes target fall asleep
 
 ==== Debuff Mechanics ====
   * **Duration**: Most debuffs last for a specific number of turns
@@ -32,10 +35,21 @@ Debuffs are temporary harmful status effects that hinder a character's abilities
 
 ==== Code References ====
   * Debuff System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Base implementation
-  * Actor System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - How characters interact with debuffs
+  * Actor System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L250-L275|How characters interact with debuffs]]
   * Duration System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java#L25-L50|Buff duration code]] - How buff durations are calculated
   * Removal System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java#L85-L110|Buff removal code]] - How debuffs are removed
   * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All debuff names and descriptions
+  * Common Debuff Implementations:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Weakness.java|Weakness.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Blindness.java|Blindness.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charm.java|Charm.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java|Terror.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Amok.java|Amok.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Corruption.java|Corruption.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Bleeding.java|Bleeding.java]]
 
 ==== See Also ====
   * [[rpd:buffs|Buffs]]
