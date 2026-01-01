@@ -6,27 +6,43 @@ Zapping is the action of using wands and other charged items to produce magical 
 Zapping refers to the act of using a wand or other magical implement to direct its power toward a specific target or location. This action consumes charges and produces the wand's specific magical effect.
 
 ==== Zapping Mechanics ====
-  * **Targeting**: Most zaps require selecting a target or location on the map
-  * **Charge Consumption**: Zapping typically consumes one or more charges from the item
-  * **Effect Application**: The wand's specific effect is applied to the target
-  * **Range**: Most wands have limited range for effective zapping
+  * **Targeting**: Most zaps require selecting a target or location on the map via the Zapper class and Ballistica.cast() for path calculation
+  * **Charge Consumption**: Zapping consumes exactly 1 charge from the wand (wandUsed() method decreases curCharges by 1)
+  * **Effect Application**: The wand's specific effect is applied to the target via the onZap() abstract method
+  * **Range**: Determined by Ballistica.cast() with directional property (typically limited range)
+  * **Time Cost**: Takes 1 turn of time (TIME_TO_ZAP = 1f)
+  * **Animation**: Includes visual effect (MagicMissile.blueLight) and sound (Assets.SND_ZAP)
 
 ==== Zapping Considerations ====
-  * **Accuracy**: Some wands may miss their intended target
-  * **Collateral Effects**: Some zap effects may affect nearby creatures or terrain
-  * **Enemy Response**: Using magic may attract attention from nearby enemies
-  * **Tactical Positioning**: Effective zapping often requires strategic positioning
+  * **Accuracy**: Uses Ballistica.cast() for path calculation, may hit different targets if original target moves
+  * **Collateral Effects**: Some wand effects may affect nearby creatures, depend on specific onZap implementation
+  * **Enemy Response**: Using magic does not specifically attract enemies, but may cause effects that do
+  * **Tactical Positioning**: Effective zapping often requires strategic positioning due to line-of-sight requirements
+
+==== Zapping Behavior ====
+  * **Failure**: If wand has 0 charges, zap "fizzles" with no effect but still takes 1 turn of time
+  * **Invisibility**: Using a wand dispels Invisibility from the user (Invisibility.dispel(selector))
+  * **Identification**: If wand has no charges, has 20% chance to identify the wand (Random.Int(5) == 0)
+  * **Quick Slot**: Refreshes the quick slot display after use (QuickSlot.refresh(getOwner()))
 
 ==== Zapping Tips ====
-  * **Aiming**: Consider splash effects when targeting near allies
+  * **Aiming**: Consider splash effects when targeting near allies (specific to certain wands)
   * **Conservation**: Use zaps efficiently, especially when charges are low
-  * **Timing**: Zapping during combat should factor in enemy retaliation
-  * **Safety**: Avoid zapping when enemies are adjacent when possible
+  * **Timing**: Zapping during combat should factor in enemy retaliation (takes 1 turn)
+  * **Safety**: Be aware of line-of-sight requirements for targeting
+  * **Charging**: Wands recharge 1 charge over time (time varies by hero class and wand level)
+
+==== Content Verification ====
+  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]]
+  * Zapping mechanics verified against wandUsed(), wandEffect(), and onZap() methods in the code
+  * Charge consumption and timing extracted directly from the Wand class implementation
+  * Last updated: Based on Remixed Dungeon source code analysis
 
 ==== Code References ====
   * Zapping System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - How zapping is implemented
-  * Targeting: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L70-L90|Zap targeting code]] - How zap targets are determined
-  * Effect Application: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L95-L130|Zap effect code]] - How zap effects are applied
+  * Targeting: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L122-L127|getDestinationCell()]] - How zap targets are determined using Ballistica.cast()
+  * Effect Application: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L185-L204|wandEffect()]] - How zap effects are applied
+  * Charge Consumption: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L193|wandUsed()]] - How charges are consumed
   * Actor System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - How zaps affect characters
   * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All zapping-related text
 
@@ -35,5 +51,6 @@ Zapping refers to the act of using a wand or other magical implement to direct i
   * [[rpd:charges|Charges]]
   * [[rpd:mechanics|Mechanics]]
   * [[rpd:combat_mechanics|Combat]]
+  * [[rpd:ballistica|Ballistica]]
 
 {{tag> rpd mechanics zapping wands magic }}
