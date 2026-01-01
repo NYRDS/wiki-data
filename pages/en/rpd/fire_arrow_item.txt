@@ -11,12 +11,16 @@ The Fire Arrow is a special type of missile weapon that causes the Burning statu
   * **Price**: 5 gold per arrow
 
 ==== Special Abilities ====
-  * **Burning Effect**: When the arrow hits a target, it applies the [[en:rpd:burning_buff|Burning]] status effect
-  * **Mechanism**: Uses Buff.affect(defender, [[en:rpd:burning_buff|Burning.class]]).reignite(defender) when activated - this occurs on every successful hit
+  * **Burning Effect**: When the arrow hits a target, it applies the [[en:rpd:burning_buff|Burning]] status effect with a 25% chance when thrown from a ranged weapon
+  * **Mechanism**: Uses Buff.affect(defender, [[en:rpd:burning_buff|Burning.class]]).reignite(defender) when activated - this occurs on every successful hit with a 25% probability when fired from a bow/weapon; always activates when used by enemies
+  * **Bow Enhancement**: Damage values are modified by the equipped bow's damage factor (dmgFactor()) when fired from a bow
+  * **Bonus Damage**: If effective strength exceeds the required strength by more than 2 points, adds extra damage: MAX += (MIN + (effectiveSTR - requiredSTR - 2))
+  * **Elven Class Bonus**: When used by an Elf, accuracy is increased by 10% and delay is reduced by 10%
 
 ==== Acquisition ====
   * Can be found in various treasure locations throughout the dungeon
-  * Quantity typically ranges from 15-30 when randomly generated
+  * Quantity typically ranges from 15-30 when randomly generated (defined in Arrow.java random() method)
+  * Found in Treasury.json and SpidersTreasury.json with probability of 2
 
 ==== Strategy ====
   * Effective against enemies vulnerable to fire damage
