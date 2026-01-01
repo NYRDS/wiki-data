@@ -1,57 +1,33 @@
 ====== Heart of Darkness Item ======
 
-{{ rpd:images:heartofdarkness_sprite.png|Heart of Darkness }}
+The **Heart of Darkness** is a quest item that is obtained after defeating the Treacherous Spirit. It is required to complete the quest given by the AzuterronNPC (Stranger).
 
-The **Heart of Darkness** is a powerful artifact dropped by the [[rpd:treacherous_spirit_mob|Treacherous Spirit]]. When equipped, it provides unique defensive abilities by summoning spirits when the wearer takes damage.
-
-==== Stats ====
-  * **Rarity**: Very Rare
-  * **Weight**: 20
-  * **Type**: Artifact
-  * **Always Identified**: Yes
-
-==== Description ====
-''"Black pulsating heart of the Treacherous Spirit."'' The Heart of Darkness is an ancient artifact that surrounds its owner with a veil of darkness. Each time the owner takes damage, a Spirit of Pain is summoned to fight for them.
+==== Overview ====
+  * **Type**: Quest Item
+  * **Function**: Required to complete the AzuterronNPC quest
+  * **Source**: Dropped by the Treacherous Spirit when defeated
+  * **Quest**: Needed to trade with the Stranger (AzuterronNPC) for a Potion of Might
 
 ==== Mechanics ====
-  * **Trigger**: Activates whenever damage is taken by the wearer
-  * **Effect**: Spawns a Spirit of Pain in an adjacent empty cell
-  * **Spirit Properties**:
-    * **HP**: 80
-    * **Attack/Defense**: 30
-    * **Damage**: 5-10
-    * **Damage Reduction**: 20
-    * **Flying**: Yes
-    * **EXP**: 0 (no experience when killed)
-    * **Lifespan**: The spirit takes 6 self-damage each turn and dies after a few turns
-  * **Buff Name**: Dark Veil (surrounds owner with darkness)
+  * The Heart of Darkness is obtained as a drop from the Treacherous Spirit boss
+  * When the player interacts with AzuterronNPC (Stranger) while possessing the Heart of Darkness, they can complete the quest
+  * The item is consumed when trading it to AzuterronNPC in exchange for a Potion of Might
+  * This item is part of the special quest system implemented in the Guts area of the dungeon
 
-==== Acquisition ====
-  * Dropped by [[rpd:treacherous_spirit|Treacherous Spirit]] in the Guts level
-  * Extremely rare and valuable item
+==== Quest Context ====
+  * The Heart of Darkness is central to the AzuterronNPC questline
+  * Players must defeat the Treacherous Spirit to obtain this item
+  * Upon returning with the Heart of Darkness, players receive a Potion of Might as their reward
+  * This represents a one-time interaction with the AzuterronNPC character
 
-==== Strategy ====
-  * Provides defensive value by summoning helpers when taking damage
-  * The Spirits of Pain have limited lifespan but can distract enemies
-  * Particularly useful in dangerous situations where taking damage is likely
-  * The spirits spawned are temporary but can provide tactical advantages
+==== Content Verification ====
+  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]]
+  * The quest interaction checks for "HeartOfDarkness" item and exchanges for "PotionOfMight" item
+  * Last updated: Based on Remixed Dungeon source code analysis
 
-==== Source Code Reference ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/HeartOfDarkness.java|HeartOfDarkness.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/SpiritOfPain.java|SpiritOfPain.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/TreacherousSpirit.java#L30|TreacherousSpirit.java (drop)]]
+==== See Also ====
+  * [[rpd:treacherous_spirit_mob|Treacherous Spirit]] - The boss that drops the item
+  * [[rpd:stranger|Stranger/AzuterronNPC]] - The NPC that requires the item
+  * [[rpd:potion_of_might_item|Potion of Might]] - The reward received in exchange
 
-==== String Resources ====
-<code xml>
-<string name="HeartOfDarkness_Name">Heart of darkness</string>
-<string name="HeartOfDarkness_Info">Black pulsating heart of the Treacherous Spirit.</string>
-<string name="DarkVeilBuff_Name">Dark veil</string>
-<string name="DarkVeilBuff_Info">A veil of darkness surrounds the owner, summoning a spirit every time damage is taken.</string>
-</code>
-
-==== Related ====
-  * [[rpd:treacherous_spirit_mob|Treacherous Spirit]] - Source of the artifact
-  * [[rpd:spirit_of_pain_mob|Spirit of Pain]] - Creature summoned by the artifact
-  * [[rpd:artifacts|Artifacts]] - Other special items
-
-{{tag> rpd items heart_darkness artifact powerful}}
+{{tag> rpd items quest hearts}}
