@@ -16,8 +16,9 @@ The hit detection is calculated in ''CharUtils.java'':
 // In CharUtils.java
 float acuRoll = Random.Float(attacker.attackSkill(defender));
 float defRoll = Random.Float(defender.defenseSkill(attacker));
+boolean hit = (magic ? acuRoll * 2 : acuRoll) >= defRoll;
 
-if (acuRoll > defRoll) {
+if (hit) {
     // Attack hits
     int damage = attacker.damageRoll();
     defender.damage(damage, attacker);
@@ -26,6 +27,8 @@ if (acuRoll > defRoll) {
     defender.defenseProc(attacker, 0);
 }
 </code>
+
+Note that for magic attacks, the attacker's roll is multiplied by 2, making magic attacks more likely to hit.
 
 ==== Attack Skill Calculation ====
 
@@ -96,23 +99,61 @@ public int defenseSkill(Char enemy) {
 
 ==== Damage Calculation ====
 
-After a successful hit, damage is calculated in the ''absorb'' method:
+After a successful hit, damage reduction is calculated in the ''defenseProc'' method of the ''Char'' class:
 
 <code java>
-public int absorb( int damage, Char attacker ) {
-    float effectiveArmor = armorLevel() * (1 + Hero.getBonus( getHeroClass(), getSubClass(), Buffs.ARMOR ));
+public int defenseProc(Char enemy, int baseDamage) {
+    int dr = defenceRoll(enemy);
 
-    if (attacker != null) {
-        float armorBreakRatio = (float)attacker.attackSkill(this) / (attacker.attackSkill(this) + effectiveArmor);
+    final int[] damage = {baseDamage - dr};
 
-        effectiveArmor = Math.min(effectiveArmor, damage*2);
+    forEachBuff(b -> damage[0] = b.defenceProc(this, enemy, damage[0]));
+    damage[0] = getItemFromSlot(Belongings.Slot.ARMOR).defenceProc(enemy, this, damage[0]);
 
-        damage = (int) Math.ceil(damage * (1f - armorBreakRatio));
+
+    if (getOwnerId() != enemy.getId()) {
+        setEnemy(enemy);
+    }
+
+    return getScript().run("onDefenceProc", enemy, damage[0]).optint(damage[0]);
+}
+</code>
+
+The damage reduction (''dr'') is calculated in the ''defenceRoll'' method:
+
+<code java>
+public int defenceRoll(Char enemy) {
+    if (enemy.ignoreDr()) {
+        return 0;
+    }
+
+    final int[] dr = {dr()};
+    forEachBuff(b -> dr[0] += b.drBonus(this));
+    return Random.IntRange(0, dr[0]);
+}
+</code>
+
+The base damage reduction is calculated from the equipped armor using its ''defenceProc'' method:
+
+<code java>
+public int defenceProc(Char attacker, Char defender, int damage ) {
+    if (glyph != null) {
+        damage = glyph.defenceProc( this, attacker, defender, damage );
+    }
+
+    if (!isLevelKnown()) {
+        if (--hitsToKnow <= 0) {
+            setLevelKnown(true);
+            GLog.w(StringsManager.getVar(R.string.Armor_Identify), name(), toString() );
+            Badges.validateItemLevelAcquired( this );
+        }
     }
 
     return damage;
 }
 </code>
+
+The armor's effective DR (Damage Reduction) is calculated as: tier * 2 + level() * tier + (glyph != null ? tier : 0), where ''tier'' represents the armor's base type (Cloth: 1, Leather: 2, Mail: 3, etc.).
 
 ==== Combat Elements ====
 
