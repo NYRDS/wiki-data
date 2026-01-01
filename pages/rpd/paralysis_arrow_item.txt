@@ -1,45 +1,56 @@
 ====== Paralysis Arrow ======
 
-{{ rpd:images:paralysisarrow_item.png|Paralysis Arrow }}
+{{ rpd:images:paralysis_arrow_item.png|Paralysis Arrow }}
 
-The Paralysis Arrow is a special type of missile weapon that causes the Stun status effect (not the Paralysis status) when it hits a target.
+**Paralysis Arrow** is a throwable missile weapon in Remixed Pixel Dungeon that inflicts paralysis on the target.
 
 ==== Stats ====
-  * **Damage**: 0-4
-  * **Delay**: 0.75 (baseDly: 0.75)
-  * **Min Strength Required**: 14 (setSTR: 14)
+  * **[[rpd:weight_system|Weight]]**: 1
+  * **[[rpd:item_types|Type]]**: [[rpd:arrow_item|Arrow]]
+  * **[[rpd:damage_system|Damage]]**: 1-4
+  * **[[rpd:durability|Durability]]**: 1 use
 
-==== Special Abilities ====
-  * **Stunning Effect**: When the arrow hits a target, it applies the Stun status effect for 4 turns
-  * **Mechanism**: Uses Buff.prolong(defender, Stun.class, DURATION) where DURATION = 4f
+==== Effects ====
+  * **[[rpd:paralysis_buff|Paralysis]]**: Causes [[rpd:paralysis_buff|paralysis status effect]], preventing target actions
+  * **[[rpd:throwable_weapons|Throwable]]**: Can be thrown at distant enemies
+  * **[[rpd:one_time_use|Single Use]]**: Consumed after use
+  * **[[rpd:missile_weapon|Missile]]**: Ranged weapon with standard missile mechanics
+
+==== Description ====
+Paralysis Arrows are special ammunition that, when used, will cause the target to become paralyzed temporarily. This makes them effective for controlling enemies and gaining tactical advantages in combat situations.
 
 ==== Acquisition ====
-  * Can be found in various treasure locations throughout the dungeon
-  * Quantity typically ranges from 2-4 when randomly generated
+  * Created by using [[rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] on regular [[rpd:arrow_item|Arrows]] via alchemy
+  * May be found occasionally in [[rpd:shops|shops]] or [[rpd:level_objects|level objects]] such as [[rpd:crate_level_object|crates]] or [[rpd:heap_item|heaps]]
+  * Part of alchemical crafting system
 
-==== Strategy ====
-  * Effective against powerful enemies to temporarily disable them
-  * Particularly useful against dangerous ranged or magic attackers
-  * Can be used to buy time during difficult encounters
-  * The stunning effect only occurs on a successful hit
+==== Usage ====
+  * Throw at enemies to apply [[rpd:paralysis_buff|paralysis effect]]
+  * Effective for [[rpd:combat_control|combat control]] and creating breathing room
+  * Particularly valuable against dangerous enemies or groups
+  * Can be used as a tactical escape mechanism
 
-==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|ParalysisArrow.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (base class)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]] (effect applied)
+==== Mechanics ====
+  * Created through the [[rpd:moistening_system|moistening system]] by combining [[rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] with regular [[rpd:arrow_item|Arrows]]
+  * Applies [[rpd:paralysis_buff|paralysis]] status effect upon hit
+  * Follows standard [[rpd:throwing_weapons|throwing weapon]] mechanics
+  * Quantity determined by the amount of potion used and arrow quality
 
-==== String Resources ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2082|ParalysisArrow_Name]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2083|ParalysisArrow_Info]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2084|ParalysisArrow_Gender]]
-
-==== Configuration Files ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (base missile implementation)
+==== Source Code ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|ParalysisArrow.java]]
+  * Base Arrow: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
+  * Paralysis Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]]
+  * Alchemy System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L38-L44|moistenArrow method in PotionOfParalyticGas.java]]
+  * Damage System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L85-L88|Char:damage() method]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L862-L863|ParalysisArrow_Name, ParalysisArrow_Info]]
+  * Russian String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L849-L850|ParalysisArrow_Name, ParalysisArrow_Info (русс.)]]
+  * Machine-readable data: [[mr:paralysis_arrow_item|mr:paralysis_arrow_item]]
 
 ==== See Also ====
-  * [[rpd:stun_buff|Stun]] - The status effect applied by this arrow
-  * [[rpd:paralysis_buff|Paralysis]] - Similar but different status effect
-  * [[rpd:arrows|Arrows]] - Other arrow types
-  * [[rpd:missile_weapons|Missile Weapons]] - Other throwing weapons
+  * [[rpd:arrows|Arrows]]
+  * [[rpd:paralysis_buff|Paralysis Buff]]
+  * [[rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]]
+  * [[rpd:missile_weapons|Missile Weapons]]
+  * [[rpd:alchemy|Alchemy]]
 
-{{tag> rpd items arrows missiles }}
+{{tag> rpd items arrows throwable paralysis }}
