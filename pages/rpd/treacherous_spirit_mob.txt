@@ -1,62 +1,34 @@
 ====== Treacherous Spirit Mob ======
 
-{{ rpd:images:treacherousspirit_sprite.png|Treacherous Spirit }}
+{{ rpd:images:mob_TreacherousSpirit.png|Treacherous Spirit }}
 
-The Treacherous Spirit is a powerful enemy found in the Guts level of Remixed Dungeon. It's a quest-related mini-boss that appears on floor 27.
+The **Treacherous Spirit** is a special boss mob that appears as part of the AzuterronNPC quest. It is a dark creature that the player must defeat to complete the quest.
 
-==== Description ====
-This monstrous creature looks like a cloud of living darkness. It's gigantic eye stares at you, while pulsating with each movement you make. The Treacherous Spirit is known for summoning Spirit of Pain minions during combat.
+==== Overview ====
+  * **Type**: Quest Boss
+  * **Location**: Spawns on the current level when the AzuterronNPC quest is accepted
+  * **Quest**: Defeat this monster and bring its heart back to the Stranger (AzuterronNPC)
+  * **Reward**: Completing this quest rewards the player with a Potion of Might
 
-==== Stats ====
-  * **HP:** 200
-  * **Attack Skill:** 35
-  * **Defense Skill:** 35
-  * **Damage:** 30-45
-  * **Defense Rating:** 25
-  * **Exp for Kill:** 45
-  * **Max Level:** 30
-  * **AI State:** [[rpd:wandering_ai|Wandering]]
-  * **Special:** Cannot become a pet
+==== Mechanics ====
+  * The Treacherous Spirit is spawned in a valid random location on the current level when the AzuterronNPC quest is initiated
+  * The spirit is part of the Guts level area content in the Remixed Dungeon game
+  * As a boss creature, it likely has special abilities and higher stats than regular monsters
+  * Must be defeated to obtain the Heart of Darkness quest item
 
-==== Abilities ====
-  * **Spirit Summoning:** Upon taking damage, has a 25% chance to summon a Spirit of Pain minion
-  * **Flying:** Can move over obstacles and terrain
-  * **High Combat Stats:** Strong attack and defense capabilities
-
-==== Drops ====
-  * [[rpd:heart_of_darkness_item|Heart of Darkness]] - A rare quest item required for certain crafting recipes
-
-==== Strategy ====
-  * Be prepared for summoned enemies during combat
-  * The Spirit of Pain minions will take damage over time and die eventually
-  * High HP and damage output requires careful positioning and healing
-  * Cannot be charmed or tamed to become a pet
-
-==== Related ====
-  * [[rpd:spirit_of_pain_mob|Spirit of Pain]] - Minions summoned by the Treacherous Spirit
-  * [[rpd:azuterron_npc|Azuterron NPC]] - Quest-related NPC that may have information about this mob
-
-==== Technical Details ====
-  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/TreacherousSpirit.java|com.nyrds.pixeldungeon.mobs.guts.TreacherousSpirit]]
-  * **Implementation:** Extends the base Mob class
-  * **Summoning Chance:** 25% chance (Random.Int(4) == 1) to summon a Spirit of Pain on attack
-  * **HP:** 200 (hp(ht(200)) in constructor)
-  * **Base Defense Skill:** 35 (baseDefenseSkill = 35 in constructor)
-  * **Base Attack Skill:** 35 (baseAttackSkill = 35 in constructor)
-  * **Damage Range:** 30-45 (dmgMin = 30, dmgMax = 45 in constructor)
-  * **Damage Resistance:** 25 (dr = 25 in constructor)
-  * **Experience Value:** 45 exp for kill (expForKill = 45 in constructor)
-  * **Maximum Level:** 30 (maxLvl = 30 in constructor)
-  * **AI State:** Wandering (setState(MobAi.getStateByClass(Wandering.class)) in constructor)
-  * **Special:** Cannot become a pet (canBePet() returns false)
-  * **Drop:** Heart of Darkness (collect(new HeartOfDarkness()) in constructor)
+==== Quest Context ====
+  * The Treacherous Spirit appears as part of a special quest given by the AzuterronNPC (Stranger)
+  * The Stranger requests that the player defeat this creature and bring back its heart
+  * This is a one-time quest that helps introduce players to the Guts area of the dungeon
 
 ==== Content Verification ====
-  * Information source: Java Class com.nyrds.pixeldungeon.mobs.guts.TreacherousSpirit
-  * Stats verification: Extracted directly from class implementation
-  * Effect descriptions: Based on in-game mechanics and string resources
-  * Source code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/TreacherousSpirit.java|TreacherousSpirit.java]]
-  * Related entities: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/SpiritOfPain.java|SpiritOfPain.java]] (summoned minion)
-  * NPC Connection: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]] (references TreacherousSpirit)
+  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/TreacherousSpirit.java|TreacherousSpirit.java]]
+  * Quest mechanics implemented in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]]
+  * Last updated: Based on Remixed Dungeon source code analysis
 
-{{tag> rpd mobs spirits guts}}
+==== See Also ====
+  * [[rpd:stranger|Stranger/AzuterronNPC]] - The NPC that gives the quest
+  * [[rpd:heart_of_darkness_item|Heart of Darkness]] - Quest item obtained from defeating the spirit
+  * [[rpd:potion_of_might_item|Potion of Might]] - Reward for completing the quest
+
+{{tag> rpd mobs quest boss guts}}
