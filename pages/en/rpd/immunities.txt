@@ -1,52 +1,50 @@
 ====== Immunities ======
 
-Immunities in Remixed Dungeon refer to resistances or complete prevention of certain status effects or damage types that characters or mobs can possess.
+Immunities in Remixed Dungeon represent complete protection against specific types of attacks or status effects. When a character has immunity to a particular effect, they cannot be affected by it at all.
 
 ==== Types of Immunities ====
 
-==== Complete Immunities ====
-  * **Sleep**: Complete resistance to sleep status effect
-  * **Paralysis**: Complete resistance to paralysis status effect
-  * **Frost**: Complete resistance to freezing effects
-  * **Burn**: Complete resistance to burning effects
-  * **Toxic Gas**: Complete resistance to toxic gas effects
-  * **Poison**: Complete resistance to poison damage over time
-  * **Death**: Complete resistance to instant death effects
-  * **Amok**: Complete resistance to amok status (turning hostile)
-  * **Blindness**: Complete resistance to blindness status
-  * **Terror**: Complete resistance to terror status (fleeing in fear)
-  * **Vertigo**: Complete resistance to vertigo status (confused movement)
-  * **Bleeding**: Complete resistance to bleeding damage over time
+==== Damage Immunities ====
+  * **Poison Immunity**: Completely prevents poison damage
+  * **Bleeding Immunity**: Completely prevents bleeding damage
+  * **Fire Immunity**: Completely prevents fire damage and burning effects
+  * **Paralysis Immunity**: Completely prevents paralysis effects
+  * **Frost Immunity**: Completely prevents freezing and cold damage
 
-==== Partial Immunities ====
-  * Resistance that reduces the effect of status conditions
-  * May reduce duration or severity of effects
+==== Status Effect Immunities ====
+  * **Sleep Immunity**: Cannot be put to sleep
+  * **Charm Immunity**: Cannot be charmed by enemy abilities
+  * **Terror/Fear Immunity**: Cannot be affected by fear-based effects
+  * **Amok Immunity**: Cannot be driven into a rage by Amok effects
+  * **Invisibility Immunity**: Cannot be made invisible (relevant for some mechanics that depend on being visible)
 
-==== Acquiring Immunities ====
-  * **Hero Classes**: Some hero classes have innate immunities (e.g., Lich has many immunities)
-  * **Buffs**: Temporary immunities granted by buff effects
-  * **Items**: Equipment that provides immunity to specific effects
-  * **Mobs**: Certain mobs have immunities to specific status effects
+==== Sources of Immunity ====
+  * **Innate Mob Abilities**: Some mobs have immunities as core mechanics (e.g., AirElemental and Bleeding)
+  * **Buffs**: Temporary effects that grant immunity
+  * **Items**: Some artifacts or items grant temporary immunities
+  * **Enchantments**: Certain equipment enchantments may provide immunities
 
-==== Notable Immunities ====
-  * **Lich**: Immune to Paralysis, Toxic Gas, Terror, Death, Amok, Blindness, Sleep, Poison, Vertigo, Bleeding
-  * **Skeletons**: Usually burn to dust when killed
-  * **Other undead**: May have immunities to specific effects
+==== Immunities vs. Resistances ====
+  * Immunities provide complete protection against an effect
+  * Resistances reduce the effectiveness of an effect but don't eliminate it entirely
+  * Some effects may have both resistance and immunity tiers
 
-==== Strategy ====
-  * Identify and target immunities when selecting equipment and tactics
-  * Use different strategies against enemies with specific immunities
-  * Consider immunity-granting equipment when facing certain enemies
+==== Notable Immunities by Mob ====
+  * **[[en:rpd:air_elemental_mob|Air Elemental]]**: Immune to [[en:rpd:bleeding_buff|Bleeding]]
+  * **[[en:rpd:skeleton_mob|Skeletons]]**: Immune to [[en:rpd:poison_buff|Poison]]
+  * **[[en:rpd:shadow_mob|Shadows]]**: Immune to many physical effects
+  * **[[en:rpd:wraith_mob|Wraiths]]**: Immune to many physical attacks
 
-==== Content Verification ====
-  * Information source: Java Classes in [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs|com.watabou.pixeldungeon.buffs]]
-  * Implementation details in mob and buff classes
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings-all.xml|Buff-related strings]]
+==== Information Sources ====
+  * **Java Code**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Implementation of buff immunity systems
+  * **Mob Implementation**: Various mob classes with addImmunity() calls
+  * **Example**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L23|AirElemental.java#L23]] - How immunities are added
 
 ==== See Also ====
-  * [[en:rpd:buffs|Buffs]]
   * [[en:rpd:resistances|Resistances]]
-  * [[en:rpd:hero_classes|Hero Classes]]
-  * [[en:rpd:mobs|Mobs]]
+  * [[en:rpd:buffs|Buffs]]
+  * [[en:rpd:debuffs|Debuffs]]
+  * [[en:rpd:status_effects|Status Effects]]
+  * [[en:rpd:damage|Damage]]
 
-{{tag> rpd mechanics status_effects}}
+{{tag> rpd mechanics immunities }}
