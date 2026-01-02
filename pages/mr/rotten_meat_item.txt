@@ -1,20 +1,23 @@
 ====== Rotten Meat Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenMeat.java|RottenMeat.java]] - Main implementation class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]] - Base class that RottenMeat extends
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/rotten_meat.json
+No specific JSON configuration found for Rotten Meat item.
 
 ===== String Resources =====
 <code xml>
-<string name="RottenMeat_Name">[Name]</string>
-<string name="RottenMeat_Info">[Description]</string>
+<string name="RottenMeat_Name">Rotten meat</string>
+<string name="RottenMeat_Info">A piece of rotten meat</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Implementation Details =====
+  * **Entity Kind**: rotten_meat (from getEntityKind() returning simple class name)
+  * **Sprite**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.ROTTEN_MEAT]]
+  * **Food Type**: Extends [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood]], which purifies into MysteryMeat
+  * **Function**: Alternative food source that is not harmful like regular food but provides no benefits
