@@ -69,31 +69,48 @@ A tool that:
   * A script that automatically generates missing mr: namespace pages based on entity lists
   * Should be able to scan the codebase and generate basic pages with code references
   * Should follow the pattern: {entity_name}_{type} (e.g., skeleton_mob, ankh_item, heal_spell, burning_buff)
+  * During this maintenance session, we identified the need for more comprehensive mr: namespace pages for various entities
 
 ===== Auto-Linker Tool =====
   * A script that identifies terms in wiki pages that have corresponding wiki pages and adds appropriate links
   * Should avoid creating duplicate links
   * Should be configurable to follow the proper naming conventions
+  * This tool would help maintain consistency in internal linking as the wiki grows
 
 ===== Content Consistency Checker =====
   * Validates that all wiki pages follow the established format
   * Checks for proper code references in "Code References" sections
   * Verifies that pages contain appropriate DokuWiki syntax
+  * Could be implemented as a linter for DokuWiki syntax compliance
 
 ===== Statistics Generator =====
   * Provides metrics on wiki completeness (coverage of game entities)
   * Tracks pages that lack code references
   * Monitors update frequency and outdated content
+  * Would help identify areas of the wiki needing attention
 
 ===== Automated Redlink Resolver =====
   * More sophisticated than current redlink checker
   * Suggests similar pages that might have been intended
   * Provides templates for creation of missing pages
+  * During this session, we confirmed that most internal links were valid
 
 ===== Code Change Tracker =====
   * Tool that monitors git changes in the codebase
   * Suggests wiki pages that might need updates based on code changes
   * Could be integrated into CI/CD to flag potential documentation gaps
+  * Especially useful for tracking when game mechanics change in updates
+
+===== Automated Naming Convention Enforcer =====
+  * Tool that automatically checks and potentially fixes file naming inconsistencies
+  * Validates that all pages follow the snake_case with appropriate suffixes (_mob, _item, _spell, etc.)
+  * Could run as a pre-commit hook to prevent naming issues
+  * During this session, we had to manually fix several naming issues (beehive.txt → beehive_mob.txt, scorpio.txt → scorpio_mob.txt, etc.)
+
+===== Multi-Language Link Consistency Tool =====
+  * Ensures that links to other language versions of pages are consistent and properly placed
+  * Checks that cross-language links are appropriately positioned (typically at the bottom of pages)
+  * Verifies that when an English page is updated, related language pages are checked for consistency
 
 ==== Implementation Priority ====
 
