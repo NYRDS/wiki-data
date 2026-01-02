@@ -3,50 +3,69 @@
 {{ rpd:images:spider_egg_mob.png|Spider Egg }}
 
 ==== Description ====
-**Spider Egg** is a special mob that appears in the Spider Nest level of Remixed Dungeon. These eggs serve as protective shells for baby spiders that will hatch and attack the player when the egg is disturbed or destroyed.
+Spider Egg is a passive mob in Remixed Dungeon that eventually hatches into a random spider after 20 turns. Spider Eggs are laid by the Spider Queen and have a limited lifespan before hatching. They represent locations where spiders lay eggs or where young spiders appear.
 
 ==== Stats ====
-  * **HP**: 2 (HT: 2) (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java#L8|SpiderEgg.java#L8]])
-  * **Defense Skill**: 1 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java#L9|SpiderEgg.java#L9]])
-  * **Attack Skill**: 1 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java#L10|SpiderEgg.java#L10]])
-  * **Speed**: 0 (immobile) (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java#L11|SpiderEgg.java#L11]])
-  * **Damage**: Does not attack players directly
-  * **DR (Damage Resistance)**: Not specified (likely 0)
-  * **EXP for Kill**: 0 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java#L13|SpiderEgg.java#L13]])
-  * **Max Level**: 9 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java#L14|SpiderEgg.java#L14]])
+  * **HP**: 2
+  * **Level**: 9 (Max)
+  * **Defense Skill**: 1
+  * **Attack Skill**: 1
+  * **Damage**: 0-0
+  * **Armor**: 0
+  * **Speed**: 0 (immobile)
+  * **AI State**: Passive (does not actively seek targets)
+  * **Movement Type**: Normal (but immovable)
+  * **Experience Given**: 0
+  * **Loot Chance**: 20% for a random seed
 
 ==== Abilities ====
-  * **Hatching**: When the Spider Egg is defeated, it hatches into baby spiders that immediately engage the player in combat (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java#L22-L28|SpiderEgg.java#L22-L28]])
-  * **Immobilized**: The egg cannot move (movable = false) (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java#L18|SpiderEgg.java#L18]])
+  * **Hatching**: Automatically hatches into a random spider after 20 turns
+  * **Immobilization**: Cannot move from its position
+  * **Fragility**: Very low HP, easily destroyed
+  * **Pet Immunity**: Cannot be tamed or made into a pet (canBePet() returns false)
 
-==== Special Mechanics ====
-  * The Spider Egg hatches into random baby spiders after a delay (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java#L22-L28|SpiderEgg.java#L22-L28]])
-  * Cannot be tamed as a pet (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java#L31-L33|SpiderEgg.java#L31-L33]])
+==== Behavior ====
+  * **Immobile**: Remains in place until destroyed or hatched
+  * **Hatch Timer**: Automatically hatches after 20 turns through the act() method
+  * **Spawning**: Upon hatching, creates a random spider using MobSpawner
+  * **Destruction**: If killed before hatching, is destroyed without spawning a spider
+  * **Loot**: Has a 20% chance to drop a random seed when destroyed
+  * **Location**: Most commonly found on Spider Nest levels and infested areas of the dungeon
 
 ==== Drops ====
-  * **Seed** (20% chance): Random seed from Treasury (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java#L16|SpiderEgg.java#L16]])
+  * **Seeds**: 20% chance for a random seed when destroyed
+  * **Nothing**: Otherwise
 
-==== Location ====
-  * Found in the Spider Nest level in nests/eggs
+==== Strategy ====
+  * **Immediate Threat**: Though fragile, presents a threat as it will soon hatch into a spider
+  * **Timing**: You can choose to destroy it immediately to prevent a spider from spawning, or allow it to hatch when you're prepared
+  * **Advantage**: If you have means to tame or control spiders, allowing it to hatch might be advantageous
+  * **Seed Farming**: Has a 20% chance to drop a seed when destroyed, which can be useful
+  * **Avoid Clustering**: Be careful that multiple eggs don't hatch nearby, creating a spider swarm
+  * **Spider Population**: Consider the existing spider population in the area when deciding to destroy or allow hatching
 
-==== Code References ====
-  * **Java Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java|SpiderEgg.java]]
+==== Locations ====
+  * **Spawned by**: [[en:rpd:spider_queen_mob|Spider Queen]] (lays these eggs)
+  * **Hatching**: After 20 turns if it survives, hatches into a random mob spider
+  * **Range**: Can appear on any level where spider content exists
+  * **Areas**: Most common on Spider Nest levels and infested parts of the dungeon
 
-==== String Resources ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - Spider Egg related strings
+==== Interactions ====
+  * May contain spiderlings or other arachnids
+  * Can be destroyed to prevent the spawning of new spiders
+  * Part of level design with spiders
+  * Hatches into different types of spiders depending on the area
+  * May contain different types of spiders (regular, poison, etc.)
+  * Destruction of eggs prevents additional spider spawns
 
-==== Content Verification ====
-  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java|SpiderEgg.java]]
-  * Stats verification: Extracted directly from [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java|SpiderEgg.java]]
-  * Mechanics verification: Based on implementation in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java|SpiderEgg.java]]
-  * Machine-readable data: [[mr:spider_egg_mob|mr:spider_egg_mob]]
-  * Last updated: December 2025
+==== Data Sources ====
+  * Java Implementation: RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java
+  * String Resources: This entity doesn't have specific string resources in the main files
 
 ==== See Also ====
-  * [[en:rpd:mobs|All Mobs]]
-  * [[en:rpd:spider_queen_mob|Spider Queen]]
-  * [[en:rpd:spiders|Spider Mobs]]
-  * [[en:rpd:spider_nest_level|Spider Nest Level]]
-  * [[en:rpd:spider_nest_mob|Spider Nest]]
+  * [[en:rpd:spider_queen_mob|Spider Queen]] - Lays these eggs
+  * [[en:rpd:spiders|Spiders]] - What hatches from this egg
+  * [[en:rpd:spider_nest_mob|Spider Nest]] - Where Spider Eggs may appear
+  * [[en:rpd:mobs|Mobs]]
 
-{{tag> rpd mobs spider egg}}
+{{tag>:rpd mobs spiders eggs}}
