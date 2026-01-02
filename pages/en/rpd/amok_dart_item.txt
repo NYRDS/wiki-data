@@ -1,0 +1,52 @@
+====== Amok Dart ======
+
+{{ rpd:images:dart_item.png|Amok Dart }}
+
+The Amok Dart is a special type of missile weapon that causes enemies to go into a rage and attack other enemies when it hits.
+
+==== Stats ====
+  * **Damage**: 1-3 (MIN: 1, MAX: 3)
+  * **Delay**: 1.0 (baseDly: 1.0)
+  * **Min Strength Required**: 14 (setSTR: 14)
+
+==== Special Abilities ====
+  * **Amok Effect**: When the dart hits a target, it applies Amok, Speed and Rage status effects for 20 turns
+  * **Mechanism**: Applies Amok.class (for 20 turns), Speed.class (for 20 turns) and creates a new RageBuff instance to the defender
+  * **Behavior**: Affected enemies will attack other enemies instead of the player
+
+==== Acquisition ====
+  * Can be found in various treasure locations throughout the dungeon
+  * Quantity typically ranges from 2-4 when randomly generated (random() method)
+  * Price: 12 gold per dart
+
+==== Strategy ====
+  * Useful for turning enemies against each other
+  * Particularly effective in groups of enemies
+  * Can be used to reduce the number of enemies without direct combat
+  * The amok effect occurs on every successful hit (100% chance)
+  * Be careful not to accidentally make enemies too powerful with the rage effect
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/AmokDart.java|AmokDart.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Dart.java|Dart.java]] (base class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Amok.java|Amok.java]] (effect applied)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Speed.java|Speed.java]] (speed effect)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/RageBuff.java|RageBuff.java]] (rage effect)
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L292|AmokDart_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L293|AmokDart_Gender]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L294|AmokDart_Info]]
+
+==== Configuration Files ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Dart.java|Dart.java]] (base missile implementation)
+
+==== See Also ====
+  * [[en:rpd:amok_buff|Amok]] - The status effect applied by this dart
+  * [[en:rpd:speed_buff|Speed]] - Speed status effect
+  * [[en:rpd:rage_buff|Rage]] - Rage status effect
+  * [[en:rpd:darts|Darts]] - Other dart types
+  * [[en:rpd:missile_weapons|Missile Weapons]] - Other throwing weapons
+  * [[en:rpd:amok_arrow_item|Amok Arrow]] - Similar arrow variant
+
+{{tag> rpd items darts missiles chaos }}
