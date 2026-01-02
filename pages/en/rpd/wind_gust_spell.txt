@@ -1,62 +1,53 @@
-====== Wind Gust Spell ======
+====== Wind Gust ======
 
 {{ rpd:images:wind_gust_spell.png|Wind Gust Spell }}
 
-**Wind Gust** is an [[en:rpd:elemental_spell_affinity|Elemental]] affinity spell in Remixed Pixel Dungeon that creates a gust of wind to push enemies back.
+**Wind Gust** is a spell used by Air Elementals in Remixed Pixel Dungeon.
 
 ==== Description ====
-Wind Gust creates a gust of wind that pushes enemies back. If an enemy is pushed into an obstacle, they may take damage. This spell has a range that increases with the caster's skill level (distance of skillLevel + 1 up to the target).
+Wind Gust is a ranged attack spell that pushes enemies away from the caster. It creates wind particles and burst effects on the target, and can cause the player to fall from bridges or other elevated areas. This spell is particularly dangerous when used near chasms or other dangerous terrain features.
 
 ==== Stats ====
-  * **Magic Affinity:** [[en:rpd:elemental_spell_affinity|Elemental]]
-  * **Targeting:** Cell
-  * **Level:** 1
-  * **Mana Cost:** 1
-  * **Range:** Skill level + 2 (up to Ballistica distance)
+  * **Magic Affinity**: Elemental
+  * **Targeting**: Cell
+  * **Level**: 1
+  * **Mana Cost**: 1
+  * **Cast Time**: Instant
+  * **Special Effects**: pushes target away, damage on impact if target can't be pushed
+  * **Range**: Up to skillLevel + 2 distance
 
-==== Effects ====
-  * Pushes enemies back from the caster
-  * Deals damage if pushed enemy hits an obstacle (caster's skill level × 2)
-  * Creates visual wind particle effects (5 + caster's skill level × 2 particles)
-  * Has a range that increases with the caster's skill level
-  * Pushes all enemies in the line of effect toward the target location
+==== Mechanics ====
+  * When cast, creates a gust of wind that pushes the target in the direction of the spell
+  * If the target cannot be pushed (e.g., against a wall or obstacle), damage is dealt instead
+  * Damage dealt when target cannot be pushed: skillLevel * 2
+  * Particle effects: burst of wind particles and visual burst on target
+  * Sound effect: Meld sound
 
 ==== Usage ====
 The Wind Gust spell can be used for:
-  * Pushing enemies away from dangerous situations
-  * Creating distance between the player and aggressive enemies
-  * Forcing enemies into traps, walls, or other hazards
-  * Crowd control when facing multiple enemies
-  * Activating distant switches or objects
-  * Breaking up enemy formations
+  * Defensive applications - creating distance from enemies
+  * Strategic applications - pushing enemies into hazards
+  * Environmental interactions - moving targets to specific locations
+
+==== Source Code ====
+This spell is implemented in Java:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]]
 
 ==== Classes ====
 Classes that can use this spell include:
-  * Classes with [[en:rpd:elemental_spell_affinity|Elemental]] affinity
-  * [[en:rpd:mage_class|Mage]] (naturally has [[en:rpd:elemental_spell_affinity|Elemental]] affinity)
-  * Other classes that gain access through special means
+  * [[en:rpd:air_elemental_mob|Air Elementals]] (as their primary attack)
 
 ==== Strategy ====
-How to effectively use the Wind Gust spell:
-  * Use near walls or chasms to deal damage to enemies when they're pushed back
-  * Effective for escape when surrounded by enemies
-  * Works well for separating strong enemies from weaker ones
-  * Useful in corridors where enemies can be pushed into each other
-  * Can be used to clear projectiles or items out of the way
-  * Good for maintaining distance with melee enemies
-
-==== Code References ====
-  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L14-L15|WindGust strings]]
-
-==== Content Verification ====
-  * Information source: Java Class in Remixed Dungeon codebase
-  * Stats verified: Yes, extracted directly from spell class properties
-  * Effect descriptions: Generated from code analysis and string resources
-  * Last updated: Based on WindGust.java
+How to effectively handle the Wind Gust spell:
+  * When fighting Air Elementals, be aware of nearby chasms or dangerous terrain
+  * Position yourself carefully to avoid being pushed into hazards
+  * When using the spell, look for opportunities to push enemies into chasms or traps
+  * Be aware that if targets can't be pushed, damage will be dealt instead
 
 ==== See Also ====
-  * [[en:rpd:spells|Spells]]
-  * [[en:rpd:spell_affinities|Spell Affinities]]
+  * [[en:rpd:spells|Spells]] - Other magical abilities
+  * [[en:rpd:mechanics|Game Mechanics]] - Core game systems
+  * [[en:rpd:elemental_spell_affinity|Elemental Spell Affinity]] - Elemental class abilities and mechanics
+  * [[en:rpd:air_elemental_mob|Air Elemental]] - The mob that uses this spell
 
 {{tag> rpd spells elemental }}
