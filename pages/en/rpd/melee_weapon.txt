@@ -1,56 +1,60 @@
 ====== Melee Weapon ======
 
-{{ rpd:images:melee_weapon_item.png|Melee Weapon }}
+{{ rpd:images:melee_weapon.png|Melee Weapon }}
 
-**Melee Weapons** are weapons in Remixed Dungeon designed for close combat. They are used in direct hand-to-hand combat with enemies.
+**Melee Weapons** are a category of weapons in Remixed Dungeon that are used for close combat. These weapons typically have different damage, speed, and accuracy characteristics that differentiate them from ranged weapons.
 
 ==== Description ====
-Melee weapons are equipment items held in the hero's main hand for close-range combat. They vary in attack speed, damage range, and special properties.
+Melee Weapons are used to attack enemies in adjacent tiles. They form the core of most heroes' combat capabilities and come in various types with different statistics and properties.
 
-==== Properties ====
-  * **Attack Skill:** Bonus to hit chance in combat
-  * **Damage Range:** Minimum and maximum damage dealt per hit
-  * **Durability:** How many uses before the weapon breaks (if applicable)
-  * **Speed Factor:** How quickly the weapon can be used in combat
-  * **Enchantment:** Special magical effect (for upgraded weapons)
+==== Base Class ====
+All melee weapons inherit from the base class:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]]
 
-==== Melee Weapon Types ====
-  * [[en:rpd:sword_item|Swords]] - Versatile bladed weapons
-  * [[en:rpd:dagger_item|Daggers]] - Fast, light piercing weapons
-  * [[en:rpd:axe_item|Axes]] - Heavy-hitting weapons
-  * [[en:rpd:mace_item|Maces]] - Blunt weapons with crushing damage
-  * [[en:rpd:spear_item|Spears]] - Thrusting weapons with reach
-  * [[en:rpd:war_hammer|War Hammer]] - Heavy blunt weapons
-  * [[en:rpd:quarterstaff|Quarterstaff]] - Balanced two-handed weapons
-  * [[en:rpd:kusarigama_item|Kusarigama]] - Scythe with chain
+==== Weapon Properties ====
+  * **Range:** Adjacent tiles only (melee range)
+  * **Damage Types:** Varies by weapon type (slashing, crushing, piercing)
+  * **Speed:** Varies by weapon (affects attack speed)
+  * **Accuracy:** Varies by weapon (affects hit chance)
+  * **Strength Requirement:** Each weapon has a STR requirement that must be met to use it effectively
 
-==== Combat Strategy ====
-  * **High Damage vs. Speed:** Choose between heavy hitter weapons or fast attackers
-  * **Versatility:** Some weapons work better with certain [[en:rpd:hero_class|hero classes]]
-  * **[[en:rpd:enchantments|Enchantments]]:** Consider what magical properties benefit your fighting style
-  * **Durability:** Some weapons are more resilient than others
+==== Stats Calculation ====
+  * **Minimum Damage:** Tier value (MIN = tier)
+  * **Maximum Damage:** Calculated as (tier * tier - tier + 10) / ACU * DLY
+  * **Speed:** Delay factor (DLY), lower is faster
+  * **Accuracy:** Accuracy factor (ACU), affects chance to hit
 
-==== Special Properties ====
-  * **Blocking:** Some weapons can block attacks (like [[en:rpd:war_hammer|War Hammer]])
-  * **Reach:** Some weapons can attack adjacent enemies (like [[en:rpd:spear_item|Spear]])
-  * **Strength:** Some weapons require minimum strength to wield effectively
+==== Common Melee Weapons ====
+  * [[en:rpd:sword_item|Swords]] - Balanced weapons with good stats
+  * [[en:rpd:mace_item|Maces]] - Blunt weapons effective against armored foes
+  * [[en:rpd:dagger_item|Daggers]] - Fast but low damage piercing weapons
+  * [[en:rpd:war_hammer_item|War Hammer]] - High damage crushing weapon with high STR requirement
+  * [[en:rpd:long_sword_item|Long Sword]] - High damage but slow weapon
+  * [[en:rpd:knuckles_item|Knuckles]] - Fast weapon with moderate damage
 
-==== Upgrades ====
-  * Melee weapons can be [[en:rpd:upgrade|upgraded]] using [[en:rpd:scroll_of_upgrade_item|Scrolls of Upgrade]]
-  * [[en:rpd:enchantments|Enchantments]] can be applied to provide special effects
-  * Higher levels provide better stats
+==== Weapon Tiers ====
+Melee weapons are organized into tiers:
+  * **Tier 1:** Knuckles, Sai
+  * **Tier 2:** Dagger, Staff, Mages Staff
+  * **Tier 3:** Sword, Mace, Short Sword, Hand Axe, Spear, Quarterstaff
+  * **Tier 4:** Long Sword, Battle Axe, War Hammer, Glaive
+  * **Tier 5:** Great Sword, Gauntlets
+  * **Tier 6:** Dwarven Hammer, Great Maul
+  * **Tier 7:** Elven Sword
+
+==== Mechanics ====
+  * **Upgrading:** Can be upgraded with [[en:rpd:scroll_of_upgrade_item|Scrolls of Upgrade]]
+  * **Enchantments:** Compatible with [[en:rpd:weapon_enchantments|weapon enchantments]]
+  * **Strength Calculation:** Required STR is typically 8 + tier * 2 for un-upgraded weapons
 
 ==== Code References ====
-  * Base Melee Weapon Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]]
-  * Weapon Factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/WeaponFactory.java|WeaponFactory.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1586-L1700|Melee weapon strings]] - English names and descriptions
-  * Russian Localization: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1527-L1631|Melee weapon strings (Russian)]] - Russian localization
+  * Base implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1144-L1152|Melee weapon strings]]
 
-==== Related ====
-  * [[en:rpd:weapon_item|Weapon]]
-  * [[en:rpd:ranged_weapon|Ranged Weapon]]
-  * [[en:rpd:enchantments|Enchantments]]
-  * [[en:rpd:hero_class|Hero Classes]]
-  * [[en:rpd:combat_mechanics|Combat Mechanics]]
+==== See Also ====
+  * [[en:rpd:weapon_item|Weapons]] - All weapon types
+  * [[en:rpd:ranged_weapon_item|Ranged Weapons]] - Weapons for distance combat
+  * [[en:rpd:weapon_enchantments|Weapon Enchantments]] - Enchantments available for weapons
+  * [[en:rpd:melee_combat|Melee Combat]] - Combat mechanics for melee weapons
 
-{{tag> rpd items weapons melee equipment }}
+{{tag> rpd weapons melee }}
