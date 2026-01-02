@@ -1,7 +1,8 @@
-====== Roots ======
+====== Roots Buff ======
 
-{{ rpd:images:roots_sprite.png|Roots }}
+{{ rpd:images:roots_sprite.png|Roots Buff }}
 
+==== Description ====
 **Roots** is a negative status effect in Remixed Dungeon that immobilizes the affected character and prevents movement.
 
 ==== Effect Description ====
@@ -9,6 +10,7 @@
   * **Effect:** Prevents movement while active
   * **Duration:** Varies by source
   * **Source:** Primarily from enemy attacks or special abilities
+  * **Flying Immunity:** Flying characters are immune to roots (attachTo returns false if target is flying)
 
 ==== How to Obtain ====
   * From certain enemy attacks that apply root effects
@@ -18,7 +20,8 @@
 ==== Mechanics ====
   * Prevents all movement while the effect is active
   * Character can still perform other actions (attacking, using items, etc.)
-  * Can be detached by the Levitation status effect (which is why Levitation mentions it)
+  * Can be detached by the [[en:rpd:levitation|Levitation]] status effect (which is why Levitation mentions it)
+  * Flying characters are immune to roots (attachTo() fails if target is flying)
   * Does not prevent other actions beyond movement
   * Duration typically decreases with higher Magic Defense
 
@@ -33,14 +36,32 @@
   * [[en:rpd:levitation|Levitation]] - Completely removes roots when applied
   * High-level armor with good magic defense may resist the effect
   * Some equipment or class abilities may reduce duration
+  * Flying characters are naturally immune to roots
 
-==== Code Reference ====
+==== Code References ====
   * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]]
-  * Source Code Location: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java
-  * Class Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java#L12|Roots extends FlavourBuff]]
-  * Visual Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java#L20|Roots.attachVisual() shows "Rooted" status]]
-  * Anti-Flying Check: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java#L15|Roots.attachTo() fails if target is flying]]
-  * Icon Reference: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java#L25|BuffIndicator.ROOTS]]
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java#L15|attachTo() checks for flying status]]
+  * Visual Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java#L22|attachVisual() shows "Rooted" status]]
+  * Icon Reference: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java#L20|BuffIndicator.ROOTS]]
+
+==== String Resources ====
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L55|Char_StaRooted]] ("Rooted")
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L55|Char_StaRooted]] ("Укоренился")
+  * French: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L55|Char_StaRooted]] ("Enraciné")
+  * German: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L55|Char_StaRooted]] ("Verwurzelt")
+  * Spanish: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L55|Char_StaRooted]] ("Arraigado")
+  * Chinese: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L55|Char_StaRooted]] ("缠绕")
+  * Japanese: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml#L57|Char_StaRooted]] ("根絶")
+  * Korean: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ko/strings_all.xml#L55|Char_StaRooted]] ("뿌리박힌")
+  * Portuguese: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L55|Char_StaRooted]] ("Enraizado")
+  * Italian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-it/strings_all.xml#L55|Char_StaRooted]] ("Radicato")
+  * Polish: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pl/strings_all.xml#L55|Char_StaRooted]] ("Zakorzeniony")
+  * Turkish: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-tr/strings_all.xml#L55|Char_StaRooted]] ("Köklenmiş")
+  * Hungarian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-hu/strings_all.xml#L58|Char_StaRooted]] ("Gyökerezve")
+  * Indonesian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-in/strings_all.xml#L55|Char_StaRooted]] ("Terakar")
+  * Malay: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ms/strings_all.xml#L55|Char_StaRooted]] ("Berakar")
+  * Greek: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-el/strings_all.xml#L55|Char_StaRooted]] ("Ριζωμένος")
+  * Ukrainian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-uk/strings_all.xml#L55|Char_StaRooted]] ("Укорінився")
 
 ==== See Also ====
   * [[en:rpd:status_effects|Status Effects]] - Other status changes
