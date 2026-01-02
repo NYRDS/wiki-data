@@ -1,34 +1,50 @@
 ====== Shadow ======
 
-{:rpd:images:shadow_sprite.png?200|}
-
-{{ rpd:images:shadow_sprite.png|Shadow Sprite  }}
-
-Shadows are fast and swift creatures. 087df4a8853cb3229502316f929e70fc6db6790
-
-They live inside of prison walls and attack any stranger on their own.
-
-Because Shadows native environment is solid stone, ranged weapon are useless to fight them.
+{{ rpd:images:shadow_mob.png|Shadow }}
 
 ==== Description ====
-Shadows silently wander through the ruins of the ancient prison, only occasionally showing themselves to adventurers, usually in their latest adventure.
-
-==== Stats ====
-  * **HP:** 20
-  * **Attack Skill:** 10
-  * **Defense Skill:** 15
-  * **Damage:** 5-10
-  * **Exp for Kill:** 5
-  * **Max Level:** 10
-  * **Speed:** 2 (twice normal speed)
-  * **Attack Delay:** 0.5 (fast attacks)
+**Shadows** - mysterious entities that live inside prison walls. They silently wander through the ruins of the ancient prison, only occasionally showing themselves to adventurers, usually in their latest adventure. They are fast and swift creatures that can move through walls making them difficult to fight with ranged weapons.
 
 ==== Special Abilities ====
-  * **Wall Walking:** Can move through walls and solid terrain
-  * **High Speed:** Moves at twice the normal speed
-  * **Fast Attacks:** Has a very short attack delay, allowing rapid attacks
+  * **Wall Walking:** Can move through walls (walkingType = WalkingType.WALL)
+  * **Movement through walls:** Main feature of shadows - ability to move inside walls
+  * **Immunity to ranged attacks:** Because of this shadows are nearly impossible to attack with throwing weapons or wands
+  * **Attack only in doorways:** Ranged attack can be applied only if shadow stands in a doorway
+  * **High speed:** Shadows move twice as fast as the player (speed() = 2.0f)
+  * **Fast attack:** Attack occurs twice as fast as normal (attackDelay = 0.5f)
+  * **Statistics:**
+    * **Health:** 20 HP (hp(ht(20)))
+    * **Min damage:** 5
+    * **Max damage:** 10
+    * **Attack skill:** 10
+    * **Defense skill:** 15
+    * **XP for kill:** 5
+    * **Max Level:** 10
+    * **Corpse chance:** 0 (carcassChance = 0)
+  * **Special behavior:** When stunned, shadows can exit walls and walk on the floor
 
-==== Notes ====
-The Shadow is a fast enemy that can move through walls, making it difficult to avoid. It appears primarily in the Prison area of the dungeon.
+==== Creation History ====
+The idea and design of the shadow was proposed and implemented by Bogdan Kachura.
 
-{{tag>rpd mobs}}
+==== Content Verification ====
+  * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shadow.java|Shadow.java]]
+  * Special mechanics: Extracted from Shadow.java and WalkingType.java implementation
+  * Last updated: December 2025, source: Remixed Dungeon 1.9.3
+
+==== Implementation Class ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shadow.java|Shadow.java]]
+  * Walking Mechanic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/WalkingType.java|WalkingType.java]]
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1307|Shadow_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1309|Shadow_Name_Objective]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1310|Shadow_Desc]]
+
+==== See Also ====
+  * [[en:rpd:shadow_lord_mob|Shadow Lord]] - Related boss mob
+  * [[en:rpd:mobs|Enemies]] - Other hostile creatures
+  * [[en:rpd:prison_level|Prison Level]] - Level where creature is encountered
+  * [[en:rpd:walking_type_mechanic|Walking Type]] - Movement mechanics on different surfaces
+  * [[en:rpd:enemies|Enemies]] - General information about enemy types
+
+{{tag> rpd mobs prison shadow}}
