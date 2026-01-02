@@ -28,7 +28,7 @@ if (hit) {
 }
 </code>
 
-Note that for magic attacks, the attacker's roll is multiplied by 2, making magic attacks more likely to hit.
+Note that when the magic flag is true (such as with wands), the attacker's roll is multiplied by 2, making magic attacks more likely to hit.
 
 ==== Attack Skill Calculation ====
 
@@ -213,12 +213,12 @@ The armor's effective DR (Damage Reduction) is calculated as: tier * 2 + level()
 ==== Combat Outcomes ====
 
 ==== Hit ====
-  * Attack skill > Defense skill roll
+  * Attack roll (0 to attackSkill(defender)) > Defense roll (0 to defenseSkill(attacker))
   * Damage is calculated with armor reduction
   * Target takes reduced damage
 
 ==== Miss ====
-  * Defense skill > Attack skill roll
+  * Defense roll (0 to defenseSkill(attacker)) >= Attack roll (0 to attackSkill(defender))
   * Target takes no damage
   * Some classes may have special effects on evade
 
@@ -230,6 +230,15 @@ The armor's effective DR (Damage Reduction) is calculated as: tier * 2 + level()
   * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
   * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]]
   * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
+  * Additional Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] (Mob combat implementation)
+  * Additional Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] (Weapon combat factors)
+  * Additional Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] (Armor DR calculation)
+  * Additional Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] (Buff combat bonuses)
+  * Additional Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]] (Actor system)
+  * Additional Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] (Overall combat context)
+  * Additional Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]] (Line-of-sight for ranged attacks)
+  * Additional Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]] (Level-specific combat factors)
+  * Additional Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/CharsList.java|CharsList.java]] (Character list utilities)
 
 ==== Related ====
   * [[en:rpd:attack_skill_mechanic|Attack Skill Mechanic]]
