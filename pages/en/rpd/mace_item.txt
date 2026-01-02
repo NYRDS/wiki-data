@@ -16,16 +16,18 @@ The Mace is a blunt weapon with a heavy head designed to deal crushing damage. U
   * **Armor Piercing:** Damage often bypasses enemy armor
 
 ==== Stats ====
-  * **Damage:** Moderate to high crushing damage
-  * **Speed:** Average speed among melee weapons
-  * **Strength Requirement:** Moderate strength requirement
-  * **Durability:** Generally durable weapon
+  * **Damage:** 3-12 crushing damage (Tier 3 weapon)
+  * **Speed:** 0.8x speed (relative to normal weapon speed)
+  * **Accuracy:** 1.0x accuracy (relative to normal weapon accuracy)
+  * **Type:** Melee Weapon (Sword attack animation)
+  * **Strength Requirement:** 14 STR (typical for tier 3 weapons)
+  * **Durability:** Standard weapon durability
 
 ==== Mechanics ====
-  * **Armor Ignoring:** Damage calculation often ignores or reduces armor defense
-  * **Crushing Attack:** Particularly effective against armored opponents
-  * **Stunning Potential:** May have chances to stun enemies
-  * **Consistent Damage:** Provides reliable damage output
+  * **Damage Calculation:** Base damage range is 3-12, increases with upgrades
+  * **Armor Interaction:** Standard crushing damage mechanics (verify specific armor interactions in source code)
+  * **Upgrade Mechanics:** Damage increases with upgrades (MIN increases by 1, MAX increases by tier value per upgrade)
+  * **Attack Animation:** Uses SWORD_ATTACK animation class
 
 ==== Strategy ====
   * Most effective when facing heavily armored enemies
@@ -42,13 +44,24 @@ The Mace is a blunt weapon with a heavy head designed to deal crushing damage. U
 ==== Code References ====
   * Base weapon implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]]
   * Mace implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Mace.java|Mace.java]]
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1123-L1125|Mace strings]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1430-L1432|Mace strings]]
+  * Sprite: [[https://github.com/NYRDS/remixed-dungeon/blob/master/sprites/item_Mace.png|item_Mace.png]]
+
+==== JSON Configuration ====
+This entity may have JSON configuration, but no matching config was found. Check:
+  * RemixedDungeon/src/main/assets/itemsDesc/*.json
+  * RemixedDungeon/src/main/assets/spritesDesc/mace.json
+
+==== Lua Scripts ====
+This entity is implemented in Java, no Lua script exists
 
 ==== See Also ====
   * [[en:rpd:melee_weapons|Melee Weapons]] - Other close combat weapons
   * [[en:rpd:melee_combat|Melee Combat]] - General melee combat mechanics
   * [[en:rpd:weapon_item|Weapons]] - All weapon types
+  * [[en:rpd:melee_weapon|Melee Weapon]] - Base class for melee weapons
   * [[en:rpd:maces|Maces]] - All mace types
   * [[en:rpd:axes|Axes]] - Other crushing damage weapons
+  * [[en:rpd:war_hammer_item|War Hammer]] - Other crushing damage weapon
 
 {{tag> rpd weapons melee mace }}
