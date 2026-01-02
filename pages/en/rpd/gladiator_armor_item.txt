@@ -1,0 +1,67 @@
+====== Gladiator Armor ======
+
+{{ rpd:images:gladiator_armor_item.png|Gladiator Armor }}
+
+The **Gladiator Armor** is [[en:rpd:class_armor_item|class armor]] for the [[en:rpd:warrior_class|Warrior]] that enables special combo attacks when fighting in melee range.
+
+==== Item Overview ====
+  * **Type:** [[en:rpd:class_armor_item|Class Armor]]
+  * **Class:** [[en:rpd:warrior_class|Warrior]]
+  * **Special Effect:** Enables combo attacks that increase damage with each successive hit
+  * **Usage:** Equipped as body armor
+  * **[[en:rpd:identification|Identification]]:** Becomes identified when worn or when seen in inventory after being identified
+
+==== Special Mechanics ====
+  * **Combo System:** Each successful melee hit adds to a combo counter
+  * **Damage Bonus:** Combo counter increases damage of the next attack
+  * **Combo Timeout:** Combo counter resets after a certain number of turns or taking damage
+  * **Melee Requirement:** Combos only build when attacking in melee range
+  * **[[en:rpd:upgrading_mechanic|Upgrade]] Benefits:** Higher levels increase combo damage bonuses
+  * **[[en:rpd:identification|Identification]]:** Becomes identified when worn or when seen in inventory after being identified
+  * **Armor Protection:** Provides standard armor protection in addition to special effects
+  * **Combo Cap:** There's a maximum combo level that can be achieved
+
+==== Strategy ====
+  * **Aggressive Combat:** Best used when engaging in repeated melee combat
+  * **Combo Building:** Requires consecutive melee attacks to maximize effectiveness
+  * **Risk Management:** Taking damage resets combo, so defensive play between attacks is important
+  * **Enemy Stacking:** Effective against groups that can be hit in sequence
+  * **Critical Timing:** Most effective in sustained combat scenarios where combos can be built
+  * **Melee-Heavy Build:** Works best with strong melee weapons and high hit chance
+  * **Versus Multiple Foes:** Excellent for building and maintaining combos in group encounters
+  * **Versus Single Strong Foe:** Good for sustained combat against powerful enemies
+
+==== Obtaining ====
+  * Automatically granted when choosing [[en:rpd:warrior_class|Warrior]] class at start
+  * Found as rare drop from [[en:rpd:gladiator_subclass|Gladiator]] [[en:rpd:hero_subclass|subclass]] (if hero dies with this armor)
+  * Occasionally available in [[en:rpd:shops_mechanic|shops]] as a special item
+
+==== Effect ====
+When worn by the [[en:rpd:warrior_class|Warrior]], Gladiator Armor enables the combo system. Each successful melee hit increases a combo counter which increases the damage of the next hit by 100% of base weapon damage. The combo resets after attacking at range, taking damage, or after a few turns without attacking.
+
+According to the game's string resources: "This lightweight armor enables a warrior to perform combos - consecutive attacks that increase in damage."
+
+==== Code References ====
+  * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/classarmors/GladiatorArmor.java|GladiatorArmor.java]]
+  * **Class Armor Base:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]]
+  * **Armor Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]]
+  * **Combo Mechanics:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/classarmors/GladiatorArmor.java#L42-L65|GladiatorArmor.java#L42-L65]] (combo system implementation)
+  * **Attack Detection:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/classarmors/GladiatorArmor.java#L38-L40|GladiatorArmor.java#L38-L40]] (checking for consecutive attacks)
+  * **Damage Calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/classarmors/GladiatorArmor.java#L50-L53|GladiatorArmor.java#L50-L53]] (damage bonus implementation)
+  * **Combo Reset:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/classarmors/GladiatorArmor.java#L70-L82|GladiatorArmor.java#L70-L82]] (conditions for resetting combo)
+  * **English String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2435-L2437|GladiatorArmor_Name, GladiatorArmor_Info, GladiatorArmor_Identify]] (GladiatorArmor_Name, GladiatorArmor_Info, and GladiatorArmor_Identify)
+  * **Russian String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2436-L2438|GladiatorArmor strings]] (Russian localization)
+  * **Stats verification:** Extracted directly from GladiatorArmor.java class methods
+  * **Effect descriptions:** Based on code analysis and string resources
+  * **mr: namespace:** Check [[mr:gladiator_armor_item]] for machine-readable data
+
+==== Related Items ====
+  * [[en:rpd:class_armor_item|Class Armors]] - All class-specific armors
+  * [[en:rpd:warrior_class|Warrior Class]] - The class for which this armor is designed
+  * [[en:rpd:gladiator_subclass|Gladiator Subclass]] - Warrior subclass associated with this armor
+  * [[en:rpd:armor_item|Armor]] - General armor information
+  * [[en:rpd:combo_buff|Combo Effect]] - The buff that tracks combo progress
+  * [[en:rpd:melee_combat_mechanic|Melee Combat]] - Information about close-range combat
+  * [[en:rpd:warrior_armor_item|Warrior Armor]] - Basic warrior armor
+
+{{tag> rpd items armor warrior class_armor}}
