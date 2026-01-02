@@ -63,4 +63,62 @@ A tool that:
   * Automated translation verification between different language versions
   * Intelligent suggestions for content improvements based on player questions or forum discussions
 
+==== Additional Tool Suggestions from January 2026 Maintenance ====
+
+===== MR Namespace Generator =====
+  * A script that automatically generates missing mr: namespace pages based on entity lists
+  * Should be able to scan the codebase and generate basic pages with code references
+  * Should follow the pattern: {entity_name}_{type} (e.g., skeleton_mob, ankh_item, heal_spell, burning_buff)
+
+===== Auto-Linker Tool =====
+  * A script that identifies terms in wiki pages that have corresponding wiki pages and adds appropriate links
+  * Should avoid creating duplicate links
+  * Should be configurable to follow the proper naming conventions
+
+===== Content Consistency Checker =====
+  * Validates that all wiki pages follow the established format
+  * Checks for proper code references in "Code References" sections
+  * Verifies that pages contain appropriate DokuWiki syntax
+
+===== Statistics Generator =====
+  * Provides metrics on wiki completeness (coverage of game entities)
+  * Tracks pages that lack code references
+  * Monitors update frequency and outdated content
+
+===== Automated Redlink Resolver =====
+  * More sophisticated than current redlink checker
+  * Suggests similar pages that might have been intended
+  * Provides templates for creation of missing pages
+
+===== Code Change Tracker =====
+  * Tool that monitors git changes in the codebase
+  * Suggests wiki pages that might need updates based on code changes
+  * Could be integrated into CI/CD to flag potential documentation gaps
+
+==== Implementation Priority ====
+
+  1. **MR Namespace Generator** - Addresses the most glaring information gap
+  2. **Auto-Linker Tool** - Would significantly improve navigation and cross-referencing
+  3. **Content Consistency Checker** - Ensures quality and uniformity
+  4. **Statistics Generator** - Provides visibility into wiki completeness
+  5. **Automated Redlink Resolver** - Enhancement of existing functionality
+  6. **Code Change Tracker** - Advanced feature for ongoing maintenance
+
+==== Additional Resources Needed ====
+
+  * **Entity Database**:
+    - A comprehensive list of all in-game entities (mobs, items, spells, buffs, etc.)
+    - Should be generated from code/config files to ensure completeness
+    - Would serve as a checklist for wiki completeness
+
+  * **Game Data API**:
+    - A standardized way to extract game data for documentation
+    - Would make it easier to auto-generate parts of wiki pages
+    - Could also serve the game client for in-game help or tooltips
+
+  * **Template System**:
+    - Template files for different types of wiki pages
+    - Would ensure consistency while making creation of new pages easier
+    - Templates should be easily customizable but enforce essential sections
+
 {{tag> rpd ai wiki tools }}
