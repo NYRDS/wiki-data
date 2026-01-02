@@ -11,11 +11,11 @@ Successful backstab will completely ignore victim armor or special defense abili
 
 ==== Stats ====
   * **Magic Affinity:** Rogue
-  * **Targeting:** self (targets nearest enemy within 1 tile)
+  * **Targeting:** self (automatically targets nearest enemy within 1 tile)
   * **Level:** 2
   * **Mana Cost:** 2
   * **Cast Time:** 1 turn
-  * **Special Effects:** damages a target
+  * **Special Effects:** deals damage with backstab visual effect
   * **Damage Formula:** sqrt(caster's skill level) * (main weapon damage roll + secondary weapon damage roll)
   * **Conditions:** Only works on distracted enemies (PASSIVE, SLEEPING, FLEEING, HORRIFIED, RUNNINGAMOK) or paralyzed targets
   * **Range:** 1 tile distance from caster
@@ -27,26 +27,25 @@ The Backstab spell can be used for:
   * High-damage strikes when conditions are favorable
 
 ==== Classes ====
-Classes that can use this spell include:
-  * Classes with Rogue affinity (e.g., [[en:rpd:rogue_class|Rogue class]])
-  * Other classes that gain access through special means
+  * [[en:rpd:rogue_class|Rogue class]] - Primary user of this spell
 
 ==== Strategy ====
 How to effectively use the Backstab spell:
   * Best used when enemy is in a distracted state or paralyzed
-  * Works with both main hand and off-hand (shield) weapons
-  * Damage scales with your skill level
+  * Works with both main hand and off-hand (shield) weapons for damage calculation
+  * Damage scales with your skill level (specifically sqrt(skill level) multiplier)
   * Guaranteed to work only on enemies that cannot respond immediately
   * Ignores enemy armor completely when successful
+  * Requires the target to be within 1 tile distance
+  * Will fail if the caster has no weapons equipped (nil reference error on damage roll)
 
-==== Data Validation ====
-This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
-
-==== Content Verification ====
-  * Information source: Lua Script in Remixed Dungeon codebase
-  * Stats verified: Yes, extracted directly from spell class properties
-  * Effect descriptions: Generated from code analysis and string resources
-  * Last updated: 2025-12-09 based on Backstab.lua
+==== Code Implementation ====
+Based on the Lua implementation:
+  * The spell checks if the nearest enemy is within 1 tile distance
+  * If the enemy is distracted OR paralyzed, the backstab succeeds
+  * Damage is calculated using both the main weapon and secondary weapon (shield) damage rolls
+  * After successful backstab, a visual status effect ("backstab") is shown to the victim
+  * A sound effect (Wound) is played after the attack
 
 ==== Source Code ====
 This spell is implemented as a Lua script:
