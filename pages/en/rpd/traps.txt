@@ -1,66 +1,42 @@
 ====== Traps ======
 
-{{ rpd:images:trap.png|Trap }}
+Information about traps in Remixed Dungeon.
 
-Traps are hidden dangers found throughout the dungeon that activate when stepped on or triggered by other means. They can cause various negative effects to the player and monsters.
+==== Trap Types ====
+Traps are hidden dangers throughout the dungeon that activate when stepped on or triggered. Common trap types include:
 
-==== Types of Traps ====
-  * [[en:rpd:fire_trap_trap|Fire Trap]] - Creates a patch of fire
-  * [[en:rpd:poison_trap_trap|Poison Trap]] - Releases poison gas
-  * [[en:rpd:paralytic_gas_trap_level_object|Paralytic Gas Trap]] - Creates paralytic gas
-  * [[en:rpd:alarm_trap_trap|Alarm Trap]] - Wakes and alerts all mobs on the level
-  * [[en:rpd:summoning_trap_level_object|Summoning Trap]] - Summons monsters
-  * [[en:rpd:teleportation_trap_level_object|Teleportation Trap]] - Teleports the character randomly
-  * [[en:rpd:pitfall_trap_level_object|Pitfall Trap]] - Creates a pit where a character falls
-  * [[en:rpd:flashing_trap_level_object|Flashing Trap]] - Blinds and damages character
-  * [[en:rpd:grinding_trap_level_object|Grinding Trap]] - Deals heavy damage to character
-  * [[en:rpd:warding_trap_level_object|Warding Trap]] - Creates magical barriers
-  * [[en:rpd:confusion_trap_level_object|Confusion Gas Trap]] - Releases confusion gas
-  * [[en:rpd:ice_trap_level_object|Ice Trap]] - Creates ice that chills characters
-  * [[en:rpd:rockfall_trap_level_object|Rockfall Trap]] - Causes rocks to fall on the area
-  * [[en:rpd:web_trap_level_object|Web Trap]] - Covers character in webs, reducing movement
-  * [[en:rpd:dart_trap_trap|Dart Trap]] - Shoots a dart at the character
-  * [[en:rpd:dart_sniper_trap_trap|Dart Sniper Trap]] - Shoots a dart from a distance
-  * [[en:rpd:gas_trap_level_object|Gas Trap]] - General category for gas-based traps
+  * **Fire Trap** - Creates a fire explosion that burns the triggering character
+  * **Poison Trap** - Releases poison gas that poisons the triggering character
+  * **Paralytic Gas Trap** - Releases gas that paralyzes the triggering character
+  * **Toxic Gas Trap** - Releases toxic gas that damages the triggering character over time
+  * **Alarm Trap** - Creates a loud noise that alerts all enemies in the vicinity
+  * **Lightning Trap** - Strikes the triggering character with lightning
+  * **Gripping Trap** - Grips the triggering character and deals damage over time
+  * **Burning Trap** - Burns the floor where it triggers, causing ongoing damage
+  * **Rockfall Trap** - Causes rocks to fall, damaging all characters in adjacent cells
 
-==== Trap Mechanics ====
-  * Most traps activate when a character steps on the tile
-  * Some traps have special activation conditions
-  * Traps can be detected using [[en:rpd:ring_of_detection_item|Ring of Detection]] or similar items
-  * Some characters have class-specific abilities to detect or avoid traps
-  * Traps can be disarmed using lockpicking or similar skills
-  * Newer versions of the game often have more complex trap mechanics
+==== Trap Detection ====
+  * Traps can be detected by stepping adjacent to them
+  * Some items, like [[en:rpd:ring_of_detection_item|Ring of Detection]], can reveal traps without searching
+  * Characters with high [[en:rpd:search|Search]] skill have better chances of detecting traps
+  * [[en:rpd:hero|Heroes]] with high search skill will automatically detect nearby traps
 
-==== Trap Avoidance ====
-  * Use detection items like [[en:rpd:ring_of_detection_item|Ring of Detection]]
-  * Use [[en:rpd:scroll_of_magic_mapping_item|Scroll of Magic Mapping]] to reveal all traps in the level
-  * Move carefully and check tiles before stepping
-  * Use thrown items to trigger distant traps
-  * Some armor classes provide trap resistance
-  * Some classes have special trap avoidance abilities
+==== Trap Disarming ====
+  * Traps can be disarmed by characters with sufficient [[en:rpd:search|Search]] skill
+  * Disarming traps safely requires a [[en:rpd:thief_class|Thief]] or high search stats
+  * Disarming can yield materials or treasure in some cases
 
-==== Code References ====
-  * Java implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java|Trap.java]]
-  * Trap definitions: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java#L31-L43|Trap.java trap classes array]] - The list of all trap classes available in the game
-  * Trap activation mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java#L113-L135|Trap.java activate method]] - How traps are triggered and affect characters
-  * Individual trap implementations: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/|levels/traps/ directory]] - Each specific trap type implementation
-  * Trap trigger conditions: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java#L100-L109|Trap.java stepOn and bump methods]] - How different types of entities can trigger traps
-  * Trap properties: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java#L23-L43|Trap.java fields]] - Defines properties like kind, uses, targetCell, activatedByItem, activatedByMob, secret, etc.
-  * Trap configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java#L137-L155|Trap.java setupFromJson method]] - How traps are initialized from level object configuration
-  * Trap discovery: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java#L157-L163|Trap.java discover method]] - How traps are revealed to the player
-  * Trap script support: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java#L143-L147|Trap.java ScriptTrap implementation]] - How script-based traps are handled
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1680-L1720|Trap-related strings]]
-  * Machine-readable data: [[mr:traps|mr:traps]]
+==== Strategy ====
+  * Walk carefully and search around if you suspect traps
+  * Use thrown weapons or other items to trigger traps safely
+  * Some classes and items make dealing with traps safer
+  * [[en:rpd:ring_of_detection_item|Ring of Detection]] is valuable for avoiding trap damage
+  * Carry items that can help with status effects (poison, paralysis, etc.)
 
-==== See Also ====
-  * [[en:rpd:mechanics|Mechanics]] - Other game systems
-  * [[en:rpd:items|Items]] - Items that interact with traps
-  * [[en:rpd:level_objects|Level Objects]] - Other objects found on dungeon levels
-  * [[en:rpd:trap_mechanic|Trap Mechanic]] - Detailed trap mechanics
-  * [[en:rpd:trap_detection|Trap Detection]] - How to detect traps
-  * [[en:rpd:trap_disarming|Trap Disarming]] - How to safely disarm traps
-  * [[en:rpd:trap_resistance|Trap Resistance]] - Equipment that provides trap resistance
-  * [[en:rpd:ring_of_detection_item|Ring of Detection]] - Item for trap detection
-  * [[en:rpd:scroll_of_magic_mapping_item|Scroll of Magic Mapping]] - Reveals all traps on a level
+==== Trap Level Objects ====
+  * [[en:rpd:trap_fire_level_object|Fire Trap]]
+  * [[en:rpd:paralytic_gas_trap_level_object|Paralytic Gas Trap]]
+  * [[en:rpd:toxic_gas_trap_level_object|Toxic Gas Trap]]
+  * [[en:rpd:alarm_trap_level_object|Alarm Trap]]
 
-{{tag> rpd traps level_objects hazards }}
+{{tag> rpd mechanics traps hazards}}
