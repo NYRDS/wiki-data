@@ -1,97 +1,56 @@
-====== AI Wiki Page - Tools and Suggestions ======
+====== AI Tools for Wiki Maintenance ======
 
-This page documents suggestions for additional tools that would be helpful for AI agents and developers maintaining the Remixed Dungeon wiki.
+This page documents automated tools and suggestions for maintaining the Remixed Dungeon wiki, particularly for AI and automated systems to help with maintenance tasks.
 
-==== Current Tooling Issues ====
+==== Automated Tools ====
 
-  * **Large Output Truncation**: Several commands, particularly the redlink checker, produce large outputs that get truncated, preventing complete analysis
-  * **Incomplete Code References**: While current pages include many code references, there's inconsistency in which code files are referenced
-  * **Missing Automated Checks**: No automated tooling to check for missing mr: namespace pages
-  * **Naming Convention Enforcement**: Lack of automated checking to ensure pages follow proper naming conventions (snake_case with appropriate suffixes)
-  * **Cross-Language Consistency**: No tools to ensure consistency across different language versions of wiki pages
+**Python-based Tools** (Located in ''tools/py-tools/'' directory):
+  * ''find_red_links.py'' - Identifies internal wiki links that point to non-existent pages (redlinks)
+  * ''scale_sprites_for_wiki.py'' - Processes game sprites for wiki use with proper scaling and borders
+  * ''check_broken_images.py'' - Verifies that all images referenced in wiki pages exist
+  * ''dokuwiki_linter.py'' - Validates DokuWiki syntax and identifies potential formatting issues
 
-==== Suggested Additional Tools ====
+==== AI-Targeted Documentation ====
 
-  * **MR Namespace Generator**:
-    - A script that automatically generates missing mr: namespace pages based on entity lists
-    - Should be able to scan the codebase and generate basic pages with code references
-    - Should follow the pattern: {entity_name}_{type} (e.g., skeleton_mob, ankh_item, heal_spell, burning_buff)
+**Machine-Readable Data:**
+  * The ''mr:'' namespace contains machine-readable reference pages
+  * These pages contain raw data about entities extracted from source code
+  * Created for different entity types: mobs, items, spells, etc.
 
-  * **Auto-Linker Tool**:
-    - A script that identifies terms in wiki pages that have corresponding wiki pages and adds appropriate links
-    - Should avoid creating duplicate links
-    - Should be configurable to follow the proper naming conventions
+**Entity Tracking:**
+  * AI systems should track entity relationships across the codebase
+  * Information sources: Java classes, Lua scripts, JSON configs, string resources
+  * Cross-reference ''getEntityKind()'' method results with file names
 
-  * **Naming Convention Validator**:
-    - A script that checks all wiki pages to ensure they follow proper naming conventions (lowercase, snake_case with appropriate suffixes)
-    - Should identify pages that need renaming and suggest appropriate names
-    - Should integrate with file system operations to help automate renaming while updating cross-references
+==== Recommended Tools for AI Systems ====
 
-  * **Multi-Language Consistency Checker**:
-    - A tool to verify that pages with the same content in different languages maintain consistency
-    - Could identify pages that exist in one language but are missing in others
-    - Would flag content discrepancies between language versions
+  * **Static Analysis**: Tools that scan code for entities and their properties
+  * **Wiki Link Validation**: Automated checking of internal links
+  * **Content Freshness**: Tools to identify pages that haven't been updated in a long time
+  * **Naming Consistency**: Validation that page names follow the convention ''{entity_name}_{type}'' (e.g., ''tengu_mob'', ''ankh_item'')
 
-  * **Content Consistency Checker**:
-    - Validates that all wiki pages follow the established format
-    - Checks for proper code references in "Code References" sections
-    - Verifies that pages contain appropriate DokuWiki syntax
+==== Potential Tool Ideas ====
 
-  * **Statistics Generator**:
-    - Provides metrics on wiki completeness (coverage of game entities)
-    - Tracks pages that lack code references
-    - Monitors update frequency and outdated content
+The following tools would be beneficial for wiki maintenance:
 
-  * **Automated Redlink Resolver**:
-    - More sophisticated than current redlink checker
-    - Suggests similar pages that might have been intended
-    - Provides templates for creation of missing pages
+  * ''entity_extractor.py'' - Automatically extract entity data from Java/Lua/JSON files and suggest wiki page content
+  * ''page_updater.py'' - Compare existing wiki pages with current code and suggest updates
+  * ''translation_validator.py'' - Verify that pages in different languages contain consistent information
+  * ''link_suggester.py'' - Suggest relevant pages that should be linked together
 
-  * **Code Change Tracker**:
-    - Tool that monitors git changes in the codebase
-    - Suggests wiki pages that might need updates based on code changes
-    - Could be integrated into CI/CD to flag potential documentation gaps
+==== Automation Guidelines ====
 
-==== Possible Implementation Approach ====
+When implementing AI-based wiki maintenance:
 
-  * **Python-based Utilities**:
-    - Extend existing tools in the tools/py-tools directory
-    - Use AST parsing to extract more detailed information from Java/Lua files
-    - Implement NLP techniques to identify potential linking candidates
+  * Verify all information against the actual source code before updating
+  * Maintain consistency in naming conventions across all pages
+  * Preserve the existing formatting and structure when possible
+  * When creating new pages, follow the established template for that entity type
+  * Include references to the source code that confirms the information
 
-  * **JSON Config Generation**:
-    - Tool to extract string references and configuration settings from JSON files
-    - Auto-generates content for pages based on these configurations
-    - Helps ensure data consistency between game and wiki
+==== Existing Code References ====
 
-  * **Visual Diff Tool**:
-    - Shows differences between game behavior and wiki documentation
-    - Could use screenshots or other visual aids to highlight discrepancies
-
-==== Implementation Priority ====
-
-  1. **MR Namespace Generator** - Addresses the most glaring information gap
-  2. **Auto-Linker Tool** - Would significantly improve navigation and cross-referencing
-  3. **Content Consistency Checker** - Ensures quality and uniformity
-  4. **Statistics Generator** - Provides visibility into wiki completeness
-  5. **Automated Redlink Resolver** - Enhancement of existing functionality
-  6. **Code Change Tracker** - Advanced feature for ongoing maintenance
-
-==== Additional Resources Needed ====
-
-  * **Entity Database**:
-    - A comprehensive list of all in-game entities (mobs, items, spells, buffs, etc.)
-    - Should be generated from code/config files to ensure completeness
-    - Would serve as a checklist for wiki completeness
-
-  * **Game Data API**:
-    - A standardized way to extract game data for documentation
-    - Would make it easier to auto-generate parts of wiki pages
-    - Could also serve the game client for in-game help or tooltips
-
-  * **Template System**:
-    - Template files for different types of wiki pages
-    - Would ensure consistency while making creation of new pages easier
-    - Templates should be easily customizable but enforce essential sections
-
-This page should be updated regularly as new tooling needs become apparent during wiki maintenance.
+  * For Java code: Reference the specific classes and methods that define entity behavior
+  * For Lua scripts: Include the specific files that implement custom mechanics
+  * For JSON configs: Reference the exact files and fields that contain the configuration data
+  * For string resources: Include links to the string definitions in various languages
