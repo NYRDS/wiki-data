@@ -1,230 +1,66 @@
-====== AI-Assisted Wiki Maintenance Tools ======
+====== AI Wiki Tools and Suggestions ======
 
-This page documents suggestions for additional tools that could enhance AI-assisted wiki maintenance for Remixed Dungeon.
+This page documents tools and suggestions that could be beneficial for AI-assisted wiki maintenance and improvement for the Remixed Dungeon wiki.
 
-==== Current State ====
-The Remixed Dungeon wiki currently uses a combination of manual content creation and some automated tools to maintain consistency and accuracy. The wiki follows specific naming conventions and requires verification against the game source code.
+==== Current AI-Assisted Processes ====
+  * Manual checking of wiki pages against codebase (Java, Lua, JSON configs)
+  * Verification of game mechanics against source implementation
+  * Updating of code references and string resources in wiki pages
+  * Creation of missing wiki pages for entities referenced in code
+  * Renaming of wiki pages to follow proper naming conventions
+  * Cross-referencing between different language versions of wiki pages
 
-==== Suggested Tools ====
+==== Suggested Tools for AI-Assisted Wiki Maintenance ====
 
-==== 1. Automated Content Verification Tool ====
-  * **Purpose**: Automatically checks wiki content against game code to ensure accuracy
-  * **Features**:
-  * Compares stats listed in wiki pages with values in Java/Lua/JSON source
-  * Flags discrepancies between wiki and game mechanics
-  * Regular scheduled checks to ensure content stays current
-  * Integration with CI/CD pipeline to check changes before merging
+===== 1. Automated Entity Documentation Generator =====
+A tool that automatically scans the codebase for entities (mobs, items, spells, etc.) and generates skeleton documentation pages with:
+  * Basic stats and properties extracted from code
+  * Direct links to source code files
+  * References to relevant string resources
+  * Suggested category classifications based on entity types
 
-==== 2. Wiki Link Validator ====
-  * **Purpose**: Enhanced tooling to detect and fix broken links, missing pages, and naming convention violations
-  * **Features**:
-  * Real-time validation of internal links
-  * Automatic suggestions for similar page names
-  * Integration with the existing [[https://github.com/NYRDS/remixed-dungeon/blob/master/tools/py-tools/find_red_links.py|find_red_links.py]] tool
-  * Automated creation of stub pages for missing links
+===== 2. Code-Wiki Synchronization Checker =====
+A tool that regularly compares game code with wiki documentation to identify:
+  * Outdated statistics or mechanics on wiki pages
+  * New game features that lack wiki documentation
+  * Discrepancies between implemented mechanics and documented ones
 
-==== 3. AI-Powered Content Generator ====
-  * **Purpose**: Assist in creating basic page templates based on game entities
-  * **Features**:
-  * Generate basic wiki page structure based on Java class or JSON config
-  * Extract relevant information directly from source code
-  * Pre-populate common sections like stats, descriptions, and references
-  * Follow proper naming conventions automatically
+===== 3. Multi-Language Content Consistency Verifier =====
+A tool that ensures content consistency across different language versions of the same wiki page, including:
+  * Cross-referencing of equivalent content
+  * Verification that translated pages contain the same information as source language
+  * Identification of pages that exist in one language but not others
 
-==== 4. Image Processing Pipeline ====
-  * **Purpose**: Automated processing of game sprites for wiki use
-  * **Features**:
-  * Scaling sprites to appropriate sizes for web viewing
-  * Adding consistent borders or backgrounds
-  * Automatic naming based on wiki conventions
-  * Integration with the existing [[https://github.com/NYRDS/remixed-dungeon/blob/master/tools/py-tools/scale_sprites_for_wiki.py|scale_sprites_for_wiki.py]]
+===== 4. Auto-Link Validation Tool =====
+A more comprehensive version of the existing red link checker that:
+  * Identifies missing pages that should exist based on codebase entities
+  * Suggests appropriate wiki page names for missing entities
+  * Validates that all code references in wiki pages still exist in the current codebase
 
-==== 5. Translation Consistency Checker ====
-  * **Purpose**: Ensure that translated content matches the original English version
-  * **Features**:
-  * Compares Russian and other language versions with English source
-  * Flags outdated translations
-  * Helps maintain consistency across language versions
+===== 5. Wiki Syntax and Style Checker =====
+A tool for ensuring consistency in wiki formatting that checks for:
+  * Consistent heading structures
+  * Proper use of tags and categories
+  * Consistent formatting of data tables
+  * Proper naming conventions for page files
 
-==== 6. Entity Relationship Mapper ====
-  * **Purpose**: Visualize relationships between game entities
-  * **Features**:
-  * Shows connections between items, mobs, spells, and mechanics
-  * Highlights missing relationships in wiki content
-  * Generates visual graphs of game systems
+===== 6. Automated Image/Asset Linker =====
+A tool that:
+  * Matches game sprites with appropriate wiki pages
+  * Generates proper DokuWiki image syntax
+  * Suggests image positioning in wiki content
+  * Verifies existing image links are still valid
 
-==== 7. Automated Documentation Generator ====
-  * **Purpose**: Generate documentation from code comments and structure
-  * **Features**:
-  * Extracts documentation directly from Java code comments
-  * Creates API documentation for developers
-  * Identifies undocumented game mechanics
-  * Synchronizes game changes with documentation automatically
+==== Implementation Suggestions ====
+  * Integration with CI/CD pipeline to automatically check for wiki inconsistencies
+  * Regular automated reports of wiki health statistics
+  * Integration with GitHub Actions for automated wiki maintenance tasks
+  * APIs or tools that allow AI agents to contribute to wiki maintenance directly
 
-==== Implementation Priorities ====
-  1. **Automated Content Verification Tool**: Highest priority for maintaining accuracy
+==== AI Integration Opportunities ====
+  * Natural language processing to extract more detailed information from code comments
+  * Machine learning models trained on existing wiki content to suggest new content
+  * Automated translation verification between different language versions
+  * Intelligent suggestions for content improvements based on player questions or forum discussions
 
-  2. **Wiki Link Validator**: Important for maintaining navigability
-
-  3. **AI-Powered Content Generator**: Useful for scaling content creation
-
-  4. **Image Processing Pipeline**: Needed for better visual content
-
-  5. **Translation Consistency Checker**: Important for internationalization
-
-  6. **Entity Relationship Mapper**: Valuable for understanding complex systems
-
-  7. **Batch Wiki Update Tool**: For performing systematic updates across multiple pages at once (e.g., adding code references, updating naming schemes, fixing broken links)
-
-==== Technical Considerations ====
-  * Tools should be implemented in Python to align with existing tooling
-  * Integration with GitHub Actions for automated checks
-  * Easy to run locally for contributors
-  * Proper error handling and logging
-  * Respectful of API limits when checking external resources
-  * Integration with git workflows to enable safe batch modifications
-  * Backup/snapshot mechanisms before performing bulk operations
-
-==== Additional Suggestions from Recent Maintenance ====
-  * **Dedicated Code Reference Tool**: A tool that can automatically scan Java/JSON/Lua files and add appropriate GitHub links to wiki pages, similar to what was manually performed in recent updates
-  * **Red Link Prevention Tool**: A tool that validates all internal links refer to existing pages, preventing the creation of new red links during edits
-  * **Wiki Naming Convention Validator**: Automated checker to ensure all page names follow the snake_case convention with appropriate suffixes (_mob, _item, _spell, etc.)
-  * **Content Accuracy Verifier**: Tool that periodically checks game mechanics described in wiki pages against current source code to identify outdated information
-  * **Batch Update Tool**: Tool that can systematically update multiple pages at once (e.g., replacing code: namespace links with proper GitHub references)
-  * **Duplicate Content Detection Tool**: Enhanced algorithm to identify actual content duplication rather than just similarity scores, focusing on pages that might be unnecessarily split or merged
-  * **Page Move/Rename Tool**: Automated system to properly rename wiki pages and update all references to them, similar to the manual process performed for the Fortune Teller NPC
-  * **Multi-Language Consistency Tool**: Tool to ensure that content changes in the English version are reflected appropriately in Russian and other language versions
-  * **Entity Kind Reference Tool**: Tool to automatically verify that wiki pages include the correct getEntityKind() method name and link to appropriate JSON configuration files (e.g., mobsDesc/{entityKind}.json)
-  * **String Resource Link Generator**: Tool to automatically find and add links to appropriate string resources in values/strings_all.xml for names, descriptions, and other in-game text referenced in wiki pages
-  * **Code Verification Assistant**: Tool to cross-reference wiki information with method implementations, field values, and constants in Java/Lua files to ensure accuracy of stats, mechanics, and behaviors
-  * **Auto-Wikifier**: Tool to automatically add appropriate internal wiki links when creating or updating pages based on existing page names and relationships
-
-==== Recent Task Insights ====
-  * **Large-Scale Wiki Audit Tool**: Tool to perform comprehensive audits of wiki content similar to the manual verification process performed across multiple pages, checking:
-    * Content accuracy against source code (Java, Lua, JSON)
-    * Proper inclusion of code references and GitHub links
-    * Adherence to naming conventions
-    * Correct use of DokuWiki syntax
-    * Proper internal linking and absence of red links
-  * **Batch Verification Script**: A script that can take a list of wiki pages and systematically verify them against the codebase, extracting stats and mechanics directly from source code for comparison with wiki content
-  * **Wiki Quality Metrics Tool**: Tool to measure wiki completeness, accuracy, and quality by checking for missing pages, outdated information, and content gaps compared to the game's actual implementation
-  * **Content Discrepancy Discovery Tool**: Tool that can automatically compare information in wiki pages with actual implementation in code and flag inconsistencies (like the incorrect stats on the Swarm mob page or the non-existent "Item Action Buff" that was actually an interface)
-  * **Page Renaming Tool**: Automated tool to rename wiki pages while properly updating all internal references to the old page name, preventing broken links (similar to the manual process used to rename item_action_buff.txt to item_action_interface.txt)
-  * **Entity Type Classification Tool**: Tool to ensure pages are created with proper entity type suffixes (_mob, _item, _spell, _buff, etc.) based on the game entity being documented
-  * **Automated Page Creation Tool**: System to automatically generate new wiki pages for missing entities found in the game code, following proper templates and conventions
-  * **Git Workflow Integration Tool**: Tool to automatically commit and push changes to wiki-data repository as part of AI-assisted maintenance workflows, following the convention of committing changes one by one with descriptive commit messages
-  * **Multi-Repository Synchronization Tool**: Tool to keep the wiki content synchronized with the main game repository, ensuring that when new game entities are added, wiki pages are automatically generated or at least flagged for creation
-  * **Code-to-Wiki Mapping Tool**: Tool that can identify game entities in source code and create corresponding wiki pages or update existing ones with proper entity kind references and links to JSON configuration files
-  * **Mechanical Accuracy Verifier**: Tool to specifically verify that subclass abilities, item mechanics, mob behaviors and other gameplay mechanics are accurately represented in wiki content (like the Witchdoctor subclass which was incorrectly described as focusing on necromancy when it actually creates mana shields when casting spells)
-  * **Naming Convention Validator**: Tool to automatically check and enforce the proper naming convention (snake_case with appropriate suffixes like _item, _mob, _spell) for all wiki pages
-  * **Multi-Language Consistency Checker**: Tool to ensure that content in different languages (English, Russian, etc.) is consistent and up-to-date, particularly for game mechanics that have been updated in the source code
-
-==== Specific Tools for Handling Large-Scale Wiki Maintenance ====
-  * **Redlink Population Tool**: A specialized tool that takes the output of find_red_links.py and systematically creates stub pages for all missing references, as performed in the recent maintenance task
-  * **Batch Content Verification Tool**: Tool that can be used to systematically verify multiple wiki pages against their codebase counterparts, ensuring that stats, mechanics, and descriptions are accurate
-  * **Duplicate Resolution Tool**: Tool to identify and resolve duplicated content (like the armor.txt vs armor_item.txt issue identified in the recent task)
-  * **Git Submodule Update Tool**: Automated process to regularly update wiki-data submodule to latest master, as performed in the initial steps of recent maintenance
-  * **Automated Page Creation Workflow**: System that takes the most frequently referenced missing pages from redlink reports and automatically creates basic page structures with proper DokuWiki syntax and suggested content based on related code files
-  * **Naming Convention Enforcement Tool**: Automated tool to scan for and fix pages that don't follow the proper naming convention (snake_case with entity type suffixes like _mob, _item, _spell, etc.), as was manually done renaming lich.txt to lich_subclass.txt and others during recent maintenance
-  * **Code Reference Integration Tool**: Tool to automatically add appropriate GitHub links to source code, JSON configs, and string resources based on the entity being documented, similar to the manual process of adding code references to pages during recent verification
-
-==== Additional Tools Identified During Recent Maintenance ====
-
-===== 1. Wiki File Naming Convention Checker =====
-  * **Purpose**: Identify files that don't follow the prescribed naming convention (snake_case with entity type suffixes)
-  * **Features**:
-  * Scans all wiki files to find those with incorrect naming patterns
-  * Provides automated suggestions for correct naming
-  * Can optionally perform bulk rename operations while updating all internal references
-  * Validates that _mob, _item, _spell, _buff, _npc, _level, etc. suffixes are properly used
-
-===== 2. Bulk Page Rename Tool =====
-  * **Purpose**: Safely rename multiple wiki pages while updating all references to them
-  * **Features**:
-  * Maintains internal link integrity when renaming pages
-  * Creates automated backup of original files before renaming
-  * Updates all internal links to point to new page names
-  * Supports renaming based on entity type detection or provided mapping
-
-===== 3. Cross-Language Consistency Verifier =====
-  * **Purpose**: Ensure consistency across different language versions of wiki pages
-  * **Features**:
-  * Compares English and Russian versions of pages for consistency
-  * Flags content that may be outdated in one language version
-  * Helps identify missing translations or updates that haven't propagated across languages
-
-===== 4. Image Reference Verification Tool =====
-  * **Purpose**: Verify that all image references in wiki pages point to existing files
-  * **Features**:
-  * Checks for broken image links in wiki pages
-  * Verifies image files exist in the media directory
-  * Validates that image naming follows the expected convention based on entity type
-
-===== 5. Content Accuracy Verification Assistant =====
-  * **Purpose**: Compare information in wiki pages with actual game implementation
-  * **Features**:
-  * Automatically extracts stats, mechanics, and descriptions from source code
-  * Compares with wiki content to flag potential inaccuracies
-  * Highlights discrepancies between documented and actual game mechanics
-  * Flags content that may be outdated following game updates
-
-==== Recent Additions from Wiki Maintenance Work ====
-
-===== 1. Automated Dew Mechanics Documentation =====
-  * **Purpose**: Enhance dewdrop and related mechanics pages with accurate code-based information
-  * **Features**:
-  * Automatically extract and document the healing formula: `value = 1 + (Dungeon.depth - 1) / 5`
-  * Update dewdrop mechanics based on actual Java implementation in Dewdrop.java
-  * Verify dewdrop interactions with DewVial.java and other related systems
-  * Add appropriate code references and GitHub links to implementation
-
-===== 2. Mob-Specific Link Enhancement Tool =====
-  * **Purpose**: Automatically add relevant spell and item links to mob pages
-  * **Features**:
-  * When updating swarm_mob.txt, added links to [[en:rpd:scroll_of_psionic_blast_item|Scroll of Psionic Blast]], [[en:rpd:scroll_of_fire_item|Scroll of Fire]], and [[en:rpd:ignite_spell|Ignite Spell]]
-  * Could be automated to scan mob pages and suggest relevant spells/scrolls for linking
-  * Verify that the suggested links exist before adding
-
-===== 3. Russian Content Enhancement Tool =====
-  * **Purpose**: Enhance Russian wiki content with code-based information
-  * **Features**:
-  * Automatically translate and add technical information from source code to Russian pages like dew.txt
-  * Add proper English equivalents and cross-language links
-  * Ensure technical accuracy of translated pages against codebase
-
-===== 4. Image Consistency Tool =====
-  * **Purpose**: Ensure proper image naming and references across entity pages
-  * **Features**:
-  * Verify that image names follow the entity_name_entity_type.png pattern
-  * Check that images are properly displayed in both English and Russian pages
-  * Ensure images match the entity type being documented
-
-===== 5. Page Overwrite Prevention Tool =====
-  * **Purpose**: Prevent inadvertent overwrites of existing wiki pages
-  * **Features**:
-  * Alert when attempting to create a page that already exists
-  * Verify entity identity before creating content (e.g., distinguishing between Marsupial Rat and generic Rat)
-  * Check git history before creating content for existing files to understand original purpose
-
-==== See Also ====
-  * [[en:rpd:development|Development]]
-  * [[en:rpd:wiki|Wiki]]
-  * [[en:rpd:documentation|Documentation]]
-
-{{tag> ai tools automation }}
-
-==== Recent Additions - January 2026 ====
-  * **Header Consistency Tool**: Automatically checks that page headers match the actual file name without improper suffixes (e.g., "Heart of Darkness" instead of "Heart of Darkness Item" for heart_of_darkness_item.txt)
-  * **Image Reference Cleaner**: Tool to remove incorrect image references that were copied from other pages (like the incorrect paralytic gas image reference that needed manual cleanup)
-  * **Entity-Specific Information Validator**: Tool to ensure mob pages correctly identify what type of entity they represent (like clarifying that Undead are specifically Dwarf Undead serving the Dwarf King, not just generic Undead)
-  * **DokuWiki Syntax Compliance Checker**: Enhanced tooling to identify syntax errors before pages go live, as demonstrated with the linter finding incorrect image formats
-  * **Wiki Page Renaming Tool**: Automated handling of page renames to follow proper naming conventions (e.g., renaming air_elemental.txt to air_elemental_mob.txt), including updating all internal references
-  * **Code Verification Tool**: Tool to accurately extract and verify game statistics and mechanics from source code (Java/Lua/JSON) and update wiki content accordingly (e.g., correct tier, damage, speed, and accuracy values for weapons like Quarterstaff and Glaive)
-  * **Red Link Resolution Tool**: Automated creation of missing wiki pages to resolve broken links identified by find_red_links.py, ensuring comprehensive wiki coverage
-  * **Code Reference Integration Tool**: Automated addition of GitHub links to source code, JSON configs, and string resources for enhanced content verification
-  * **Multi-Page Update Tool**: Batch processing of multiple wiki pages for systematic updates such as stats verification, code reference additions, and accuracy improvements
-  * **Content Freshness Checker**: A tool that identifies when wiki pages were last updated relative to the corresponding code changes, helping prioritize which pages need review
-  * **Automated Entity Detection Tool**: System that scans the codebase automatically to find new game entities that don't yet have wiki pages, particularly useful for identifying new mobs, items, spells, or mechanics added in recent updates
-  * **Stat Extraction and Verification Tool**: Automated system that extracts numerical game mechanics (damage, HP, resistances, etc.) directly from Java/Lua/JSON source files and compares them with wiki documentation to identify discrepancies
-  * **Link Consistency Enforcement Tool**: Tool that ensures internal wiki links follow the proper naming convention and point to existing pages, preventing the creation of new red links during edits
-  * **Template-Based Page Generator**: Enhanced tool that creates new wiki pages using appropriate templates based on entity type (mob, item, spell, etc.), pre-populated with the proper sections and code reference placeholders
+{{tag> rpd ai wiki tools }}
