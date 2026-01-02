@@ -1,46 +1,45 @@
 ====== Resistances ======
 
-Resistances in Remixed Dungeon refer to reduced effectiveness of certain status effects, damage types, or other harmful effects that characters or mobs can possess. Unlike immunities, resistances reduce but don't completely prevent the effect.
-
-==== Mechanics ====
-When a character has resistance to a specific source of damage or effect, the damage is reduced to a random value between 0 and the original damage amount (Random.IntRange(0, original_dmg)). This means resistances provide an average of 50% damage reduction against the specific effect they resist.
+Resistances in Remixed Dungeon represent reductions in the effectiveness of specific types of attacks or status effects against a character or mob. When a character has resistance to a particular effect, they take less damage or are less likely to be affected.
 
 ==== Types of Resistances ====
 
-==== Elemental and Damage Type Resistances ====
-  * **Fire Resistance**: Reduces damage from fire-based attacks and effects (Burning, LiquidFlame, BurningFist) - provided by [[en:rpd:ring_of_elements_item|Ring of Elements]]
-  * **Poison Resistance**: Reduces damage over time from poison (see [[en:rpd:poison_buff|Poison]]) - provided by [[en:rpd:ring_of_elements_item|Ring of Elements]]
-  * **Electric Resistance**: Reduces damage from electric/lightning-based attacks (LightningTrap) - provided by [[en:rpd:ring_of_elements_item|Ring of Elements]]
-  * **Toxic Gas Resistance**: Reduces damage from toxic gas clouds - provided by [[en:rpd:ring_of_elements_item|Ring of Elements]]
+==== Damage Resistances ====
+  * **Physical Resistance**: Reduces damage from physical attacks
+  * **Magic Resistance**: Reduces damage from magical attacks
+  * **Elemental Resistances**: Reduces damage from elemental attacks (Fire, Cold, Lightning, etc.)
 
 ==== Status Effect Resistances ====
-  * **Various Status Effects**: [[en:rpd:ring_of_elements_item|Ring of Elements]] also provides resistance to certain mob-specific attacks (Warlock magic missiles, Eye death rays, etc.)
+  * **Poison Resistance**: Reduces the duration and damage of poison effects
+  * **Bleeding Resistance**: Reduces the damage from bleeding effects
+  * **Paralysis Resistance**: Reduces the duration of paralysis effects
+  * **Fear/Terror Resistance**: Reduces susceptibility to fear-based effects
+  * **Charm Resistance**: Reduces susceptibility to charm effects
+  * **Sleep Resistance**: Reduces susceptibility to sleep effects
 
-==== Acquiring Resistances ====
-  * **[[en:rpd:ring_of_elements_item|Ring of Elements]]**: The primary source of elemental resistances, providing resistance to various element-based damage types with a probability based on ring level
-  * **Buffs**: Temporary resistances granted by buff effects
-  * **[[en:rpd:hero_classes|Hero Classes]]**: Some hero classes have natural resistances
-  * **[[en:rpd:mobs|Mobs]]**: Certain mobs have resistances to specific damage types or effects
+==== Sources of Resistance ====
+  * **Armor**: Different types of armor provide various resistances
+  * **Rings**: Some rings provide resistances to specific effects
+  * **Buffs**: Temporary effects that grant resistance
+  * **Abilities**: Some character classes or mobs have innate resistances
+  * **Enchantments**: Weapon and armor enchantments may provide resistances
 
-==== Implementation ====
-  * Resistances are tracked using entity kind names (getEntityKind()) in the character's resistances collection
-  * When taking damage, if the source is in the resistances collection, damage is reduced to a random value between 0 and the original damage
-  * The [[en:rpd:ring_of_elements_item|Ring of Elements]] has a probability calculation (Random.Int(level + 3) >= 3) to determine if its resistances are active
+==== How Resistances Work ====
+  * Resistances typically reduce the effect by a percentage or fixed amount
+  * Some resistances are binary (completely immune or not)
+  * Multiple sources of the same resistance may stack to a cap
+  * Some effects ignore resistances completely
 
-==== Strategy ====
-  * [[en:rpd:ring_of_elements_item|Ring of Elements]] resistances become more reliable as the ring level increases
-  * Resistances provide an average of 50% damage reduction against specific sources
-  * Higher-level Rings of Elements provide more consistent protection
-
-==== Source Code References ====
-  * Resistance calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L806-L814|Char.java resist method]]
-  * Resistance collection: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L1235-L1239|Char.java resistances() method]]
-  * [[en:rpd:ring_of_elements_item|Ring of Elements]] implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]]
+==== Information Sources ====
+  * **Java Code**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java#L218-L259|Actor.java#L218-L259]] - Damage calculation methods
+  * **Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L103-L120|Char.java#L103-L120]] - Resistance methods
+  * **Mob Resistances**: Various mob implementation files in [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs|Mobs directory]]
 
 ==== See Also ====
   * [[en:rpd:immunities|Immunities]]
-  * [[en:rpd:ring_of_elements_item|Ring of Elements]]
-  * [[en:rpd:buffs|Buffs]]
+  * [[en:rpd:armor|Armor]]
+  * [[en:rpd:rings|Rings]]
+  * [[en:rpd:damage|Damage]]
   * [[en:rpd:status_effects|Status Effects]]
 
-{{tag> rpd mechanics status_effects}}
+{{tag> rpd mechanics resistances }}
