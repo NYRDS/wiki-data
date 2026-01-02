@@ -2,13 +2,15 @@
 
 {{ rpd:images:buff_vertigo.png|Vertigo Status Effect }}
 
-**Vertigo** is a status effect in Remixed Pixel Dungeon that causes disorientation and confusion in the affected character.
+==== Description ====
+**Vertigo** is a negative status effect in Remixed Pixel Dungeon that causes disorientation and confusion in the affected character.
 
 ==== Effects ====
   * **Disorientation:** Affected characters experience dizziness and confusion
   * **Movement:** Character's movement becomes erratic and unpredictable
-  * **Duration:** The effect lasts until it wears off or is cured
+  * **Duration:** The effect lasts for 10 turns by default (DURATION constant)
   * **Direction:** Character may move in random directions instead of intended path
+  * **Duration Reduction:** Duration is reduced by Resistance buffs (such as from rings of elements)
 
 ==== Causes ====
 Vertigo can be inflicted by:
@@ -22,17 +24,38 @@ Vertigo can be inflicted by:
   * Potions and items that cure status effects may remove vertigo
   * Some creatures may be immune to disorientation effects
   * Waiting for the effect to naturally expire
+  * Duration can be reduced by Magic Defense and Resistance buffs
 
-==== Source Code ====
+==== Code References ====
   * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]]
-  * String Resources (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] (vertigo-related strings)
-  * String Resources (Russian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (Russian)]] (vertigo-related strings)
-  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java#L29|How Vertigo affects movement]]
+  * Duration Constant: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java#L14|DURATION constant set to 10f]]
+  * Duration Reduction: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java#L21|duration() method handles resistance]]
+  * Visual Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java#L27|attachVisual() shows "Dizzy" status]]
+  * Icon Reference: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java#L19|BuffIndicator.VERTIGO]]
+
+==== String Resources ====
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L56|Char_StaDizzy]] ("Dizzy")
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L56|Char_StaDizzy]] ("Головокружение")
+  * French: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L56|Char_StaDizzy]] ("Étourdi")
+  * German: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L56|Char_StaDizzy]] ("Schwindelig")
+  * Spanish: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L56|Char_StaDizzy]] ("Mareado")
+  * Chinese: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L56|Char_StaDizzy]] ("眩晕")
+  * Japanese: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml#L58|Char_StaDizzy]] ("めまい")
+  * Korean: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ko/strings_all.xml#L56|Char_StaDizzy]] ("멀미")
+  * Portuguese: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L56|Char_StaDizzy]] ("Tonto")
+  * Italian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-it/strings_all.xml#L56|Char_StaDizzy]] ("Stordito")
+  * Polish: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pl/strings_all.xml#L56|Char_StaDizzy]] ("Oszołomiony")
+  * Turkish: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-tr/strings_all.xml#L56|Char_StaDizzy]] ("Ser-Tepede")
+  * Hungarian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-hu/strings_all.xml#L59|Char_StaDizzy]] ("Szédülés")
+  * Indonesian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-in/strings_all.xml#L56|Char_StaDizzy]] ("Pusing")
+  * Malay: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ms/strings_all.xml#L56|Char_StaDizzy]] ("Penin")
+  * Greek: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-el/strings_all.xml#L56|Char_StaDizzy]] ("Ζαλάδα")
+  * Ukrainian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-uk/strings_all.xml#L56|Char_StaDizzy]] ("Запаморочення")
 
 ==== See Also ====
   * [[en:rpd:status_effects|Status Effects]]
-  * [[en:rpd:confusion_buff|Confusion]]
   * [[en:rpd:buffs|Buffs and Debuffs]]
   * [[en:rpd:horror_enchantment|Horror Enchantment]]
+  * [[en:rpd:levitation_buff|Levitation]]
 
-{{tag> rpd status_effects buffs vertigo confusion control}}
+{{tag> rpd status_effects buffs vertigo confusion control dizzy}}
