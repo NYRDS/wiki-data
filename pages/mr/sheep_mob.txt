@@ -1,18 +1,33 @@
 ====== Sheep Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfFlock.java|WandOfFlock.java]] - Contains the Sheep inner class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfFlock.java#L90|Sheep static class]] - Actual implementation of the sheep NPC
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Sheep.json|Sheep.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Sheep.json|Sheep.json]] - Sprite animation configuration
 
 ===== String Resources =====
 <code xml>
-<string name="Sheep_Name">[Name]</string>
-<string name="Sheep_Info">[Description]</string>
+<string name="Sheep_Name">sheep</string>
+<string name="Sheep_Name_Objective">sheep</string>
+<string name="Sheep_Gender">feminine</string>
+<string name="Sheep_Desc">This is a magic sheep. What's so magical about it? You can't kill it. It will stand in place until it magically fades away, all while chewing cud with a blank stare.</string>
+<string name="WandOfFlock_SheepBaa_0">Baa!</string>
+<string name="WandOfFlock_SheepBaa_1">Baa?</string>
+<string name="WandOfFlock_SheepBaa_2">Baa.</string>
+<string name="WandOfFlock_SheepBaa_3">Baa...</string>
+<string name="WandOfFlock_SheepBaa_4">Bee...</string>
+<string name="WandOfFlock_SheepBaa_5">Ble...</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Implementation Details =====
+  * **Entity Kind**: sheep (from getEntityKind() returning simple class name)
+  * **Sprite**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.SHEEP]] (sprite defined in Sheep.json)
+  * **NPC Type**: A temporary NPC summoned by [[en:rpd:wand_of_flock_item|Wand of Flock]]
+  * **Lifespan**: Limited duration based on wand level + 3
+  * **Behavior**: Non-hostile, cannot be killed, disappears after a certain time
+  * **Interaction**: Speaks random "baa" sounds when interacted with
