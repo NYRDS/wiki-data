@@ -1,140 +1,35 @@
 ====== Elementals ======
 
-**Elementals** are magical creatures representing the fundamental elements of nature: fire, water, air, and earth. Each type has unique properties and abilities related to their element.
+{{ rpd:images:fire_elemental_mob.png|Fire Elemental }}
 
-==== Description ====
-Elementals are magical creatures representing the four fundamental elements. They appear throughout the dungeon and each type has unique abilities, resistances, and weaknesses based on their elemental nature.
+Elementals are magical beings made of one of the fundamental elements: air, earth, fire, or water. Each type of elemental has unique abilities and characteristics based on the element they embody.
 
 ==== Types of Elementals ====
-
-===== Fire Elemental =====
-{{ rpd:images:fireelemental_sprite.png|Fire Elemental Sprite }}
-**Fire Elementals** are creatures of living flame. They are immune to fire-based damage and may heal from it, but vulnerable to cold.
-  * **Immunities:** Fire enchantment, Burning buff, Wand of Firebolt, Scroll of Psionic Blast, Bleeding buff
-  * **Special:** Can heal when affected by Burning, ignite enemies on attack (50% chance)
-  * **Vulnerabilities:** Frost-based attacks and effects
-  * **Drops:** [[en:rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] (10% chance)
-  * **Stats:** HP 65, Attack 25, Defense 20, DMG 16-20, DR 5, Exp 10, Max Level 20
-  * **Properties:** Flying, no carcass drop
-
-===== Air Elemental =====
-{{ rpd:images:airelemental_sprite.png|Air Elemental Sprite }}
-**Air Elementals** are flying creatures associated with wind. They attack at range using the [[en:rpd:wind_gust_spell|Wind Gust]] spell and maintain distance from enemies.
-  * **Immunities:** Bleeding buff
-  * **Special:** Flying, ranged attacks with Wind Gust spell, maintains distance from enemies (keeps at least skillLevel()-1 distance)
-  * **Drops:** [[en:rpd:potion_of_levitation_item|Potion of Levitation]] (10% chance)
-  * **Stats (Depth-Based):** HP depth*3+1, Attack (2*defense)+1, Defense depth*2+1, DMG 0-(ht()/4), DR (depth+1)/5, Exp depth+1
-  * **Properties:** Flying, no carcass drop
-
-===== Water Elemental =====
-{{ rpd:images:waterelemental_sprite.png|Water Elemental Sprite }}
-**Water Elementals** are fluid-based creatures. They gain speed and healing near water, but take damage from fire.
-  * **Immunities:** Frost, Scroll of Psionic Blast, Bleeding
-  * **Special:** Speed doubled on liquid terrain, heals on water tiles, can freeze enemies on attack (50% chance)
-  * **Vulnerabilities:** Burning-based attacks and effects
-  * **Drops:** [[en:rpd:potion_of_frost_item|Potion of Frost]] (10% chance)
-  * **Stats (Depth-Based):** HP depth*5+1, Attack (defense/2)+1, Defense depth*2+1, DMG (HP/2)-(HP/2), DR (depth+1)/3, Exp depth+1
-  * **Properties:** No carcass drop
-
-===== Earth Elemental =====
-{{ rpd:images:earthelemental_sprite.png|Earth Elemental Sprite }}
-**Earth Elementals** are sturdy, stone-based creatures. They're immune to various status effects and can create plant growth.
-  * **Immunities:** Roots, Paralysis, Stun, Toxic Gas, Burning, Bleeding
-  * **Special:** Stats scale with dungeon depth, 50% chance to create regrowth on attack, moves at half speed on liquid terrain
-  * **Drops:** [[en:rpd:earthroot_seed_item|Earthroot Seed]] (10% chance)
-  * **Stats (Depth-Based):** HP depth*10+1, Attack (HP/5)-(HP/5), Defense depth/2+1, DR depth+1, Exp depth+1
-  * **Properties:** No carcass drop
+  * [[en:rpd:air_elemental_mob|Air Elemental]] - Flying creatures that can push enemies with wind attacks
+  * [[en:rpd:earth_elemental_mob|Earth Elemental]] - Heavily armored creatures with high health and damage
+  * [[en:rpd:fire_elemental_mob|Fire Elemental]] - Creatures that deal fire damage and ignite enemies
+  * [[en:rpd:water_elemental_mob|Water Elemental]] - Creatures with abilities related to water and liquid
 
 ==== Common Properties ====
-Elementals typically share some common characteristics:
-  * **Elemental Immunities:** Each type has immunities to its own element
-  * **Vulnerabilities:** Each type has specific weaknesses to opposing elements
-  * **Magical Nature:** All elementals are magical beings
-  * **No Carcass:** Most elementals don't leave carcass behind when they die
+  * All elementals are typically found in their respective environmental levels or through certain feelings
+  * Most elementals have some form of immunity or resistance related to their element
+  * Elementals generally have stats that scale with dungeon depth
+  * They are resistant to certain status effects due to their non-corporeal nature
 
-==== Strategy ====
-When fighting elementals, consider their resistances and vulnerabilities:
-  * Fire Elementals: Use ice/cold attacks, avoid fire-based weapons, watch out for healing from burning
-  * Water Elementals: Use fire attacks, avoid fighting them in water where they heal and move faster
-  * Air Elementals: They keep distance and use ranged attacks, try to corner them or fight from afar
-  * Earth Elementals: Resist status effects and physical damage, most resilient of elementals
+==== Behavior ====
+  * Elementals often exhibit AI behaviors that reflect their elemental nature
+  * They may use special abilities that are thematically consistent with their element
+  * Some elementals can move through terrain in ways that normal creatures cannot
 
-==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/FireElemental.java|FireElemental.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/WaterElemental.java|WaterElemental.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java|EarthElemental.java]]
-
-==== Technical Details ====
-===== Fire Elemental Technical =====
-  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/FireElemental.java|com.watabou.pixeldungeon.actors.mobs.FireElemental]]
-  * **HP:** 65 (ht(65))
-  * **Attack Speed:** Normal (same as standard mobs)
-  * **Defense:** 20 (baseDefenseSkill = 20)
-  * **Attack:** 25 (baseAttackSkill = 25)
-  * **Damage:** 16-20 (dmgMin = 16, dmgMax = 20)
-  * **Damage Reduction:** 5 (dr = 5)
-  * **Experience:** 10 (expForKill = 10)
-  * **Max Level:** 20 (maxLvl = 20)
-  * **Immunities:** [[en:rpd:fire_enchantment|Fire]], [[en:rpd:burning_buff|Burning]], [[en:rpd:wand_of_firebolt_item|Wand of Firebolt]], [[en:rpd:scroll_of_psionic_blast_item|Scroll of Psionic Blast]], [[en:rpd:bleeding_buff|Bleeding]]
-
-===== Air Elemental Technical =====
-  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|com.nyrds.pixeldungeon.mobs.elementals.AirElemental]]
-  * **HP:** Depth * 3 + 1 (dynamic based on dungeon depth)
-  * **Attack Speed:** Normal
-  * **Defense:** Depth * 2 + 1 (dynamic based on dungeon depth)
-  * **Attack:** (defense * 2) + 1 (dynamic based on defense)
-  * **Damage:** 0 to (hp/4) (dmgMin = 0, dmgMax = ht()/4)
-  * **Damage Reduction:** (depth+1)/5 (dynamic based on dungeon depth)
-  * **Experience:** Depth + 1 (dynamic based on dungeon depth)
-  * **Max Level:** Depth + 2 (dynamic based on dungeon depth)
-  * **Immunities:** [[en:rpd:bleeding_buff|Bleeding]]
-  * **Special Attack:** Uses [[en:rpd:wind_gust_spell|Wind Gust]] spell instead of normal attack
-  * **Range:** Skill level (3 + lvl/10) - keeps distance of at least skillLevel()-1 from enemies
-  * **AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Hunting.java|Hunting]] - actively hunts targets but maintains distance
-
-===== Water Elemental Technical =====
-  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/WaterElemental.java|com.nyrds.pixeldungeon.mobs.elementals.WaterElemental]]
-  * **HP:** Depth * 5 + 1 (dynamic based on dungeon depth)
-  * **Attack Speed:** Normal
-  * **Defense:** Depth * 2 + 1 (dynamic based on dungeon depth)
-  * **Attack:** (defense/2) + 1 (dynamic based on defense)
-  * **Damage:** Equal to HP divided by 2 (dmgMin = ht()/2, dmgMax = ht()/2)
-  * **Damage Reduction:** (depth+1)/3 (dynamic based on dungeon depth)
-  * **Experience:** Depth + 1 (dynamic based on dungeon depth)
-  * **Max Level:** Depth + 2 (dynamic based on dungeon depth)
-  * **Immunities:** [[en:rpd:frost_buff|Frost]], [[en:rpd:scroll_of_psionic_blast_item|Scroll of Psionic Blast]], [[en:rpd:bleeding_buff|Bleeding]]
-  * **Speed on Water:** Doubled when on liquid terrain
-  * **Speed on Other Terrain:** Halved on non-liquid terrain
-  * **Healing:** Heals expForKill when standing on water tiles
-  * **AI:** Standard mob behavior with special interaction on water
-
-===== Earth Elemental Technical =====
-  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java|com.nyrds.pixeldungeon.mobs.elementals.EarthElemental]]
-  * **HP:** Depth * 10 + 1 (dynamic based on dungeon depth)
-  * **Attack Speed:** Normal
-  * **Defense:** Depth / 2 + 1 (dynamic based on dungeon depth)
-  * **Attack:** (defense/2) + 1 (dynamic based on defense)
-  * **Damage:** Equal to HP divided by 5 (dmgMin = ht()/5, dmgMax = ht()/5)
-  * **Damage Reduction:** Equal to expForKill (dynamic based on dungeon depth)
-  * **Experience:** Depth + 1 (dynamic based on dungeon depth)
-  * **Max Level:** Depth + 2 (dynamic based on dungeon depth)
-  * **Immunities:** [[en:rpd:roots_buff|Roots]], [[en:rpd:paralysis_buff|Paralysis]], [[en:rpd:stun_buff|Stun]], [[en:rpd:toxic_gas_buff|Toxic Gas]], [[en:rpd:burning_buff|Burning]], [[en:rpd:bleeding_buff|Bleeding]]
-  * **Speed on Liquid:** Halved when on liquid terrain
-  * **Regrowth Chance:** 50% chance to create [[en:rpd:regrowth_spell|Regrowth]] when attacking
-  * **AI:** Standard mob behavior with regrowth special attack
-
-==== String Resource References ====
-  * **Fire Elemental:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|FireElemental_Name, FireElemental_Info]]
-  * **Air Elemental:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|AirElemental_Name, AirElemental_Info]]
-  * **Water Elemental:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|WaterElemental_Name, WaterElemental_Info]]
-  * **Earth Elemental:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|EarthElemental_Name, EarthElemental_Info]]
+==== Information Sources ====
+  * **Java Code**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/|Elementals package]]
+  * **Spawn Configuration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L91-L94|Bestiary.json]] (lines 91-94)
+  * **English String Resources**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1412-L1427|Elemental string resources]]
 
 ==== See Also ====
   * [[en:rpd:mobs|Mobs]]
-  * [[en:rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]]
-  * [[en:rpd:potion_of_levitation_item|Potion of Levitation]]
-  * [[en:rpd:potion_of_frost_item|Potion of Frost]]
-  * [[en:rpd:earthroot_seed_item|Earthroot Seed]]
+  * [[en:rpd:environmental_mechanics|Environmental Mechanics]]
+  * [[en:rpd:immunities|Immunities]]
+  * [[en:rpd:resistances|Resistances]]
 
-{{tag> rpd mobs elements }}
+{{tag> rpd mobs elementals }}
