@@ -3,15 +3,36 @@
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java|DewVial.java]]
 
+===== Entity Kind =====
+DewVial
+
+===== Stats =====
+  * **Maximum Volume:** 10 dewdrops capacity
+  * **Auto-Drink Feature:** Automatically consumed when HP reaches 0 if full
+  * **Healing Calculation:** Healing amount based on formula: `ceil(volume^(log10(20)) / 20 * character_HT)`
+  * **Weight:** 1 (normal item weight)
+  * **Type:** Consumable item with storage capability
+
+===== Mechanics =====
+  * **Collection:** Collect dewdrops by using the 'Collect Dew' action
+  * **Drinking:** Drink the stored dewdrops manually with 'DRINK' action
+  * **Auto-Activation:** If full (volume 10) and character HP reaches 0, automatically consumed to heal character
+  * **Visual Indicator:** Glows when full (volume 10)
+
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
+This entity may have JSON configuration, but no matching config was found. Check:
   * RemixedDungeon/src/main/assets/itemsDesc/*.json
   * RemixedDungeon/src/main/assets/spritesDesc/dew_vial.json
 
 ===== String Resources =====
 <code xml>
-<string name="DewVial_Name">[Name]</string>
-<string name="DewVial_Info">[Description]</string>
+<string name="DewVial_Name">dew vial</string>
+<string name="DewVial_ACDRINK">DRINK</string>
+<string name="DewVial_Info">You can store excess dew in this tiny vessel for drinking it later. If the vial is full, in a moment of deadly peril the dew will be consumed automatically.</string>
+<string name="DewVial_AutoDrink">The dew vial was emptied to heal your wounds.</string>
+<string name="DewVial_Collected">You collected a dewdrop into your dew vial.</string>
+<string name="DewVial_Full">Your dew vial is full!</string>
+<string name="DewVial_Empty">Your dew vial is empty!</string>
 </code>
 
 ===== Lua Scripts =====
