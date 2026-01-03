@@ -1,0 +1,46 @@
+====== Comida Podrida ======
+
+{{ rpd:images:item_RottenRation.png|Comida Podrida }}
+
+**Comida Podrida** es un [[es:rpd:food|objeto de comida]] negativo en Remixed Dungeon que al consumirse causa daño e impone efectos negativos.
+
+==== Descripción ====
+La Comida Podrida aparece en la mazmorra como una versión estropeada de comida normal o puede ser creada mediante alquimia. A diferencia de la comida normal, la comida podrida daña al jugador al consumirse.
+
+==== Efectos ====
+Al consumir Comida Podrida:
+  * **[[es:rpd:nausea_buff|Náusea]]** - Muestra el mensaje "¡Asqueroso!" y aplica el efecto de náusea
+  * **Generación de gases** - Al consumir o lanzar puede generar varios gases:
+    * **[[es:rpd:confusion_gas_buff|Gas de Confusión]]** - causa confusión durante 150+10*profundidad_mazmorra turnos
+    * **[[es:rpd:paralytic_gas_buff|Gas Paralizante]]** - causa parálisis durante 500 turnos
+    * **[[es:rpd:toxic_gas_buff|Gas Tóxico]]** - causa envenenamiento durante 500 turnos
+    * **(25% de probabilidad)** - Sin efecto gaseoso, simplemente se echa a perder
+
+==== Métodos de Obtención ====
+La Comida Podrida puede aparecer:
+  * **Con el tiempo** - la comida normal puede estropearse en niveles avanzados de la mazmorra
+  * **A través de alquimia** - usando [[es:rpd:potion_of_purity_item|Poción de Pureza]] se puede convertir la comida podrida de nuevo en comestible
+
+==== Información Técnica ====
+  * **Clase Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]]
+  * **Hereda de:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]]
+  * **Clase abstracta:** RottenFood es una clase abstracta de la que heredan otros alimentos podridos
+
+==== Propiedades ====
+  * **Satisfacción de hambre:** (Hunger.STARVING - Hunger.HUNGRY)/2 unidades (60 unidades)
+  * **Precio:** 1 oro por unidad
+  * **Tipo:** Objeto de comida
+  * **Apilable:** Sí (heredado de Food)
+  * **Nutrición:** Proporciona saciedad mínima pero tiene efectos negativos
+
+==== Estrategia ====
+  * **Evite consumirla** - la comida podrida puede ser peligrosa para la vida
+  * **Úsela como consumible** - en último caso, puede usarse para distraer a enemigos
+  * **Mantenga Poción de Pureza** - para restaurar la comestibilidad de la comida podrida
+
+==== Páginas Relacionadas ====
+  * [[es:rpd:food|Comida]] - Información general sobre objetos alimenticios
+  * [[es:rpd:potion_of_purity_item|Poción de Pureza]] - Poción para purificar comida podrida
+  * [[es:rpd:food_item|Ración]] - Producto original que puede estropearse
+
+{{tag> es:rpd items food mechanics }}
