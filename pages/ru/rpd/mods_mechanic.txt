@@ -1,0 +1,148 @@
+====== Моды (Modding Mechanic) ======
+
+{{ rpd:images:mods.png|Modding}}
+
+==== Обзор Механики ====
+Remixed Pixel Dungeon имеет встроенную поддержку модов, что позволяет игрокам и разработчикам расширять функциональность игры. Моды могут заменять ресурсы игры, добавлять новый контент и изменять существующую механику.
+
+==== Как установить мод, не встроенный в игру? ====
+
+Моды обычно упакованы в zip-архивы (иногда расширение файла меняется на что-то вроде rpd, если это так, измените расширение обратно на zip).
+
+Чтобы установить мод на Remixed Dungeon вручную, выполните следующие действия:
+
+**Версия Android >= 11** (требуется Remixed 32.1+):
+  
+**Вариант 1** (если вы разрабатываете мод):
+    * распакуйте архив мода в любую директорию в папке Downloads
+    * в игре: Моды -> Установить локальный мод -> выберите директорию мода (см. [[https://www.youtube.com/shorts/hJq-7vVaf4o|видео]])
+
+**Вариант 2** (если просто хотите установить готовый мод):
+   * поместите архив мода в формате rpd на устройство
+   * перейдите к нему в файловом менеджере (см. [[https://www.youtube.com/shorts/wyPVbAdbWXQ|видео]])
+   * нажмите, чтобы открыть
+   * выберите приложение Remixed Dungeon
+   * в приложении: подтвердите установку мода
+
+**Версия Android < 11**:
+   * распакуйте архив мода в **Android/data/com.nyrds.pixeldungeon.ml/files/**
+   * готово.
+
+==== О создании модов ====
+
+[[ru:rpd:start|Remixed Pixel Dungeon]] имеет встроенную поддержку модов (с некоторыми [[ru:rpd:mods_limitations|ограничениями]]).
+
+Мод представляет собой подмену ресурсов игры из папки assets. Помимо ресурсов, таких как спрайты и звуки, здесь можно найти:
+  * файлы [[ru:rpd:json_configs|конфигурации]] в формате JSON - ''[[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets|Assets directory]]''
+  * [[ru:rpd:mods_scripts|скрипты]] на языке Lua - ''[[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets/scripts|Scripts directory]]''
+
+При подмене графических файлов без подмены раскадровок нужно обязательно сохранять размер изображения.
+
+Мод обязательно должен содержать файл version.json со следующим содержимым: {"version":n}, где n - номер (целое число) версии мода.
+
+Моды хранятся на файловой системе устройства по адресу (сюда же их можно поместить самостоятельно):
+
+**\Android\data\com.nyrds.pixeldungeon.ml\files\**
+
+==== Особенности игры с использованием модов ====
+
+  * Каждый мод сохраняет прогресс игры независимо от других
+  * Значки, полученные в модах, не учитываются в общих достижениях
+
+По ссылке можно посмотреть [[ru:rpd:mods_list|список основных модов]].
+
+==== Информация по созданию модов ====
+
+  * [[https://vk.com/wall-84207769_24963]]
+  * [[https://vk.com/wall-84207769_25117]]
+  * [[https://vk.com/wall-84207769_25151]]
+
+==== Раскадровка спрайтов ====
+
+Пример раскадровки: ''[[https://github.com/NYRDS/remixed-dungeon/blob/78523d5d8ce9a7ff7efcb2f95d16200cd8004111/RemixedDungeon/src/main/assets/spritesDesc/Rat.json#L1|Rat.json]]''
+
+  {
+   "texture" : "rat.png",
+   "width"  : 16,
+   "height" : 15,
+   "idle"   : { "fps" : 2,  "looped" : true,     "frames" : [0,0,0,1] },
+   "run"    : { "fps" : 14, "looped" : true,     "frames" : [6,7,8,9,10] },
+   "attack" : { "fps" : 11, "looped" : false,    "frames" : [2,3,4,5,0] },
+   "die"    : { "fps" : 11, "looped" : false,    "frames" : [11,12,13,14] }
+  }
+
+  * Название .json файла отвечает за то, какому мобу будет заменена текстура. Например, для крысы используется Rat.json, для гнолла - Gnoll.json. Полный список можно посмотреть в папке ''[[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets/spritesDesc|spritesDesc]]''
+  * texture - файл с текстурой
+  * width - ширина кадра
+  * height - высота кадра
+  * Анимации покоя, движения, атки и смерти. fps - скорость проигрывания кадров, looped - определяет, будет ли анимация зацикливаться
+
+Самое главное - JSON файл нужно поместить в папку **spritesDesc**, которую надо создать в папке с модом.
+
+==== Замена описаний ====
+
+Моды также могут менять абсолютно любой текст в игре, будь то название предмета, описание тайтла или сообщение в лог. Исходные файлы с текстами можно найти в ''[[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/res/values-ru|values-ru directory]]'' и ''[[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/res/values|values directory]]'' (для английского языка).
+
+Пример замены описания крысы:
+Описания мобов находятся в файле strings_mobs.xml, и на 122-й строке находится описание нашей крысы:
+  * <string name="Rat_Name">сумчатая крыса</string>
+  * <string name="Rat_Gender">feminine</string>
+  * <string name="Rat_Name_Objective">крысу</string>
+  * <string name="Rat_Desc">Сумчатые крысы - агрессивные, но довольно слабые обитатели канализации. Тем не менее в больших количествах, они могут представлять опасность.</string>
+
+Для замены русского описания создайте файл с именем strings_ru.json в корне папки с модом:
+  * ["Rat_Name","DM50"]
+  * ["Rat_Gender","masculine"]
+  * ["Rat_Name_Objective","DM50"]
+  * ["Rat_Desc","Устаревшая инженерная машина дворфов, созданная для ремонта, но способная оказать сопротивление в случае опасности."]
+
+__Важные моменты:__
+  - Для замены текста каждой локализации необходим один файл, в который вставляются строчки в формате ["ссылка на строку xml файла", "текст, который необходимо заменить"]
+  - Для описания необходимо правильно указывать половую принадлежность, чтобы в дальнейшем текст подставлялся правильно (крыса ударила, гнолл ударил, чудище ударило и т.п.)
+
+==== Атрибуты уровней ====
+
+Пример атрибутов уровня:
+ "1":{"kind":"SewerLevel", "depth":1, "size":[32,32], "tiles":"tiles4.png", "water":"water_guts.png", "music":"surface.mp3","feeling":"CHASM", "viewDistance":8 }
+
+  * атрибут size игнорируется для PredesignedLevel и RandomLevel
+  * атрибуты tiles, water, music, feeling, viewDistance - опциональны
+  * варианты feeling - NONE, CHASM, WATER, GRASS
+  * waterSx, waterSy - скорость анимации воды
+
+==== Типы уровней ====
+  * [[ru:rpd:random_level_mechanic|RandomLevel]]
+  * [[ru:rpd:predesigned_level_mechanic|PredesignedLevel]]
+
+==== Расстановка мобов и предметов ====
+  * [[ru:rpd:mods_items|Предметы]]
+  * [[ru:rpd:mods_mobs|Мобы]]
+  * [[ru:rpd:mods_objects|Объекты]]
+
+===== Примеры модов =====
+  * ''[[https://github.com/NYRDS/The-dungeon-of-heroes-RPD-MOD|The-dungeon-of-heroes-RPD-MOD]]''
+  * ''[[https://github.com/NYRDS/PD_mini-RPD-MOD|PD_mini-RPD-MOD]]''
+
+==== Текстовые редакторы под Android ====
+Для редактирования JSON-конфигов и Lua-скриптов:
+  * ''[[https://play.google.com/store/apps/details?id=com.maskyn.fileeditor|Turbo Editor]]'' - Text Editor
+  * ''[[https://play.google.com/store/apps/details?id=xyz.iridiumion.enlightened|Enlightened]]'' - Code Editor
+
+==== Проверка контента ====
+  * Информация о моддинге основана на ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ModManager.java|ModManager.java]]''
+  * Конфигурации спрайтов находятся в ''[[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets/spritesDesc|spritesDesc directory]]''
+  * Файлы конфигурации модов: ''[[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets|assets directory]]''
+  * Lua-скрипты: ''[[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets/scripts|scripts directory]]''
+  * Файлы локализации: ''[[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/res/values-ru|values-ru directory]]'' и ''[[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/res/values|values directory]]''
+
+==== См. также ====
+  * [[ru:rpd:start|Начало]]
+  * [[ru:rpd:mods_limitations|Ограничения моддинга]]
+  * [[ru:rpd:mods_items|Предметы в модах]]
+  * [[ru:rpd:mods_mobs|Мобы в модах]]
+  * [[ru:rpd:mods_scripts|Скрипты модов]]
+  * [[ru:rpd:json_configs|Конфигурационные файлы]]
+  * [[ru:rpd:items|Предметы]]
+  * [[ru:rpd:mobs|Мобы]]
+
+{{tag> rpd моддинг механики}}

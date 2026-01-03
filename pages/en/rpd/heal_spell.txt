@@ -77,6 +77,14 @@ There is a different Java-based spell called "Healing" (not "Heal") with differe
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L15-L20|Healing.java#L15-L20]] - Stats initialization (targeting, affinity, level, image, cost)
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L23-L27|Healing.java#L23-L27]] - Exact healing calculation ((int) (chr.ht()*0.3))
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - Java-based healing spell that heals 30% of target's max HP, targets self only, costs 10 mana, level 3 spell
+  * **Spell targeting system:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]] - handles target selection for spells
+  * **Spell casting framework:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - base class for all spells
+  * **Character health system:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - defines ht() (max HP) and heal() methods used by the spell
+  * **Caster skill system:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - defines skillLevel() method used in the healing calculation
+  * **Mana system:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Mana.java|Mana.java]] - mana consumption for spell casting
+  * **Spell affinity system:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java#L22|SpellHelper.AFFINITY_WITCHCRAFT]] - defines witchcraft affinity used by this spell
+  * **JSON spell configuration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spellsDesc/Heal.json|Heal.json]] - spell properties defined in JSON
+  * **Skill level calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L181|Hero.skillLevel()]] - how caster skill level is determined
   * **Last updated:** [[https://github.com/NYRDS/remixed-dungeon/commit/|Latest commit]]
 
 ==== Data Validation ====

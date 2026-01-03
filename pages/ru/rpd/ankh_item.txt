@@ -1,0 +1,63 @@
+====== Анк ======
+
+{{ rpd:images:ankh_item.png|Анк }}
+
+==== Описание ====
+Этот древний символ бессмертия дает возможность вернуться к жизни после смерти. При воскрешении все предметы в инвентаре героя теряются, но один случайный экипированный предмет сохраняется в виде костей, которые можно забрать с места смерти.
+
+==== Особые свойства ====
+  * Предоставляет однократное воскрешение после смерти (реализовано в методе [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ankh.java#L26|Ankh.resurrect]])
+  * При воскрешении все предметы в рюкзаке (инвентаре) теряются (обрабатывается в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndResurrect.java|WndResurrect]])
+  * Экипированные предметы НЕ сохраняются напрямую - вместо этого один случайный экипированный предмет остается в виде костей на месте смерти (реализовано в методе [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Bones.java#L22|Bones.leave]])
+  * Одноразовый предмет (удаляется после использования в методе [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ankh.java#L26|resurrect]])
+  * Может складываться (хотя полезен только один за раз из-за потери при воскрешении) (определено в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ankh.java#L17|конструкторе]])
+  * Не может быть улучшен (определено в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ankh.java#L47|методе isUpgradable]])
+  * Всегда идентифицирован (определено в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ankh.java#L51|методе isIdentified]])
+  * Стоит 50 золота за единицу (определено в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ankh.java#L55|методе price]])
+
+==== Примечания ====
+Анк - это мощный, но рискованный предмет - он может спасти вас от смерти, но ценой потери всего инвентаря. Только один случайный экипированный предмет будет восстановлен в виде костей из места, где вы умерли.
+
+==== Стратегия ====
+  * Лучше использовать в качестве последнего средства при столкновении с верной смертью
+  * Старайтесь держать в инвентаре только самые необходимые предметы при входе в опасные зоны
+  * Так как только один экипированный предмет сохраняется в виде костей (а не все экипированные предметы), подумайте, какой предмет наиболее ценен для сохранения
+  * Не носите несколько Анков, так как вы их потеряете при воскрешении
+  * Будьте осторожны при экипировке проклятых предметов - если проклятый предмет убьет вас во время экипировки, Анк будет израсходован, но не предотвратит смерть
+
+==== Технические детали ====
+Когда герой умирает и использует Анк для воскрешения:
+  * ''Dungeon.gameOver()'' вызывается, что удаляет текущее сохранение игры через ''Dungeon.deleteGame(false)'' в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndResurrect.java#L56|WndResurrect.java#L56]]
+  * Состояние игры полностью удаляется, включая инвентарь героя
+  * ''Bones.leave(hero)'' сохраняет один случайный экипированный предмет (или золото, если нет полезного экипированного предмета)
+  * Герой возрождается с полным HP, но в новом состоянии игры
+  * Все предметы инвентаря (кроме одного, сохраненного в виде костей) теряются навсегда
+  * Использование анка отслеживается в статистике через ''Statistics.ankhsUsed++'', как видно в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndResurrect.java#L59|WndResurrect.java#L59]]
+
+==== Ссылки на исходный код ====
+  * Основная реализация: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ankh.java|Ankh.java]]
+  * Диалог воскрешения: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndResurrect.java|WndResurrect.java]]
+  * Сохранение костей: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Bones.java|Bones.java]]
+  * Обработка смерти героя: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L610|Hero.java#L610]] (вызов воскрешения)
+  * Регистрация предметов: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L233|ItemFactory.java#L233]]
+  * Отслеживание статистики: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Statistics.java#L15|Statistics.java#L15]] (счетчик ankhsUsed)
+
+==== Строковые ресурсы ====
+  * Название Анка: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1404|Ankh_Name]] (строка 1404 в русских строках)
+  * Сообщения диалога воскрешения: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1405|WndResurrect_Message]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1406|WndResurrect_Yes]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1407|WndResurrect_No]] (строки 1405-1407 в русских строках)
+  * Английские строки: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1404-L1407|Ankh и сообщения WndResurrect в английском]]
+  * Китайские строки: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1404-L1407|Ankh и сообщения WndResurrect в китайском]]
+  * Испанские строки: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L1404-L1407|Ankh и сообщения WndResurrect в испанском]]
+
+==== JSON-файлы конфигурации ====
+  * Шансы выпадения предметов: Не настроены в JSON-файлах, обрабатываются в коде через Treasure.getLevelTreasury() и Treasury.getLevelTreasury()
+
+==== Машинно-читаемые данные ====
+  * [[mr:ankh_item|mr:ankh_item]] - Страница с машинно-читаемой информацией и техническими деталями
+
+==== См. также ====
+  * [[ru:rpd:belongings|Имущество]] - Система снаряжения и инвентаря героя
+  * [[ru:rpd:raise_dead_spell|Поднять мертвеца]] - Другие механики воскрешения
+  * [[ru:rpd:black_skull_item|Череп]] - Похожая механика костей/сохранения
+
+{{tag> ru:rpd ru:items ru:resurrection}}

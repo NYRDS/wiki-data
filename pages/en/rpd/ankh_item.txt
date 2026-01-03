@@ -47,9 +47,27 @@ When the hero dies and uses an Ankh for resurrection:
   * Hero death handling: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L610|Hero.java#L610]] (resurrection call)
   * Item registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L233|ItemFactory.java#L233]]
   * Statistics tracking: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Statistics.java#L15|Statistics.java#L15]] (ankhsUsed counter)
+  * Game save deletion: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java#L228|Dungeon.deleteGame()]] - deletes save when ankh is used
+  * Inventory handling during resurrection: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndResurrect.java#L56|WndResurrect.java#L56]] - game state reset
+  * Ankh collection logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java#L62|Item.collect()]] - how ankh is added to inventory
+  * Belongings system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings.java]] - inventory management
+  * Equipment handling: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/ItemSlot.java|ItemSlot.java]] - shows which item is preserved as bones
+  * Death cause tracking: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind.java]] - tracks reason for death
+  * Cursed item handling: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item cursed logic]] - why ankh won't save from cursed equipping
+  * Game over state: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java#L207|Dungeon.gameOver()]] - called during resurrection
+  * JSON configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/Ankh.json|Ankh.json]] - item properties defined in JSON
 
 ==== String Resources ====
   * Ankh name: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1404|Ankh_Name]] (line 1404 in English strings)
   * Resurrection dialog messages: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1405|WndResurrect_Message]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1406|WndResurrect_Yes]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1407|WndResurrect_No]] (lines 1405-1407 in English strings)
+  * Russian strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1404|Ankh_Name in Russian]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1405-L1407|WndResurrect messages in Russian]]
+  * Chinese strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1404|Ankh_Name in Chinese]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1405-L1407|WndResurrect messages in Chinese]]
+  * Spanish strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L1404|Ankh_Name in Spanish]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L1405-L1407|WndResurrect messages in Spanish]]
+
+==== JSON Configuration Files ====
+  * Item drop rates: Not configured in JSON files, handled in code through Treasure.getLevelTreasury() and Treasury.getLevelTreasury()
+
+==== Machine-Readable Data ====
+  * [[mr:ankh_item|mr:ankh_item]] - Machine-readable reference page with technical details
 
 {{tag> rpd items resurrection}}

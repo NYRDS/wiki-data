@@ -1,0 +1,60 @@
+====== 狂怒增益 ======
+
+{{ rpd:images:rage_buff.png|狂怒增益 }}
+
+==== 描述 ====
+狂怒增益是一种状态效果，可以将攻击力翻倍，但会造成周期性自伤。由遗物[[cn:rpd:corpse_dust_item|尸尘]]触发。
+
+==== 机制 ====
+  * **伤害加成：** 攻击伤害翻倍（2倍正常伤害），通过 `attackProc` 方法实现
+  * **自伤：** 每回合有10%概率对玩家造成随机伤害（1-5点），当生命值高于最大值的1/5时，通过 `act()` 方法触发
+  * **视觉效果：** 嗜血图标指示器 (BuffIndicator.BLOODLUST)
+  * **持续时间：** 在装备尸尘遗物期间持续有效
+
+==== 效果 ====
+处于狂怒影响下时：
+  * **进攻：** 攻击力显著增加，使战斗更有效
+  * **风险：** 对玩家角色造成周期性伤害，制造危险情况
+  * **策略：** 高风险高回报的战斗方式
+
+==== 属性 ====
+  * **伤害倍数：** 正常攻击伤害的200%
+  * **自伤概率：** 生命值 > 最大值20%时，每回合10%
+  * **自伤范围：** 每次1-5点伤害
+  * **图标：** 嗜血符号 (BuffIndicator.BLOODLUST)
+
+==== 获取 ====
+  * 装备[[cn:rpd:corpse_dust_item|尸尘]]遗物时自动触发
+  * 无法与尸尘物品分开移除
+
+==== 代码参考 ====
+  * Java类：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/RageBuff.java|RageBuff.java]]''
+  * 实现：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/RageBuff.java#L27|attackProc方法将伤害翻倍]]''
+  * 实现：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/RageBuff.java#L17|act方法处理周期性伤害]]''
+
+==== 字符串资源 ====
+  * 英语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L89|CorpseDustBuff_Name]]'' ("Bloodlust") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L90|CorpseDustBuff_Info]]'' ("Attacks are greatly increased for those filled with bloodlust, making them especially dangerous.")
+  * 俄语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L89|CorpseDustBuff_Name]]'' ("Жажда крови") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L90|CorpseDustBuff_Info]]'' ("Жажда крови наполняет атаки, делая их особенно опасными.")
+  * 法语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L89|CorpseDustBuff_Name]]'' ("Rage sanguinaire") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L90|CorpseDustBuff_Info]]'' ("Les attaques sont considérablement augmentées pour ceux qui sont enragés, ce qui les rend particulièrement dangereux.")
+  * 德语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L91|CorpseDustBuff_Name]]'' ("Blutrausch") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L92|CorpseDustBuff_Info]]'' ("Die Angriffskraft von Menschen im Blutrausch ist deutlich erhöht, was sie besonders gefährlich macht.")
+  * 西班牙语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L89|CorpseDustBuff_Name]]'' ("Sed de sangre") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L90|CorpseDustBuff_Info]]'' ("Los ataques se incrementan en gran medida para los que están llenos de sed de sangre, lo que los hace especialmente peligrosos.")
+  * 中文：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L89|CorpseDustBuff_Name]]'' ("嗜血") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L90|CorpseDustBuff_Info]]'' ("你充满了嗜血欲望，攻击增加，并使你变得十分危险。")
+  * 日语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml#L91|CorpseDustBuff_Name]]'' ("血に飢える") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml#L92|CorpseDustBuff_Info]]'' ("血への渇望に満たされた者たちの攻撃力は大幅に上昇し、特に危険な存在となる。")
+  * 韩语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ko/strings_all.xml#L89|CorpseDustBuff_Name]]'' ("피에 굶주린") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ko/strings_all.xml#L89|CorpseDustBuff_Info]]'' ("피에 굶주린 자들의 공격력은 크게 증가하여 특히 위험한 존재가 된다.")
+  * 葡萄牙语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L89|CorpseDustBuff_Name]]'' ("Sangrento") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L90|CorpseDustBuff_Info]]'' ("Os ataques são muito aumentados para aqueles cheios de sede de sangue, tornando-os especialmente perigosos.")
+  * 意大利语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-it/strings_all.xml#L89|CorpseDustBuff_Name]]'' ("Sete di sangue") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-it/strings_all.xml#L89|CorpseDustBuff_Info]]'' ("Gli attacchi aumentano notevolmente per chi è preso dalla sete di sangue, rendendoli particolarmente pericolosi.")
+  * 波兰语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pl/strings_all.xml#L89|CorpseDustBuff_Name]]'' ("Żądza krwi") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pl/strings_all.xml#L90|CorpseDustBuff_Info]]'' ("Ataki są znacznie zwiększone u tych wypełnionych rządą krwi, co czyni ich nadzwyczaj niebezpiecznymi.")
+  * 土耳其语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-tr/strings_all.xml#L89|CorpseDustBuff_Name]]'' ("Kana Susamış") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-tr/strings_all.xml#L90|CorpseDustBuff_Info]]'' ("Kana susamış kişiler için saldırılar büyük ölçüde artar, bu da onları özellikle tehlikeli hale getirir.")
+  * 匈牙利语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-hu/strings_all.xml#L92|CorpseDustBuff_Name]]'' ("Vérszomjasság") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-hu/strings_all.xml#L93|CorpseDustBuff_Info]]'' ("A vérszomjasságban szenvedők támadásaikban jelentősen megerősödnek, ami különösen veszélyessé teszi őket.")
+  * 印尼语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-in/strings_all.xml#L89|CorpseDustBuff_Name]]'' ("Haus Darah") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-in/strings_all.xml#L90|CorpseDustBuff_Info]]'' ("Serangan sangat meningkat bagi mereka yang dipenuhi dengan haus darah, membuat mereka sangat berbahaya.")
+  * 马来语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ms/strings_all.xml#L89|CorpseDustBuff_Name]]'' ("Gila Darah") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ms/strings_all.xml#L90|CorpseDustBuff_Info]]'' ("Serangan sangat meningkat bagi mereka yang dipenuhi dengan haus darah, menjadikannya sangat berbahaya.")
+  * 希腊语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-el/strings_all.xml#L89|CorpseDustBuff_Name]]'' ("Αιμοδιψία") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-el/strings_all.xml#L90|CorpseDustBuff_Info]]'' ("Οι επιθέσεις αυτών που καταβάλλονται από αιμοδιψία ενισχύονται κατακόρυφα, κάτι που τους κάνει εξαιρετικά επικίνδυνους.")
+  * 乌克兰语：''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-uk/strings_all.xml#L89|CorpseDustBuff_Name]]'' ("Жадоби крові") 和 ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-uk/strings_all.xml#L90|CorpseDustBuff_Info]]'' ("Атака тих, що охоплені жадобою крові, значно зростає, роблячи їх небезпечними.")
+
+==== 参见 ====
+  * [[cn:rpd:corpse_dust_item|尸尘]] - 应用此增益的物品
+  * [[cn:rpd:buffs|增益]] - 所有状态效果列表
+  * [[cn:rpd:quest_items|任务物品]] - 其他任务相关物品
+  * [[cn:rpd:artifacts|遗物]] - 遗物列表
+
+{{tag> rpd 增益 战斗 遗物 嗜血 狂怒}}

@@ -1,0 +1,91 @@
+====== Эльф (Elf Class) ======
+
+{{ rpd:images:hero_ELF.png|Elf Class }}
+
+==== Краткое Описание ====
+Эльф - один из классов персонажей в Remixed Dungeon. Он является ловким персонажем с естественными магическими способностями и навыками дальнего боя.
+
+==== Особенности Класса ====
+  * **Начальная Сила:** 9 (вместо 10 для большинства других классов)
+  * **Начальное Здоровье:** 15 (вместо 20 для большинства других классов)
+  * **Магическая Связь:** Эльфийская
+  * **Специальная Способность:** Сопротивление некоторым магическим эффектам и улучшенный сбор росы
+  * **Условие Разблокировки:** Разблокируется после победы над 4-м боссом [[ru:rpd:king_mob|Королём]] любым классом ИЛИ через пожертвование 2+ через внутриигровую покупку
+  * **Иммунитеты:** Иммунитет к эффектам корней (root)
+
+==== Начальные Характеристики и Снаряжение ====
+  * **Начальное Здоровье:** 15 (вместо 20 для большинства других классов) - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L47-L53|initHeroes.json:ELF.hp]]''
+  * **Начальная Сила:** 9 (вместо 10 для других классов) - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L47-L53|initHeroes.json:ELF.str]]''
+  * **Начальное Снаряжение**:
+    * +1 Эльфийский Лук (опознан) - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L35-L39|initHeroes.json:ELF.weapon]]''
+    * 20 Обычных Стрел (опознаны) - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L40-L44|initHeroes.json:ELF.items]]''
+    * +1 Эльфийский Кинжал (опознан) - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L40-L44|initHeroes.json:ELF.items]]''
+    * Тканевый Доспех (опознан) - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L2-L7|initHeroes.json:common.armor]]''
+    * 100 Золота - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L8-L12|initHeroes.json:common.items]]''
+  * **Быстрые слоты**:
+    * Быстрый слот 1: Обычная стрела - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L54-L59|initHeroes.json:ELF.quickslot]]''
+    * Быстрый слот 2: Заклинание Магическая стрела - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L54-L59|initHeroes.json:ELF.quickslot]]''
+  * **Иммунитеты:** Корни - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L45-L49|initHeroes.json:ELF.immunities]]''
+  * **Магическая Связь**: Эльф - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L45-L49|initHeroes.json:ELF.magicAffinity]]''
+
+==== Особенности Класса ====
+  * **15 Здоровья и 9 Силы:** Начинает с 15 очками Здоровья и 9 очками Силы - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L47-L53|initHeroes.json:ELF]]''
+  * **Иммунитет к корням:** Иммунитет к эффектам, препятствующим движению - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L45-L49|initHeroes.json:ELF.immunities]]''
+  * **Улучшенный лук:** Начинает с улучшенным Эльфийским луком (+1) и запасом стрел - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L35-L39|initHeroes.json:ELF.weapon]] и [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L40-L44|initHeroes.json:ELF.items]]''
+  * **Эксперт в луках:** Отлично владеет дальнобойным оружием (особенно луками)
+  * **Улучшенный сбор росы:** Получает +1 дополнительный бонус от росы (как Охотница) - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L396-L409|HeroClass.java:dewBonus()]]''
+  * **Недостаток в ближнем бою:** Менее эффективен с оружием ближнего боя
+
+==== Особые механики ====
+  * Эльф иммунен к эффектам корней, которые обычно препятствуют движению - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L45-L49|initHeroes.json:ELF.immunities]]''
+  * Начинает с +1 Эльфийским луком и запасом стрел - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L35-L39|initHeroes.json:ELF.weapon]] и [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L40-L44|initHeroes.json:ELF.items]]''
+  * Имеет заклинание Магическая стрела в быстром слоте для магических атак на расстоянии - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L54-L59|initHeroes.json:ELF.quickslot]]''
+  * Получает +1 дополнительное исцеление от росы по сравнению с другими классами - ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L396-L409|HeroClass.java:dewBonus()]]''
+
+==== Классовые способности ====
+У Эльфа есть доступ к уникальным путям мастерства, которые можно выбрать позже в игре:
+  * **Следопыт:** Эльфийские Следопыты - мастера маскировки; проходя по высокой траве, получают временный эффект невидимости и еще быстрее, чем обычные Эльфы
+  * **Шаман:** Эльфийские Шаманы могут использовать жезлы как оружие ближнего боя; успешные попадания имеют шанс активировать силу жезла без расхода заряда
+
+==== Проверка контента ====
+  * Источник информации: ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]]'', ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]]''
+  * Проверка характеристик: Извлечено напрямую из конфигурации ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L35-L59|initHeroes.json:ELF section]]''
+  * Проверка механик: Основано на ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L396-L409|HeroClass.java:dewBonus()]]'' и конфигурации ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]]''
+  * Бонус росы: Основан на методе dewBonus() в ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L396-L409|HeroClass.java]]''
+  * Последнее обновление: Декабрь 2025
+
+==== Преимущества ====
+  * Иммунитет к эффектам корней
+  * Возможность дальнего боя с Эльфийским луком
+  * Заклинание Магическая стрела для дополнительного магического урона
+  * Хороший баланс между ближним (Эльфийский кинжал) и дальним (Эльфийский лук) боями
+  * Отличное владение дальнобойным оружием (особенно луками)
+  * Улучшенный сбор росы (+1 бонус за каждую каплю)
+  * Ловкость и скорость
+
+==== Недостатки ====
+  * Меньше начальной силы, чем у большинства других классов (9 против 10)
+  * Меньше начального здоровья, чем у большинства других классов (15 против 20)
+  * Менее эффективен с оружием ближнего боя
+  * Более зависим от дальнобойного оружия
+
+==== Стратегия ====
+  * Сосредоточьтесь на дальнем бою с помощью луков и стрел
+  * Эффективно собирайте росу для получения пользы для здоровья (усиленное исцеление)
+  * Рассмотрите выбор пути Мастерства Следопыт или Шаман в зависимости от предпочтительного стиля игры
+  * Используйте более высокую ловкость для мобильности
+  * Используйте иммунитет к эффектам корней при позиционировании в бою
+
+==== Подклассы ====
+  * [[ru:rpd:scout_subclass|Следопыт]]
+  * [[ru:rpd:shaman_subclass|Шаман]]
+
+==== См. также ====
+  * [[ru:rpd:playable_class_mechanic|Играбельные классы]] - Другие варианты персонажей
+  * [[ru:rpd:elven_bow_item|Эльфийский лук]] - Начальное оружие
+  * [[ru:rpd:scout_subclass|Следопыт]] - Путь мастерства
+  * [[ru:rpd:shaman_subclass|Шаман]] - Путь мастерства
+  * [[ru:rpd:common_arrow_item|Обычная стрела]] - Начальное боеприпасы
+  * [[ru:rpd:king_mob|Король]] - Босс, необходимый для разблокировки (альтернатива: пожертвовать 2+)
+
+{{tag> rpd классы эльф}}
