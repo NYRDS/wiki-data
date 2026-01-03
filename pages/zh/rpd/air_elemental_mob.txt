@@ -1,0 +1,75 @@
+====== 風元素 ======
+
+{{ rpd:images:air_elemental_mob.png|風元素 }}
+
+風元素是由有生命的氣體構成的飛行元素生物。它們只出現在[[zh:rpd:chasm_level|裂谷地圖感受]]中，且對[[zh:rpd:bleeding_buff|流血]]免疫。它們使用[[zh:rpd:wind_gust_spell|風暴術]]來攻擊敵人。儘管近戰能力較弱，但其遠程風力攻擊使其成為危險的敵人。
+
+==== 數據 ====
+  * **生命值**: 深度 * 3 + 1 (在[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L41|adjustStats方法]]中計算)
+  * **攻擊技能**: 基礎防禦技能 * 2 + 1 (在[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L42|adjustStats方法]]中計算)
+  * **防禦技能**: 深度 * 2 + 1 (在[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L43|adjustStats方法]]中計算)
+  * **最小傷害**: 0 (在[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L47|adjustStats方法]]中設定)
+  * **最大傷害**: ht() / 4 (在[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L47|adjustStats方法]]中設定)
+  * **擊殺經驗**: 深度 + 1 (在[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L45|adjustStats方法]]中計算)
+  * **最高等級**: 深度 + 2 (在[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L46|adjustStats方法]]中設定)
+  * **傷害減免**: expForKill / 5 (在[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L46|adjustStats方法]]中設定)
+  * **掉落屍體機率**: 0% (在[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L19|構造函數]]中設定)
+  * **飛行**: 是 (在[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L22|構造函數]]中設定)
+
+==== 能力 ====
+  * **飛行**: 風元素是飛行生物，可以在任何地形上移動
+  * **風暴**: 攻擊遠程敵人時，風元素將施放風暴術，將目標推開
+  * **距離偏好**: 狩獵狀態下，若與目標距離小於 skillLevel() - 1 時，會遠離目標
+  * **遠程攻擊**: 對遠程敵人使用風暴術，可能使玩家從橋樑或其他高處跌落
+  * **免疫**: 完全免疫[[zh:rpd:bleeding_buff|流血]]
+
+==== 行為 ====
+  * 風元素有獨特的移動模式 - 當與目標過近 (距離 < skillLevel - 1) 時，會遠離而非靠近
+  * 可遠程攻擊 (最多 skillLevel 範圍)，但不會攻擊相鄰敵人
+  * 攻擊時施放風暴術，在目標身上產生風粒子和爆炸效果
+  * 僅出現在[[zh:rpd:chasm_level|裂谷地圖感受]]中，出現機率為 20%
+
+==== 掉落 ====
+  * [[zh:rpd:potion_of_levitation_item|浮游藥水]] (10% 機率)
+
+==== 戰略 ====
+  * 風元素使用遠程[[zh:rpd:wind_gust_spell|風暴術]]攻擊，可將你推下懸崖，因此在[[zh:rpd:chasm_level|裂谷]]附近需謹慎
+  * 偏好保持距離，當你過於靠近時會遠離
+  * 傷害輸出相對較低 (0 至 ht() / 4)，近戰威脅較小
+  * 因為飛行，可穿越任何地形，無法被物理障礙阻擋
+  * 免疫需要物理接觸或地面存在的效果
+  * 在狹窄走廊中因推擠效果可能較難對付
+  * 因獨特移動模式而移動不規則
+
+==== 源代碼參考 ====
+  * Java實現: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]]
+  * 風暴術: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]]
+  * 生成率: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L93|Bestiary.json]]
+  * 免疫實現: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L34|流血免疫]]
+  * 數據計算: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L41|adjustStats方法]]
+
+==== 字符串資源 ====
+  * 風元素名稱: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1661|AirElemental_Name]] (英文字符串第1661行)
+  * 俄文字符串: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1661|俄文風元素名稱]]
+  * 中文字符串: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1661|中文風元素名稱]]
+  * 西班牙文字符串: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L1294|西班牙文風元素名稱]]
+
+==== JSON配置文件 ====
+  * 生成率: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L93|Bestiary.json]] (ABISMO感受部分)
+
+==== 機器可讀數據 ====
+  * [[mr:air_elemental_mob|mr:air_elemental_mob]] - 包含技術細節的機器可讀參考頁面
+
+==== 參見 ====
+  * [[zh:rpd:wind_gust_spell|風暴術]]
+  * [[zh:rpd:water_elemental_mob|水元素]]
+  * [[zh:rpd:earth_elemental_mob|土元素]]
+  * [[zh:rpd:fire_elemental_mob|火元素]]
+  * [[zh:rpd:elemental_mob|元素生物]]
+  * [[zh:rpd:chasm_level|裂谷地圖]]
+  * [[zh:rpd:elementals_mob|元素生物]]
+  * [[zh:rpd:mobs|怪物]]
+  * [[zh:rpd:resistances|抗性]]
+  * [[zh:rpd:immunities|免疫]]
+
+{{tag> rpd mobs elementals air }}

@@ -1,0 +1,75 @@
+====== Elemental de Aire ======
+
+{{ rpd:images:air_elemental_mob.png|Elemental de Aire }}
+
+Los elementales de aire son seres mágicos voladores hechos de aire. Aparecen en el [[es:rpd:chasm_level|sentimiento de nivel Abismo]], y son inmunes al [[es:rpd:bleeding_buff|sangrado]]. Usan el [[es:rpd:wind_gust_spell|hechizo de ráfaga de viento]] para atacar enemigos. Aunque pueden ser luchadores débiles en combate cuerpo a cuerpo, su ataque a distancia con viento los convierte en un enemigo peligroso contra el que lidiar.
+
+==== Estadísticas ====
+  * **PS**: Profundidad * 3 + 1 (calculado en el [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L41|método adjustStats]])
+  * **Habilidad de Ataque**: Habilidad de defensa base * 2 + 1 (calculado en el [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L42|método adjustStats]])
+  * **Habilidad de Defensa**: Profundidad * 2 + 1 (calculado en el [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L43|método adjustStats]])
+  * **Daño Mínimo**: 0 (establecido en el [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L47|método adjustStats]])
+  * **Daño Máximo**: ht() / 4 (establecido en el [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L47|método adjustStats]])
+  * **Experiencia por Matar**: Profundidad + 1 (calculado en el [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L45|método adjustStats]])
+  * **Nivel Máximo**: Profundidad + 2 (establecido en el [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L46|método adjustStats]])
+  * **Reducción de Daño**: expForKill / 5 (establecido en el [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L46|método adjustStats]])
+  * **Probabilidad de Carcasa**: 0% (establecido en el [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L19|constructor]])
+  * **Vuela**: Sí (establecido en el [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L22|constructor]])
+
+==== Habilidades ====
+  * **Vuelo**: Los elementales de aire son criaturas voladoras y pueden moverse sobre cualquier terreno
+  * **Ráfaga de Viento**: Al atacar enemigos a distancia, los elementales de aire lanzarán Ráfaga de Viento, empujando al objetivo
+  * **Preferencia de Distancia**: Cuando están en estado de caza y a una distancia menor que skillLevel() - 1 del objetivo, se alejarán
+  * **Ataque a Distancia**: Usa Ráfaga de Viento en enemigos distantes, lo que puede hacer que el jugador caiga de puentes u otras áreas elevadas
+  * **Inmunidades**: Completamente inmune al [[es:rpd:bleeding_buff|sangrado]]
+
+==== Comportamiento ====
+  * Los elementales de aire tienen un patrón de movimiento único: cuando están demasiado cerca del objetivo (distancia < skillLevel - 1), se alejan en lugar de acercarse
+  * Pueden atacar a distancia (hasta un rango de skillLevel) pero no atacarán a enemigos adyacentes
+  * Cuando atacan, lanzan Ráfaga de Viento que crea efectos de partículas de viento y explosión en el objetivo
+  * Solo aparecen en el [[es:rpd:chasm_level|sentimiento de nivel Abismo]], que tiene un 20% de probabilidad de aparecer en los niveles de mazmorra
+
+==== Botín ====
+  * [[es:rpd:potion_of_levitation_item|Poción de Levitación]] (10% de probabilidad)
+
+==== Estrategia ====
+  * Los elementales de aire usan ataques a distancia de [[es:rpd:wind_gust_spell|Ráfaga de Viento]] que pueden empujarte fuera de los bordes, así que ten cuidado alrededor de los [[es:rpd:chasm_level|abismos]]
+  * Prefieren mantener distancia y se alejarán cuando te acerques demasiado
+  * Su daño de salida es relativamente bajo (0 a ht() / 4), lo que los hace menos amenazadores en combate cuerpo a cuerpo
+  * Debido a que vuelan, pueden atravesar cualquier terreno y no pueden ser bloqueados por obstáculos físicos
+  * Son inmunes a efectos que requieren contacto físico o presencia en el suelo
+  * Pueden ser difíciles de combatir en corredores estrechos debido a los efectos de empuje
+  * Se mueven erráticamente debido a su patrón de movimiento único
+
+==== Referencias de Código Fuente ====
+  * Implementación en Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]]
+  * Hechizo de Ráfaga de Viento: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]]
+  * Tasas de aparición: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L93|Bestiary.json]]
+  * Implementación de inmunidades: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L34|inmunidad al sangrado]]
+  * Cálculo de estadísticas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L41|método adjustStats]]
+
+==== Recursos de Cadenas de Texto ====
+  * Nombre del Elemental de Aire: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1661|AirElemental_Name]] (línea 1661 en cadenas en inglés)
+  * Cadenas en ruso: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1661|AirElemental_Name en ruso]]
+  * Cadenas en chino: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1661|AirElemental_Name en chino]]
+  * Cadenas en español: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L1294|AirElemental_Name en español]]
+
+==== Archivos de Configuración en JSON ====
+  * Tasas de aparición: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L93|Bestiary.json]] (sección de sentimiento ABISMO)
+
+==== Datos Legibles por Máquina ====
+  * [[mr:air_elemental_mob|mr:air_elemental_mob]] - Página de referencia legible por máquina con detalles técnicos
+
+==== Ver También ====
+  * [[es:rpd:wind_gust_spell|Hechizo de Ráfaga de Viento]]
+  * [[es:rpd:water_elemental_mob|Elemental de Agua]]
+  * [[es:rpd:earth_elemental_mob|Elemental de Tierra]]
+  * [[es:rpd:fire_elemental_mob|Elemental de Fuego]]
+  * [[es:rpd:elemental_mob|Elementales]]
+  * [[es:rpd:chasm_level|Nivel de Abismo]]
+  * [[es:rpd:elementals_mob|Mobs Elementales]]
+  * [[es:rpd:mobs|Mobs]]
+  * [[es:rpd:resistances|Resistencias]]
+  * [[es:rpd:immunities|Inmunidades]]
+
+{{tag> rpd mobs elementals air }}
