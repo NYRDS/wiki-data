@@ -1,0 +1,50 @@
+====== Доспехи Хаоса ======
+
+{{ rpd:images:chaos_armor_item.png|Доспехи Хаоса }}
+
+==== Описание ====
+Эти доспехи состоят из кроваво-красных пластин скреплённых тёмно-красными цепями. Они излучают хаотическую энергию, когда вы их касаетесь. Доспехи хаоса - это уникальная броня 3-го уровня с механизмом самоулучшения.
+
+==== Характеристики ====
+  * **Тип**: Броня
+  * **Уровень (Тир)**: 3
+  * **Изображение по умолчанию**: chaosArmor.png
+  * **Ограничение на улучшение**: Невозможно улучшить стандартным способом (метод isUpgradable() возвращает false)
+  * **Особый механизм**: Система зарядов увеличивается при нанесении урона, уменьшается при получении урона
+
+==== Механика ====
+  * **Система зарядов**:
+    * Заряд увеличивается при нанесении урона (если не прокляты)
+    * Заряд уменьшается при получении урона
+    * При достижении порога (в зависимости от уровня брони) броня улучшается
+    * При исчерпании заряда на уровне 4+ броня деградирует и теряет начертание
+  * **Визуальные изменения**: Изображение меняется в зависимости от уровня брони (возможно 0-4 изображений)
+  * **Требование уровня**: Улучшается только при достижении заряда ''(5 * level()^1.5)''
+
+==== Стратегия ====
+  * Эффективна против врагов, которых вы раните (заряжает броню)
+  * Будьте осторожны в тяжелых боях, когда получаете урон (истощает заряд)
+  * На уровне 4+ потеря всего заряда приводит к деградации и потере начертания
+  * Лучше всего работает при агрессивном стиле игры, когда герой наносит больше урона, чем получает
+
+==== Источники информации ====
+  * **Java-код**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java|ChaosArmor.java]]
+  * **Базовый класс брони**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]]
+  * **Механика улучшения**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java#L31-L33|chargeForLevel метод]]
+  * **Обработка урона**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java#L45-L57|ownerTakesDamage метод]]
+  * **Механика заряда**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java#L59-L70|ownerDoesDamage метод]]
+  * **Выбор изображения**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java#L72-L74|selectImage метод]]
+
+==== Источники данных ====
+  * **Java исходник**: ''RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java''
+  * **Английские строковые ресурсы**: ''RemixedDungeon/src/main/res/values/strings_all.xml'' - ''ChaosArmor_Name'', ''ChaosArmor_Info''
+  * **Русские строковые ресурсы**: ''RemixedDungeon/src/main/res/values-ru/strings_all.xml'' - ''ChaosArmor_Name'', ''ChaosArmor_Info''
+  * **Все файлы локализации**: ''RemixedDungeon/src/main/res/values-*/strings_all.xml''
+
+==== См. также ====
+  * [[ru:rpd:armor_item|Броня]] - Другие типы брони
+  * [[ru:rpd:chaos_set|Комплект Хаоса]] - Другие тематические предметы хаоса
+  * [[ru:rpd:equipment|Снаряжение]] - Общая информация о снаряжении
+  * [[ru:rpd:armor_glyphs|Начертания брони]] - Зачарования для брони
+
+{{tag> rpd items armor chaos}}

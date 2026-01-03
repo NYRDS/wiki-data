@@ -1,0 +1,61 @@
+====== 混沌之盾 ======
+
+{{ rpd:images:chaos_shield_item.png|混沌之盾 }}
+
+**混沌之盾**是Remixed地下城中一个独特的盾牌物品，具有与伤害和充能相关的特殊机制。这是一个3级盾牌，可以根据战斗交互获得和失去等级。
+
+==== 描述 ====
+混沌之盾是将混沌水晶与普通盾牌融合的结果，一旦成功阻挡，就会产生随机的混沌效果。这是一种具有动态属性的不寻常盾牌，可以根据战斗结果改变其等级。
+
+==== 属性 ====
+  * **起始等级:** 3
+  * **最小/最大伤害:** 3-4
+  * **延迟:** 0.75x (相对于武器发射速度)
+  * **价格:** 60金币 (20 * 等级)
+  * **类型:** 左手装备 (副手/盾牌)
+  * **精灵图:** chaosShield.png
+
+==== 特殊机制 ====
+  * **充电系统:** 盾牌保持一个内部充能计数器
+  * **拥有者受到伤害:** 当盾牌拥有者受到伤害时，充能减少1点
+  * **拥有者造成伤害:** 当拥有者造成伤害时，充能增加1点 (诅咒盾牌禁用此行为)
+  * **降级:** 如果受到伤害后充能低于0且盾牌等级>3，盾牌降级 (等级降低) 并且充能重置为当前等级所需数量
+  * **升级:** 如果造成伤害后充能超过所需阈值，盾牌升级 (等级提高) 并且充能重置为0
+  * **充能公式:** 升级所需充能 = 5 * (当前_等级)^1.5
+  * **诅咒行为:** 如果被诅咒，盾牌不参与特殊机制 (造成伤害不会影响充能)
+
+==== 实现详情 ====
+混沌之盾作为扩展盾牌库的Lua脚本实现：
+
+  * 实现在 ''RemixedDungeon/src/main/assets/scripts/items/ChaosShield.lua'' 中
+  * 使用来自盾牌库的 ''shields.makeShield()'' 函数
+  * 在 ''ownerTakesDamage()'' 和 ''ownerDoesDamage()'' 事件中具有特殊处理
+  * ''ownerTakesDamage()'' 在拥有者被击中时减少充能
+  * ''ownerDoesDamage()'' 在拥有者成功伤害敌人时增加充能 (如果未被诅咒)
+  * ''desc()'' 函数使用字符串资源提供物品描述
+  * ''image()'' 函数根据当前等级确定精灵图
+
+==== 内容验证 ====
+  * 信息来源: Lua脚本 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/ChaosShield.lua|ChaosShield.lua]]
+  * 实现: 基于盾牌库函数
+  * 字符串资源: strings_all.xml中的 ''ChaosShield_name'' 和 ''ChaosShield_desc''
+  * 最后更新: 2025年12月, 来源: Remixed Dungeon 1.9.3
+
+==== 代码引用 ====
+  * Lua脚本: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/ChaosShield.lua|ChaosShield.lua]]
+  * 盾牌库: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/shields.lua|shields.lua]]
+  * 字符串资源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L2888-L2889|strings_all.xml]]
+
+==== 字符串资源 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L2888|ChaosShield_name]] - "混沌之盾"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L2889|ChaosShield_desc]] - "混沌之盾是将混沌水晶与普通盾牌融合的结果，一旦成功阻挡，就会产生随机的混沌效果。"
+
+==== 参见 ====
+  * [[cn:rpd:shields|盾牌]] - 游戏中所有盾牌类型
+  * [[cn:rpd:armor|护甲]] - 其他防御装备
+  * [[cn:rpd:items|物品]] - 游戏中所有物品
+  * [[cn:rpd:chaos_staff_item|混沌法杖]] - 另一个具有混沌主题机制的物品
+  * [[cn:rpd:chaos_bow_item|混沌弓]] - 另一个具有混沌主题机制的物品
+  * [[cn:rpd:buffs|增益]] - 可能与盾牌互动的状态效果
+
+{{tag> rpd items shields chaos_chaotic chaos_shield_item }}

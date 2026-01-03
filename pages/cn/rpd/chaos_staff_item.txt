@@ -1,0 +1,68 @@
+====== 混沌法杖 ======
+
+{{ rpd:images:chaos_staff_item.png|混沌法杖 }}
+
+**混沌法杖**是Remixed地下城中一个独特的法杖，具有与伤害和充能相关的特殊机制。开始时有两个充能。可以自我升级。法杖的效果与混沌标记相同，即可以创造火焰、草药、气体等。
+
+==== 描述 ====
+混沌法杖是将混沌水晶与普通法杖融合的结果。使用时可以创造混乱效果，如火焰、气体、传送和其他效果。法杖可以自己附魔。
+
+==== 属性 ====
+  * **类型:** 法杖
+  * **初始充能:** 2
+  * **等级:** 受到伤害时可以提升
+  * **默认图片:** chaosStaff.png
+
+==== 机制 ====
+  * **充能系统:** 法杖具有内部充能计数器
+  * **等级提升:** 拥有者受到伤害时法杖等级增加
+  * **造成伤害:** 拥有者造成伤害时法杖等级也增加（像普通法杖一样）
+  * **使用:** 使用时创造混沌标记效果（火焰、气体、传送等）
+  * **随机效果:** 使用时可能对敌人有随机效果（10%几率）
+    * 杀死敌人
+    * 将敌人变成宠物
+    * 创造敌人副本
+    * 传送敌人
+    * 治疗敌人
+  * **视觉变化:** 图像根据法杖等级变化（可有0-4张图片）
+
+==== 策略 ====
+  * 可用于在战场上创造混乱效果
+  * 由于随机效果请谨慎使用
+  * 受到伤害可能提升法杖等级
+  * 作为战斗中的不可预测武器有效
+
+==== 实现 ====
+混沌法杖实现为继承自Wand的Java类：
+
+  * 实现在 ''RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosStaff.java''
+  * 继承自 ''Wand'' 类
+  * 在 ''ownerTakesDamage()'' 和 ''ownerDoesDamage()'' 方法中具有特殊处理
+  * ''ownerTakesDamage()'' 在拥有者受到伤害时增加充能
+  * ''onZap()'' 实现法杖的主要效果 - 创建带有随机效果的混沌标记
+  * ''selectImage()'' 根据法杖等级确定图像
+
+==== 内容验证 ====
+  * 信息来源: Java类 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosStaff.java|ChaosStaff.java]]
+  * 实现: 基于Wand类
+  * 字符串资源: strings_all.xml中的 ''ChaosStaff_Name'' 和 ''ChaosStaff_Info''
+  * 最后更新: 2025年12月, 来源: Remixed Dungeon 1.9.3
+
+==== 代码引用 ====
+  * Java代码: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosStaff.java|ChaosStaff.java]]
+  * 基础类: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]]
+  * 字符串资源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1231-L1236|ChaosStaff 字符串资源 (zh-CN)]]
+
+==== 字符串资源 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1231|ChaosStaff_Name]] - "混沌法杖"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1232|ChaosStaff_Gender]] - "masculine"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1233-L1236|ChaosStaff_Info]] - "这根法杖已被混沌改变。"
+
+==== 参见 ====
+  * [[cn:rpd:wands|法杖]] - 所有法杖类型
+  * [[cn:rpd:items|物品]] - 所有物品
+  * [[cn:rpd:chaos_armor_item|混沌护甲]] - 另一个具有混沌机制的物品
+  * [[cn:rpd:chaos_sword_item|混沌剑]] - 另一个具有混沌机制的物品
+  * [[cn:rpd:chaos_crystal_item|混沌水晶]] - 混沌物品的来源
+
+{{tag> rpd items wands chaos_chaotic chaos_staff_item }}

@@ -1,0 +1,67 @@
+====== 混沌弓 ======
+
+{{ rpd:images:chaos_bow_item.png|混沌弓 }}
+
+**混沌弓**是Remixed地下城中一个独特的远程武器，具有与伤害和充能相关的特殊机制。这是一把3级武器，可以根据战斗交互获得和失去等级。
+
+==== 描述 ====
+混沌弓是一把3级（需要力量14）的远程武器。与剑类似，可以自我升级和自我附魔。当攻击失误时，可能会对敌人施加混沌效果。
+
+==== 属性 ====
+  * **类型:** 远程武器
+  * **等级（类型）:** 3
+  * **力量需求（STR）:** 14
+  * **最小/最大伤害:** 取决于等级（公式：1 + 等级 * 0.3）
+  * **射击速度:** 1.0
+  * **射程:** 1.0
+  * **价格:** 60金币 (15 * 等级 * 1.5)
+  * **默认图片:** chaosBow.png
+
+==== 机制 ====
+  * **充能系统:** 弓具有内部充能计数器
+  * **升级机制:** 造成伤害时弓的等级增加（如果未被诅咒）
+  * **降级机制:** 拥有者受到伤害时弓的等级减少
+  * **充能达到阈值时:** 当充能达到某个值（基于弓的等级）时，弓升级
+  * **攻击失误时:** 攻击失误时可能会对敌人施加混沌效果（取决于当前充能和等级）
+  * **伤害公式:** 伤害 = 1 + 等级 * 0.3
+
+==== 策略 ====
+  * 对远程攻击有效，具有自我发展的能力
+  * 攻击失误时可能在敌人身上产生混沌效果
+  * 在造成伤害的战斗中要小心（消耗充能）
+  * 最适合于积极使用远程攻击
+
+==== 实现 ====
+混沌弓实现为继承自Bow的Java类：
+
+  * 实现在 ''RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosBow.java''
+  * 继承自 ''Bow'' 类
+  * 在 ''ownerTakesDamage()'' 和 ''ownerDoesDamage()'' 方法中具有特殊处理
+  * ''ownerTakesDamage()'' 在拥有者受到伤害时减少充能
+  * ''ownerDoesDamage()'' 在拥有者成功造成伤害时增加充能（如果未被诅咒）
+  * ''onMiss()'' 实现了攻击失误的特殊效果 - 创建混沌标记
+
+==== 内容验证 ====
+  * 信息来源: Java类 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosBow.java|ChaosBow.java]]
+  * 实现: 基于Bow类
+  * 字符串资源: strings_all.xml中的 ''ChaosBow_Name'' 和 ''ChaosBow_Info''
+  * 最后更新: 2025年12月, 来源: Remixed Dungeon 1.9.3
+
+==== 代码引用 ====
+  * Java代码: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosBow.java|ChaosBow.java]]
+  * 基础类: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Bow.java|Bow.java]]
+  * 字符串资源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1211-L1216|ChaosBow 字符串资源 (zh-CN)]]
+
+==== 字符串资源 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1211|ChaosBow_Name]] - "混沌弓"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1212|ChaosBow_Gender]] - "masculine"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1213-L1216|ChaosBow_Info]] - "这把弓已被混沌改变。"
+
+==== 参见 ====
+  * [[cn:rpd:ranged_weapon_item|远程武器]] - 其他远程武器类型
+  * [[cn:rpd:weapon_item|武器]] - 所有武器类型
+  * [[cn:rpd:chaos_armor_item|混沌护甲]] - 另一个具有混沌机制的物品
+  * [[cn:rpd:chaos_sword_item|混沌剑]] - 另一个具有混沌机制的物品
+  * [[cn:rpd:enchantments|附魔]] - 可能出现在弓上的附魔
+
+{{tag> rpd items weapons chaos_chaotic chaos_bow_item ranged }}

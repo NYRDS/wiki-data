@@ -1,0 +1,67 @@
+====== Лук Хаоса ======
+
+{{ rpd:images:chaos_bow_item.png|Лук Хаоса }}
+
+**Лук Хаоса** - это уникальное оружие дальнего боя в Remixed Dungeon, обладающее особыми механиками, связанными с уроном и зарядами. Это оружие 3-го уровня, которое может повышать и понижать свой уровень в зависимости от боевых взаимодействий.
+
+==== Описание ====
+Лук Хаоса - это оружие дальнего боя третьего порядка (требуется 14 силы). Аналогично мечу, самоулучшается и самозачаровывается. При промахе врагу может быть наложен хаотический эффект.
+
+==== Характеристики ====
+  * **Тип:** Оружие дальнего боя
+  * **Уровень (Тир):** 3
+  * **Сила (STR):** 14
+  * **Мин/Макс урон:** Зависит от уровня (формула: 1 + уровень * 0.3)
+  * **Скорость стрельбы:** 1.0
+  * **Дальность стрельбы:** 1.0
+  * **Цена:** 60 золота (15 * level * 1.5)
+  * **Изображение по умолчанию:** chaosBow.png
+
+==== Механика ====
+  * **Система зарядов:** Лук поддерживает внутренний счетчик зарядов
+  * **Механизм улучшения:** Уровень лука увеличивается при нанесении урона (если не проклят)
+  * **Механизм деградации:** Уровень лука уменьшается при получении урона владельцем
+  * **Когда заряд достигает порога:** Когда заряд достигает определенного значения (на основе уровня лука), лук улучшается
+  * **При промахе:** При промахе врагу может быть наложен хаотический эффект (в зависимости от текущего заряда и уровня)
+  * **Формула урона:** Урон = 1 + уровень * 0.3
+
+==== Стратегия ====
+  * Эффективен для дистанционной атаки с возможностью саморазвития
+  * При промахе может создавать хаотические эффекты на противнике
+  * Будьте осторожны в тяжелых боях, когда получаете урон (истощает заряд)
+  * Лучше всего работает при активном использовании дальнего боя
+
+==== Реализация ====
+Лук Хаоса реализован как Java-класс, наследуемый от Bow:
+
+  * Реализован в ''RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosBow.java''
+  * Наследуется от ''Bow'' класса
+  * Имеет специальную обработку в методах ''ownerTakesDamage()'' и ''ownerDoesDamage()''
+  * ''ownerTakesDamage()'' уменьшает заряды при получении урона владельцем
+  * ''ownerDoesDamage()'' увеличивает заряды при успешном нанесении урона владельцем (если не проклят)
+  * ''onMiss()'' реализует специальный эффект при промахе - создает хаотическую метку
+
+==== Проверка данных ====
+  * Источник информации: Java-класс [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosBow.java|ChaosBow.java]]
+  * Реализация: На основе класса Bow
+  * Строковые ресурсы: ''ChaosBow_Name'' и ''ChaosBow_Info'' из strings_all.xml
+  * Последнее обновление: Декабрь 2025, источник: Remixed Dungeon 1.9.3
+
+==== Ссылки на код ====
+  * Java-код: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosBow.java|ChaosBow.java]]
+  * Базовый класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Bow.java|Bow.java]]
+  * Строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1211-L1216|ChaosBow строковые ресурсы (ru)]]
+
+==== Строковые ресурсы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1211|ChaosBow_Name]] - "Лук Хаоса"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1212|ChaosBow_Gender]] - "masculine"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1213-L1216|ChaosBow_Info]] - "Этот лук был изменен Хаосом."
+
+==== См. также ====
+  * [[ru:rpd:ranged_weapon_item|Оружие дальнего боя]] - Другие виды оружия дальнего боя
+  * [[ru:rpd:weapon_item|Оружие]] - Все виды оружия
+  * [[ru:rpd:chaos_armor_item|Броня Хаоса]] - Другой предмет с хаотичной механикой
+  * [[ru:rpd:chaos_sword_item|Меч Хаоса]] - Другой предмет с хаотичной механикой
+  * [[ru:rpd:enchantments|Зачарования]] - Зачарования, которые могут быть на луках
+
+{{tag> rpd items weapons chaos_chaotic chaos_bow_item ranged }}

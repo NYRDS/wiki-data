@@ -1,0 +1,68 @@
+====== Посох Хаоса ======
+
+{{ rpd:images:chaos_staff_item.png|Посох Хаоса }}
+
+**Посох Хаоса** - это уникальный жезл в Remixed Dungeon, обладающий особыми механиками, связанными с уроном и зарядами. В начале имеет два заряда. Может самоулучшаться. Эффект от жезла такой же, как и от метки хаоса, т.е. может создать огонь, траву, какой-нибудь газ и т.п.
+
+==== Описание ====
+Посох Хаоса - это результат слияния кристалла Хаоса с обычной палочкой. При использовании может создавать хаотические эффекты, такие как огонь, газ, телепортация и другие. Жезл может сам зачаровать себя.
+
+==== Характеристики ====
+  * **Тип:** Жезл
+  * **Начальные заряды:** 2
+  * **Уровень:** Может повышаться при получении урона
+  * **Изображение по умолчанию:** chaosStaff.png
+
+==== Механика ====
+  * **Система зарядов:** Жезл поддерживает внутренний счетчик зарядов
+  * **Повышение уровня:** Уровень жезла увеличивается при получении урона владельцем
+  * **Нанесение урона:** Уровень жезла также увеличивается при нанесении урона (как обычные жезлы)
+  * **Использование:** При использовании создает хаотическую метку с эффектом (огонь, газ, телепортация и т.д.)
+  * **Случайные эффекты:** При использовании может иметь случайный эффект на врага (шанс 10%)
+    * Убийство врага
+    * Превращение врага в питомца
+    * Создание копии врага
+    * Телепортация врага
+    * Лечение врага
+  * **Визуальные изменения:** Изображение меняется в зависимости от уровня жезла (0-4 изображений возможны)
+
+==== Стратегия ====
+  * Может использоваться для создания хаотических эффектов на поле боя
+  * Используйте с осторожностью из-за случайных эффектов
+  * Получение урона может повысить уровень жезла
+  * Эффективен как непредсказуемое средство в бою
+
+==== Реализация ====
+Посох Хаоса реализован как Java-класс, наследуемый от Wand:
+
+  * Реализован в ''RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosStaff.java''
+  * Наследуется от ''Wand'' класса
+  * Имеет специальную обработку в методах ''ownerTakesDamage()'' и ''ownerDoesDamage()''
+  * ''ownerTakesDamage()'' увеличивает заряды при получении урона владельцем
+  * ''onZap()'' реализует основной эффект жезла - создает хаотическую метку с возможными случайными эффектами
+  * ''selectImage()'' определяет изображение в зависимости от уровня жезла
+
+==== Проверка данных ====
+  * Источник информации: Java-класс [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosStaff.java|ChaosStaff.java]]
+  * Реализация: На основе класса Wand
+  * Строковые ресурсы: ''ChaosStaff_Name'' и ''ChaosStaff_Info'' из strings_all.xml
+  * Последнее обновление: Декабрь 2025, источник: Remixed Dungeon 1.9.3
+
+==== Ссылки на код ====
+  * Java-код: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosStaff.java|ChaosStaff.java]]
+  * Базовый класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]]
+  * Строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1231-L1236|ChaosStaff строковые ресурсы (ru)]]
+
+==== Строковые ресурсы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1231|ChaosStaff_Name]] - "Посох Хаоса"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1232|ChaosStaff_Gender]] - "masculine"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1233-L1236|ChaosStaff_Info]] - "Эта палочка была изменена Хаосом."
+
+==== См. также ====
+  * [[ru:rpd:wands|Жезлы]] - Все типы жезлов
+  * [[ru:rpd:items|Предметы]] - Все предметы
+  * [[ru:rpd:chaos_armor_item|Броня Хаоса]] - Другой предмет с хаотичной механикой
+  * [[ru:rpd:chaos_sword_item|Меч Хаоса]] - Другой предмет с хаотичной механикой
+  * [[ru:rpd:chaos_crystal_item|Кристалл Хаоса]] - Источник получения хаос-предметов
+
+{{tag> rpd items wands chaos_chaotic chaos_staff_item }}

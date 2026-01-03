@@ -1,0 +1,66 @@
+====== Меч Хаоса ======
+
+{{ rpd:images:chaos_sword_item.png|Меч Хаоса }}
+
+**Меч Хаоса** - это уникальное оружие ближнего боя в Remixed Dungeon, обладающее особыми механиками, связанными с уроном и зарядами. Это оружие 3-го уровня, которое может повышать и понижать свой уровень в зависимости от боевых взаимодействий.
+
+==== Описание ====
+Меч Хаоса - это оружие ближнего боя третьего порядка (требуется 14 силы), средний урон составляет 9 единиц. Его нельзя улучшить обычным способом, но он может улучшаться сам через убийство мобов. Меч может сам зачаровываться. Также, он может потерять улучшения, если вы долго не будете использовать его.
+
+==== Характеристики ====
+  * **Тип:** Оружие ближнего боя
+  * **Уровень (Тир):** 3
+  * **Сила (STR):** 14
+  * **Мин/Макс урон:** 1-15 (среднее значение: 8)
+  * **Задержка:** 1.5 (тяжелая атака)
+  * **Цена:** 60 золота (15 * level * 1.5)
+  * **Изображение по умолчанию:** chaosSword.png
+
+==== Механика ====
+  * **Система зарядов:** Меч поддерживает внутренний счетчик зарядов
+  * **Механизм улучшения:** Уровень меча увеличивается при нанесении урона (если не проклят)
+  * **Механизм деградации:** Уровень меча уменьшается при получении урона владельцем
+  * **Когда заряд достигает порога:** Когда заряд достигает определенного значения (на основе уровня меча), меч улучшается
+  * **Когда заряд истощается:** На уровне 4+ потеря всех зарядов приводит к деградации и потере зачарования
+
+==== Стратегия ====
+  * Эффективен против врагов, которых можно ранить (заряжает меч)
+  * Будьте осторожны в тяжелых боях, когда получаете урон (истощает заряд)
+  * На уровне 4+ потеря всего заряда приводит к деградации и потере зачарования
+  * Лучше всего работает при агрессивном стиле игры, когда герой наносит больше урона, чем получает
+
+==== Реализация ====
+Меч Хаоса реализован как Java-класс, наследуемый от MeleeWeapon:
+
+  * Реализован в ''RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosSword.java''
+  * Наследуется от ''MeleeWeapon'' класса
+  * Имеет специальную обработку в методах ''ownerTakesDamage()'' и ''ownerDoesDamage()''
+  * ''ownerTakesDamage()'' уменьшает заряды при получении урона владельцем
+  * ''ownerDoesDamage()'' увеличивает заряды при успешном нанесении урона владельцем (если не проклят)
+  * ''slot()'' определяет ячейку инвентаря (WEAPON)
+  * ''blockSlot()'' определяет блокируемую ячейку (LEFT_HAND)
+
+==== Проверка данных ====
+  * Источник информации: Java-класс [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosSword.java|ChaosSword.java]]
+  * Реализация: На основе класса MeleeWeapon
+  * Строковые ресурсы: ''ChaosSword_Name'' и ''ChaosSword_Info'' из strings_all.xml
+  * Последнее обновление: Декабрь 2025, источник: Remixed Dungeon 1.9.3
+
+==== Ссылки на код ====
+  * Java-код: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosSword.java|ChaosSword.java]]
+  * Базовый класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]]
+  * Строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1220-L1225|ChaosSword строковые ресурсы (ru)]]
+
+==== Строковые ресурсы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1220|ChaosSword_Name]] - "Меч Хаоса"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1221|ChaosSword_Gender]] - "masculine"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1222-L1225|ChaosSword_Info]] - "Это оружие изменяется самим Хаосом."
+
+==== См. также ====
+  * [[ru:rpd:melee_weapon_item|Оружие ближнего боя]] - Другие виды оружия ближнего боя
+  * [[ru:rpd:weapon_item|Оружие]] - Все виды оружия
+  * [[ru:rpd:chaos_armor_item|Броня Хаоса]] - Другой предмет с хаотичной механикой
+  * [[ru:rpd:chaos_bow_item|Лук Хаоса]] - Другой предмет с хаотичной механикой
+  * [[ru:rpd:enchantments|Зачарования]] - Зачарования, которые могут быть на мечах
+
+{{tag> rpd items weapons chaos_chaotic chaos_sword_item melee }}

@@ -1,0 +1,50 @@
+====== 混沌护甲 ======
+
+{{ rpd:images:chaos_armor_item.png|混沌护甲 }}
+
+==== 描述 ====
+这件盔甲的血红色金属板被暗红的铁链缝接在一起，当你触碰它时会迸发出混沌能量。混沌护甲是一种独特的3级护甲，拥有自我升级机制。
+
+==== 属性 ====
+  * **类型**: 盔甲
+  * **等级**: 3
+  * **默认图片**: chaosArmor.png
+  * **升级限制**: 不能通过常规方式升级（isUpgradable()返回false）
+  * **特殊机制**: 充电系统在装备者造成伤害时增加，装备者受到伤害时减少
+
+==== 机制 ====
+  * **充电系统**:
+    * 造成伤害时充能增加（如果未诅咒）
+    * 受到伤害时充能减少
+    * 当充能到达阈值（基于护甲等级）时，护甲升级
+    * 在4级+时充能归零，护甲会降级并失去附魔
+  * **视觉变化**: 图片随护甲等级变化（可能有0-4种图片）
+  * **等级要求**: 仅在充能到达''(5 * level()^1.5)''时升级
+
+==== 策略 ====
+  * 对能造成伤害的敌人有效（为护甲充能）
+  * 在造成伤害的战斗中要小心（消耗充能）
+  * 在4级+时，失去全部充能会导致降级和失去附魔
+  * 最适合于攻击风格——在造成伤害比受到伤害更多的场合
+
+==== 代码来源 ====
+  * **Java实现**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java|ChaosArmor.java]]
+  * **护甲基类**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]]
+  * **升级机制**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java#L31-L33|chargeForLevel方法]]
+  * **伤害处理**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java#L45-L57|ownerTakesDamage方法]]
+  * **充能机制**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java#L59-L70|ownerDoesDamage方法]]
+  * **图片选择**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java#L72-L74|selectImage方法]]
+
+==== 数据来源 ====
+  * **Java源码**: ''RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java''
+  * **英文字符串资源**: ''RemixedDungeon/src/main/res/values/strings_all.xml'' - ''ChaosArmor_Name'', ''ChaosArmor_Info''
+  * **中文字符串资源**: ''RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml'' - ''ChaosArmor_Name'', ''ChaosArmor_Info''
+  * **所有本地化文件**: ''RemixedDungeon/src/main/res/values-*/strings_all.xml''
+
+==== 相关页面 ====
+  * [[cn:rpd:armor_item|护甲]] - 其他护甲类型
+  * [[cn:rpd:chaos_set|混沌套件]] - 其他混沌主题物品
+  * [[cn:rpd:equipment|装备]] - 一般装备
+  * [[cn:rpd:armor_glyphs|护甲附魔]] - 护甲的附魔
+
+{{tag> rpd items armor chaos}}
