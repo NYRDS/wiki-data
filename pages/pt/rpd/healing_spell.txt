@@ -1,0 +1,76 @@
+====== Magia de Cura ======
+
+{{ rpd:images:healing_spell_icon.png|Ícone da Magia de Cura }}
+
+**Cura** é uma magia em Remixed Dungeon com afinidade Comum que restaura a saúde do lançador.
+
+==== Descrição ====
+A magia de Cura restaura uma porção da própria saúde do lançador. É uma magia fundamental de autocuração que pode salvar o herói de situações perigosas.
+
+==== Estatísticas ====
+  * **Afinidade Mágica:** Comum
+  * **Alvo:** auto
+  * **Nível:** 3
+  * **Custo da Magia:** 10
+  * **Índice da Imagem:** 1
+
+==== Efeitos ====
+  * Cura o lançador em 30% do seu HP máximo (especificamente (int)(maxHP * 0.3) como implementado em Healing.java)
+  * Nota: A descrição no jogo diz "1/3 do HP máximo", mas a implementação real cura 30% (0.3) do HP máximo, que é ligeiramente menos que 1/3 (33.33%)
+  * Apenas auto-alvo
+  * Não escala com base no nível de habilidade
+
+==== Usos ====
+  * Restaurar saúde durante o [[pt:rpd:combat_mechanics|combate]]
+  * Curação de emergência em situações perigosas
+  * Preservar [[pt:rpd:potion_of_healing_item|poções de cura]] para situações mais críticas
+
+==== Classes ====
+Classes que podem usar esta magia incluem:
+  * Classes com afinidade Comum
+  * Outras classes que ganham acesso por meios especiais
+
+==== Estratégia ====
+Como usar efetivamente a magia de Cura:
+  * Use durante o [[pt:rpd:combat_mechanics|combate]] para manter a saúde sem consumir [[pt:rpd:potion_of_healing_item|poções]]
+  * Priorize a cura quando a saúde cair abaixo de 50% para prevenir situações de emergência
+  * Considere usar antes de [[pt:rpd:enemies_overview|encontros]] difíceis para maximizar a saúde
+
+==== Verificação de Conteúdo ====
+  * Fonte da informação: Código Java na base de código do Remixed Dungeon
+  * Estatísticas verificadas: Sim, extraídas diretamente das propriedades da classe da magia
+  * Descrições de efeitos: Geradas a partir da análise do código e recursos de strings
+  * Nota: Discrepância na quantidade de cura - o código implementa 30% do HP máximo mas o recurso de string diz "1/3 do HP máximo"
+
+==== Referências de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - Implementação principal
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L8-L12|Healing.java#L8-L12]] - Inicialização de estatísticas (alvo, afinidade, nível, imagem, custo)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L17-L21|Healing.java#L17-L21]] - Cálculo exato de cura ((int) (chr.ht()*0.3))
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L126|SpellFactory.java#L126]] - Registro da magia no jogo
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L763|Char.java#L763]] - Efeitos visuais de cura (emissor de partículas)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20-L21|Recursos de string de Cura (Inglês)]] - "Healing" e descrição da magia
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|Recursos de string de Cura (Russo)]] - Localização em russo
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Implementação da classe base de magias
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]] - Constantes e utilitários auxiliares de magias
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|Healing_Name, Healing_Info]] - Recursos de string em russo (nome e descrição)
+  * **namespace mr:** Verifique [[mr:healing_spell]] para dados legíveis por máquina
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L15-L16|targetingType e magicAffinity]] - Auto-alvo e afinidade Comum
+
+==== Arquivos de Configuração ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L126|SpellFactory.java#L126]] - Registro de magias
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20-L21|strings_all.xml]] - Recursos de string em inglês
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|strings_all.xml (Russo)]] - Recursos de string em russo
+
+==== Recursos de String ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20|Healing_Name]] - "Healing"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L21|Healing_Info]] - "This spell is crucial for any adventurer. It will restore 1/3 of the maximum amount of the caster's hp."
+
+==== Relacionado ====
+  * [[pt:rpd:spells_overview|Magias]]
+  * [[pt:rpd:mechanics|Mecânicas do Jogo]]
+  * [[pt:rpd:potion_of_healing_item|Poção de Cura]]
+  * [[pt:rpd:health_mechanic|Saúde]]
+  * [[pt:rpd:combat_mechanics|Combate]]
+  * [[pt:rpd:spell_system|Sistema de Magias]]
+
+{{tag> rpd spells common healing support }}

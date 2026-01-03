@@ -1,0 +1,76 @@
+====== Hechizo de Sanación ======
+
+{{ rpd:images:healing_spell_icon.png|Icono del Hechizo de Sanación }}
+
+**Sanación** es un hechizo en Remixed Dungeon con afinidad Común que restaura la salud del lanzador.
+
+==== Descripción ====
+El hechizo de Sanación restaura una porción de la salud propia del lanzador. Es un hechizo fundamental de autocuración que puede salvar al héroe de situaciones peligrosas.
+
+==== Estadísticas ====
+  * **Afinidad Mágica:** Común
+  * **Objetivo:** auto
+  * **Nivel:** 3
+  * **Coste de Hechizo:** 10
+  * **Índice de Imagen:** 1
+
+==== Efectos ====
+  * Cura al lanzador en un 30% de su HP máximo (específicamente (int)(maxHP * 0.3) como se implementa en Healing.java)
+  * Nota: La descripción en el juego dice "1/3 del HP máximo" pero la implementación real cura un 30% (0.3) del HP máximo, lo que es ligeramente menos que 1/3 (33.33%)
+  * Solo auto-objetivo
+  * No escala según el nivel de habilidad
+
+==== Usos ====
+  * Restaurar salud durante el [[es:rpd:combat_mechanics|combate]]
+  * Sanación de emergencia en situaciones peligrosas
+  * Preservar [[es:rpd:potion_of_healing_item|pociones de curación]] para situaciones más críticas
+
+==== Clases ====
+Clases que pueden usar este hechizo incluyen:
+  * Clases con afinidad Común
+  * Otras clases que obtienen acceso por medios especiales
+
+==== Estrategia ====
+Cómo usar eficazmente el hechizo de Sanación:
+  * Usar durante el [[es:rpd:combat_mechanics|combate]] para mantener la salud sin consumir [[es:rpd:potion_of_healing_item|pociones]]
+  * Priorizar la curación cuando la salud baja del 50% para prevenir situaciones de emergencia
+  * Considerar su uso antes de [[es:rpd:enemies_overview|encuentros]] difíciles para maximizar la salud
+
+==== Verificación de Contenido ====
+  * Fuente de información: Código Java en el código fuente de Remixed Dungeon
+  * Estadísticas verificadas: Sí, extraídas directamente de las propiedades de la clase del hechizo
+  * Descripciones de efectos: Generadas a partir del análisis del código y los recursos de cadenas
+  * Nota: Discrepancia en la cantidad de curación - el código implementa 30% del HP máximo pero el recurso de cadenas dice "1/3 del HP máximo"
+
+==== Referencias de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - Implementación principal
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L8-L12|Healing.java#L8-L12]] - Inicialización de estadísticas (objetivo, afinidad, nivel, imagen, coste)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L17-L21|Healing.java#L17-L21]] - Cálculo exacto de curación ((int) (chr.ht()*0.3))
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L126|SpellFactory.java#L126]] - Registro del hechizo en el juego
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L763|Char.java#L763]] - Efectos visuales de curación (emisor de partículas)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20-L21|Recursos de cadenas de Sanación (Inglés)]] - "Healing" y descripción del hechizo
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|Recursos de cadenas de Sanación (Ruso)]] - Localización en ruso
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Implementación de la clase base de hechizos
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]] - Constantes y utilidades de ayuda para hechizos
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|Healing_Name, Healing_Info]] - Recursos de cadenas en ruso (nombre y descripción)
+  * **espacio de nombres mr:** Consultar [[mr:healing_spell]] para datos legibles por máquina
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L15-L16|targetingType y magicAffinity]] - Auto-objetivo y afinidad Común
+
+==== Archivos de Configuración ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L126|SpellFactory.java#L126]] - Registro de hechizos
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20-L21|strings_all.xml]] - Recursos de cadenas en inglés
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|strings_all.xml (Ruso)]] - Recursos de cadenas en ruso
+
+==== Recursos de Cadenas ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20|Healing_Name]] - "Healing"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L21|Healing_Info]] - "This spell is crucial for any adventurer. It will restore 1/3 of the maximum amount of the caster's hp."
+
+==== Relacionado ====
+  * [[es:rpd:spells_overview|Hechizos]]
+  * [[es:rpd:mechanics|Mecánicas del Juego]]
+  * [[es:rpd:potion_of_healing_item|Poción de Sanación]]
+  * [[es:rpd:health_mechanic|Salud]]
+  * [[es:rpd:combat_mechanics|Combate]]
+  * [[es:rpd:spell_system|Sistema de Hechizos]]
+
+{{tag> rpd spells common healing support }}
