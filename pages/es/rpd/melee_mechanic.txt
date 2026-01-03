@@ -1,0 +1,75 @@
+====== Combate Cuerpo a Cuerpo ======
+
+{{ rpd:images:item_ShortSword.png|Arma Cuerpo a Cuerpo }}
+
+**Combate Cuerpo a Cuerpo** se refiere al combate cercano en Remixed Dungeon, donde el héroe debe estar adyacente a los enemigos para atacarlos usando armas cuerpo a cuerpo. Para la versión en inglés, véase [[en:rpd:melee_mechanic|Melee]].
+
+==== Description ====
+Melee combat is the primary form of combat in Remixed Dungeon, where the hero engages enemies directly in hand-to-hand combat using weapons that require close proximity.
+
+==== Melee Weapons ====
+  * [[en:rpd:melee_weapons|Melee Weapons]] - All types of close-combat weapons
+  * **Swords**: Balanced weapons with good stats
+  * **Axes**: High damage but slower attacks
+  * **Maces**: Good balance of damage and speed
+  * **Daggers**: Fast attacks with lower damage
+  * **Special**: [[en:rpd:kusarigama_item|Kusarigama]] with extended range
+
+==== Advantages of Melee Combat ====
+  * No need to carry ammunition
+  * Generally higher damage potential than basic ranged options
+  * More reliable in tight spaces
+  * Full control over positioning
+
+==== Disadvantages of Melee Combat ====
+  * Requires close proximity to dangerous enemies
+  * Risk of taking damage during combat
+  * Vulnerable to enemies with ranged attacks
+  * Limited tactical options compared to ranged combat
+
+==== Melee Combat Strategy ====
+  * Use terrain to your advantage (narrow corridors, choke points)
+  * Position yourself to fight one enemy at a time
+  * Maintain distance from ranged enemies
+  * Keep healing items accessible for emergencies
+
+==== Positioning in Melee Combat ====
+  * Doorways can be used to fight enemies one at a time
+  * Corners provide protection from multiple enemies
+  * Consider escape routes before engaging
+  * Use traps to your advantage
+
+==== Special Melee Techniques ====
+  * **Kiting**: Moving away after attacks to prevent retaliation
+  * **Corner fighting**: Using level geometry to prevent multiple enemies
+  * **Disengagement**: Moving away when health is low
+
+==== Related ====
+  * [[en:rpd:combat|Combat]] - General combat mechanics
+  * [[en:rpd:melee_weapons|Melee Weapons]] - Specific weapons for melee
+  * [[en:rpd:ranged_weapons|Ranged Weapons]] - Alternative to melee combat
+  * [[en:rpd:weapons|Weapons]] - All weapon types
+  * [[en:rpd:tactics|Tactics]] - Combat strategies
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Core melee attack implementation (actMeleeAttack method)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]] - Base class for all melee weapons
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/ShortSword.java|ShortSword.java]] - Example of a basic melee weapon
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] - General weapon mechanics
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/EquipableItem.java|EquipableItem.java]] - Equipable item mechanics including melee compatibility
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ml/actions/Attack.java|Attack.java]] - Attack action implementation
+
+==== Additional Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L609-L623|actMeleeAttack method]] - Detailed melee attack method implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L643|Attack delay calculation]] - How melee attack speed is determined
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]] - Game turn order system that determines when melee attacks occur
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Combat mechanics including damage calculation (in attackProc method)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java#L108-L115|Weapon accuracy and damage mechanics]] - How weapon stats affect melee combat
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L549-L568|Hero attack method]] - How the player character performs melee attacks
+
+==== String References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L158-L167|MeleeWeapon strings]] - UI text for melee weapons
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L170-L171|Attack strings]] - Attack-related UI text
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L168-L169|Hit strings]] - Combat result text
+
+{{tag> rpd mechanics combat melee}}
