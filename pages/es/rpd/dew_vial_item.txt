@@ -1,0 +1,53 @@
+====== Frasco de Rocío ======
+
+{{ rpd:images:dew_vial_item.png|Frasco de Rocío }}
+
+**Frasco de Rocío** es un objeto especial en Remixed Dungeon que permite a los jugadores almacenar gotas de rocío adicionales para consumirlas más tarde. También proporciona un mecanismo de curación de emergencia si el héroe está en peligro mortal.
+
+==== Descripción ====
+El Frasco de Rocío es un recipiente diminuto diseñado para contener gotas de rocío. Los jugadores pueden recoger gotas de rocío en él cuando las encuentran en la hierba alta y luego beberlas cuando sea necesario. Lo más importante, si el frasco está lleno cuando la salud del jugador llega a cero, las gotas de rocío se consumen automáticamente para curar al jugador y prevenir la muerte.
+
+==== Mecánicas ====
+  * **Capacidad de almacenamiento:** Puede contener hasta 10 gotas de rocío (constante MAX_VOLUME)
+  * **Curación automática:** Si está lleno y el HP del jugador llega a 0, se consume automáticamente para curar al personaje
+  * **Bebida manual:** Se puede consumir manualmente para curar una cantidad variable según las gotas de rocío almacenadas
+  * **Indicador visual:** Brilla en blanco cuando está lleno para indicar su estado cargado (efecto Glowing.WHITE)
+  * **Fórmula de curación:** La cantidad de curación sigue la fórmula: `ceil(volumen^(log10(20)) / 20 * HT_caracter)`
+  * **Variación de imagen:** Muestra imágenes diferentes según el volumen (0, 1, 2 o 3 dependiendo del nivel de llenado)
+  * **Auto-resurrección:** Cuando la vida del jugador es 0, el beber automático primero resucita al héroe con 1 HP antes de curar
+
+==== Estadísticas ====
+  * **Volumen máximo:** 10 gotas de rocío capacidad (constante MAX_VOLUME)
+  * **Característica de bebida automática:** Se consume automáticamente cuando el HP llega a 0 si está lleno
+  * **Cálculo de curación:** Cantidad de curación basada en la fórmula: `ceil(volumen^(log10(20)) / 20 * HT_caracter)`
+  * **Peso:** 0 (sin peso)
+  * **Tipo:** Objeto consumible con capacidad de almacenamiento
+  * **Tiempo de bebida:** Tarda 1f unidades de tiempo en consumirse manualmente (constante TIME_TO_DRINK)
+
+==== Estrategia ====
+  * Recoge gotas de rocío en la hierba alta y almacénalas en el frasco para emergencias
+  * Un frasco lleno actúa como una "segunda oportunidad" cuando estás en peligro mortal
+  * Muy útil para la supervivencia en el juego temprano cuando los artículos de curación son escasos
+  * Mantén el frasco cargado a medida que bajas más profundamente en el calabozo
+  * La función de auto-resurrección puede salvarte incluso de la muerte si el frasco está lleno
+
+==== Obtención ====
+  * Se puede encontrar en tiendas, ocasionalmente
+  * A veces disponible como botín del calabozo
+  * Más valioso de mantener que las [[es:rpd:dewdrop_item|gotas de rocío]] individuales
+
+==== Referencias de código ====
+  * Implementación: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java|DewVial.java]]
+  * Recursos de cadenas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1507-L1513|Dew Vial strings]]
+  * Sprite: [[https://github.com/NYRDS/remixed-dungeon/blob/master/sprites/item_DewVial.png|item_DewVial.png]]
+  * Cálculo de curación: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java#L70-L74|método doDrink con fórmula de curación]]
+  * Mecanismo de bebida automática: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java#L94-L105|método autoDrink]]
+  * Variaciones de imagen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java#L122-L129|método de imagen con 4 estados diferentes]]
+
+==== Ver también ====
+  * [[es:rpd:dewdrop_item|Gota de rocío]] - Objeto individual de gota de rocío que llena el frasco
+  * [[es:rpd:high_grass|Hierba alta]] - Donde se pueden encontrar gotas de rocío
+  * [[es:rpd:potion_of_healing_item|Poción de curación]] - Alternativa de curación más sustancial
+  * [[es:rpd:ring_of_herbalism_item|Anillo de herbalismo]] - Aumenta la tasa de recolección de rocío
+
+{{tag> rpd items consumable healing }}
