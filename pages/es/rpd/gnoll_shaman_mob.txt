@@ -1,0 +1,53 @@
+====== Gnoll Chamán (Móbil) ======
+
+{{ rpd:images:gnoll_shaman_mob.png|Gnoll Chamán }}
+
+==== Descripción ====
+**Gnoll Chamán** son los miembros mágicos de las bandas de Gnoll, que utilizan magia chamánica primitiva. Tienen potentes habilidades de lanzamiento de hechizos y sirven tanto como sanadores como lanzadores de hechizos ofensivos para la estructura de la manada de Gnoll.
+
+==== Estadísticas ====
+  * **PV**: 18 (hp(ht(18)))
+  * **PV Máx**: 18 (ht(18))
+  * **Habilidad de Defensa**: 8 (baseDefenseSkill = 8)
+  * **Habilidad de Ataque**: 11 (baseAttackSkill = 11)
+  * **Daño**: 2-6 (dmgMin = 2, dmgMax = 6)
+  * **Armadura**: 4 AP (dr = 4)
+  * **EXP por Muerte**: 6 (expForKill = 6)
+  * **Nivel Máximo**: 14 (maxLvl = 14)
+  * **Botín**: Pergamino con 33% de probabilidad (loot(Treasury.Category.SCROLL, 0.33f))
+
+==== Habilidades Especiales ====
+  * **Rayos de Luz**: Lanza rayos de luz a distancia que pueden golpear múltiples objetivos
+  * **Huida Defensiva**: Entra en estado de huida cuando la salud está baja (método defenseProc)
+  * **Combate a Distancia**: Prefiere mantener distancia y atacar con hechizos
+  * **Resistencia al Rayo**: Tiene resistencia al daño de rayo
+
+==== Tácticas ====
+  * Peligroso a distancia debido a los ataques de rayo que pueden golpear múltiples objetivos
+  * Debe eliminarse rápidamente antes de que pueda lanzar múltiples hechizos
+  * Intentará huir cuando la salud sea baja
+  * Resistente a ataques basados en rayo
+
+==== Verificación de Contenido ====
+  * Fuente de información: Clase Java [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java|Shaman.java]] (nombre real de clase, aparece como Gnoll Chamán en el juego)
+  * Verificación de estadísticas: Extraído directamente del constructor de Shaman.java
+  * Recursos de cadenas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L1311-L1315|Recursos de cadenas de Chamán]] (Chamán_Name, Chamán_Desc, etc.)
+  * Resistencia mecánica: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L24|Shaman.java#L24]] - Implementación de resistencia al rayo
+  * Mecánicas de ataque: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L41-L51|Shaman.java#L41-L51]] - Comportamiento de defensa y huida
+  * Mecánicas de rayo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java#L24-L45|CharUtils.java#L24-L45]] - Implementación de daño por rayo usada por chamanes
+  * Configuración de Bestiario: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - Reglas de aparición de monstruos por nivel
+  * Última actualización: 31 de diciembre de 2025
+
+==== Relacionado ====
+  * [[es:rpd:gnoll_mob|Gnoll Explorador]] - Miembro normal de Gnoll
+  * [[es:rpd:gnoll_brute_mob|Gnoll Bruto]] - Variante física más fuerte
+  * [[es:rpd:shaman_elder_mob|Chamán Anciano]] - Variante más poderosa
+  * [[es:rpd:mobs|Lista de Móviles]] - Otros enemigos en la mazmorra
+  * [[es:rpd:gnolls|Banda de Gnolls]] - Información sobre la dinámica de grupo de gnolls
+  * [[es:rpd:lightning_bolt_spell|Rayo de Luz]] - Hechizo usado por chamanes
+  * [[es:rpd:mechanical_enemies_mob|Enemigos Mecánicos]] - Enemigos con habilidades especiales
+  * [[es:rpd:elemental_spell_affinity|Afinidad de Hechizo Elemental]] - Relacionado con ataques de rayo
+  * [[es:rpd:sewers_level|Nivel de Alcantarillas]] - Donde se encuentra comúnmente los gnolls
+  * [[es:rpd:enemy|Enemigos]] - Información general sobre enemigos
+
+{{tag> rpd mobs sewers magic }}
