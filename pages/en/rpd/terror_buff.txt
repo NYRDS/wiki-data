@@ -1,51 +1,43 @@
 ====== Terror Buff ======
 
-{{ rpd:images:buff_terror.png|Terror Status Effect }}
+{{ rpd:images:buff_fear.png|Terror Status Effect }}
 
-**Terror** is a status effect in Remixed Pixel Dungeon that causes affected characters to become fearful and flee from combat, running away from their opponents.
+**Terror** is a status effect in Remixed Dungeon that causes affected characters to become frightened and flee from combat.
 
 ==== Effects ====
-  * **Fear:** Affected characters are overcome with terror and flee from combat
-  * **Movement:** Affected characters attempt to run away from enemies they can see
-  * **Duration:** The effect lasts until it wears off or is cured
-  * **Behavior:** Affected characters generally avoid engaging in combat while terrified
+  * **Frightened:** Affected characters become overwhelmed with fear and will attempt to run away from enemies
+  * **Movement:** Affected characters will actively move away from enemies in sight
+  * **Duration:** The effect lasts 10 seconds by default (Terror.DURATION = 10f)
+  * **Behavior:** Affected characters avoid engaging in combat while terrorized
 
 ==== Causes ====
 Terror can be inflicted by:
-  * [[en:rpd:scroll_of_terror_item|Scroll of Terror]]
+  * Special abilities of certain mobs like Wraith that use terror attacks
   * [[en:rpd:horror_enchantment|Horror Enchantment]] on weapons
-  * Special abilities of certain mobs
-  * Some curses or dark magic effects
-  * Certain wands with fear effects may cause terror in some game variants
+  * Certain wands with fear effects
+  * Some cursed items or dark magic effects
 
 ==== Counters ====
-  * [[en:rpd:resistances|Fear Resistance]] may prevent the effect
   * Potions and items that cure status effects may remove terror
   * Some creatures may be immune to terror effects
-  * Standing your ground (though difficult while terrified) until the effect wears off
+  * When a terrorized mob is reduced to 0 HP, the terror effect is removed by the Terror.recover() method
 
-==== Strategy ====
-  * Use terror to escape dangerous situations
-  * Effective for separating groups of enemies
-  * Can be used to reach safe areas or other locations
-  * Note that terror is temporary and affected enemies will return to normal after the duration
+==== Code Implementation ====
+When the Terror buff is applied:
+  * If the affected character is a mob, any pet they have is released
+  * The character's sprite shows the "frightened" status message
+  * For English this displays "frightened", for other languages the localized string is used (e.g., "испуган" in Russian)
 
 ==== Source Code ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java|Terror.java]]
-  * String Resources (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L614-L615|TerrorBuff_Name and TerrorBuff_Info (lines 614-615)]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L795-L796|Mob_StaTerrorStatus strings (lines 795-796)]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1774-L1778|ScrollOfTerror strings (lines 1774-1778)]]
-  * String Resources (Russian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L614-L615|TerrorBuff_Name and TerrorBuff_Info (lines 614-615)]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L795-L796|Mob_StaTerrorStatus strings (lines 795-796)]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1775-L1779|ScrollOfTerror strings (lines 1775-1779)]]
-  * Other Related Code:
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java#L14-L26|Terror class definition and recovery method]]
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java#L28-L38|attachTo and attachVisual methods]]
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L94|BuffFactory.TERROR constant]]
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Horror.java#L29|Horror enchantment applying Terror]]
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfTerror.java#L35|ScrollOfTerror applying Terror]]
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Horrified.java|Horrified AI that handles Terror]]
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java|Terror.java]] - Primary implementation
+  * String Resources (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L335|Char_StaFrightened]] - "frightened" string
+  * String Resources (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L615|TerrorBuff_Info]] - "It looks like someone was very frightened."
+  * String Resources (Russian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L335|Char_StaFrightened]] - "испуган" string
 
 ==== See Also ====
   * [[en:rpd:status_effects|Status Effects]]
-  * [[en:rpd:scroll_of_terror_item|Scroll of Terror]]
   * [[en:rpd:buffs|Buffs and Debuffs]]
-  * [[en:rpd:fear_buff|Fear]]
+  * [[en:rpd:control_effects|Control Effects]]
+  * [[en:rpd:horror_enchantment|Horror Enchantment]]
 
-{{tag> rpd status_effects buffs fear terror control}}
+{{tag> rpd status_effects buffs terror control}}

@@ -1,0 +1,43 @@
+====== Terror Buff ======
+
+{{ rpd:images:buff_fear.png|Efecto de Estado Terror }}
+
+**Terror** es un efecto de estado en Remixed Dungeon que hace que los personajes afectados se vuelvan asustados y huyan del combate.
+
+==== Efectos ====
+  * **Asustado:** Los personajes afectados se ven abrumados por el miedo y tratarán de huir de los enemigos
+  * **Movimiento:** Los personajes afectados se alejarán activamente de los enemigos a la vista
+  * **Duración:** El efecto dura 10 segundos por defecto (Terror.DURATION = 10f)
+  * **Comportamiento:** Los personajes afectados evitan participar en combates mientras están aterrorizados
+
+==== Causas ====
+Terror puede ser infligido por:
+  * Habilidades especiales de ciertos mobs como los Espectros que usan ataques de terror
+  * [[es:rpd:horror_enchantment|Encantamiento de Horror]] en armas
+  * Ciertos cetros con efectos de miedo
+  * Algunos objetos malditos o efectos de magia oscura
+
+==== Contraefectos ====
+  * Pociones y objetos que curan efectos de estado pueden eliminar el terror
+  * Algunas criaturas pueden ser inmunes a los efectos de terror
+  * Cuando un mob aterrorizado se reduce a 0 HP, el efecto de terror se elimina por el método Terror.recover()
+
+==== Implementación en el código ====
+Cuando se aplica el buff de Terror:
+  * Si el personaje afectado es un mob, cualquier mascota que tenga es liberada
+  * El sprite del personaje muestra el mensaje de estado "asustado"
+  * Para el inglés se muestra "asustado", para otros idiomas se usa la cadena localizada (por ejemplo, "assustado" en portugués)
+
+==== Código Fuente ====
+  * Clase Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java|Terror.java]] - Implementación principal
+  * Recursos de cadenas (Inglés): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L335|Char_StaFrightened]] - cadena "asustado"
+  * Recursos de cadenas (Inglés): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L615|TerrorBuff_Info]] - "Parece que alguien está muy asustado."
+  * Recursos de cadenas (Ruso): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L335|Char_StaFrightened]] - cadena "испуган"
+
+==== Ver También ====
+  * [[es:rpd:status_effects|Efectos de Estado]]
+  * [[es:rpd:buffs|Buffs y Debuffs]]
+  * [[es:rpd:control_effects|Efectos de Control]]
+  * [[es:rpd:horror_enchantment|Encantamiento de Horror]]
+
+{{tag> rpd status_effects buffs terror control}}

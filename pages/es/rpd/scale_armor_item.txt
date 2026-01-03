@@ -1,0 +1,66 @@
+====== Scale Armor ======
+
+{{ rpd:images:item_ScaleArmor.png|Armadura de Escamas }}
+
+**Armadura de Escamas** es una armadura de nivel medio en Remixed Dungeon. Está hecha de escamas metálicas cosidas en un chaleco de cuero, creando una armadura flexible pero protectora.
+
+==== Propiedades de la Armadura ====
+  * **Nivel de Armadura**: 4 (Armadura media)
+  * **Tipo**: Armadura media con protección y movilidad equilibradas
+  * **Durabilidad**: [[es:rpd:armor_durability|durabilidad de armadura]] estándar (disminuye con el uso)
+  * **Encantamientos**: Se puede encantar con [[es:rpd:armor_glyphs|glifos]] como otros tipos de armadura
+  * **Peso**: 10 (afecta ligeramente la velocidad de movimiento)
+  * **Precio**: 80 oro (cuando se vende en tiendas - precio calculado como nivel de armadura * 20)
+
+==== Descripción ====
+Las escamas de metal cosidas a un chaleco de cuero crean una armadura flexible, pero protectora. Este diseño ofrece un buen equilibrio entre protección y movilidad, haciéndola adecuada para varios estilos de juego.
+
+==== Adquisición ====
+  * Se encuentra aleatoriamente en las mazmorras
+  * Disponible en tiendas
+  * Soltada por ciertos enemigos
+  * Encontrada en cofres y otros contenedores
+
+==== Estrategia ====
+  * Proporciona buena protección para la progresión media del juego
+  * La naturaleza flexible permite una velocidad de movimiento razonable
+  * Buena para personajes que necesitan protección moderada sin sacrificar demasiada movilidad
+  * Se puede mejorar con pergaminos de armadura para mejorar la protección
+  * Compatible con glifos de armadura para efectos especiales adicionales
+
+==== Referencias de Código ====
+  * **Implementación en Java**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java|ScaleArmor.java]]
+  * **Datos del Constructor**: ScaleArmor() establece el nivel de armadura en 4 y el índice de imagen en 3
+  * **Verificación de Estadísticas**: Nivel de armadura: 4 (super(4) en constructor), Peso: 10 (por defecto para nivel de armadura 4), Imagen: 3
+  * **Recursos de Cadena**:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2013|ScaleArmor_Name]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2014|ScaleArmor_Desc]]
+    * Disponible en múltiples idiomas (ru, de, fr, es, etc.)
+  * **Registro**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (registerItemClass(ScaleArmor.class))
+  * **Clase Base**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Clase base Armor]]
+  * **Sistema de Armadura**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] (implementación base)
+  * **Cálculo de Nivel de Armadura**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L28|nivel de armadura = 4]] (determina protección y peso)
+  * **Cálculo de Peso**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L29|peso = nivel de armadura * 2.5]] (peso = 4 * 2.5 = 10)
+  * **Índice de Sprite**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java#L11|image = 3]] (determina representación visual)
+  * **Localización de Cadenas**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java#L17|el método desc() devuelve StringsManager.getVar(R.string.ScaleArmor_Desc)]]
+  * **Implementación de Entity Kind**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|interfaz NamedEntityKind]]
+  * **Durabilidad de Armadura**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|sistema de durabilidad de armadura]] (basado en mecánicas de degradación)
+  * **Precio de Armadura**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L97|cálculo de precio]] (precio = nivel de armadura * 20 = 80 oro cuando se vende)
+  * **Encantamientos de Armadura**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/|sistema de glifos de armadura]] (compatibilidad con glifos)
+  * **Tipos de Material**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L27|campo materialType]] - indica propiedades del material de la armadura (armadura media)
+  * **Sistema de Equipamiento**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|clase Belongings]] - maneja equipamiento de armadura en ranura de armadura
+  * **Clasificaciones de Armadura**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L18-L21|clasificaciones por nivel]] - define niveles de armadura (nivel 4 = armadura media)
+  * **Disponibilidad en Tiendas**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java#L90|ShopPainter.java]] (aparece en tiendas)
+  * **Datos legibles por máquina**: [[mr:scale_armor_item|mr:scale_armor_item]]
+
+==== Relacionado ====
+  * [[es:rpd:armor|Armadura]] - Información sobre todos los tipos de armadura
+  * [[es:rpd:armor_glyphs|Glifos de Armadura]] - Efectos especiales para armadura
+  * [[es:rpd:leather_armor_item|Armadura de Cuero]] - Armadura de nivel inferior
+  * [[es:rpd:mail_armor_item|Armadura de Malla]] - Armadura de nivel superior
+  * [[es:rpd:plate_armor_item|Armadura de Placas]] - Armadura de nivel superior
+  * [[es:rpd:dragon_armor_item|Armadura de Dragón]] - Armadura de nivel superior
+  * [[es:rpd:cloth_armor_item|Armadura de Tela]] - Armadura de nivel inferior
+  * [[es:rpd:armor_tiers|Niveles de Armadura]] - Información sobre clasificaciones de armadura
+
+{{tag> rpd items armor scale tier4}}
