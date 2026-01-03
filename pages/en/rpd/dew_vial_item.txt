@@ -8,25 +8,28 @@
 The Dew Vial is a tiny vessel designed to hold dewdrops. Players can collect dewdrops into it when found in high grass, and then drink them when needed. Most importantly, if the vial is full when the player's health reaches zero, the dewdrops are consumed automatically to heal the player and prevent death.
 
 ==== Mechanics ====
-  * **Storage Capacity:** Can hold up to 10 dewdrops
+  * **Storage Capacity:** Can hold up to 10 dewdrops (MAX_VOLUME constant)
   * **Automatic Healing:** If full and player HP reaches 0, automatically consumed to heal the character
   * **Manual Drinking:** Can be consumed manually to heal a variable amount based on stored dewdrops
-  * **Visual Indicator:** Glows white when full to indicate its charged state
+  * **Visual Indicator:** Glows white when full to indicate its charged state (Glowing.WHITE effect)
   * **Healing Formula:** Healing amount follows the formula: `ceil(volume^(log10(20)) / 20 * character_HT)`
   * **Image Variation:** Shows different images based on volume (0, 1, 2, or 3 depending on fullness)
+  * **Auto-Resurrect:** When player HP is 0, auto-drinking first resurrects the hero with 1 HP before healing
 
 ==== Stats ====
-  * **Maximum Volume:** 10 dewdrops capacity
+  * **Maximum Volume:** 10 dewdrops capacity (MAX_VOLUME constant)
   * **Auto-Drink Feature:** Automatically consumed when HP reaches 0 if full
   * **Healing Calculation:** Healing amount based on formula: `ceil(volume^(log10(20)) / 20 * character_HT)`
   * **Weight:** 0 (no weight)
   * **Type:** Consumable item with storage capability
+  * **Drink Time:** Takes 1f time units to consume manually (TIME_TO_DRINK constant)
 
 ==== Strategy ====
   * Collect dewdrops in high grass and store in the vial for emergencies
   * A full vial acts as a "second chance" when in mortal danger
   * Very useful for early-game survival when healing items are scarce
   * Keep the vial charged as you descend deeper into the dungeon
+  * Auto-resurrect feature can save you even from death if the vial is full
 
 ==== Obtaining ====
   * Can be found in shops, occasionally
@@ -37,6 +40,9 @@ The Dew Vial is a tiny vessel designed to hold dewdrops. Players can collect dew
   * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java|DewVial.java]]
   * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1507-L1513|Dew Vial strings]]
   * Sprite: [[https://github.com/NYRDS/remixed-dungeon/blob/master/sprites/item_DewVial.png|item_DewVial.png]]
+  * Healing calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java#L70-L74|doDrink method with healing formula]]
+  * Auto-drink mechanism: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java#L94-L105|autoDrink method]]
+  * Image variations: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java#L122-L129|image method with 4 different states]]
 
 ==== See Also ====
   * [[en:rpd:dewdrop_item|Dewdrop]] - Individual dewdrop item that fills the vial
