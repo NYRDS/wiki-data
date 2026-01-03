@@ -1,0 +1,53 @@
+====== Gnoll Xamã (Monstro) ======
+
+{{ rpd:images:gnoll_shaman_mob.png|Gnoll Xamã }}
+
+==== Descrição ====
+**Gnoll Xamãs** são os membros mágicos das matilhas de Gnolls, empregando magia xamânica primitiva. Eles possuem poderosas habilidades de conjuração e servem como curandeiros e lançadores de feitiços ofensivos para a estrutura da alcateia de Gnolls.
+
+==== Estatísticas ====
+  * **PV**: 18 (hp(ht(18)))
+  * **PV Máx**: 18 (ht(18))
+  * **Habilidade de Defesa**: 8 (baseDefenseSkill = 8)
+  * **Habilidade de Ataque**: 11 (baseAttackSkill = 11)
+  * **Dano**: 2-6 (dmgMin = 2, dmgMax = 6)
+  * **Armadura**: 4 DR (dr = 4)
+  * **EXP por Morte**: 6 (expForKill = 6)
+  * **Nível Máximo**: 14 (maxLvl = 14)
+  * **Saque**: Pergaminho com 33% de chance (loot(Treasury.Category.SCROLL, 0.33f))
+
+==== Habilidades Especiais ====
+  * **Choques de Raio**: Conjura raios à distância que podem atingir múltiplos alvos
+  * **Fuga Defensiva**: Entra em estado de fuga quando a vida está baixa (método defenseProc)
+  * **Combate à Distância**: Prefere manter distância e atacar com feitiços
+  * **Resistência ao Raio**: Tem resistência ao dano de raio
+
+==== Táticas ====
+  * Perigoso à distância devido aos ataques de raio que podem atingir múltiplos alvos
+  * Deve ser eliminado rapidamente antes que lance múltiplos feitiços
+  * Tentará fugir quando a vida estiver baixa
+  * Resistente a ataques baseados em raio
+
+==== Verificação de Conteúdo ====
+  * Fonte de informação: Classe Java [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java|Shaman.java]] (nome real da classe, aparece como Gnoll Xamã no jogo)
+  * Verificação de estatísticas: Extraído diretamente do construtor de Shaman.java
+  * Recursos de string: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L1311-L1315|Recursos de string de Xamã]] (Shaman_Name, Shaman_Desc, etc.)
+  * Mecânica de resistência: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L24|Shaman.java#L24]] - Implementação da resistência ao raio
+  * Mecânicas de ataque: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L41-L51|Shaman.java#L41-L51]] - Comportamento de defesa e fuga
+  * Mecânicas de raio: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java#L24-L45|CharUtils.java#L24-L45]] - Implementação de dano por raio usada pelos xamãs
+  * Configuração do Bestiário: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - Regras de surgimento de monstros por nível
+  * Última atualização: 31 de dezembro de 2025
+
+==== Relacionado ====
+  * [[pt:rpd:gnoll_mob|Gnoll Batedor]] - Membro normal de Gnoll
+  * [[pt:rpd:gnoll_brute_mob|Gnoll Bruto]] - Variante física mais forte
+  * [[pt:rpd:shaman_elder_mob|Xamã Ancião]] - Variante mais poderosa
+  * [[pt:rpd:mobs|Lista de Monstros]] - Outros inimigos na masmorra
+  * [[pt:rpd:gnolls|Matilha de Gnolls]] - Informações sobre a dinâmica de grupo dos gnolls
+  * [[pt:rpd:lightning_bolt_spell|Raio de Luz]] - Feitiço usado pelos xamãs
+  * [[pt:rpd:mechanical_enemies_mob|Inimigos Mecânicos]] - Inimigos com habilidades especiais
+  * [[pt:rpd:elemental_spell_affinity|Afinidade de Feitiço Elemental]] - Relacionado a ataques de raio
+  * [[pt:rpd:sewers_level|Nível de Esgotos]] - Onde os gnolls são comumente encontrados
+  * [[pt:rpd:enemy|Inimigos]] - Informações gerais sobre inimigos
+
+{{tag> rpd mobs sewers magic }}
