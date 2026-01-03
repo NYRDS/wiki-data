@@ -1,0 +1,53 @@
+====== Frasco de Orvalho ======
+
+{{ rpd:images:dew_vial_item.png|Frasco de Orvalho }}
+
+**Frasco de Orvalho** é um item especial em Remixed Dungeon que permite que os jogadores armazenem o excesso de gotas de orvalho para consumo posterior. Também fornece um mecanismo de cura de emergência se o herói estiver em perigo mortal.
+
+==== Descrição ====
+O Frasco de Orvalho é um pequeno vaso projetado para conter gotas de orvalho. Os jogadores podem coletar gotas de orvalho nele quando encontradas na grama alta e beber quando necessário. Mais importante, se o frasco estiver cheio quando a saúde do jogador chegar a zero, as gotas de orvalho serão consumidas automaticamente para curar o jogador e prevenir a morte.
+
+==== Mecânicas ====
+  * **Capacidade de Armazenamento:** Pode conter até 10 gotas de orvalho (constante MAX_VOLUME)
+  * **Cura Automática:** Se estiver cheio e o HP do jogador chegar a 0, é consumido automaticamente para curar o personagem
+  * **Bebida Manual:** Pode ser consumido manualmente para curar uma quantidade variável baseada nas gotas de orvalho armazenadas
+  * **Indicador Visual:** Brilha em branco quando cheio para indicar seu estado carregado (efeito Glowing.WHITE)
+  * **Fórmula de Cura:** A quantidade de cura segue a fórmula: `ceil(volume^(log10(20)) / 20 * HT_caracter)`
+  * **Variação de Imagem:** Mostra imagens diferentes com base no volume (0, 1, 2 ou 3 dependendo do nível de preenchimento)
+  * **Auto-Ressurreição:** Quando a vida do jogador é 0, a bebida automática primeiro ressuscita o herói com 1 HP antes de curar
+
+==== Estatísticas ====
+  * **Volume Máximo:** 10 gotas de orvalho de capacidade (constante MAX_VOLUME)
+  * **Recurso de Beber Automático:** É consumido automaticamente quando o HP chega a 0 se estiver cheio
+  * **Cálculo de Cura:** Quantidade de cura baseada na fórmula: `ceil(volume^(log10(20)) / 20 * HT_caracter)`
+  * **Peso:** 0 (sem peso)
+  * **Tipo:** Item consumível com capacidade de armazenamento
+  * **Tempo de Bebida:** Leva 1f unidades de tempo para ser consumido manualmente (constante TIME_TO_DRINK)
+
+==== Estratégia ====
+  * Colete gotas de orvalho na grama alta e armazene no frasco para emergências
+  * Um frasco cheio atua como uma "segunda chance" quando em perigo mortal
+  * Muito útil para a sobrevivência no início do jogo quando itens de cura são escassos
+  * Mantenha o frasco carregado à medida que desce mais profundamente no calabouço
+  * O recurso de auto-ressurreição pode salvá-lo da morte se o frasco estiver cheio
+
+==== Obtenção ====
+  * Pode ser encontrado nas lojas, ocasionalmente
+  * Às vezes disponível como saque do calabouço
+  * Mais valioso para manter do que [[pt:rpd:dewdrop_item|gotas de orvalho]] individuais
+
+==== Referências de Código ====
+  * Implementação: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java|DewVial.java]]
+  * Recursos de strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1507-L1513|Dew Vial strings]]
+  * Sprite: [[https://github.com/NYRDS/remixed-dungeon/blob/master/sprites/item_DewVial.png|item_DewVial.png]]
+  * Cálculo de cura: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java#L70-L74|método doDrink com fórmula de cura]]
+  * Mecanismo de bebida automática: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java#L94-L105|método autoDrink]]
+  * Variações de imagem: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java#L122-L129|método image com 4 estados diferentes]]
+
+==== Ver também ====
+  * [[pt:rpd:dewdrop_item|Gota de orvalho]] - Item individual de gota de orvalho que enche o frasco
+  * [[pt:rpd:high_grass|Grama Alta]] - Onde gotas de orvalho podem ser encontradas
+  * [[pt:rpd:potion_of_healing_item|Poção de Cura]] - Alternativa de cura mais substancial
+  * [[pt:rpd:ring_of_herbalism_item|Anel de Herbalismo]] - Aumenta a taxa de coleta de orvalho
+
+{{tag> rpd items consumable healing }}
