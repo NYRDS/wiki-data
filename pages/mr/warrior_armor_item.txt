@@ -1,20 +1,45 @@
 ====== Warrior Armor Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WarriorArmor.java|WarriorArmor.java]] - Main item implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L360|ItemFactory.java]] - Item registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L76|HeroClass.java]] - Warrior class association (WARRIOR(R.string.HeroClass_War, WarriorArmor.class))
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] - Base class for class-specific armor
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/BerserkArmor.java|BerserkArmor.java]] - Extends WarriorArmor
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GladiatorArmor.java|GladiatorArmor.java]] - Extends WarriorArmor
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/warrior_armor.json
+No specific JSON configuration file for this item found, but it's associated with:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Class-specific starting equipment
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - May influence mob behavior when worn
 
 ===== String Resources =====
 <code xml>
-<string name="WarriorArmor_Name">[Name]</string>
-<string name="WarriorArmor_Info">[Description]</string>
+<!-- English -->
+<string name="WarriorArmor_Name">warrior suit of armor</string>
+<string name="WarriorArmor_Desc">While this armor looks heavy, it allows a warrior to perform a heroic leap towards a targeted location, slamming down to stun all neighbouring enemies.</string>
+<string name="WarriorArmor_ACSpecial">HEROIC LEAP</string>
+<string name="WarriorArmor_NotWarrior">Only warriors can use this armor!</string>
+<string name="WarriorArmor_Prompt">Choose direction to leap</string>
+
+<!-- Russian -->
+<string name="WarriorArmor_Name">боевой доспех</string>
+<string name="WarriorArmor_Desc">Несмотря на кажущуюся тяжесть, эта броня позволяет воину осуществлять рывок в указанное место, оглушая ближайших врагов ударной волной.</string>
+<string name="WarriorArmor_ACSpecial">БОГАТЫРСКИЙ РЫВОК</string>
+<string name="WarriorArmor_NotWarrior">Этот доспех доступен лишь воину!</string>
+<string name="WarriorArmor_Prompt">Выбери направление рывка</string>
+
+<!-- Spanish -->
+<string name="WarriorArmor_Name">armadura de guerrero</string>
+<string name="WarriorArmor_Desc">Aunque esta armadura parezca pesada, permite a un guerrero realizar un heroico salto al lugar seleccionado, dando un golpe en el suelo y aturdiendo a todos los enemigos cercanos.</string>
+<string name="WarriorArmor_ACSpecial">SALTO HEROICO</string>
+<string name="WarriorArmor_NotWarrior">¡Sólo los guerreros pueden usar esta armadura!</string>
+<string name="WarriorArmor_Prompt">Escoge una dirección para saltar</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+No custom Lua scripts exist for this item; implemented in Java
+
+===== Additional References =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - Base class for all items
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Hero interaction with class armor

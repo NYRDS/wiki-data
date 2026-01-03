@@ -1,18 +1,33 @@
 ====== Compound Bow Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/CompoundBow.java|CompoundBow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/CompoundBow.java|CompoundBow.java]] - Main item implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Bow.java|Bow.java]] - Base class for bow weapons
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L337|ItemFactory.java]] - Item registration
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/compound_bow.json
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L52|SpidersTreasury.json]] - Contains drop rate information ("CompoundBow": 3)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L52|Treasury.json]] - Contains drop rate information ("CompoundBow": 3)
 
 ===== String Resources =====
 <code xml>
-<string name="CompoundBow_Name">[Name]</string>
-<string name="CompoundBow_Info">[Description]</string>
+<!-- English -->
+<string name="CompoundBow_Name">compound bow</string>
+<string name="CompoundBow_Info">Arrows launched from this compound bow deal a great amount of damage and have improved accuracy over a wooden bow at the cost of some speed.</string>
+<string name="CompoundBow_Gender">masculine</string>
+
+<!-- Russian -->
+<string name="CompoundBow_Name">блочный лук</string>
+<string name="CompoundBow_Info">Стрелы, выпущенные из блочного лука, с лёгкостью находят цель и наносят серьёзный урон, однако он не так быстр, как простой лук.</string>
+<string name="CompoundBow_Gender">masculine</string>
+
+<!-- Spanish -->
+<string name="CompoundBow_Name">arco compuesto</string>
+<string name="CompoundBow_Info">Las flechas disparadas con un arco compuesto hacen gran cantidad de daño y van mejor dirigidas, a costa de ser más lentas.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+No custom Lua scripts exist for this item; implemented in Java
+
+===== Additional References =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] - Base class for ranged weapons
