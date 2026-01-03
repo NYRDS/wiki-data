@@ -1,0 +1,117 @@
+====== Mecánica de Habilidad de Ataque ======
+
+La Habilidad de Ataque es una mecánica de combate principal en Remixed Dungeon que determina la probabilidad de acertar exitosamente un ataque a un enemigo.
+
+==== Fórmula de Habilidad de Ataque ====
+La habilidad de ataque se calcula en el archivo ''Char.java'' como parte del método ''attackSkill'':
+
+<code java>
+public int attackSkill(Char target) {
+
+    int[] bf = {0};
+    forEachBuff(b -> bf[0] += b.attackSkillBonus(this));
+
+    int bonus = bf[0];
+
+    float accuracy = (float) Math.pow(1.4, bonus);
+
+    if (target == null) { // Principalmente para ocultar errores en Remixed RPG
+        target = CharsList.DUMMY;
+    }
+
+    if (rangedWeapon.valid() && level().distance(getPos(), target.getPos()) == 1) {
+        accuracy *= 0.5f;
+    }
+
+    float mainAccuracyFactor = getActiveWeapon().accuracyFactor(this);
+    float secondaryAccuracyFactor = getSecondaryWeapon().accuracyFactor(this);
+
+    float skillFactor = Utils.min(20f, mainAccuracyFactor, secondaryAccuracyFactor);
+
+    int aSkill = (int) ((baseAttackSkill + lvl()) * accuracy * skillFactor);
+
+    GLog.debug("%s atacando %s con factor %2.2f, habilidad resultante %d", getEntityKind(), target.getEntityKind(), skillFactor, aSkill);
+
+    return aSkill;
+}
+</code>
+
+==== Componentes de la Habilidad de Ataque ====
+
+==== Habilidad de Ataque Base ====
+  * **Definición**: El valor base de habilidad de ataque del personaje
+  * **Almacenamiento**: Campo ''baseAttackSkill'' en la clase Char
+  * **Ejemplos**:
+    * Rata: 8
+    * Guerrero: 10 (en la clase Heroe)
+    * Ladrón: 12
+    * Goo: 11
+    * Rey: 32
+    * Corazón de Yog: 26
+  * **Función**: Proporciona el valor de ataque fundamental antes de modificadores
+
+==== Bonificación de Nivel ====
+  * **Fórmula**: ''baseAttackSkill + lvl()''
+  * **Efecto**: Cada nivel aumenta la habilidad de ataque en 1 punto
+  * **Implementación**: ''baseAttackSkill + lvl()'' en el cálculo
+
+==== Bonificaciones de Buff ====
+  * **Mecanismo**: Cada buff con ''attackSkillBonus'' aumenta la habilidad
+  * **Fórmula**: Los bonos se suman y aplican como modificador exponencial a la precisión: ''Math.pow(1.4, bonus)''
+  * **Ejemplos**:
+    * [[es:rpd:ring_of_accuracy_item|Anillo de Puntería]] aumenta el bono de habilidad de ataque igual a su nivel
+    * [[es:rpd:blessed_buff|Buff Bendecido]] proporciona bono de habilidad de ataque
+    * [[es:rpd:hero_subclass|Subclases de Héroe]] pueden proporcionar bonos de habilidad de ataque
+
+==== Factores de Precisión ====
+  * **Precisión de Armas**: ''getActiveWeapon().accuracyFactor(this)'' y ''getSecondaryWeapon().accuracyFactor(this)''
+  * **Cálculo**: Se utiliza el mínimo de ambos factores de precisión de armas, limitado a 20.0
+  * **Ejemplos**:
+    * **[[es:rpd:ring_of_accuracy_item|Anillo de Puntería]]**: Proporciona bonificación de precisión
+    * **[[es:rpd:weightstone_item|Piedra de Equilibrio]]**: Puede imbuir armas con precisión
+    * **[[es:rpd:compound_bow_item|Arco Compuesto]]**: Tiene mejor precisión que arco de madera
+
+==== Penalización a Distancia ====
+  * **Condición**: Al usar un arma a distancia en combate cuerpo a cuerpo (distancia = 1)
+  * **Efecto**: La precisión se reduce a la mitad (multiplicador 0.5f)
+  * **Propósito**: Desincentiva el uso de armas a distancia a corta distancia
+
+==== Comparación de Defensa ====
+  * **Uso**: La habilidad de ataque se compara con la habilidad de defensa del objetivo para determinar la probabilidad de impacto
+  * **Implementación**: En ''CharUtils.java'', ''Random.Float(attacker.attackSkill(defender)) > Random.Float(defender.defenseSkill(attacker))''
+
+==== Mejora de Habilidad de Ataque del Héroe ====
+La clase Héroe tiene un cálculo especial de habilidad de ataque que puede ser mejorado por configuración de dificultad:
+
+<code java>
+// En Hero.java
+public int attackSkill(Char target) {
+    float attackSkillFactor = 1;
+
+    if (getDifficulty() == 0) {
+        attackSkillFactor *= 1.2;
+    }
+
+    return (int) (super.attackSkill(target) * attackSkillFactor);
+}
+</code>
+
+==== Habilidad de Ataque en Combate ====
+  * **Probabilidad de Impacto**: La habilidad de ataque del atacante se compara con la habilidad de defensa del defensor
+  * **Cálculo**: ''Random.Float(attacker.attackSkill(defender)) > Random.Float(defender.defenseSkill(attacker))''
+  * **Resultado**: Si es verdadero, el ataque impacta; si es falso, el ataque falla
+
+==== Referencia de Código ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Blessed.java|Blessed.java]]
+
+==== Relacionado ====
+  * [[es:rpd:defense_mechanic|Mecánica de Defensa]]
+  * [[es:rpd:accuracy_mechanic|Mecánica de Precisión]]
+  * [[es:rpd:combat_mechanic|Mecánica de Combate]]
+  * [[es:rpd:evasion_mechanic|Mecánica de Evasión]]
+  * [[es:rpd:ring_of_accuracy_item|Anillo de Puntería]]
+
+{{tag> rpd mechanics combat attack skill }}

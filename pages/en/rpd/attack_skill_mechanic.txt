@@ -81,17 +81,17 @@ public int attackSkill(Char target) {
   * **Implementation**: In ''CharUtils.java'', ''Random.Float(attacker.attackSkill(defender)) > Random.Float(defender.defenseSkill(attacker))''
 
 ==== Hero Attack Skill Enhancement ====
-The Hero class has a special attack skill calculation that can be enhanced by subclass:
+The Hero class has a special attack skill calculation that can be enhanced by difficulty settings:
 
 <code java>
 // In Hero.java
 public int attackSkill(Char target) {
     float attackSkillFactor = 1;
-    
-    if (getSubClass() == HeroSubClass.GLADIATOR) {
+
+    if (getDifficulty() == 0) {
         attackSkillFactor *= 1.2;
     }
-    
+
     return (int) (super.attackSkill(target) * attackSkillFactor);
 }
 </code>
