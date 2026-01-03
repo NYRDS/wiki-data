@@ -1,0 +1,30 @@
+====== BellaNPC ======
+
+{{ rpd:images:bellanpc_sprite.png|Sprite de BellaNPC }}
+
+==== Descripción ====
+Bella es una chica con muy buena pinta. Toda su apariencia te dice "Soy bueno para todos". Se encuentra al final del juego y sirve como uno de los posibles finales.
+
+==== Interacciones ====
+  * Al encontrarse con Bella, te dirá que no tiene ningún interés en plebeyos como tú
+  * **Nota**: La implementación actual no incluye lógica de interacción especial para cuando el jugador tiene el Amuleto de Yendor, a pesar de que los recursos de cadena indican que esta interacción estaba prevista. Cuando el jugador tiene el Amuleto de Yendor, Bella teóricamente debería ofrecer la opción de dar un paseo juntos y discutir su futuro mutuo, pero esta funcionalidad no está actualmente implementada en el código.
+
+==== Detalles de implementación ====
+  * BellaNPC extiende la clase ImmortalNPC, que impide que sea asesinada
+  * La interacción es manejada por el método ''interact'' en la clase BellaNPC.java
+  * El mensaje básico se recupera de los recursos de cadena: ''BellaNPC_Message''
+  * Mensajes adicionales relacionados con el Amuleto de Yendor existen en los recursos de cadena pero no están implementados en el código:
+    * ''BellaNPC_Amulet_M'' - Mensaje para héroe masculino con Amuleto
+    * ''BellaNPC_Amulet_F'' - Mensaje para héroe femenino con Amuleto
+    * ''BellaNPC_Yes_End_Game'' - Opción de respuesta positiva para terminar el juego
+    * ''BellaNPC_No'' - Opción de respuesta negativa
+    * ''BellaNPC_Angry'' - Mensaje de respuesta enfadada
+
+==== Referencias de código ====
+  * Implementación de BellaNPC: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/BellaNPC.java|BellaNPC.java]]
+  * Clase base (ImmortalNPC): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+  * Manejador de interacción: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/BellaNPC.java#L18|método interact]]
+  * Recursos de cadena: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1624-L1633|Todas las cadenas de BellaNPC]]
+  * Registro en fábrica de mobs: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L244|registro de BellaNPC]]
+
+{{tag> rpd npcs endgame}}
