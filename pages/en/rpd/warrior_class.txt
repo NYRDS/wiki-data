@@ -5,7 +5,7 @@
 The **Warrior** is one of the starting [[en:rpd:hero_classes|hero classes]] in Remixed Dungeon. The Warrior is a melee-focused class that specializes in the use of weapons and armor to tackle enemies head-on.
 
 ==== Description ====
-The Warrior is a classic melee fighter who starts with a unique short sword that can be later upgraded and a small health bonus. The class is designed for direct combat and is often considered the most beginner-friendly class due to its straightforward approach to combat and good survivability.
+The Warrior is a classic [[en:rpd:melee_combat|melee]] fighter who starts with a unique short sword that can be later upgraded and a small health bonus. The class is designed for direct combat and is often considered the most beginner-friendly class due to its straightforward approach to combat and good [[en:rpd:survivability|survivability]].
 
 ==== Starting Equipment ====
   * [[en:rpd:short_sword_item|Short Sword]] +1 (unique, cannot be another copy)
@@ -16,22 +16,22 @@ The Warrior is a classic melee fighter who starts with a unique short sword that
   * [[en:rpd:cloth_armor_item|Cloth Armor]] (identified)
 
 ==== Stats ====
-  * **Starting Strength:** 11 (vs 10 for other classes)
-  * **Starting HP:** 20 (vs 15 for most other classes)
+  * **Starting Strength:** 11 (vs 10 for other [[en:rpd:hero_classes|classes]])
+  * **Starting HP:** 20 (vs 15 for most other [[en:rpd:hero_classes|classes]])
   * **Starting SP:** 10 (standard)
-  * **Max Inventory:** 19 slots
-  * **Magic Affinity:** Combat
+  * **Max Inventory:** 19 [[en:rpd:inventory|slots]]
+  * **[[en:rpd:magic_affinity|Magic Affinity]]:** Combat
 
 ==== Special Abilities ====
-  * **Starting Weapon:** The Warrior starts with a Short Sword +1 (identified), which can be upgraded with scrolls.
-  * **Starting Buff:** Warriors begin with a small strength advantage which allows them to equip heavier weapons and armor earlier than other classes.
-  * **Magic Affinity:** Combat magic affinity, allowing access to combat spells like [[en:rpd:body_armor_spell|Body Armor]], [[en:rpd:smash_spell|Smash]], [[en:rpd:die_hard_spell|Die Hard]], etc.
-  * **Food Healing:** Any piece of food restores 5 health when eaten (not applicable if HP is already full and does not work if HP is already at maximum)
-  * **Identified Potions:** Potions of Strength are identified from the beginning
-  * **Higher Gold:** Starts with 100 gold (compared to 50-70 for other classes)
+  * **Starting Weapon:** The Warrior starts with a Short Sword +1 (identified), which can be upgraded with [[en:rpd:scrolls|scrolls]].
+  * **Starting Buff:** Warriors begin with a small strength advantage which allows them to equip heavier [[en:rpd:weapons|weapons]] and [[en:rpd:armor|armor]] earlier than other [[en:rpd:hero_classes|classes]].
+  * **[[en:rpd:magic_affinity|Magic Affinity]]:** Combat magic affinity, allowing access to combat [[en:rpd:spells_overview|spells]] like [[en:rpd:body_armor_spell|Body Armor]], [[en:rpd:smash_spell|Smash]], [[en:rpd:die_hard_spell|Die Hard]], etc.
+  * **[[en:rpd:health_mechanic|Food Healing]]:** Any piece of [[en:rpd:food_item|food]] restores 5 health when eaten (not applicable if HP is already full and does not work if HP is already at maximum)
+  * **Identified [[en:rpd:potion_item|Potions]]:** [[en:rpd:potion_of_strength_item|Potions of Strength]] are identified from the beginning
+  * **Higher Gold:** Starts with 100 [[en:rpd:gold_item|gold]] (compared to 50-70 for other [[en:rpd:hero_classes|classes]])
 
 ==== Subclasses ====
-The Warrior can choose between two Mastery paths after defeating Tengu (boss #2) with a [[en:rpd:tome_of_mastery_item|Tome of Mastery]]:
+The Warrior can choose between two [[en:rpd:mastery|mastery]] paths after defeating [[en:rpd:tengu_mob|Tengu]] (boss #2) with a [[en:rpd:tome_of_mastery_item|Tome of Mastery]]:
   * [[en:rpd:gladiator_subclass|Gladiator]]
   * [[en:rpd:berserker_subclass|Berserker]]
 
@@ -66,6 +66,12 @@ This page follows the current wiki convention for hero class pages using the `_c
   * **All Warrior Perks (EN):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2448-L2452|HeroClass_WarPerks strings]]
   * **Code Verification:** Warrior class has class index 1 (ordinal 1), starts with 11 STR (vs 10 for other classes) and 20 HP (vs 15 for other classes) as defined in initHeroes.json
   * **mr: namespace:** Check [[mr:warrior_class]] for machine-readable data
+  * **Starting Equipment Details:** Warrior starts with ShortSword +1 (defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L35-L38|initHeroes.json#L35-L38]]), BodyArmor spell in quickslot (defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L41-L43|initHeroes.json#L41-L43]]), 100 gold and Ration (defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L7-L12|initHeroes.json#L7-L12]])
+  * **Warrior Starting Stats:** Strength 11 and HP 20 defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L39-L40|initHeroes.json#L39-L40]]
+  * **ShortSword Details:** Unique starting weapon with reforge ability [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/ShortSword.java|ShortSword.java]]
+  * **Warrior Food Healing:** Warriors heal 5 HP when eating food (defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L811|Hero.java#L811]])
+  * **Potion of Strength Identification:** Automatically identified for Warrior (defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L44-L46|initHeroes.json#L44-L46]])
+  * **Magic Affinity:** Combat magic affinity defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L47|initHeroes.json#L47]]
 
 ==== See Also ====
   * [[en:rpd:hero_classes|Hero Classes]]

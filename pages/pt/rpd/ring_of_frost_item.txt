@@ -1,0 +1,58 @@
+====== Anel de Gelo ======
+
+{{ rpd:images:ring_of_frost_item.png|Anel de Gelo }}
+
+**Anel de Gelo** é um artefato mágico em Remixed Dungeon. Quando usado, fornece uma aura protetora de gelo que desacelera e danifica inimigos que atacam o portador.
+
+==== Descrição ====
+Este anel é esculpido em gelo mágico. Seu portador é protegido por uma aura de gelo, desacelerando e danificando os inimigos atacantes. Quando um inimigo a uma distância de 1 tile ataca o portador, há uma chance de que eles sejam afetados pelo gelo e desacelerados.
+
+==== Estatísticas ====
+  * **Tipo:** Anel (Artefato)
+  * **Espaço:** Anel (requer Chaveiro para carregar múltiplos anéis)
+  * **Melhorável:** Sim
+  * **Custo de Melhoria:** Aumenta com o nível
+
+==== Efeitos ====
+Quando usado e ativado, o anel aciona os seguintes efeitos quando um inimigo ataca você:
+  * **Efeito Desacelerar:** Aplica efeito Desacelerar por (Slow.duration(enemy) / 5 + nível do anel) turnos
+  * **Chance de Gelo:** Tem (10% + nível do anel)% de chance de aplicar efeito Gelo por (Frost.duration(enemy) / 5 + nível do anel) turnos
+  * **Dano:** Causa (nível do anel / 2) de dano ao inimigo atacante
+  * **Alcance:** Funciona apenas quando o inimigo está a 1 tile de distância do portador
+
+==== Aquisição ====
+  * Encontrado em vários baús nos níveis da masmorra
+  * Dropado por certos monstros desafiadores
+  * Disponível para compra com o [[pt:rpd:shopkeeper_npc|vendedor]] em níveis mais profundos
+
+==== Dicas de Uso ====
+  * Particularmente eficaz contra inimigos corpo a corpo que atacam você diretamente
+  * Funciona bem em corredores estreitos onde os inimigos devem se aproximar
+  * Combina bem com outros equipamentos defensivos para maximizar a sobrevivência
+  * Anéis de nível mais alto fornecem efeitos significativamente melhores
+
+==== Estratégia ====
+O Anel de Gelo é altamente benéfico para personagens que enfrentam inimigos diretamente. Ele fornece uma defesa passiva que transforma a agressão inimiga contra eles mesmos, sendo especialmente valioso na metade e no final do jogo quando os inimigos são mais fortes e perigosos.
+
+==== Referências de Código ====
+  * Implementação do item: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java|RingOfFrost.java]]
+  * Registro na fábrica de itens: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L424|ItemFactory.java#L424]]
+  * Registro na fábrica de buffs: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L164|BuffFactory.java#L164]]
+  * Recursos de strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1474-L1475|strings_all.xml#L1474-L1475]]
+  * Implementação de buffs: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]] e [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
+  * Dados legíveis por máquina: [[mr:ring_of_frost_item|Anel de Gelo - Referências de Código]]
+  * Constantes do jogo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java#L23|Slow.DURATION]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java#L20|Frost.DURATION]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L26-L44|Método FrostAura.defenceProc()]] - Implementação principal do efeito do anel quando atacado
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L32|verificação de distância]] - Apenas afeta inimigos dentro de 2 tiles (adjacentes)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L35|aplicação de slow]] - Aplicação de efeito slow
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L37-L39|aplicação de frost]] - Chance aleatória de aplicar frost
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L40|aplicação de dano]] - Dano baseado no nível do anel
+
+==== Veja Também ====
+  * [[pt:rpd:keyring_item|Chaveiro]] - Necessário para carregar múltiplos anéis
+  * [[pt:rpd:artifacts|Artefatos]] - Outros itens especiais
+  * [[pt:rpd:rings|Anéis]] - Outros anéis no jogo
+  * [[pt:rpd:slow_buff|Slow]] - Efeito de status relacionado
+  * [[pt:rpd:frost_buff|Frost]] - Efeito de status relacionado
+
+{{tag> rpd items ring frost artifact}}
