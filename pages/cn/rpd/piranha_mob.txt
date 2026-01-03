@@ -1,0 +1,62 @@
+====== 巨型食人鱼 ======
+
+{{ rpd:images:piranha_mob.png|巨型食人鱼 }}
+
+**巨型食人鱼** 是 Remixed Dungeon 中的鱼类怪物，栖息在地牢中的积水区域和水下洞穴。这些食肉鱼是专门培育出来的，用来保护被淹没的宝藏室。
+
+==== 描述 ====
+这些食肉鱼类不是地下池塘中的天然生物。它们被专门培育用来保护被淹没的宝藏室。它们通常在地牢中的池塘中被发现，特别是在下水道和其他积水区域。
+
+==== 属性 ====
+  * **生命值：** 10 + (5 × 地牢深度)
+  * **攻击技能：** 20 + (2 × 地牢深度)
+  * **防御技能：** 10 + (2 × 地牢深度)
+  * **伤害：** 地牢深度 to (4 + 2 × 地牢深度)
+  * **护甲：** 地牢深度
+  * **速度：** 2.0x (水中快速移动)
+  * **经验值：** 0 (杀死后不获得经验)
+
+==== 行为 ====
+  * **依赖水：** 食人鱼只能在水格上生存；若被移至非水域则会立即死亡
+  * **快速移动：** 食人鱼在水中以2倍速度移动
+  * **水生：** 它们使用水上行走的移动类型
+  * **无需重置：** 与许多其他怪物不同，食人鱼不会重置到生成位置
+
+==== 免疫 ====
+食人鱼对以下状态效果免疫：
+  * [[cn:rpd:burning_buff|火焰]] (燃烧)
+  * [[cn:rpd:paralysis_buff|瘫痪]]
+  * [[cn:rpd:toxic_gas|毒气]]
+  * [[cn:rpd:roots_buff|缠绕]]
+  * [[cn:rpd:frost_buff|冰冻]]
+
+==== 掉落物 ====
+  * [[cn:rpd:raw_fish_item|生鱼]] (尸体)
+
+==== 特殊功能 ====
+  * **成就资格：** 杀死6条食人鱼解锁"食人鱼"成就
+  * **无经验：** 杀死食人鱼不获得经验值
+  * **尸体概率：** 0% 概率掉落尸体用于制作
+
+==== 位置 ====
+  * 通常在地牢中水下区域被发现
+  * 常见于淹没的宝藏室
+  * 在关卡生成时由PoolPainter放置在池塘中
+
+==== 代码引用 ====
+  * Java类： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Piranha.java|Piranha.java]] - 核心实现
+  * 实体类型： Java代码中 getEntityKind() 返回 "Piranha"
+  * 关卡生成： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/PoolPainter.java|PoolPainter.java]] - 在水池中放置食人鱼
+  * 统计信息： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Statistics.java|Statistics.java]] - 追踪被杀死的食人鱼数量
+  * 成就系统： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] - 食人鱼成就验证
+  * 字符串资源：
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1291-L1294|中文字符串]] - 名称和描述
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1277-L1280|俄文字符串]] - 俄语本地化
+
+==== 参见 ====
+  * [[cn:rpd:mobs|怪物]]
+  * [[cn:rpd:sewers_level|下水道关卡]]
+  * [[cn:rpd:badges|成就]]
+  * [[cn:rpd:water_elemental_mob|水元素]]
+
+{{tag> rpd mobs fish underwater water treasure}}

@@ -1,0 +1,58 @@
+====== Anillo de Escarcha ======
+
+{{ rpd:images:ring_of_frost_item.png|Anillo de Escarcha }}
+
+**Anillo de Escarcha** es un artefacto mágico en Remixed Dungeon. Cuando se lleva puesto, proporciona un aura de escarcha protectora que ralentiza y daña a los enemigos que atacan al portador.
+
+==== Descripción ====
+Este anillo está tallado en hielo mágico. Su portador está protegido por un aura helada, ralentizando y dañando a los enemigos que lo atacan. Cuando un enemigo a menos de 1 tile de distancia ataca al portador, hay una posibilidad de que quede afectado por la escarcha y ralentizado.
+
+==== Estadísticas ====
+  * **Tipo:** Anillo (Artefacto)
+  * **Casilla:** Anillo (requiere Llavero para llevar varios anillos)
+  * **Mejorable:** Sí
+  * **Coste de Mejora:** Aumenta con el nivel
+
+==== Efectos ====
+Cuando se lleva puesto y se activa, el anillo activa los siguientes efectos cuando un enemigo te ataca:
+  * **Efecto de Ralentización:** Aplica el efecto de Ralentización durante (Slow.duration(enemy) / 5 + nivel del anillo) turnos
+  * **Probabilidad de Escarcha:** Tiene (10% + nivel del anillo)% de probabilidad de aplicar el efecto de Escarcha durante (Frost.duration(enemy) / 5 + nivel del anillo) turnos
+  * **Daño:** Inflige (nivel del anillo / 2) de daño al enemigo atacante
+  * **Alcance:** Solo funciona cuando el enemigo está a menos de 1 tile de distancia del portador
+
+==== Adquisición ====
+  * Se encuentra en varios cofres en los niveles de la mazmorra
+  * Lo sueltan ciertos monstruos desafiantes
+  * Disponible para comprar en el [[es:rpd:shopkeeper_npc|Vendedor]] en niveles más profundos
+
+==== Consejos de Uso ====
+  * Es particularmente efectivo contra enemigos cuerpo a cuerpo que te atacan directamente
+  * Funciona bien en pasillos estrechos donde los enemigos deben acercarse
+  * Se combina bien con otro equipo defensivo para maximizar la supervivencia
+  * Los anillos de nivel superior proporcionan efectos significativamente mejores
+
+==== Estrategia ====
+El Anillo de Escarcha es muy beneficioso para personajes que se enfrentan directamente a enemigos. Proporciona una defensa pasiva que convierte la agresión enemiga en su contra, lo que lo hace especialmente valioso en la mitad y el final del juego cuando los enemigos son más fuertes y peligrosos.
+
+==== Referencias de Código ====
+  * Implementación del objeto: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java|RingOfFrost.java]]
+  * Registro en la factoría de objetos: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L424|ItemFactory.java#L424]]
+  * Registro en la factoría de efectos: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L164|BuffFactory.java#L164]]
+  * Recursos de cadenas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L1474-L1475|strings_all.xml#L1474-L1475]]
+  * Implementación de efectos: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]] y [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
+  * Datos legibles por máquina: [[mr:ring_of_frost_item|Anillo de Escarcha - Referencias de Código]]
+  * Constantes del juego: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java#L23|Slow.DURATION]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java#L20|Frost.DURATION]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L26-L44|método FrostAura.defenceProc()]] - Implementación principal del efecto del anillo cuando es atacado
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L32|comprobación de distancia]] - Solo afecta a enemigos en 2 tiles (adyacentes)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L35|aplicación de ralentización]] - Aplicando efecto de ralentización
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L37-L39|aplicación de escarcha]] - Probabilidad aleatoria de aplicar escarcha
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L40|aplicación de daño]] - Daño basado en el nivel del anillo
+
+==== Ver También ====
+  * [[es:rpd:keyring_item|Llavero]] - Requerido para llevar varios anillos
+  * [[es:rpd:artifacts|Artefactos]] - Otros objetos especiales
+  * [[es:rpd:rings|Anillos]] - Otros anillos en el juego
+  * [[es:rpd:slow_buff|Ralentización]] - Efecto de estado relacionado
+  * [[es:rpd:frost_buff|Escarcha]] - Efecto de estado relacionado
+
+{{tag> rpd items ring frost artifact}}

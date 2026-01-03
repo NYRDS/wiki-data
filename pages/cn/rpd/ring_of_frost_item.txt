@@ -1,0 +1,58 @@
+====== 寒冰戒指 ======
+
+{{ rpd:images:ring_of_frost_item.png|寒冰戒指 }}
+
+**寒冰戒指** 是 Remixed Dungeon 中的魔法物品。佩戴时，它提供保护性的寒气光环，减缓并伤害攻击佩戴者的敌人。
+
+==== 描述 ====
+这枚戒指由魔冰雕刻而成。佩戴者受到寒气光环的保护，减缓并伤害攻击的敌人。当距离1格内的敌人攻击佩戴者时，他们有一定几率被冰冻并减速。
+
+==== 属性 ====
+  * **类型：** 戒指 (法器)
+  * **装备位置：** 戒指 (需要钥匙圈才能携带多个戒指)
+  * **可升级：** 是
+  * **升级费用：** 随等级增加
+
+==== 效果 ====
+佩戴并激活后，戒指在敌人攻击你时触发以下效果：
+  * **减速效果：** 施加减速效果，持续 (Slow.duration(enemy) / 5 + 戒指等级) 回合
+  * **冰冻几率：** 有 (10% + 戒指等级)% 的几率施加冰冻效果，持续 (Frost.duration(enemy) / 5 + 戒指等级) 回合
+  * **伤害：** 对攻击的敌人造成 (戒指等级 / 2) 伤害
+  * **范围：** 仅当敌人在佩戴者1格距离内时生效
+
+==== 获得 ====
+  * 在地牢各层的各种箱子中找到
+  * 被某些有挑战性的怪物掉落
+  * 可以从深层的 [[cn:rpd:shopkeeper_npc|店主]] 处购买
+
+==== 使用技巧 ====
+  * 对直接攻击你的近战敌人特别有效
+  * 在敌人必须靠近的狭窄走廊中效果很好
+  * 与其他防御装备结合使用可最大化生存能力
+  * 高等级的戒指效果显著更好
+
+==== 策略 ====
+寒冰戒指对于直接与敌人交战的角色非常有益。它提供了一种被动防御，将敌人的攻击转化为反击，使其在游戏的中后期特别有价值，当时敌人更强大、更危险。
+
+==== 代码引用 ====
+  * 物品实现： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java|RingOfFrost.java]]
+  * 物品工厂注册： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L424|ItemFactory.java#L424]]
+  * 状态效果工厂注册： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L164|BuffFactory.java#L164]]
+  * 字符串资源： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1474-L1475|strings_all.xml#L1474-L1475]]
+  * 状态效果实现： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]] 和 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
+  * 机器可读数据： [[mr:ring_of_frost_item|寒冰戒指 - 代码引用]]
+  * 游戏常数： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java#L23|Slow.DURATION]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java#L20|Frost.DURATION]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L26-L44|FrostAura.defenceProc() 方法]] - 被攻击时戒指效果的核心实现
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L32|距离检查]] - 仅影响2格内(相邻)的敌人
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L35|减速应用]] - 应用减速效果
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L37-L39|冰冻应用]] - 随机几率施加冰冻
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L40|伤害应用]] - 基于戒指等级的伤害
+
+==== 参见 ====
+  * [[cn:rpd:keyring_item|钥匙圈]] - 携带多个戒指的必需品
+  * [[cn:rpd:artifacts|法器]] - 其他特殊物品
+  * [[cn:rpd:rings|戒指]] - 游戏中的其他戒指
+  * [[cn:rpd:slow_buff|减速]] - 相关状态效果
+  * [[cn:rpd:frost_buff|冰冻]] - 相关状态效果
+
+{{tag> rpd items ring frost artifact}}

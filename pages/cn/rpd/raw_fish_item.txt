@@ -1,0 +1,60 @@
+====== 生鱼 ======
+
+{{ rpd:images:item_RawFish.png|生鱼 }}
+
+**生鱼** 是 Remixed Dungeon 中的食物物品。它可以从 [[cn:rpd:piranha_mob|食人鱼]] 和其他鱼类敌人身上掉落。然而，生吃鱼肉有相当大的风险。
+
+==== 描述 ====
+生鱼是玩家捕获的鱼的尸体。虽然它能提供一些营养，但生吃它有中毒的风险。鱼可以被烹饪或以其他方式加工，以提高其安全性和口感。
+
+==== 属性 ====
+  * **类型：** 食物
+  * **可堆叠：** 是
+  * **价格：** 7 金币
+  * **恢复饥饿：** 饥饿（适量）
+  * **风险：** 生吃时可能中毒
+
+==== 效果 ====
+生吃时：
+  * **中毒风险：** 施加 [[cn:rpd:poison_buff|中毒]] 状态，持续 2×(1 到英雄等级) 回合
+  * **品尝信息：** "鱼腥！"
+  * **饥饿状态：** 恢复到饥饿水平
+
+==== 加工选择 ====
+生鱼可以通过几种方式加工：
+  * **火：** 可以燃烧制成 [[cn:rpd:fried_fish_item|熟鱼]]
+  * **冷冻：** 可以冷冻制成 [[cn:rpd:frozen_fish_item|冻鱼]]
+  * **毒化：** 可以毒化制成 [[cn:rpd:rotten_fish_item|烂鱼]]
+
+==== 获得 ====
+  * 被 [[cn:rpd:piranha_mob|食人鱼]] 和其他鱼类敌人掉落
+  * 偶尔在水下区域的箱子中找到
+
+==== 策略 ====
+  * 通常建议烹饪生鱼以避免中毒风险
+  * 如果必须生吃，准备好 [[cn:rpd:potion_of_purity_item|净化药水]] 或其他防毒措施
+  * 考虑保存生鱼直到可以安全加工，而不是立即食用
+  * 中毒风险随等级增加，使高等级时更加危险
+
+==== 代码引用 ====
+  * Lua脚本： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RawFish.lua|RawFish.lua]]
+  * 物品加工： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RawFish.lua#L21-L23|燃烧、冷冻和毒化方法]]
+  * 中毒应用： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RawFish.lua#L13|中毒效果代码]]
+  * 字符串资源：
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L2771-L2773|中文字符串]] - RawFish_Name, RawFish_Info, RawFish_Taste
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2750-L2752|俄文字符串]] - RawFish_Name, RawFish_Info, RawFish_Taste
+  * 物品工厂： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java|财政部系统]]
+  * 相关加工物品：
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/FriedFish.lua|FriedFish.lua]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/FrozenFish.lua|FrozenFish.lua]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RottenFish.lua|RottenFish.lua]]
+
+==== 参见 ====
+  * [[cn:rpd:food_item|食物]] - 游戏中的其他食物
+  * [[cn:rpd:piranha_mob|食人鱼]] - 生鱼的来源
+  * [[cn:rpd:fried_fish_item|熟鱼]] - 烹饪版本
+  * [[cn:rpd:frozen_fish_item|冻鱼]] - 冷冻版本
+  * [[cn:rpd:rotten_fish_item|烂鱼]] - 中毒版本
+  * [[cn:rpd:poison_buff|中毒]] - 可能因吃生鱼而产生的状态效果
+
+{{tag> rpd items food fish raw}}
