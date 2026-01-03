@@ -1,0 +1,45 @@
+====== Flecha de Saúde ======
+
+{{ rpd:images:healtharrow_item.png|Flecha de Saúde }}
+
+A Flecha de Saúde é um tipo especial de arma de projétil que cura o alvo quando o atinge, em vez de causar dano significativo. Embora ela tenha um dano base de 1-1, seu propósito principal é curar alvos em vez de machucá-los.
+
+==== Estatísticas ====
+  * **Dano**: 1-1 (baseMin: 1, baseMax: 1)
+  * **Atraso**: 1.0 (baseDly: 1.0)
+  * **Força Mínima Requerida**: 9 (setSTR: 9)
+
+==== Habilidades Especiais ====
+  * **Efeito de Cura**: Quando a flecha atinge um alvo, ela cura o alvo em 15% do seu HP máximo
+  * **Mecanismo**: Usa PotionOfHealing.heal(defender, 0.15f)
+
+==== Aquisição ====
+  * Pode ser encontrada em várias localizações de tesouro por todo o calabouço
+  * Quantidade tipicamente varia de 15-30 quando gerada aleatoriamente (fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java#L103-L104|Arrow.java#L103-L104]])
+  * Preço: 10 ouro por flecha - o tipo de flecha mais caro (fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthArrow.java#L17-L19|HealthArrow.java#L17-L19]])
+
+==== Estratégia ====
+  * Útil para curar aliados ou mascotes durante combate
+  * Pode ser usada para curar a si mesmo quando lutando contra criaturas amigáveis
+  * Particularmente valiosa quando usada com mascotes ou criaturas invocadas
+  * O efeito de cura tem 25% de chance de ativar quando a flecha atinge um alvo
+
+==== Referências de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthArrow.java|HealthArrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (classe base)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]] (mecanismo de cura)
+
+==== Recursos de String ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1557|HealthArrow_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1558|HealthArrow_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1559|HealthArrow_Gender]]
+
+==== Arquivos de Configuração ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (implementação de projétil base)
+
+==== Ver Também ====
+  * [[pt:rpd:potion_of_healing_item|Poção de Cura]] - Mecanismo de cura base
+  * [[pt:rpd:arrows|Flechas]] - Outros tipos de flechas
+  * [[pt:rpd:missile_weapons|Armas de Projétil]] - Outras armas arremessáveis
+
+{{tag> rpd items arrows missiles healing }}

@@ -1,0 +1,54 @@
+====== Buff de Veneno ======
+
+{{ rpd:images:poison_buff.png|Veneno }}
+
+El buff de Veneno es un efecto de estado perjudicial en Remixed Dungeon que causa daño continuo al personaje afectado con el tiempo.
+
+==== Efecto ====
+  * **Daño con el Tiempo:** Causa daño al final de cada turno
+  * **Duración:** Continúa hasta que se cure o se acabe la duración
+  * **Intensidad:** El daño no escala con el HP máximo del personaje, sino con el cooldown (según el código: (int)(timeLeft / 3) + 1)
+  * **Visual:** El personaje afectado muestra efectos visuales de veneno
+
+==== Adquisición ====
+El buff de Veneno puede ser infligido por:
+  * [[es:rpd:potion_of_toxic_gas_item|Poción de Gas Tóxico]] - Crea nubes de gas tóxico
+  * [[es:rpd:poison_trap_trap|Trampa de Veneno]] - Peligro ambiental
+  * Armas y ataques envenenados
+  * Ciertos enemigos con habilidades de veneno
+  * Otros efectos y objetos tóxicos
+
+==== Mecánicas ====
+  * **Fórmula de Daño:** (cooldown / 3) + 1 (según el código: target.damage( (int)(timeLeft / 3) + 1, this ))
+  * **Decaimiento:** La intensidad del veneno puede disminuir con el tiempo
+  * **Resistencia:** Algunos personajes y objetos proporcionan resistencia al veneno
+  * **Inmunidad:** Algunos personajes y objetos proporcionan inmunidad completa al veneno
+  * **Acumulación:** Múltiples efectos de veneno pueden acumularse dependiendo de la fuente
+
+==== Estrategia ====
+  * **Curación:** Usa [[es:rpd:potion_of_purity_item|Poción de Pureza]] o objetos similares para curar el veneno
+  * **Evitación:** Intenta evitar fuentes de veneno cuando sea posible
+  * **Resistencia:** Equipa objetos que proporcionen resistencia al veneno
+  * **Tiempo:** Ten en cuenta que el daño de veneno ocurre al final de cada turno
+  * **Táctica:** Puede usarse contra enemigos a través de armas envenenadas
+
+==== Contraefectos ====
+  * [[es:rpd:potion_of_purity_item|Poción de Pureza]] - Cura el veneno y otros efectos perjudiciales
+  * [[es:rpd:ring_of_elements_item|Anillo de Elementos]] - Proporciona resistencia elemental incluyendo veneno
+  * Algunos glifos de armadura proporcionan resistencia al veneno
+  * Ciertas clases y subclases tienen resistencia al veneno
+
+==== Fuentes de Datos ====
+  * **Clase Java**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|com.watabou.pixeldungeon.actors.buffs.Poison]]
+  * **Implementación de Gas Tóxico**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas.java]]
+  * **Cálculo de Daño**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java#L30-L38|Cálculo de daño de ToxicGas]]
+
+==== Relacionado ====
+  * [[es:rpd:potion_of_toxic_gas_item|Poción de Gas Tóxico]] - Fuente de veneno a través de nubes de gas
+  * [[es:rpd:potion_of_purity_item|Poción de Pureza]] - Cura efectos de veneno
+  * [[es:rpd:toxic_gas|Gas Tóxico]] - El gas que inflige veneno
+  * [[es:rpd:buffs|Buffs]] - Otros efectos de estado
+  * [[es:rpd:buff_mechanics|Mecánicas de Buff]] - Información general sobre buffs
+  * [[es:rpd:traps|Trampas]] - Peligros ambientales incluyendo trampas de veneno
+
+{{tag> rpd buffs debuffs status_effects poison damage}}

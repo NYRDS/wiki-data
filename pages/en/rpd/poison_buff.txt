@@ -7,7 +7,7 @@ The Poison buff is a harmful status effect in Remixed Dungeon that causes ongoin
 ==== Effect ====
   * **Damage Over Time:** Causes damage at the end of each turn
   * **Duration:** Continues until cured or runs out of duration
-  * **Intensity:** Damage typically scales with the character's max HP
+  * **Intensity:** Damage does not scale with the character's max HP, but rather with cooldown (according to code: (int)(timeLeft / 3) + 1)
   * **Visual:** Affected character shows poison visual effects
 
 ==== Acquisition ====
@@ -19,7 +19,7 @@ The Poison buff can be inflicted by:
   * Other toxic effects and items
 
 ==== Mechanics ====
-  * **Damage Formula:** Typically (target's max HP + level-specific value) / divisor
+  * **Damage Formula:** (cooldown / 3) + 1 (according to code: target.damage( (int)(timeLeft / 3) + 1, this ))
   * **Decay:** Poison intensity may decrease over time
   * **Resistance:** Some characters and items provide poison resistance
   * **Immunity:** Some characters and items provide complete immunity to poison

@@ -1,0 +1,94 @@
+====== Poción Curativa ======
+
+{{ rpd:images:potion_of_healing_item.png|Poción Curativa }}
+
+La **Poción Curativa** es una [[es:rpd:potion_item|poción]] común en Remixed Dungeon que restaura una cantidad significativa de salud al bebedor.
+
+==== Descripción del Objeto ====
+  * **Tipo:** [[es:rpd:potion_item|Poción]]
+  * **Rareza:** Común
+  * **Efecto Especial:** Restaura la vida completa y elimina varios [[es:rpd:status_effects|efectos de estado]] negativos
+  * **Uso:** Objeto de un solo uso (se consume al beberlo)
+  * **Precio:** 30 [[es:rpd:gold|oro]] cuando está identificado
+  * **[[es:rpd:identification|Identificación]]:** Se identifica al consumirlo, romperse o al verlo en el inventario después de haber sido identificado
+
+==== Mecánicas Especiales ====
+  * **Curación Completa:** Restaura todo el HP al máximo (cura el 100% del HP máx.)
+  * **Curación de Efectos:** Elimina [[es:rpd:poison_buff|Veneno]], [[es:rpd:cripple_buff|Mutilación]], [[es:rpd:weakness_buff|Debilidad]] y [[es:rpd:bleeding_buff|Sangrado]] [[es:rpd:status_effects|efectos de estado]]
+  * **Rotura:** Al romperse en el suelo, cura el 50% del HP máx. a cualquier personaje en esa casilla
+  * **Humedecer Flechas:** Puede usarse para humedecer [[es:rpd:arrows|flechas]] y crear [[es:rpd:health_arrow_item|Flechas de Salud]]
+  * **[[es:rpd:identification|Identificación]]:** Se identifica al consumirlo, romperse o al verlo en inventario después de haber sido identificado
+  * **Acumulación:** Se pueden llevar varias pociones y usar según sea necesario
+  * **Uso de Emergencia:** Puede usarse para prevenir la muerte o recuperarse de daño significativo
+
+==== Estrategia ====
+  * Esencial para la restauración de salud de emergencia durante encuentros peligrosos
+  * Mejor usarlo cuando la salud esté críticamente baja o durante la eliminación de [[es:rpd:status_effects|efectos de estado]]
+  * Puede usarse proactivamente antes de encuentros desafiantes
+  * Romperlo puede ser útil para curar aliados o cuando no se puede beber
+  * Generalmente más seguro que usar otros métodos de curación durante el combate
+  * Bueno usarlo antes de [[es:rpd:bosses|combates de jefe]] para asegurar HP completo
+  * Humedecer flechas proporciona utilidad adicional para [[es:rpd:ranged_combat|combate a distancia]]
+  * Esencial para la supervivencia en situaciones peligrosas
+  * Debe conservarse para momentos críticos en lugar de lesiones menores
+  * A menudo es la diferencia entre la vida y la muerte en luchas difíciles
+  * Una de las cosas más importantes para llevar en cualquier situación
+  * Objeto inicial para muchas [[es:rpd:hero_classes|clases de héroe]]
+
+==== Obtención ====
+  * Encontrado a través de los [[es:rpd:levels|niveles]] de la mazmorra
+  * Disponible en [[es:rpd:shops_mechanic|tiendas]] a precios moderados (30 [[es:rpd:gold|oro]] cuando está identificado)
+  * Obtenido por varios [[es:rpd:mobs|enemigos]] (ej. [[es:rpd:bat_mob|Murciélago]] (12.5% de probabilidad), [[es:rpd:scorpio_mob|Escorpión]], [[es:rpd:swarm_mob|Enjambre]])
+  * Encontrado en [[es:rpd:chests_mechanic|contenedores]] y salas especiales
+  * Objeto inicial para varias [[es:rpd:hero_classes|clases de héroe]] incluyendo [[es:rpd:priest_class|Sacerdote]], [[es:rpd:doctor_class|Médico]], [[es:rpd:necromancer_class|Nigromante]]
+  * Elaborado alquímicamente desde semillas de [[es:rpd:seeds|Hierba Solar]] usando la olla de [[es:rpd:alchemy_mechanic|alquimia]]
+
+==== Efecto ====
+Cuando se consume, la Poción Curativa restaura todos tus puntos de vida actuales y cura los [[es:rpd:status_effects|efectos de estado]] de [[es:rpd:poison_buff|Veneno]], [[es:rpd:cripple_buff|Mutilación]], [[es:rpd:weakness_buff|Debilidad]] y [[es:rpd:bleeding_buff|Sangrado]].
+
+Según los recursos de texto del juego: "Un elixir que restaura inmediatamente toda tu vida y te cura del veneno."
+
+==== Referencias de Código ====
+  * **Implementación en Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]]
+  * **Clase Base de Poción:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]]
+  * **Mecanismo de Curación:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L99-L107|Char.java#L99-L107]] (método heal)
+  * **Eliminación de Efectos de Estado:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java#L32-L37|PotionOfHealing.java#L32-L37]] (cura debuffs específicos)
+  * **Receta Alquímica:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java#L46|Sungrass.java#L46]]
+  * **Mecánicas de Rompimiento:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java#L40-L45|PotionOfHealing.java#L40-L45]] (cuando se rompe la poción)
+  * **Humedecer Flechas:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java#L54-L58|PotionOfHealing.java#L54-L58]] (cómo las pociones pueden humedecer flechas - implementado vía moistenArrow)
+  * **Configuración de Precio:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java#L39-L41|PotionOfHealing.java#L39-L41]] (precio es 30 oro cuando está identificado)
+  * **Creación de Flecha de Salud:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthArrow.java|HealthArrow.java]] - Creada al humedecer flechas
+  * **Configuración de Tesoro:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L140|Treasury.json#L140]] - Probabilidad de aparición de pociones (45)
+  * **Tesoro de Arañas:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L137|SpidersTreasury.json#L137]] - Probabilidad de aparición de pociones en nivel de arañas (45)
+  * **Configuración de Tienda:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/TownShopTreasury.json#L31|TownShopTreasury.json#L31]] - Configuración de disponibilidad en tienda (probabilidad 1)
+  * **Objetos Iniciales:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L157|initHeroes.json#L157]] y [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L226|initHeroes.json#L226]] - Usado como objeto inicial para algunas clases de héroe
+  * **Recompensas de NPC:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/PlagueDoctor.lua#L40|PlagueDoctor.lua#L40]] - Usado como recompensa de misión del NPC Médico de Plaga
+  * **Recursos de Texto en Inglés:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2188-L2190|PotionOfHealing_Name, PotionOfHealing_Info, PotionOfHealing_Apply]] (PotionOfHealing_Name, PotionOfHealing_Info, y PotionOfHealing_Apply)
+  * **Recursos de Texto en Español:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L2035-L2037|Cadenas de Poción de Curación]] (localización en español)
+  * **Recursos de Texto en Francés:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L2178-L2180|Cadenas de Poción de Curación]] (localización en francés)
+  * **Recursos de Texto en Alemán:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L2026-L2028|Cadenas de Poción de Curación]] (localización en alemán)
+  * **Recursos de Texto en Chino:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L2025-L2027|Cadenas de Poción de Curación]] (localización en chino)
+  * **Verificación de estadísticas:** Extraído directamente de los métodos de la clase PotionOfHealing.java
+  * **Descripciones de efecto:** Basado en análisis de código y recursos de texto
+  * **mr: namespace:** Consulte [[mr:potion_of_healing_item]] para datos legibles por máquina
+  * **Detalles de implementación:** El método heal en la implementación Java usa heal(ch, 1f) donde el parámetro 1f significa que se restaura el 100% del HP máx.
+  * **Producción alquímica:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Alchemy.java#L72-L106|Alchemy.java#L72-L106]] - Detalles de cómo se crean las pociones a partir de semillas en la olla de alquimia
+  * **Referencias adicionales de código:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Clase base de personaje]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Clase base de poción]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Clase Dungeon]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Sistema Actor]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Heap.java|Sistema de montón de objetos]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Sistema Buff]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|Fábrica de objetos]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Treasury.java|Sistema Treasury para generación de objetos]]
+
+==== Artículos Relacionados ====
+  * [[es:rpd:potion_item|Pociones]] - Información general sobre pociones
+  * [[es:rpd:status_effects|Efectos de Estado]] - Información sobre estados curados por esta poción
+  * [[es:rpd:potion_of_overhealing_item|Poción de Sobrecuración]] - Poción alternativa de curación
+  * [[es:rpd:mechanics|Mecánicas de Juego]] - Sistema de salud
+  * [[es:rpd:arrows|Flechas]] - Información sobre flechas y humedecimiento
+  * [[es:rpd:health_arrow_item|Flecha de Salud]] - Creada al humedecer con esta poción
+  * [[es:rpd:health_mechanic|Salud]] - Mecánicas generales sobre restauración de salud
+  * [[es:rpd:hero|Héroe]] - Personaje principal jugable
+  * [[es:rpd:items|Objetos]] - Todos los objetos en el juego
+  * [[es:rpd:consumables|Consumibles]] - Objetos consumibles
+  * [[es:rpd:alchemy_mechanic|Alquimia]] - Mecánicas de alquimia para crear pociones
+  * [[es:rpd:seeds|Semillas]] - Ingredientes para creación alquímica
+  * [[es:rpd:sungrass_seed_item|Semilla de Hierba Solar]] - Ingrediente principal para elaborar
+  * [[es:rpd:gold_item|Oro]] - Moneda usada en tiendas
+
+{{tag> rpd items potions healing arrows}}
