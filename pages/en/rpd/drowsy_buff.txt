@@ -1,33 +1,41 @@
 ====== Drowsy Buff ======
 
-{{ rpd:images:buff_sleep.png|Drowsy Status Effect }}
+{{ rpd:images:buff_sleep.png|Sleep Status Effect }}
 
-**Drowsy** is a status effect in Remixed Pixel Dungeon that makes the affected character feel sleepy and eventually fall asleep if the effect persists.
+**Drowsy** was a status effect in earlier versions of Pixel Dungeon that caused affected characters to become sleepy and eventually fall asleep if the effect persisted. In Remixed Dungeon, this effect has been replaced by the **Sleep** buff.
 
 ==== Effects ====
-  * **Sleepiness:** Affected characters become increasingly drowsy
-  * **Action Reduction:** May reduce the effectiveness of actions
-  * **Duration:** The effect lasts until it wears off or is cured, potentially leading to sleep
-  * **Sleep Transition:** If the effect persists, the character may fall asleep
+  * **Sleep Induction:** Affected characters become drowsy and eventually fall asleep
+  * **Inactivity:** Sleeping characters cannot take actions
+  * **Automatic sleep:** After a drowsy period, characters fall asleep automatically
 
 ==== Causes ====
-Drowsy can be inflicted by:
-  * [[en:rpd:scroll_of_lullaby_item|Scroll of Lullaby]]
+Drowsy effect was previously inflicted by:
+  * [[en:rpd:scroll_of_lullaby_item|Scroll of Lullaby]] (now directly applies Sleep)
   * Special abilities of certain mobs
   * Some magical effects or items that induce sleepiness
-  * Certain environmental effects
+
+==== Current Implementation ====
+In the current version of Remixed Dungeon:
+  * The **Scroll of Lullaby** directly applies the [[en:rpd:sleep_buff|Sleep]] buff instead of a drowsy-to-sleep transition
+  * Affected characters immediately fall asleep instead of becoming drowsy first
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Sleep.java|Sleep.java]]
+  * **Scroll Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfLullaby.java|ScrollOfLullaby.java]]
 
 ==== Counters ====
-  * [[en:rpd:resistances|Sleep Resistance]] may prevent the effect
-  * Potions and items that cure status effects may remove drowsiness
+  * [[en:rpd:resistances|Sleep Resistance]] may prevent the sleep effect
+  * Potions and items that cure status effects may remove sleep
   * Some creatures may be immune to sleep-related effects
-  * Taking actions before falling asleep
+
+==== Historical Context ====
+  * The drowsy-to-sleep mechanic was likely removed or simplified in Remixed Dungeon
+  * The wiki page may have been based on an earlier version of Pixel Dungeon
+  * Current mechanics directly apply sleep instead of the gradual drowsy transition
 
 ==== Source Code ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Drowsy.java|Drowsy.java]]
-  * String Resources (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L377-L379|Drowsy strings (lines 377-379)]]
-  * String Resources (Russian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L378-L380|Drowsy strings (lines 378-380)]]
-  * Related Sleep mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Sleep.java|Sleep.java]]
+  * Current Sleep mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Sleep.java|Sleep.java]]
+  * Scroll of Lullaby implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfLullaby.java|ScrollOfLullaby.java]]
+  * Scroll strings (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1749-L1753|Scroll of Lullaby strings (lines 1749-1753)]]
 
 ==== See Also ====
   * [[en:rpd:status_effects|Status Effects]]
@@ -35,4 +43,4 @@ Drowsy can be inflicted by:
   * [[en:rpd:buffs|Buffs and Debuffs]]
   * [[en:rpd:scroll_of_lullaby_item|Scroll of Lullaby]]
 
-{{tag> rpd status_effects buffs sleep drowsy control}}
+{{tag> rpd status_effects buffs sleep drowsy control historical}}
