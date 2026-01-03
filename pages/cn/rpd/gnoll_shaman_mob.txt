@@ -1,0 +1,53 @@
+====== 狐怪萨满 (怪物) ======
+
+{{ rpd:images:gnoll_shaman_mob.png|狐怪萨满 }}
+
+==== 描述 ====
+**狐怪萨满** 是狐怪群落中的魔法成员，使用原始的萨满魔法。他们拥有强大的施法能力，作为狐怪群体结构中的治疗者和进攻法术施放者。
+
+==== 属性 ====
+  * **生命值**: 18 (hp(ht(18)))
+  * **最大生命值**: 18 (ht(18))
+  * **防御技能**: 8 (baseDefenseSkill = 8)
+  * **攻击技能**: 11 (baseAttackSkill = 11)
+  * **伤害**: 2-6 (dmgMin = 2, dmgMax = 6)
+  * **护甲**: 4 护甲值 (dr = 4)
+  * **击杀经验**: 6 (expForKill = 6)
+  * **最大等级**: 14 (maxLvl = 14)
+  * **战利品**: 卷轴，33% 概率 (loot(Treasury.Category.SCROLL, 0.33f))
+
+==== 特殊能力 ====
+  * **闪电攻击**: 远距离施放闪电，可击中多个目标
+  * **防御性逃跑**: 生命值低时进入逃跑状态 (defenseProc 方法)
+  * **远程战斗**: 喜欢保持距离并使用法术攻击
+  * **闪电抗性**: 对闪电伤害有抗性
+
+==== 战术 ====
+  * 远距离非常危险，因为闪电攻击可以击中多个目标
+  * 应该快速消灭，以免其施放多个法术
+  * 生命值低时会尝试逃跑
+  * 对基于闪电的攻击有抗性
+
+==== 内容验证 ====
+  * 信息来源：Java 类 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java|Shaman.java]] (实际类名，在游戏中显示为狐怪萨满)
+  * 属性验证：直接从 Shaman.java 构造函数提取
+  * 字符串资源：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1311-L1315|萨满字符串资源]] (Shaman_Name, Shaman_Desc, 等)
+  * 抗性机制：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L24|Shaman.java#L24]] - 闪电抗性实现
+  * 攻击机制：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L41-L51|Shaman.java#L41-L51]] - 防御和逃跑行为
+  * 闪电机制：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java#L24-L45|CharUtils.java#L24-L45]] - 萨满使用的闪电伤害实现
+  * 群怪配置：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - 怪物等级生成规则
+  * 最后更新：2025年12月31日
+
+==== 相关 ====
+  * [[cn:rpd:gnoll_mob|狐怪斥候]] - 普通狐怪成员
+  * [[cn:rpd:gnoll_brute_mob|狐怪野蛮人]] - 更强的物理变种
+  * [[cn:rpd:shaman_elder_mob|萨满长老]] - 更强大的变种
+  * [[cn:rpd:mobs|怪物列表]] - 地牢中的其他敌人
+  * [[cn:rpd:gnolls|狐怪群落]] - 关于狐怪群体动态的信息
+  * [[cn:rpd:lightning_bolt_spell|闪电术]] - 萨满使用的法术
+  * [[cn:rpd:mechanical_enemies_mob|机械敌人]] - 拥有特殊能力的敌人
+  * [[cn:rpd:elemental_spell_affinity|元素法术亲和]] - 与闪电攻击相关
+  * [[cn:rpd:sewers_level|下水道层]] - 狐怪常见出没的地方
+  * [[cn:rpd:enemy|敌人]] - 一般敌人信息
+
+{{tag> rpd mobs sewers magic }}
