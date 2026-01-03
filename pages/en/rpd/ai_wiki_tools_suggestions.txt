@@ -1,0 +1,94 @@
+====== AI Wiki Tools Suggestions ======
+
+This page documents suggestions for additional AI-assisted tools that could enhance wiki maintenance for Remixed Dungeon.
+
+==== Current AI Tools ====
+
+The wiki currently benefits from several AI-assisted tools that automate various maintenance tasks:
+
+  * **find_red_links.py**: Identifies broken links and missing pages, with the ability to find similar pages to missing links using fuzzy string matching
+  * **wiki_potential_links_and_duplicates.py**: Identifies potential links between pages based on semantic similarity and detects potential duplicate content
+  * **dokuwiki_linter.py**: Validates DokuWiki pages against established standards and naming conventions
+  * **check_mr_links.py**: Verifies that all file references in mr namespace pages point to actual existing files
+  * **check_language_links.py**: Ensures internal links on a page are in the same language as the page itself
+  * **wiki_page_rename.py**: Renames wiki pages and updates all internal links to the renamed page
+  * **fix_wiki_redirects.py**: Automatically fixes redirect patterns by updating links to follow wiki's naming conventions
+
+==== Suggested AI Tools ====
+
+The following tools are suggested for future development to further enhance wiki maintenance:
+
+==== 1. Automated Content Generation Tool ====
+
+A tool that automatically generates initial content for new wiki pages based on information extracted from the game code:
+
+  * **Purpose**: Automatically generate initial page content for new mobs, items, spells, etc. based on source code analysis
+  * **Implementation**: Extract class definitions, methods, stats, and descriptions from Java, Lua, and JSON files to create a basic page structure
+  * **Benefits**: Reduce time needed to create new pages and ensure accuracy from the start
+  * **Input**: Java class files, Lua script files, JSON configuration files
+  * **Output**: Basic DokuWiki page with stats, mechanics, and source code references
+
+==== 2. Multi-language Content Synchronization Tool ====
+
+A tool that helps maintain consistency across different language versions of the same page:
+
+  * **Purpose**: Identify when content differs significantly between language versions and suggest updates
+  * **Implementation**: Compare structure and content of equivalent pages in different languages
+  * **Benefits**: Maintain consistency across localized versions of the wiki
+  * **Features**: Highlight discrepancies, suggest translations for new content, flag pages that might need updating
+
+==== 3. AI-Powered Content Review Tool ====
+
+A tool that analyzes wiki content and suggests improvements based on completeness and accuracy:
+
+  * **Purpose**: Identify pages that might be missing important information or have outdated content
+  * **Implementation**: Compare wiki content against latest game code to identify discrepancies
+  * **Benefits**: Keep wiki content up-to-date with game changes and ensure completeness
+  * **Features**: Compare stats between wiki and code, identify missing content based on code features, flag outdated information
+
+==== 4. Content Relationship Mapping Tool ====
+
+A tool that analyzes relationships between different game entities and suggests relevant links:
+
+  * **Purpose**: Identify implicit relationships between game entities that should be linked in the wiki
+  * **Implementation**: Analyze code for connections between mobs, items, spells, etc. and suggest appropriate links
+  * **Benefits**: Improve navigation and discovery of related content
+  * **Features**: Generate potential links, identify missing cross-references, suggest "see also" sections
+
+==== 5. Visual Content Suggestion Tool ====
+
+A tool that suggests where images should be added or updated based on content analysis:
+
+  * **Purpose**: Identify pages that could benefit from visual content
+  * **Implementation**: Analyze text for references to visual elements and suggest appropriate images
+  * **Benefits**: Improve visual completeness of wiki pages
+  * **Features**: Suggest relevant images from the game assets, identify missing sprites, recommend image placement
+
+==== 6. Automated Quality Assessment Tool ====
+
+A tool that evaluates page quality and completeness using AI:
+
+  * **Purpose**: Assess the quality and completeness of wiki pages
+  * **Implementation**: Analyze content depth, completeness against game mechanics, and adherence to standards
+  * **Benefits**: Identify pages that need improvement and prioritize maintenance efforts
+  * **Features**: Quality scoring system, completeness assessment, adherence to standards check
+
+==== Implementation Strategy ====
+
+When developing new AI tools for wiki maintenance:
+
+  * **Prioritize automation**: Focus on tasks that are repetitive or time-consuming for human editors
+  * **Maintain accuracy**: Ensure AI suggestions are verified against source code before being implemented
+  * **Preserve human oversight**: AI tools should suggest or assist rather than fully automate critical decisions
+  * **Follow existing patterns**: New tools should integrate well with existing wiki maintenance workflows
+  * **Consider multilingual support**: Tools should work across all supported languages
+
+==== Development Considerations ====
+
+  * **Code integration**: New tools should be able to parse Java, Lua, JSON, and string resource files effectively
+  * **DokuWiki syntax**: Tools should properly generate and maintain DokuWiki formatting
+  * **Git integration**: Tools should work well with the git-based workflow of the wiki repository
+  * **Performance**: Tools should be efficient and not cause unnecessary delays in workflow
+  * **User-friendliness**: Tools should provide clear, actionable outputs for wiki maintainers
+
+{{tag> rpd ai tools wiki maintenance}}
