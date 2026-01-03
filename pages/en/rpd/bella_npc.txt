@@ -9,4 +9,22 @@ Bella is a very posh looking girl. Her whole appearance tells you "I am to good 
   * When encountering Bella, she will tell you she bears no interest in such plebs as yourself
   * **Note**: The current implementation does not include special interaction logic for when the player has the Amulet of Yendor, despite string resources indicating this interaction was intended. When the player has the Amulet of Yonder, Bella should theoretically offer the option of taking a walk together and discussing their mutual future, but this functionality is not currently implemented in the code.
 
+==== Implementation Details ====
+  * BellaNPC extends ImmortalNPC class, which prevents her from being killed
+  * Interaction is handled by the ''interact'' method in the BellaNPC.java class
+  * The basic message is retrieved from string resources: ''BellaNPC_Message''
+  * Additional messages related to the Amulet of Yendor exist in string resources but are not implemented in code:
+    * ''BellaNPC_Amulet_M'' - Message for male hero with Amulet
+    * ''BellaNPC_Amulet_F'' - Message for female hero with Amulet
+    * ''BellaNPC_Yes_End_Game'' - Positive response option to end the game
+    * ''BellaNPC_No'' - Negative response option
+    * ''BellaNPC_Angry'' - Angry response message
+
+==== Code References ====
+  * BellaNPC implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/BellaNPC.java|BellaNPC.java]]
+  * Base class (ImmortalNPC): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+  * Interaction handler: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/BellaNPC.java#L18|interact method]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1624-L1633|All BellaNPC strings]]
+  * Mob factory registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L244|BellaNPC registration]]
+
 {{tag> rpd npcs endgame}}
