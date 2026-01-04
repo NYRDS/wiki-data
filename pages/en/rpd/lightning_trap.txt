@@ -1,0 +1,39 @@
+====== Lightning Trap ======
+
+{{ rpd:images:lightning_trap_level_object.png|Lightning Trap }}
+
+The **Lightning Trap** is a dangerous trap found in the dungeon that deals significant lightning damage to any creature that triggers it.
+
+==== Effects ====
+  * **Damage**: Deals random damage between 1/3 to 2/3 of the target's current HP
+  * **Lightning Effect**: Creates a lightning effect in a cross pattern around the center point
+  * **Equipment Effect**: For the hero, charges (or discharges) all equipment
+
+==== Trigger ====
+  * Creatures stepping on the trap trigger it immediately
+  * Damage calculation: max(1, random value(target HP/3, 2*target HP/3))
+
+==== Mechanics ====
+  * Trap deals damage in both horizontal and vertical directions from the center point
+  * Generates visual lightning effect
+  * Causes camera shake effect for the hero
+
+==== Resistances ====
+Some creatures have resistance to lightning damage, such as:
+  * [[en:rpd:shaman_mob|Shaman]] - Has lightning resistance
+  * [[en:rpd:yogs_brain_mob|Yogs Brain]] - Has lightning resistance
+
+==== Avoidance Methods ====
+  * Trigger safely using ranged weapons or spells
+  * Carry armor to reduce damage
+  * Identify the special texture on the ground to spot traps
+
+==== Code Reference ====
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/LightningTrap.java|LightningTrap.java]]
+  * Entity Type: LightningTrap.Electricity class
+
+==== See Also ====
+  * [[en:rpd:electricity_debuff|Electricity]] - Lightning damage type
+  * [[en:rpd:trap|Traps]] - More information about traps
+
+{{tag> rpd trap lightning damage}}

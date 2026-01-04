@@ -1,0 +1,39 @@
+====== 閃電陷阱 ======
+
+{{ rpd:images:lightning_trap_level_object.png|閃電陷阱 }}
+
+**閃電陷阱** 是地城中的一種危險陷阱，會對觸發它的生物造成大量閃電傷害。
+
+==== 效果 ====
+  * **傷害**: 對觸發陷阱的生物造成當前生命值1/3至2/3之間的隨機傷害
+  * **閃電效果**: 以十字形模式在中心點周圍造成閃電效果
+  * **裝備影響**: 對英雄而言，會為所有裝備充能或放電
+
+==== 觸發 ====
+  * 踩上陷阱的生物會立即觸發
+  * 傷害計算: max(1, 隨機值(目標生命值/3, 2*目標生命值/3))
+
+==== 機制 ====
+  * 陷阱在中心點的水平和垂直方向各造成傷害
+  * 生成閃電效果的視覺表現
+  * 對英雄造成相機震動效果
+
+==== 抗性 ====
+某些生物對閃電傷害有抗性，例如：
+  * [[zh:rpd:shaman_mob|薩滿]] - 有閃電抗性
+  * [[zh:rpd:yogs_brain_mob|Yogs腦]] - 有閃電抗性
+
+==== 避免方法 ====
+  * 使用遠程武器或法術安全引爆
+  * 攜帶防具以減少傷害
+  * 識別地面的特殊紋理來發現陷阱
+
+==== 代碼參考 ====
+  * 實現: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/LightningTrap.java|LightningTrap.java]]
+  * 實體類型: LightningTrap.Electricity類
+
+==== 另見 ====
+  * [[zh:rpd:electricity_debuff|電擊]] - 閃電傷害類型
+  * [[zh:rpd:trap|陷阱]] - 關於陷阱的更多信息
+
+{{tag> rpd trap lightning damage}}
