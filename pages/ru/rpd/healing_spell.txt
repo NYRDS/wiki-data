@@ -1,0 +1,81 @@
+====== Заклинание Исцеления ======
+
+{{ rpd:images:healing_spell_icon.png|Иконка заклинания Исцеления }}
+
+**Исцеление** - это заклинание в Remixed Dungeon с обычным магическим сродством, которое восстанавливает здоровье заклинателя.
+
+==== Описание ====
+Заклинание Исцеления восстанавливает часть собственного здоровья заклинателя. Это фундаментальное заклинание самоисцеления, которое может спасти героя от опасных ситуаций.
+
+==== Характеристики ====
+  * **Магическое сродство:** Обычное
+  * **Цель:** на себя
+  * **Уровень:** 3
+  * **Стоимость заклинания:** 10
+  * **Индекс изображения:** 1
+
+==== Эффекты ====
+  * Лечит заклинателя на 30% от их максимального HP (конкретно (int)(maxHP * 0.3) как реализовано в Healing.java)
+  * Примечание: В описании в игре говорится "1/3 от максимального HP", но на самом деле реализация восстанавливает 30% (0.3) от максимального HP, что немного меньше, чем 1/3 (33.33%)
+  * Только на себя
+  * Не масштабируется в зависимости от уровня навыка
+
+==== Применения ====
+  * Восстановление здоровья во время [[ru:rpd:combat_mechanics|боя]]
+  * Экстренное лечение в опасных ситуациях
+  * Сохранение [[ru:rpd:potion_of_healing_item|лечебных зелий]] для более критических ситуаций
+
+==== Классы ====
+Классы, которые могут использовать это заклинание, включают:
+  * Классы с обычным сродством
+  * Другие классы, которые получают доступ через специальные средства
+
+==== Стратегия ====
+Как эффективно использовать заклинание Исцеления:
+  * Используйте во время [[ru:rpd:combat_mechanics|боя]], чтобы поддерживать здоровье, не расходуя [[ru:rpd:potion_of_healing_item|зелья]]
+  * Приоритет лечения, когда здоровье падает ниже 50%, чтобы предотвратить экстренные ситуации
+  * Рассмотрите возможность использования перед трудными [[ru:rpd:enemies_overview|встречами]], чтобы максимизировать здоровье
+
+==== Проверка содержимого ====
+  * Источник информации: Java-код в базе кода Remixed Dungeon
+  * Проверенные характеристики: Да, извлечены непосредственно из свойств класса заклинания
+  * Описания эффектов: Сгенерированы из анализа кода и строковых ресурсов
+  * Примечание: Расхождение в количестве исцеления - код реализует 30% от максимального HP, но строковой ресурс гласит "1/3 от максимального HP"
+  * Последнее обновление: На основе исходного кода Healing.java
+
+==== Ссылки на код ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - Основная реализация
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L8-L12|Healing.java#L8-L12]] - Инициализация характеристик (цель, сродство, уровень, изображение, стоимость)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L17-L21|Healing.java#L17-L21]] - Точный расчет исцеления ((int) (chr.ht()*0.3))
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L126|SpellFactory.java#L126]] - Регистрация заклинания в игре
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L763|Char.java#L763]] - Визуальные эффекты исцеления (испускание частиц)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20-L21|Строковые ресурсы Исцеления (Английский)]] - "Healing" и описание заклинания
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|Строковые ресурсы Исцеления (Русский)]] - Русская локализация
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Реализация базового класса заклинаний
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]] - Константы помошника заклинаний и утилиты
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|Healing_Name, Healing_Info]] - Русские строковые ресурсы (название и описание)
+  * **mr: пространство имен:** Проверьте [[mr:healing_spell]] для машиночитаемых данных
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L15-L16|targetingType и magicAffinity]] - Самоцель и обычное сродство
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L13-L14|Healing.java конструктор]] - Детальная инициализация характеристик (уровень=3, изображение=1, стоимость=10)
+
+==== Конфигурационные файлы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L126|SpellFactory.java#L126]] - Регистрация заклинаний
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20-L21|strings_all.xml]] - Английские строковые ресурсы
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|strings_all.xml (Русский)]] - Русские строковые ресурсы
+
+==== Строковые ресурсы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20|Healing_Name]] - "Healing"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L21|Healing_Info]] - "This spell is crucial for any adventurer. It will restore 1/3 of the maximum amount of the caster's hp."
+
+==== Lua скриптовые ссылки ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L126|SpellFactory.java#L126]] - Регистрация заклинания в игре
+
+==== См. также ====
+  * [[ru:rpd:spells_overview|Заклинания]]
+  * [[ru:rpd:mechanics|Игровые механизмы]]
+  * [[ru:rpd:potion_of_healing_item|Зелье исцеления]]
+  * [[ru:rpd:health_mechanic|Здоровье]]
+  * [[ru:rpd:combat_mechanics|Бой]]
+  * [[ru:rpd:spell_system|Система заклинаний]]
+
+{{tag> rpd spells common healing support }}
