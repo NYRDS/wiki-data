@@ -1,0 +1,77 @@
+====== 治疗法术 ======
+
+{{ rpd:images:healing_spell_icon.png|治疗法术图标 }}
+
+**治疗法术**是Remixed Dungeon中具有通用亲和力的法术，可以恢复施法者的生命值。
+
+==== 描述 ====
+治疗法术恢复施法者自己的一部分生命值。这是一种基本的自我治疗法术，可以将英雄从危险情况中救出。
+
+==== 属性 ====
+  * **魔法亲和力：** 通用
+  * **目标：** 自己
+  * **等级：** 3
+  * **法术消耗：** 10
+  * **图像索引：** 1
+
+==== 效果 ====
+  * 治疗施法者最大生命值的30%（具体实现为(int)(最大生命值 * 0.3) 在Healing.java中）
+  * 注意：游戏内描述说"最大生命值的1/3"，但实际实现是治疗30%（0.3）最大生命值，比1/3（33.33%）略少
+  * 仅限自我目标
+  * 不基于技能等级缩放
+
+==== 用途 ====
+  * [[cn:rpd:combat_mechanics|战斗]]中恢复生命值
+  * 危险情况下的应急治疗
+  * 为更紧急的情况保留[[cn:rpd:potion_of_healing_item|治疗药水]]
+
+==== 职业 ====
+可使用此法术的职业包括：
+  * 具有通用亲和力的职业
+  * 通过特殊手段获得访问权限的其他职业
+
+==== 策略 ====
+如何有效使用治疗法术：
+  * [[cn:rpd:combat_mechanics|战斗]]中维持生命值，而无需消耗[[cn:rpd:potion_of_healing_item|药水]]
+  * 当生命值下降到50%以下时优先治疗，以防紧急情况
+  * 在困难的[[cn:rpd:enemies_overview|遭遇]]前使用，以最大化生命值
+
+==== 内容验证 ====
+  * 信息来源：Remixed Dungeon代码库中的Java代码
+  * 属性验证：是的，直接从法术类属性中提取
+  * 效果描述：从代码分析和字符串资源生成
+  * 注意：治疗量差异 - 代码实现最大生命值的30%，但字符串资源说"最大生命值的1/3"
+  * 最后更新：基于Healing.java源代码
+
+==== 代码参考 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - 主要实现
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L8-L12|Healing.java#L8-L12]] - 属性初始化（目标，亲和力，等级，图像，消耗）
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L17-L21|Healing.java#L17-L21]] - 精确治疗计算((int) (chr.ht()*0.3))
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L126|SpellFactory.java#L126]] - 游戏中的法术注册
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L763|Char.java#L763]] - 治疗视觉效果（发射器爆发）
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20-L21|Healing 字符串资源 (英语)]] - "Healing"和法术描述
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|Healing 字符串资源 (俄语)]] - 俄语本地化
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - 基础法术类实现
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]] - 法术辅助常量和工具
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|Healing_Name, Healing_Info]] - 俄语字符串资源（名称和描述）
+  * **mr: 命名空间：** 查看[[mr:healing_spell]]获取机器可读数据
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L15-L16|targetingType和magicAffinity]] - 自我目标和通用亲和力
+
+==== 配置文件 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L126|SpellFactory.java#L126]] - 法术注册
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20-L21|strings_all.xml]] - 英语字符串资源
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L20-L21|strings_all.xml (俄语)]] - 俄语字符串资源
+
+==== 字符串资源 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L20|Healing_Name]] - "Healing"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L21|Healing_Info]] - "这个法术对任何冒险者都至关重要。它将恢复施法者最大生命值的1/3。"
+
+==== 相关 ====
+  * 法术
+  * 游戏机制
+  * 治疗药水
+  * 生命
+  * 战斗
+  * 法术系统
+
+{{tag> rpd spells common healing support }}

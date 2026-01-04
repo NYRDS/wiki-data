@@ -1,0 +1,114 @@
+====== 治疗 ======
+
+{{ rpd:images:heal_spell.png|治疗法术 }}
+
+**治疗**是Remixed Pixel Dungeon中具有巫术亲和力的法术（也对牧师和瘟疫医生亲和力可用）。
+
+==== 描述 ====
+治疗法术立即恢复目标部分生命值，使其在紧急情况下非常有价值。治疗量计算为20%目标最大生命值乘以施法者技能等级（最少恢复1点生命值）。
+
+==== 属性 ====
+  * **魔法亲和力：** [[cn:rpd:witchcraft_affinity|巫术]]（也可在[[cn:rpd:priest_class|牧师]]和[[cn:rpd:plague_doctor_affinity|瘟疫医生]]亲和力中使用）
+  * **目标：** 角色（可在地图上瞄准任何角色）
+  * **等级：** 2
+  * **法力消耗：** 5
+  * **施法时间：** 1回合
+  * **冷却时间：** 2回合
+
+==== 机制 ====
+根据Lua实现，法术为(Max HP / 5 * 施法者技能等级)生命值恢复目标角色，最少恢复1点。
+
+Lua代码中的确切公式是：heal = target:ht() / 5. * caster:skillLevel()
+
+这意味着对于满血目标：
+  * 施法者技能等级为1时：恢复目标最大生命值的20%（最少1点）
+  * 施法者技能等级为2时：恢复目标最大生命值的40%（最少1点）
+  * 施法者技能等级为3时：恢复目标最大生命值的60%（最少1点）
+  * 以此类推...
+
+==== 用法 ====
+治疗法术可用于：
+  * 危险遭遇时的紧急生命值恢复
+  * 战斗情况下的自我治疗
+  * 治疗盟友或宠物
+  * 在挑战性战斗中支援宠物
+
+==== 策略 ====
+  * 生命值极低时最好使用
+  * 盟友和宠物以及你自己都可以治疗
+  * 挑战性战斗中支援宠物效果良好
+  * 治疗效果随你的技能等级提升
+  * 计划治疗时请注意2回合冷却时间
+
+==== 亲和力 ====
+可使用此法术的亲和力包括：
+  * [[cn:rpd:witchcraft_affinity|巫术]]亲和力使用者
+  * [[cn:rpd:priest_class|牧师]]亲和力使用者
+  * [[cn:rpd:plague_doctor_affinity|瘟疫医生]]亲和力使用者
+
+==== 重要说明 ====
+有一个不同的基于Java的法术叫做"Healing"（不是"Heal"），具有不同的机制：
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - 恢复目标最大生命值的30%，仅可对自己施法，消耗10法力，等级3法术
+  * 有关基于Java的治疗法术更多信息，请参见[[cn:rpd:healing_spell|治疗法术]]
+
+==== 代码参考 ====
+  * **Lua实现：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Heal.lua|Heal.lua]]
+  * **法术可用性（通用）：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L9|CustomSpellsList.lua#L9]]
+  * **法术可用性（巫术）：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L13|CustomSpellsList.lua#L13]]
+  * **法术可用性（牧师）：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L16|CustomSpellsList.lua#L16]]
+  * **法术可用性（瘟疫医生）：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L17|CustomSpellsList.lua#L17]]
+  * **法术基类（Lua）：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]] - 基础法术实现
+  * **通用类库：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - RPD模块导入
+  * **英语字符串资源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2679-L2680|strings_all.xml#L2679-L2680]]
+  * **俄语字符串资源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2681-L2682|strings_all.xml#L2681-L2682]]
+  * **西班牙语字符串资源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L2519-L2520|strings_all.xml#L2519-L2520]]
+  * **法语字符串资源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L2666-L2667|strings_all.xml#L2666-L2667]]
+  * **德语字符串资源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L2502-L2503|strings_all.xml#L2502-L2503]]
+  * **中文字符串资源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L2510-L2511|strings_all.xml#L2510-L2511]]
+  * **日语字符串资源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml#L2518-L2519|strings_all.xml#L2518-L2519]]
+  * **葡萄牙语字符串资源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L2508-L2509|strings_all.xml#L2508-L2509]]
+  * **土耳其语字符串资源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-tr/strings_all.xml#L2547-L2548|strings_all.xml#L2547-L2548]]
+  * **印度尼西亚语字符串资源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-in/strings_all.xml#L2503-L2504|strings_all.xml#L2503-L2504]]
+  * **治疗治疗机制：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L99-L107|Char.java#L99-L107]] - 法术调用的heal()方法
+  * **Lua法术框架：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/LuaSpell.java|LuaSpell.java]] - 处理Lua法术执行的Java类
+  * **Java治疗法术：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - 不同的基于Java的治疗法术（30%自我目标）
+  * **公式验证：** Lua代码显示heal = target:ht() / 5. * caster:skillLevel()，最少1点
+  * **Java治疗法术代码参考：**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L15-L20|Healing.java#L15-L20]] - 属性初始化（目标，亲和力，等级，图像，消耗）
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java#L23-L27|Healing.java#L23-L27]] - 精确治疗计算((int) (chr.ht()*0.3))
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - 基于Java的治疗法术，治疗目标最大生命值的30%，仅可对自己施法，消耗10法力，等级3法术
+  * **法术目标系统：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]] - 处理法术的目标选择
+  * **法术施放框架：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - 所有法术的基类
+  * **角色生命系统：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - 定义法术使用的ht() (最大生命值)和heal()方法
+  * **施法者技能系统：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - 定义治疗计算中使用的skillLevel()方法
+  * **法力系统：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Mana.java|Mana.java]] - 法术施放的法力消耗
+  * **法术亲和力系统：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java#L22|SpellHelper.AFFINITY_WITCHCRAFT]] - 定义此法术使用的巫术亲和力
+  * **JSON法术配置：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spellsDesc/Heal.json|Heal.json]] - 在JSON中定义的法术属性
+  * **技能等级计算：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L181|Hero.skillLevel()]] - 施法者技能等级的确定方法
+  * **最后更新：** [[https://github.com/NYRDS/remixed-dungeon/commit/|最新提交]]
+
+==== 数据验证 ====
+  * Lua法术属性 (Heal.lua): MagicAffinity = ''Witchcraft'', TargetingType = ''char'', Level = 2, CastTime = 1, SpellCost = 5, Cooldown = 2
+  * 治疗公式 (Lua): ''heal = target:ht() / 5. * caster:skillLevel()''，最少恢复1点生命值
+  * 治疗效果 (Lua): ''target:heal(math.max(1, heal), caster)'' - 以最少1点生命值数量治疗
+  * 字符串资源: 字符串资源中的''Heal_Name''和''Heal_Info''
+  * Char.java中的heal方法调用确保治疗正确应用并以施法者作为来源（用于追踪和机制）
+
+==== 参见 ====
+  * 法术
+  * 游戏机制
+  * 法术亲和力
+  * 巫术亲和力
+  * 牧师职业
+  * 瘟疫医生亲和力
+  * 治疗法术 - 基于Java的治疗法术（不同于此治疗法术）
+  * 英雄 - 主要可玩角色
+  * 状态效果 - 游戏中的各种状态效果
+  * 法力 - 法力系统机制
+  * 施法者 - 可施法的角色
+  * 目标 - 游戏中的不同目标机制
+  * 增益和减益 - 可被治疗的状态效果
+  * 法术法力消耗 - 有关法术法力消耗的信息
+  * 施法英雄职业 - 专精于法术施放的职业
+
+{{tag> rpd spells witchcraft priest plague_doctor }}
