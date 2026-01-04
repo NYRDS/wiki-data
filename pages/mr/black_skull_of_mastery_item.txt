@@ -1,20 +1,30 @@
 ====== Black Skull Of Mastery Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/necropolis/BlackSkullOfMastery.java|BlackSkullOfMastery.java]] - Main item class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/MasteryItem.java|MasteryItem.java]] - Base mastery item class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndChooseWay.java|WndChooseWay.java]] - Window for choosing subclass path
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/Lich.java#L87|Lich.java#L87]] - Where the item is dropped as loot
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/black_skull_of_mastery.json
+This entity does not use JSON configuration, as it's implemented in Java.
 
 ===== String Resources =====
 <code xml>
-<string name="BlackSkullOfMastery_Name">[Name]</string>
-<string name="BlackSkullOfMastery_Info">[Description]</string>
+<string name="BlackSkullOfMastery_Name">The Soulbringer</string>
+<string name="BlackSkullOfMastery_Info">It\'s an ancient artifact, crafted by first necromancers to collect souls of the fallen one\'s. Sensing your necromantic abilities it warded itself with a powerful spell. But since the spell is that of the old times, it\'s primitive structure is fairly easy to break.</string>
+<string name="BlackSkullOfMastery_Title">You may break the spell. Or you may manipulate it\'s magical formula in a way, which will allow you to consume powers of both the spell and artifact itself, turning yourself into a Lich.</string>
+<string name="BlackSkullOfMastery_Lich">Become a Lich</string>
+<string name="BlackSkullOfMastery_Necromancer">Break the spell</string>
+<string name="BlackSkullOfMastery_BecomeLichDesc">The _Lich_ is a necromancer who reached pinnacle of his abilities. Existing between life and death _Lich_ excels in necromancy, but his combat skills are greatly lower than those of an ordinary person.</string>
+<string name="BlackSkullOfMastery_RemainHumanDesc">Or if you _break the spell_ you\'ll be able to use this artifact as intended.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
+
+===== Item Mechanics =====
+  * Special mastery item for Necromancer class that unlocks Lich subclass
+  * Provides a choice between becoming Lich or breaking the spell to get regular Black Skull item
+  * Time to use: 10 turns (TIME_TO_READ constant)
+  * Image index: 19 in items/artifacts.png sprite sheet
