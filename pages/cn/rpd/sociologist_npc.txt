@@ -1,0 +1,29 @@
+====== 社会学家NPC ======
+
+{{ rpd:images:sociologistnpc_sprite.png|社会学家NPC }}
+
+==== 描述 ====
+**社会学家NPC**是《Remixed Dungeon》中的一个非玩家角色，他会询问玩家是否愿意参与调查。这个角色是游戏功能的一部分，允许玩家访问调查内容。
+
+==== 位置 ====
+  * 随机出现在地牢关卡中
+
+==== 互动 ====
+  * 当接近时，会显示一个对话框，询问玩家是否愿意参与调查
+  * 如果玩家同意，会请求互联网权限下载调查内容
+  * 如果玩家拒绝，NPC会离开玩家
+
+==== Java类 ====
+  * **Java类：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/SociologistNPC.java|SociologistNPC.java]]
+  * **基类：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+
+==== 行为 ====
+  * 当接近时，显示一个包含"是"和"否"选项的对话框
+  * 如果玩家选择"是"，会请求互联网权限并尝试从外部源下载survey.json
+  * 如果获得权限，会从GitHub存储库下载调查内容
+  * 如果玩家选择"否"，NPC会说一句关于调查需要互联网的消息
+
+==== 实现细节 ====
+NPC被实现为一个ImmortalNPC，实现了DownloadStateListener.IDownloadComplete和InterstitialPoint接口，使其能够处理下载过程并在下载期间管理用户界面。
+
+{{tag> rpd npcs}}
