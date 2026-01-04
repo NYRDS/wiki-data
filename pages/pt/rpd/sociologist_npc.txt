@@ -1,0 +1,29 @@
+====== NPC Sociólogo ======
+
+{{ rpd:images:sociologistnpc_sprite.png|NPC Sociólogo }}
+
+==== Descrição ====
+O **NPC Sociólogo** é um personagem não jogável em Remixed Dungeon que pergunta se o jogador deseja participar de uma pesquisa. Este personagem faz parte de um recurso de jogabilidade que permite aos jogadores acessar conteúdo de pesquisa.
+
+==== Localização ====
+  * Encontrado aleatoriamente nos níveis da masmorra
+
+==== Interações ====
+  * Quando abordado, apresenta um diálogo perguntando ao jogador se ele gostaria de participar de uma pesquisa
+  * Se o jogador concordar, solicita permissão de internet para baixar o conteúdo da pesquisa
+  * Se o jogador recusar, o NPC deixa o jogador em paz
+
+==== Classe Java ====
+  * **Classe Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/SociologistNPC.java|SociologistNPC.java]]
+  * **Classe Base:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+
+==== Comportamento ====
+  * Quando abordado, apresenta um diálogo com opções "Sim" e "Não"
+  * Se o jogador selecionar "Sim", solicita permissão de internet e tenta baixar survey.json de uma fonte externa
+  * Se a permissão for concedida, faz o download do conteúdo da pesquisa de um repositório GitHub
+  * Se o jogador selecionar "Não", o NPC diz uma mensagem sobre a internet ser necessária para pesquisas
+
+==== Detalhes de Implementação ====
+O NPC é implementado como um ImmortalNPC que implementa as interfaces DownloadStateListener.IDownloadComplete e InterstitialPoint, permitindo-lhe lidar com o processo de download e gerenciar a interface do usuário durante o download.
+
+{{tag> rpd npcs}}
