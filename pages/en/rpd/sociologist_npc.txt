@@ -18,12 +18,31 @@ The **Sociologist NPC** is an NPC character in Remixed Dungeon who asks if the p
   * **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
 
 ==== Behavior ====
-  * When approached, presents a dialogue with "Yes" and "No" options
+  * When approached, presents a dialogue with "Yes" and "No" options (WndOptions window)
   * If the player selects "Yes", requests internet permission and attempts to download survey.json from an external source
-  * If permission is granted, downloads survey content from a GitHub repository
+  * If permission is granted, downloads survey content from a GitHub repository (https://github.com/NYRDS/pixel-dungeon-remix-survey/raw/master/survey.json)
   * If the player selects "No", the NPC says a message about internet being required for surveys
+  * The NPC implements DownloadStateListener.IDownloadComplete and InterstitialPoint interfaces to manage the download process
 
 ==== Implementation Details ====
 The NPC is implemented as an ImmortalNPC that implements DownloadStateListener.IDownloadComplete and InterstitialPoint interfaces, allowing it to handle the download process and manage the UI during the download.
+
+==== Code References ====
+  * **Main Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/SociologistNPC.java|SociologistNPC.java]]
+  * **ImmortalNPC Base:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+  * **Survey File:** Downloaded survey.json file is stored locally (SURVEY_JSON constant)
+  * **Download Task:** Uses DownloadTask to download from GitHub repository
+  * **UI Windows:** WndOptions for initial dialog, WndSurvey for survey display, DownloadProgressWindow for progress
+  * **Interaction Method:** interact() method handles the initial interaction with the player
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2842|SociologistNPC_Hi]] - "Hi! Do you want to participate in our survey?"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2843|SociologistNPC_DownloadError]] - Error message for download failures
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2844|SociologistNPC_InternetRequired]] - "Internet is required for surveys"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2684-L2685|Wnd_Button_Yes and Wnd_Button_No]] - Yes/No button text
+
+==== Related ====
+  * [[en:rpd:immortal_npc|Immortal NPC]] - Base class for NPCs that don't die normally
+  * [[en:rpd:npcs|NPCs]] - Other non-player characters in the game
 
 {{tag> rpd npcs}}
