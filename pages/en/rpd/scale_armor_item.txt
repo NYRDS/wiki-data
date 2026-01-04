@@ -1,66 +1,53 @@
 ====== Scale Armor ======
 
-{{ rpd:images:item_ScaleArmor.png|Scale Armor }}
-
-**Scale Armor** is a medium-tier armor in Remixed Dungeon. It's made of metal scales sewn onto a leather vest, creating a flexible but protective armor.
-
-==== Armor Properties ====
-  * **Armor Level**: 4 (Medium armor)
-  * **Type**: Medium armor with balanced protection and mobility
-  * **Durability**: Standard [[en:rpd:armor_durability|armor durability]] (degrades with use)
-  * **Enchantments**: Can be enchanted with [[en:rpd:armor_glyphs|glyphs]] like other armor types
-  * **Weight**: 10 (affects movement speed slightly)
-  * **Price**: 80 gold (when sold to shops - price calculated as armor level * 20)
+{{ rpd:images:scale_armor_item.png|Scale Armor }}
 
 ==== Description ====
-The metal scales sewn onto a leather vest create a flexible, yet protective armor. This design offers a good balance between protection and mobility, making it suitable for various playstyles.
+**Scale Armor** is a medium armor in Remixed Dungeon that provides good protection while maintaining reasonable mobility. It requires more strength than leather armor but offers better protection.
+
+==== Stats ====
+  * **Tier:** 4 (Medium armor)
+  * **Armor Class (AC):** 8 (base, calculated as tier * 2 = 4 * 2 = 8)
+  * **Durability:** Good
+  * **Strength Requirement:** 15 STR (calculated as 7 + tier * 2 = 7 + 4 * 2 = 15)
+  * **Speed Penalties:** Moderate
+  * **Weight:** 30
 
 ==== Acquisition ====
-  * Found randomly throughout the dungeon
-  * Available in shops
-  * Dropped by certain enemies
-  * Found in chests and other containers
+  * Found in chests throughout the dungeon, more common in mid levels
+  * Occasionally dropped by various enemies
+  * Sometimes available in shops
+
+==== Properties ====
+  * Good protection with moderate strength requirement
+  * Slower movement than light armor but faster than heavy armor
+  * Can be upgraded using Scrolls of Upgrade
+  * Compatible with glyphs for additional effects
 
 ==== Strategy ====
-  * Provides good protection for mid-game progression
-  * The flexible nature allows for reasonable movement speed
-  * Good for characters who need moderate protection without sacrificing too much mobility
-  * Can be upgraded with armor scrolls to improve protection
-  * Compatible with armor glyphs for additional special effects
+  * Good balance of protection and mobility
+  * Ideal for characters that can meet the strength requirement
+  * Often better than leather armor for most hero classes
+  * Consider upgrading to reduce strength requirements if possible
+
+==== Upgrades ====
+  * Can be upgraded to increase armor class and durability
+  * Each upgrade increases strength requirement by 1
+  * Upgraded versions have improved protection
 
 ==== Code References ====
-  * **Java Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java|ScaleArmor.java]]
-  * **Constructor Data**: ScaleArmor() sets armor level to 4 and image index to 3
-  * **Stats verification**: Armor level: 4 (super(4) in constructor), Weight: 10 (default for armor level 4), Image: 3
-  * **String Resources**:
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2013|ScaleArmor_Name]]
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2014|ScaleArmor_Desc]]
-    * Available in multiple languages (ru, de, fr, es, etc.)
-  * **Registration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (registerItemClass(ScaleArmor.class))
-  * **Base Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor base class]]
-  * **Armor System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] (base implementation)
-  * **Armor Level Calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L28|armor level = 4]] (determines protection and weight)
-  * **Weight Calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L29|weight = armor level * 2.5]] (weight = 4 * 2.5 = 10)
-  * **Sprite Index**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java#L11|image = 3]] (determines visual representation)
-  * **String Localization**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java#L17|desc() method returns StringsManager.getVar(R.string.ScaleArmor_Desc)]]
-  * **Entity Kind Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind interface]]
-  * **Armor Durability**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor durability system]] (based on degradation mechanics)
-  * **Armor Price**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L97|Armor price calculation]] (price = armor level * 20 = 80 gold when sold)
-  * **Armor Enchantments**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/|Armor Glyph system]] (compatibility with glyphs)
-  * **Material Types**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L27|materialType field]] - indicates armor material properties (medium armor)
-  * **Equipment System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings class]] - handles armor equipment in armor slot
-  * **Armor Classifications**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L18-L21|Tier classifications]] - defines armor tiers (tier 4 = medium armor)
-  * **Shop Availability**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java#L90|ShopPainter.java]] (appears in shops)
-  * **Machine-readable data**: [[mr:scale_armor_item|mr:scale_armor_item]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java|ScaleArmor.java]] - Java implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] - Base armor class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1599-L1601|String resources]]
 
-==== Related ====
-  * [[en:rpd:armor|Armor]] - All armor types information
-  * [[en:rpd:armor_glyphs|Armor Glyphs]] - Special effects for armor
-  * [[en:rpd:leather_armor_item|Leather Armor]] - Lower tier armor
-  * [[en:rpd:mail_armor_item|Mail Armor]] - Higher tier armor
-  * [[en:rpd:plate_armor_item|Plate Armor]] - Higher tier armor
-  * [[en:rpd:dragon_armor_item|Dragon Armor]] - Highest tier armor
-  * [[en:rpd:cloth_armor_item|Cloth Armor]] - Lowest tier armor
-  * [[en:rpd:armor_tiers|Armor Tiers]] - Information about armor classifications
+==== See Also ====
+  * [[en:rpd:armor_item|Armor]] - General information about armor
+  * [[en:rpd:armor_tiers|Armor Tiers]] - Information about armor classification system
+  * [[en:rpd:leather_armor_item|Leather Armor]] - Lighter armor option
+  * [[en:rpd:mail_armor_item|Mail Armor]] - Another medium armor option
+  * [[en:rpd:plate_armor_item|Plate Armor]] - Heavier armor option
+  * [[en:rpd:armor_glyphs|Armor Glyphs]] - Glyph compatibility
+  * [[en:rpd:armor_durability|Armor Durability]] - Information about armor wear and durability
+  * [[en:rpd:armor_mechanic|Armor Mechanic]] - Detailed information about armor mechanics
 
-{{tag> rpd items armor scale tier4}}
+{{tag> rpd items armor medium_armor}}
