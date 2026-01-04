@@ -6,40 +6,57 @@
 
 ==== Effect Description ====
   * **Type:** Beneficial Status Effect (Buff)
-  * **Effect:** Gradually restores HP over time
-  * **Duration:** Limited time period
+  * **Effect:** Gradually restores HP over time based on hero's stats and equipment
+  * **Duration:** Limited time period (continues until manually removed or hero dies)
   * **Stacking:** Does not stack with other healing effects in most cases
+  * **Rate:** Affected by Regeneration Delay (REGENERATION_DELAY = 10) and various bonuses
 
 ==== How to Obtain ====
   * From certain potions (e.g., [[en:rpd:potion_of_healing_item|Potion of Healing]])
-  * From specific equipment with healing properties
-  * From class abilities or spells
-  * From environmental features in certain levels
+  * From specific equipment with healing properties (e.g., Ring of Mending)
+  * From hero class and subclass abilities (e.g., HeroSubClass.regenerationBonus)
+  * From environmental features in certain levels (when not in safe zones)
+  * Through game facilitations (FAST_REGENERATION)
 
 ==== Mechanics ====
-  * Restores a small amount of HP each turn
-  * Effect is applied periodically over several turns
-  * Does not function in safe zones/levels (like town or city areas)
-  * Does not function if the character is starving
-  * More effective when combined with other healing methods
+  * Restores a small amount of HP each turn based on hero's stats and equipment
+  * Effect is applied periodically with REGENERATION_DELAY = 10 (from source code)
+  * Rate is modified by hero's regenerationBonus (from equipped items, subclasses, etc.)
+  * Does not function in safe zones/levels (like town or city areas) - checked via level().isSafe()
+  * Does not function if the character is starving (checked via isStarving())
+  * More effective when combined with other healing methods (synergistic effect)
+
+==== Code References ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Regeneration.java|Regeneration.java]]
+  * **Source Code Location:** RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Regeneration.java
+  * **Regeneration Delay Constant:** REGENERATION_DELAY = 10 (see line 13 in source)
+  * **Facilitations:** FAST_REGENERATION constant defined in Facilitations.java
+  * **Hero Interaction:** Hero class automatically applies Regeneration in Hero.java (line 236)
+  * **Immunities:** Some mobs like Shopkeeper have immunities to Regeneration (see Shopkeeper.java)
+  * **CharModifier Interface:** Regeneration rate can be modified via CharModifier.regenerationBonus() method
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L600|RegenerationBuff_Name]] - "Natural Regeneration"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L601|RegenerationBuff_Info]] - "The function for natural regeneration is in a buff form to make things easier."
 
 ==== Strategy ====
   * Use during non-safe dungeon areas to restore health without consuming potions
-  * Particularly valuable during long dungeon runs
-  * Does not work when resting in safe areas like town or city
+  * Particularly valuable during long dungeon runs when healing resources are scarce
+  * Does not work when resting in safe areas like town or city (by design)
   * Prioritize during combat to maintain health pool in dangerous areas
+  * Combine with equipment like Ring of Mending for faster regeneration
 
 ==== Counters ====
   * Damage over time effects (Poison, Bleeding) may reduce effectiveness
   * Dispel effects can remove regeneration
-
-==== Code Reference ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/Regeneration.java|Regeneration.java]]
-  * Source Code Location: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/Regeneration.java
+  * Starvation status prevents regeneration from functioning
+  * Safe zones prevent regeneration from functioning
 
 ==== See Also ====
   * [[en:rpd:status_effects|Status Effects]] - Other status changes
   * [[en:rpd:potion_of_healing_item|Potion of Healing]] - Source of regeneration
+  * [[en:rpd:ring_of_mending_item|Ring of Mending]] - Equipment that enhances regeneration
   * [[en:rpd:mechanics|Game Mechanics]] - Other core systems
+  * [[en:rpd:mana_regeneration_buff|Mana Regeneration]] - Similar effect for mana
 
 {{tag> rpd mechanics status_effects buffs}}
