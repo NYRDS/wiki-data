@@ -6,14 +6,15 @@
 The Guardian is a subclass of the Gnoll hero class in Remixed Dungeon. Guardians are specialized in the use of shields and protective abilities, making them excel at tanking damage and protecting allies in combat.
 
 ==== Abilities ====
-  * **Shield Proficiency**: Enhanced effectiveness when using shields
+  * **Shield Proficiency**: Enhanced effectiveness when using shields - damage reduction to enemies when wielding shields (from HeroSubClass.java defenceProc method)
   * **Defensive Mastery**: Improved armor and defense capabilities
-  * **Protective Aura**: Special abilities that can shield allies from damage
+  * **Special Combat Style**: Unique defensive combat technique when using shields (from HeroSubClass.java defenceProc method)
 
 ==== Specialization ====
   * Focuses on defensive combat and durability
-  * Superior at blocking attacks and mitigating damage
+  * Superior at blocking attacks and mitigating damage when equipped with shields
   * Can use specialized shield armor (obtained via ArmorKit)
+  * Damage reduction effect scales with hero's skill level when using shields
 
 ==== Lore ====
 The Guardian subclass represents the protective warriors of gnoll society, sworn to defend their territory and leaders at all costs. Their armor and combat techniques are designed to absorb damage while supporting their pack.
@@ -22,24 +23,35 @@ The Guardian subclass represents the protective warriors of gnoll society, sworn
 The Guardian subclass can be unlocked by reading a Tome of Mastery after defeating the second boss, Tengu. It's only available to the Gnoll hero class.
 
 ==== Equipment ====
-  * Special armor: [[en:rpd:gnoll_armor_item|Gnoll Armor]] can be obtained using an Armor Kit on any regular armor
-  * Preferred weapons: Shield-based combat
+  * Special armor: [[en:rpd:guardian_armor_item|Guardian Armor]] can be obtained using an Armor Kit on any regular armor (specifically GnollArmor)
+  * Preferred weapons: Shield-based combat - special defenseProc when using shields
   * Defensive items: Potions and scrolls that enhance survivability
+  * Primary or secondary weapon slot must contain an item with "Shield" in its entity name for bonus effect
+
+==== Mechanics ====
+  * **defenceProc Method**: When using a shield (weapon with "Shield" in entity name), the Guardian reflects a percentage of damage dealt back to the attacker
+  * **Formula**: Reflected damage = (Random.Float(1, skillLevel + 1) / (skillLevel + 3)) * original damage
+  * **Shield Detection**: Checks both primary (weapon) and secondary (left-hand) slots for items containing "Shield" in their entity name
+
+==== Code References ====
+  * **Java Enum**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Lines 55 and 137-141 contain Guardian implementation
+  * **defenceProc Method**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L159-L166|HeroSubClass.java#L159-L166]] - Contains the special shield mechanics
+  * **Guardian Armor**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GuardianArmor.java|GuardianArmor.java]] - Based on GnollArmor
+  * **Armor Class**: "GuardianArmor" specified in HeroSubClass enum (line 55)
+  * **String Resources**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2821-L2822|HeroSubClass_NameGuardian and HeroSubClass_DescGuardian]]
 
 ==== Strategy ====
-  * Focus on defensive items and armor
-  * Use shield-based equipment for maximum protection
+  * Focus on defensive items, especially shields for maximum benefit
+  * Use shield-based equipment to trigger the damage reflection ability
   * Leverage defensive abilities to survive longer dungeon runs
-  * Support other characters with protective aura abilities
-
-==== Source Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GuardianArmor.java|GuardianArmor.java]]
+  * The damage reflection scales with hero's skill level, making it more effective at higher levels
+  * Prioritize items with "Shield" in their entity name to activate subclass benefits
 
 ==== See Also ====
   * [[en:rpd:gnoll_class|Gnoll Class]] - Parent class
   * [[en:rpd:witchdoctor_subclass|Witchdoctor]] - Alternative Gnoll subclass
   * [[en:rpd:armor_kit_item|Armor Kit]] - Used to obtain subclass armor
   * [[en:rpd:subclass|Subclasses]] - General subclass information
+  * [[en:rpd:shields|Shields]] - Items that work well with Guardian subclass
 
 {{tag> rpd subclasses gnoll}}
