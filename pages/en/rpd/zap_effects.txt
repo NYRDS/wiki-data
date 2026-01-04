@@ -6,26 +6,29 @@
 Zap Effects are visual lines or beams that connect a caster or attacker to their target, providing visual feedback when ranged abilities are used. Different types of zap effects are used for different types of attacks and spells.
 
 ==== Types of Zap Effects ====
-  * **Arrow** - Used for ranged weapon attacks
-  * **Wand** - Generic effect for most wand types
-  * **Lightning** - Used for lightning-based wands and spells
+  * **Arrow** - Used for [[en:rpd:ranged_combat|ranged weapon]] attacks
+  * **Wand** - Generic effect for most [[en:rpd:wands|wand]] types
+  * **Lightning** - Used for lightning-based [[en:rpd:wands|wands]] and [[en:rpd:spells_overview|spells]]
   * **Kunai** - Used specifically for the [[en:rpd:kunai_throw_spell|Kunai Throw]] spell
-  * **Shuriken** - Used for shuriken and other throwing weapons
-  * **Magic Missile** - Used for magic missile effects
-  * **Fire** - Used for fire-based weapons and spells
-  * **Frost** - Used for frost-based weapons and spells
-  * **Teleportation** - Used for blink and teleportation effects
+  * **Shuriken** - Used for [[en:rpd:shuriken_item|shuriken]] and other [[en:rpd:throwing_weapons|throwing weapons]]
+  * **Magic Missile** - Used for [[en:rpd:magic_arrow_spell|magic missile effects]]
+  * **Fire** - Used for fire-based [[en:rpd:weapons_mechanic|weapons]] and [[en:rpd:spells_overview|spells]]
+  * **Frost** - Used for frost-based [[en:rpd:weapons_mechanic|weapons]] and [[en:rpd:spells_overview|spells]]
+  * **Teleportation** - Used for [[en:rpd:blink_spell|blink]] and [[en:rpd:spells_overview|teleportation spells]]
 
 ==== Implementation ====
-  * Base implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/ZapGlow.java|ZapGlow.java]]
-  * Effect definition: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/platform/specific/Implementations.java#L34-L69|Implementations.java]]
+  * Base implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/effects/ZapEffect.java|ZapEffect.java]]
+  * Magic missile effects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|MagicMissile.java]]
   * Usage in spells: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L32|RPD.zapEffect()]]
   * RPD API: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/Utils/RpdScriptUtils.java|RpdScriptUtils.java]]
+  * Sprite implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/MobSpriteDef.java#L262-L268|MobSpriteDef.zap()]]
 
 ==== Related Mechanics ====
   * [[en:rpd:spells_overview|Spells]] - Abilities that use zap effects
   * [[en:rpd:wands|Wands]] - Items that use zap effects
   * [[en:rpd:ranged_combat|Ranged Combat]] - General ranged attack mechanics
   * [[en:rpd:effects|Visual Effects]] - Other visual effects in the game
+  * [[en:rpd:magic_mechanic|Magic System]] - Magic system using zap effects
+  * [[en:rpd:combat_mechanic|Combat]] - General combat mechanics
 
 {{tag> rpd mechanics effects visuals }}

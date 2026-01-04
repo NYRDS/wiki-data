@@ -1,0 +1,66 @@
+====== Rugido ======
+
+{{ rpd:images:spell_Roar.png|Ícone da Magia de Rugido }}
+
+**Rugido** é uma magia de afinidade Bruxaria em Remixed Pixel Dungeon que aterroriza inimigos. Baseado no código-fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua|Rugido.lua]]
+
+==== Descrição ====
+O poderoso rugido certamente aterrorizará seus inimigos e inspirará seus aliados. Quando lançado, Rugido cria um efeito de terror em inimigos aleatórios igual ao nível do lançador.
+
+==== Estatísticas ====
+  * **Afinidade Mágica:** Bruxaria (fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L14|Rugido.lua:14]])
+  * **Alvo:** Próprio (fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L15|Rugido.lua:15]])
+  * **Nível:** 1 (fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L17|Rugido.lua:17]])
+  * **Custo de Mana:** 1 (fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L19|Rugido.lua:19]])
+  * **Tempo de Lançamento:** 0 segundos (fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L18|Rugido.lua:18]])
+  * **Efeito:** Aplica Terror a inimigos aleatórios
+  * **Arquivo de Imagem:** spellsIcons/witchcraft.png (índice de imagem 0) (fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L12-L13|Rugido.lua:12-13]])
+
+==== Mecânicas ====
+  * Cria um efeito visual de brilho (6 raios, 32 pixels, cor vermelha #FF0000) no lançador por 2 segundos (fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L25|Rugido.lua:25]])
+  * Toca o efeito sonoro de desafio ('snd_challenge') (fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L26|Rugido.lua:26]])
+  * Duração do efeito de Terror igual ao nível do lançador (fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L28|Rugido.lua:28]])
+  * Afeta até o número de inimigos aleatórios igual ao nível de habilidade do lançador (fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L29|Rugido.lua:29]])
+  * Para cada inimigo afetado, cria um efeito visual de brilho (4 raios, 16 pixels, cor vermelha #FF0000) por 2 segundos (fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L32|Rugido.lua:32]])
+  * Usa a classe de efeito de Terror com o lançador como fonte (fonte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L33|Rugido.lua:33]])
+
+==== Uso ====
+A magia Rugido é usada principalmente para:
+  * Aterrorizar inimigos com o efeito de Terror
+  * Criar oportunidades para escapar de situações perigosas
+  * Interromper ações de inimigos já que o Terror impede que eles tomem ações ofensivas
+  * Apoiar posicionamento tático durante o combate
+
+==== Classes ====
+Classes com afinidade Bruxaria têm acesso primário a esta magia:
+  * [[pt:rpd:gnoll_class|Gnoll]] - Tem afinidade Bruxaria
+  * [[pt:rpd:doctor_class|Médico da Peste]] - Tem afinidade Bruxaria
+
+==== Estratégia ====
+Rugido é mais eficaz quando usado em grupos de inimigos onde múltiplos alvos podem ser aterrorizados simultaneamente. A duração do efeito de Terror escala com o nível do lançador, tornando-a mais eficaz em níveis mais altos. Como o Terror impede que inimigos ataquem, é particularmente útil quando cercado ou enfrentando inimigos perigosos.
+
+==== Verificação de Conteúdo ====
+  * Fonte de informação: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua|Rugido.lua]]
+  * Verificação de estatísticas: Extraído diretamente da função desc() em [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L9-L19|Rugido.lua:9-19]]
+  * Verificação de mecânicas: Baseado na função cast() em [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L23-L35|Rugido.lua:23-35]]
+  * Última atualização: Dezembro 2025
+
+==== Referências de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua|Rugido.lua]] - Implementação principal
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2675-L2676|strings_all.xml:2675-2676]] - Nome e descrição
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2676-L2677|strings_all.xml (ru):2676-2677]] - Nome e descrição em russo
+  * [[mr:roar_spell|Página de referência legível por máquina]]
+
+==== Cadeias de Origem ====
+Nome: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2675|Rugido_Nome]] = "Roar"
+
+Descrição: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2676|Rugido_Info]] = "The mighty roar will surely terrify your enemies and inspire allies."
+
+==== Veja Também ====
+  * [[pt:rpd:spells_overview|Magias]]
+  * [[pt:rpd:terror_buff|Efeito de Terror]]
+  * [[pt:rpd:witchcraft|Afinidade Bruxaria]]
+  * [[pt:rpd:gnoll_class|Classe Gnoll]]
+  * [[pt:rpd:buffs|Efeitos]]
+
+{{tag> rpd spells witchcraft }}

@@ -1,0 +1,34 @@
+====== 连接效果 ======
+
+**连接效果** (Zap Effects) 是在混合像素地牢中远程攻击或法术在两点之间发射时使用的视觉效果。
+
+==== 描述 ====
+连接效果是连接施法者或攻击者与目标的视觉线或光束，当使用远程技能时提供视觉反馈。不同类型的攻击和法术会使用不同类型的连接效果。
+
+==== 连接效果类型 ====
+  * **箭矢** - 用于远程武器攻击
+  * **法杖** - 用于大多数法杖类型的通用效果
+  * **闪电** - 用于基于闪电的法杖和法术
+  * **苦无** - 专门用于 [[zh:rpd:kunai_throw_spell|苦无投掷]] 法术
+  * **手里剑** - 用于手里剑和其他投掷武器
+  * **魔法飞弹** - 用于魔法飞弹效果
+  * **火** - 用于基于火的武器和法术
+  * **冰霜** - 用于基于冰霜的武器和法术
+  * **传送** - 用于闪烁和传送效果
+
+==== 实现 ====
+  * 基础实现: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/effects/ZapEffect.java|ZapEffect.java]]
+  * 魔法飞弹效果: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|MagicMissile.java]]
+  * 法术中的用法: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L32|RPD.zapEffect()]]
+  * RPD API: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/Utils/RpdScriptUtils.java|RpdScriptUtils.java]]
+  * 精灵实现: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/MobSpriteDef.java#L262-L268|MobSpriteDef.zap()]]
+
+==== 相关机制 ====
+  * [[zh:rpd:spells_overview|法术]] - 使用连接效果的技能
+  * [[zh:rpd:wands|法杖]] - 使用连接效果的物品
+  * [[zh:rpd:ranged_combat|远程战斗]] - 一般远程攻击机制
+  * [[zh:rpd:effects|视觉效果]] - 游戏中的其他视觉效果
+  * [[zh:rpd:magic_mechanic|魔法系统]] - 使用连接效果的魔法系统
+  * [[zh:rpd:combat_mechanic|战斗]] - 一般战斗机制
+
+{{tag> rpd mechanics effects visuals }}

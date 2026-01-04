@@ -1,0 +1,66 @@
+====== 怒吼 ======
+
+{{ rpd:images:spell_Roar.png|怒吼法术图标 }}
+
+**怒吼** 是混合像素地牢中的一种巫术亲和法术，可以恐吓敌人。基于源代码: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua|怒吼.lua]]
+
+==== 描述 ====
+强大的怒吼肯定会恐吓你的敌人并激励你的盟友。施放时，怒吼对随机敌人造成等同于施法者等级的恐惧效果。
+
+==== 属性 ====
+  * **魔法亲和:** 巫术 (来源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L14|怒吼.lua:14]])
+  * **目标:** 自身 (来源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L15|怒吼.lua:15]])
+  * **等级:** 1 (来源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L17|怒吼.lua:17]])
+  * **法力消耗:** 1 (来源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L19|怒吼.lua:19]])
+  * **施法时间:** 0秒 (来源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L18|怒吼.lua:18]])
+  * **效果:** 对随机敌人施加恐惧
+  * **图像文件:** spellsIcons/witchcraft.png (图像索引 0) (来源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L12-L13|怒吼.lua:12-13]])
+
+==== 机制 ====
+  * 在施法者身上创建视觉闪光效果 (6条射线, 32像素, 红色 #FF0000) 持续2秒 (来源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L25|怒吼.lua:25]])
+  * 播放挑战音效 ('snd_challenge') (来源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L26|怒吼.lua:26]])
+  * 恐惧效果的持续时间等于施法者的等级 (来源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L28|怒吼.lua:28]])
+  * 影响最多等于施法者技能等级数量的随机敌人 (来源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L29|怒吼.lua:29]])
+  * 对每个受影响的敌人，创建视觉闪光效果 (4条射线, 16像素, 红色 #FF0000) 持续2秒 (来源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L32|怒吼.lua:32]])
+  * 使用带有施法者作为来源的恐惧效果类 (来源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L33|怒吼.lua:33]])
+
+==== 用法 ====
+怒吼法术主要用于:
+  * 用恐惧状态效果恐吓敌人
+  * 在危险情况下创造逃脱机会
+  * 由于恐惧阻止敌人采取进攻行动，因此会干扰敌人的行动
+  * 在战斗中支持战术定位
+
+==== 职业 ====
+拥有巫术亲和的职业可主要获得此法术:
+  * [[zh:rpd:gnoll_class|豺狼人]] - 拥有巫术亲和
+  * [[zh:rpd:doctor_class|瘟疫医生]] - 拥有巫术亲和
+
+==== 策略 ====
+怒吼在面对一群敌人时最有效，可以同时恐吓多个目标。恐惧效果的持续时间随施法者等级而缩放，在更高等级时更加有效。由于恐惧阻止敌人攻击，因此在被包围或面对危险敌人时特别有用。
+
+==== 内容验证 ====
+  * 信息来源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua|怒吼.lua]]
+  * 属性验证: 直接从 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L9-L19|怒吼.lua:9-19]] 的desc()函数中提取
+  * 机制验证: 基于 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L23-L35|怒吼.lua:23-35]] 的cast()函数
+  * 最后更新: 2025年12月
+
+==== 代码引用 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua|怒吼.lua]] - 主要实现
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2675-L2676|strings_all.xml:2675-2676]] - 名称和描述
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2676-L2677|strings_all.xml (ru):2676-2677]] - 俄语名称和描述
+  * [[mr:roar_spell|机器可读参考页面]]
+
+==== 源字符串 ====
+名称: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2675|怒吼_名称]] = "Roar"
+
+描述: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2676|怒吼_信息]] = "The mighty roar will surely terrify your enemies and inspire allies."
+
+==== 另请参阅 ====
+  * [[zh:rpd:spells_overview|法术]]
+  * [[zh:rpd:terror_buff|恐惧状态]]
+  * [[zh:rpd:witchcraft|巫术亲和]]
+  * [[zh:rpd:gnoll_class|豺狼人职业]]
+  * [[zh:rpd:buffs|增益]]
+
+{{tag> rpd spells witchcraft }}
