@@ -1,0 +1,62 @@
+====== 自然回復 ======
+
+{{ rpd:images:buff_Health.png|自然回復 }}
+
+**自然回復**是《Remixed Dungeon》中的一種有益狀態效果，可以隨著時間的推移逐漸恢復生命值。
+
+==== 效果描述 ====
+  * **類型：** 有益狀態效果（增益）
+  * **效果：** 隨時間推移逐漸恢復生命值，基於英雄的屬性和裝備
+  * **持續時間：** 有限的時間段（持續到手動移除或英雄死亡）
+  * **疊加：** 在大多數情況下不會與其他治療效果疊加
+  * **速率：** 受再生延遲（REGENERATION_DELAY = 10）和各種加成影響
+
+==== 獲取方式 ====
+  * 從某些藥水（例如[[zh:rpd:potion_of_healing_item|治療藥水]]）
+  * 從具有治療屬性的特定裝備（例如，治療戒指）
+  * 從英雄職業和子職業能力（例如，HeroSubClass.regenerationBonus）
+  * 從特定關卡的環境特徵（不在安全區域時）
+  * 通過遊戲便利設施（FAST_REGENERATION）
+
+==== 機制 ====
+  * 每回合根據英雄的屬性和裝備恢復少量生命值
+  * 效果以REGENERATION_DELAY = 10的週期性應用（來自源代碼）
+  * 速率由英雄的regenerationBonus修改（來自裝備物品、子職業等）
+  * 在安全區域/關卡（如城鎮或城市區域）不起作用 - 通過level().isSafe()檢查
+  * 當角色飢餓時不起作用 - 通過isStarving()檢查
+  * 與其他治療方法結合使用時更有效（協同效應）
+
+==== 代碼參考 ====
+  * **Java 類：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Regeneration.java|Regeneration.java]]
+  * **源代碼位置：** RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Regeneration.java
+  * **再生延遲常量：** REGENERATION_DELAY = 10（見源代碼第13行）
+  * **便利設施：** FAST_REGENERATION常量定義在Facilitations.java中
+  * **英雄交互：** Hero類在Hero.java中自動應用再生（第236行）
+  * **免疫性：** 一些怪物如Shopkeeper對再生有免疫（見Shopkeeper.java）
+  * **CharModifier 接口：** 再生速率可以通過CharModifier.regenerationBonus()方法修改
+
+==== 字符串資源 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L600|RegenerationBuff_Name]] - "Natural Regeneration"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L601|RegenerationBuff_Info]] - "The function for natural regeneration is in a buff form to make things easier."
+
+==== 策略 ====
+  * 在地牢的非安全區域使用，無需消耗藥水即可恢復生命值
+  * 在長時間的地牢運行中尤其有價值，當治療資源稀缺時
+  * 在安全區域（如城鎮或城市）休息時不起作用（按設計）
+  * 在危險區域的戰鬥中優先使用以保持生命池
+  * 與裝備如治療戒指結合使用以獲得更快的再生速度
+
+==== 抵消效果 ====
+  * 持續傷害效果（中毒、流血）可能會降低效果
+  * 驅散效果可以移除再生
+  * 飢餓狀態阻止再生運行
+  * 安全區域阻止再生運行
+
+==== 另請參閱 ====
+  * [[zh:rpd:status_effects|狀態效果]] - 其他狀態變更
+  * [[zh:rpd:potion_of_healing_item|治療藥水]] - 再生的來源
+  * [[zh:rpd:ring_of_mending_item|治療戒指]] - 增強再生的裝備
+  * [[zh:rpd:mechanics|遊戲機制]] - 其他核心系統
+  * [[zh:rpd:mana_regeneration_buff|魔法再生]] - 對魔法的類似效果
+
+{{tag> rpd mechanics status_effects buffs}}
