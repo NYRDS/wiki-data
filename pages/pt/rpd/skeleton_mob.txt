@@ -1,0 +1,93 @@
+====== Esqueleto Móbil ======
+
+{{ rpd:images:skeleton_mob.png|Skeleton }}
+
+O **Esqueleto** é um inimigo comum [[pt:rpd:undead_mob|morto-vivo]] encontrado por toda a masmorra, tipicamente no [[pt:rpd:prison_level|Cárcere]] e níveis posteriores. Pequena chance de aparecer nas [[pt:rpd:sewers|Esgotos]] também.
+
+==== Visão Geral ====
+Esqueletos são ossos reanimados de aventureiros falecidos e habitantes da masmorra. São inimigos persistentes que perseguirão relentlessemente o personagem do jogador. Esqueletos são imunes a vários [[pt:rpd:status_effects|efeitos de status]] devido à sua natureza [[pt:rpd:undead_mob|morto-vivo]].
+
+==== Estatísticas ====
+  * **Vida**: 25 (HT: 25)
+  * **Habilidade de Defesa**: 9
+  * **Habilidade de Ataque**: 12
+  * **Dano**: 3-8 (ver mecânica de [[pt:rpd:melee_combat|combate corpo a corpo]])
+  * **Armadura**: 5 DR (Classificação de Defesa)
+  * **EXP por Matar**: 5
+  * **Nível Máximo**: 10
+  * **Morto-vivo**: Sim (imune a certos [[pt:rpd:status_effects|efeitos de status]])
+
+==== Habilidades ====
+  * **Arma Dropada**: Quando derrotado (fora dos [[pt:rpd:necropolis_level|níveis de Necro]]), tem 20% de chance de dropar uma [[pt:rpd:melee_weapon|arma corpo a corpo]] aleatória, raramente aprimorada.
+  * **Resistência Morto-vivo**: Imune a efeitos de [[pt:rpd:fear|medo]], [[pt:rpd:charm_spell|encanto]] e [[pt:rpd:sleep_buff|sono]]
+  * **Imunidade a Veneno**: Imune ao dano e efeitos de status de [[pt:rpd:poison_buff|veneno]]
+  * **Explosão de Ossos**: Ao morrer, explode causando dano a entidades próximas em 4 células adjacentes (direções horizontal e vertical, mas não diagonal). O dano da explosão é calculado como (dano do esqueleto - [[pt:rpd:defense|defesa]] do alvo / 2). Nunca esqueça isso! O dano de osso chega a 3-8 (a armadura reduz o valor médio). Tome cuidado especial quando estiver cercado pois eles explodem ao morrer, potencialmente machucando você.
+  * **Efeito Sonoro**: Toca um som de ossos quebrando ao ser derrotado (Assets.SND_BONES)
+
+==== Estratégia de Combate ====
+Esqueletos são inimigos de [[pt:rpd:melee_combat|combate corpo a corpo]] agressivos que perseguirão o jogador relentlessemente. Eles não podem ser encantados ou assustados, tornando-os consistentemente perigosos por toda a masmorra. Sua estrutura óssea fornece alguma resistência física ao dano.
+
+==== Ocorrência ====
+  * **Localização Primária**: Encontrado por todo o [[pt:rpd:prison_level|Nível Cárcere]] (especialmente níveis 7 e 8) e níveis mais profundos da masmorra
+  * **Frequência de Aparecimento**: Comum em níveis posteriores da masmorra (especificamente níveis 6-9 segundo Bestiary.json)
+  * **Localização Secundária**: Pequena chance de aparecer nos [[pt:rpd:sewers|Esgotos]]
+  * **Comportamento em Grupo**: Geralmente encontrado sozinho ou em pequenos grupos
+  * **Exceção [[pt:rpd:necropolis_level|Nível Necrópole]]**: No [[pt:rpd:necropolis_level|Nível Necrópole]], eles não dropam armas
+
+==== Estratégia ====
+  * Use [[pt:rpd:ranged_weapons|armas de longo alcance]] ou [[pt:rpd:spells_overview|spells]] para atacar de longe
+  * Evite deixar que eles o cerquem em passagens estreitas
+  * Tome cuidado com ataques de fogo pois causam explosão (embora isso não seja explicitamente dito como vulnerabilidade a fogo)
+  * Eles são resistentes a muitos [[pt:rpd:status_effects|efeitos de status]], exigindo dano direto
+  * Tente evitar ser cercado pois eles explodem ao morrer, potencialmente machucando o jogador
+
+==== Notas Especiais ====
+  * Esqueletos são [[pt:rpd:undead_mob|mortos-vivos]], o que afeta como certos itens e spells interagem com eles
+  * Eles são imunes a vários efeitos que funcionam em criaturas vivas
+  * Derrotá-los contribui para a [[pt:rpd:badges|conquista]] "Esqueleto Morto"
+  * Eles explodem quando mortos, o que pode ser perigoso ao jogador se estiver muito perto
+  * No [[pt:rpd:necropolis_level|Nível Necrópole]], eles não dropam armas, pois este nível tem regras diferentes
+
+==== Referências de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java|Skeleton.java]] - Implementação primária
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L16-L26|Skeleton.java#L16-L26]] - Inicialização de estatísticas e propriedades
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L28-L32|Skeleton.java#L28-L32]] - Implementação de loot (20% de chance de drop de arma, nulo em NecroBossLevel)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L35-L54|Skeleton.java#L35-L54]] - Mecânica de explosão ao morrer
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java#L125-L130|Treasury.java#L125-L130]] - Mecanismo de manipulação de loot do Tesouro
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/NecroBossLevel.java|NecroBossLevel.java]] - Tratamento especial para NecroBossLevel onde esqueletos não dropam armas
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind.java]] - Interface para identificação de entidade
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]] - Classe base para armas dropadas por esqueletos
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Classe base para efeitos de status aos quais esqueletos são imunes
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1307-L1312|Cadeias de Esqueleto (Russo)]] - Localização russa (Skeleton_Name, Skeleton_Desc, Skeleton_Killed, etc.)
+  * **namespace mr:** Confira [[mr:skeleton_mob]] para dados legíveis por máquina
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L18-L23|detalhes do construtor do Skeleton]] - Inicialização detalhada de estatísticas (hp, baseDefenseSkill, baseAttackSkill, etc.)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1321-L1326|Cadeias de Esqueleto (Inglês)]] - Localização em inglês (Skeleton_Name, Skeleton_Desc, Skeleton_Killed, etc.)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L13-L14|declaração de classe do Skeleton]] - Estende a classe Mob com propriedades morto-vivo
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L35-L50|método Skeleton.die()]] - Implementação detalhada da explosão ao morrer
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - Taxas de spawn e distribuição de níveis para Esqueleto
+
+==== Referências Lua ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Exhumation.lua#L37|Exhumation.lua#L37]] - Referência ao tipo de pilha SKELETON na implementação de spell
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/userServices/autoTestAi.lua#L237|autoTestAi.lua#L237]] - Referência ao uso da chave esqueleto em testes de IA
+
+==== Arquivos de Configuração ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - Configuração de spawn em níveis (níveis do cárcere 6-9, nível necro1)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Skeleton.json|Skeleton.json]] - Configuração de sprites
+
+==== Recursos de Cadeia ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1321-L1326|Cadeias de Esqueleto (Inglês)]] - Nomes e descrições em inglês
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1307-L1312|Cadeias de Esqueleto (Russo)]] - Localização russa (Esqueleto, Esqueletos - um dos inimigos mais fortes na masmorra)
+
+==== Relacionado ====
+  * [[pt:rpd:undead_mob|Morto-vivo]] - Outros inimigos morto-vivos
+  * [[pt:rpd:prison_level|Nível Cárcere]] - Localização primária
+  * [[pt:rpd:zombie_mob|Zumbi]] - Outro inimigo morto-vivo
+  * [[pt:rpd:undead_mobs|Mobs Morto-vivos]] - Lista de inimigos morto-vivos
+  * [[pt:rpd:mobs|Mobs]] - Todos os mobs no jogo
+  * [[pt:rpd:skeleton_key_item|Chave Esqueleto]] - Item com nome similar, mas não relacionado ao mob
+  * [[pt:rpd:treasury|Tesouro]] - Para informações sobre itens dropados
+  * [[pt:rpd:mechanics|Mecânicas do Jogo]] - Mecânicas gerais do jogo
+  * [[pt:rpd:combat_mechanics|Combate]] - Mecânicas de combate
+  * [[pt:rpd:hero|Herói]] - Personagem do jogador
+
+{{tag> rpd mobs undead prison skeleton skeleton_mob}}
