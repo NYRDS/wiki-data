@@ -1,0 +1,66 @@
+====== 鳞甲 ======
+
+{{ rpd:images:item_ScaleArmor.png|鳞甲 }}
+
+**鳞甲**是Remixed Dungeon中的一种中等护甲。它由缝在皮背心上的金属鳞片制成，创造了一种灵活但防护的护甲。
+
+==== 护甲属性 ====
+  * **护甲等级**: 4 (中等护甲)
+  * **类型**: 中等护甲，平衡防护和机动性
+  * **耐久度**: 标准[[en:rpd:armor_durability|护甲耐久度]]（随使用磨损）
+  * **附魔**: 可以像其他护甲类型一样附魔[[en:rpd:armor_glyphs|符文]]
+  * **重量**: 10（稍微影响移动速度）
+  * **价格**: 80金币（当售给商店时 - 价格计算为护甲等级 * 20）
+
+==== 描述 ====
+缝在皮背心上的金属鳞片创造了一种灵活但防护的护甲。这种设计在防护和机动性之间提供了良好平衡，使其适合各种游戏风格。
+
+==== 获取 ====
+  * 在地牢中随机发现
+  * 在商店中可用
+  * 被某些敌人掉落
+  * 在箱子和其他容器中发现
+
+==== 策略 ====
+  * 为中期游戏进展提供良好防护
+  * 灵活的性质允许合理的移动速度
+  * 适合需要中等防护而不牺牲太多机动性的角色
+  * 可以用护甲卷轴升级以改善防护
+  * 与护甲符文兼容以获得额外特殊效果
+
+==== 代码引用 ====
+  * **Java 实现**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java|ScaleArmor.java]]
+  * **构造函数数据**: ScaleArmor() 设置护甲等级为4，图像索引为3
+  * **属性验证**: 护甲等级: 4 (super(4) 在构造函数中), 重量: 10 (护甲等级4的默认值), 图像: 3
+  * **字符串资源**:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2013|ScaleArmor_Name]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2014|ScaleArmor_Desc]]
+    * 在多种语言中可用 (ru, de, fr, es, etc.)
+  * **注册**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (registerItemClass(ScaleArmor.class))
+  * **基类**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor base class]]
+  * **护甲系统**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] (基实现)
+  * **护甲等级计算**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L28|护甲等级 = 4]] (确定防护和重量)
+  * **重量计算**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L29|重量 = 护甲等级 * 2.5]] (重量 = 4 * 2.5 = 10)
+  * **精灵索引**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java#L11|图像 = 3]] (确定视觉表现)
+  * **字符串本地化**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java#L17|desc() method returns StringsManager.getVar(R.string.ScaleArmor_Desc)]]
+  * **实体类型实现**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind interface]]
+  * **护甲耐久度**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor durability system]] (基于降解机制)
+  * **护甲价格**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L97|Armor price calculation]] (价格 = 护甲等级 * 20 = 80 金币当售出时)
+  * **护甲附魔**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/|Armor Glyph system]] (与符文兼容)
+  * **材料类型**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L27|materialType field]] - 指示护甲材料属性（中等护甲）
+  * **装备系统**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings class]] - 在护甲槽中处理护甲装备
+  * **护甲分类**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L18-L21|Tier classifications]] - 定义护甲分级 (分级4 = 中等护甲)
+  * **商店可用性**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java#L90|ShopPainter.java]] (出现在商店中)
+  * **机器可读数据**: [[mr:scale_armor_item|mr:scale_armor_item]]
+
+==== 相关 ====
+  * [[en:rpd:armor|护甲]] - 所有护甲类型信息
+  * [[en:rpd:armor_glyphs|护甲符文]] - 护甲的特殊效果
+  * [[en:rpd:leather_armor_item|皮甲]] - 较低分级护甲
+  * [[en:rpd:mail_armor_item|链甲]] - 较高分级护甲
+  * [[en:rpd:plate_armor_item|板甲]] - 较高分级护甲
+  * [[en:rpd:dragon_armor_item|龙甲]] - 最高分级护甲
+  * [[en:rpd:cloth_armor_item|布甲]] - 最低分级护甲
+  * [[en:rpd:armor_tiers|护甲分级]] - 护甲分类信息
+
+{{tag> rpd items armor scale tier4}}

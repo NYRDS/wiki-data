@@ -1,0 +1,112 @@
+====== Poção de Chama Líquida ======
+
+{{ rpd:images:potion_of_liquid_flame_item.png|Poção de Chama Líquida }}
+
+A **Poção de Chama Líquida** é uma poção arremessável em Remixed Pixel Dungeon que cria fogo quando arremessada.
+
+==== Descrição ====
+Um frasco de vidro cheio de um líquido estranho que pega fogo ao ser exposto ao ar. Quando arremessado em uma localização, cria uma mancha de fogo que queima inimigos e pode se espalhar para terrenos inflamáveis. De acordo com os recursos de string: "Este frasco contém um composto instável que irá explodir violentamente em chamas, por exposição ao ar livre."
+
+==== Estatísticas ====
+  * **Tipo:** Poção Arremessável
+  * **Peso:** 1
+  * **Preço:** Não pode ser comprada em lojas; encontrada como saque aleatório
+  * **Raio de Efeito:** Área 3x3 ao redor do ponto de impacto
+  * **Duração:** Fogo persiste por vários turnos antes de se extinguir
+
+==== Visão Geral do Item ====
+  * **Tipo:** Poção
+  * **Raridade:** Especial
+  * **Efeito Especial:** Cria uma área de fogo quando quebrada no chão
+  * **Uso:** Quebrar no chão para criar dano por fogo na área (consumido ao quebrar)
+
+==== Mecânicas Especiais ====
+  * Ao quebrar em qualquer localização, cria uma área de [[en:rpd:liquid_flame|chama líquida]] com volume de 10 unidades
+  * Fogo dura por um tempo limitado (normalmente se dissipa em vários turnos)
+  * Pode incendiar terrenos inflamáveis como grama e barricadas de madeira
+  * Causa dano a quaisquer personagens parados na [[en:rpd:liquid_flame|chama líquida]] a cada turno
+  * Fogo pode se espalhar para terrenos inflamáveis adjacentes
+  * Não se acumula com outros efeitos líquidos (como [[en:rpd:potion_of_paralytic_gas_item|Gás Paralisante]])
+  * **Área de Efeito:** Ao quebrar, cria uma mancha de [[en:rpd:liquid_flame|chama líquida]] que danifica inimigos ao longo do tempo
+  * **Dano de Fogo:** Causa dano a todos os inimigos na área afetada a cada turno
+  * **Inflamação de Terreno:** Pode incendiar terrenos inflamáveis, criando perigos de fogo contínuos
+  * **Sem Cura Direta:** Não pode ser consumida para cura como outras poções
+  * **Apenas Quebra:** Esta poção só pode ser quebrada, não bebida
+  * **Identificação:** Torna-se identificada após ser quebrada
+  * **Resistência ao Fogo:** Inimigos com resistência ao fogo recebem dano reduzido
+
+==== Uso ====
+  * **Ofensivo:** Use para danificar grupos de inimigos
+  * **Negação de área:** Bloqueie passagens ou previna aproximação de inimigos
+  * **Interação ambiental:** Incendeie terrenos inflamáveis para vantagem tática
+  * **Alquimia:** Requerido para criar Flechas de Fogo através de umedecimento
+
+==== Estratégia ====
+  * Excelente para limpar grupos de inimigos em corredores ou cômodos pequenos
+  * Efetivo contra grandes grupos de inimigos fracos
+  * Útil para criar barreiras de fogo para bloquear movimento de inimigos
+  * Bom para usar quando cercado por inimigos
+  * Pode ser usado para incendiar terrenos inflamáveis para negação de área contínua
+  * Considere usar antes de enfrentar combates de chefes para causar dano inicial
+  * Inestimável para criar Flechas de Fogo através do processo de umedecimento
+  * Cuidado para não se prender no fogo
+  * Útil contra grupos de inimigos que o cercaram
+
+==== Obtenção ====
+  * Criada por alquimia usando sementes de Firebloom
+  * Encontrada em contêineres especiais e áreas secretas
+  * Ocasionalmente dropada por inimigos baseados em fogo
+  * Parte de receitas especiais e combinações de alquimia
+
+==== Efeito ====
+Ao quebrar no chão, a Poção de Chama Líquida cria uma área de fogo queimando que danifica todas as criaturas na área por vários turnos.
+
+De acordo com os recursos de string do jogo: "Este é na verdade um preparo alquímico muito inteligente que pega fogo ao ser exposto ao ar."
+
+==== Referências de Código ====
+  * **Implementação Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java|PotionOfLiquidFlame.java]]
+  * **Classe Base de Poção:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]]
+  * **Mecânicas de Quebra:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L20-L28|método de quebra]] - cria 10 unidades de chama líquida na localização de impacto
+  * **Efeito de Chama Líquida:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|Classe LiquidFlame]] - lida com o dano por fogo contínuo
+  * **Método Blob Seed:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java#L35-L42|Blob.seed]] - cria o efeito de chama líquida
+  * **Fator de Qualidade:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L25|qualityFactor()]] - afeta o volume de chama líquida produzida
+  * **Efeito de Respingo:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L24|método splash]] - efeito visual ao quebrar
+  * **Identificação de Poção:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L23|método setKnown]] - marca poção como identificada quando quebrada
+  * **Efeito Sonoro:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L25|SND_SHATTER]] - som quando garrafa quebra
+  * **Suporte a Umectação:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L32-L38|método moistenArrow]] - habilita criação de Flechas de Fogo
+  * **Preço Base:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L30|método basePrice]] - valor de 40 ouro
+  * **Recursos de String:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2197-L2198|PotionOfLiquidFlame_Name, PotionOfLiquidFlame_Info]] - exibe "Este frasco contém um composto instável que irá explodir violentamente em chamas, por exposição ao ar livre."
+  * **Índice de Rótulo do Item:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L11|labelIndex = 1]] - identifica tipo de poção na UI
+  * **Criação de Flecha de Fogo:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L32-L38|método moistenArrow]] - cria itens de Flecha de Fogo de flechas normais
+  * **Integração com Cena do Jogo:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L27|GameScene.add(fire)]] - adiciona o fogo criado à cena de jogo atual
+  * **Classe Base da Poção de Cura:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|UpgradablePotion]] - fornece mecânicas de upgrade
+  * **Imagem do Sprite:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/items/potions.png#L33-L45|items/potions.png]] - Localização do sprite no arquivo de ativos
+  * **Índice do Sprite:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemsSlices.txt#L33-L45|ItemsSlices.txt]] - Define a localização do sprite desta poção no arquivo de sprites
+  * **Manipulador de Status do Item:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ItemStatusHandler.java|Classe ItemStatusHandler]] - Lida com o sistema de identificação para este item
+  * **Cores de Respingo:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L233-L240|array splashColors]] - Extrai cor do sprite da poção para efeitos de respingo
+  * **Pilhagem de Itens:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L39|stackable = true]] - Poções podem ser empilhadas
+  * **Ação Padrão do Item:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L81-L87|método knownHamful()]] - Poções nocivas padrão para ação de arremesso
+  * **Ações:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L71-L77|método actions()]] - Adiciona ações de beber e umectar
+  * **Integração com Cinto de Poções:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L253-L255|método bag()]] - Pode ser armazenado no Cinto de Poções
+  * **Rastreamento de Emblemas:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L145|Badges.validateAllPotionsIdentified]] - Rastreia quando todas as poções são identificadas
+  * **Mecânicas de Dano de Fogo:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|Classe LiquidFlame]] - Implementação de dano por fogo ao longo do tempo
+  * **Mecânicas de Propagação de Fogo:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java#L35-L49|método spread]] - Como o fogo se espalha para células adjacentes
+  * **Resistência ao Fogo:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L154-L159|método Char.resist()]] - Como personagens resistem dano de fogo
+  * **Configuração de Tesouraria:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L133|Treasury.json]] - taxa de geração em locais de tesouro regulares
+  * **Configuração de Tesouraria de Aranhas:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L130|SpidersTreasury.json]] - taxa de geração em locais de tesouro de aranhas
+  * **Dados legíveis por máquina:** [[mr:potion_of_liquid_flame_item|mr:potion_of_liquid_flame_item]]
+
+==== Itens Relacionados ====
+  * [[en:rpd:potion|Poções]] - Informações gerais sobre poções
+  * [[en:rpd:potion_of_frost_item|Poção de Gelo]] - Efeito de elemento oposto
+  * [[en:rpd:liquid_flame|Chama Líquida]] - O efeito ambiental criado
+  * [[en:rpd:fire|Fogo]] - Mecânicas de fogo gerais
+  * [[en:rpd:moisten|Umectar]] - Processo para criar Flechas de Fogo
+  * [[en:rpd:fire_arrow_item|Flecha de Fogo]] - Munição criada usando esta poção
+  * [[en:rpd:burning_buff|Efeito de Queimadura]] - Efeitos de estar pegando fogo
+  * [[en:rpd:alchemy_mechanic|Alquimia]] - Informações sobre preparo de poções
+  * [[en:rpd:fire_trap_trap|Armadilha de Fogo]] - Mecânicas semelhantes baseadas em fogo
+  * [[en:rpd:wand_of_firebolt_item|Varinha de Raio de Fogo]] - Alternativa de varinha baseada em fogo
+  * [[en:rpd:hero|Herói]] - Personagem jogável principal
+
+{{tag> rpd items potions liquid_flame fire burning throwable alchemy }}

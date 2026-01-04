@@ -1,0 +1,72 @@
+====== Brujo Enano ======
+
+{{ rpd:images:warlock_mob.png|Sprite de Brujo Enano }}
+
+El **Brujo Enano** es un mob mágico en Remixed Dungeon, típicamente apareciendo como un brujo enano con habilidades mágicas avanzadas. Cuando el interés de los enanos cambió de la ingeniería a las artes arcanas, los brujos ganaron poder en las ciudades.
+
+==== Descripción ====
+Cuando el interés de los enanos cambió de la ingeniería a las artes arcanas, los brujos ganaron poder en las ciudades. Empezaron con la magia elemental, pero pronto se cambiaron a la demonología y la necromancia. Los brujos son lanzadores de hechizos formidables encontrados en las partes más profundas de la mazmorra.
+
+==== Estadísticas ====
+  * **Puntos de Vida:** 70
+  * **Habilidad de Ataque:** 25
+  * **Habilidad de Defensa:** 18
+  * **Daño:** 12-20
+  * **Tasa de Defensa (DR):** 8
+  * **EXP por Matar:** 11
+  * **Nivel Máximo:** 21
+
+==== Comportamiento ====
+  * **Centrado en Magia:** Los brujos usan principalmente ataques mágicos en lugar de combate físico
+  * **Defensa de Teletransporte:** Cuando la salud cae por debajo de ciertos umbrales (2/3 y 1/3), los brujos pueden desaparecer de los atacantes
+  * **Mecánicas de Parpadeo:**
+    * A 2/3 de salud restante, el brujo se teletransporta cuando recibe daño que los dejaría por debajo de este umbral
+    * A 1/3 de salud restante, el brujo se teletransporta de nuevo cuando recibe daño que lo dejaría por debajo de este umbral
+  * **Ataques de Zapeo:** Usa ataques de rayo de sombras contra enemigos
+
+==== Habilidades Especiales ====
+  * **Maldición de Debilidad:** Al zapear exitosamente a un enemigo, tiene un 50% de probabilidad de aflicir al objetivo con [[en:rpd:weakness_buff|Debilidad]]
+  * **Resistencia a la Muerte:** Tiene resistencia a efectos relacionados con la muerte (Inmunidad al encantamiento [[en:rpd:death_enchantment|Muerte]])
+  * **Mecánicas de Esquivar:** Usa teletransporte como mecanismo defensivo en lugar de esquivar tradicional
+
+==== Botín ====
+  * [[en:rpd:potion_item|Poción]] (83% probabilidad) - Categoría: Poción
+
+==== Estrategias ====
+  * **Combate Cuerpo a Cuerpo:** Los brujos son vulnerables en combate cuerpo a cuerpo donde no pueden zapear eficazmente
+  * **Interrupción de Parpadeo:** La habilidad de teletransporte puede ser impredecible, así que planifica tu posición cuidadosamente
+  * **Precaución a Distancia:** Ten cuidado al enfrentarlos a distancia ya que los brujos pueden lanzar rayos de sombras eficazmente
+
+==== Referencias de Código ====
+  * Clase Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java|Warlock.java]] - Implementación principal
+  * Tipo de Entidad: getEntityKind() devuelve "Warlock" en código Java
+  * Verificación de estadísticas: Extraído directamente del constructor Warlock.java (hp: 70, habilidad de ataque: 25, habilidad de defensa: 18, daño: 12-20, tasa de defensa: 8, exp: 11, maxLvl: 21)
+  * Mecánicas de Parpadeo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L46-L56|método defenseProc]] maneja teletransporte a umbrales de salud (2/3 y 1/3)
+  * Habilidad de Zapeo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L75-L85|método zap]] con efecto de Debilidad
+  * Efecto de Debilidad: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L78-L79|Random.Int(2) == 0]] para probabilidad del 50% de aplicar Debilidad
+  * Resistencia a la Muerte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L36|addResistance(Death.class)]] - inmunidad al encantamiento Muerte
+  * Implementación de Parpadeo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/BlinkAwayFromChar.java|Clase BlinkAwayFromChar]] - maneja el teletransporte real
+  * Sistema de Botín: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L38|loot(Treasury.Category.POTION, 0.83f)]] - 83% probabilidad de caída de poción
+  * Sistema de Tesoro: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java|Clase Treasury]] - gestiona caídas de botín aleatorio
+  * Sistema Ballística: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L70-L72|método canAttack]] - maneja apuntado de ataque a distancia
+  * Efecto de Zapeo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L40-L44|método fx]] - efectos visuales y de sonido para zapeo
+  * Informe de Muerte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L81-L83|método checkDeathReport]] - maneja mensajes de muerte
+  * Recursos de Cadenas:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1356-L1361|Cadenas en inglés]] - Nombre, género, objetivo, descripción y mensajes de muerte
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1341-L1346|Cadenas en ruso]] - Localización en ruso
+  * Efecto de Misil Mágico: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|Clase MagicMissile]] - efecto visual de zapeo
+  * Estado de Debilidad: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Weakness.java|Clase Weakness]] - implementación del efecto de debilidad
+  * Comprobación de género de clase de héroe: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L78|método getHeroClass()]] - comprueba género de héroe para efecto de debilidad
+  * Datos legibles por máquina: [[mr:warlock_mob|mr:warlock_mob]]
+
+==== Ver También ====
+  * [[en:rpd:mobs|Mobs]]
+  * [[en:rpd:weakness_buff|Estado de Debilidad]]
+  * [[en:rpd:hero_subclasses|Subclases de Héroe]]
+  * [[en:rpd:mage_class|Clase de Mago]]
+  * [[en:rpd:warlock_subclass|Subclase de Brujo]]
+  * [[en:rpd:death_enchantment|Encantamiento de Muerte]]
+  * [[en:rpd:zapping|Mecánicas de Zapeo]]
+  * [[en:rpd:ballistica_mechanic|Sistema Ballística]]
+
+{{tag> rpd mobs magic warlock dwarf spellcaster necromancy shadow}}

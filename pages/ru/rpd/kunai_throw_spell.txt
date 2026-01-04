@@ -1,0 +1,95 @@
+====== Метание Кунай ======
+
+{{ rpd:images:kunai_throw_spell_icon.png|Иконка заклинания "Метание Кунай" }}
+
+**Метание Кунай** - заклинание в Remixed Pixel Dungeon (Разбойничья специализация).
+
+==== Описание ====
+Это заклинание метает кунай во вражеских существ, видимых пользователем, с невероятной скоростью. Количество метаемых кунай зависит от уровня навыка заклинателя - чем выше уровень, тем больше кунай метается. Это заклинание настолько быстро, что вы не можете выбрать цель.
+
+==== Характеристики ====
+  * **Магическая специализация:** [[en:rpd:rogue_class|Разбойник]]
+  * **Цель:** себя (целится во вражеских существ, видимых случайным образом)
+  * **Уровень:** 2
+  * **Затраты [[en:rpd:mana|Маны]]:** 5
+  * **Время произнесения:** 0.01 (экстремально быстро)
+  * **Изображение заклинания:** Использует разные иконки в зависимости от уровня (1, 9 или 17 в зависимости от уровня)
+
+==== Механики ====
+  * **Количество кунай:** min(уровеньНавыка(заклинатель) - уровеньЗаклинания + 1, 3) - максимум 3 [[en:rpd:kunai_item|кунай]]
+  * **Урон:** Случайный урон между n и (n + уровень(заклинатель) * n), где n - количество [[en:rpd:kunai_item|кунай]], метаемых
+  * **Целеуказание:** Автоматически выбирает случайных видимых [[en:rpd:enemies_overview|врагов]] для заклинателя
+  * **Эффект поражения:** Показывает "Кунай" [[en:rpd:zap_effects|зап-эффект]] от заклинателя к цели
+  * **Требование:** Требуется хотя бы один видимый [[en:rpd:enemies_overview|враг]] для произнесения
+
+==== Использование ====
+Заклинание "Метание Кунай" может использоваться для:
+  * Нанесения урона [[en:rpd:enemies_overview|врагам]]
+  * Быстрого нанесения урона в [[en:rpd:combat|бою]]
+  * Неожиданной атаки врагов быстрыми, неотвратимыми атаками
+
+==== Классы ====
+Классы, которые могут использовать это заклинание, включают:
+  * Классы с разбойничьей специализацией (например, [[en:rpd:rogue_class|класс Разбойника]])
+  * Другие классы, которые получают доступ через специальные средства
+
+==== Стратегия ====
+Как эффективно использовать заклинание "Метание Кунай":
+  * Лучше всего использовать, когда видно несколько врагов, чтобы потенциально поразить несколько целей
+  * Более эффективно на более высоких уровнях навыка, когда можно метать больше кунай
+  * Быстрое время произнесения делает его полезным в трудных ситуациях
+  * Хорошо работает, когда враги собраны в кучу
+  * Поскольку оно целится в случайных врагов, полезно, когда вам не нужно целиться в конкретного
+
+==== Технические детали ====
+  * Реализация: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua|KunaiThrow.lua]]
+  * Класс: Lua-скрипт, реализующий систему заклинаний
+  * Доступность заклинаний: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L12|CustomSpellsList.lua]] - доступно классу Разбойника
+  * Строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2626|KunaiThrow_Name]] и [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2627|KunaiThrow_Info]]
+  * Русские строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2627-L2628|KunaiThrow_Name и KunaiThrow_Info]]
+  * Библиотека систем заклинаний: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]]
+  * Библиотека общих классов: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]]
+  * Параметры заклинания: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L7-L15|level = 2, castTime = 0.01, spellCost = 5]]
+  * Расчет уровня: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L5-L6|math.min(caster:skillLevel() - spellLevel + 1, 3)]] - рассчитывает количество метаемых кунай (максимум 3)
+  * Расчет урона: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L33|math.random( n, n + caster:lvl()*n )]] - диапазон урона зависит от количества кунай и уровня заклинателя
+  * Эффект поражения: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L32|RPD.zapEffect(ownPos,tgt:getPos(),"Kunai")]] - визуальный эффект от заклинателя к цели
+  * Выбор цели: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L29|caster:randomEnemy()]] - случайным образом выбирает видимого врага как цель
+  * Проверка видимых врагов: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L27|caster:visibleEnemies()]] - гарантирует, что хотя бы один враг виден перед произнесением
+  * Сопоставление изображений: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L36-L38|lvl2img = {1,9,17} based on spell tier]] - разные иконки в зависимости от количества кунай
+  * Магическая специализация: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L13|Magic Affinity: "Rogue"]] - доступно только классам с разбойничьей специализацией
+  * Тип целеуказания: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L12|Targeting: "self"]] - автоматически целится в случайных видимых врагов
+  * Библиотека общих классов: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]]
+  * Инициализация заклинания: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L20-L40|return spell.init{}]] - определяет структуру и поведение заклинания
+  * Интеграция системы урона: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L33|tgt:damage()]] - вызывает систему урона игры для нанесения урона цели
+  * Расчет количества кунай: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L25|local n = spellTier(caster)]] - рассчитывает количество кунай, исходя из уровня навыка заклинателя
+  * Проверка произнесения заклинания: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L27-L28]] - проверяет, существуют ли видимые враги перед произнесением
+  * Доступность для класса: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L12|spells["Rogue"] = {"Cloak","Backstab","KunaiThrow","Haste"}]] - доступно классу Разбойника
+  * Типы эффектов поражения: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/platform/specific/Implementations.java#L34-L69|Implementations.java]] - определяет доступные эффекты поражения, включая эффект "Кунай"
+  * Ссылка на систему урона: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L85-L88|Char:damage() method]] - обрабатывает расчет и применение урона
+  * Ссылка на уровень персонажа: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L12-L13|Char:lvl() method]] - уровень заклинателя влияет на расчет урона
+  * Позиция цели: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L10-L11|Char:getPos() method]] - получает позицию персонажа для эффекта поражения
+  * Случайный выбор врага: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L15-L25|CharUtils:randomEnemy() method]] - предоставляет функционал случайного выбора врага
+  * Проверка видимых врагов: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L27-L35|CharUtils:visibleEnemies() method]] - проверяет наличие видимых врагов на уровне
+  * Интерфейс персонажа: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - базовый класс для всех персонажей (игрок, мобы и т.д.)
+  * Ссылка на уровень навыка: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L12-L13|CharUtils:skillLevel() method]] - получает уровень навыка персонажа
+  * RPD API: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/Utils/RpdScriptUtils.java|RPDScriptUtils.java]] - предоставляет интерфейс Lua для игровой функциональности
+  * Реализация эффектов поражения: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/ZapGlow.java|ZapGlow.java]] - отрисовывает эффекты поражения
+  * Интеграция Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/platform/specific/LuaEngine.java|LuaEngine.java]] - интегрирует Lua-скрипты с игровым движком
+  * Процесс произнесения заклинания: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/spells/LuaSpell.java#L15-L25|LuaSpell:cast() method]] - обрабатывает вызов Lua-заклинания
+  * Система заклинаний: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/spells/Spell.java|Spell.java]] - базовый класс заклинания в Java
+  * Спрайты заклинаний: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spellsIcons/rogue.png|rogue.png]] - файл спрайта с иконками заклинаний
+  * Машиночитаемые данные: [[mr:kunai_throw_spell|mr:kunai_throw_spell]]
+
+==== Вкусовой текст ====
+Из игры: "Это смертельное метание кунай будет сделано настолько быстро, что вы даже не сможете выбрать цель.\n\nНастоящие мастера способны метать более одной кунай за раз."
+
+==== См. также ====
+  * [[en:rpd:spells_overview|Заклинания]]
+  * [[en:rpd:spell|Система заклинаний]]
+  * [[en:rpd:mechanics|Игровые механики]]
+  * [[en:rpd:rogue_class|Разбойничья специализация]]
+  * [[en:rpd:kunai_item|Предмет Кунай]]
+  * [[en:rpd:melee_weapons|Оружие ближнего боя]]
+  * [[en:rpd:ranged_weapons|Оружие дальнего боя]]
+
+{{tag> rpd spells rogue }}

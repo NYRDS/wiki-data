@@ -1,0 +1,72 @@
+====== 矮人术士 ======
+
+{{ rpd:images:warlock_mob.png|矮人术士精灵 }}
+
+**矮人术士**是Remixed Dungeon中的一个魔法生物，通常表现为一个拥有高级魔法能力的矮人术士。当矮人的兴趣由工程转向奥术时，术士开始在城市中掌握权力。
+
+==== 描述 ====
+当矮人们的兴趣由工程转向奥术时，城市中的权力开始被术士掌握。他们最开始研究元素魔法，但不久就转为研究恶魔学和死灵术。术士是地牢深处发现的强大的法术施放者。
+
+==== 属性 ====
+  * **生命值:** 70
+  * **攻击技能:** 25
+  * **防御技能:** 18
+  * **伤害:** 12-20
+  * **防御率 (DR):** 8
+  * **击杀经验:** 11
+  * **最大等级:** 21
+
+==== 行为 ====
+  * **魔法集中:** 术士主要使用魔法攻击而不是物理战斗
+  * **传送防御:** 当生命值降至某些阈值以下（2/3和1/3）时，术士可以闪避攻击者
+  * **闪烁机制:**
+    * 在剩余生命值2/3时，术士在受到会使其降至此阈值以下的伤害时传送离开
+    * 在剩余生命值1/3时，术士在受到会使其降至此阈值以下的伤害时再次传送
+  * **魔法攻击:** 对敌人使用暗影箭攻击
+
+==== 特殊能力 ====
+  * **虚弱诅咒:** 成功对敌人施法时，有50%机会使目标受到[[en:rpd:weakness_buff|虚弱]]影响
+  * **死亡抗性:** 对死亡相关效果有抗性（免疫[[en:rpd:death_enchantment|死亡]]附魔）
+  * **闪避机制:** 使用传送作为防御机制而不是传统闪避
+
+==== 掉落 ====
+  * [[en:rpd:potion_item|药水]] (83% 机会) - 类别: 药水
+
+==== 策略 ====
+  * **近战战斗:** 术士在无法有效施法的近战中很脆弱
+  * **闪烁中断:** 传送能力可能不可预测，因此仔细计划你的定位
+  * **远程谨慎:** 远程交战时小心，因为术士能有效施放暗影箭
+
+==== 代码引用 ====
+  * Java 类: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java|Warlock.java]] - 核心实现
+  * 实体类型: getEntityKind() 在Java代码中返回"Warlock"
+  * 属性验证: 直接从Warlock.java构造函数提取（生命值: 70, 攻击技能: 25, 防御技能: 18, 伤害: 12-20, 防御率: 8, 经验: 11, 最大等级: 21）
+  * 闪烁机制: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L46-L56|defenseProc method]] 在生命值阈值（2/3和1/3）处理传送
+  * 施法能力: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L75-L85|zap method]] 带虚弱效果
+  * 虚弱效果: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L78-L79|Random.Int(2) == 0]] 50%机会施加虚弱
+  * 死亡抗性: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L36|addResistance(Death.class)]] - 免疫死亡附魔
+  * 闪烁实现: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/BlinkAwayFromChar.java|BlinkAwayFromChar class]] - 处理实际传送
+  * 战利品系统: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L38|loot(Treasury.Category.POTION, 0.83f)]] - 83%机会获得药水掉落
+  * 宝库系统: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java|Treasury class]] - 管理随机战利品掉落
+  * 弹道系统: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L70-L72|canAttack method]] - 处理远程攻击目标
+  * 魔法效果: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L40-L44|fx method]] - 施法的视觉和声音效果
+  * 死亡报告: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L81-L83|checkDeathReport]] - 处理死亡消息
+  * 字符串资源:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1356-L1361|English strings]] - Name, gender, objective, description, and killed messages
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1341-L1346|Russian strings]] - Russian localization
+  * 魔法飞弹效果: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|MagicMissile class]] - 视觉施法效果
+  * 虚弱状态: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Weakness.java|Weakness class]] - 虚弱效果实现
+  * 英雄职业性别检查: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L78|getHeroClass()]] - 检查英雄性别用于虚弱效果
+  * 机器可读数据: [[mr:warlock_mob|mr:warlock_mob]]
+
+==== 参见 ====
+  * [[en:rpd:mobs|怪物]]
+  * [[en:rpd:weakness_buff|虚弱状态]]
+  * [[en:rpd:hero_subclasses|英雄子职业]]
+  * [[en:rpd:mage_class|法师职业]]
+  * [[en:rpd:warlock_subclass|术士子职业]]
+  * [[en:rpd:death_enchantment|死亡附魔]]
+  * [[en:rpd:zapping|施法机制]]
+  * [[en:rpd:ballistica_mechanic|弹道系统]]
+
+{{tag> rpd mobs magic warlock dwarf spellcaster necromancy shadow}}

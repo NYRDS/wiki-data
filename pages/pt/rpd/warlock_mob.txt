@@ -1,0 +1,72 @@
+====== Bruxo Anão ======
+
+{{ rpd:images:warlock_mob.png|Sprite do Bruxo Anão }}
+
+O **Bruxo Anão** é um mob mágico em Remixed Dungeon, tipicamente aparecendo como um bruxo anão com habilidades mágicas avançadas. Quando os interesses dos anões passaram da engenharia para as artes arcanas, magos chegaram ao poder na cidade.
+
+==== Descrição ====
+Quando os interesses dos anões passaram da engenharia para as artes arcanas, magos chegaram ao poder na cidade. Eles começaram com magia elemental, mas logo mudou para demonologia e necromancia. Magos são conjuradores formidáveis encontrados nas partes mais profundas da masmorra.
+
+==== Estatísticas ====
+  * **PV:** 70
+  * **Habilidade de Ataque:** 25
+  * **Habilidade de Defesa:** 18
+  * **Dano:** 12-20
+  * **Taxa de Defesa (DR):** 8
+  * **EXP para Matar:** 11
+  * **Nível Máximo:** 21
+
+==== Comportamento ====
+  * **Focado em Magia:** Magos usam principalmente ataques mágicos em vez de combate físico
+  * **Teletransporte Defensivo:** Quando a vida cai abaixo de certos limiares (2/3 e 1/3), magos podem piscar para longe de atacantes
+  * **Mecânicas de Piscar:**
+    * Em 2/3 de vida restante, o bruxo se teletransporta quando leva dano que o deixaria abaixo desse limiar
+    * Em 1/3 de vida restante, o bruxo se teletransporta novamente quando leva dano que o deixaria abaixo desse limiar
+  * **Ataques de Zapeamento:** Usa ataques de raio das sombras contra inimigos
+
+==== Habilidades Especiais ====
+  * **Maldição de Fraqueza:** Quando zapeando um inimigo com sucesso, tem 50% de chance de afligir o alvo com [[en:rpd:weakness_buff|Fraqueza]]
+  * **Resistência à Morte:** Tem resistência a efeitos relacionados à morte (Imunidade ao encantamento [[en:rpd:death_enchantment|Morte]])
+  * **Mecânicas de Esquiva:** Usa teletransporte como mecanismo defensivo em vez de esquiva tradicional
+
+==== Drops ====
+  * [[en:rpd:potion_item|Poção]] (83% de chance) - Categoria: Poção
+
+==== Estratégias ====
+  * **Combate Corpo a Corpo:** Magos são vulneráveis em combate corpo a corpo onde eles não podem zapear efetivamente
+  * **Interrupção de Piscar:** A habilidade de teletransporte pode ser imprevisível, então planeje seu posicionamento com cuidado
+  * **Cuidado à Distância:** Tenha cuidado ao engajar à distância pois magos podem conjurar raios das sombras efetivamente
+
+==== Referências de Código ====
+  * Classe Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java|Warlock.java]] - Implementação principal
+  * Tipo de Entidade: getEntityKind() retorna "Warlock" no código Java
+  * Verificação de estatísticas: Extraído diretamente do construtor Warlock.java (pv: 70, habilidade de ataque: 25, habilidade de defesa: 18, dano: 12-20, taxa de defesa: 8, exp: 11, maxLvl: 21)
+  * Mecânicas de Piscar: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L46-L56|método defenseProc]] lida com teletransporte em limiares de vida (2/3 e 1/3)
+  * Habilidade de Zapeamento: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L75-L85|método zap]] com efeito de Fraqueza
+  * Efeito de Fraqueza: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L78-L79|Random.Int(2) == 0]] para 50% de chance de aplicar Fraqueza
+  * Resistência à Morte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L36|addResistance(Death.class)]] - imunidade ao encantamento Morte
+  * Implementação de Piscar: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/BlinkAwayFromChar.java|Classe BlinkAwayFromChar]] - lida com o teletransporte real
+  * Sistema de Saque: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L38|loot(Treasury.Category.POTION, 0.83f)]] - 83% de chance para drop de poção
+  * Sistema de Tesouro: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java|Classe Treasury]] - gerencia drops de saque aleatório
+  * Sistema de Balística: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L70-L72|método canAttack]] - lida com alvo de ataque à distância
+  * Efeito de Zapeamento: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L40-L44|método fx]] - efeitos visuais e sonoros para zapeamento
+  * Relatório de Morte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L81-L83|método checkDeathReport]] - lida com mensagens de morte
+  * Recursos de String:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1356-L1361|Strings em inglês]] - Nome, gênero, objetivo, descrição e mensagens de morte
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1341-L1346|Strings em russo]] - Localização em russo
+  * Efeito de Míssil Mágico: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|Classe MagicMissile]] - efeito visual de zapeamento
+  * Estado de Fraqueza: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Weakness.java|Classe Weakness]] - implementação do efeito de fraqueza
+  * Verificação de Gênero da Classe de Herói: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L78|método getHeroClass()]] - verifica gênero do herói para efeito de fraqueza
+  * Dados legíveis por máquina: [[mr:warlock_mob|mr:warlock_mob]]
+
+==== Veja Também ====
+  * [[en:rpd:mobs|Mobs]]
+  * [[en:rpd:weakness_buff|Estado de Fraqueza]]
+  * [[en:rpd:hero_subclasses|Subclasses de Herói]]
+  * [[en:rpd:mage_class|Classe de Mago]]
+  * [[en:rpd:warlock_subclass|Subclasse de Bruxo]]
+  * [[en:rpd:death_enchantment|Encantamento de Morte]]
+  * [[en:rpd:zapping|Mecânicas de Zapeamento]]
+  * [[en:rpd:ballistica_mechanic|Sistema de Balística]]
+
+{{tag> rpd mobs magic warlock dwarf spellcaster necromancy shadow}}

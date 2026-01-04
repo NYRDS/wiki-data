@@ -1,0 +1,95 @@
+====== Arremesso de Kunai ======
+
+{{ rpd:images:kunai_throw_spell_icon.png|Ícone do Feitiço Arremesso de Kunai }}
+
+**Arremesso de Kunai** é um feitiço em Remixed Pixel Dungeon (Afinidade de Ladino).
+
+==== Descrição ====
+Este feitiço arremessa Kunai para inimigos visíveis aleatórios extremamente rápido. O número de Kunai arremessados depende do nível de habilidade do conjurador, com mais Kunai arremessados em níveis mais altos. O feitiço é tão rápido que você não consegue selecionar o alvo.
+
+==== Estatísticas ====
+  * **Afinidade Mágica:** [[en:rpd:rogue_class|Ladino]]
+  * **Alvo:** auto (alveja [[en:rpd:enemies_overview|inimigos]] aleatórios visíveis)
+  * **Nível:** 2
+  * **Custo de [[en:rpd:mana|Mana]]:** 5
+  * **Tempo de Conjuração:** 0.01 (extremamente rápido)
+  * **Imagem do Feitiço:** Usa diferentes ícones baseados na camada do feitiço (1, 9, ou 17 dependendo da camada)
+
+==== Mecânicas ====
+  * **Número de Kunai:** min(nívelHabilidade(conjurador) - nívelFeitiço + 1, 3) - máximo de 3 [[en:rpd:kunai_item|kunai]]
+  * **Dano:** Dano aleatório entre n e (n + nível(conjurador) * n), onde n é o número de [[en:rpd:kunai_item|kunai]] arremessados
+  * **Alvejamento:** Automaticamente alveja [[en:rpd:enemies_overview|inimigos]] aleatórios visíveis para o conjurador
+  * **Efeito de Zapeamento:** Mostra um efeito de zapeamento "Kunai" do conjurador para o alvo
+  * **Requisito:** Requer ao menos um [[en:rpd:enemies_overview|inimigo]] visível para conjurar
+
+==== Uso ====
+O Feitiço Arremesso de Kunai pode ser usado para:
+  * Aplicações ofensivas contra [[en:rpd:enemies_overview|inimigos]]
+  * Dano explosivo rápido em [[en:rpd:combat|combate]]
+  * Surpreender inimigos com ataques rápidos e impossíveis de esquivar
+
+==== Classes ====
+Classes que podem usar este feitiço incluem:
+  * Classes com afinidade de Ladino (ex: [[en:rpd:rogue_class|classe Ladino]])
+  * Outras classes que ganham acesso por meios especiais
+
+==== Estratégia ====
+Como usar efetivamente o feitiço Arremesso de Kunai:
+  * Melhor usado quando múltiplos inimigos estão visíveis para potencialmente atingir vários alvos
+  * Mais efetivo em níveis de habilidade mais altos quando mais Kunai podem ser arremessados
+  * Tempo de conjuração rápido o torna útil em situações apertadas
+  * Funciona bem quando inimigos estão agrupados
+  * Desde que alveja inimigos aleatórios, é útil quando você não precisa alvejar um específico
+
+==== Detalhes Técnicos ====
+  * Implementação: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua|KunaiThrow.lua]]
+  * Classe: Script Lua implementando o sistema de feitiço
+  * Disponibilidade de Feitiço: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L12|CustomSpellsList.lua]] - disponível para classe Ladino
+  * Recursos de String: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2626|KunaiThrow_Name]] e [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2627|KunaiThrow_Info]]
+  * Recursos de String em Russo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2627-L2628|KunaiThrow_Name и KunaiThrow_Info]]
+  * Biblioteca de Sistema de Feitiço: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]]
+  * Biblioteca de Classes Comuns: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]]
+  * Parâmetros do Feitiço: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L7-L15|level = 2, castTime = 0.01, spellCost = 5]]
+  * Cálculo de Camada: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L5-L6|math.min(caster:skillLevel() - spellLevel + 1, 3)]] - calcula número de kunai arremessados (máximo 3)
+  * Cálculo de Dano: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L33|math.random( n, n + caster:lvl()*n )]] - intervalo de dano baseado no número de kunai e nível do conjurador
+  * Efeito de Zapeamento: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L32|RPD.zapEffect(ownPos,tgt:getPos(),"Kunai")]] - efeito visual do conjurador para o alvo
+  * Seleção de Alvo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L29|caster:randomEnemy()]] - seleciona aleatoriamente um inimigo visível como alvo
+  * Verificação de Inimigos Visíveis: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L27|caster:visibleEnemies()]] - garante que ao menos um inimigo é visível antes de conjurar
+  * Mapeamento de Imagem: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L36-L38|lvl2img = {1,9,17} baseado na camada do feitiço]] - ícone diferente baseado no número de kunai
+  * Afinidade Mágica: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L13|Magic Affinity: "Rogue"]] - disponível apenas para classes com afinidade de Ladino
+  * Tipo de Alvo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L12|Targeting: "self"]] - alveja automaticamente inimigos visíveis aleatórios
+  * Biblioteca de Classes Comuns: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]]
+  * Inicialização do Feitiço: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L20-L40|return spell.init{}]] - define a estrutura e comportamento do feitiço
+  * Integração com Sistema de Dano: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L33|tgt:damage()]] - chama o sistema de dano do jogo para aplicar dano ao alvo
+  * Cálculo do Número de Kunai: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L25|local n = spellTier(caster)]] - calcula número de kunai baseado no nível de habilidade do conjurador
+  * Validação de Conjuração do Feitiço: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L27-L28]] - verifica se algum inimigo visível existe antes de conjurar
+  * Disponibilidade de Classe: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L12|spells["Rogue"] = {"Cloak","Backstab","KunaiThrow","Haste"}]] - disponível para classe Ladino
+  * Tipos de Efeito de Zapeamento: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/platform/specific/Implementations.java#L34-L69|Implementations.java]] - define efeitos de zapeamento disponíveis incluindo efeito "Kunai"
+  * Referência de Sistema de Dano: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L85-L88|Método Char:damage()]] - lida com cálculo e aplicação de dano
+  * Referência de Nível de Personagem: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L12-L13|Método Char:lvl()]] - nível do conjurador afeta cálculo de dano
+  * Posição do Alvo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L10-L11|Método Char:getPos()]] - obtém posição do personagem para efeito de zapeamento
+  * Seleção de Inimigo Aleatório: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L15-L25|Método CharUtils:randomEnemy()]] - fornece funcionalidade de seleção de inimigo aleatório
+  * Verificação de Inimigos Visíveis: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L27-L35|Método CharUtils:visibleEnemies()]] - verifica por inimigos visíveis no nível
+  * Interface de Personagem: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - classe base para todos personagens (jogador, mobs, etc.)
+  * Referência de Nível de Habilidade: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L12-L13|Método CharUtils:skillLevel()]] - obtém o nível de habilidade do personagem
+  * API RPD: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/Utils/RpdScriptUtils.java|RPDScriptUtils.java]] - fornece interface Lua para funcionalidade do jogo
+  * Implementação de Efeitos de Zapeamento: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/ZapGlow.java|ZapGlow.java]] - renderiza efeitos de zapeamento
+  * Integração Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/platform/specific/LuaEngine.java|LuaEngine.java]] - integra scripts Lua com motor do jogo
+  * Fluxo de Conjuração de Feitiço: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/spells/LuaSpell.java#L15-L25|Método LuaSpell:cast()]] - lida com invocação de feitiço Lua
+  * Sistema de Feitiços: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/spells/Spell.java|Spell.java]] - classe base de feitiço em Java
+  * Sprites de Feitiços: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spellsIcons/rogue.png|rogue.png]] - arquivo de imagem sprite contendo ícones de feitiços
+  * Dados legíveis por máquina: [[mr:kunai_throw_spell|mr:kunai_throw_spell]]
+
+==== Texto de Sabor ====
+Do jogo: "Este arremesso de Kunai Mortal será feito extremamente rápido, tão rápido que você nem conseguirá selecionar um alvo.\n\nMestres verdadeiros foram capazes de arremessar mais de uma Kunai de uma vez."
+
+==== Ver Também ====
+  * [[en:rpd:spells_overview|Feitiços]]
+  * [[en:rpd:spell|Sistema de Feitiços]]
+  * [[en:rpd:mechanics|Mecânicas de Jogo]]
+  * [[en:rpd:rogue_class|Afinidade de Ladino]]
+  * [[en:rpd:kunai_item|Item Kunai]]
+  * [[en:rpd:melee_weapons|Armas Corpo a Corpo]]
+  * [[en:rpd:ranged_weapons|Armas de Longo Alcance]]
+
+{{tag> rpd spells rogue }}

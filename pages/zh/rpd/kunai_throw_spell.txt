@@ -1,0 +1,95 @@
+====== 投擲苦無 ======
+
+{{ rpd:images:kunai_throw_spell_icon.png|投擲苦無法術圖標 }}
+
+**投擲苦無**是Remixed Pixel Dungeon中的一個法術（盜賊親和）。
+
+==== 描述 ====
+此法術以極快的速度向隨機可見敵人投擲苦無。投擲的苦無數量取決於施法者的技能等級，高等級時投擲更多苦無。法術速度如此之快，你甚至無法選擇目標。
+
+==== 屬性 ====
+  * **魔法親和:** [[en:rpd:rogue_class|盜賊]]
+  * **目標:** 自身（目標隨機可見[[en:rpd:enemies_overview|敵人]])
+  * **等級:** 2
+  * **[[en:rpd:mana|法力值]] 消耗:** 5
+  * **施法時間:** 0.01（極快）
+  * **法術圖像:** 根據法術等級使用不同圖標（1、9或17，取決於等級）
+
+==== 機制 ====
+  * **苦無數量:** min(施法者:skillLevel() - 法術等級 + 1, 3) - 最多3個[[en:rpd:kunai_item|苦無]]
+  * **傷害:** n 和 (n + 施法者:lvl() * n) 之間的隨機傷害，其中 n 是投擲的[[en:rpd:kunai_item|苦無]]數量
+  * **目標:** 自動目標隨機[[en:rpd:enemies_overview|敵人]]可見於施法者
+  * **魔法效果:** 從施法者到目標顯示"苦無"[[en:rpd:zap_effects|魔法效果]]
+  * **需求:** 至少需要一個可見[[en:rpd:enemies_overview|敵人]]才能施放
+
+==== 用途 ====
+投擲苦非法術可用於：
+  * 對[[en:rpd:enemies_overview|敵人]]的攻擊應用
+  * [[en:rpd:combat|戰鬥]]中的快速爆發傷害
+  * 用快速、無法躲避的攻擊使敵人驚訝
+
+==== 職業 ====
+可以使用此法術的職業包括：
+  * 具有盜賊親和的職業（例如[[en:rpd:rogue_class|盜賊職業]])
+  * 通過特殊方式獲得訪問權限的其他職業
+
+==== 策略 ====
+如何有效使用投擲苦非法術：
+  * 當多個敵人可見以可能擊中幾個目標時最佳使用
+  * 更高等級技能時更有效，可以投擲更多苦無
+  * 快速施法時間使其在緊要情況下有用
+  * 工作良好當敵人聚在一起時
+  * 由於目標隨機敵人，當不需要目標特定敵人時有用
+
+==== 技術細節 ====
+  * 實現: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua|KunaiThrow.lua]]
+  * 類: 實現法術系統的Lua腳本
+  * 法術可用性: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L12|CustomSpellsList.lua]] - 可用於盜賊職業
+  * 字符串資源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2626|KunaiThrow_Name]] 和 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2627|KunaiThrow_Info]]
+  * 俄語字符串資源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2627-L2628|KunaiThrow_Name и KunaiThrow_Info]]
+  * 法術系統庫: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]]
+  * 常用類庫: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]]
+  * 法術參數: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L7-L15|level = 2, castTime = 0.01, spellCost = 5]]
+  * 等級計算: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L5-L6|math.min(caster:skillLevel() - spellLevel + 1, 3)]] - 計算投擲的苦無數量（最多3個）
+  * 傷害計算: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L33|math.random( n, n + caster:lvl()*n )]] - 基於苦無數量和施法者等級的傷害範圍
+  * 魔法效果: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L32|RPD.zapEffect(ownPos,tgt:getPos(),"Kunai")]] - 施法者到目標的視覺效果
+  * 目標選擇: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L29|caster:randomEnemy()]] - 隨機選擇可見敵人作為目標
+  * 可見敵人檢查: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L27|caster:visibleEnemies()]] - 確保至少一個敵人可見前施法
+  * 圖像映射: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L36-L38|lvl2img = {1,9,17} based on spell tier]] - 基於苦無數量的不同圖標
+  * 魔法親和: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L13|Magic Affinity: "Rogue"]] - 僅可用於盜賊親和職業
+  * 目標類型: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L12|Targeting: "self"]] - 自動目標隨機可見敵人
+  * 常用類庫: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]]
+  * 法術初始化: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L20-L40|return spell.init{}]] - 定義法術結構和行為
+  * 傷害系統集成: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L33|tgt:damage()]] - 調用遊戲的傷害系統對目標應用傷害
+  * 苦無數量計算: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L25|local n = spellTier(caster)]] - 基於施法者技能等級計算苦無數
+  * 法術施放驗證: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L27-L28]] - 施法前檢查是否存在任何可見敵人
+  * 職業可用性: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L12|spells["Rogue"] = {"Cloak","Backstab","KunaiThrow","Haste"}]] - 可用於盜賊職業
+  * 魔法效果類型: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/platform/specific/Implementations.java#L34-L69|Implementations.java]] - 定義可用魔法效果包括"苦無"效果
+  * 傷害系統參考: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L85-L88|Char:damage() method]] - 處理傷害計算和應用
+  * 角色等級參考: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L12-L13|Char:lvl() method]] - 施法者等級影響傷害計算
+  * 目標位置: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L10-L11|Char:getPos() method]] - 獲取角色位置用於魔法效果
+  * 隨機敵人選擇: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L15-L25|CharUtils:randomEnemy() method]] - 提供隨機敵人選擇功能
+  * 可見敵人檢查: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L27-L35|CharUtils:visibleEnemies() method]] - 檢查關卡中的可見敵人
+  * 角色接口: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - 所有角色（玩家、怪物等）的基類
+  * 技能等級參考: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L12-L13|CharUtils:skillLevel() method]] - 獲取角色的技能等級
+  * RPD API: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/Utils/RpdScriptUtils.java|RPDScriptUtils.java]] - 為遊戲功能提供Lua接口
+  * 魔法效果實現: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/ZapGlow.java|ZapGlow.java]] - 渲染魔法效果
+  * Lua集成: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/platform/specific/LuaEngine.java|LuaEngine.java]] - 將Lua腳本與遊戲引擎集成
+  * 法術施放流程: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/spells/LuaSpell.java#L15-L25|LuaSpell:cast() method]] - 處理Lua法術調用
+  * 法術系統: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/spells/Spell.java|Spell.java]] - Java中的基法術類
+  * 法術精靈: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spellsIcons/rogue.png|rogue.png]] - 包含法術圖標的精靈圖像文件
+  * 機器可讀數據: [[mr:kunai_throw_spell|mr:kunai_throw_spell]]
+
+==== 風味文本 ====
+來自遊戲："這個致命苦無的投擲將以極快的速度完成，快到你甚至無法選擇目標。\n\n真正的大師能夠同時投擲多個苦無。"
+
+==== 參見 ====
+  * [[en:rpd:spells_overview|法術]]
+  * [[en:rpd:spell|法術系統]]
+  * [[en:rpd:mechanics|遊戲機制]]
+  * [[en:rpd:rogue_class|盜賊親和]]
+  * [[en:rpd:kunai_item|苦無物品]]
+  * [[en:rpd:melee_weapons|近戰武器]]
+  * [[en:rpd:ranged_weapons|遠程武器]]
+
+{{tag> rpd spells rogue }}

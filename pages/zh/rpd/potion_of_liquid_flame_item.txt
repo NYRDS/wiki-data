@@ -1,0 +1,112 @@
+====== 液火藥水 ======
+
+{{ rpd:images:potion_of_liquid_flame_item.png|液火藥水 }}
+
+**液火藥水**是Remixed Pixel Dungeon中的一種可投擲藥水，當投擲時會生成火焰。
+
+==== 描述 ====
+一個裝滿奇異液體的玻璃瓶，暴露在空氣中時會點燃。當投向一個位置時，會產生一片燃燒的火焰，可以對敵人造成傷害並蔓延到易燃地形。根據字符串資源："這個瓶子裡裝著一種不穩定的化合物，一旦暴露在空氣中就會猛烈地燃燒起來。"
+
+==== 屬性 ====
+  * **類型:** 可投擲藥水
+  * **重量:** 1
+  * **價格:** 不能在商店購買；作為隨機戰利品被發現
+  * **效果範圍:** 3x3 區域圍繞撞擊點
+  * **持續時間:** 火焰在幾個回合後熄滅
+
+==== 物品概覽 ====
+  * **類型:** 藥水
+  * **稀有度:** 特殊
+  * **特殊效果:** 破碎在地面上時創建一片火焰區域
+  * **用途:** 在地面上破碎以在區域創建火焰傷害（破碎時消耗）
+
+==== 特殊機制 ====
+  * 破碎在任何位置時，在10單位體積的[[en:rpd:liquid_flame|液火]]區域創建一片火焰
+  * 火焰持續有限時間（通常在幾個回合內消散）
+  * 可以點燃易燃地形如草和木製路障
+  * 對站在[[en:rpd:liquid_flame|液火]]中的所有生物每回合造成傷害
+  * 火焰可以蔓延到相鄰的易燃地形
+  * 不與其他液體效果疊加（如[[en:rpd:potion_of_paralytic_gas_item|麻痺氣體]]）
+  * **區域效果:** 破碎時創建一片[[en:rpd:liquid_flame|液火]]對區域內的敵人持續造成傷害
+  * **火焰傷害:** 對受影響區域內的所有敵人每回合造成傷害
+  * **地形點燃:** 可以點燃易燃地形，創造持續的火焰危險
+  * **無直接治療:** 不能像其他藥水一樣飲用治療
+  * **僅破碎:** 此藥水只能破碎，不能飲用
+  * **識別:** 破碎後被識別
+  * **火焰抗性:** 有火焰抗性的敵人受到較少傷害
+
+==== 用途 ====
+  * **攻擊:** 用以傷害成群的敵人
+  * **區域封鎖:** 阻塞通道或防止敵人接近
+  * **環境互動:** 點燃易燃地形獲得戰術優勢
+  * **煉金術:** 通過濕潤過程創造火焰箭所需
+
+==== 策略 ====
+  * 在走廊或小房間中清除成群敵人極佳
+  * 對一大群弱敵人有效
+  * 用以創造火焰屏障阻止敵人移動
+  * 被群敵包圍時使用良好
+  * 可用於點燃易燃地形以獲得持續區域封鎖
+  * 在與頭目戰鬥前考慮使用以造成初始傷害
+  * 通過濕潤過程創造火焰箭 invaluable
+  * 小心不要將自己困在火中
+  * 用於包圍玩家的群體敵人時有用
+
+==== 獲取 ====
+  * 用火焰花種子通過煉金術製作
+  * 在特殊容器和秘密區域中發現
+  * 偶爾由火焰基礎的敵人掉落
+  * 作為特殊配方和煉金組合的一部分
+
+==== 效果 ====
+在地面上破碎時，液火藥水創建一片燃燒的火焰區域，對區域內所有生物造成幾個回合的傷害。
+
+根據遊戲的字符串資源："這實際上是一個非常巧妙的煉金製備，暴露在空氣中時會點燃。"
+
+==== 代碼引用 ====
+  * **Java 實現:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java|PotionOfLiquidFlame.java]]
+  * **藥水基類:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]]
+  * **破碎機制:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L20-L28|破碎方法]] - 在撞擊位置創建 10 單位液火
+  * **液火效果:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame 類]] - 處理持續的火焰傷害
+  * **Blob 種子方法:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java#L35-L42|Blob.seed]] - 創建液火效果
+  * **質量因子:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L25|qualityFactor()]] - 影響產生的液火量
+  * **濺射效果:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L24|濺射方法]] - 破碎時視覺效果
+  * **藥水識別:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L23|setKnown method]] - 破碎時標記藥水為已識別
+  * **聲音效果:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L25|SND_SHATTER]] - 瓶子破碎時的聲音
+  * **濕潤支持:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L32-L38|moistenArrow method]] - 啟用創造火焰箭
+  * **基礎價格:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L30|basePrice method]] - 40 金幣價值
+  * **字符串資源:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2197-L2198|PotionOfLiquidFlame_Name, PotionOfLiquidFlame_Info]] - 顯示 "這個瓶子裡裝著一種不穩定的化合物，一旦暴露在空氣中就會猛烈地燃燒起來。"
+  * **物品標籤索引:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L11|labelIndex = 1]] - 在 UI 中識別藥水類型
+  * **火焰箭創建:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L32-L38|moistenArrow method]] - 從普通箭矢創建火焰箭物品
+  * **遊戲場景集成:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L27|GameScene.add(fire)]] - 將創建的火焰添加到當前遊戲場景
+  * **治療藥水基類:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|UpgradablePotion]] - 提供升級機制
+  * **精靈圖像:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/items/potions.png#L33-L45|items/potions.png]] - 資源文件中的精靈位置
+  * **精靈索引:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemsSlices.txt#L33-L45|ItemsSlices.txt]] - 定義此藥水精靈在精靈文件中的位置
+  * **物品狀態處理:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ItemStatusHandler.java|ItemStatusHandler 類]] - 處理此物品的識別系統
+  * **濺射顏色:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L233-L240|splashColors array]] - 從藥水精靈提取顏色用於濺射效果
+  * **物品堆疊性:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L39|stackable = true]] - 藥水可以堆疊
+  * **物品默認動作:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L81-L87|knownHamful() method]] - 有害藥水默認為投擲動作
+  * **動作:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L71-L77|actions() method]] - 添加飲用和濕潤動作
+  * **藥水腰帶集成:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L253-L255|bag() method]] - 可以存儲在藥水腰帶中
+  * **徽章追蹤:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L145|Badges.validateAllPotionsIdentified]] - 追蹤何時所有藥水都被識別
+  * **火焰傷害機制:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame class]] - 持續火焰傷害實現
+  * **火焰蔓延機制:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java#L35-L49|spread method]] - 火焰如何蔓延到相鄰單元
+  * **火焰抗性:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L154-L159|Char.resist() method]] - 角色如何抵抗火焰傷害
+  * **寶庫配置:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L133|Treasury.json]] - 在常規寶藏位置的生成率
+  * **蜘蛛寶庫配置:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L130|SpidersTreasury.json]] - 在蜘蛛寶藏位置的生成率
+  * **機器可讀數據:** [[mr:potion_of_liquid_flame_item|mr:potion_of_liquid_flame_item]]
+
+==== 相關物品 ====
+  * [[en:rpd:potion|藥水]] - 藥水一般信息
+  * [[en:rpd:potion_of_frost_item|霜凍藥水]] - 相反元素效果
+  * [[en:rpd:liquid_flame|液火]] - 創建的環境效果
+  * [[en:rpd:fire|火焰]] - 一般火焰機制
+  * [[en:rpd:moisten|濕潤]] - 創造火焰箭的過程
+  * [[en:rpd:fire_arrow_item|火焰箭]] - 使用此藥水創造的彈藥
+  * [[en:rpd:burning_buff|燃燒狀態效果]] - 被點燃的效果
+  * [[en:rpd:alchemy_mechanic|煉金術]] - 有關釀造藥水的信息
+  * [[en:rpd:fire_trap_trap|火焰陷阱]] - 類似的火焰基礎機制
+  * [[en:rpd:wand_of_firebolt_item|火焰法杖]] - 火焰基礎法杖替代
+  * [[en:rpd:hero|英雄]] - 主可玩角色
+
+{{tag> rpd items potions liquid_flame fire burning throwable alchemy }}
