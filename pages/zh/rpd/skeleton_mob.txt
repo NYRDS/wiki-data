@@ -1,0 +1,84 @@
+====== 骷髏 ======
+
+{{ rpd:images:skeleton_mob.png|Skeleton }}
+
+**骷髏**是在地牢中常見的[[zh:rpd:undead_mob|不死]]敵人，通常出現在[[zh:rpd:prison_level|監獄]]及更深的層級。在[[zh:rpd:sewers|下水道]]也有很小的出現機率。
+
+==== 概述 ====
+骷髏是復活的已死[[zh:rpd:hero|冒險者]]和地牢居民的骸骨。它們是頑強的敵人，會持續追擊玩家角色。由於[[zh:rpd:undead_mob|不死]]的特性，骷髏對各種[[zh:rpd:status_effects|狀態效果]]免疫。
+
+==== 統計數據 ====
+  * **生命值**: 25 (HT: 25)
+  * **防禦技能**: 9
+  * **攻擊技能**: 12
+  * **傷害**: 3-8 (參見[[zh:rpd:melee_combat|近戰戰鬥]]機制)
+  * **護甲**: 5 DR (防禦等級)
+  * **擊殺經驗**: 5
+  * **最高等級**: 10
+  * **不死**: 是 (對某些[[zh:rpd:status_effects|狀態效果]]免疫)
+
+==== 能力 ====
+  * **武器掉落**: 當被擊敗時（[[zh:rpd:necropolis_level|亡靈地城]]外），有20%的機率掉落隨機[[zh:rpd:melee_weapon|近戰武器]]，很少升級。
+  * **不死抗性**: 對[[zh:rpd:fear|恐懼]]、[[zh:rpd:charm_spell|魅惑]]和[[zh:rpd:sleep_buff|睡眠]]效果免疫
+  * **毒抗性**: 對[[zh:rpd:poison_buff|毒]]傷害和狀態效果免疫
+  * **屍體爆炸**: 被擊殺時，會對附近的實體造成傷害（水平和垂直方向，不包括對角線方向的4個相鄰格子）。爆炸傷害計算為（骷髏的傷害-目標的[[zh:rpd:defense|防禦]]/2）。骨頭的傷害在3-8之間（護甲減少平均值）。當被包圍時要特別小心，因為它們死亡時會爆炸，可能傷害到你。
+  * **音效**: 被擊敗時播放骨頭斷裂的聲音 (Assets.SND_BONES)
+
+==== 戰鬥策略 ====
+骷髏是侵略性的[[zh:rpd:melee_combat|近戰]]敵人，會持續追擊玩家。它們不能被魅惑或嚇退，使其在整個地牢中持續危險。它們的骨質結構提供了一些物理傷害抗性。
+
+==== 出現地點 ====
+  * **主要位置**: 遍布[[zh:rpd:prison_level|監獄層]]（特別是7和8層）和更深的地牢層
+  * **出現頻率**: 在後期地牢層常見 (根據Bestiary.json，特別是6-9層)
+  * **次要位置**: 在[[zh:rpd:sewers|下水道]]有小機率出現
+  * **群體行為**: 通常獨自或小群出現
+  * **[[zh:rpd:necropolis_level|亡靈地城]]例外**: 在[[zh:rpd:necropolis_level|亡靈地城]]中，它們不掉落武器
+
+==== 策略 ====
+  * 使用[[zh:rpd:ranged_weapons|遠程武器]]或[[zh:rpd:spells_overview|法術]]從遠處攻擊
+  * 避免讓它們在狹窄通道中困住你
+  * 注意火焰攻擊，因為會引起爆炸（雖然這並未明確表示為火焰弱點）
+  * 它們對許多[[zh:rpd:status_effects|狀態效果]]免疫，需要直接傷害
+  * 嘗試避免被包圍，因為它們死亡時會爆炸，可能傷害到你
+
+==== 特殊說明 ====
+  * 骷髏是[[zh:rpd:undead_mob|不死]]，這影響某些物品和法術與它們的互動方式
+  * 它們對影響活物的效果免疫
+  * 擊敗它們有助於獲得"骷髏擊殺"[[zh:rpd:badges|徽章]]
+  * 它們被殺時會爆炸，如果站得太近可能對玩家造成危險
+  * 在[[zh:rpd:necropolis_level|亡靈地城]]中，它們不掉落武器，因為該層有不同的規則
+
+==== 代碼參考 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java|Skeleton.java]] - 主要實現
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L16-L26|Skeleton.java#L16-L26]] - 統計和屬性初始化
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L28-L32|Skeleton.java#L28-L32]] - 掉落實現 (20%武器掉落機率, 在NecroBossLevel中為空)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java#L35-L54|Skeleton.java#L35-L54]] - 死亡爆炸機制
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java#L125-L130|Treasury.java#L125-L130]] - Treasury掉落處理機制
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/NecroBossLevel.java|NecroBossLevel.java]] - NecroBossLevel特殊處理，骷髏不掉落武器
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind.java]] - 實體識別接口
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]] - 骷髏掉落的武器基礎類
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - 骷髏免疫的狀態效果基礎類
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1307-L1312|Skeleton strings (Russian)]] - 俄語本地化 (Skeleton_Name, Skeleton_Desc, Skeleton_Killed, etc.)
+  * **mr: 命名空間:** 查看[[mr:skeleton_mob]]獲取機器可讀數據
+
+==== 配置文件 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - 層級生成配置 (監獄層6-9, 亡靈地城1層)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Skeleton.json|Skeleton.json]] - 精靈配置
+
+==== 字符串資源 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1321-L1326|Skeleton strings (English)]] - 英語名稱和描述
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1307-L1312|Skeleton strings (Russian)]] - 俄語本地化 (Скелет, Скелеты - одни из самых сильных врагов в подземелье)
+
+==== 關聯 ====
+  * [[zh:rpd:undead_mob|不死]] - 其他不死敵人
+  * [[zh:rpd:prison_level|監獄層]] - 主要位置
+  * [[zh:rpd:zombie_mob|殭屍]] - 其他不死敵人
+  * [[zh:rpd:undead_mobs|不死怪物]] - 不死敵人列表
+  * [[zh:rpd:mobs|怪物]] - 遊戲中所有怪物
+  * [[zh:rpd:skeleton_key_item|骷髏鑰匙]] - 名稱相似的物品，但與怪物無關
+  * [[zh:rpd:treasury|寶庫]] - 有關掉落物品的信息
+  * [[zh:rpd:mechanics|遊戲機制]] - 一般遊戲機制
+  * [[zh:rpd:combat_mechanics|戰鬥]] - 戰鬥機制
+  * [[zh:rpd:hero|英雄]] - 玩家角色
+
+{{tag> rpd mobs undead prison skeleton skeleton_mob}}
