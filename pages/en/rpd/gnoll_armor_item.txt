@@ -3,7 +3,7 @@
 {{ rpd:images:gnoll_armor_item.png|Gnoll Armor }}
 
 ==== Description ====
-The Gnoll Armor is a class-specific armor for the Gnoll hero class. It is one of the special class armors that can be obtained by using an Armor Kit on any regular armor. The Gnoll Armor has a unique special ability called "DOMINATE" that allows the wearer to charm nearby enemies and turn them into pets, but only if the wearer is a Gnoll hero.
+The Gnoll Armor (officially called "gnoll-lieutenant suit") is a class-specific armor for the Gnoll hero class. It is one of the special class armors that can be obtained by using an Armor Kit on any regular armor. The Gnoll Armor has a unique special ability called "DOMINATE" that allows the wearer to charm nearby enemies and turn them into pets, but only if the wearer is a Gnoll hero.
 
 ==== Properties ====
   * **Armor Class**: Unique class armor for Gnoll hero
@@ -11,15 +11,29 @@ The Gnoll Armor is a class-specific armor for the Gnoll hero class. It is one of
   * **Class Restriction**: Only the Gnoll hero can equip this armor
   * **Not Upgradable**: Cannot be enchanted or upgraded
   * **Durability**: Standard armor durability
+  * **Image**: Index 25 in armor.png sprite sheet
 
 ==== Special Ability: DOMINATE ====
-When activated, the DOMINATE ability attempts to charm all visible enemies within field of view for a duration based on the wearer's level. Charmed enemies become loyal pets and will fight for the player.
+When activated, the DOMINATE ability attempts to charm all visible enemies within field of view and range (up to ShadowCaster.MAX_DISTANCE). The number of mobs that can be dominated is limited by the wearer's level (max is wearer level / 6). The charmed enemies become loyal pets and will fight for the player.
 
 ==== Lore ====
-Owners of the Gnoll-Lieutenant suit are well known for their ability to persuade even extremely angry mobs, to be loyal servants of the Crown. This armor represents the commanding presence of Gnoll lieutenants in their society.
+According to the game description: "Owners of the Gnoll-Lieutenant suit are well known for their ability to persuade even extremely angry mobs, to be loyal servants of the Crown." This armor represents the commanding presence of Gnoll lieutenants in their society.
 
 ==== Acquisition ====
 The Gnoll Armor can be obtained by using an Armor Kit on any regular armor, but it is only accessible to players who have unlocked the Gnoll hero class.
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GnollArmor.java|GnollArmor.java]] - Main implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] (base class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java|ArmorKit.java]] (creation mechanism)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java#L300|Mob.makePet()]] (pet creation mechanism)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/ShadowCaster.java#L38|ShadowCaster.MAX_DISTANCE]] (range limitation)
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2161|GnollArmor_ACSpecial]] - "DOMINATE" action name
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2162|GnollArmor_NotGnoll]] - Restriction message
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2163|GnollArmor_Name]] - "gnoll-lieutenant suit"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2164|GnollArmor_Info]] - Description text
 
 ==== Source Code References ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GnollArmor.java|GnollArmor.java]]
@@ -32,5 +46,11 @@ The Gnoll Armor can be obtained by using an Armor Kit on any regular armor, but 
   * [[en:rpd:armor|Armor]] - General armor information
   * [[en:rpd:guardian_subclass|Guardian]] - Related Gnoll subclass
   * [[en:rpd:witchdoctor_subclass|Witchdoctor]] - Related Gnoll subclass
+  * [[en:rpd:class_armor|Class Armor]] - General information about class armors
+  * [[en:rpd:scroll_of_domination_item|Scroll of Domination]] - Related item with similar effect
+
+==== Other Languages ====
+  * [[es:rpd:gnoll_armor_item|Español]]
+  * [[pt:rpd:gnoll_armor_item|Português]]
 
 {{tag> rpd items armor class_armor}}

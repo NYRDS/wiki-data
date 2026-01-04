@@ -1,0 +1,37 @@
+====== Encantamento de Fogo ======
+
+{{ rpd:images:fire_elemental_mob.png|Encantamento de Fogo }}
+
+==== Descrição ====
+O encantamento de Fogo tem chance de incendiar inimigos quando atingidos pela arma. Isso causa dano adicional ao longo do tempo.
+
+==== Mecânicas ====
+  * A chance de incendiar um inimigo: **Random.Int(weapon_level + 3) >= 2**
+    * Nível 0: 33% de chance
+    * Nível 1: 50% de chance
+    * Nível 2: 60% de chance
+    * Níveis superiores: Chance aumentando
+  * Quando ativado, aplica o efeito de status [[pt:rpd:burning_buff|Burning]] por vários turnos
+  * Causa dano de fogo adicional: Valor aleatório entre 1 e (nível da arma + 2)
+  * Emite partículas de chama: Nível + 1 partículas
+  * Dano de fogo se acumula com o bônus de dano de fogo existente da arma
+  * Visualmente brilha em laranja (cor: 0xFF4400)
+
+==== Detalhes Técnicos ====
+  * **Classe Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Fire.java|com.watabou.pixeldungeon.items.weapon.enchantments.Fire]]
+  * **Cor do brilho:** Laranja (0xFF4400)
+  * **Partículas:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/particles/FlameParticle.java|FlameParticle.FACTORY]]
+
+==== Referências de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Fire.java|Fire.java]] - Implementação principal
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]] - Efeito de status de queima
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Classe base para processamento de ataque
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] - Classe base de armas com sistema de encantamentos
+
+==== Veja Também ====
+  - [[pt:rpd:burning_buff|Queimando]] - Efeito de status causado por este encantamento
+  - [[pt:rpd:enchantments|Encantamentos]] - Lista de todos os encantamentos de armas
+  - [[pt:rpd:weapons|Armas]] - Equipamento que pode ter encantamentos
+  - [[pt:rpd:flame_turret_item|Torre de Chamas]] - Outro item baseado em fogo
+
+{{tag> rpd items enchantments fire}}

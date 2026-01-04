@@ -1,0 +1,51 @@
+====== Armadura de Gnoll ======
+
+{{ rpd:images:gnoll_armor_item.png|Armadura de Gnoll }}
+
+==== Descripción ====
+La Armadura de Gnoll (oficialmente llamada "traje de Teniente Gnoll") es una armadura específica para la clase de héroe Gnoll. Es una de las armaduras de clase especiales que se puede obtener usando un Kit de Armadura en cualquier armadura regular. La Armadura de Gnoll tiene una habilidad especial única llamada "DOMINAR" que permite al usuario encantar a enemigos cercanos y convertirlos en mascotas, pero solo si el usuario es un héroe Gnoll.
+
+==== Propiedades ====
+  * **Clase de Armadura**: Armadura de clase única para el héroe Gnoll
+  * **Habilidad Especial**: DOMINAR - encanta a enemigos cercanos para convertirlos en mascotas
+  * **Restricción de Clase**: Solo el héroe Gnoll puede equipar esta armadura
+  * **No Mejorable**: No se puede encantar ni mejorar
+  * **Durabilidad**: Durabilidad estándar de armadura
+  * **Imagen**: Índice 25 en la hoja de sprites armor.png
+
+==== Habilidad Especial: DOMINAR ====
+Cuando se activa, la habilidad DOMINAR intenta encantar a todos los enemigos visibles dentro del campo de visión y alcance (hasta ShadowCaster.MAX_DISTANCE). El número de mobs que se pueden dominar está limitado por el nivel del usuario (máximo es nivel del usuario / 6). Los enemigos encantados se convierten en mascotas leales y lucharán por el jugador.
+
+==== Historia ====
+Según la descripción del juego: "Los propietarios del traje de Teniente Gnoll son bien conocidos por su habilidad para persuadir incluso a mobs extremadamente enojados, para que sean sirvientes leales de la Corona." Esta armadura representa la presencia dominante de los Tenientes Gnoll en su sociedad.
+
+==== Adquisición ====
+La Armadura de Gnoll se puede obtener usando un Kit de Armadura en cualquier armadura regular, pero solo es accesible para jugadores que hayan desbloqueado la clase de héroe Gnoll.
+
+==== Referencias de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GnollArmor.java|GnollArmor.java]] - Implementación principal
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] (clase base)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java|ArmorKit.java]] (mecanismo de creación)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java#L300|Mob.makePet()]] (mecanismo de creación de mascotas)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/ShadowCaster.java#L38|ShadowCaster.MAX_DISTANCE]] (limitación de alcance)
+
+==== Recursos de Cadena ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2161|GnollArmor_ACSpecial]] - Nombre de la acción "DOMINAR"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2162|GnollArmor_NotGnoll]] - Mensaje de restricción
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2163|GnollArmor_Name]] - "traje de Teniente Gnoll"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2164|GnollArmor_Info]] - Texto de descripción
+
+==== Véase También ====
+  * [[es:rpd:armor_kit_item|Kit de Armadura]] - Objeto usado para crear armadura de clase
+  * [[es:rpd:gnoll_class|Clase Gnoll]] - Clase de héroe que puede usar esta armadura
+  * [[es:rpd:armor|Armadura]] - Información general sobre armadura
+  * [[es:rpd:guardian_subclass|Guardián]] - Subclase Gnoll relacionada
+  * [[es:rpd:witchdoctor_subclass|Hechicero]] - Subclase Gnoll relacionada
+  * [[es:rpd:class_armor|Armadura de Clase]] - Información general sobre armaduras de clase
+  * [[es:rpd:scroll_of_domination_item|Pergamino de Dominación]] - Objeto relacionado con efecto similar
+
+==== Otros Idiomas ====
+  * [[en:rpd:gnoll_armor_item|English]]
+  * [[pt:rpd:gnoll_armor_item|Português]]
+
+{{tag> rpd items armor class_armor}}
