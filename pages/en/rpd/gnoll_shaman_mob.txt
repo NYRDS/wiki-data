@@ -17,27 +17,40 @@
   * **Loot**: Scroll with 33% chance (loot(Treasury.Category.SCROLL, 0.33f))
 
 ==== Special Abilities ====
-  * **Lightning Zaps**: Casts lightning at range that can hit multiple targets
+  * **Lightning Zaps**: Casts lightning at range that can hit multiple targets using CharUtils.lightningProc()
   * **Defensive Fleeing**: Enters fleeing state when health is low (defenseProc method)
-  * **Ranged Combat**: Prefers to stay at range and attack with spells
-  * **Lightning Resistance**: Has resistance to lightning damage
+  * **Ranged Combat**: Prefers to stay at range and attack with spells (canAttack method checks distance)
+  * **Lightning Resistance**: Has resistance to lightning damage (addResistance(LightningTrap.Electricity.class))
+
+==== Mechanics ====
+  * **Lightning Attack**: Uses zapProc method to perform lightning attack causing 2x normal damage
+  * **Fleeing Behavior**: When HP > 2*HT/3 and fleeState < 1, or HP > HT/3 and fleeState < 2, enters Fleeing state
+  * **Range Check**: Uses Ballistica.cast to determine if enemy is in range before attacking
+  * **Zap Miss**: Has a 10% chance to yell a message when lightning misses (Shaman_ZapMiss)
+  * **Death Message**: Custom death message when killed (Shaman_Killed)
+
+==== Code References ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java|Shaman.java]]
+  * **Constructor Stats:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L11-L23|Shaman.java#L11-L23]] - Contains all stat definitions
+  * **Lightning Attack:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L52-L57|Shaman.java#L52-L57]] - zapProc method implementation
+  * **Defense Behavior:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L33-L43|Shaman.java#L33-L43]] - defenseProc method
+  * **Range Attack:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L29-L31|Shaman.java#L29-L31]] - canAttack method
+  * **Lightning Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java#L24-L45|CharUtils.java#L24-L45]] - lightningProc method
+  * **Lightning Resistance:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L22|Shaman.java#L22]] - addResistance to LightningTrap.Electricity
+  * **AI States:** Uses Fleeing and Hunting AI states from nyrds.pixeldungeon.ai package
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1311|Shaman_Name]] - "Gnoll Shaman"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1312|Shaman_Desc]] - Description text
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1313|Shaman_Killed]] - Death message when player kills the shaman
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2835|Shaman_ZapMiss]] - Message when lightning misses (10% chance)
 
 ==== Tactics ====
   * Dangerous from range due to lightning zap attacks that can hit multiple targets
   * Should be eliminated quickly before they can cast multiple spells
-  * Will attempt to flee when health is low
-  * Resistant to lightning-based attacks
-
-==== Content Verification ====
-  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java|Shaman.java]] (actual class name, appears as Gnoll Shaman in game)
-  * Stats verification: Extracted directly from Shaman.java constructor
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1311-L1315|Shaman string resources]] (Shaman_Name, Shaman_Desc, Shaman_Killed, etc.)
-  * Additional string: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2835|Shaman_ZapMiss]] - Cussing string when lightning misses
-  * Resistance mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L24|Shaman.java#L24]] - Lightning resistance implementation
-  * Attack mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L41-L51|Shaman.java#L41-L51]] - Defense and fleeing behavior
-  * Lightning mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java#L24-L45|CharUtils.java#L24-L45]] - Lightning damage implementation used by shamans
-  * Bestiary configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - Mob level spawn rules
-  * Last updated: December 31, 2025
+  * Will attempt to flee when health is low (at approximately 2/3 HP and 1/3 HP)
+  * Resistant to lightning-based attacks (won't take full damage)
+  * Can attack from a distance using Ballistica for line-of-sight
 
 ==== Related ====
   * [[en:rpd:gnoll_mob|Gnoll Scout]] - Regular Gnoll member
