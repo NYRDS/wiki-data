@@ -1,0 +1,55 @@
+====== 豺狼薩滿 (怪物) ======
+
+{{ rpd:images:gnoll_shaman_mob.png|豺狼薩滿 }}
+
+==== 描述 ====
+**豺狼薩滿** 是豺狼群落中的魔法成員，使用原始的薩滿魔法。他們擁有強大的施法能力，作為豺狼群體結構中的治療者和進攻法術施放者。
+
+==== 屬性 ====
+  * **生命值**: 18 (hp(ht(18)))
+  * **最大生命值**: 18 (ht(18))
+  * **防禦技能**: 8 (baseDefenseSkill = 8)
+  * **攻擊技能**: 11 (baseAttackSkill = 11)
+  * **傷害**: 2-6 (dmgMin = 2, dmgMax = 6)
+  * **護甲**: 4 護甲值 (dr = 4)
+  * **擊殺經驗**: 6 (expForKill = 6)
+  * **最大等級**: 14 (maxLvl = 14)
+  * **戰利品**: 卷軸，33% 機率 (loot(Treasury.Category.SCROLL, 0.33f))
+
+==== 特殊能力 ====
+  * **閃電攻擊**: 遠距離施放閃電，可擊中多個目標
+  * **防禦性逃跑**: 生命值低時進入逃跑狀態 (defenseProc 方法)
+  * **遠程戰鬥**: 喜歡保持距離並使用法術攻擊
+  * **閃電抗性**: 對閃電傷害有抗性
+
+==== 戰術 ====
+  * 遠距離非常危險，因為閃電攻擊可以擊中多個目標
+  * 應該快速消滅，以免其施放多個法術
+  * 生命值低時會嘗試逃跑
+  * 對基於閃電的攻擊有抗性
+
+==== 內容驗證 ====
+  * 信息來源：Java 類 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java|Shaman.java]] (實際類名，在遊戲中顯示為豺狼薩滿)
+  * 屬性驗證：直接從 Shaman.java 構造函數提取
+  * 字符串資源：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L1187-L1190|薩滿字符串資源]] (Shaman_Name, Shaman_Desc, 等)
+  * 抗性機制：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L24|Shaman.java#L24]] - 閃電抗性實現
+  * 攻擊機制：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java#L41-L51|Shaman.java#L41-L51]] - 防禦和逃跑行為
+  * 閃電機制：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java#L24-L45|CharUtils.java#L24-L45]] - 薩滿使用的閃電傷害實現
+  * 群怪配置：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - 怪物等級生成規則
+  * 最後更新：2025年12月31日
+
+==== 相關 ====
+  * [[zh:rpd:gnoll_mob|豺狼斥候]] - 普通豺狼成員
+  * [[zh:rpd:gnoll_brute_mob|豺狼野蠻人]] - 更強的物理變種
+  * [[zh:rpd:shaman_elder_mob|薩滿長老]] - 更強大的變種
+  * [[zh:rpd:mobs|怪物列表]] - 地牢中的其他敵人
+  * [[zh:rpd:gnolls|豺狼群落]] - 關於豺狼群體動態的信息
+  * [[zh:rpd:lightning_bolt_spell|閃電術]] - 薩滿使用的法術
+  * [[zh:rpd:mechanical_enemies_mob|機械敵人]] - 擁有特殊能力的敵人
+  * [[zh:rpd:elemental_spell_affinity|元素法術親和]] - 與閃電攻擊相關
+  * [[zh:rpd:sewers_level|下水道層]] - 豺狼常見出沒的地方
+  * [[zh:rpd:enemy|敵人]] - 一般敵人信息
+  * [[zh:rpd:lightning_trap|閃電陷阱]] - 類似的閃電類型傷害來源
+  * [[zh:rpd:electricity_debuff|電擊]] - 薩滿攻擊造成的狀態效果
+
+{{tag> rpd mobs sewers magic }}
