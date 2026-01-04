@@ -5,10 +5,14 @@
 The **Scroll of Terror** is a magical scroll in Remixed Dungeon that causes nearby enemies to become frightened and flee from the player for a limited time.
 
 ==== Effect ====
-  * **Fear Induction:** When read aloud, this scroll will affect all visible enemies within a certain radius
+  * **Fear Induction:** When read aloud, this scroll will affect all visible enemies within the player's field of view
+  * **Visual Effect:** Creates a red flare of light around the reader (5 rays, 32 pixels radius)
+  * **Invisibility Dispelling:** Dispels any invisibility effects on the reader
   * **Fleeing Behavior:** Affected enemies will attempt to run away from the player
-  * **Duration:** The fear effect lasts for a limited duration
-  * **Radius:** Affects all enemies within the player's field of view
+  * **Duration:** The fear effect lasts for Terror.DURATION ticks (time units)
+  * **Radius:** Affects all enemies within the player's field of view (no radius limitation)
+  * **Reading Time:** Takes TIME_TO_READ turns to read
+  * **Effect Limitation:** Does not affect pets owned by the reader
 
 ==== Strategy ====
   * Useful for escaping dangerous situations
@@ -23,7 +27,9 @@ The **Scroll of Terror** is a magical scroll in Remixed Dungeon that causes near
   * Only affects enemies in the player's field of view
 
 ==== Code Reference ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfTerror.java|ScrollOfTerror.java]]
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfTerror.java|ScrollOfTerror.java]] - Core implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java|Terror.java]] - Terror buff implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/Flare.java|Flare.java]] - Visual effect implementation
   * String Resources (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1214-L1216|ScrollOfTerror strings (line 1214-1216)]]
   * String Resources (Russian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1202-L1204|ScrollOfTerror strings (line 1202-1204)]]
 
@@ -32,5 +38,10 @@ The **Scroll of Terror** is a magical scroll in Remixed Dungeon that causes near
   * [[en:rpd:scroll|Scrolls]] - General information about scrolls
   * [[en:rpd:scroll_of_teleportation_item|Scroll of Teleportation]] - Other escape scrolls
   * [[en:rpd:scroll_of_magic_mapping_item|Scroll of Magic Mapping]] - Other utility scrolls
+  * [[en:rpd:scroll_of_curse_item|Scroll of Curse]] - Other hostile-enemy scrolls
+  * [[en:rpd:scroll_of_domination_item|Scroll of Domination]] - Other enemy-control scrolls
+  * [[en:rpd:scroll_of_lullaby_item|Scroll of Lullaby]] - Other enemy-control scrolls
+  * [[en:rpd:scroll_item|Scroll Items]] - Complete list of scroll items
+  * [[en:rpd:scroll_of_escape_item|Scroll of Escape]] - Other escape scrolls
 
 {{tag> rpd items equipment scrolls terror fear}}
