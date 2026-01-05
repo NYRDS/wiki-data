@@ -1,20 +1,46 @@
 ====== Mercenary N P C Mob - Code References ======
 
+===== Entity Information =====
+  * **Entity Kind**: MercenaryNPC
+  * **Entity Type**: npc
+  * **Implementation**: Custom NPC via JSON configuration and Lua script
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/common/CustomMob.java|CustomMob.java]] - Base class for JSON-defined NPCs
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/mercenary_n_p_c.json
+''<code json>''
+{
+   "baseSpeed"     :0,
+   "spriteDesc"    :"spritesDesc/MercenaryNPC.json",
+   "scriptFile"    :"scripts/npc/Mercenary",
+   "friendly"      :true,
+   "movable"       :false,
+   "aiState"       :"Passive",
+   "fraction"      :"NEUTRAL",
+   "immortal"      :true
+}
+''</code>''
 
 ===== String Resources =====
-<code xml>
-<string name="MercenaryNPC_Name">[Name]</string>
-<string name="MercenaryNPC_Info">[Description]</string>
-</code>
+''<code xml>''
+<string name="MercenaryNPC_Name">mercenary</string>
+<string name="MercenaryNPC_Name_Objective">mercenary</string>
+<string name="MercenaryNPC_Gender">masculine</string>
+<string name="MercenaryNPC_Desc">Sturdy looking man.</string>
+''</code>''
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/Mercenary.lua|Mercenary.lua]]
+
+===== Implementation Details =====
+  * **Base Speed**: 0 (immobile)
+  * **AI State**: Passive
+  * **Fraction**: NEUTRAL
+  * **Immortal**: true (cannot be killed)
+  * **Movable**: false (fixed position)
+  * **Friendly**: true (neutral to player)
+  * **Script**: Interacts by saying 'Froth_ArrowInKnee' (Elder Scrolls reference)
+
+===== Related mr Entities =====
+  * [[mr:town_level|Town Level]] - Where MercenaryNPC is located
