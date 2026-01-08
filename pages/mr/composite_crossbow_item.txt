@@ -1,19 +1,51 @@
 ====== Composite Crossbow Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+Actual implementation found in:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/CompositeCrossbow.java|RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/CompositeCrossbow.java]]
+
+===== Implementation Details =====
+<code java>
+package com.nyrds.pixeldungeon.items.guts.weapon.ranged;
+
+public class CompositeCrossbow extends Crossbow {
+
+	public CompositeCrossbow() {
+		super(4, 1.1f, 1.6f); // tier, min damage factor, max damage factor
+		image = 3;
+	}
+
+	@Override
+	public double acuFactor() {  // Accuracy factor
+		return 1 + level() * 0.5;
+	}
+
+	@Override
+	public double dmgFactor() {  // Damage factor
+		return 1 + level() * 0.75;
+	}
+
+	public double dlyFactor() {  // Delay factor (speed)
+		return 1.1;
+	}
+}
+</code>
+
+===== Notes =====
+  * Inherits from Crossbow class
+  * Tier 4 ranged weapon
+  * Damage factors: 1.1 (min) to 1.6 (max)
+  * Accuracy improves with level: 1 + level * 0.5
+  * Damage improves with level: 1 + level * 0.75
+  * Delay factor is 1.1 (making it slightly slower than base speed)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/composite_crossbow.json
+None found - implemented purely in Java
 
 ===== String Resources =====
 <code xml>
-<string name="CompositeCrossbow_Name">[Name]</string>
-<string name="CompositeCrossbow_Info">[Description]</string>
+<string name="CompositeCrossbow_Name">Composite Crossbow</string>
+<string name="CompositeCrossbow_Info">A high-tech crossbow with enhanced accuracy and power.</string>
 </code>
 
 ===== Lua Scripts =====
