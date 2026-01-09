@@ -1,55 +1,44 @@
-====== Ice Guardian ======
+====== Ice Guardian Mob ======
 
-{{ rpd:images:ice_guardian_mob.png|Ice Guardian }}
+{{ rpd:images:iceguardian_sprite.png|Ice Guardian }}
 
-Ice Guardians are magical constructs made of magical ice, created by the ancient kobolds to protect their icy caves. Unlike the Ice Guardian Core boss, these are regular mobs that appear in the Ice Caves level.
+The **Ice Guardian** is a mob in Remixed Dungeon. It's an ice creature found in the Ice Caves level.
 
-==== Stats ====
-  * **HP:** 70
-  * **EXP for Kill:** 5
-  * **Defense Skill:** 30
+==== Basic Information ====
+  * **Type:** Ice creature
+  * **Level:** Ice Caves (typically around level 14-15)
+  * **HP/HT:** 70
   * **Attack Skill:** 31
+  * **Defense Skill:** 30
   * **Damage:** 10-15
-  * **DR (Damage Resistance):** 14
-  * **Speed:** 0.7
+  * **Defense Rating:** 14
+  * **Speed:** 0.7 (slower than normal)
+  * **EXP for Kill:** 5
 
-==== Abilities ====
-  * **Immunities:** Immune to Paralysis, Toxic Gas, Terror, Death enchantment, Amok, Blindness, and Sleep
-  * **Loot:** Drops Frozen Carpaccio with 20% chance
+==== Special Abilities ====
+  * **Immunities:** Immune to Paralysis, Toxic Gas, Terror, Death, Amok, Blindness, and Sleep
+  * **Resurrection:** When killed, if an Ice Guardian Core is alive, it will resurrect itself twice
+  * **Loot:** Has a 20% chance to drop a Frozen Carpaccio when killed
 
-==== Special Mechanics ====
-  * When an Ice Guardian dies, it attempts to damage the Ice Guardian Core (if present) for 150 damage
-  * If the Ice Guardian Core survives the damage, it has a chance to resurrect the Ice Guardian twice
-
-==== Habitat ====
-Ice Guardians can be found in the [[en:rpd:ice_caves|Ice Caves]] levels, usually protecting the Ice Guardian Core.
+==== Behavior ====
+  * The Ice Guardian is part of the Ice Guardian Core boss fight
+  * When killed, it triggers damage to the Ice Guardian Core
+  * If the core survives the damage, the Ice Guardian will resurrect itself twice
 
 ==== Strategy ====
-  * Bring strong fire-based attacks for increased effectiveness
-  * Prepare for strong freezing effects
-  * High-level equipment recommended for engagement
-  * Fire-enchanted weapons are especially effective
-  * Consider crowd control to separate from other enemies
-
-==== Content Verification ====
-  * Information source: Java Class com.nyrds.pixeldungeon.mobs.icecaves.IceGuardian
-  * Stats verified directly from IceGuardian.java class properties
-  * Effect descriptions based on code analysis of die() method
-  * Last updated: Based on current git repository state
+  * Focus on killing the Ice Guardian Core first to prevent resurrection
+  * The slower speed can be exploited with proper positioning
+  * Since it has multiple immunities, status-effect strategies won't work
 
 ==== Code Reference ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardian.java|IceGuardian.java]] - Implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L233|MobFactory.java:233]] - Registration
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1441-L1443|IceGuardian strings]] - String resources
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardian.java#L46-L53|die() method]] - Special resurrection mechanics
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardianCore.java|IceGuardianCore.java]] - Related boss implementation
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardian.java|IceGuardian.java]]
+  * Related Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardianCore.java|IceGuardianCore.java]]
+  * Sprite Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/IceGuardian.json|IceGuardian.json]]
+  * String Resources (EN): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1019-L1026|IceGuardian strings]]
+  * String Resources (RU): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1058-L1064|IceGuardian strings]]
 
 ==== Related Mobs ====
-  * [[en:rpd:ice_guardian_core_mob|Ice Guardian Core]] - Related boss mob
-  * [[en:rpd:ice_elemental_mob|Ice Elemental]] - Similar cold abilities
-  * [[en:rpd:fire_elemental_mob|Fire Elemental]] - Opposing elemental
-  * [[en:rpd:kobold_mob|Kobold]]
-  * [[en:rpd:kobold_icemancer_mob|Kobold Icemancer]]
-  * [[en:rpd:frozen_carpaccio_item|Frozen Carpaccio]]
+  * [[en:rpd:ice_guardian_core_mob|Ice Guardian Core]] - The main boss entity connected to Ice Guardians
+  * [[en:rpd:ice_elemental_mob|Ice Elemental]] - Other ice-based creature
 
-{{tag> rpd mobs ice_caves}}
+{{tag> rpd mobs ice guardians ice_caves boss_fight}}
