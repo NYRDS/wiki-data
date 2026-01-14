@@ -1,20 +1,26 @@
 ====== Potion Of Mana Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfMana.java|PotionOfMana.java]]
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/potion_of_mana.json
+This entity does not have dedicated JSON configuration but appears in:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json|Treasury.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json|SpidersTreasury.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/TownShopTreasury.json|TownShopTreasury.json]]
 
 ===== String Resources =====
 <code xml>
-<string name="PotionOfMana_Name">[Name]</string>
-<string name="PotionOfMana_Info">[Description]</string>
+<string name="PotionOfMana_Name">Mana Potion</string>
+<string name="PotionOfMana_Info">This potion will restore your spiritual energy.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/PlagueDoctor.lua#L33|PlagueDoctor.lua]] - NPC quest reward
+
+===== Implementation Notes =====
+  * Increases skill points by amount equal to 1/3 of max skill points
+  * Java class: com.watabou.pixeldungeon.items.potions.PotionOfMana
+  * Label index: 12
+  * Effect: Shows FOOD spell sprite effect
+  * Identified upon consumption
