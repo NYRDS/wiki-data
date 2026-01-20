@@ -1,72 +1,39 @@
-====== Дворф-чернокнижник ======
+====== Чернокнижник ======
 
-{{ rpd:images:warlock_mob.png|Спрайт дворфа-чернокнижника }}
-
-**Дворф-чернокнижник** - магическое существо в Remixed Dungeon, обычно выглядящее как дворф-чернокнижник с продвинутыми магическими способностями. Когда интерес дворфов перекочевал с технологий на магию, чернокнижники стали новой элитой.
+{{ rpd:images:warlock_mob.png|Warlock }}
 
 ==== Описание ====
-Когда интерес дворфов перекочевал с технологий на магию, чернокнижники стали новой элитой. Начав с магии стихий, вскоре они перешли на некромантию и демонологию. Чернокнижники - грозные волшебники, найденные в глубоких частях подземелья.
+**Чернокнижник** — это могущественный маг-враг, которого можно встретить в Городе (Метрополисе). Он обладает дальней атакой и способен накладывать на игрока эффект слабости (Weakness). Также чернокнижник может телепортироваться от опасности.
 
 ==== Характеристики ====
-  * **[[en:rpd:health_mechanic|Здоровье]]:** 70
-  * ****[[en:rpd:combat_mechanics|Навык атаки]]:** 25
-  * **[[en:rpd:combat_mechanics|Навык защиты]]:** 18
-  * **[[en:rpd:damage|Урон]]:** 12-20
-  * **[[en:rpd:armor|Класс брони (DR)]]:** 8
-  * **[[en:rpd:experience_system|Опыт за убийство]]:** 11
-  * **Максимальный уровень:** 21
+  * **Здоровье (HP):** 70
+  * **Уровень угрозы:** 21 (максимальный уровень)
+  * **Урон (мин/макс):** 12-20
+  * **Защита (DR):** 8
+  * **Навык атаки:** 25
+  * **Навык защиты:** 18
+  * **Опыт за убийство:** 11
 
-==== Поведение ====
-  * **Магическое сражение:** Чернокнижники в основном используют магические атаки, а не физические
-  * **Защита телепортацией:** Когда здоровье падает ниже определенных порогов (2/3 и 1/3), чернокнижники могут исчезнуть от атакующих
-  * **Механики телепортации:**
-    * При 2/3 оставшегося здоровья чернокнижник телепортируется, когда получает урон, который опустит его ниже этого порога
-    * При 1/3 оставшегося здоровья чернокнижник снова телепортируется, когда получает урон, который опустит его ниже этого порога
-  * **Атаки лучом тьмы:** Использует атаки лучом тьмы по врагам
+==== Особенности ====
+  * **Дальнобойная атака:** Использует магическую атаку на расстоянии
+  * **Эффект слабости:** При атаке есть шанс наложить эффект слабости на противника
+  * **Телепортация:** Может телепортироваться, когда его здоровье снижается до определенных порогов (1/3 и 2/3 от максимального здоровья)
+  * **Сопротивление смерти:** Имеет сопротивление заклинаниям смерти
+  * **Выпадение предмета:** Иногда после смерти падает случайное зелье
 
-==== Специальные способности ====
-  * **Проклятие слабости:** При успешной атаке по врагу есть 50% шанс наложить на цель [[en:rpd:weakness_buff|Слабость]]
-  * **Сопротивление смерти:** Имеет сопротивление к эффектам, связанным со смертью (Иммунитет к зачарованию [[en:rpd:death_enchantment|Смерть]])
-  * **Механики уклонения:** Использует телепортацию как защитный механизм вместо традиционного уклонения
-
-==== Дроп ====
-  * [[en:rpd:potion_item|Зелье]] (83% шанс) - Категория: Зелье
-
-==== Стратегии ====
-  * **Ближний бой:** Чернокнижники уязвимы в ближнем бою, где они не могут эффективно атаковать
-  * **Прерывание телепортации:** Способность телепортироваться может быть непредсказуемой, поэтому тщательно планируйте свою позицию
-  * **Осторожность на дистанции:** Будьте осторожны при атаке на расстоянии, так как чернокнижники могут эффективно использовать лучи тьмы
-
-==== Ссылки на код ====
-  * Java-класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java|Warlock.java]] - Основная реализация
-  * Тип сущности: getEntityKind() возвращает "Warlock" в Java-коде
-  * Проверка характеристик: Извлекается напрямую из конструктора Warlock.java (hp: 70, навык атаки: 25, навык защиты: 18, урон: 12-20, класс брони: 8, опыт: 11, maxLvl: 21)
-  * Механики телепортации: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L46-L56|defenseProc method]] обрабатывает телепортацию при порогах здоровья (2/3 и 1/3)
-  * Способность атаки: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L75-L85|zap method]] с эффектом Слабости
-  * Эффект Слабости: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L78-L79|Random.Int(2) == 0]] для 50% шанса наложить Слабость
-  * Сопротивление смерти: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L36|addResistance(Death.class)]] - иммунитет к зачарованию Смерть
-  * Реализация телепортации: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/BlinkAwayFromChar.java|BlinkAwayFromChar class]] - обрабатывает реальную телепортацию
-  * Система лута: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L38|loot(Treasury.Category.POTION, 0.83f)]] - 83% шанс выпадения зелья
-  * Система сокровищ: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java|Treasury class]] - управление случайным выпадением лута
-  * Система баллистики: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L70-L72|canAttack method]] - обработка цели дистанционной атаки
-  * Эффект атаки: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L40-L44|fx method]] - визуальные и звуковые эффекты атаки
-  * Отчет о смерти: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L81-L83|checkDeathReport]] - обработка сообщений о смерти
-  * Строковые ресурсы:
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1356-L1361|Английские строки]] - Имя, пол, винительный падеж, описание и сообщения о смерти
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1341-L1346|Русские строки]] - Русская локализация
-  * Эффект магической стрелы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|MagicMissile class]] - визуальный эффект атаки
-  * Буфер слабости: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Weakness.java|Weakness class]] - реализация эффекта слабости
-  * Проверка пола класса героя: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L78|getHeroClass() method]] - проверяет пол героя для эффекта слабости
-  * Машиночитаемые данные: [[mr:warlock_mob|mr:warlock_mob]]
+==== Стратегия ====
+  * Близкий бой может быть эффективен, так как навык атаки чернокнижника ниже, чем у других дальнобойных врагов
+  * Будьте готовы к эффекту слабости, который может ослабить вашу боевую эффективность
+  * Не подпускайте его к стенам, так как он может использовать телепортацию для отступления
+  * Избегайте атак, которые могут снизить его здоровье до критических порогов (1/3 и 2/3), если вы не готовы к телепортации
 
 ==== См. также ====
-  * [[en:rpd:mobs|Мобы]]
-  * [[en:rpd:weakness_buff|Буфер слабости]]
-  * [[en:rpd:hero_subclasses|Подклассы героя]]
-  * [[en:rpd:mage_class|Класс мага]]
-  * [[en:rpd:warlock_subclass|Подкласс чернокнижника]]
-  * [[en:rpd:death_enchantment|Зачарование смерти]]
-  * [[en:rpd:zapping|Механики атаки]]
-  * [[en:rpd:ballistica_mechanic|Система баллистики]]
+  * [[ru:rpd:mobs|Mobs]] - Список всех врагов
+  * [[ru:rpd:metro_city_level|Метро-город]] - Уровень, где встречается Чернокнижник
+  * [[ru:rpd:potion_item|Зелья]] - Предметы, которые могут выпасть
+  * [[ru:rpd:weakness_buff|Слабость]] - Эффект, наложенный чернокнижником
 
-{{tag> rpd mobs magic warlock dwarf spellcaster necromancy shadow}}
+==== Ссылки на код ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java|Warlock.java]] - Реализация Java
+
+{{tag> rpd mobs magic teleportation weakness }}
