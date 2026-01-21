@@ -1,20 +1,37 @@
 ====== Vertigo Buff - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]]
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/vertigo.json
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="Vertigo_Name">[Name]</string>
-<string name="Vertigo_Info">[Description]</string>
+<string name="VertigoBuff_Name">Vertigo</string>
+<string name="VertigoBuff_Info">The lightheaded feeling makes it harder to walk straight!</string>
+<string name="Hero_StaVertigo">Everything is spinning around you!</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Code Implementation Details =====
+This buff has the following properties based on the Java implementation:
+  * **Duration**: 10f (DURATION constant)
+  * **Duration Calculation**: Affected by Resistance (durationFactor() method)
+  * **Visual Effect**: Shows "Dizzy" status message when attached (attachVisual method)
+  * **Icon**: BuffIndicator.VERTIGO (icon ID 29)
+  * **Buff Type**: Extends FlavourBuff
+  * **Resistance**: Can be reduced by Ring of Elements Resistance
+  * **Affected Classes**: Used by various game elements including:
+    - Spider Elite mobs (20% chance to apply when attacking)
+    - Kusarigama weapon (applies 3-turn duration)
+    - Dreamsweed plant (applies 20-turn duration)
+    - Fadeleaf plant (applies 20-turn duration)
+    - Horror weapon enchantment (applies duration based on defender)
+    - Wand of Amok (applies duration based on victim)
+    - Scroll of Curse (can curse items to apply vertigo)
+    - Enslaved Soul mob (resistance type)
+    - Lich subclass (has immunity)
+    - Various other game elements
