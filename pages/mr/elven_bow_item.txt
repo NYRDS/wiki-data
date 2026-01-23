@@ -1,20 +1,50 @@
 ====== Elven Bow Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+Actual implementation found in:
+  * [[code>RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ElvenBow.java|ElvenBow.java]]
+  * [[code>RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Bow.java|Bow.java]] (parent class)
+  * [[code>RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/KindOfBow.java|KindOfBow.java]] (base class)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/elven_bow.json
+Configuration references:
+  * RemixedDungeon/src/main/assets/hero/initHeroes.json - Starting equipment for Elf class ("kind": "ElvenBow")
+  * RemixedDungeon/src/main/assets/levelsDesc/Treasury.json - Treasury drop table
+  * RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json - Spider treasury drop table
+  * RemixedDungeon/src/main/assets/spritesDesc/item_6.json - Likely contains sprite information
 
 ===== String Resources =====
 <code xml>
-<string name="ElvenBow_Name">[Name]</string>
-<string name="ElvenBow_Info">[Description]</string>
+<string name="ElvenBow_Name">elven bow</string>
+<string name="ElvenBow_Gender">masculine</string>
+<string name="ElvenBow_Info">An exceptional example of elven craftsmanship. It's clearly more effective and accurate than a regular wooden bow.</string>
+</code>
+
+===== Additional String Resources =====
+<code xml>
+<!-- Russian -->
+<string name="ElvenBow_Gender">masculine</string>
+<string name="ElvenBow_Info">Исключительный пример мастерства эльфийских ремесленников. Вне всяких сомнений, этот лук бьёт сильнее и точнее, чем обычный деревянный лук</string>
+<string name="ElvenBow_Name">эльфийский лук</string>
+
+<!-- German -->
+<string name="ElvenBow_Info">Ein außergewöhnliches Beispiel der elfischen Handwerkskunst. Es ist eindeutig effektiver und genauer als normale Holzbögen.</string>
+<string name="ElvenBow_Name">Elfenbogen</string>
+
+<!-- French -->
+<string name="ElvenBow_Gender">masculine</string>
+<string name="ElvenBow_Info">Un exemple exceptionnel de l'artisanat des elfs. Cet arc est clairement plus efficace et précis qu'un arc en bois classique.</string>
+<string name="ElvenBow_Name">arc d'elf</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Key Properties =====
+<code java>
+super( 1, 1.2f, 1f ) - tier 1, 1.2 accuracy multiplier, 1.0 delay
+acuFactor() - increases accuracy by 15% per level (return 1 + level() * 0.15)
+dmgFactor() - increases damage by 30% per level (return 1 + level() * 0.3)
+getVisualName() - returns "WoodenBow" (visual identity)
+burn(int cell) - returns null (does not burn)
+</code>

@@ -1,20 +1,55 @@
 ====== Water Elemental Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+Actual implementation found in:
+  * [[code>RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/WaterElemental.java|WaterElemental.java]]
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/water_elemental.json
+Configuration references:
+  * RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json - Contains spawn rate information ("WATER":{"WaterElemental":1})
+  * RemixedDungeon/src/main/assets/spritesDesc/water_elemental.json - May contain sprite animations
 
 ===== String Resources =====
 <code xml>
-<string name="WaterElemental_Name">[Name]</string>
-<string name="WaterElemental_Info">[Description]</string>
+<string name="WaterElemental_Name">water elemental</string>
+<string name="WaterElemental_Gender">masculine</string>
+<string name="WaterElemental_Name_Objective">water elemental</string>
+<string name="WaterElemental_Desc">Water elementals can be found near big water masses. Typically, these magically bonded waves just wander around.</string>
+</code>
+
+===== Additional String Resources =====
+<code xml>
+<!-- Russian -->
+<string name="WaterElemental_Desc">Водные элементали встречаются около больших водоёмов. Обычно эти магически связанные волны просто бродят по округе.</string>
+<string name="WaterElemental_Gender">masculine</string>
+<string name="WaterElemental_Name">водный элементаль</string>
+<string name="WaterElemental_Name_Objective">элементаля</string>
+
+<!-- German -->
+<string name="WaterElemental_Desc">Wassergeister können in der Nähe von großen Wassermassen gefunden werden. Üblicherweise wandern diese magiegebundenen Wesen einfach nur umher.</string>
+<string name="WaterElemental_Gender">masculine</string>
+<string name="WaterElemental_Name">Wassergeist</string>
+<string name="WaterElemental_Name_Objective">Wassergeist</string>
+
+<!-- French -->
+<string name="WaterElemental_Desc">Les élémentaires d'eau peuvent être trouvés à proximité de grosses masses d'eau. Généralement ces vagues magiques se promènent.</string>
+<string name="WaterElemental_Gender">masculine</string>
+<string name="WaterElemental_Name">élémentaire d'eau</string>
+<string name="WaterElemental_Name_Objective">élémentaire d'eau</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Key Properties =====
+<code java>
+hp(ht(depth * 5 + 1))
+baseDefenseSkill = depth * 2 + 1
+expForKill = depth + 1
+maxLvl = depth + 2
+dr = expForKill / 3
+speed() - moves 2x faster on liquid terrain, 0.5x on other terrain
+immunities: Frost, ScrollOfPsionicBlast, Bleeding
+attackProc: 50% chance to apply Freezing effect
+act(): heals health when standing on water tiles
+</code>
