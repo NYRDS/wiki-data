@@ -1,20 +1,53 @@
 ====== Caged Kobold Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/CagedKobold.java|CagedKobold.java]] - Main implementation of the Caged Kobold NPC
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/caged_kobold.json
+<code json>
+{
+   "texture" : "mobs/caged_kobold.png",
+   "width" : 16,
+   "height" : 16,
+   "idle" : {
+      "fps" : 2,
+      "looped" : true,
+      "frames" : [0, 1, 2, 3]
+   },
+   "run" : {
+      "fps" : 2,
+      "looped" : true,
+      "frames" : [0, 1, 2, 3]
+   },
+   "attack" : {
+      "fps" : 2,
+      "looped" : true,
+      "frames" : [0, 1, 2, 3]
+   },
+   "die" : {
+      "fps" : 2,
+      "looped" : true,
+      "frames" : [0, 1, 2, 3]
+   }
+}
+</code>
 
 ===== String Resources =====
 <code xml>
-<string name="CagedKobold_Name">[Name]</string>
-<string name="CagedKobold_Info">[Description]</string>
+<string name="CagedKobold_Desc">A kobold, in a cage.</string>
+<string name="CagedKobold_Intro">Hey... HEY! You're the adventurer thingy, right? Help me out pal, these damn militarists locked me up in here! They wanted to reactivate an ancient weapon to conquer the humanoids up there! But it was too dangerous and I spoke against it, but they just threw me out and locked me up in this cage! Please find the cage key, in return I'll help you to the best of my abilities.</string>
+<string name="CagedKobold_Message1">Please...</string>
+<string name="CagedKobold_Message2">Hey buddy, you gotta help me out</string>
+<string name="CagedKobold_Message3">I hate everything about this cage</string>
+<string name="CagedKobold_Name">caged kobold</string>
+<string name="CagedKobold_Name_Objective">caged kobold</string>
+<string name="CagedKobold_Quest_End">Oh, thank you, thank you so much! How you managed to find the key? You... you destroyed the weapon?! That's incredible! You know what, I said I'll help you, and I think I know the best way to do it. I'll stick with you for a while. *Caged Kobold has turned into a candle</string>
+<string name="Journal_Caged_Kobold">Caged Kobold</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:ice_key_item|Ice Key (Item)]]
+  * [[mr:candle_of_mind_vision_item|Candle of Mind Vision (Item)]]
