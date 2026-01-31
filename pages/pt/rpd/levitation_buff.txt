@@ -1,0 +1,57 @@
+====== Levitação ======
+
+**Levitação** é um efeito de status benéfico no Remixed Dungeon que permite ao personagem afetado flutuar acima do solo.
+
+==== Descrição do Efeito ====
+  * **Tipo:** Efeito de Status Benéfico (Buff)
+  * **Efeito:** Permite flutuar acima do nível do solo
+  * **Duração:** 20 turnos (Levitation.DURATION = 20f)
+  * **Fonte:** Principalmente ao beber uma [[pt:rpd:potion_of_levitation_item|Poção de Levitação]]
+
+==== Como Obter ====
+  * Ao beber uma [[pt:rpd:potion_of_levitation_item|Poção de Levitação]]
+  * De certos feitiços ou habilidades de classe
+  * De itens especiais ou efeitos ambientais
+
+==== Mecânicas ====
+  * Permite movimento sobre armadilhas sem ativá-las
+  * Permite passagem por terrenos especiais que normalmente impediriam o movimento
+  * Previne que certos efeitos baseados no solo afetem o personagem
+  * Bloqueia o efeito de status Raízes (desanexa quaisquer raízes afetando atualmente o personagem via Roots.detach())
+  * Quando o efeito termina, o jogo chama Dungeon.level.press() o que pode ativar efeitos de piso na posição do personagem
+  * O sprite do personagem mostra como CharSprite.State.LEVITATING
+  * Usa BuffIndicator.LEVITATION para ícone na interface
+
+==== Estratégia ====
+  * Excelente para atravessar áreas cheias de armadilhas com segurança
+  * Permite contornar certos obstáculos ou terrenos difíceis
+  * Útil para evitar efeitos prejudiciais baseados no solo
+  * Bom para navegar em pisos perigosos
+  * O tempo de término do efeito é importante para evitar aterrissar em áreas perigosas
+
+==== Referência de Código ====
+  * Classe Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java|Levitation.java]]
+  * Constante de duração: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java#L7|Levitation.DURATION = 20f]]
+  * Classes Relacionadas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]] (desanexado quando a levitação começa)
+  * Extensão: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]]
+  * Indicador de Interface: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java#L22|BuffIndicator.LEVITATION]]
+  * Estado de Sprite: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java#L59|CharSprite.State.LEVITATING]]
+
+==== Recursos de String ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3020|Levitation_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3021|Levitation_Info]]
+
+==== Recursos de String em Russo ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3021|Levitation_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3022|Levitation_Info]]
+
+==== Veja Também ====
+  * [[pt:rpd:status_effects|Efeitos de Status]] - Outras alterações de status
+  * [[pt:rpd:potion_of_levitation_item|Poção de Levitação]] - Fonte primária de levitação
+  * [[pt:rpd:roots_buff|Raízes]] - Efeito que a Levitação contrabalança
+  * [[pt:rpd:mechanics|Mecânicas do Jogo]] - Outros sistemas principais
+  * [[pt:rpd:traps|Armadilhas]] - Armadilhas que podem ser evitadas com levitação
+  * [[pt:rpd:buffs|Buffs]] - Outros efeitos de status úteis
+  * [[pt:rpd:flavour_buff|Buff de Sabor]] - Classe pai para este buff
+
+{{tag> rpd mechanics status_effects buffs levitation}}

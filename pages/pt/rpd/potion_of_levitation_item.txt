@@ -1,0 +1,78 @@
+====== Poção de Levitação ======
+
+{{ rpd:images:potion_of_levitation_item.png|Poção de Levitação }}
+
+A **Poção de Levitação** é uma [[pt:rpd:potion_item|poção]] comum no Remixed Dungeon que permite ao bebedor flutuar sobre armadilhas e certos perigos do terreno.
+
+==== Visão Geral do Item ====
+  * **Tipo:** [[pt:rpd:potion_item|Poção]]
+  * **Raridade:** Comum
+  * **Efeito Especial:** Efeito de levitação por 20 turnos, imunidade a perigos baseados no peso
+  * **Uso:** Item de uso único (consumido ao beber)
+  * **Preço:** 35 [[pt:rpd:gold|ouro]] quando identificado
+  * **[[pt:rpd:identification|Identificação]]:** Torna-se identificado quando consumido, quebrado ou quando visto no inventário após ser identificado
+  * **Umectação:** Pode ser usado para umedecer [[pt:rpd:arrows|flechas]], [[pt:rpd:scrolls|pergaminhos]] e [[pt:rpd:rotten_food_item|comida podre]]
+
+==== Mecânicas Especiais ====
+  * **Efeito de Levitação:** Permite flutuar sobre abismos, armadilhas de fogo e outros perigos baseados no peso por 20 turnos (constante DURATION)
+  * **Imunidade a Chamas e Gases:** NÃO protege contra gases ou chamas (esses enchem o ar e ainda afetam o personagem levitando)
+  * **Remoção de Raízes:** Remove quaisquer efeitos de Raízes existentes quando aplicado (chamada Roots.detach em Levitation.java)
+  * **Interação com Terreno:** Quando o efeito termina, aciona level.press() o que pode ativar quaisquer efeitos baseados no chão na localização do personagem
+  * **Mensagem de Ação:** "Você flutua no ar!" (dos recursos de string)
+  * **[[pt:rpd:identification|Identificação]]:** Torna-se identificado quando consumido, quebrado ou quando visto no inventário após ser identificado
+  * **Empilhamento:** Várias poções podem ser carregadas e usadas conforme necessário
+
+==== Estratégia ====
+  * Essencial para navegar áreas com armadilhas perigosas ou abismos
+  * Melhor usado ao atravessar terrenos perigosos com placas de pressão ou armadilhas baseadas no peso
+  * Não pode ser usado para evitar perigos de gás ou chamas já que estes enchem o ar
+  * O efeito de levitação dura apenas 20 turnos por padrão
+  * Considere usar antes de tentar saltos difíceis ou abismos
+  * Útil para evitar a ativação de armadilhas mecânicas ao escapar de inimigos
+  * Deve ser conservado para situações críticas de navegação
+  * O efeito termina imediatamente se você sofrer dano de perigos não baseados no peso
+
+==== Obtenção ====
+  * Encontrado por toda a [[pt:rpd:levels|masmorra]]
+  * Disponível nas [[pt:rpd:shops_mechanic|lojas]] a preços moderados (35 [[pt:rpd:gold|ouro]] quando identificado)
+  * Derrubado por vários [[pt:rpd:mobs|inimigos]]
+  * Encontrado em [[pt:rpd:chests_mechanic|recipientes]] e salas especiais
+  * Criado alquimicamente (receita não especificada na base de código atual)
+
+==== Efeito ====
+Quando consumido, a Poção de Levitação concede o efeito de status [[pt:rpd:levitation_buff|Levitação]] por 20 turnos, permitindo que o personagem flutue sobre perigos baseados no peso como abismos e armadilhas enquanto fica imune aos seus efeitos. No entanto, gases e chamas ainda afetam o personagem já que enchem o ar.
+
+De acordo com os recursos de string do jogo: "Beber este líquido curioso fará com que você flutue no ar, podendo deslizar com facilidade sobre armadilhas. Porém, chamas e gases enchem o ar e não podem ser evitados enquanto estiver no ar."
+
+==== Referências de Código ====
+  * **Implementação Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java|PotionOfLevitation.java]]
+  * **Classe Base de Poção:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]]
+  * **Implementação do Buff de Levitação:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java|Levitation.java]] - Constante de duração = 20f
+  * **Constante de Duração:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java#L8|Levitation.DURATION]] - Definida como 20f
+  * **Remoção de Raízes:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java#L14|Levitation.java#L14]] - Chamada Roots.detach() ao anexar
+  * **Pressionar Nível:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java#L19-L22|Levitation.java#L19-L22]] - level.press() chamado quando o efeito termina
+  * **Mensagem de Aplicação:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java#L15|PotionOfLevitation.java#L15]] - Usa o recurso de string para a mensagem "Você flutua no ar!"
+  * **Configuração de Preço:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java#L24-L26|PotionOfLevitation.java#L24-L26]] - Preço base é 35 ouro
+  * **Implementação de Umectação:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java#L28-L48|PotionOfLevitation.java#L28-L48]] - Pode umedecer flechas, pergaminhos e comida podre
+  * **Configuração do Tesouro:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L140|Treasury.json#L140]] - Probabilidade de surgimento da poção
+  * **Recursos de String em Inglês:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2194-L2196|PotionOfLevitation_Name, PotionOfLevitation_Info, PotionOfLevitation_Apply]] (PotionOfLevitation_Name, PotionOfLevitation_Info, e PotionOfLevitation_Apply)
+  * **Recursos de String em Russo:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2194-L2196|Strings de PotionOfLevitation]] (localização russa)
+  * **Recursos de String em Espanhol:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L2194-L2196|Strings de PotionOfLevitation]] (localização espanhola)
+  * **Recursos de String em Francês:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L2194-L2196|Strings de PotionOfLevitation]] (localização francesa)
+  * **Recursos de String em Alemão:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L2194-L2196|Strings de PotionOfLevitation]] (localização alemã)
+  * **Recursos de String em Chinês:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L2194-L2196|Strings de PotionOfLevitation]] (localização chinesa)
+  * **Verificação de estatísticas:** Extraído diretamente dos métodos das classes PotionOfLevitation.java e Levitation.java
+  * **Descrições de efeito:** Baseado em análise de código e recursos de string
+  * **Namespace mr:** Verifique [[mr:potion_of_levitation_item]] para dados legíveis por máquina
+
+==== Itens Relacionados ====
+  * [[pt:rpd:potion_item|Poções]] - Informações gerais sobre poções
+  * [[pt:rpd:levitation_buff|Efeito de Levitação]] - O efeito de status aplicado por esta poção
+  * [[pt:rpd:potion_item|Poção]] - Classe base de poção
+  * [[pt:rpd:mechanics|Mecânicas do Jogo]] - Sistemas gerais do jogo
+  * [[pt:rpd:hero|Herói]] - Personagem jogável principal
+  * [[pt:rpd:items|Itens]] - Todos os itens no jogo
+  * [[pt:rpd:consumables|Consumíveis]] - Itens consumíveis
+  * [[pt:rpd:traps|Armadilhas]] - Informações sobre armadilhas que esta poção ajuda a evitar
+
+{{tag> rpd items potions levitation traps}}
