@@ -1,0 +1,42 @@
+====== Жидкое пламя ======
+
+{{ rpd:images:potion_of_liquid_flame_item.png|Эффект жидкого пламени }}
+
+**Жидкое пламя** - это вредоносный эффект окружения в Remixed Pixel Dungeon, который наносит урон персонажам, находящимся на его территории.
+
+==== Описание ====
+Жидкое пламя - это эффект пятна, создающий пожароопасность на полу подземелья, причиняя постоянный урон любому персонажу, находящемуся на нем. Распространяется на легковоспламеняющуюся местность и может создаваться различными источниками, включая Зелье жидкого пламени.
+
+==== Механика ====
+  * **Урон:** Наносит урон от огня каждый ход всем существам в затронутой клетке
+  * **Распространение:** Может распространяться на соседние легковоспламеняющиеся участки местности
+  * **Длительность:** Сохраняется несколько ходов перед исчезновением
+  * **Сопротивление:** Персонажи с сопротивлением огню получают уменьшенный урон
+
+==== Источники ====
+  * [[ru:rpd:potion_of_liquid_flame_item|Зелье жидкого пламени]] - При разбивании создает жидкое пламя в области 3x3
+  * [[ru:rpd:fire_trap|Огненные ловушки]] - Опасности окружающей среды, создающие жидкое пламя
+  * [[ru:rpd:wand_of_firebolt_item|Посох огненной стрелы]] - Может воспламенять области жидким пламенем
+  * Другие огненные предметы и способности
+
+==== Счетчики ====
+  * [[ru:rpd:potion_of_frost_item|Зелье мороза]] - Может потушить жидкое пламя
+  * [[ru:rpd:wand_of_frost_item|Посох мороза]] - Атаки морозом могут нейтрализовать огонь
+  * [[ru:rpd:water_tile|Водяные плитки]] - Жидкое пламя не может существовать на воде
+  * Оборудование и баффы с сопротивлением огню могут уменьшить получаемый урон
+
+==== Технические подробности ====
+  * Реализация: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame.java]]
+  * Система пятен: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java|Blob.java]]
+  * Механика огненного урона: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java#L20-L30|метод распространения]]
+  * Механика длительности: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java#L35-L45|затухание со временем]]
+  * Интеграция сопротивления огню: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L154-L159|Char.resist() метод]]
+  * Машиночитаемые данные: [[mr:liquid_flame_blob|mr:liquid_flame_blob]]
+
+==== Связанные эффекты ====
+  * [[ru:rpd:burning_buff|Горение]] - Статусный эффект, применяемый жидким пламенем
+  * [[ru:rpd:fire|Огонь]] - Общая механика огня
+  * [[ru:rpd:toxic_gas|Токсичный газ]] - Другой эффект пятна
+  * [[ru:rpd:paralytic_gas|Парализующий газ]] - Другой эффект пятна
+
+{{tag> ru:rpd mechanics blobs fire damage }}
