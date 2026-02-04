@@ -1,20 +1,50 @@
-====== Enslaved Soul Mob - Code References ======
+====== EnslavedSoul - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/EnslavedSoul.java|EnslavedSoul.java]]
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/enslaved_soul.json
+''<code json>''
+{
+   "texture" : "mobs/enslavedsoul.png",
+   "width" : 16,
+   "height" : 16,
+   "zapEffect" : "Shadow",
+   "idle" : {
+      "fps" : 6,
+      "looped" : true,
+      "frames" : [0,1,2]
+   },
+   "run" : {
+      "fps" : 8,
+      "looped" : true,
+      "frames" : [0,1,2]
+   },
+   "attack" : {
+      "fps" : 8,
+      "looped" : false,
+      "frames" : [3,4,5,6]
+   },
+   "die" : {
+      "fps" : 10,
+      "looped" : false,
+      "frames" : [7,8,9,10,11]
+   },
+   "bloodColor" : "0xFF777777"
+}
+''</code>''
 
 ===== String Resources =====
-<code xml>
-<string name="EnslavedSoul_Name">[Name]</string>
-<string name="EnslavedSoul_Info">[Description]</string>
-</code>
+''<code xml>''
+<string name="EnslavedSoul_Name">enslaved soul</string>
+<string name="EnslavedSoul_Gender">feminine</string>
+<string name="EnslavedSoul_Name_Objective">enslaved soul</string>
+<string name="EnslavedSoul_Desc">You can almost see through this ghostly apparition. And although it looks like a skull, sometimes for a split second a face appears, filled with pain and suffering.</string>
+''</code>''
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:undead_mob|Undead (Mob)]]
+  * [[mr:necropolis_level|Necropolis (Level)]]
