@@ -1,20 +1,30 @@
 ====== Mail Armor Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MailArmor.java|MailArmor.java]]
+    * Entity Kind: ''getEntityKind()'' returns "MailArmor"
+    * Tier: ''tier = 3'' (medium armor)
+    * Base Defense: ''AC = 6'' (calculated as ''tier * 2 = 3 * 2 = 6'')
+    * Strength Required: ''STR = 13'' (calculated as ''7 + tier * 2 = 7 + 3 * 2 = 13'')
+    * Speed Factor: ''speedFactor = 0.8f'' (moderate speed penalties)
+    * Weight: ''weight = 25''
+    * Durability: ''maxDurability()'' inherits from Armor base
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/mail_armor.json
+  * Not applicable - Item is implemented in Java code
 
 ===== String Resources =====
 <code xml>
-<string name="MailArmor_Name">[Name]</string>
-<string name="MailArmor_Info">[Description]</string>
+<string name="MailArmor_Name">mail armor</string>
+<string name="MailArmor_Desc">Interlocking metal links make for a tough but flexible suit of armor.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * Not applicable - Item is implemented in Java, no custom Lua script
+
+===== Additional References =====
+  * Armor Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] - General armor mechanics
+  * Item Registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L355|ItemFactory.java]] - Registers MailArmor class
+  * Treasury Config: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L69|Treasury.json]] - Drop rates
+  * Spiders Treasury: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L69|SpidersTreasury.json]] - Spider-themed drops
+  * Town Shop Treasury: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/TownShopTreasury.json#L20|TownShopTreasury.json]] - Shop availability
