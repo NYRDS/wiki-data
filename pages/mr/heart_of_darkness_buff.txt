@@ -1,19 +1,57 @@
 ====== Heart Of Darkness Buff - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+Actual implementation found in:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/HeartOfDarkness.java|HeartOfDarkness.java]] - Contains the HeartOfDarknessBuff class
+
+===== Implementation Details =====
+<code java>
+public static class HeartOfDarknessBuff extends ArtifactBuff {
+	@Override
+	public int icon() {
+		return BuffIndicator.DARKVEIL;
+	}
+
+	@Override
+	public String name() {
+        return StringsManager.getVar(R.string.DarkVeilBuff_Name);
+    }
+
+	@Override
+	public String desc() {
+        return StringsManager.getVar(R.string.DarkVeilBuff_Info);
+    }
+
+	@Override
+	public int defenceProc(Char defender, Char enemy, int damage) {
+		int defenderPos = defender.getPos();
+		int spiritPos = defender.level().getEmptyCellNextTo(defenderPos);
+
+		if (defender.level().cellValid(spiritPos)) {
+			SpiritOfPain spirit = new SpiritOfPain();
+			spirit.setPos(spiritPos);
+			Mob.makePet(spirit, defender.getId());
+			defender.level().spawnMob(spirit, 0, defenderPos);
+		}
+		return damage;
+	}
+}
+</code>
+
+===== Notes =====
+  * This buff is part of the Heart of Darkness artifact
+  * Name in game: "Dark Veil" (not "Heart of Darkness")
+  * Effect: When the owner takes damage, summons a Spirit of Pain nearby
+  * Icon: BuffIndicator.DARKVEIL
+  * Implementation: defenceProc method triggers when taking damage
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/heart_of_darkness.json
+None found - implemented purely in Java
 
 ===== String Resources =====
 <code xml>
-<string name="HeartOfDarkness_Name">[Name]</string>
-<string name="HeartOfDarkness_Info">[Description]</string>
+<string name="DarkVeilBuff_Name">Dark veil</string>
+<string name="DarkVeilBuff_Info">A veil of darkness surrounds the owner, summoning a spirit every time damage is taken.</string>
 </code>
 
 ===== Lua Scripts =====
