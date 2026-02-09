@@ -3,25 +3,18 @@
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Regeneration.java|Regeneration.java]]
 
-===== Code Implementation =====
-This buff handles natural health regeneration for characters. The regeneration rate is affected by other buffs via regenerationBonus() method and can be modified by game facilitions (FAST_REGENERATION).
-
-===== Key Properties =====
-  * **Base Regeneration Delay**: 10 turns (REGENERATION_DELAY constant)
-  * **Heal Rate Formula**: (float) Math.pow(1.2, bonus[0]) where bonus is accumulated from other buffs
-  * **Fast Regeneration Facilitation**: Adds +10 to the bonus when FAST_REGENERATION is enabled and the target is a hero
-  * **Safe Level Condition**: Regeneration does not occur on safe levels (when target.level().isSafe() is true)
-  * **Starving Condition**: Regeneration does not occur when the target is starving (target.isStarving())
-
-===== Method Details =====
-  * **act()**: Main action method that handles the regeneration process, calculates healing points based on bonuses, and schedules the next regeneration
-  * **attachTo()**: Overrides the default behavior to check if the target already has regeneration buff level > 0
-
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
-  * No specific string resources for this entity (name and description use default class name)
+<code xml>
+<string name="RegenerationBuff_Name">Natural Regeneration</string>
+<string name="RegenerationBuff_Info">The function for natural regeneration is in a buff form to make things easier.</string>
+</code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:hunger_buff|Hunger Buff]]
+  * [[mr:fast_regeneration_facilitation|Fast Regeneration Facilitation]]
