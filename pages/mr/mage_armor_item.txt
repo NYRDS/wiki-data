@@ -1,20 +1,28 @@
 ====== Mage Armor Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MageArmor.java|MageArmor.java]] - Main class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] - Parent class
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/mage_armor.json
+  * RemixedDungeon/src/main/assets/spritesDesc/mage_armor.json - Sprite configuration
 
 ===== String Resources =====
 <code xml>
-<string name="MageArmor_Name">[Name]</string>
-<string name="MageArmor_Info">[Description]</string>
+<string name="MageArmor_Name">mage robe</string>
+<string name="MageArmor_Desc">Wearing this gorgeous robe, a mage can cast a spell of molten earth: all the enemies in his field of view will be set on fire and will be unable to move at the same time.</string>
+<string name="MageArmor_ACSpecial">MOLTEN EARTH</string>
+<string name="MageArmor_NotMage">Only mages can use this armor!</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Special Abilities =====
+  * Casting "Molten Earth" spell (special ability): Sets visible enemies on fire and roots them in place
+  * Burns enemies via [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]]
+  * Roots enemies via [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]]
+
+===== Implementation Notes =====
+  * Can only be equipped by Mage class
+  * Obtained by using Armor Kit on Tier-3 armor (Plate Mail, Scale Armor, Leather Armor)
