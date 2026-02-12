@@ -1,7 +1,9 @@
 ====== Poison Buff - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]] - Main buff class implementing Doom interface
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Poison.java|Poison enchantment]] - Weapon enchantment that applies poison
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java]] - Trap that applies poison
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -13,13 +15,36 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="Poison_Name_1">Venomous %s</string>
 <string name="Poison_Name_2">Venomous %s</string>
 <string name="Poison_Death">You died from poison...</string>
+<string name="PoisonArrow_Name">poison arrow</string>
+<string name="PoisonArrow_Info">An arrowhead that contains a potent toxin. Damage dealt by this arrow is converted to poison damage.</string>
+<string name="PoisonArrow_Gender">0</string>
+<string name="PoisonBuff_Name">Poisoned</string>
+<string name="PoisonBuff_Info">The poison is slowly eating away at your health.\n\nDamage dealt: %d</string>
 
 <!-- Russian strings (values-ru/strings_all.xml) -->
 <string name="Poison_Name_0">Отравленное %s</string>
 <string name="Poison_Name_1">Отравленный %s</string>
 <string name="Poison_Name_2">Отравленная %s</string>
 <string name="Poison_Death">Ты умер от яда...</string>
+<string name="PoisonArrow_Name">ядовитая стрела</string>
+<string name="PoisonArrow_Info">Наконечник стрелы содержит сильный токсин. Урон, нанесенный этой стрелой, преобразуется в отравляющий урон.</string>
+<string name="PoisonArrow_Gender">0</string>
+<string name="PoisonBuff_Name">Отравление</string>
+<string name="PoisonBuff_Info">Яд постепенно истощает ваше здоровье.\n\nНанесённый урон: %d</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RottenFish.lua]] - Rotten fish that applies poison
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ChaosShieldLeft.lua]] - Chaos shield left that can curse enemies with poison
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Stinger.lua]] - Stinger mob that can apply poison
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CorpseExplosion.lua]] - Corpse explosion spell that applies poison
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua]] - Common classes library that binds the Poison class
+
+===== Usage in Code =====
+  * Used in PoisonTrap.java to apply poison to characters
+  * Used in PotionOfHealing.java to remove poison buff
+  * Used in RingOfElements.java for elemental resistance
+  * Used in various mobs (Scorpio, SpiderServant, SpiderQueen, Zombie, Worm) to apply poison on hit
+  * Used in FrozenCarpaccio.java and MysteryMeat.java to remove poison
+  * Used in BuffFactory.java to register the buff
+  * Used in various enchantments and plant effects

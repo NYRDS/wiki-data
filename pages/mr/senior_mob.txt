@@ -1,16 +1,29 @@
 ====== Senior Mob - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Senior.java|Senior.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Senior.java|Senior.java]] - Main mob class extending Monk with stun attack
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Senior.json|Senior.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Senior.json|Senior.json]] - Sprite configuration
 
 ===== String Resources =====
 <code xml>
-<string name="Senior_Name">[Name]</string>
-<string name="Senior_Info">[Description]</string>
+<!-- English strings (values/strings_all.xml) -->
+<string name="Senior_Name">Senior</string>
+<string name="Senior_Name_Objective">Senior</string>
+<string name="Senior_Gender">0</string>
+<string name="Senior_Desc">A senior monk who moves fast and strikes with power.</string>
+
+<!-- Russian strings (values-ru/strings_all.xml) -->
+<string name="Senior_Name">Старший</string>
+<string name="Senior_Name_Objective">Старшего</string>
+<string name="Senior_Gender">0</string>
+<string name="Senior_Desc">Старший монах, который быстро передвигается и наносит мощные удары.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Usage in Code =====
+  * Used in Badges.java to recognize Senior mob kills for rare mob badge
+  * Registered in MobFactory.java for mob instantiation
