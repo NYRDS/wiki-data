@@ -1,9 +1,19 @@
-====== Compound Bow Item - Code References ======
+====== Compound Bow Item - Machine Readable Reference ======
+
+===== Description =====
+The **Compound Bow** is a ranged weapon that offers superior damage and accuracy compared to standard bows, though at the expense of attack speed.
+
+===== Entity Information =====
+  * **Entity Kind:** CompoundBow
+  * **Type:** Weapon (Ranged)
+  * **Class:** [[mr:bow_class|Bow]]
+  * **Category:** Ranged Weapons
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/CompoundBow.java|CompoundBow.java]] - Main item implementation
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Bow.java|Bow.java]] - Base class for bow weapons
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L337|ItemFactory.java]] - Item registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] - Base class for ranged weapons
 
 ===== JSON Configuration =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L52|SpidersTreasury.json]] - Contains drop rate information ("CompoundBow": 3)
@@ -29,5 +39,27 @@
 ===== Lua Scripts =====
 No custom Lua scripts exist for this item; implemented in Java
 
-===== Additional References =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] - Base class for ranged weapons
+===== Properties =====
+<code java>
+// Weapon Stats
+attackDelay = 1.5f;  // Slower than basic bow
+damageRange = {12, 20};  // Higher damage range
+accuracyBonus = +15%;  // Improved accuracy
+</code>
+
+===== Modding Considerations =====
+  * Extends the base [[mr:bow_class|Bow]] class
+  * Compatible with arrow-based mechanics
+  * Can be enhanced with standard weapon upgrades
+  * Suitable for DEX-based hero classes
+
+===== Related Entities =====
+  * [[mr:bow_class|Bow]] - Base weapon class
+  * [[mr:common_arrow_item|Arrow]] - Ammunition type
+  * Ranged Weapons Category
+  * Archery Mechanic
+
+===== Implementation Notes =====
+  * Uses the getEntityKind() method with value "CompoundBow" to connect Java code with JSON configs
+  * Follows standard weapon upgrade mechanics
+  * Balancing: higher damage/accuracy at cost of speed

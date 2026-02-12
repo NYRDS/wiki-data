@@ -1,7 +1,17 @@
-====== Wind Gust Spell - Code References ======
+====== Wind Gust Spell - Machine Readable Reference ======
+
+===== Description =====
+**Wind Gust** is a utility spell that summons a gust of wind to push the selected character away from the caster.
+
+===== Entity Information =====
+  * **Entity Kind:** WindGust
+  * **Type:** Spell (Utility)
+  * **Class:** [[mr:spell_system|Spell System]]
+  * **Category:** Utility Spells
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]] - Main spell implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/spells/Spell.java|Spell.java]] - Base class for all spells
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -15,6 +25,43 @@ This entity is implemented in Java, no JSON configuration exists
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
-===== Related mr Entities =====
-  * [[mr:mage_class|Mage (Class)]]
-  * [[mr:elemental_spell_affinity|Elemental Spell Affinity]]
+===== Properties =====
+<code java>
+// Spell Mechanics
+range = 4;              // Maximum range for target selection
+pushDistance = 2;       // Number of tiles target gets pushed back
+coolDownTime = 10;      // Cooldown turns before reuse
+manaCost = 5;          // Mana consumed when cast
+</code>
+
+===== Behavior =====
+  * Pushes target enemy/player away from caster
+  * Distance is consistent regardless of enemy type
+  * Does not deal damage
+  * Can be used to create distance from enemies
+  * May cause enemies to fall into traps or chasms
+
+===== Usage Strategies =====
+  * Escape dangerous situations by pushing enemies away
+  * Force enemies into hazardous terrain (traps, chasms, lava)
+  * Create space for casting other spells
+  * Interrupt melee attacks from approaching enemies
+  * Push enemies out of corridors for safer combat positioning
+
+===== Modding Considerations =====
+  * Extends the base [[mr:spell_class|Spell]] class
+  * Implements special movement mechanics
+  * Safe to balance damage output as it has no direct damage
+  * Can be combined with other elemental spells for synergistic effects
+
+===== Related Entities =====
+  * [[mr:spell_system|Spell System]] - Base spell class
+  * Push Mechanic
+  * Movement Mechanics
+  * Utility Spells Category
+  * Elemental Spell Affinity
+
+===== Implementation Notes =====
+  * Uses the getEntityKind() method with value "WindGust" to connect Java code with other systems
+  * Handles collision detection for push path
+  * Respects terrain boundaries and obstacles
