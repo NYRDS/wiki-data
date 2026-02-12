@@ -5,17 +5,175 @@
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/books/TomeOfKnowledge.java|TomeOfKnowledge.java]]
 
+===== Java Usage =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java|ShopPainter.java]] - Appears in shop inventories
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/TownShopLevel.java|TownShopLevel.java]] - Appears in town shop
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registered item class
+
+===== Class Implementation Details =====
+<code java>
+package com.nyrds.pixeldungeon.items.books;
+
+import com.nyrds.platform.audio.Sample;
+import com.watabou.pixeldungeon.Assets;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.effects.Speck;
+import com.watabou.pixeldungeon.effects.SpellSprite;
+import com.watabou.pixeldungeon.items.Item;
+import com.watabou.pixeldungeon.sprites.CharSprite;
+
+public class TomeOfKnowledge extends Book {
+
+	{
+		image = 1;
+	}
+
+	@Override
+	protected void doRead(Char user) {
+		user.getBelongings().setSelectedItem(this);
+		detach( user.getBelongings().backpack );
+
+		SpellSprite.show( user, SpellSprite.MASTERY );
+		user.getSprite().emitter().burst( Speck.factory( Speck.MAGIC ), 8 );
+		user.showStatus( CharSprite.BLUE, "+ 1");
+		Sample.INSTANCE.play( Assets.SND_READ );
+
+		user.spend( TIME_TO_READ );
+		user.skillLevelUp(); // Increases user's skill level by 1
+	}
+
+	@Override
+	public int price() {
+		return 100 * quantity(); // Costs 100 gold per tome
+	}
+
+	@Override
+	public Item burn(int cell){
+		return null; // Cannot be burned
+	}
+}
+</code>
+
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
+==== English ====
 <code xml>
 <string name="TomeOfKnowledge_Name">Tome of Knowledge</string>
 <string name="TomeOfKnowledge_Info">This ancient tome is filled with arcane riddles and mysteries! It may be hard to read, but if you\'ll get through it, you\'ll definitely increase your magical powers.</string>
 </code>
 
+==== Spanish ====
+<code xml>
+<string name="TomeOfKnowledge_Name">Tomo del Conocimiento</string>
+<string name="TomeOfKnowledge_Info">¡Este antiguo tomo esta lleno de acertijos y arcanos misterios! Puede ser una lectura difícil, pero si consigues descifrarlo, tus poderes mágicos aumentaran.</string>
+</code>
+
+==== Russian ====
+<code xml>
+<string name="TomeOfKnowledge_Name">Том Знаний</string>
+<string name="TomeOfKnowledge_Info">Этот древний том наполнен тайными знаниями и загадками! Может это и не самое простое чтиво, но если ты его осилишь, оно обязательно повысит твои магические способности.</string>
+</code>
+
+==== French ====
+<code xml>
+<string name="TomeOfKnowledge_Name">Livre de la Connaissance</string>
+<string name="TomeOfKnowledge_Info">Ce livre ancien est rempli d\'obscures énigmes et d\'histoire mystérieuses ! Il est peut-être difficile à lire, mais si vous arrivez à l\'achever, vous allez sans aucun doute augmenter vos pouvoirs magiques.</string>
+</code>
+
+==== German ====
+<code xml>
+<string name="TomeOfKnowledge_Name">Wälzer des Wissens</string>
+<string name="TomeOfKnowledge_Info">Dieser uralte Wälzer ist voll mit arkanen Rätseln und Mysterien! Es mag schwer zu lesen sein, aber wenn du es durch hast, wirst du deine magischen Kräfte definitiv erhöhen.</string>
+</code>
+
+==== Japanese ====
+<code xml>
+<string name="TomeOfKnowledge_Name">知識の書</string>
+<string name="TomeOfKnowledge_Info">この古代の書物には難解な謎とミステリーが詰まっている！読むのは難しいかもしれないが、読みこなせば魔法の力がアップすること間違いなし。</string>
+</code>
+
+==== Korean ====
+<code xml>
+<string name="TomeOfKnowledge_Name">지식의 고서</string>
+<string name="TomeOfKnowledge_Info">이 고서는 비밀의 수수께끼와 미스터리로 가득 차있습니다! 읽는 건 어려울 수 있지만, 이해할 수 있게 되면 마력이 증가할 것입니다!</string>
+</code>
+
+==== Chinese (Simplified) ====
+<code xml>
+<string name="TomeOfKnowledge_Name">知识之书</string>
+<string name="TomeOfKnowledge_Info">这本古书充满了神秘的谜语和咒文！这可能很难读懂，但如果你能够读懂它，肯定能增加一些魔法力量。</string>
+</code>
+
+==== Chinese (Traditional) ====
+<code xml>
+<string name="TomeOfKnowledge_Name">知識巨著</string>
+<string name="TomeOfKnowledge_Info">這古老的書卷充滿了神秘的謎語和謎團！它可能很難讀通，但如果您破譯了他得含意，它將引領你提升魔力等級。</string>
+</code>
+
+==== Italian ====
+<code xml>
+<string name="TomeOfKnowledge_Name">Tomo della conoscenza</string>
+<string name="TomeOfKnowledge_Info">Questo antico tomo è pieno di arcani enigmi e misteri! Potrebbe essere difficile da leggere, ma se ce la farai i tuoi poteri magici aumenteranno decisamente.</string>
+</code>
+
+==== Portuguese (Brazilian) ====
+<code xml>
+<string name="TomeOfKnowledge_Name">Livro do Conhecimento</string>
+<string name="TomeOfKnowledge_Info">Este antigo tomo está cheio de enigmas e mistérios arcanos! Pode ser uma leitura difícil, mas se você passar por isso, você definitivamente aumentará seus poderes mágicos.</string>
+</code>
+
+==== Polish ====
+<code xml>
+<string name="TomeOfKnowledge_Name">Księga Wiedzy</string>
+<string name="TomeOfKnowledge_Info">Ta tajemnicza księga wypełniona jest tajemniczymi zagadkami i tajemnicami!  Może i jest trudna do przeczytania, ale jeśli podołasz zadaniu, z pewnością zwiększysz swe moce magiczne.</string>
+</code>
+
+==== Turkish ====
+<code xml>
+<string name="TomeOfKnowledge_Name">Bilgi Külliyatı</string>
+<string name="TomeOfKnowledge_Info">Bu kadim kitap gizemli bilmeceler ve sırlarla dolu! Okuması zor olabilir, ama eğer üstesinden gelirseniz, kesinlikle büyülü güçlerinizi artıracaksınız.</string>
+</code>
+
+==== Greek ====
+<code xml>
+<string name="TomeOfKnowledge_Name">τόμος της γνώσης</string>
+<string name="TomeOfKnowledge_Info">Αυτός ο αρχαίος τόμος είναι γεμάτος με μαγικούς γρίφους και μυστήρια! Είναι δύσκολος στην ανάγνωση, αλλά, αν τον καταφέρεις, θα αυξήσει σίγουρα τις μαγικές σου δυνάμεις.</string>
+</code>
+
+==== Ukrainian ====
+<code xml>
+<string name="TomeOfKnowledge_Name">Том Знання</string>
+<string name="TomeOfKnowledge_Info">Цей древній том сповнений потаємним знанням та загадками! Може це й не найпростіше чтиво, але здолавши його, воно обов\'язково підвищить твій магічний рівень.</string>
+</code>
+
+==== Hungarian ====
+<code xml>
+<string name="TomeOfKnowledge_Name">A tudás könyve</string>
+<string name="TomeOfKnowledge_Info">Ez az ősi könyv tele van mágikus talányokkal és titkokkal! Nehéz lehet elolvasni, de ha átrágod magad rajta, határozottan megnöveled a mágiahatalmad.</string>
+</code>
+
+==== Indonesian ====
+<code xml>
+<string name="TomeOfKnowledge_Name">buku pengetahuan</string>
+<string name="TomeOfKnowledge_Info">Buku tua ini berisi tentang teka teki yang misterius! ini mungkin sulit untuk dibaca, tetapi bila kamu dapat membacanya, maka dapat dipastikan kekuatan magis mu akan meningkat.</string>
+</code>
+
+==== Malay ====
+<code xml>
+<string name="TomeOfKnowledge_Name">Buku Besar Pengetahuan</string>
+<string name="TomeOfKnowledge_Info">Buku besar purba ini mengandungi teka-teki dan misteri penuh rahsia! Ia mungkin sukar dibaca, tetapi jika anda boleh membacanya, anda dapat tingkatkan kuasa sihir anda.</string>
+</code>
+
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Functionality =====
+  * When read, increases the user's skill level by 1
+  * Cannot be burned (fireproof)
+  * Costs 100 gold per tome
+  * Found in shop inventories
 
 ===== Related mr Entities =====
   * [[mr:tome_of_mastery_item|Tome of Mastery (Item)]]
