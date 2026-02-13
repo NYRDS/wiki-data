@@ -3,15 +3,104 @@
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfWeaponUpgrade.java|ScrollOfWeaponUpgrade.java]]
 
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.items.scrolls;
+
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.Badges;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.effects.Speck;
+import com.watabou.pixeldungeon.items.Item;
+import com.watabou.pixeldungeon.items.weapon.Weapon;
+import com.watabou.pixeldungeon.utils.GLog;
+import com.watabou.pixeldungeon.windows.WndBag;
+
+public class ScrollOfWeaponUpgrade extends InventoryScroll {
+
+	{
+        inventoryTitle = StringsManager.getVar(R.string.ScrollOfWeaponUpgrade_InvTitle);
+		mode = WndBag.Mode.UPGRADABLE_WEAPON;
+	}
+
+	@Override
+	protected void onItemSelected(Item item, Char selector) {
+
+		Weapon weapon = (Weapon)item;
+
+		ScrollOfRemoveCurse.uncurse( selector, weapon );
+		weapon.upgrade( true );
+
+        GLog.p(StringsManager.getVar(R.string.ScrollOfWeaponUpgrade_LooksBetter), weapon.name() );
+
+		Badges.validateItemLevelAcquired( weapon );
+
+		selector.getSprite().emitter().start( Speck.factory( Speck.UP ), 0.2f, 3 );
+	}
+}
+</code>
+
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
 <string name="ScrollOfWeaponUpgrade_Name">Scroll of Weapon Upgrade</string>
-<string name="ScrollOfWeaponUpgrade_Info">This scroll will upgrade a single weapon, improving its quality. A weapon will inflict more damage or find its mark more frequently. The strength required to use the weapon will also be reduced.</string>
-<string name="ScrollOfWeaponUpgrade_InvTitle">Select a weapon to upgrade</string>
+<string name="ScrollOfWeaponUpgrade_Info">This scroll will upgrade a melee weapon, improving its quality. In contrast to a regular Scroll of Upgrade, this specialized version will never destroy an enchantment on a weapon. On the contrary, it is able to imbue an unenchanted weapon with a random enchantment.</string>
+<string name="ScrollOfWeaponUpgrade_InvTitle">Select an weapon to upgrade</string>
 <string name="ScrollOfWeaponUpgrade_LooksBetter">your %s certainly looks better now</string>
+</code>
+
+===== Translated String Resources =====
+<code xml>
+<!-- Chinese Simplified -->
+<string name="ScrollOfWeaponUpgrade_Name">武器强化卷轴</string>
+<string name="ScrollOfWeaponUpgrade_Info">这张卷轴将升级一把近战武器，提高其质量。与普通的升级卷轴相比，这张特殊版本卷轴永远不会摧毁武器上的附魔。相反，它可以给未附魔的武器随机附魔。</string>
+
+<!-- Chinese Traditional -->
+<string name="ScrollOfWeaponUpgrade_Name">武器強化卷軸</string>
+<string name="ScrollOfWeaponUpgrade_Info">只能強化武器的升級卷軸，但能為其附魔或保留其原來的附魔。</string>
+
+<!-- French -->
+<string name="ScrollOfWeaponUpgrade_Name">Parchemin d'amélioration d'arme</string>
+<string name="ScrollOfWeaponUpgrade_Info">Le parchemin va améliorer une arme de mélée, augmentant sa qualité. Par rapport à un parchemin d'amélioration classique, cette version spécialisée n'enlèvera jamais l'enchantement d'une arme, au contraire, elle peut même octroyer un enchantement aléatoire à une arme non-enchantée.</string>
+
+<!-- German -->
+<string name="ScrollOfWeaponUpgrade_Name">Schriftrolle der Waffenaufrüstung</string>
+<string name="ScrollOfWeaponUpgrade_Info">Dieser Zettel wird eine Nahkampfwaffe verbessern und erhöht die Qualität des Gegenstandes. Im Gegensatz zu dem normalen Spruch der Verbesserung, wird diese spezielle Version niemals eine Verzauberung auf der Waffe zerstören. Außerdem ist dieser Spruch in der Lage eine nicht verzauberte Waffe mit einer zufälligen Verzauberung zu versehen.</string>
+
+<!-- Italian -->
+<string name="ScrollOfWeaponUpgrade_Name">Pergamena d'aggiornamento arma</string>
+<string name="ScrollOfWeaponUpgrade_Info">Questa pergamena aggiornerà un'arma da mischia, migliorandone la qualità. A differenza di una normale pergamena d'aggiornamento, questa versione speciale non potrà distruggere l'incantesimo su l'arma. Al contrario, è in grado di permeare l'arma con un incantesimo casuale.</string>
+
+<!-- Japanese -->
+<string name="ScrollOfWeaponUpgrade_Name">武器強化のスクロール</string>
+<string name="ScrollOfWeaponUpgrade_Info">このスクロールは近接武器をアップグレードし、その品質を向上させる。通常のアップグレードの巻物とは違い、この特別なスクロールは武器のエンチャントを破壊することはない。それどころか、エンチャントされていない武器にランダムなエンチャントを付与することができる。</string>
+
+<!-- Korean -->
+<string name="ScrollOfWeaponUpgrade_Name">무기 강화의 두루마리</string>
+<string name="ScrollOfWeaponUpgrade_Info">이 두루마리는 근접무기를 강화하여 그것의 질을 증진시킬 것입니다. 이 두루마리는 강화의 두루마리와 비교해 보면, 이 특별한 두루마리는 무기에 부여된 마법을 파괴하지 않을 것입니다. 대조적으로, 마법 부 여가 되지 않은 무기에게는 무작위의 마법 부 여를 해 줄 것입니다.</string>
+
+<!-- Polish -->
+<string name="ScrollOfWeaponUpgrade_Name">Zwój Ulepszenia Broni</string>
+<string name="ScrollOfWeaponUpgrade_Info">Ten zwój ulepszy broń białą, polepszając jej jakość. W przeciwieństwie do zwykłego Zwoju Ulepszenia, ta wyspecjalizowana wersja nigdy nie zniszczy zaklęcia na broni. Przeciwnie, jest w stanie zakląć niezaklęty przedmiot losowym efektem.</string>
+
+<!-- Portuguese -->
+<string name="ScrollOfWeaponUpgrade_Name">Pergaminho de Melhora de Arma</string>
+<string name="ScrollOfWeaponUpgrade_Info">Este pergaminho vai atualizar uma arma branca, melhorando a sua qualidade. Em contraste com um Pergaminho de Atualização, esta versão especializada nunca vai destruir um encantamento em uma arma. Pelo contrário, ele é capaz de atribuir um encantamento aleatório a uma arma não encantada.</string>
+
+<!-- Russian -->
+<string name="ScrollOfWeaponUpgrade_Name">Свиток Улучшения Оружия</string>
+<string name="ScrollOfWeaponUpgrade_Info">Этот свиток улучшит оружие ближнего боя, повысив его качество. В отличие от простого Свитка Улучшения, эта версия не разрушит чары, наложенные на предмет. Даже наоборот, он сможет наделить случайным эффектом незачарованный предмет.</string>
+
+<!-- Spanish -->
+<string name="ScrollOfWeaponUpgrade_Name">Pergamino de Mejora de Arma</string>
+<string name="ScrollOfWeaponUpgrade_Info">Este pergamino mejorara un arma cuerpo a cuerpo, aumentando su calidad. A diferencia de un pergamino de mejora normal, esta versión especializada jamás destruirá el encantamiento de un arma. En cambio, es posible que encante a un arma con un encantamiento al azar.</string>
+
+<!-- Turkish -->
+<string name="ScrollOfWeaponUpgrade_Name">Silah Yükseltme Parşömeni</string>
+<string name="ScrollOfWeaponUpgrade_Info">Bu parşömen bir yakın dövüş silahını yükselterek kalitesini artırır. Normal bir Yükseltme Parşömeninin aksine, bu özel versiyon bir silah üzerindeki büyüyü asla yok etmez. Aksine, büyülenmemiş bir silaha rastgele bir büyü yükleyebilir.</string>
 </code>
 
 ===== Lua Scripts =====
