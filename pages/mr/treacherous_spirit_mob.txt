@@ -4,8 +4,65 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/TreacherousSpirit.java|TreacherousSpirit.java]]
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/SpiritOfPain.java|SpiritOfPain.java]]
 
+===== Java Class Content =====
+<code java>
+package com.nyrds.pixeldungeon.mobs.guts;
+
+
+import com.nyrds.pixeldungeon.ai.MobAi;
+import com.nyrds.pixeldungeon.ai.Wandering;
+import com.nyrds.pixeldungeon.items.guts.HeartOfDarkness;
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.utils.Random;
+
+import org.jetbrains.annotations.NotNull;
+
+/**
+ * Created by DeadDie on 12.02.2016
+ */
+public class TreacherousSpirit extends Mob {
+    {
+        hp(ht(200));
+        baseDefenseSkill = 35;
+        baseAttackSkill  = 35;
+        dmgMin = 30;
+        dmgMax = 45;
+        dr = 25;
+
+        expForKill = 45;
+        maxLvl = 30;
+
+        setState(MobAi.getStateByClass(Wandering.class));
+        collect( new HeartOfDarkness());
+    }
+
+    @Override
+    public int attackProc(@NotNull Char enemy, int damage ) {
+        //Summon proc
+        if (Random.Int(4) == 1){
+            int spiritPos = Dungeon.level.getEmptyCellNextTo(getPos());
+
+            if (Dungeon.level.cellValid(spiritPos)) {
+                SpiritOfPain spirit = new SpiritOfPain();
+                spirit.setPos(spiritPos);
+                Dungeon.level.spawnMob(spirit, 0,getPos());
+            }
+        }
+        return damage;
+    }
+
+    @Override
+    public boolean canBePet(){
+        return false;
+    }
+
+}
+</code>
+
 ===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/TreacherousSpirit.json|TreacherousSpirit.json]]
 
 ===== String Resources =====
 <code xml>
@@ -14,6 +71,16 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="TreacherousSpirit_Name_Objective">Treacherous spirit</string>
 <string name="TreacherousSpirit_Desc">This monstrous creature looks like a cloud of living darkness. It\'s gigantic eye is stares at you, while pulsating with each movement you make.</string>
 </code>
+
+===== Related String Resources =====
+  * TreacherousSpirit_Desc
+  * TreacherousSpirit_Name
+  * TreacherousSpirit_Name_Objective
+  * TreacherousSpirit_Gender
+
+===== Other Java Usage =====
+Found usage in:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]]
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
