@@ -1,19 +1,181 @@
-====== Wand Of Slowness - Code References ======
+====== Wand Of Slowness - Machine Readable Reference ======
 
-===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfSlowness.java|WandOfSlowness.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]]
+===== Java Class Implementation =====
+{{https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfSlowness.java|WandOfSlowness.java}}
+
+<code java>
+package com.watabou.pixeldungeon.items.wands;
+
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.audio.Sample;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.Assets;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.buffs.Slow;
+import com.watabou.pixeldungeon.effects.MagicMissile;
+import com.watabou.pixeldungeon.utils.GLog;
+import com.watabou.utils.Callback;
+
+public class WandOfSlowness extends SimpleWand  {
+
+	@Override
+	protected void onZap( int cell, Char ch ) {
+		if (ch != null) {
+			Buff.affect( ch, Slow.class, Slow.duration( ch ) / 3 + effectiveLevel() );
+		} else {
+            GLog.i(StringsManager.getVar(R.string.WandOfSlowness_Info1));
+		}
+	}
+
+	protected void fx( int cell, Callback callback ) {
+		MagicMissile.slowness( getOwner().getSprite().getParent(), getOwner().getPos(), cell, callback );
+		Sample.INSTANCE.play( Assets.SND_ZAP );
+	}
+
+	@Override
+	public String desc() {
+        return StringsManager.getVar(R.string.WandOfSlowness_Info);
+    }
+}
+</code>
+
+===== Java References =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - Registered in wand list
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/SimpleWand.java|SimpleWand.java]] - Base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - Base item class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]] - Applied buff effect
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/WandMaker.java|WandMaker.java]] - Used in wand maker quest
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registered in item factory
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
+===== English Strings =====
 <code xml>
 <string name="WandOfSlowness_Name">Wand of Slowness</string>
 <string name="WandOfSlowness_Info">This wand will cause a creature to move and attack at half its ordinary speed until the effect ends</string>
 <string name="WandOfSlowness_Info1">nothing happened</string>
+</code>
+
+===== Russian Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">Палочка Замедления</string>
+<string name="WandOfSlowness_Info">Эта палочка наложит на цель временный эффект, уменьшающий её скорость атаки и движения</string>
+<string name="WandOfSlowness_Info1">ничего не произошло</string>
+</code>
+
+===== Portuguese (Brazil) Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">Varinha da Lentidão</string>
+<string name="WandOfSlowness_Info">Esta varinha fará com que uma criatura se mova ou ataque com a metade de sua velocidade normal até o fim de seu efeito</string>
+<string name="WandOfSlowness_Info1">nada aconteceu</string>
+</code>
+
+===== French Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">Baguette de lenteur</string>
+<string name="WandOfSlowness_Info">Cette baguette diminuera de moitié la vitesse d\'attaque et de déplacement de la créature atteinte jusqu\'à ce que l\'effet cesse.</string>
+<string name="WandOfSlowness_Info1">il ne s\'est rien passé</string>
+</code>
+
+===== German Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">Zauberstab der Verlangsamung</string>
+<string name="WandOfSlowness_Info">Dieser Stab zwingt eine Kreatur dazu, sich mit der halben Geschwindigkeit zu Bewegen und zu Attackieren, bis der Effekt endet.</string>
+<string name="WandOfSlowness_Info1">nichts ist geschehen</string>
+</code>
+
+===== Spanish Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">Varita de Lentitud</string>
+<string name="WandOfSlowness_Info">Esta vara provocará que una criatura se mueva y ataque a la mitad de su velocidad normal hasta que el efecto termine.</string>
+<string name="WandOfSlowness_Info1">no pasó nada</string>
+</code>
+
+===== Italian Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">Bacchetta di Lentezza</string>
+<string name="WandOfSlowness_Info">Questa bacchetta non farà muovere e attaccare alla metà della sua velocità normale una creatura alla metà della sua velocità normale fino al termine effetto</string>
+<string name="WandOfSlowness_Info1">non è successo nulla</string>
+</code>
+
+===== Japanese Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">鈍化の杖</string>
+<string name="WandOfSlowness_Info">この杖の効果が終了するまで、対象とした生き物の移動と攻撃を通常の半分の速度にする。</string>
+<string name="WandOfSlowness_Info1">何も起こらなかった</string>
+</code>
+
+===== Korean Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">둔화의 마법 막대</string>
+<string name="WandOfSlowness_Info">이 마법 막대는 생물체의 공격 속도와 이동 속도를 효과가 끝날 때까지 절반으로 줄여버릴 것입니다.</string>
+<string name="WandOfSlowness_Info1">아무 일도 일어나지 않았습니다</string>
+</code>
+
+===== Chinese Simplified Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">减速法杖</string>
+<string name="WandOfSlowness_Info">这根法杖会使目标行动迟钝，从而降低其移动力及攻速，直到效果结束。</string>
+<string name="WandOfSlowness_Info1">什么事也没有发生</string>
+</code>
+
+===== Chinese Traditional Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">緩速法杖</string>
+<string name="WandOfSlowness_Info">這根法杖會使目標行動遲鈍，從而降低其移動力及攻速，直到效果結束。</string>
+<string name="WandOfSlowness_Info1">什麼事也沒有發生</string>
+</code>
+
+===== Polish Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">Kostur Spowolnienia</string>
+<string name="WandOfSlowness_Info">Ten kostur sprawi, że stworzenie będzie się poruszało i atakowało o połowę wolniej niż normalnie, dopóki efekt się nie skończy.</string>
+<string name="WandOfSlowness_Info1">nic się nie wydarzyło</string>
+</code>
+
+===== Ukrainian Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">Паличка сповільнення</string>
+<string name="WandOfSlowness_Info">Паличка накладає тимчасовий ефект, сповільнюючи ціль та швидкість атаки.</string>
+<string name="WandOfSlowness_Info1">нічого не трапилося</string>
+</code>
+
+===== Hungarian Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">A Lassúság Pálcája</string>
+<string name="WandOfSlowness_Info">Ez a pálca úgy hat a lényekre, hogy felére csökken haladási és támadási sebességük, a míg a varázs tart.</string>
+<string name="WandOfSlowness_Info1">semmi nem történt</string>
+</code>
+
+===== Turkish Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">Yavaşlık Asası</string>
+<string name="WandOfSlowness_Info">Bu asa etki süresi boyunca hedeflenen yaratığın hızını yarıya indirir</string>
+<string name="WandOfSlowness_Info1">hiçbir şey olmadı</string>
+</code>
+
+===== Greek Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">ραβδί βραδύτητας</string>
+<string name="WandOfSlowness_Info">Αυτό το ραβδί θα μειώσει τις ταχύτητες κίνησης κι επίθεσης ενός πλάσματος στο μισό, έως ότου τελειώσει η επίδραση.</string>
+<string name="WandOfSlowness_Info1">Δεν συνέβη κάτι.</string>
+</code>
+
+===== Indonesian Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">Tongkat Kelambatan</string>
+<string name="WandOfSlowness_Info">Tongkat ini akan menyebabkan makhluk bergerak dan menyerang dengan kecepatan setengah dari biasanya sampai efeknya berakhir</string>
+<string name="WandOfSlowness_Info1">tidak terjadi apa-apa</string>
+</code>
+
+===== Malay Strings =====
+<code xml>
+<string name="WandOfSlowness_Name">Tongkat Sakti Kelembapan</string>
+<string name="WandOfSlowness_Info">Tongkat sakti ini akan menyebabkan makhluk yang terkena menjadi lembap pergerakannya dan kerosakan serangannya menjadi separuh dari asal sehinggalah kesannya hilang.</string>
+<string name="WandOfSlowness_Info1">tiada apa-apa berlaku</string>
 </code>
 
 ===== Lua Scripts =====
