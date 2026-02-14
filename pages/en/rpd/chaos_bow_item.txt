@@ -9,18 +9,29 @@ The Chaos Bow is a tier-3 ranged weapon that is filled with the power of Chaos. 
 
 ==== Stats ====
   * **Tier:** 3
-  * **Strength Required:** 14
-  * **Damage:** Based on level (dmgFactor function: base damage * (1 + level * 0.3))
   * **Accuracy:** 1.0
-  * **Evasion:** 1.0
+  * **Delay:** 1.0
+  * **Damage:** Based on level (dmgFactor function: 1 + level * 0.3)
+  * **Image File:** items/chaosBow.png
   * **Upgradable:** No (upgrades are handled automatically)
 
 ==== Special Mechanics ====
-  * **Self-Upgrading:** The bow upgrades itself when the owner does damage, with charge increasing on successful hits
-  * **Self-Degrading:** If unused for too long, the bow degrades and loses levels
-  * **Chaos Mark:** On missing a target, the bow triggers a Chaos Mark at the user's position
-  * **Charge System:** Each hit adds to the bow's charge, and reaching charge threshold triggers an upgrade
+  * **Self-Upgrading:** The bow upgrades itself when the owner does damage, with charge += 1 on successful hits
+  * **Charge Threshold:** Upgrades when charge > chargeForLevel() where chargeForLevel() = (int)(5 * Math.pow(level(), 1.5))
+  * **Self-Degrading:** Charge decreases by 1 when owner takes damage (never goes below 0)
   * **Level 6+ Degradation:** At level 6 and above, if the charge reaches 0, the bow degrades, losing its enchantment
+  * **Chaos Mark:** On missing a target, the bow triggers Chaos Mark at the user's position with intensity: charge + 3*level()
+  * **Image Selection:** Image varies based on level (image = Math.max(0, Math.min(level()/3, 4)))
+  * **Damage Calculation:** Damage factor increases with level according to formula: 1 + level() * 0.3
+
+==== Code Mechanics ====
+The ChaosBow extends the Bow class and implements several override methods:
+  * **ownerDoesDamage()**: Increases charge when the owner does damage
+  * **ownerTakesDamage()**: Decreases charge when the owner takes damage, handles degradation at level 6+
+  * **dmgFactor()**: Calculates damage multiplier based on level
+  * **onMiss()**: Triggers Chaos Mark when the bow misses
+  * **isUpgradable()**: Returns false to prevent manual upgrades
+  * **restoreFromBundle()**: Handles saving/loading with proper image selection
 
 ==== Usage ====
 The Chaos Bow is effective for players who engage in combat regularly, as it requires active use to maintain its effectiveness. Its chaotic properties make it a powerful but demanding weapon.
@@ -33,10 +44,13 @@ While any class can technically use the Chaos Bow, it works best with classes th
   * Be aware of the self-degradation mechanic if you're not using it often
   * The Chaos Mark effect on missing can be dangerous, so aim carefully
   * The bow's damage increases significantly with each level
+  * Higher levels require more charges to upgrade (chargeForLevel grows with level^1.5)
 
 ==== Code References ====
   * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosBow.java|ChaosBow.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1180-L1182|ChaosBow strings]]
+  * Parent Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Bow.java|Bow.java]]
+  * Chaos Effects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCommon.java|ChaosCommon.java]]
+  * Item System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/KindOfBow.java|KindOfBow.java]]
 
 ==== Content Verification ====
   * Information source: Java Class in Remixed Dungeon codebase
@@ -48,5 +62,6 @@ While any class can technically use the Chaos Bow, it works best with classes th
   * [[en:rpd:chaos_set_item|Chaos Set]]
   * [[en:rpd:items|Items]]
   * [[en:rpd:ranged_weapons|Ranged Weapons]]
+  * [[en:rpd:bow_item|Bow]]
 
 {{tag> rpd items weapons ranged chaos }}

@@ -1,7 +1,18 @@
 ====== Healer NPC - Code References ======
 
+===== Entity Information =====
+  * **Entity Kind:** HealerNPC
+  * **Type:** npc
+  * **Namespace:** rpd
+  * **Inherits From:** [[mr:immortal_npc|Immortal NPC]]
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/HealerNPC.java|HealerNPC.java]]
+  * **Parent Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+
+===== Usage in Code =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L239|MobFactory.java]] - registers HealerNPC class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndPriest.java|WndPriest.java]] - interacts with HealerNPC
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -9,11 +20,38 @@ This entity is implemented in Java, no JSON configuration exists
 ===== String Resources =====
 <code xml>
 <string name="HealerNPC_Name">town priest</string>
+<string name="HealerNPC_Name_Objective">town priest</string>
 <string name="HealerNPC_Desc">An old man, somehow he looks like someone who would be making wands.</string>
 <string name="HealerNPC_Message1">Free treatment for every adventurer!</string>
 <string name="HealerNPC_Message2">Come back anytime you feel sick or hungry!</string>
 <string name="HealerNPC_Message3">I wonder why the church doesn\'t allow us to wear hats... it\'s really cold out here.</string>
 </code>
+
+===== String Resource Locations =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1671-L1677|English Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L895-L901|Russian Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L826-L832|Spanish Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L870-L876|French Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L805-L810|German Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-it/strings_all.xml#L688-L691|Italian Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pl/strings_all.xml#L893-L899|Polish Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L809-L814|Portuguese Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml#L852-L857|Japanese Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ko/strings_all.xml#L728-L734|Korean Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L834-L840|Chinese (Simplified) Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L770-L775|Chinese (Traditional) Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-uk/strings_all.xml#L797-L803|Ukrainian Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-hu/strings_all.xml#L748-L753|Hungarian Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-tr/strings_all.xml#L837-L843|Turkish Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-el/strings_all.xml#L888-L894|Greek Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-in/strings_all.xml#L807-L812|Indonesian Strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ms/strings_all.xml#L741-L746|Malay Strings]]
+
+===== Entity Behavior =====
+  * **Immobile**: The HealerNPC cannot move (movable = false)
+  * **Interaction**: Opens WndPriest window when interacted with
+  * **Automatic Messages**: Says random phrases when hero is nearby
+  * **Special Ability**: Provides healing services through WndPriest interface
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
