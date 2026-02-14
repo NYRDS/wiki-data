@@ -1,20 +1,129 @@
 ====== Mimic Amulet Mob - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+===== Java Class =====
+<code java>
+RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/MimicAmulet.java
+package com.nyrds.pixeldungeon.mobs.guts;
+
+import com.nyrds.Packable;
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.actors.blobs.ToxicGas;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.buffs.Levitation;
+import com.watabou.pixeldungeon.actors.buffs.Paralysis;
+import com.watabou.pixeldungeon.actors.buffs.Stun;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.pixeldungeon.items.keys.SkeletonKey;
+import com.watabou.utils.Bundle;
+
+public class MimicAmulet extends Mob {
+
+	@Packable
+	public int level;
+
+	public MimicAmulet() {
+		baseSpeed = 1.25f;
+
+		flying = true;
+		carcassChance = 0;
+
+		level = Dungeon.depth;
+		adjustStats(level);
+		addImmunity( ToxicGas.class );
+		addImmunity( Paralysis.class );
+		addImmunity( Stun.class );
+
+		var prize = new SkeletonKey();
+		collect(prize);
+	}
+
+
+	@Override
+	public void restoreFromBundle( Bundle bundle ) {
+		super.restoreFromBundle(bundle);
+
+		if(getBelongings().getItem(SkeletonKey.class)==null) {
+			collect(new SkeletonKey());
+		}
+
+		adjustStats(level);
+	}
+
+
+	@Override
+    public boolean act() {
+		if(!hasBuff(Levitation.class)) {
+			Buff.affect(this, Levitation.class, 1000000);
+		}
+		return super.act();
+	}
+
+	public void adjustStats( int level ) {
+		this.level = level;
+
+		hp(ht((3 + level) * 5));
+		expForKill = 2 + 2 * (level - 1) / 5;
+		baseAttackSkill = 9 + level;
+		baseDefenseSkill = 2 * attackSkill + 1;
+
+		dmgMin = ht()/10;
+		dmgMax = ht()/4;
+
+		enemySeen = true;
+	}
+
+	@Override
+	public boolean canBePet() {
+		return false;
+	}
+}
+</code>
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/mimic_amulet.json
+<code json>
+RemixedDungeon/src/main/assets/spritesDesc/MimicAmulet.json
+{
+   "texture" : "mobs/mimic_amulet.png",
+   "width" : 16,
+   "height" : 16,
+   "idle" : {
+      "fps" : 5,
+      "looped" : true,
+      "frames" : [0, 0, 0, 1, 1]
+   },
+   "run" : {
+      "fps" : 10,
+      "looped" : true,
+      "frames" : [0, 1, 2, 3, 3, 2, 1]
+   },
+   "attack" : {
+      "fps" : 10,
+      "looped" : false,
+      "frames" : [0, 3, 4, 5]
+   },
+   "die" : {
+      "fps" : 12,
+      "looped" : false,
+      "frames" : [6,7,8]
+   }
+}
+</code>
 
 ===== String Resources =====
 <code xml>
-<string name="MimicAmulet_Name">[Name]</string>
-<string name="MimicAmulet_Info">[Description]</string>
+<string name="MimicAmulet_Name">mimic</string>
+<string name="MimicAmulet_Gender">masculine</string>
+<string name="MimicAmulet_Name_Objective">mimic</string>
+<string name="MimicAmulet_Desc">The most glorious moment of your adventuring career just turned out to be a trap.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Entity Kind =====
+MimicAmulet
+
+===== Additional Info =====
+- Package: com.nyrds.pixeldungeon.mobs.guts
+- Inherits from: Mob
+- Implemented as a mimic that appears as a floating amulet
