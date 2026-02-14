@@ -1,20 +1,70 @@
 ====== Exploding Skull Mob - Code References ======
 
+{{ rpd:images:exploding_skull_mob.png|Exploding Skull }}
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/ExplodingSkull.java|ExplodingSkull.java]]
+
+===== Full Java Class Content =====
+<code java>
+package com.nyrds.pixeldungeon.mobs.necropolis;
+
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.pixeldungeon.items.Gold;
+
+import org.jetbrains.annotations.NotNull;
+
+/**
+ * Created by DeadDie on 12.02.2016
+ */
+public class ExplodingSkull extends Mob {
+    {
+        carcassChance = 0;
+        hp(ht(10));
+        baseDefenseSkill = 1;
+        baseAttackSkill  = 125;
+
+        dmgMin = 25;
+        dmgMax = 45;
+        dr = 1;
+
+        baseSpeed = 1.5f;
+
+        expForKill = 1;
+        maxLvl = 1;
+
+        setUndead(true);
+        loot(Gold.class, 0.02f);
+    }
+
+    @Override
+    public boolean attack(@NotNull Char enemy) {
+        if(super.attack(enemy)) {
+            die(this);
+            return true;
+        }
+        return false;
+    }
+}
+</code>
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
+This entity may have JSON configuration, but no matching config was found. Check:
   * RemixedDungeon/src/main/assets/mobsDesc/*.json
   * RemixedDungeon/src/main/assets/spritesDesc/exploding_skull.json
 
 ===== String Resources =====
 <code xml>
-<string name="ExplodingSkull_Name">[Name]</string>
-<string name="ExplodingSkull_Info">[Description]</string>
+<string name="ExplodingSkull_Name">exploding skull</string>
+<string name="ExplodingSkull_Gender">neuter</string>
+<string name="ExplodingSkull_Name_Objective">exploding skull</string>
+<string name="ExplodingSkull_Desc">This Undead enemy is a flying skull that explodes on contact with the hero, dealing heavy damage. It moves very quickly.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:undead_mob|Undead (Mob)]]
+  * [[mr:necropolis_level|Necropolis (Level)]]

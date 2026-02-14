@@ -1,10 +1,81 @@
 ====== EnslavedSoul - Code References ======
 
+{{ rpd:images:enslaved_soul_mob.png|Enslaved Soul }}
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/EnslavedSoul.java|EnslavedSoul.java]]
 
+===== Full Java Class Content =====
+<code java>
+package com.nyrds.pixeldungeon.mobs.necropolis;
+
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.buffs.Blindness;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.buffs.Charm;
+import com.watabou.pixeldungeon.actors.buffs.FlavourBuff;
+import com.watabou.pixeldungeon.actors.buffs.Roots;
+import com.watabou.pixeldungeon.actors.buffs.Slow;
+import com.watabou.pixeldungeon.actors.buffs.Vertigo;
+import com.watabou.pixeldungeon.actors.buffs.Weakness;
+import com.watabou.pixeldungeon.actors.hero.Hero;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.pixeldungeon.items.Gold;
+import com.watabou.utils.Random;
+
+import org.jetbrains.annotations.NotNull;
+
+/**
+ * Created by DeadDie on 12.02.2016
+ */
+public class EnslavedSoul extends Mob {
+
+    static final Class<?>[] BuffsForEnemy = {
+            Blindness.class,
+            Charm.class,
+            Roots.class,
+            Slow.class,
+            Vertigo.class,
+            Weakness.class
+    };
+
+    public EnslavedSoul(){
+        hp(ht(25));
+        carcassChance = 0;
+        baseSpeed = 1.1f;
+        baseDefenseSkill = 11;
+        baseAttackSkill  = 10;
+        flying = true;
+
+        dmgMin = 5;
+        dmgMax = 8;
+        dr = 10;
+
+        expForKill = 5;
+        maxLvl = 15;
+
+        setUndead(true);
+        loot(Gold.class, 0.02f);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public int attackProc(@NotNull Char enemy, int damage ) {
+        //Buff proc
+        if (Random.Int(5) == 1){
+            if(enemy instanceof Hero) {
+                Class <? extends FlavourBuff> buffClass = (Class<? extends FlavourBuff>) Random.oneOf(BuffsForEnemy);
+                Buff.prolong( enemy, buffClass, 3 );
+            }
+        }
+
+        return damage;
+    }
+}
+</code>
+
 ===== JSON Configuration =====
-''<code json>''
+<code json>
 {
    "texture" : "mobs/enslavedsoul.png",
    "width" : 16,
@@ -32,15 +103,15 @@
    },
    "bloodColor" : "0xFF777777"
 }
-''</code>''
+</code>
 
 ===== String Resources =====
-''<code xml>''
+<code xml>
 <string name="EnslavedSoul_Name">enslaved soul</string>
 <string name="EnslavedSoul_Gender">feminine</string>
 <string name="EnslavedSoul_Name_Objective">enslaved soul</string>
 <string name="EnslavedSoul_Desc">You can almost see through this ghostly apparition. And although it looks like a skull, sometimes for a split second a face appears, filled with pain and suffering.</string>
-''</code>''
+</code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
