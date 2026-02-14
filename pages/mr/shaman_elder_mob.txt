@@ -1,20 +1,56 @@
-====== Shaman Elder Mob - Code References ======
+====== Shaman Elder Mob - Machine Readable Data ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+===== Java Class =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shaman.java|Shaman.java]] - Base class implementation (ShamanElder is a variant)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/shaman_elder.json
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/ShamanElder.json|mobsDesc/ShamanElder.json]] - Stats and properties
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/ShamanElder.json|spritesDesc/ShamanElder.json]] - Sprite configuration
 
-===== String Resources =====
-<code xml>
-<string name="ShamanElder_Name">[Name]</string>
-<string name="ShamanElder_Info">[Description]</string>
+===== Lua Script =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/ShamanElder.lua|scripts/mobs/ShamanElder.lua]] - AI behavior script
+
+===== Statistics =====
+<code json>
+{
+   "defenseSkill"  :14,
+   "attackSkill"   :20,
+   "exp"           :9,
+   "maxLvl"        :16,
+   "dmgMin"        :8,
+   "dmgMax"        :12,
+   "dr"            :4,
+   "baseSpeed"     :1,
+   "attackDelay"   :1,
+   "attackRange"   :6,
+   "ht"            :48,
+   "viewDistance"  :6,
+   "loot"          : {
+      "kind": "SpellBook"
+   },
+   "lootChance"    :1
+}
 </code>
 
-===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/ShamanElder.lua|ShamanElder.lua]]
+===== Behavior =====
+  * Fleeing when enemy distance < 2 tiles
+  * Hunting when enemy distance > 4 tiles
+  * Casts Mana Shield when attacking
+  * Has 20% chance to yell when missing attack
+
+===== Appearance in Game =====
+  * Found in levels 13-14 according to Bestiary.json (0.01-0.1 chance)
+  * Mentioned in hero initialization files as part of Shaman subclass unlock chain
+  * Featured in ScriptsArena level
+  * Part of RARE_SHAMAN_ELDER badge system
+
+===== String Resources =====
+  * Name: ShamanElder_Name
+  * Objective name: ShamanElder_Name_Objective
+  * Description: ShamanElder_Desc
+  * Gender: ShamanElder_Gender
+
+===== Related Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java#L105|Badge.RARE_SHAMAN_ELDER]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L23|Bestiary Spawn Rates]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L196|Hero Initialization]]
