@@ -1,11 +1,11 @@
-====== Liquid Flame ======
+====== Liquid Flame Effect ======
 
 {{ rpd:images:potion_of_liquid_flame_item.png|Liquid Flame Effect }}
 
-**Liquid Flame** is a harmful environmental effect in Remixed Pixel Dungeon that causes damage to characters standing in its area.
+**Liquid Flame** is a harmful environmental effect in Remixed Pixel Dungeon that causes fire damage to characters standing in its area. This effect is primarily created when a Potion of Liquid Flame is shattered.
 
 ==== Description ====
-Liquid Flame is a blob effect that creates a fire hazard on the dungeon floor, causing ongoing damage to any character that stands in it. It spreads to flammable terrain and can be created by various sources including the Potion of Liquid Flame.
+Liquid Flame creates a fire hazard on the dungeon floor as a spreading pool of fire that deals ongoing damage to any character that remains in it. The effect spreads to flammable terrain and persists for several turns before dissipating. Players should avoid standing in these areas to prevent taking continuous damage.
 
 ==== Mechanics ====
   * **Damage:** Deals fire damage each turn to any character in the affected cell
@@ -17,6 +17,7 @@ Liquid Flame is a blob effect that creates a fire hazard on the dungeon floor, c
   * [[en:rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] - When shattered, creates liquid flame in a 3x3 area
   * [[en:rpd:fire_trap|Fire Traps]] - Environmental hazards that create liquid flame
   * [[en:rpd:wand_of_firebolt_item|Wand of Firebolt]] - Can ignite areas with liquid flame
+  * [[en:rpd:fire_elemental_mob|Fire Elementals]] - May create pools of liquid flame
   * Other fire-based items and abilities
 
 ==== Counters ====
@@ -24,6 +25,13 @@ Liquid Flame is a blob effect that creates a fire hazard on the dungeon floor, c
   * [[en:rpd:wand_of_frost_item|Wand of Frost]] - Frost-based attacks can neutralize fire
   * [[en:rpd:water_tile|Water tiles]] - Liquid flame cannot exist on water
   * Fire-resistant equipment and buffs can reduce damage taken
+  * Strategic positioning to avoid standing in affected areas
+
+==== Gameplay Tips ====
+  * Move quickly through areas with liquid flame to minimize damage
+  * Use liquid flame strategically against enemies when safe
+  * Be cautious when throwing potions near flammable surfaces
+  * Remember that some enemies are immune to fire damage
 
 ==== Technical Details ====
   * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame.java]]
@@ -31,12 +39,14 @@ Liquid Flame is a blob effect that creates a fire hazard on the dungeon floor, c
   * Fire damage mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java#L20-L30|spread method]]
   * Duration mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java#L35-L45|fading over time]]
   * Fire resistance integration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L154-L159|Char.resist() method]]
-  * Machine-readable data: [[mr:liquid_flame_blob|mr:liquid_flame_blob]]
+  * Machine-readable data: [[mr:liquid_flame_effect|mr:liquid_flame_effect]]
 
 ==== Related Effects ====
   * [[en:rpd:burning_buff|Burning]] - Status effect applied by liquid flame
+  * [[en:rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] - Item that creates the effect
+  * [[en:rpd:fire_trap|Fire Trap]] - Environmental hazard that creates the effect
   * [[en:rpd:fire|Fire]] - General fire mechanics
-  * [[en:rpd:toxic_gas|Toxic Gas]] - Another blob effect
-  * [[en:rpd:paralytic_gas|Paralytic Gas]] - Another blob effect
+  * [[en:rpd:toxic_gas|Toxic Gas]] - Another hazardous environmental effect
+  * [[en:rpd:paralytic_gas|Paralytic Gas]] - Another hazardous environmental effect
 
-{{tag> rpd mechanics blobs fire damage }}
+{{tag> rpd mechanics env_effects fire damage }}
