@@ -1,16 +1,33 @@
 ====== Golem Mob - Code References ======
 
+{{ rpd:images:golem_mob.png|Golem Mob }}
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Golem.java|Golem.java]]
+  * **Stats verification:** Extracted directly from Golem.java constructor (hp: 85, attack skill: 28, defense skill: 18, damage: 20-40, defense rate: 12, exp: 12)
+  * **Resistances and Immunities:** Resists ScrollOfPsionicBlast, immune to Amok, Terror, Sleep, and Bleeding
+  * **Special Properties:**
+     - Attack delay: 1.5 seconds (slower than most mobs)
+     - Max level cap: 22
+     - Used in Imp quest - drops DwarfToken when killed
 
 ===== JSON Configuration =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Golem.json|Golem.json]]
 
 ===== String Resources =====
 <code xml>
-<string name="Golem_Name">[Name]</string>
-<string name="Golem_Info">[Description]</string>
+<string name="Golem_Name">Golem</string>
+<string name="Golem_Name_Objective">golem</string>
+<string name="Golem_Defense">defense</string>
+<string name="Golem_Gender">m</string>
+<string name="Golem_Desc">Golems are magical constructs animated to serve as guards. They move slowly but strike hard, and are often found guarding valuable treasure.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Additional Technical Details =====
+  * **Entity Registration:** Registered in MobFactory.java with registerMobClass(Golem.class)
+  * **Quest Connection:** Part of the Dwarf Token quest chain through Imp NPC (alternative quest route)
+  * **Essence Value:** Used in alchemy recipes with medium-high value (10 essence)
+  * **Visual Effects:** Uses "Golem" effect for ZapEffect which creates ElmoParticle.FACTORY effect burst
