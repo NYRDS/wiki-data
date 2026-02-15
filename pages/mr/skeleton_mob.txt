@@ -2,6 +2,9 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java|Skeleton.java]]
+  * Used in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/Lich.java|Lich.java]] (summons skeletons)
+  * Listed in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]]
+  * Referenced in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/alchemy/AlchemyRecipes.java|AlchemyRecipes.java]] as non-resurrectable mob
 
 ===== JSON Configuration =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Skeleton.json|Skeleton.json]] - Sprite configuration
@@ -10,10 +13,19 @@
 <code xml>
 <string name="skeleton_name">skeleton</string>
 <string name="skeleton_desc">These perishes are animated by residual magical energy. They are turned into dust when killed.</string>
+<string name="Skeleton_Desc">Skeletons are semi-undead creatures animated by residual magical energy. They will explode violently when killed, dealing damage to all adjacent creatures.</string>
+<string name="Skeleton_Name">skeleton</string>
+<string name="SkeletonKey_Info">A rusty golden key that was probably buried with a warrior long ago. Magical energy radiates from it.</string>
+<string name="Skeleton_Gender">male</string>
+<string name="Skeleton_Defense">The skeleton blocks the attack.</string>
+<string name="Skeleton_Killed">The hero is killed by a skeleton's explosion.</string>
+<string name="Skeleton_Name_Objective">skeleton</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * Used in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/alchemy_recipes.lua|alchemy_recipes.lua]] as alchemy recipe output (Skeleton can be created with Rat Skulls + Skeleton Key)
 
 ===== Related mr Entities =====
+  * [[mr:skeletonkey_item|Skeleton Key (Item)]]
+  * [[mr:lich_mob|Lich (Mob)]] (summons skeletons)
   * [[mr:warrior_class|Warrior (Class)]]
