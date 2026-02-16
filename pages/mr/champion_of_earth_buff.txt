@@ -1,20 +1,37 @@
 ====== Champion Of Earth Buff - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+  * **BuffFactory.java**: Contains constant definition `CHAMPION_OF_EARTH = "ChampionOfEarth"` at line 68
+  * Located at: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L68|BuffFactory.java#L68]]
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/champion_of_earth.json
+No JSON configuration files found for this entity.
 
 ===== String Resources =====
+**English Strings**:
 <code xml>
-<string name="ChampionOfEarth_Name">[Name]</string>
-<string name="ChampionOfEarth_Info">[Description]</string>
+<string name="ChampionOfEarthBuff_Name">Champion of Earth</string>
+<string name="ChampionOfEarthBuff_Info">The Champion of Earth embodies unyielding strength, as this trait enhances the creature's damage resistance and increases its maximum vitality. This transformation makes it a daunting adversary in the treacherous depths, capable of shrugging off attacks with ease and enduring prolonged battles with unwavering resolve.</string>
 </code>
 
+**Russian Strings**:
+<code xml>
+<string name="ChampionOfEarthBuff_Name">Чемпион Земли</string>
+<string name="ChampionOfEarthBuff_Info">Чемпион Земли воплощает в себе непреклонную силу, так как эта черта повышает сопротивляемость существа к урону и увеличивает его максимальную жизненную силу. Это превращение делает его грозным противником в коварных глубинах, способным с легкостью отражать атаки и выдерживать длительные сражения с непоколебимой решимостью.</string>
+</code>
+
+**Additional Translations**:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L3330|German strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L3309|French strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-it/strings_all.xml#L3418|Italian strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pl/strings_all.xml#L3391|Polish strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L3305|Portuguese strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml#L3380|Japanese strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-el/strings_all.xml#L3304|Greek strings]]
+
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ChampionOfEarth.lua|ChampionOfEarth.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/buffs/ChampionOfEarth.lua|ChampionOfEarth.lua]] - Lua implementation of the Champion of Earth buff with traits enhancing damage resistance and maximum vitality
+  * Implements attachTo function that increases target's HT (max HP) by 4x and heals to full when activated
+  * Provides DR (Damage Resistance) bonus equal to target's level
+  * Provides regeneration bonus equal to target's level
+  * Sets glowing effect with green color (0x55AA55)
