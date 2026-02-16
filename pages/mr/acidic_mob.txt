@@ -4,24 +4,64 @@
 acidic_mob
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Acidic.java|Acidic.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Scorpio.java|Scorpio.java]] (base class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Acidic.java|Acidic.java]] - Main class extending Scorpio
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Scorpio.java|Scorpio.java]] - Base parent class
+
+===== Class Implementation =====
+<code java>
+package com.watabou.pixeldungeon.actors.mobs;
+
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.utils.Random;
+
+public class Acidic extends Scorpio {
+
+	@Override
+	public int defenseProc( Char enemy, int damage ) {
+
+		int dmg = Random.IntRange( 0, damage );
+		if (dmg > 0) {
+			enemy.damage( dmg, this );
+		}
+
+		return super.defenseProc( enemy, damage );
+	}
+}
+</code>
+
+===== Special Abilities =====
+  * **Thorn Damage**: When attacked, reflects random damage (0 to incoming damage) back to the attacker
+  * **Inherits Scorpio Abilities**: As a subclass of Scorpio, inherits all parent mob behaviors
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
-<string name="Acidic_Name">acidic scorpion</string>
-<string name="Acidic_Info">These huge arachnid-like demonic creatures avoid close combat by all means, firing crippling serrated spikes from long distances.</string>
+<string name="Acidic_Name">acidic scorpio</string>
+<string name="Acidic_Gender">masculine</string>
+<string name="Acidic_Name_Objective">acidic scorpio</string>
+<string name="Acidic_Desc">These huge arachnid-like demonic creatures avoid close combat by all means, firing crippling serrated spikes from long distances.</string>
+</code>
+
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="Acidic_Name">кислотный скорпион</string>
+<string name="Acidic_Gender">masculine</string>
+<string name="Acidic_Name_Objective">кислотного скорпиона</string>
+<string name="Acidic_Desc">Эти огромные членистоногие создания стараются избегать ближнего боя, выстреливая ядовитые иглы с большого расстояния.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
 ===== Related mr Entities =====
-  * [[mr:scorpio_mob|Scorpio_Mob]]
+  * [[mr:scorpio_mob|Scorpio_Mob]] - Parent mob class
 
 ===== Content Verification =====
-  * Information source: Java code and string resources
-  * Last updated: Based on Remixed Dungeon source code analysis
+  * Information source: Java code (Acidic.java) and string resources
+  * Last updated: 2026-02-16 based on current codebase analysis
+  * Verified against: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Acidic.java
+
+{{tag>mr mobs code_reference}}
