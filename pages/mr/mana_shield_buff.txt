@@ -1,7 +1,14 @@
 ====== Mana Shield Buff - Code References ======
 
+Machine-readable reference page for the Mana Shield buff entity.
+
+===== Entity Information =====
+  * **Entity Kind:** ManaShieldBuff
+  * **Type:** Visual effect / Buff indicator
+  * **Implementation:** Java visual effect class
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ManaShield.java|ManaShield.java]] - Visual effect implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ManaShield.java|ManaShield.java]] - Visual effect implementation (extends Halo, implements ISpriteEffect)
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L233|HeroSubClass.java]] - Used in skill activation
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderMind.java#L32|SpiderMind.java]] - Used as mob ability
 
@@ -9,11 +16,14 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/WandMaker.json#L20|WandMaker.json]] - As sprite effect
 
 ===== String Resources =====
-<code xml>
-<string name="ManaShieldBuff_Name">Magic Shield</string>
-<string name="ManaShieldBuff_Info">A shield of magic appeared, which completely negates the next incoming attack.</string>
-</code>
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2788-L2789|strings_all.xml]] - "Magic Shield"
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1310-L1311|strings_all.xml (ru)]] - "Магический щит"
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ManaShield.lua|ManaShield.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ManaShield.lua|ManaShield.lua]] - Buff behavior script
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/ShamanElder.lua#L27|ShamanElder.lua]] - Used as mob ability
+
+===== Related mr: Entities =====
+  * [[mr:mana_regeneration_buff|Mana Regeneration Buff]]
+  * [[mr:regeneration_buff|Regeneration Buff]]
+  * [[mr:buff|Buff Base Class]]
