@@ -1,7 +1,11 @@
 ====== Mystery Meat Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/MysteryMeat.java|MysteryMeat.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/MysteryMeat.java|MysteryMeat.java]] - Main item class extending Food
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/ChargrilledMeat.java|ChargrilledMeat.java]] - Burn transformation result
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/FrozenCarpaccio.java|FrozenCarpaccio.java]] - Freeze transformation result
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenMeat.java|RottenMeat.java]] - Poison transformation result
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -20,7 +24,33 @@ This entity is implemented in Java, no JSON configuration exists
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Implementation Details =====
+  * **Class**: com.watabou.pixeldungeon.items.food.MysteryMeat
+  * **Extends**: Food
+  * **Sprite**: ItemSpriteSheet.MEAT
+  * **Energy**: Hunger.STARVING - Hunger.HUNGRY (restores full hunger)
+  * **Price**: 5 gold per piece
+  * **Random Effects** (when eaten, 1 in 5 chance each):
+    * Case 0: Applies Burning buff (fire damage over time)
+    * Case 1: Applies Roots buff (immobilization)
+    * Case 2: Applies Poison buff (poison damage over time)
+    * Case 3: Applies Slow buff (reduced movement speed)
+    * Case 4: No negative effect (stuffed)
+  * **Transformations**:
+    * burn() -> morphTo(ChargrilledMeat.class)
+    * freeze() -> morphTo(FrozenCarpaccio.class)
+    * poison() -> morphTo(RottenMeat.class)
+
+===== Mob Drops =====
+  * SpiderMindAmber: 6.7% drop rate
+  * SpiderGuard: 6.7% drop rate
+  * SpiderMind: 6.7% drop rate
+  * SpiderExploding: 6.7% drop rate
+  * SpiderServant: 3% drop rate
+
 ===== Related mr Entities =====
   * [[mr:chargrilled_meat_item|Chargrilled Meat (Item)]]
   * [[mr:frozen_carpaccio_item|Frozen Carpaccio (Item)]]
   * [[mr:rotten_meat_item|Rotten Meat (Item)]]
+  * [[mr:food_item|Food (Item)]]
+  * [[mr:hunger_mechanic|Hunger Mechanic]]

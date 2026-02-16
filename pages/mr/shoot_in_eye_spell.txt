@@ -1,20 +1,43 @@
 ====== Shoot In Eye Spell - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/spells/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/spells/*.java
+This entity is implemented in Lua, no Java class exists
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/spellsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/shoot_in_eye.json
+This entity is implemented in Lua, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="ShootInEye_Name">[Name]</string>
-<string name="ShootInEye_Info">[Description]</string>
+<string name="ShootInEye_Name">Shoot In Eye</string>
+<string name="ShootInEye_Info">Use your exceptional marksmanship skills to shoot the enemy right in the eye, if he has any of course.</string>
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/ShootInEye.lua|ShootInEye.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/ShootInEye.lua|ShootInEye.lua]] - Main spell implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]] - Spell registration (Huntress spell list)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - RPD helper functions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]] - Spell base class
+
+===== Implementation Details =====
+  * **Script Path**: scripts/spells/ShootInEye.lua
+  * **Magic Affinity**: Huntress
+  * **Targeting Type**: char_not_self (requires target selection)
+  * **Level Requirement**: 1
+  * **Cast Time**: 1 turn
+  * **Spell Cost**: 5 mana
+  * **Effects**:
+    * Visual: Boomerang zap effect from caster to target
+    * Applies Blindness buff to target (duration based on caster's skill level)
+    * Deals damage: sqrt(skillLevel) * weapon.damageRoll(caster)
+    * Plays Wound sound effect on hit
+  * **Dependencies**:
+    * Requires weapon equipped to calculate damage
+    * Uses RPD.zapEffect() for visual effect
+    * Uses RPD.affectBuff() to apply Blindness
+    * Uses RPD.Sfx.Wound:hit() for sound effect
+
+===== Related mr Entities =====
+  * [[mr:blindness_buff|Blindness (Buff)]]
+  * [[mr:huntress_class|Huntress (Class)]]
+  * [[mr:spell|Spells]]
+  * [[mr:magic_mechanic|Magic Mechanic]]
