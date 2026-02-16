@@ -1,19 +1,10 @@
-====== librarian_npc_mob - Machine Readable Data ======
+====== Librarian NPC - Code References ======
 
-===== Entity Type =====
-mob
-
-===== Java Class =====
-[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/LibrarianNPC.java|LibrarianNPC.java]]
-
-===== Entity Kind Value =====
-<code>
-LibrarianNPC
-</code>
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/LibrarianNPC.java|LibrarianNPC.java]]
 
 ===== JSON Configuration =====
-  * RemixedDungeon/src/main/assets/mobsDesc/LibrarianNPC.json (if exists)
-  * Library levels: RemixedDungeon/src/main/assets/levelsDesc/Library.json, RemixedDungeon/src/main/assets/levelsDesc/Library_2021_03.json, RemixedDungeon/src/main/assets/levelsDesc/TownLibrary.json
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
@@ -25,13 +16,24 @@ LibrarianNPC
 <string name="LibrarianNPC_Name_Objective">librarian</string>
 </code>
 
-===== Properties =====
-  * Type: NPC
-  * Behavior: Immortal (cannot be killed)
-  * Purpose: Provides library interface to access collected information about game entities
-  * Location: Library special room in dungeon levels
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:library_level|Library (Level)]]
+
+===== Entity Implementation Details =====
+  * **Package:** com.nyrds.pixeldungeon.mobs.npc
+  * **Base Class:** ImmortalNPC
+  * **Entity Kind:** LibrarianNPC
+  * **Type:** NPC (Non-Player Character)
+  * **Behavior:** Immortal (cannot be killed)
+  * **Purpose:** Provides library interface to access collected information about game entities
+  * **Location:** Library special room in dungeon levels
+  * **Interaction:** Shows WndQuest window with library instructions
 
 ===== Related Files =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - registration
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]] - base class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/Library.java|Library.java]] - library system
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndQuest.java|WndQuest.java]] - quest window
