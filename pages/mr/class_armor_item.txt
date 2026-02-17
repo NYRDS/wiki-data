@@ -1,0 +1,82 @@
+====== Class Armor Item - Machine Reference ======
+
+This page contains machine-readable reference information about Class Armor items for automated tools and AI assistants.
+
+==== Entity Information ====
+  * **Entity Type:** Item (Armor)
+  * **Base Class:** ClassArmor (abstract)
+  * **Parent Class:** Armor
+  * **Tier:** 6 (special class armor)
+
+==== Java Implementation ====
+  * **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]]
+  * **Package:** com.watabou.pixeldungeon.items.armor
+  * **Extends:** Armor
+  * **Implements:** Packable (via inheritance)
+
+==== Class Armor Properties ====
+  * **Level Known:** true (always known)
+  * **Cursed Known:** true (always known)
+  * **Default Action:** special() - unique ability for each class
+  * **STR Property:** Required strength value
+  * **DR Property:** Damage reduction value
+  * **Special Cost Modifier:** 3 (skill point cost divisor)
+
+==== Upgrade Mechanism ====
+Class armor is created by upgrading regular armor using the ClassArmor.upgrade() method:
+  * Takes owner (Char) and armor (Armor) as parameters
+  * Copies STR (required strength) from original armor
+  * Copies DR (damage reduction) from original armor
+  * Copies glyph inscription from original armor
+  * Sets owner reference
+
+==== Skill Point Usage ====
+  * Special ability requires skill points to use
+  * Cost formula: hero.getSkillPointsMax() / 3
+  * Ability available when: hero.getSkillPoints() >= cost + 1
+
+==== Known Class Armor Implementations ====
+  * WarriorArmor - Warrior class armor
+  * MageArmor - Mage class armor
+  * RogueArmor - Rogue class armor
+  * HuntressArmor - Huntress class armor
+  * ElfArmor - Elf class armor
+  * NecromancerArmor - Necromancer class armor
+  * GnollArmor - Gnoll class armor
+  * PriestArmor - Priest class armor
+  * DoctorArmor - Doctor class armor
+
+==== Subclass Armor Implementations ====
+  * GladiatorArmor - Warrior subclass armor
+  * BerserkerArmor - Warrior subclass armor
+  * WarlockArmor - Mage subclass armor
+  * BattleMageArmor - Mage subclass armor
+  * AssassinArmor - Rogue subclass armor
+  * FreerunnerArmor - Rogue subclass armor
+  * SniperArmor - Huntress subclass armor
+  * WardenArmor - Huntress subclass armor
+  * ScoutArmor - Elf subclass armor
+  * ShamanArmor - Elf subclass armor
+  * WitchdoctorArmor - Gnoll/Necromancer subclass armor
+  * PlagueDoctorArmor - Doctor subclass armor
+  * GuardianArmor - Priest/Gnoll subclass armor
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] - Base class armor implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] - Parent armor class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Hero class definitions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Hero subclass definitions
+
+==== String Resources ====
+  * Low Mana Warning: ''ClassArmor_LowMana'' - Displayed when not enough skill points
+
+==== Obtaining Methods ====
+  1. **Crafting:** Using Armor Kit on regular armor of the same tier
+  2. **Random drops:** Rare drops from various dungeon sources
+
+==== Related Pages ====
+  * [[en:rpd:class_armor_item|Class Armor]] - English wiki page
+  * [[en:rpd:armor_kit_item|Armor Kit]] - Crafting component
+  * [[en:rpd:armor_item|Armor]] - Base armor items
+
+{{tag> mr class_armor item armor reference}}
