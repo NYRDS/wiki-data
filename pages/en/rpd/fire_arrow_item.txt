@@ -2,13 +2,17 @@
 
 {{ rpd:images:fire_arrow_item.png|Fire Arrow }}
 
-The Fire Arrow is a special type of missile weapon that causes the Burning status effect when it hits a target.
+The **Fire Arrow** is a special type of [[en:rpd:missile_weapons|missile weapon]] that causes the [[en:rpd:burning_buff|Burning]] status effect when it hits a target.
+
+==== Description ====
+A wooden arrow with a head soaked in flammable material. When this arrow hits an enemy, it ignites the target. According to the string resources, "This arrow looks just like a normal one, other than a warm red light radiating from its head."
 
 ==== Stats ====
   * **Damage**: 1-6
   * **Delay**: 0.75 (baseDly: 0.75)
   * **Min Strength Required**: 9
   * **Price**: 5 gold per arrow
+  * **Weight**: 1
 
 ==== Special Abilities ====
   * **Burning Effect**: When the arrow hits a target, it applies the [[en:rpd:burning_buff|Burning]] status effect with a 25% chance when thrown from a ranged weapon
@@ -17,16 +21,38 @@ The Fire Arrow is a special type of missile weapon that causes the Burning statu
   * **Bonus Damage**: If effective strength exceeds the required strength by more than 2 points, adds extra damage: MAX += (MIN + (effectiveSTR - requiredSTR - 2))
   * **Elven Class Bonus**: When used by an Elf, accuracy is increased by 10% and delay is reduced by 10%
 
+==== Properties ====
+  * **Type:** [[en:rpd:missile_weapons|Missile Weapon]]/Ammunition (Special)
+  * **Usage:** For use with ranged weapons like bows
+  * **Consumable:** Each arrow is consumed after being shot
+  * **Stackable:** Can stack up to very high quantities
+
+==== Creation ====
+Fire Arrows can be created by using a [[en:rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] on regular [[en:rpd:common_arrow_item|Common Arrows]]. This process is called "[[en:rpd:moisten|moistening]]" and transforms the basic arrow into one with special properties.
+
 ==== Acquisition ====
   * Can be found in various treasure locations throughout the dungeon
   * Quantity typically ranges from 15-30 when randomly generated (defined in Arrow.java random() method)
   * Found in Treasury.json and SpidersTreasury.json with probability of 2
+  * **Creation:** Can be created through [[en:rpd:alchemy|alchemy]] by moistening common arrows with Potion of Liquid Flame
+
+==== Mechanics ====
+  * When hitting an enemy, applies the Burning status effect
+  * Burning causes damage over time until extinguished or enemy dies
+  * Can ignite flammable terrain like grass when fired into it
+  * Burning enemies take damage and can set adjacent flammable terrain on fire
+  * Does not stack with other status effects like Poison or Paralysis
 
 ==== Strategy ====
   * Effective against enemies vulnerable to fire damage
   * Particularly useful against groups as burning can spread to adjacent tiles
   * Good for dealing additional damage over time
   * The burning effect only occurs on a successful hit with 25% chance when thrown from a ranged weapon
+  * Excellent for dealing sustained damage to groups of enemies
+  * Can be used to create environmental advantages by igniting terrain
+  * Be careful using in areas with flammable terrain that might spread to you
+  * Effective against enemies that don't kill you immediately, allowing the fire to work
+  * Good against undead and cold-based enemies which typically take extra fire damage
 
 ==== Code References ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FireArrow.java|FireArrow.java]]
@@ -42,7 +68,10 @@ The Fire Arrow is a special type of missile weapon that causes the Burning statu
 
 ==== See Also ====
   * [[en:rpd:burning_buff|Burning]] - The status effect applied by this arrow
+  * [[en:rpd:common_arrow_item|Common Arrow]] - Base arrow for moistening
+  * [[en:rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] - Required for creation
   * [[en:rpd:arrows_item|Arrows]] - Other arrow types
   * [[en:rpd:missile_weapons|Missile Weapons]] - Other throwing weapons
+  * [[en:rpd:alchemy|Alchemy]] - Creating special items
 
-{{tag> rpd items arrows missiles fire }}
+{{tag> rpd items ammunition ranged liquid_flame fire burning arrows missiles }}

@@ -1,8 +1,15 @@
 ====== Ankh Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ankh.java|Ankh.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndResurrect.java|WndResurrect.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ankh.java|Ankh.java]] - Main item class implementing resurrection logic
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndResurrect.java|WndResurrect.java]] - Resurrection confirmation window
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Calls Ankh.resurrect() on hero death (line 600)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] - Checks for Ankh possession (line 796)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Statistics.java|Statistics.java]] - Tracks ankhsUsed statistic
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndRanking.java|WndRanking.java]] - Displays "Ankhs Used" in ranking screen
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java|ShopPainter.java]] - Shopkeeper may sell Ankh (line 143)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registers Ankh item class (line 243)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - Defines ANKH sprite index (line 121)
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -18,8 +25,30 @@ This entity is implemented in Java, no JSON configuration exists
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Entity Kind =====
+  * **Entity Kind:** Ankh (returns class simple name via getEntityKind())
+  * **Item Type:** Key/Resurrection item
+  * **Stackable:** Yes (stackable = true)
+  * **Identified:** Always identified (isIdentified() returns true)
+  * **Upgradable:** No (isUpgradable() returns false)
+  * **Price:** 50 gold per unit (price() returns 50 * quantity)
+  * **Sprite:** ItemSpriteSheet.ANKH (index 1)
+
+===== Resurrection Mechanics =====
+  * **Method:** public static boolean resurrect(@NotNull Char chr, NamedEntityKind cause)
+  * **Process:**
+    1. Checks if character has Ankh in belongings
+    2. Removes Ankh from belongings
+    3. For non-Hero characters: calls chr.resurrect() immediately
+    4. For Hero: shows WndResurrect window to give player choice
+  * **Consumption:** Ankh is consumed on successful resurrection
+  * **Side Effect:** All non-equipped items are lost upon resurrection
+
 ===== Related Information =====
   * The Ankh allows resurrection after death but causes loss of all non-equipped items
   * Only one Ankh should be carried at a time due to consumption on use
   * Implemented as a static method ''resurrect'' that can be called for any Char
   * Uses WndResurrect window for hero resurrection to give player choice
+  * Statistics track total ankhs used across all runs
+
+{{tag> rpd items resurrection mr}}
