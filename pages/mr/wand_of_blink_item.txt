@@ -1,8 +1,10 @@
-====== Wand Of Blink Item - Code References ======
+====== wand_of_blink_item - Code References ======
+
+{{ rpd:images:wand_of_blink_item.png|Wand of Blink }}
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfBlink.java|WandOfBlink.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] (base class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfBlink.java|WandOfBlink.java]] - Main wand implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - Base wand class
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -17,5 +19,26 @@ This entity is implemented in Java, no JSON configuration exists
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Implementation Details =====
+  * **Package**: com.watabou.pixeldungeon.items.wands
+  * **Base Class**: Wand
+  * **Hit Objects**: true
+  * **Max Distance**: wand level + 4 cells
+  * **Affects Target**: false (self-cast only)
+
+===== Mechanics =====
+  * **Teleportation**: Blinks the user to target location
+  * **Distance Calculation**:
+    - Maximum range equals wand level + 4
+    - If target is too far, blinks to maximum range
+    - If target cell is occupied, blinks to nearest safe cell
+  * **Visual Effects**:
+    - White light magic missile effect
+    - Teleport sound effect
+    - Light speck particles on arrival
+  * **Targeting**: Uses Ballistica for path calculation
+
 ===== Related mr Entities =====
   * [[mr:wand_item|Wand (Item)]]
+  * [[mr:teleportation|Teleportation]]
+  * [[mr:ballistica|Ballistica]]

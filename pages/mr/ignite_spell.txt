@@ -1,17 +1,39 @@
-====== Ignite Spell - Code References ======
+====== ignite_spell - Code References ======
+
+{{ rpd:images:ignite_spell.png|Ignite Spell Icon }}
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/spells/Ignite.java|Ignite.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Ignite.java|Ignite.java]] - Main spell implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Base spell class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]] - Spell helper utilities
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spellsDesc/Ignite.json|Ignite.json]] - Spell configuration
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Ignite.json|Ignite.json]] - Sprite configuration
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - Entity name and description
+<code xml>
+<string name="Ignite_Name">Ignite</string>
+<string name="Ignite_Info">Creates a burst of flames at the target location</string>
+</code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Ignite.lua|Ignite.lua]] - Spell script (if applicable)
+This entity is implemented in Java, no Lua script exists
+
+===== Implementation Details =====
+  * **Package**: com.nyrds.pixeldungeon.mechanics.spells
+  * **Targeting Type**: TARGET_CELL (targets a specific cell)
+  * **Magic Affinity**: ELEMENTAL
+  * **Spell Level**: 2
+  * **Image ID**: 1
+  * **Spell Cost**: 2 magic points
+  * **Texture**: spellsIcons/elemental.png
+
+===== Effects =====
+  * Creates flame particles at target location
+  * Spawns Fire blob (5 strength) at target cell
+  * Uses Ballistica for targeting validation
 
 ===== Related mr Entities =====
-  * [[mr:ignite_spell|Ignite Spell]]
+  * [[mr:spell|Spell (Base Class)]]
+  * [[mr:fire_blob|Fire Blob]]
+  * [[mr:elemental_affinity|Elemental Affinity]]
