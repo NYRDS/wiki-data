@@ -2,45 +2,68 @@
 
 {{ rpd:images:thief_mob.png|Thief }}
 
+The **Thief** (also known as "crazy thief") is a fast enemy mob in Remixed Dungeon that specializes in stealing items from the hero and fleeing.
+
 ==== Description ====
-Thieves are enemies found in the dungeon that specialize in stealing and using items.
+Thieves are agile enemies that will attempt to steal the hero's equipped items during combat. When they successfully steal an item, they immediately try to flee from battle.
 
 ==== Appearance & Stats ====
-  * **Level**: Found throughout the dungeon, but more common in later levels
-  * **Speed**: Fast movement, allowing for hit-and-run tactics
-  * **Stealth**: May appear unexpectedly due to stealth abilities
-  * **Equipment**: Often carries various stolen items of value
+  * **Health Points:** 20 HP
+  * **Damage:** 1-7 (min-max)
+  * **Defense:** 3 DR (damage reduction)
+  * **Attack Skill:** 12
+  * **Defense Skill:** 12
+  * **Experience:** 5 EXP per kill
+  * **Max Level:** 10
+  * **Attack Delay:** 0.5 seconds (faster than average)
 
 ==== Abilities ====
-  * **Item Stealing** - Can steal equipped items during combat
-  * **Escape Tactics** - May flee when low on health, taking items with them
-  * **Trap Disarmament** - Can safely disarm some traps
-  * **Lockpicking** - May have abilities to interact with locked containers
+  * **Item Stealing** - On successful attack, may steal an equipped item from the hero
+  * **Fleeing** - After stealing an item, switches to ThiefFleeing AI and attempts to escape
+  * **Gold Drop** - When hit while fleeing, drops gold on the ground
 
 ==== Behavior ====
-  * **Hit and Run** - Attacking and then retreating to avoid damage
-  * **Item Collection** - Tends to collect items from defeated enemies
-  * **Selective Targeting** - May prioritize valuable items over combat
+  * **Hit and Run** - Attacks quickly and retreats after stealing
+  * **Fast Movement** - Has a faster attack delay (0.5s) compared to most mobs
+  * **Escape Tactics** - Uses specialized ThiefFleeing AI when carrying stolen goods
+  * **Defensive Gold Drop** - Drops gold when damaged while fleeing (distraction tactic)
 
 ==== Combat Strategy ====
-  * **Keep Distance** - Use ranged weapons or magic to avoid their stealing
-  * **Trap Utilization** - Use environmental traps to your advantage
-  * **Focus Fire** - Defeat them quickly before they can escape or steal
-  * **Item Protection** - Protect valuable items with ring of protection or similar
+  * **Protect Valuables** - Unequip valuable items before engaging if possible
+  * **Quick Defeat** - Focus fire to kill before they can steal and flee
+  * **Ranged Attacks** - Use ranged weapons to prevent escape
+  * **Area Control** - Use traps or terrain to block escape routes
+  * **Pursuit** - If they flee, chase immediately to recover stolen items
 
 ==== Drops ====
-  * **Gold** - Often carries gold from their thieving activities
-  * **Stolen Items** - May drop items they've acquired from other adventurers
-  * **Equipment** - Occasionally drops the equipment they were using
+  * **Gold** - May drop gold when killed (especially if fleeing)
+  * **[[en:rpd:ring_of_haggler_item|Ring of Haggler]]** - 1% drop chance
+  * **Stolen Items** - Returns any stolen items when killed
+
+==== AI State ====
+  * **Default:** Standard mob AI (Wandering/Sleeping)
+  * **After Stealing:** Switches to [[en:rpd:ai_behavior_mechanic|ThiefFleeing]] AI state
+  * **Fleeing Behavior:** Attempts to maximize distance from hero while carrying stolen items
+
+==== Technical Details ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Thief.java|Thief.java]]
+  * **AI Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/ThiefFleeing.java|ThiefFleeing.java]]
+  * **String Resources:** Thief_Desc, Thief_Carries
+  * **Machine-readable data:** [[mr:thief_mob|mr:thief_mob]]
+
+==== Related Mobs ====
+  * [[en:rpd:bandit_mob|Bandit]] - A stronger variant of Thief (extends Thief class)
+  * [[en:rpd:mobs|Mobs]] - General information about dungeon mobs
 
 ==== Notes ====
-  * Thieves add an element of risk to carrying valuable items
-  * Defeating them may return stolen items to the dungeon
-  * They're often found in areas with abundant treasure
+  * Thieves add risk to carrying valuable equipment
+  * Killing a fleeing thief recovers stolen items
+  * The Ring of Haggler drop makes them valuable targets for merchants
 
 ==== See Also ====
   * [[en:rpd:mobs|Mobs]]
-  * [[en:rpd:items|Items]]
   * [[en:rpd:equipment|Equipment]]
+  * [[en:rpd:ai_behavior_mechanic|AI Behavior]]
+  * [[en:rpd:bandit_mob|Bandit]]
 
-{{tag> rpd mobs enemies }}
+{{tag> rpd mobs enemies thief}}

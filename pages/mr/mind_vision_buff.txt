@@ -1,20 +1,58 @@
 ====== Mind Vision Buff - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+This entity is implemented in Java:
+  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/MindVision.java
+
+<code java>
+// In MindVision.java
+public class MindVision extends FlavourBuff {
+    public static final float DURATION = 20f;
+    
+    @Override
+    public int icon() {
+        return BuffIndicator.MIND_VISION;
+    }
+    
+    @Override
+    public void detach() {
+        super.detach();
+        target.observe();
+    }
+}
+</code>
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/mind_vision.json
+This entity does not have JSON configuration files.
 
 ===== String Resources =====
 <code xml>
-<string name="MindVision_Name">[Name]</string>
-<string name="MindVision_Info">[Description]</string>
+<!-- English strings -->
+<string name="PotionOfMindVision_Apply1">You can sense enemies!</string>
+<string name="PotionOfMindVision_Apply2">You can sense the area!</string>
+<string name="MindVisionBuff_Name">Mind Vision</string>
+<string name="MindVisionBuff_Info">This buff allows you to sense enemies and the area around you.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
+
+===== Related Entities =====
+  * [[mr:potion_of_mind_vision_item]] - Potion that applies this buff
+  * [[mr:candle_of_mind_vision_buff]] - Extended version of Mind Vision buff
+  * [[en:rpd:fadeleaf|Fadeleaf]] - Plant that can be alchemized into Potion of Mind Vision
+  * [[en:rpd:dreamweed|Dreamweed]] - Plant that can apply Mind Vision for 1 tick
+
+===== Usage in Code =====
+  * Applied by [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfMindVision.java|PotionOfMindVision.java]]
+  * Applied by [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Dreamweed.java|Dreamweed.java]] (1 tick)
+  * Extended by [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/CandleOfMindVisionBuff.java|CandleOfMindVisionBuff.java]]
+
+===== Buff Properties =====
+  * **Type**: FlavourBuff (visual/status effect only)
+  * **Duration**: 20 turns (base)
+  * **Effect**: Allows the hero to sense enemies in the area
+  * **Icon**: BuffIndicator.MIND_VISION
+  * **Visual**: Shows "Mind" and "Vision" status messages on attach
+
+{{tag> mr buffs mind_vision java}}
