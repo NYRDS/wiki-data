@@ -1,17 +1,42 @@
 ====== Claymore Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/melee/Claymore.java|Claymore.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/melee/Claymore.java|Claymore.java]] - Main Claymore weapon class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]] - Parent class for all melee weapons
+
+===== Implementation Details =====
+  * **Class Location**: com.nyrds.pixeldungeon.items.guts.weapon.melee.Claymore
+  * **Parent Class**: MeleeWeapon
+  * **Weapon Tier**: 6 (highest tier melee weapon)
+  * **Attack Speed**: 1.0f (standard speed)
+  * **Damage Factor**: 1.0f (standard damage multiplier)
+  * **Animation Class**: HEAVY_ATTACK
+  * **Sprite Sheet**: items/swords.png (frame 6)
+  * **Slot**: WEAPON (main hand)
+  * **Block Slot**: LEFT_HAND (can be used for blocking)
 
 ===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+This entity is implemented in Java, no JSON configuration exists. The Claymore appears in dungeon loot tables:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json|Treasury.json]] - Can spawn in Treasury level
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json|SpidersTreasury.json]] - Can spawn in Spider's Treasury level
 
 ===== String Resources =====
+**English** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]):
 <code xml>
 <string name="Claymore_Name">Claymore</string>
 <string name="Claymore_Info">This massive sword should be able to cut through anything.</string>
 <string name="Claymore_Gender">masculine</string>
 </code>
 
+**Russian** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (ru)]]):
+<code xml>
+<!-- Russian translation strings for Claymore -->
+</code>
+
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related Code References =====
+  * **ItemFactory**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Factory for creating Claymore instances
+  * **ShopPainter**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java|ShopPainter.java]] - May appear in shop inventory
+  * **WaterOfTransmutation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/WaterOfTransmutation.java|WaterOfTransmutation.java]] - Can be transmuted in Well of Transmutation
