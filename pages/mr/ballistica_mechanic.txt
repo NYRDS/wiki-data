@@ -1,0 +1,69 @@
+====== Machine-Readable: Ballistica Mechanic ======
+
+Technical reference page for the Ballistica line-of-sight and pathfinding system.
+
+==== Java Implementation ====
+
+**File**: `RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java`
+
+**Class**: `com.watabou.pixeldungeon.mechanics.Ballistica`
+
+==== Static Fields ====
+  * `public static int[] trace` - Array storing the path cells (size: 32, dynamically resized)
+  * `public static int distance` - Length of the calculated path
+
+==== Methods ====
+
+**cast(int from, int to, boolean magic, boolean hitChars)**
+  * Delegates to full cast method with hitObjects = false
+  * Parameters:
+    * `from` - Starting cell index
+    * `to` - Target cell index
+    * `magic` - If true, continues tracing even after reaching target
+    * `hitChars` - If true, stops when hitting characters
+
+**cast(int from, int to, boolean magic, boolean hitChars, boolean hitObjects)**
+  * Main pathfinding method using Bresenham's line algorithm
+  * Returns the final cell index that the trace reaches
+  * Stops when encountering:
+    * Non-passable terrain (unless avoid cell)
+    * LOS-blocking terrain
+    * Characters (if hitChars is true)
+    * Level objects (if hitObjects is true and object has layer >= 0)
+    * LOS-blocking level objects
+
+**getBacktraceCell(int distFromEnd)**
+  * Returns a cell from the trace, counting from the end
+  * Parameter: `distFromEnd` - Distance from the end of the trace (clamped to distance - 1)
+  * Returns: Cell index at position (distance - 1 - distFromEnd)
+
+==== Algorithm ====
+
+The Ballistica system uses **Bresenham's line algorithm** for path calculation:
+
+1. Calculate starting (x0, y0) and target (x1, y1) coordinates
+2. Determine step direction for X and Y axes
+3. Use major/minor axis stepping with error accumulation
+4. Trace cells until target is reached or obstacle is encountered
+5. Store each cell in the trace array
+
+==== Usage in Game ====
+
+Ballistica is used by:
+  * Zapping mobs (Warlock, etc.) for attack validation
+  * Wand targeting system
+  * Projectile weapon targeting
+  * Trap trigger detection
+  * Line-of-sight calculations
+
+==== Related Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java on GitHub]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java|Warlock.java - uses Ballistica for canAttack]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java|Tengu.java - uses Ballistica for distance attacks]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java - Field of View integration]]
+
+==== Lua Interface ====
+
+The `getBacktraceCell` method is exposed to Lua via @LuaInterface annotation for scripting support.
+
+{{tag> mr ballistica mechanics line_of_sight pathfinding}}
