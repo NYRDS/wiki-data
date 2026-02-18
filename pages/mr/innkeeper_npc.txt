@@ -1,0 +1,61 @@
+====== InnKeeperNPC - Code References ======
+
+==== Java Classes ====
+This entity is not implemented in Java. It uses Lua scripting instead.
+
+==== JSON Configuration ====
+<code json>
+{
+   "defenseSkill"  :3,
+   "attackSkill"   :8,
+   "baseSpeed"     :0,
+   "attackDelay"   :1,
+   "ht"            :5,
+   "spriteDesc"    :"spritesDesc/InnKeeperNPC.json",
+   "scriptFile"    :"scripts/npc/Innkeeper",
+   "friendly"      :true,
+   "movable"       :false,
+   "aiState"       :"Passive",
+   "fraction"      :"NEUTRAL",
+   "immortal"      :true
+}
+</code>
+  * Found in: RemixedDungeon/src/main/assets/mobsDesc/InnKeeperNPC.json
+
+==== Sprite Configuration ====
+<code json>
+{
+  "texture" : "mobs/town_townsfolk_innkeeper.png",
+  "frames"  : [ { "x": 0, "y": 0, "width": 32, "height": 32 } ]
+}
+</code>
+  * Found in: RemixedDungeon/src/main/assets/spritesDesc/InnKeeperNPC.json
+
+==== String Resources ====
+<code xml>
+<string name="InnKeeperNPC_Name">inn keeper</string>
+<string name="InnKeeperNPC_Name_Objective">inn keeper</string>
+<string name="InnKeeperNPC_Desc">The innkeeper is proud of himself.</string>
+</code>
+  * Source: RemixedDungeon/src/main/res/values/strings_all.xml
+  * Also available in multiple languages in corresponding values-* directories
+
+==== Lua Scripts ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/Innkeeper.lua|Innkeeper.lua]]
+  * Script implements:
+    * spawn() - Initializes NPC with trade items (FriedFish, ChargrilledMeat, FrozenCarpaccio)
+    * interact() - Opens trade window between NPC and player
+    * priceForSell() - Sets sell price multiplier (10x item base price)
+    * sellMode() - Uses CARCASS backpack mode for selling
+    * buyMode() - Uses FOR_BUY backpack mode for purchasing
+
+==== Level Placement ====
+  * Found in: RemixedDungeon/src/main/assets/levelsDesc/Inn_2021_03.json
+  * Found in: RemixedDungeon/src/main/assets/levelsDesc/ScriptsArena.json
+
+==== Related mr Entities ====
+  * [[mr:barman_npc|BarmanNPC]]
+  * [[mr:bard_npc|BardNPC]]
+  * [[mr:servant_npc|ServantNPC]]
+
+{{tag> mr npc innkeeper innkeepernpc town trader}}
