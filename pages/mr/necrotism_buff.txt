@@ -1,20 +1,66 @@
 ====== Necrotism Buff - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+  * **Main Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/Necrotism.java|Necrotism.java]]
+  * **Package:** com.nyrds.pixeldungeon.mechanics.buffs
+  * **Extends:** Buff, implements Doom
+  * **Related Classes:**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/NecromancerArmor.java|NecromancerArmor.java]] - Armor that applies Necrotism
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Doom.java|Doom.java]] - Interface implemented by Necrotism
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java|BuffIndicator.java]] - Icon constant (NECROTISM = 39)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/necrotism.json
+  * No direct JSON configuration for this buff
+  * Buff is applied through NecromancerArmor ability
 
 ===== String Resources =====
 <code xml>
-<string name="Necrotism_Name">[Name]</string>
-<string name="Necrotism_Info">[Description]</string>
+<!-- English (values/strings_all.xml) -->
+<string name="NecrotismBuff_Name">Necrotism</string>
+<string name="NecrotismBuff_Info">The mark of death itself, the reek from which affects the ones nearby and causes them to share the same plight.</string>
+<string name="Necrotism_ACSpecial">NECROTISM</string>
+<string name="Necrotism_Death">You died from necrotism...</string>
+<string name="ResultDescriptions_Necrotism">Died from Necrotism on level %d</string>
+<string name="Badges_DeathNecrotism">Death from necrotism</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="NecrotismBuff_Name">Некротизм</string>
+<string name="NecrotismBuff_Info">Метка смерти, смрад от которой поражает всех вокруг и заставляет их разделить ту же учесть.</string>
+
+<!-- Spanish (values-es/strings_all.xml) -->
+<string name="NecrotismBuff_Name">Necrosis</string>
+<string name="NecrotismBuff_Info">La propia marca de la muerte, cuyo hedor afecta a los que están cerca y les hace compartir la misma situación.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Key Methods =====
+  * **act()** - Main buff logic: damages target, spreads to nearby mobs
+  * **icon()** - Returns BuffIndicator.NECROTISM (39)
+  * **set(float duration, int i)** - Sets buff duration and iteration counter
+  * **onHeroDeath()** - Validates badge and triggers game over
+
+===== Buff Mechanics =====
+  * **Duration:** 3 ticks (base duration)
+  * **Damage:** Scales with iteration - increases over time
+  * **Spread:** Infects nearby non-hero, non-NPC characters
+  * **Boss Damage:** Reduced damage to bosses (hp/200)
+  * **Normal Damage:** target.hp() / max(3, (21 - iteration))
+  * **Visual Effect:** Target sprite bursts with color 0x6935a5 (purple)
+
+===== Usage in Code =====
+<code java>
+// Applied by Necromancer Armor special ability
+Buff.affect( user, Necrotism.class ).set(Necrotism.duration, 1);
+
+// Spread mechanic - affects nearby characters
+if(Random.Int(1) == 0 && !ch.hasBuff(Necrotism.class)){
+    Buff.affect( ch, Necrotism.class ).set(duration, iteration + 1);
+}
+</code>
+
+===== Related mr: Pages =====
+  * [[mr:necromancer_armor_item]] - Armor that applies Necrotism
+  * [[mr:necromancer_class]] - Hero class that can use Necromancer Armor
+  * [[mr:buff_system]] - Base buff system documentation
