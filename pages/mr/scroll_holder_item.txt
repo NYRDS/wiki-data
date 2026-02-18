@@ -4,7 +4,8 @@
 scroll_holder_item
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/bags/ScrollHolder.java|ScrollHolder.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/bags/ScrollHolder.java|ScrollHolder.java]] - Main item class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/bags/Bag.java|Bag.java]] - Parent class
 
 ===== JSON Configuration =====
   * This entity is implemented in Java, no JSON configuration exists
@@ -18,10 +19,19 @@ scroll_holder_item
 ===== Lua Scripts =====
   * This entity is implemented in Java, no Lua script exists
 
+===== Item Properties =====
+  * **Type**: Bag (container item)
+  * **Price**: 50 gold (from ScrollHolder.price())
+  * **Sprite**: ItemSpriteSheet.HOLDER
+  * **Action**: AC_OPEN (opens bag interface)
+  * **Capacity**: Can hold any number of scrolls
+  * **Special**: Protects scrolls from fire damage
+
 ===== Related mr Entities =====
-  * [[mr:scroll_item|Scroll_Item]]
-  * [[mr:spellbook_item|Spellbook_Item]]
+  * [[mr:scroll_item|scroll_item]] - Items that can be stored in this container
+  * [[mr:spellbook_item|spellbook_item]] - Similar container for wands
+  * [[mr:bag_item|bag_item]] - Parent container type
 
 ===== Content Verification =====
-  * Information source: Java code and string resources
+  * Information source: Java code (ScrollHolder.java, Bag.java) and string resources
   * Last updated: Based on Remixed Dungeon source code analysis
