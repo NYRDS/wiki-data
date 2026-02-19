@@ -1,8 +1,10 @@
-====== Mimic Amulet Mob - Code References ======
+====== mimic_amulet_mob ======
+
+{{ rpd:images:mimic_amulet_mob.png|Mimic Amulet }}
 
 ===== Java Class =====
 <code java>
-RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/MimicAmulet.java
+// File: RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/MimicAmulet.java
 package com.nyrds.pixeldungeon.mobs.guts;
 
 import com.nyrds.Packable;
@@ -17,71 +19,36 @@ import com.watabou.pixeldungeon.items.keys.SkeletonKey;
 import com.watabou.utils.Bundle;
 
 public class MimicAmulet extends Mob {
+    @Packable
+    public int level;
 
-	@Packable
-	public int level;
+    public MimicAmulet() {
+        baseSpeed = 1.25f;
+        flying = true;
+        carcassChance = 0;
+        level = Dungeon.depth;
+        adjustStats(level);
+        addImmunity(ToxicGas.class);
+        addImmunity(Paralysis.class);
+        addImmunity(Stun.class);
+        // Drops SkeletonKey on death
+    }
 
-	public MimicAmulet() {
-		baseSpeed = 1.25f;
-
-		flying = true;
-		carcassChance = 0;
-
-		level = Dungeon.depth;
-		adjustStats(level);
-		addImmunity( ToxicGas.class );
-		addImmunity( Paralysis.class );
-		addImmunity( Stun.class );
-
-		var prize = new SkeletonKey();
-		collect(prize);
-	}
-
-
-	@Override
-	public void restoreFromBundle( Bundle bundle ) {
-		super.restoreFromBundle(bundle);
-
-		if(getBelongings().getItem(SkeletonKey.class)==null) {
-			collect(new SkeletonKey());
-		}
-
-		adjustStats(level);
-	}
-
-
-	@Override
-    public boolean act() {
-		if(!hasBuff(Levitation.class)) {
-			Buff.affect(this, Levitation.class, 1000000);
-		}
-		return super.act();
-	}
-
-	public void adjustStats( int level ) {
-		this.level = level;
-
-		hp(ht((3 + level) * 5));
-		expForKill = 2 + 2 * (level - 1) / 5;
-		baseAttackSkill = 9 + level;
-		baseDefenseSkill = 2 * attackSkill + 1;
-
-		dmgMin = ht()/10;
-		dmgMax = ht()/4;
-
-		enemySeen = true;
-	}
-
-	@Override
-	public boolean canBePet() {
-		return false;
-	}
+    public void adjustStats(int level) {
+        this.level = level;
+        hp(ht((3 + level) * 5));
+        expForKill = 2 + 2 * (level - 1) / 5;
+        baseAttackSkill = 9 + level;
+        baseDefenseSkill = 2 * attackSkill + 1;
+        dmgMin = ht()/10;
+        dmgMax = ht()/4;
+    }
 }
 </code>
 
 ===== JSON Configuration =====
 <code json>
-RemixedDungeon/src/main/assets/spritesDesc/MimicAmulet.json
+// File: RemixedDungeon/src/main/assets/spritesDesc/MimicAmulet.json
 {
    "texture" : "mobs/mimic_amulet.png",
    "width" : 16,
@@ -111,19 +78,47 @@ RemixedDungeon/src/main/assets/spritesDesc/MimicAmulet.json
 
 ===== String Resources =====
 <code xml>
+<!-- English: RemixedDungeon/src/main/res/values/strings_all.xml -->
 <string name="MimicAmulet_Name">mimic</string>
 <string name="MimicAmulet_Gender">masculine</string>
 <string name="MimicAmulet_Name_Objective">mimic</string>
 <string name="MimicAmulet_Desc">The most glorious moment of your adventuring career just turned out to be a trap.</string>
 </code>
 
+===== Entity Information =====
+  * **Entity Kind**: MimicAmulet
+  * **Type**: Mob
+  * **Package**: com.nyrds.pixeldungeon.mobs.guts
+  * **Inherits From**: Mob
+  * **Special**: Mimic variant that appears as a floating amulet
+
+===== Statistics (Scale with Dungeon Depth) =====
+  * **HP**: (3 + level) × 5, where level = Dungeon.depth
+  * **Experience**: 2 + 2 × (level - 1) / 5
+  * **Attack Skill**: 9 + level
+  * **Defense Skill**: 2 × attackSkill + 1
+  * **Damage**: HT/10 to HT/4 (10% to 25% of max HP)
+  * **Speed**: 1.25 (25% faster than normal)
+  * **Flying**: Yes (always has Levitation buff)
+  * **Carcass Drop**: 0% (no corpse)
+
+===== Immunities =====
+  * **ToxicGas**: Immune to toxic gas damage
+  * **Paralysis**: Immune to paralysis status
+  * **Stun**: Immune to stun status
+
+===== Behavior =====
+  * **Act**: Automatically applies Levitation buff (1000000 turns) if not already active
+  * **Loot**: Always drops SkeletonKey on death
+  * **Pet**: Cannot be tamed as pet (canBePet() returns false)
+
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented entirely in Java. No Lua script exists.
 
-===== Entity Kind =====
-MimicAmulet
+===== Additional Notes =====
+  * MimicAmulet is a special mimic variant found in guts levels
+  * Stats scale dynamically with dungeon depth
+  * Always carries a SkeletonKey as guaranteed loot
+  * Flying movement allows traversal over obstacles
 
-===== Additional Info =====
-- Package: com.nyrds.pixeldungeon.mobs.guts
-- Inherits from: Mob
-- Implemented as a mimic that appears as a floating amulet
+{{tag> rpd mobs machine_readable mimic guts}}
