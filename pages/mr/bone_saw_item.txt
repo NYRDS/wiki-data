@@ -1,15 +1,16 @@
-====== BoneSaw Item - Code References ======
+====== bone_saw_item - Code References ======
+
+{{ rpd:images:bone_saw_item.png|Bone Saw }}
 
 ===== Java Classes =====
-  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L96|HeroClass.java]] (BONE_SAW constant)
-  * Item system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L390|ItemFactory.java]] (registerItemClass)
+This entity is implemented in Lua, no Java class exists
 
 ===== JSON Configuration =====
   * Starting items: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L225|initHeroes.json]] (kind: "BoneSaw")
   * Starting items (debug): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroesDebug.json#L258|initHeroesDebug.json]] (kind: "BoneSaw")
 
 ===== String Resources (All Languages) =====
-  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3011-L3012|BoneSaw_Name, BoneSaw_Info]]
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L3030-L3031|BoneSaw_Name, BoneSaw_Info]]
   * Spanish: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L3011-L3012|BoneSaw_Name, BoneSaw_Info]]
   * Portuguese: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L3011-L3012|BoneSaw_Name, BoneSaw_Info]]
   * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L3012-L3013|BoneSaw_Name, BoneSaw_Info]]
@@ -19,13 +20,31 @@
 ===== Lua Scripts =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/BoneSaw.lua|BoneSaw.lua]] - Main implementation
 
+===== Entity Implementation Details =====
+  * **Implementation:** Lua script (scripts/items/BoneSaw.lua)
+  * **Base Class:** Item (via Lua item library)
+  * **Entity Kind:** BoneSaw
+  * **Type:** Melee weapon
+  * **Slot:** Both hands
+  * **Price:** 20 gold
+  * **STR Requirement:** 9
+  * **Damage:** 1-2 per level (lvl to lvl*2)
+  * **Accuracy Factor:** 1.0
+  * **Attack Delay Factor:** 1.0
+  * **Special Effects:**
+    - Applies Bleeding buff on hit
+    - Critical hits (attack roll > defense roll * 2) deal 50% bonus damage
+    - Doctor class: Critical hits drop random harvestable items (ToxicGland, RottenOrgan, BoneShard)
+    - Doctor class: Deals 100% bonus damage (2x) to paralyzed foes
+
 ===== Related Files =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] - Base weapon class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Bleeding.java|Bleeding.java]] - Effect applied by BoneSaw
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] - Base weapon class reference
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Bleeding.java|Bleeding.java]] - Bleeding effect applied on hit
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L390|ItemFactory.java]] - item registration
 
 ===== Related mr Entities =====
   * [[mr:bleeding_buff|Bleeding (Buff)]]
-  * [[mr:necromancer_class|Necromancer (Class)]]
+  * [[mr:doctor_class|Doctor (Class)]]
   * [[mr:item|Item (Base Class)]]
 
-{{tag> mr items weapons necromancer starting_equipment}}
+{{tag> mr items weapons necromancer doctor starting_equipment melee}}

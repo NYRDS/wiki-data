@@ -1,18 +1,42 @@
-====== Stylus Item - Code References ======
+====== stylus_item - Code References ======
+
+{{ rpd:images:stylus_item.png|Arcane Stylus }}
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Stylus.java|Stylus.java]]
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/stylus.json
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="Stylus_Name">[Name]</string>
-<string name="Stylus_Info">[Description]</string>
+<string name="Stylus_Name">arcane stylus</string>
+<string name="Stylus_Info">This arcane stylus is made of some dark, very hard stone. Using it you can inscribe a glyph or a rune, but you have no power over choosing what it will be, the stylus will decide it for you.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Entity Implementation Details =====
+  * **Package:** com.watabou.pixeldungeon.items
+  * **Base Class:** Item
+  * **Entity Kind:** Stylus
+  * **Type:** Item (tool for inscribing)
+  * **Stackable:** Yes
+  * **Price:** 50 gold per unit
+  * **Purpose:** Used to inscribe random glyphs on armor or convert blank scrolls into random scrolls
+  * **Actions:** inscribe (select armor or blank scroll)
+
+===== Related Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] - armor glyph inscription
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/BlankScroll.java|BlankScroll.java]] - blank scroll conversion
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]] - random scroll creation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor$Glyph.java|Armor.Glyph.java]] - armor glyphs
+
+===== Related mr Entities =====
+  * [[mr:armor_item|Armor (Item)]]
+  * [[mr:blank_scroll_item|Blank Scroll (Item)]]
+  * [[mr:scroll_item|Scroll (Item)]]
+  * [[mr:item|Item (Base Class)]]
+
+{{tag> mr items tools inscription}}
