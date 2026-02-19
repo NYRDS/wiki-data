@@ -1,20 +1,86 @@
 ====== Cripple Buff - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+  * ''com/watabou/pixeldungeon/actors/buffs/Cripple.java'' - Main buff implementation
+  * Extends: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff]]
+  * Registered in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]]
+
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.actors.buffs;
+
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.sprites.CharSprite;
+import com.watabou.pixeldungeon.ui.BuffIndicator;
+
+public class Cripple extends FlavourBuff {
+
+	public static final float DURATION	= 10f;
+
+	@Override
+	public int icon() {
+		return BuffIndicator.CRIPPLE;
+	}
+
+	@Override
+	public float speedMultiplier(Char chr) {
+		return 0.5f;
+	}
+
+	@Override
+	public void attachVisual() {
+        target.showStatus(CharSprite.NEGATIVE, StringsManager.getVar(R.string.Char_StaCrippled));
+	}
+}
+</code>
+
+===== Key Constants =====
+  * Duration: ''DURATION = 10f'' (10 turns)
+  * Speed Multiplier: ''speedMultiplier() = 0.5f'' (reduces movement speed by 50%)
+  * Buff Indicator: ''BuffIndicator.CRIPPLE = 23''
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/cripple.json
+No dedicated JSON configuration file found. Buff is implemented entirely in Java.
 
 ===== String Resources =====
+English (''values/strings_all.xml''):
 <code xml>
-<string name="Cripple_Name">[Name]</string>
-<string name="Cripple_Info">[Description]</string>
+<string name="CrippleBuff_Name">Crippled</string>
+<string name="CrippleBuff_Info">The body is crippled but the fight still goes on.</string>
+<string name="Char_StaCrippled">crippled</string>
+<string name="Hero_StaCripple">You are crippled!</string>
+</code>
+
+Russian (''values-ru/strings_all.xml''):
+<code xml>
+<string name="CrippleBuff_Name">Инвалидность</string>
+<string name="CrippleBuff_Info">Тело покалечено, но бой продолжается.</string>
+<string name="Char_StaCrippled">покалечен</string>
+<string name="Hero_StaCripple">Вы покалечены!</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+No Lua script implementation. This buff is implemented entirely in Java.
+
+===== Usage in Code =====
+Applied by:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Javelin.java|Javelin.java]] - On hit
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/Chasm.java|Chasm.java]] - Falling into chasm
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/GrippingTrap.java|GrippingTrap.java]] - Trap trigger
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Scorpio.java|Scorpio.java]] - Mob attack
+
+Removed by:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]] - Healing potion
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/FrozenCarpaccio.java|FrozenCarpaccio.java]] - Food effect
+
+===== Related Buffs =====
+  * [[mr:roots_buff|Roots Buff]] - Another movement-impairing buff
+  * [[mr:slow_buff|Slow Buff]] - Similar speed reduction effect
+  * [[mr:paralysis_buff|Paralysis Buff]] - Complete movement prevention
+
+===== See Also =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff Base Class]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java|BuffIndicator]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java|CharSprite]]

@@ -1,20 +1,101 @@
 ====== Levitation Buff - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+  * ''com/watabou/pixeldungeon/actors/buffs/Levitation.java'' - Main buff implementation
+  * Extends: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff]]
+
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.actors.buffs;
+
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.sprites.CharSprite;
+import com.watabou.pixeldungeon.ui.BuffIndicator;
+
+import org.jetbrains.annotations.NotNull;
+
+public class Levitation extends FlavourBuff {
+
+	public static final float DURATION	= 20f;
+
+	@Override
+	public boolean attachTo(@NotNull Char target ) {
+		if (super.attachTo( target )) {
+			Roots.detach( target, Roots.class );
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public void detach() {
+		super.detach();
+		if(Dungeon.level != null) {
+			Dungeon.level.press(target.getPos(), target);
+		}
+	}
+
+	@Override
+	public int icon() {
+		return BuffIndicator.LEVITATION;
+	}
+
+	@Override
+	public CharSprite.State charSpriteStatus() {
+		return CharSprite.State.LEVITATING;
+	}
+}
+</code>
+
+===== Key Constants =====
+  * Duration: ''DURATION = 20f'' (20 turns)
+  * Buff Indicator: ''BuffIndicator.LEVITATION = 5''
+  * Sprite State: ''CharSprite.State.LEVITATING''
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/levitation.json
+No dedicated JSON configuration file found. Buff is implemented entirely in Java.
 
 ===== String Resources =====
+English (''values/strings_all.xml''):
 <code xml>
-<string name="Levitation_Name">[Name]</string>
-<string name="Levitation_Info">[Description]</string>
+<string name="LevitationBuff_Name">Levitating</string>
+<string name="LevitationBuff_Info">The body hovers above the ground, avoiding traps and other earthly dangers.</string>
+<string name="PotionOfLevitation_Name">Potion of Levitation</string>
+<string name="PotionOfLevitation_Info">Drinking this odd substance allows you to hover, effortlessly floating over traps. Fire and gasses fill the air, however, and cannot be passed while hovering.</string>
+</code>
+
+Russian (''values-ru/strings_all.xml''):
+<code xml>
+<string name="LevitationBuff_Name">Левитация</string>
+<string name="LevitationBuff_Info">Тело парит над землёй, избегая ловушек и других опасностей.</string>
+<string name="PotionOfLevitation_Name">Зелье Левитации</string>
+<string name="PotionOfLevitation_Info">Выпив эту занятную субстанцию ты обретёшь способность парить над поверхностью, минуя ловушки. Однако огонь и газы заполняют объём, и облететь их не получится.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+No Lua script implementation. This buff is implemented entirely in Java.
+
+===== Usage in Code =====
+Applied by:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java|PotionOfLevitation.java]] - Drinking the potion
+  * Various spells and abilities
+
+Key behaviors:
+  * Detaches ''Roots'' buff when attached (via ''Roots.detach()'')
+  * Calls ''Dungeon.level.press()'' when detached (may trigger floor effects)
+  * Sets sprite state to ''CharSprite.State.LEVITATING''
+  * Uses ''BuffIndicator.LEVITATION'' for UI icon
+
+===== Related Buffs =====
+  * [[mr:roots_buff|Roots Buff]] - Counteracted by Levitation
+  * [[mr:flavour_buff|Flavour Buff]] - Parent class
+  * [[mr:potion_of_levitation_item|Potion of Levitation]] - Primary source
+
+===== See Also =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff Base Class]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots Buff]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java|BuffIndicator]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java|CharSprite]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon]]
