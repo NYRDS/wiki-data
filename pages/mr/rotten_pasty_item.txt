@@ -5,7 +5,7 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]] - Parent class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]] - Base food class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Pasty.java|Pasty.java]] - Related item (purified form)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - Sprite definition (ROTTEN_PASTY = 117)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - Sprite definition (ROTTEN_PASTY)
 
 ===== Class Hierarchy =====
 <code java>
@@ -13,36 +13,100 @@ RottenPasty extends RottenFood extends Food extends Item
 </code>
 
 ===== Java Usage =====
-  * **ItemFactory.java**: Registered item class (line 261)
-  * **Level.java**: Used in item spawning logic
-  * **MimicPie.java**: Dropped when Mimic Pie is defeated (line 22)
-  * **Pasty.java**: Pasty purifies to RottenPasty (line 22)
+  * **ItemFactory.java** (line 261): Registered item class via `registerItemClass(RottenPasty.class)`
+  * **Pasty.java** (line 22): Pasty purifies into RottenPasty via `return morphTo(RottenPasty.class)`
+  * **MimicPie.java** (line 22): Dropped when Mimic Pie is defeated via `collect(new RottenPasty())`
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<!-- English -->
+<!-- English (values/strings_all.xml) -->
 <string name="RottenPasty_Name">rotten pasty</string>
 <string name="RottenPasty_Info">it might once have been a pasty, now it's just disgusting</string>
 
-<!-- Russian -->
-<string name="RottenPasty_Name">гнилой пирог</string>
-<string name="RottenPasty_Info">когда-то это был пирог, а теперь просто отвратительно</string>
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="RottenPasty_Name">тухлый пирог</string>
+<string name="RottenPasty_Info">выглядит мерзко</string>
+
+<!-- Spanish (values-es/strings_all.xml) -->
+<string name="RottenPasty_Name">empanada podrida</string>
+<string name="RottenPasty_Info">esa empanada tiene una pinta asquerosa</string>
+
+<!-- French (values-fr/strings_all.xml) -->
+<string name="RottenPasty_Name">pâté en croute pourri</string>
+<string name="RottenPasty_Info">Ce vieux pâté en croûte a l'air vraiment dégoutant</string>
+
+<!-- German (values-de/strings_all.xml) -->
+<string name="RottenPasty_Name">Vergammelte Pastete</string>
+<string name="RottenPasty_Info">es könnte einmal eine Pastete gewesen sein, jetzt ist es nur noch ekelhaft</string>
+
+<!-- Portuguese (values-pt-rBR/strings_all.xml) -->
+<string name="RottenPasty_Name">pastel de carne podre</string>
+<string name="RottenPasty_Info">Este pastel parece muito nojento</string>
+
+<!-- Italian (values-it/strings_all.xml) -->
+<string name="RottenPasty_Name">pasticcio marcio</string>
+<string name="RottenPasty_Info">ex-pasto sembra così disgustoso</string>
+
+<!-- Japanese (values-ja/strings_all.xml) -->
+<string name="RottenPasty_Name">腐ったパスティ</string>
+<string name="RottenPasty_Info">このパスティはかなり不味そうだ。</string>
+
+<!-- Korean (values-ko/strings_all.xml) -->
+<string name="RottenPasty_Name">썩은 파스티</string>
+<string name="RottenPasty_Info">원래는 파이였을지 모르지만, 역겨워 보입니다.</string>
+
+<!-- Chinese Simplified (values-zh-rCN/strings_all.xml) -->
+<string name="RottenPasty_Name">腐烂的馅饼</string>
+<string name="RottenPasty_Info">这馅饼看起来十分恶心，但可以通过一些方法让它再次能够食用。</string>
+
+<!-- Chinese Traditional (values-zh-rTW/strings_all.xml) -->
+<string name="RottenPasty_Name">腐爛餡餅</string>
+<string name="RottenPasty_Info">這餡餅看起來十分惡心，但可以通過一些方法讓它再次能夠食用。</string>
+
+<!-- Polish (values-pl/strings_all.xml) -->
+<string name="RottenPasty_Name">zgniły pasztecik</string>
+<string name="RottenPasty_Info">to kiedyś był pasztecik, teraz jest po prostu obrzydliwy</string>
+
+<!-- Ukrainian (values-uk/strings_all.xml) -->
+<string name="RottenPasty_Name">зіпсований пиріг</string>
+<string name="RottenPasty_Info">цей пиріг виглядає так огидно</string>
+
+<!-- Hungarian (values-hu/strings_all.xml) -->
+<string name="RottenPasty_Name">romlott pástétom</string>
+<string name="RottenPasty_Info">volt-pástétom annyira undorítóan néz ki</string>
+
+<!-- Turkish (values-tr/strings_all.xml) -->
+<string name="RottenPasty_Name">küflenmiş börek</string>
+<string name="RottenPasty_Info">iğrenç görünen eski börek</string>
+
+<!-- Greek (values-el/strings_all.xml) -->
+<string name="RottenPasty_Name">χαλασμένη πίτα</string>
+<string name="RottenPasty_Info">αυτό μπορεί κάποτε να ήταν πίτα, τώρα είναι απλά αηδιαστικό</string>
+
+<!-- Indonesian (values-in/strings_all.xml) -->
+<string name="RottenPasty_Name">pastel busuk</string>
+<string name="RottenPasty_Info">pastel yang terlihat sangat menjijikan</string>
+
+<!-- Malay (values-ms/strings_all.xml) -->
+<string name="RottenPasty_Name">pai busuk</string>
+<string name="RottenPasty_Info">pai busuk ini memualkan</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
 ===== Related Entities =====
-  * [[mr:pasty_item|Pasty Item]] - The purified form
+  * [[mr:pasty_item|Pasty Item]] - The purified form (RottenPasty purifies into Pasty)
   * [[mr:rotten_food_item|Rotten Food Item]] - Parent class
-  * [[mr:mimic_pie_mob|Mimic Pie Mob]] - Drops this item
+  * [[mr:mimic_pie_mob|Mimic Pie Mob]] - Drops this item when defeated
 
 ===== Properties =====
   * **Type**: Food item
   * **Category**: Rotten food
-  * **Sprite**: ItemSpriteSheet.ROTTEN_PASTY (index 117)
-  * **Purification**: Transforms into Pasty when purified
+  * **Sprite**: ItemSpriteSheet.ROTTEN_PASTY
+  * **Purification**: RottenPasty purifies into Pasty (via Pasty.purify() method)
   * **Stackable**: Yes (inherits from Food class)
+  * **Drop Source**: MimicPie mob drops RottenPasty when defeated
