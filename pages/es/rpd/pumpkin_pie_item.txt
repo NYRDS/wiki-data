@@ -3,41 +3,51 @@
 {{ rpd:images:pumpkin_pie_item.png|Pastel de Calabaza }}
 
 ==== Descripción ====
-Un delicioso pastel de calabaza fresco. Este objeto de comida restaura una cantidad considerable de hambre cuando se consume y proporciona una sensación de saciedad.
+Un delicioso pastel de calabaza, perfecto para ocasiones especiales. Este [[es:rpd:food_item|objeto de comida]] es un tratamiento estacional que restaura completamente tu hambre.
 
 ==== Estadísticas ====
-  * **Valor Nutricional**: Restaura hambre significativamente
+  * **Valor Nutricional**: Restaura el hambre completamente (cantidad Hunger.STARVING = 395 unidades)
+  * **Energía**: Hunger.STARVING (sacia completamente el hambre al nivel máximo)
+  * **Precio**: 30 de oro por pastel (30 * cantidad())
   * **Imagen**: Índice 9 en la hoja de sprites food.png
-  * **Tipo**: Comida Normal (puede estropearse con el tiempo)
+  * **Archivo de Sprite**: items/food.png (definido en la variable imageFile)
+  * **Tipo**: Objeto de comida (hereda de la clase Food)
 
 ==== Mecánicas ====
-  * **Restauración de Hambre**: Proporciona una gran cantidad de energía para saciar el hambre del héroe
-  * **Se estropea con el tiempo**: Puede transformarse en [[es:rpd:rotten_pumpkin_pie_item|Pastel de Calabaza Podrido]]
-  * **Duración**: Tiene un tiempo de validez antes de estropearse
-
-==== Estrategia ====
-  * Excelente opción de comida cuando está disponible
-  * Mejor consumir antes de que se estropee
-  * Alternativa más nutritiva en comparación con raciones estándar
+  * **Saciar Hambre**: Restaura completamente la barra de hambre cuando se consume (equivalente a Hunger.STARVING unidades)
+  * **Deterioro**: Puede estropearse y transformarse en Pastel de Calabaza Podrido con el tiempo (mecánicas estándar de deterioro de comida)
+  * **Transformación**: Cuando se envenena, se transforma en Pastel de Calabaza Podrido usando el método poison()
+  * **Precio**: El precio se calcula como 30 * cantidad() en el método price()
 
 ==== Referencias de Código ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/PumpkinPie.java|PumpkinPie.java]] - Implementación principal
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]] (clase base)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/RottenPumpkinPie.java|RottenPumpkinPie.java]] (forma estropeada)
+  * **Clase Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/PumpkinPie.java|PumpkinPie.java]]
+  * **Implementación del Constructor:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/PumpkinPie.java#L7-L11|PumpkinPie.java#L7-L11]] - Establece imagen, energía y propiedades del sprite
+  * **Clase Base:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]] - Mecánicas generales de comida
+  * **Mecánicas de Hambre:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]] - Implementación del sistema de hambre
+  * **Manejo de Deterioro:** Usa el método poison() de la clase Food para transformarse en RottenPumpkinPie
+  * **Cálculo de Precio:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/PumpkinPie.java#L13-L15|PumpkinPie.java#L13-L15]] - Implementación del método price
 
 ==== Recursos de Cadena ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2551|PumpkinPie_Name (EN)]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2552|PumpkinPie_Info (EN)]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2551|PumpkinPie_Name (RU)]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2552|PumpkinPie_Info (RU)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1427|PumpkinPie_Name (EN)]] - "Pumpkin pie"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1428|PumpkinPie_Info (EN)]] - "Delicious pumpkin pie, mmm, just like mom used to make."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1427|PumpkinPie_Name (RU)]] - "Тыквенный пирог"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1428|PumpkinPie_Info (RU)]] - "Вкусный тыквенный пирог, ммм, прямо как мама готовила."
+
+==== Estrategia ====
+  * Útil para restaurar completamente el hambre cuando estás en niveles bajos
+  * Más caro que la comida regular pero proporciona saciación completa
+  * Mejor consumir antes de que se estropee
+  * Bueno para situaciones de emergencia cuando necesitas satisfacer completamente el hambre rápidamente
 
 ==== Objetos Relacionados ====
-  * [[es:rpd:rotten_pumpkin_pie_item|Pastel de Calabaza Podrido]] - La versión estropeada
-  * [[es:rpd:rotten_food|Comida Estropeada]] - Información general sobre comida estropeada
-  * [[es:rpd:ration_item|Ración]] - Opción estándar de comida
+  * [[es:rpd:rotten_pumpkin_pie_item|Pastel de Calabaza Podrido]] - En lo que se convierte cuando se estropea
+  * [[es:rpd:ration_item|Ración]] - Objeto de comida estándar
+  * [[es:rpd:overpriced_ration_item|Ración Sobrecarificada]] - Otra opción de comida cara
+  * [[es:rpd:food_item|Comida]] - Clase padre e información general sobre objetos de comida
 
 ==== Otros Idiomas ====
   * [[en:rpd:pumpkin_pie_item|English]]
   * [[pt:rpd:pumpkin_pie_item|Português]]
+  * [[ru:rpd:pumpkin_pie_item|Русский]]
 
-{{tag> rpd items food }}
+{{tag> es items food }}
