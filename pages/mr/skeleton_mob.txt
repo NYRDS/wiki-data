@@ -2,9 +2,26 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Skeleton.java|Skeleton.java]]
-  * Used in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/Lich.java|Lich.java]] (summons skeletons)
-  * Listed in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]]
-  * Referenced in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/alchemy/AlchemyRecipes.java|AlchemyRecipes.java]] as non-resurrectable mob
+
+===== Entity Stats (from Java) =====
+  * **HP/HT:** 25
+  * **Base Defense Skill:** 9
+  * **Base Attack Skill:** 12
+  * **Damage:** 3-8
+  * **Damage Reduction:** 5
+  * **EXP for Kill:** 5
+  * **Max Level:** 10
+  * **Undead:** Yes (setUndead(true))
+
+===== Special Abilities (from Java) =====
+  * **Explosion on Death:** When killed, explodes and deals damage to all adjacent creatures (4 neighbors)
+  * **Damage Calculation:** damageRoll() - (defender.defenceRoll() / 2)
+  * **Hero Death:** Can kill the hero through explosion damage
+  * **Sound Effect:** Plays SND_BONES sound on death when visible
+
+===== Loot Table (from Java) =====
+  * **Normal:** Random weapon from Treasury (worstOf WEAPON category, tier 3)
+  * **NecroBossLevel:** No loot
 
 ===== JSON Configuration =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Skeleton.json|Skeleton.json]] - Sprite configuration
@@ -29,3 +46,4 @@
   * [[mr:skeletonkey_item|Skeleton Key (Item)]]
   * [[mr:lich_mob|Lich (Mob)]] (summons skeletons)
   * [[mr:warrior_class|Warrior (Class)]]
+  * [[mr:rat_skull_item|Rat Skull (Item)]] (alchemy ingredient)
