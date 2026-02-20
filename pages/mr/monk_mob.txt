@@ -1,14 +1,53 @@
-====== Monk Mob - Code References ======
+====== Monk - Code References ======
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Monk.java|Monk.java]]
 
+===== Entity Stats (from Java) =====
+  * **HP/HT:** 70
+  * **Base Defense Skill:** 30
+  * **Base Attack Skill:** 30
+  * **Damage:** 12-16
+  * **Damage Reduction:** 2
+  * **EXP for Kill:** 11
+  * **Max Level:** 21
+  * **Attack Delay:** 0.5f (50% faster than normal)
+
+===== Special Abilities (from Java) =====
+  * **Kick Attack:** 50% chance to perform a kick attack instead of normal melee (uses extra animation "kick")
+  * **Disarm:** 16.67% chance (1 in 6) to disarm enemy of their weapon from WEAPON or LEFT_HAND slot (doesn't work on Knuckles or cursed items)
+  * **Immunities:** Immune to Amok and Terror buffs
+  * **Quest Mob:** Can be part of Imp's quest (Imp.Quest.process)
+
+===== Spawn Locations (from Bestiary.json) =====
+  * **Level 14:** 0.01 spawn weight
+  * **Level 16:** 0.2 spawn weight
+  * **Level 17:** 1.0 spawn weight
+  * **Level 18:** 2.0 spawn weight
+  * **Level 19:** 2.0 spawn weight
+
+===== Loot Table (from Java) =====
+  * **Food:** 15.3% chance to drop food items
+
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Monk.json|Monk.json]] - Mob configuration
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Monk.json|Monk.json]] - Sprite configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Monk.json|Monk.json]] - Sprite configuration (texture: monk.png, 15x14 pixels)
 
 ===== String Resources =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - Entity name and description
+<code xml>
+<string name="Monk_Name">biksu kurcaci</string>
+<string name="Monk_Name_Objective">biksu kurcaci</string>
+<string name="Monk_Desc">Biksu ini adalah fanatik, yang membaktikan diri mereka untuk menjaga rahasia kota mereka dari semua makhluk asing. Mereka tidak menggunakan pengaman atau senjata, hanya mengandalkan seni dari pertempuran tangan.</string>
+<string name="Monk_Defense">tertangkis</string>
+<string name="Monk_Disarm">%1$s telah menjatuhkan %2$s dari tangan Anda!</string>
+<string name="Imp_Monks1">Apakah Anda seorang petualang? ... _monks_ yang perlu dibunuh. ... _8 dari mereka_ ...</string>
+<string name="Imp_Monks2">Ah, kamu masih hidup! ... Jangan lupa untuk mengambil token biksu ini.</string>
+</code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Monk.lua|Monk.lua]] - Mob script (if applicable)
+  * No dedicated Lua script (behavior implemented in Java)
+
+===== Related mr Entities =====
+  * [[mr:imp_npc|Imp (NPC)]] (quest giver for Monk hunting)
+  * [[mr:knuckles_item|Knuckles (Item)]] (weapon immune to disarm)
+  * [[mr:amok_buff|Amok (Buff)]] (immune)
+  * [[mr:terror_buff|Terror (Buff)]] (immune)
