@@ -1,0 +1,40 @@
+====== Deferred Damage Buff - Code References ======
+
+{{ rpd:images:deferred_damage_buff.png|Deferred Damage Buff }}
+
+===== Entity Kind =====
+Viscosity.DeferredDamage
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Viscosity.java#L64-L102|Viscosity.java]] - The nested class implementing the buff
+
+===== Class Details =====
+  * **Parent Class**: Buff
+  * **Package**: com.watabou.pixeldungeon.items.armor.glyphs.Viscosity
+  * **Type**: Nested static class (DeferedDamage)
+  * **Icon**: BuffIndicator.DEFERRED (ID 28)
+
+===== Special Properties =====
+  * **Buff Type**: Negative buff (debuff)
+  * **Applied by**: [[en:rpd:glyph_of_viscosity_item|Glyph of Viscosity]] on armor
+  * **Effect**: Delays received damage over time (1 damage per turn instead of all at once)
+  * **Damage Processing**: Deals 1 damage per tick until all deferred damage is dealt
+  * **Death from Buff**: If target dies from deferred damage, death is attributed to the glyph
+
+===== String Resources =====
+<code xml>
+<string name="DeferredDamageBuff_Name">Deferred Damage (%d)</string>
+<string name="DeferredDamageBuff_Info">The pain has been turned into a slowing pain, lessening the damage taken at once.
+Damage left to receive %d</string>
+<string name="DeferredDamage_Killed_Txt">%s killed you...</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists
+
+===== Related mr Entities =====
+  * [[mr:glyph_of_viscosity_item|Glyph of Viscosity (Item)]]
+  * [[mr:buff|Buff (Base Class)]]
