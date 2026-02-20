@@ -1,8 +1,36 @@
 ====== Smash Spell - Code References ======
 
+===== Lua Script Implementation =====
+This spell is implemented entirely in Lua. The main implementation file is:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Smash.lua|Smash.lua]]
+
+**Spell Configuration (from Lua):**
+<code lua>
+image         = 3
+imageFile     = "spellsIcons/warrior.png"
+name          = "SmashSpell_Name"
+info          = "SmashSpell_Info"
+magicAffinity = "Combat"
+targetingType = "self"
+level         = 4
+spellCost     = 10
+cooldown      = 10
+castTime      = 0.5
+</code>
+
+**Spell Effects:**
+  * Requires a weapon to cast (checks caster:getBelongings().weapon)
+  * Creates visual fist effect that moves upward (smash_fist)
+  * Creates blast effect at ground level (smash_blast) with scale 1.5x1.3
+  * Jumps the caster's sprite upward by 30 units
+  * Affects all cells around the caster
+  * Applies [[mr:vertigo_buff|Vertigo]] buff to enemies hit
+  * Deals physical damage based on weapon damage roll
+  * Plays "smash" sound effect
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/CustomSpell.java|CustomSpell.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/CustomSpell.java|CustomSpell.java]] - Base class for custom spells
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]] - Buff applied to stunned enemies
 
 ===== JSON Configuration =====
 This entity is implemented in Lua, no JSON configuration exists
@@ -14,10 +42,8 @@ This entity is implemented in Lua, no JSON configuration exists
 <string name="SmashSpell_NeedWeapon">I need a weapon for this move.</string>
 </code>
 
-===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Smash.lua|Smash.lua]]
-
 ===== Related mr Entities =====
-  * [[mr:vertigo_buff|Vertigo (Buff)]]
-  * [[mr:custom_spell_class|CustomSpell (Class)]]
-  * [[mr:combat_affinity|Combat (Affinity)]]
+  * [[mr:vertigo_buff|Vertigo (Buff)]] - Stun effect applied to enemies
+  * [[mr:custom_spell_class|CustomSpell (Class)]] - Base class for Lua-implemented spells
+  * [[mr:combat_affinity|Combat (Affinity)]] - Magic affinity type
+  * [[mr:spell_targeting_self|Spell Targeting Self]] - Targeting type for self-buffs
