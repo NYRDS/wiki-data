@@ -3,6 +3,20 @@
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/GoldenKey.java|GoldenKey.java]] - Main implementation extending Key
 
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.items.keys;
+
+import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
+
+public class GoldenKey extends Key {
+
+	{
+		image = ItemSpriteSheet.GOLDEN_KEY;
+	}
+}
+</code>
+
 ===== JSON Configuration =====
 This item does not have specific JSON configuration, as it's a basic key type defined in code.
 
@@ -12,11 +26,77 @@ This item does not have specific JSON configuration, as it's a basic key type de
 <string name="GoldenKey_Info">The notches on this golden key are tiny and intricate. Maybe it can open some chest lock?</string>
 </code>
 
+===== Translated String Resources =====
+<code xml>
+<!-- Russian -->
+<string name="GoldenKey_Name">золотой ключ</string>
+<string name="GoldenKey_Info">Нарезка на этом золотом ключе крошечная и замысловатая. Может быть, он может открыть какой-то сундук?</string>
+
+<!-- Chinese Simplified -->
+<string name="GoldenKey_Name">金钥匙</string>
+<string name="GoldenKey_Info">这把金钥匙的凹槽细小而复杂。也许它能打开某个宝箱的锁？</string>
+
+<!-- French -->
+<string name="GoldenKey_Name">clé dorée</string>
+<string name="GoldenKey_Info">Les encoches de cette clé dorée sont minuscules et complexes. Peut-être peut-elle ouvrir le verrou d'un coffre ?</string>
+
+<!-- German -->
+<string name="GoldenKey_Name">goldener Schlüssel</string>
+<string name="GoldenKey_Info">Die Kerben auf diesem goldenen Schlüssel sind winzig und kompliziert. Vielleicht kann er ein Truhenlock öffnen?</string>
+
+<!-- Spanish -->
+<string name="GoldenKey_Name">llave dorada</string>
+<string name="GoldenKey_Info">Las muescas de esta llave dorada son pequeñas e intrincadas. ¿Quizás pueda abrir la cerradura de algún cofre?</string>
+
+<!-- Portuguese -->
+<string name="GoldenKey_Name">chave dourada</string>
+<string name="GoldenKey_Info">Os entalhes nesta chave dourada são minúsculos e intrincados. Talvez possa abrir a fechadura de algum baú?</string>
+
+<!-- Italian -->
+<string name="GoldenKey_Name">chiave dorata</string>
+<string name="GoldenKey_Info">Le tacche su questa chiave dorata sono minuscole e intricate. Forse può aprire la serratura di qualche baule?</string>
+
+<!-- Japanese -->
+<string name="GoldenKey_Name">金の鍵</string>
+<string name="GoldenKey_Info">この金の鍵の溝は小さくて複雑だ。もしかしたら宝箱の鍵を開けられるかもしれない？</string>
+
+<!-- Korean -->
+<string name="GoldenKey_Name">금 열쇠</string>
+<string name="GoldenKey_Info">이 금 열쇠의 홈은 작고 복잡합니다. 어쩌면 어떤 상자의 자물쇠를 열 수 있을까요?</string>
+
+<!-- Polish -->
+<string name="GoldenKey_Name">złoty klucz</string>
+<string name="GoldenKey_Info">Ząbki na tym złotym kluczu są maleńkie i zawiłe. Może może otworzyć jakiś zamek skrzyni?</string>
+
+<!-- Ukrainian -->
+<string name="GoldenKey_Name">золотий ключ</string>
+<string name="GoldenKey_Info">Нарізка на цьому золотому ключі крихітна і заплутана. Може, він може відкрити якийсь скриню?</string>
+
+<!-- Turkish -->
+<string name="GoldenKey_Name">altın anahtar</string>
+<string name="GoldenKey_Info">Bu altın anahtarın çentikleri küçük ve karmaşık. Belki bazı sandık kilidini açabilir?</string>
+
+<!-- Indonesian -->
+<string name="GoldenKey_Name">kunci emas</string>
+<string name="GoldenKey_Info">Takikan pada kunci emas ini kecil dan rumit. Mungkin bisa membuka kunci peti?</string>
+
+<!-- Greek -->
+<string name="GoldenKey_Name">χρυσό κλειδί</string>
+<string name="GoldenKey_Info">Οι εγκοπές σε αυτό το χρυσό κλειδί είναι μικροσκοπικές και περίπλοκες. Ίσως μπορεί να ανοίξει κάποια κλειδαριά σεντουκιού;</string>
+</code>
+
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Usage =====
+  * Opens golden chests found throughout the dungeon
+  * Part of the key family of items
+  * Cannot be dropped or thrown (inherited from Key class)
+  * Automatically collected when walking over
+
 ===== Related mr Entities =====
-  * [[mr:iron_key_item|Iron Key]]
-  * [[mr:skeleton_key_item|Skeleton Key]]
-  * [[mr:keyring_item|Keyring]]
-  * [[mr:chests|Chests]]
+  * [[mr:iron_key_item|Iron Key]] - Opens iron chests
+  * [[mr:skeleton_key_item|Skeleton Key]] - Universal key that opens all chests
+  * [[mr:keyring_item|Keyring]] - Container for holding multiple keys
+  * [[mr:chest_level_object|Chest Level Object]] - Container that requires keys to open
+  * [[mr:key|Key Base Class]] - Base class for all key items

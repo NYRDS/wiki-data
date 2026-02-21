@@ -1,0 +1,199 @@
+====== Hedgehog NPC - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Hedgehog.java|Hedgehog.java]] - Main implementation extending NPC
+
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.actors.mobs.npcs;
+
+import com.nyrds.Packable;
+import com.nyrds.pixeldungeon.ai.MobAi;
+import com.nyrds.pixeldungeon.ai.Wandering;
+import com.nyrds.pixeldungeon.mechanics.NamedEntityKind;
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.actors.Actor;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.items.food.Pasty;
+import com.watabou.pixeldungeon.levels.RegularLevel;
+
+import org.jetbrains.annotations.NotNull;
+
+public class Hedgehog extends NPC {
+
+	{
+		setState(MobAi.getStateByClass(Wandering.class));
+	}
+
+	@Override
+	public float speed() {
+		return speed;
+	}
+
+	@Override
+	public void damage(int dmg, @NotNull NamedEntityKind src ) {
+	}
+
+	@Override
+	public boolean add(Buff buff ) {
+        return false;
+    }
+
+	private static boolean spawned;
+
+	@Packable
+	public int    action = 0;
+	@Packable
+	public float  speed  = 0.5f;
+
+	public static void spawn( RegularLevel level ) {
+		if (!spawned && Dungeon.depth == 23) {
+			int mobPos = level.randomRespawnCell();
+
+			if(level.cellValid(mobPos)) {
+				Hedgehog hedgehog = new Hedgehog();
+				hedgehog.setPos(mobPos);
+				level.mobs.add(hedgehog);
+				Actor.occupyCell(hedgehog);
+
+				spawned = true;
+			}
+		}
+	}
+
+	@Override
+	public boolean interact(final Char hero) {
+		getSprite().turnTo( getPos(), hero.getPos() );
+
+		switch (action)
+		{
+			case 0:
+                say(StringsManager.getVar(R.string.Hedgehog_Info1));
+			break;
+
+			case 1:
+                say(StringsManager.getVar(R.string.Hedgehog_Info2));
+			break;
+
+			case 2:
+                say(StringsManager.getVar(R.string.Hedgehog_Info3));
+			break;
+
+			case 3:
+                say(StringsManager.getVar(R.string.Hedgehog_Info4));
+				new Pasty().doDrop(this);
+			break;
+
+			default:
+                say(StringsManager.getVar(R.string.Hedgehog_ImLate));
+				action = 4;
+				speed  = 3;
+		}
+		speed += 0.5f;
+		action++;
+
+		return true;
+	}
+
+}
+</code>
+
+===== JSON Configuration =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Hedgehog.json|Hedgehog.json]] - Sprite configuration
+
+===== String Resources =====
+<code xml>
+<string name="Hedgehog_Name">hedgehog</string>
+<string name="Hedgehog_Desc">The hedgehog looks nervous.</string>
+<string name="Hedgehog_Info1">Are you looking for a Bear too?</string>
+<string name="Hedgehog_Info2">How is Horse, out there, in the mist?</string>
+<string name="Hedgehog_Info3">Do you like tea with raspberry jam?</string>
+<string name="Hedgehog_Info4">Take this pie</string>
+<string name="Hedgehog_ImLate">I\'m late, I\'m so late...</string>
+</code>
+
+===== Translated String Resources =====
+<code xml>
+<!-- Russian -->
+<string name="Hedgehog_Name">ёжик</string>
+<string name="Hedgehog_Desc">Ёжик выглядит нервным.</string>
+<string name="Hedgehog_Info1">Вы тоже ищете Медведя?</string>
+<string name="Hedgehog_Info2">Как там Лошадь, в тумане?</string>
+<string name="Hedgehog_Info3">Вы любите чай с малиновым вареньем?</string>
+<string name="Hedgehog_Info4">Возьми этот пирог</string>
+<string name="Hedgehog_ImLate">Я опаздываю, я так опаздываю...</string>
+
+<!-- Chinese Simplified -->
+<string name="Hedgehog_Name">刺猬</string>
+<string name="Hedgehog_Desc">刺猬看起来很紧张。</string>
+
+<!-- French -->
+<string name="Hedgehog_Name">hérisson</string>
+<string name="Hedgehog_Desc">Le hérisson semble nerveux.</string>
+
+<!-- German -->
+<string name="Hedgehog_Name">Igel</string>
+<string name="Hedgehog_Desc">Dieser Igel scheint nervös zu sein.</string>
+
+<!-- Spanish -->
+<string name="Hedgehog_Name">erizo</string>
+<string name="Hedgehog_Desc">El erizo parece nervioso.</string>
+
+<!-- Portuguese -->
+<string name="Hedgehog_Name">ouriço</string>
+<string name="Hedgehog_Desc">O ouriço parece nervoso.</string>
+
+<!-- Italian -->
+<string name="Hedgehog_Name">riccio</string>
+<string name="Hedgehog_Desc">Il riccio sembra nervoso.</string>
+
+<!-- Japanese -->
+<string name="Hedgehog_Name">ハリネズミ</string>
+<string name="Hedgehog_Desc">ハリネズミは緊張しているようだ。</string>
+
+<!-- Korean -->
+<string name="Hedgehog_Name">고슴도치</string>
+<string name="Hedgehog_Desc">고슴도치가 긴장한 것 같습니다.</string>
+
+<!-- Polish -->
+<string name="Hedgehog_Name">jeż</string>
+<string name="Hedgehog_Desc">Jeż wygląda na zestresowanego.</string>
+
+<!-- Ukrainian -->
+<string name="Hedgehog_Name">їжак</string>
+<string name="Hedgehog_Desc">Їжак виглядає нервовим.</string>
+
+<!-- Turkish -->
+<string name="Hedgehog_Name">kirpi</string>
+<string name="Hedgehog_Desc">Kirpi gergin görünüyor.</string>
+
+<!-- Indonesian -->
+<string name="Hedgehog_Name">landak</string>
+<string name="Hedgehog_Desc">Landak itu kelihatan malu.</string>
+
+<!-- Greek -->
+<string name="Hedgehog_Name">σκαντζόχοιρος</string>
+<string name="Hedgehog_Desc">Ο σκαντζόχοιρος φαίνεται νευρικός.</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists
+
+===== Behavior =====
+  * Spawns on depth 23 (Halls level)
+  * Only one hedgehog spawns per game session (static spawned flag)
+  * Uses Wandering AI behavior
+  * Immune to damage (damage method does nothing)
+  * Immune to buffs (add method returns false)
+  * Has 4 interaction states before leaving
+  * Drops a [[mr:pasty_item|Pasty]] on 4th interaction
+  * Speed increases with each interaction (starts at 0.5f, increases by 0.5f each time)
+  * On 5th+ interaction, says "I'm late" and leaves with speed 3.0f
+
+===== Related mr Entities =====
+  * [[mr:pasty_item|Pasty Item]] - Food item dropped by hedgehog
+  * [[mr:npc|NPC]] - Base class for non-player characters
+  * [[mr:wandering|Wandering AI]] - AI behavior used by hedgehog

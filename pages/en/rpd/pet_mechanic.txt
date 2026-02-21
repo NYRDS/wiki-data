@@ -9,24 +9,34 @@ A pet in Remixed Pixel Dungeon is a mob that has been converted to fight alongsi
   * Pets have the same stats and abilities as their original mob form
   * Pets do not take up inventory space
   * Pets remain in the dungeon when the player teleports away or ascends/descends stairs
+  * Pets are marked with a special flag that makes them ignore the player
+  * Pets use the same AI as their original mob type
 
 ==== Creation ====
 Pets can be created through various means:
   * Using the [[en:rpd:sacrificial_sword_item|Sacrificial Sword]] to convert enemies
   * Using spells like [[en:rpd:summon_beast_spell|Summon Beast]]
   * Through specific items or level mechanisms
+  * Using the [[en:rpd:scroll_of_domination_item|Scroll of Domination]]
+  * Using the [[en:rpd:spider_charm_item|Spider Charm]] to create spider pets
+  * Using the [[en:rpd:chaos_staff|Chaos Staff]] random effects
+  * Using the [[en:rpd:possess_spell|Possess Spell]] for temporary control
 
 ==== Behavior ====
   * Pets will prioritize attacking enemies over following the player
   * Pets are affected by area of effect attacks (AOE)
   * Pets can die if their HP reaches zero
   * Pets cannot be directly controlled by the player
+  * Pets do not trigger traps
+  * Pets can be healed by area healing effects
+  * Pets are affected by buffs and debuffs
 
 ==== Limitations ====
   * Bosses cannot be converted to pets
   * NPCs cannot be converted to pets
   * Some special enemies cannot become pets
   * The player can only have a limited number of pets at once
+  * Pets do not persist between dungeon levels (remain on the level where they were created)
 
 ==== Related ====
   * [[en:rpd:sacrificial_sword_item|Sacrificial Sword]] - Item that creates pets by sacrificing enemies
@@ -35,10 +45,12 @@ Pets can be created through various means:
   * [[en:rpd:chaos_staff_item|Chaos Staff]] - Item that can make enemies into pets
   * [[en:rpd:scroll_of_domination_item|Scroll of Domination]] - Scroll that can make enemies into pets
   * [[en:rpd:possess_spell|Possess Spell]] - Spell that creates controllable pets
-  * [[en:rpd:mobs|Mobs]] - Information about enemy creatures that can become pets
+  * [[en:rpd:mob|Mob]] - Information about enemy creatures that can become pets
+  * [[en:rpd:npc|NPC]] - Non-player characters that cannot become pets
 
 ==== Source Code ====
   * Pet creation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java#L442-L448|Mob.makePet()]]
   * General Mob class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * Pet flag handling: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
 
 {{tag> rpd mechanics mobs}}
