@@ -1,20 +1,41 @@
 ====== Scroll Of Mirror Image Item - Code References ======
 
+**Entity Kind**: ScrollOfMirrorImage
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfMirrorImage.java|ScrollOfMirrorImage.java]]
+  * **Package**: com.watabou.pixeldungeon.items.scrolls
+  * **Parent Class**: Scroll
+  * **Related Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/MirrorImage.java|MirrorImage.java]] (NPC clone created by scroll)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/scroll_of_mirror_image.json
+  * No specific JSON configuration file for this item
+  * Item registration may be in general items configuration
 
 ===== String Resources =====
+**English (values/strings_all.xml)**:
 <code xml>
-<string name="ScrollOfMirrorImage_Name">[Name]</string>
-<string name="ScrollOfMirrorImage_Info">[Description]</string>
+<string name="ScrollOfMirrorImage_Name">Scroll of Mirror Image</string>
+<string name="ScrollOfMirrorImage_Info">The incantation of this scroll will create illusory twins of the reader, which will hunt his enemies.</string>
 </code>
+
+**Russian (values-ru/strings_all.xml)**:
+<code xml>
+<string name="ScrollOfMirrorImage_Name">свиток зеркального образа</string>
+<string name="ScrollOfMirrorImage_Info">Заклинание этого свитка создаст иллюзорных двойников читающего, которые будут преследовать его врагов.</string>
+</code>
+
+**Other Languages**:
+  * German: Schriftrolle des Spiegelbildes
+  * Spanish: Pergamino de Imagen Espejo
+  * French: Parchemin d'Image Miroir
+  * Greek: πάπυρος κατοπτρικής εικόνας
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Game Mechanics =====
+  * **Effect**: Creates 3 illusory clones of the reader that hunt enemies
+  * **Implementation**: Uses WandOfBlink.appear() for clone appearance
+  * **Clone Behavior**: Clones are created in adjacent empty cells
+  * **Invisibility**: Dispels invisibility on use

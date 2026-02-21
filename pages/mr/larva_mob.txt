@@ -1,42 +1,61 @@
-====== Larva Mob ======
+====== Larva Mob - Code References ======
 
 {{ rpd:images:larva_mob.png|Larva }}
 
-**Larva** is a mob in Remixed Dungeon. It's a small insect-like creature that appears in the early levels of the dungeon.
+**Entity Kind**: Larva
 
-==== Basic Information ====
-  * **Type**: Monster/Mob
-  * **Level**: Early dungeon
-  * **Category**: Insectoid
-  * **Hostility**: Hostile
+===== Java Classes =====
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/Larva.java|Larva.java]]
+  * **Package**: com.nyrds.pixeldungeon.mobs.guts
+  * **Parent Class**: Mob
+  * **AI Class**: Hunting
+  * **Location**: RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/Larva.java
 
-==== Statistics ====
-  * **HP**: See [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Larva.json|Larva.json config]]
-  * **Attack Speed**: See [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Larva.json|Larva.json config]]
-  * **Attack Damage**: See [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Larva.json|Larva.json config]]
-  * **Defense**: See [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Larva.json|Larva.json config]]
+===== JSON Configuration =====
+  * **Sprite Config**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Larva.json|Larva.json]]
+  * **Sprite Texture**: larva.png
+  * **Sprite Dimensions**: 12x8 pixels
+  * **Animations**: idle, run, attack, die
+  * **Blood Color**: 0xbbcc66 (greenish)
 
-==== Behavior ====
-  * Larva typically moves toward the player character
-  * Usually found in groups in early levels
-  * Relatively weak individually but can be dangerous in numbers
+===== String Resources =====
+**English (values/strings_all.xml)**:
+<code xml>
+<string name="Larva_Name">god larva</string>
+<string name="Larva_Desc">Old God Larva</string>
+<string name="Larva_Name_Objective">god larva</string>
+</code>
 
-==== Drops ====
-  * [[en:rpd:gold_item|Gold]]
-  * Occasionally drops other items based on configuration in Larva.json
+**Russian (values-ru/strings_all.xml)**:
+<code xml>
+<string name="Larva_Name">божественная личинка</string>
+<string name="Larva_Desc">личинка Древнего Бога</string>
+<string name="Larva_Name_Objective">божественная личинка</string>
+</code>
 
-==== Strategy ====
-  * Due to their low stats, Larvas are generally easy to defeat
-  * Can usually be handled with basic attacks or simple spells
+**Other Languages**:
+  * German: göttliche Larve / alte Götterlarve
+  * Spanish: larva del dios / Larva del Antiguo Dios
+  * French: larve du dieu / Larve du dieu ancien
+  * Greek: κάμπια του θεού / κάμπια του Παλιού Θεού
 
-==== Implementation Details ====
-  * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Larva.java|Larva.java]]
-  * **JSON Configuration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Larva.json|Larva.json]]
-  * **Sprite**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobs/mob_Larva.png|mob_Larva.png]]
-  * **String Resources**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#LXXXX-LXXXX|Larva_Name, Larva_Info]]
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists
 
-==== Related ====
-  * [[en:rpd:spider_mob|Spider]] - Another insectoid mob
-  * [[en:rpd:goo_mob|Goo]] - Advanced dungeon inhabitant related to larvae
+===== Game Mechanics =====
+  * **HP**: 120
+  * **Base Defense Skill**: 20
+  * **Base Attack Skill**: 30
+  * **Damage**: 25-30
+  * **Defense Rating**: 8
+  * **Level**: 1
+  * **EXP for Kill**: 0 (boss minion)
+  * **Special Ability**: At level 2+, spawns Imago mobs (Scorpio, Worm, Eye) and dies
+  * **AI Behavior**: Hunting - actively pursues player
 
-{{tag> rpd mobs insects}}
+===== Related Entities =====
+  * **Imago Forms**: Scorpio, Worm, Eye (spawned on death at level 2+)
+  * **Associated Boss**: Yog-Dzewa (Old God)
+  * **Sprite**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/larva.png|larva.png]]
+
+{{tag> rpd mobs bosses guts}}
