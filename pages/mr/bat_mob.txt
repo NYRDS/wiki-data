@@ -1,16 +1,43 @@
 ====== Bat Mob - Code References ======
 
+{{ rpd:images:bat_mob.png|Bat }}
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Bat.java|Bat.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Bat.java|Bat.java]] - Main mob class implementation
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Bat.json|Bat.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Bat.json|Bat.json]] - Sprite configuration
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
-<string name="Bat_Name">[Name]</string>
-<string name="Bat_Info">[Description]</string>
+<string name="Bat_Name">vampire bat</string>
+<string name="Bat_Name_Objective">vampire bat</string>
+</code>
+
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="Bat_Name">летучая мышь-вампир</string>
+<string name="Bat_Name_Objective">вампира</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Entity Mechanics =====
+  * **HP**: 30 (base)
+  * **Defense Skill**: 15
+  * **Attack Skill**: 16
+  * **Damage**: 6-12
+  * **Defense**: 4
+  * **EXP for Kill**: 7
+  * **Max Level**: 15
+  * **Speed**: 2.0 (flying, faster than normal)
+  * **Flying**: true (immune to ground traps)
+  * **Leech Resistance**: true (immune to lifesteal enchantments)
+  * **Loot**: Potion of Healing (12.5% drop chance)
+  * **Special Ability**: Heals for damage dealt on attack (vampiric)
+
+===== Related mr: Entities =====
+  * [[mr:potion_of_healing_item|Potion of Healing]] - Possible drop
+  * [[mr:leech_enchantment|Leech Enchantment]] - Bat has resistance to this enchantment

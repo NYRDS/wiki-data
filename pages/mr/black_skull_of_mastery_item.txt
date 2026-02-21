@@ -1,5 +1,7 @@
 ====== Black Skull Of Mastery Item - Code References ======
 
+{{ rpd:images:black_skull_of_mastery_item.png|Black Skull of Mastery }}
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/necropolis/BlackSkullOfMastery.java|BlackSkullOfMastery.java]] - Main item class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/MasteryItem.java|MasteryItem.java]] - Base mastery item class
@@ -10,6 +12,7 @@
 This entity does not use JSON configuration, as it's implemented in Java.
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
 <string name="BlackSkullOfMastery_Name">The Soulbringer</string>
 <string name="BlackSkullOfMastery_Info">It\'s an ancient artifact, crafted by first necromancers to collect souls of the fallen one\'s. Sensing your necromantic abilities it warded itself with a powerful spell. But since the spell is that of the old times, it\'s primitive structure is fairly easy to break.</string>
@@ -20,11 +23,29 @@ This entity does not use JSON configuration, as it's implemented in Java.
 <string name="BlackSkullOfMastery_RemainHumanDesc">Or if you _break the spell_ you\'ll be able to use this artifact as intended.</string>
 </code>
 
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="BlackSkullOfMastery_Name">Жнец Душ</string>
+<string name="BlackSkullOfMastery_Info">Это древний артефакт, сотворённый первыми некромантами, для того чтобы собирать души павших. Мощное защитное заклятие среагировало на твои магические способности и заблокировало силы артефакта. Но не смотря на силу, ввиду возраста, сама структура заклятия крайне примитивна, и её не сложно разрушить.</string>
+</code>
+
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists.
 
 ===== Item Mechanics =====
-  * Special mastery item for Necromancer class that unlocks Lich subclass
-  * Provides a choice between becoming Lich or breaking the spell to get regular Black Skull item
-  * Time to use: 10 turns (TIME_TO_READ constant)
-  * Image index: 19 in items/artifacts.png sprite sheet
+  * **Type**: Mastery item (special quest item)
+  * **Class Restriction**: Necromancer only
+  * **Image**: items/artifacts.png, index 19
+  * **Stackable**: No
+  * **Pre-identified**: Yes
+  * **Use Time**: 10 turns (TIME_TO_READ constant)
+  * **Action**: "Necromancer_ACSpecial"
+  * **Dropped By**: [[mr:lich_mob|Lich]] boss (guaranteed drop)
+  * **Purpose**: Unlocks Lich subclass choice for Necromancer class
+  * **Choice**: Player can choose to become Lich subclass or break the spell to get regular Black Skull item
+
+===== Related mr: Entities =====
+  * [[mr:lich_mob|Lich]] - Boss that drops this item
+  * [[mr:lich_subclass|Lich Subclass]] - Subclass unlocked by this item
+  * [[mr:necromancer_class|Necromancer Class]] - Class that can use this item
+  * [[mr:black_skull_item|Black Skull]] - Alternative reward if spell is broken
