@@ -1,28 +1,81 @@
 ====== Townsfolk NPC - Code References ======
 
+This page contains machine-readable reference information about the Townsfolk NPC entity for automated tools and AI assistants.
+
+===== Entity Information =====
+  * **Entity Kind:** TownsfolkNPC
+  * **Entity Type:** NPC (Non-Player Character)
+  * **Namespace:** mr: (machine-readable/metadata reference)
+  * **Implementation:** Java class (no Lua script)
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/TownsfolkNPC.java|TownsfolkNPC.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/TownsfolkSilentNPC.java|TownsfolkSilentNPC.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/TownsfolkMovieNPC.java|TownsfolkMovieNPC.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L240|MobFactory.java]] - Registration of TownsfolkNPC class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/TownsfolkNPC.java|TownsfolkNPC.java]] - Main Townsfolk NPC class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/TownsfolkSilentNPC.java|TownsfolkSilentNPC.java]] - Silent variant of Townsfolk NPC
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/TownsfolkMovieNPC.java|TownsfolkMovieNPC.java]] - Movie theater variant of Townsfolk NPC
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L240|MobFactory.java]] - Registration of TownsfolkNPC class in mob factory
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]] - Base class for immortal NPCs
 
-===== JSON Configuration =====
-No specific JSON configuration for this NPC found.
+===== Class Implementation Details =====
+<code java>
+package com.nyrds.pixeldungeon.mobs.npc;
 
-===== String Resources =====
-<code xml>
-<string name="TownsfolkNPC_Message1">...</string>
-<string name="TownsfolkNPC_Message2">...</string>
-<string name="TownsfolkNPC_Message3">...</string>
-<string name="TownsfolkNPC_Message4">...</string>
-<string name="TownsfolkSilentNPC_Message1">...</string>
-<string name="TownsfolkSilentNPC_Message2">...</string>
-<string name="TownsfolkSilentNPC_Message3">...</string>
-<string name="TownsfolkMovieNPC_Message">...</string>
+import com.nyrds.pixeldungeon.ml.R;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.scenes.GameScene;
+import com.watabou.pixeldungeon.windows.WndQuest;
+
+public class TownsfolkNPC extends ImmortalNPC {
+    public TownsfolkNPC() {}
+
+    @Override
+    public boolean interact(final Char hero) {
+        getSprite().turnTo( getPos(), hero.getPos() );
+        GameScene.show(new WndQuest(this,
+            R.string.TownsfolkNPC_Message1,
+            R.string.TownsfolkNPC_Message2,
+            R.string.TownsfolkNPC_Message3,
+            R.string.TownsfolkNPC_Message4));
+        return true;
+    }
+}
 </code>
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+===== JSON Configuration =====
+No specific JSON configuration for this NPC found. This entity is implemented entirely in Java.
 
-===== Additional Information =====
-  * Base class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+===== String Resources (English) =====
+Source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+<code xml>
+<string name="TownsfolkNPC_Message1">Ah! Another adventurer, lovely! Make sure to loot as many valuables as you can!</string>
+<string name="TownsfolkNPC_Message2">Town became so wealthy thanks to that dungeon, that everyone in town can afford to go on a vacation whenever we please! In fact that\'s why there is so few people in here right now.</string>
+<string name="TownsfolkNPC_Message3">What a lovely day.</string>
+<string name="TownsfolkNPC_Message4">I hope the sewers won\'t get flooded when spring arrives. We don\'t need another rat infestation.</string>
+<string name="TownsfolkSilentNPC_Message1">Hmph!</string>
+<string name="TownsfolkSilentNPC_Message2">...</string>
+<string name="TownsfolkSilentNPC_Message3">Hmmm...</string>
+<string name="TownsfolkMovieNPC_Message">Do you know about that special service the "movie theater" provides? Too bad they ask for some exotic thing called the "Internet", I never even heard about such a thing.</string>
+</code>
+
+===== String Resources (Russian) =====
+Source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (Russian)]]
+  * Russian localization available in values-ru/strings_all.xml
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists.
+
+===== Behavior =====
+  * **Interaction:** Uses WndQuest window to display random messages
+  * **Movement:** Turns to face the hero when interacted with
+  * **Variants:** Three variants exist (standard, silent, movie theater)
+  * **Immortality:** Inherits from ImmortalNPC, cannot be killed
+
+===== Related Entities =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/TownsfolkSilentNPC.java|TownsfolkSilentNPC]] - Silent variant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/TownsfolkMovieNPC.java|TownsfolkMovieNPC]] - Movie theater variant
+
+===== See Also =====
+  * [[en:rpd:npcs|NPCs]] (English wiki)
+  * [[mr:npc|mr: NPC Entity Reference]] (Machine-readable NPC reference)
+
+{{tag> mr npc reference code}}
