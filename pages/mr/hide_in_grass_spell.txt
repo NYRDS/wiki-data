@@ -1,20 +1,31 @@
 ====== Hide In Grass Spell - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/spells/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/spells/*.java
+This entity is implemented in Lua, no Java class exists
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/spellsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/hide_in_grass.json
+This entity is implemented in Lua, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="HideInGrass_Name">[Name]</string>
-<string name="HideInGrass_Info">[Description]</string>
+<!-- English strings (values/strings_all.xml) -->
+<string name="HideInGrassSpell_Name">Hide-In-Grass</string>
+<string name="HideInGrassSpell_Info">You perfected your Hide-and-seek mastery.</string>
+<string name="HideInGrassSpell_NeedGrassToHide">Even I can't hide in plain sight.</string>
+
+<!-- Russian strings (values-ru/strings_all.xml) -->
+<string name="HideInGrassSpell_Name">Спрятаться в траве</string>
+<string name="HideInGrassSpell_Info">Вы усовершенствовали своё мастерство прятания.</string>
+<string name="HideInGrassSpell_NeedGrassToHide">Даже я не могу спрятаться на виду.</string>
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/HideInGrass.lua|HideInGrass.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/HideInGrass.lua|HideInGrass.lua]] - Main spell implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Cloak.lua|Cloak.lua]] - Buff applied by the spell
+
+===== Usage in Code =====
+  * Spell is associated with Elf class and Elf affinity
+  * Requires GRASS or HIGH_GRASS terrain to cast
+  * Applies Cloak buff for duration based on caster's skill level
+  * Uses "hide_in_grass" visual effect
+  * Failure message when not on grass terrain: "Even I can't hide in plain sight."

@@ -1,20 +1,41 @@
 ====== Fetid Rat Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Ghost.java#L313-L332|Ghost.java#L313-L332]] - FetidRat inner class definition
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Ghost.java#L266|Ghost.java#L266]] - Where Fetid Rat is created in quest
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L196|MobFactory.java#L196]] - Registration of Fetid Rat in mob factory
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/fetid_rat.json
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/RemixedFetidRat.json|RemixedFetidRat.json]] - Stats and configuration data
 
 ===== String Resources =====
 <code xml>
-<string name="FetidRat_Name">[Name]</string>
-<string name="FetidRat_Info">[Description]</string>
+<!-- English strings (values/strings_all.xml) -->
+<string name="FetidRat_Name">fetid rat</string>
+<string name="FetidRat_Name_Objective">fetid rat</string>
+<string name="FetidRat_Gender">feminine</string>
+<string name="FetidRat_Desc">This marsupial rat is much larger than a regular one. It is surrounded by a foul cloud.</string>
+
+<!-- Russian strings (values-ru/strings_all.xml) -->
+<string name="FetidRat_Name">мерзкая крыса</string>
+<string name="FetidRat_Name_Objective">мерзкую крысу</string>
+<string name="FetidRat_Gender">feminine</string>
+<string name="FetidRat_Desc">Эта сумчатая крыса крупнее обычной. Вокруг неё витает зловоние.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/RemixedFetidRat.lua|RemixedFetidRat.lua]] - Custom behavior implementation
+
+===== Usage in Code =====
+  * Part of Ghost quest line
+  * Appears as quest reward for Necromancer or alternative reward for other classes
+  * Drops Giant Rat Skull (100% guaranteed)
+  * Has special ability to release random gas clouds (Paralytic, Confusion, or Toxic)
+  * Immune to its own gas type and Paralysis effects
+  * HP: 15, Attack: 12, Defense: 5, Damage: 2-6
+  * Does not spawn naturally in dungeon
+
+===== Related mr Entities =====
+  * [[mr:ghost_npc|Ghost NPC]]
+  * [[mr:giant_rat_skull_item|Giant Rat Skull Item]]
+  * [[mr:rat_mob|Regular Rat Mob]]
