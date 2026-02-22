@@ -1,0 +1,82 @@
+====== Food Item - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]] - Base abstract class for all food items
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/ChargrilledMeat.java|ChargrilledMeat.java]] - Chargrilled meat food item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/MysteryMeat.java|MysteryMeat.java]] - Mystery meat food item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenMeat.java|RottenMeat.java]] - Rotten meat food item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Pasty.java|Pasty.java]] - Pasty food item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/PseudoPasty.java|PseudoPasty.java]] - Pseudo-pasty food item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Ration.java|Ration.java]] - Food ration item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/SmallRation.java|SmallRation.java]] - Small food ration item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Fruit.java|Fruit.java]] - Fruit food item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Berry.java|Berry.java]] - Berry food item
+
+===== JSON Configuration =====
+Food items are primarily implemented in Java. Some food-related configurations may exist in:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Dungeon.json|Dungeon.json]] - Dungeon configuration with food spawn rates
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Bestiary.json|Bestiary.json]] - Mob drop tables that may include food items
+
+===== String Resources =====
+<code xml>
+<!-- Base Food -->
+<string name="Food_Message">That food tasted delicious.</string>
+
+<!-- Chargrilled Meat -->
+<string name="ChargrilledMeat_Name">chargrilled meat</string>
+<string name="ChargrilledMeat_Info">It looks like a decent steak.</string>
+
+<!-- Mystery Meat -->
+<string name="MysteryMeat_Name">mystery meat</string>
+<string name="MysteryMeat_Info">It's mystery meat.</string>
+
+<!-- Rotten Meat -->
+<string name="RottenMeat_Name">rotten meat</string>
+<string name="RottenMeat_Info">A piece of rotten meat</string>
+
+<!-- Pasty -->
+<string name="Pasty_Name">pasty</string>
+<string name="Pasty_Info">This is an authentic Cornish pasty with traditional filling of beef and potato.</string>
+
+<!-- Food Ration -->
+<string name="Ration_Name">food ration</string>
+<string name="Ration_Info">It's a large cube of dried meat.</string>
+
+<!-- Small Ration -->
+<string name="SmallRation_Name">small ration</string>
+<string name="SmallRation_Info">Tastes like dried meat.</string>
+
+<!-- Fruit -->
+<string name="Fruit_Name">fruit</string>
+<string name="Fruit_Info">It's a juicy fruit.</string>
+
+<!-- Berry -->
+<string name="Berry_Name">berry</string>
+<string name="Berry_Info">It's a small berry.</string>
+</code>
+
+===== Lua Scripts =====
+Food items are primarily implemented in Java. No specific Lua scripts exist for basic food items.
+
+===== Implementation Details =====
+  * **Base Class**: `com.watabou.pixeldungeon.items.food.Food`
+  * **Entity Kind**: Varies by subclass (e.g., "Food", "ChargrilledMeat", "MysteryMeat", "RottenMeat", "Pasty", "Ration")
+  * **Sprite**: Defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet]]
+  * **Default Action**: `CommonActions.AC_EAT`
+  * **Time to Eat**: 3 turns (TIME_TO_EAT constant)
+  * **Stackable**: Yes (stackable = true)
+  * **Identified**: Yes (isIdentified() returns true)
+  * **Upgradable**: No (isUpgradable() returns false)
+
+===== Food Mechanics =====
+  * **Energy**: Each food item provides energy value (varies by type)
+  * **Satiation**: Food restores hunger/satiation meter
+  * **Eating Time**: Takes 3 turns to consume any food item
+  * **Message**: Custom message displayed when eating (defined in each food subclass)
+
+===== Related mr Entities =====
+  * [[mr:chargrilled_meat_item|Chargrilled Meat (Item)]]
+  * [[mr:mystery_meat_item|Mystery Meat (Item)]]
+  * [[mr:rotten_meat_item|Rotten Meat (Item)]]
+  * [[mr:pasty_item|Pasty (Item)]]
+  * [[mr:ration_item|Food Ration (Item)]]
