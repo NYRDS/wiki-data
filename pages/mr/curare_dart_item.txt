@@ -1,20 +1,51 @@
 ====== Curare Dart Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CurareDart.java|CurareDart.java]] - Main item class extending Dart
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registers CurareDart class
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/curare_dart.json
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="CurareDart_Name">[Name]</string>
-<string name="CurareDart_Info">[Description]</string>
+<string name="CurareDart_Name">curare dart</string>
+<string name="CurareDart_Info">These evil little darts don't do much damage, but they can paralyze the target leaving it helpless and motionless for some time.</string>
+<string name="CurareDart_Gender">masculine</string>
 </code>
+
+Other language translations:
+<code xml>
+<string name="CurareDart_Name">дротик с кураре</string>
+<string name="CurareDart_Info">Эти маленькие зловещие дротики наносят не много урона, но способны временно парализовать цель.</string>
+</code>
+(Russian - values-ru/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">Lähmender Pfeil</string>
+<string name="CurareDart_Info">Diese kleinen Pfeile machen nicht viel Schaden, dafür aber können sie den Gegner lähmen.</string>
+</code>
+(German - values-de/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">παραλυτικό βελάκι</string>
+<string name="CurareDart_Info">Αυτά τα μικρά διαβολικά βελάκια δεν προκαλούν μεγάλη ζημιά, αλλά μπορούν να παραλύσουν τον στόχο και να τον αφήσουν αβοήθητο για κάποιο χρονικό διάστημα.</string>
+</code>
+(Greek - values-el/strings_all.xml)
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Entity Properties =====
+  * **Type**: Missile weapon (dart)
+  * **Base Damage**: MIN=1, MAX=3
+  * **Special Effect**: Applies Paralysis buff for 3 seconds on hit
+  * **STR Requirement**: 14
+  * **Random Quantity**: 2-4 when generated randomly
+  * **Price**: 12 gold per dart
+  * **Image ID**: 4 (from missiles atlas)
+
+===== Related mr Entities =====
+  * [[mr:dart_item|Dart (Item)]]
+  * [[mr:paralysis_buff|Paralysis (Buff)]]
+  * [[mr:shuriken_item|Shuriken (Item)]]

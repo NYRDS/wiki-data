@@ -3,37 +3,43 @@
 {{ rpd:images:water_elemental_mob.png|Water Elemental }}
 
 ==== Description ====
-**Water Elemental** is an elemental mob found in Remixed Dungeon. It is one of the four basic elemental types along with Fire, Air, and Earth Elementals.
+**Water Elemental** is an elemental mob found in Remixed Dungeon. It is one of the four basic elemental types along with Fire, Air, and Earth Elementals. Water Elementals are aquatic creatures that thrive in liquid terrain.
 
 ==== Stats ====
-  * **HP**: Variable depending on level
-  * **HT**: Variable depending on level
-  * **Defense Skill**: Moderate
-  * **Attack Skill**: Moderate
-  * **Damage**: Moderate range
-  * **DR (Damage Resistance)**: Moderate
-  * **EXP for Kill**: Standard for elemental
+  * **HP**: 5 × depth + 1 (scales with dungeon depth)
+  * **HT**: Same as HP
+  * **Defense Skill**: 2 × depth + 1
+  * **Attack Skill**: Defense Skill / 2 + 1
+  * **Damage**: HT / 2 (both min and max)
+  * **DR (Damage Resistance)**: (depth + 1) / 3
+  * **EXP for Kill**: depth + 1
+  * **Max Level**: depth + 2
 
 ==== Abilities ====
-  * **Water-based attacks**: Uses water-based attacks against enemies
-  * **Elemental nature**: Immune to certain status effects
-  * **Environmental synergy**: May have special interactions with water terrain
+  * **Freezing Attack**: 50% chance to apply freezing effect on attack
+  * **Water Healing**: Heals when standing on water tiles each turn
+  * **Frost Immunity**: Frost effects heal instead of harm when HP < HT
+  * **Liquid Speed**: Moves at 2x speed in liquid terrain, 0.5x on dry land
 
 ==== Special Mechanics ====
-  * As an elemental creature, it may have specific resistances and vulnerabilities
-  * Interactions with other elemental types (fire, air, earth)
+  * **Kind Variants**: Has 5 variants (kind 0-4) based on dungeon depth (depth/5)
+  * **Carcass Chance**: 0% - does not drop carcasses
+  * **Bleeding Immunity**: Immune to bleeding effects
+  * **Psionic Blast Immunity**: Immune to ScrollOfPsionicBlast
 
 ==== Drops ====
-  * Occasionally drops valuable items related to water or magic
+  * **Potion of Frost**: 10% drop chance
 
 ==== Location ====
-  * Can appear in various levels where elementals are found
+  * Appears in various levels where elementals spawn
+  * More common in deeper dungeon levels
+  * Found near water and liquid terrain
 
 ==== Content Verification ====
-  * Information source: Java class WaterElemental.java
-  * Stats verification: Based on typical elemental mob stats
-  * Effect descriptions: Based on string resources and in-game mechanics
+  * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/WaterElemental.java|WaterElemental.java]]
+  * Stats verification: Based on adjustStats() method scaling with depth
+  * Effect descriptions: Based on attackProc(), act(), speed(), and add() methods
   * Machine-readable data: [[mr:water_elemental_mob|mr:water_elemental_mob]]
-  * Last updated: December 21, 2025
+  * Last updated: February 22, 2026
 
-{{tag> rpd mobs elemental }}
+{{tag> rpd mobs elemental water }}
