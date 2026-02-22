@@ -1,21 +1,32 @@
 ====== Paralysis Arrow - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|ParalysisArrow.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (Base class)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]] (Effect)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|ParalysisArrow.java]] - Main class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] - Base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]] - Buff applied on hit (not Paralysis)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L862|ParalysisArrow_Name]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L863|ParalysisArrow_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|ParalysisArrow_Name]] - Item name
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|ParalysisArrow_Info]] - Item description
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|ParalysisArrow_Gender]] - Grammatical gender
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Implementation Details =====
+  * **Duration**: 4.0 seconds (DURATION constant)
+  * **Effect**: Applies Stun buff on hit, not Paralysis
+  * **Base Damage**: 0-4 (baseMin = 0, baseMax = 4)
+  * **Base Delay**: 0.75 (baseDly = 0.75)
+  * **Price**: 5 gold per arrow
+
 ===== Related mr Entities =====
-  * [[mr:arrow_item|Arrow (Item)]]
-  * [[mr:paralysis_buff|Paralysis (Buff)]]
-  * [[mr:potion_of_paralytic_gas_item|Potion of Paralytic Gas (Item)]]
+  * [[mr:arrow_item|Arrow (Item)]] - Base arrow type
+  * [[mr:stun_buff|Stun (Buff)]] - Applied effect
+  * [[mr:paralysis_buff|Paralysis (Buff)]] - Different effect (not used by this arrow)
+  * [[mr:poison_arrow_item|Poison Arrow (Item)]] - Similar special arrow
+  * [[mr:frost_arrow_item|Frost Arrow (Item)]] - Similar special arrow
