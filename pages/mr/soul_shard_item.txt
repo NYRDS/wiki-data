@@ -1,20 +1,59 @@
 ====== Soul Shard Item - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+==== Java Classes ====
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/material/SoulShard.java|SoulShard.java]]
+  * **Package**: com.nyrds.pixeldungeon.items.material
+  * **Parent Class**: Item
+  * **Registration**: Registered in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+  * **Related Mob**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/JarOfSouls.java|JarOfSouls.java]] (commented out loot)
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/soul_shard.json
+==== Java Class Content ====
+<code java>
+package com.nyrds.pixeldungeon.items.material;
 
-===== String Resources =====
-<code xml>
-<string name="SoulShard_Name">[Name]</string>
-<string name="SoulShard_Info">[Description]</string>
+import com.watabou.pixeldungeon.items.Item;
+import com.watabou.pixeldungeon.sprites.Glowing;
+
+public class SoulShard extends Item {
+	public SoulShard() {
+		stackable = true;
+		imageFile = "items/materials.png";
+		image = 0;
+		identify();
+	}
+
+	@Override
+	public Glowing glowing() {
+		return new Glowing((int) (Math.random() * 0xaaaaff));
+	}
+}
 </code>
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+==== Key Properties from Code ====
+  * **Stackable**: true (can be stacked in inventory)
+  * **Image File**: items/materials.png (sprite sheet)
+  * **Image Index**: 0 (first sprite in the sheet)
+  * **Auto-identified**: identify() called in constructor
+  * **Glowing Effect**: Random blue-ish glow (0xaaaaff color range)
+
+==== JSON Configuration ====
+No dedicated JSON configuration file found. The item uses default Item behavior.
+
+==== String Resources ====
+<code xml>
+<string name="SoulShard_Name">soul shard</string>
+<string name="SoulShard_Info">It's a shard taken from the remains of the Jar of Souls. It shimmers with mysterious power, maybe there is someone who might be interested in something like this.</string>
+<string name="SoulShard_Gender">masculine</string>
+</code>
+
+==== Lua Scripts ====
+This entity is implemented entirely in Java, no Lua script exists.
+
+==== Sprite References ====
+  * **Sprite Sheet**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/items/materials.png|items/materials.png]]
+  * **Wiki Image**: {{ rpd:images:soul_shard_item.png|Soul Shard }}
+  * **Sprite Index**: 0 (first sprite in materials.png)
+
+==== Related Entities ====
+  * **Jar of Souls**: [[mr:jar_of_souls_mob|jar_of_souls_mob]] - Boss mob that may drop soul shards
+  * **Enslaved Soul**: [[mr:enslaved_soul_mob|enslaved_soul_mob]] - Related mob in necropolis
