@@ -1,21 +1,17 @@
 ====== Witchdoctor Armor Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WitchdoctorArmor.java|WitchdoctorArmor.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WitchdoctorArmor.java|WitchdoctorArmor.java]] - Witchdoctor armor class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GnollArmor.java|GnollArmor.java]] - Parent armor class
 
 ===== JSON Configuration =====
-<code json>
-{
-  "entityKind": "WitchdoctorArmor",
-  "image": 123,
-  "class": "com.watabou.pixeldungeon.items.armor.WitchdoctorArmor"
-}
-</code>
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="WitchdoctorArmor_Name">Witchdoctor Armor</string>
-<string name="WitchdoctorArmor_Info">A special armor worn by witchdoctor.</string>
+<string name="GnollArmor_Name">Witchdoctor Armor</string>
+<string name="GnollArmor_Info">A special armor worn by witchdoctor.</string>
+<string name="GnollArmor_NotGnoll">Only gnolls can wear this armor!</string>
 </code>
 
 ===== Lua Scripts =====
@@ -23,3 +19,14 @@ This entity is implemented in Java, no Lua script exists
 
 ===== Related mr Entities =====
   * [[mr:witch_doctor_subclass|Witch Doctor (Subclass)]]
+  * [[mr:gnoll_class|Gnoll (Class)]]
+  * [[mr:armor_item|Armor (Item)]]
+
+===== Code Details =====
+  * **image**: 27 - Sprite image index
+  * **hasHelmet**: true - Armor has a helmet component
+  * **coverHair**: true - Helmet covers hair
+  * **coverFacialHair**: true - Helmet covers facial hair
+  * **Restriction**: Can only be equipped by HeroClass.GNOLL
+  * **Equipment Message**: Shows warning "Only gnolls can wear this armor!" when non-gnoll tries to equip
+  * **Inheritance**: Extends GnollArmor, inherits gnoll-specific behavior
