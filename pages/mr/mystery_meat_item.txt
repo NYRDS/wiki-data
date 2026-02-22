@@ -22,7 +22,9 @@ This entity is implemented in Java, no JSON configuration exists
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/alchemy_recipes.lua|alchemy_recipes.lua]] - Alchemy recipes using MysteryMeat
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RemixedPickaxe.lua|RemixedPickaxe.lua]] - GutsLevel mining drops
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/ai/BlackCat.lua|BlackCat.lua]] - Pet food preferences
 
 ===== Implementation Details =====
   * **Class**: com.watabou.pixeldungeon.items.food.MysteryMeat
@@ -31,15 +33,15 @@ This entity is implemented in Java, no Lua script exists
   * **Energy**: Hunger.STARVING - Hunger.HUNGRY (restores full hunger)
   * **Price**: 5 gold per piece
   * **Random Effects** (when eaten, 1 in 5 chance each):
-    * Case 0: Applies Burning buff (fire damage over time)
-    * Case 1: Applies Roots buff (immobilization)
-    * Case 2: Applies Poison buff (poison damage over time)
-    * Case 3: Applies Slow buff (reduced movement speed)
+    * Case 0: Applies Burning buff (fire damage over time) - Message: "Oh it's hot!"
+    * Case 1: Applies Roots buff (immobilization) - Message: "You can't feel your legs!"
+    * Case 2: Applies Poison buff (poison damage over time) - Message: "You are not feeling well."
+    * Case 3: Applies Slow buff (reduced movement speed) - Message: "You are stuffed."
     * Case 4: No negative effect (stuffed)
   * **Transformations**:
     * burn() -> morphTo(ChargrilledMeat.class)
-    * freeze() -> morphTo(FrozenCarpaccio.class)
-    * poison() -> morphTo(RottenMeat.class)
+    * freeze() -> morphTo(FrozenCarpaccio.class) (inferred from pattern)
+    * poison() -> morphTo(RottenMeat.class) (inferred from pattern)
 
 ===== Mob Drops =====
   * SpiderMindAmber: 6.7% drop rate
@@ -47,6 +49,13 @@ This entity is implemented in Java, no Lua script exists
   * SpiderMind: 6.7% drop rate
   * SpiderExploding: 6.7% drop rate
   * SpiderServant: 3% drop rate
+  * Crab: 31.4% drop rate
+  * Spinner: 12.5% drop rate
+  * Scorpio: ~16.7% drop rate (1 in 6 chance)
+
+===== Alchemy Recipes =====
+  * Firebloom Seed + MysteryMeat -> PotionOfLiquidFlame
+  * 5x MysteryMeat + Dewdrop -> Piranha (mob)
 
 ===== Related mr Entities =====
   * [[mr:chargrilled_meat_item|Chargrilled Meat (Item)]]
@@ -54,3 +63,8 @@ This entity is implemented in Java, no Lua script exists
   * [[mr:rotten_meat_item|Rotten Meat (Item)]]
   * [[mr:food_item|Food (Item)]]
   * [[mr:hunger_mechanic|Hunger Mechanic]]
+  * [[mr:burning_buff|Burning Buff]]
+  * [[mr:poison_buff|Poison Buff]]
+  * [[mr:roots_buff|Roots Buff]]
+  * [[mr:slow_buff|Slow Buff]]
+  * [[mr:alchemy_mechanic|Alchemy Mechanic]]

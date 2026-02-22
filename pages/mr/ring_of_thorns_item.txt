@@ -1,7 +1,10 @@
 ====== Ring Of Thorns Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfThorns.java|RingOfThorns.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfThorns.java|RingOfThorns.java]] - Main item class extending Ring
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java|Ring.java]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] - Badge validation (validateRingOfThorns method)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/DM300.java|DM300.java]] - Boss drop source (33.3% chance)
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -15,14 +18,26 @@ This entity is implemented in Java, no JSON configuration exists
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
-===== Special Properties =====
-  * Not upgradable (isUpgradable() returns false)
-  * Automatically identified when picked up
-  * Provides thorns effect: enemy takes random damage (0 to damage dealt) when attacking the wearer
-  * Special drop from DM300 boss (33.3% chance)
-  * Associated with Badge.RING_OF_THORNS achievement
+===== Implementation Details =====
+  * **Class**: com.watabou.pixeldungeon.items.rings.RingOfThorns
+  * **Extends**: Ring
+  * **Sprite**: ItemSpriteSheet.RING_DIAMOND or ItemSpriteSheet.RING_OPAL (varies)
+  * **Level**: Automatically set to +1 on random()
+  * **Upgradable**: No (isUpgradable() returns false)
+  * **Identify on pickup**: Yes (identify() called in doPickUp)
+  * **Badge**: Badge.RING_OF_THORNS (unlocked when ring is known)
 
-===== Source Code Reference =====
-  * buff() method returns new Thorns() instance
-  * Thorns class has defenceProc method that handles the thorn effect
-  * defenceProc damages the enemy with a random amount between 0 and the original damage dealt
+===== Special Properties =====
+  * **Thorns Effect**: Enemy takes random damage (0 to damage dealt) when attacking the wearer
+  * **Buff Class**: RingOfThorns.Thorns (inner class extending RingBuff)
+  * **Defence Proc**: damages the enemy with a random amount between 0 and the original damage dealt
+  * **Special Drop**: DM300 boss (33.3% chance, alternative to Chaos Crystal)
+
+===== Mob Drops =====
+  * DM300: 33.3% drop rate (alternative drop with Chaos Crystal)
+
+===== Related mr Entities =====
+  * [[mr:ring_item|Ring (Item)]]
+  * [[mr:dm300_mob|DM300 (Mob)]]
+  * [[mr:chaos_crystal_item|Chaos Crystal (Item)]]
+  * [[mr:badges_mechanic|Badges Mechanic]]
