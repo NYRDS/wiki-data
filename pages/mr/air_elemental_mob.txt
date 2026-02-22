@@ -1,13 +1,39 @@
 ====== Air Elemental Mob - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]] - Main mob implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/IDepthAdjustable.java|IDepthAdjustable.java]] - Interface for depth-based stat adjustment
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Hunting.java|Hunting.java]] - AI state used in movement logic
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]] - Spell used for special attack
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java|PotionOfLevitation.java]] - Loot drop item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Bleeding.java|Bleeding.java]] - Buff immunity
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]] - Pathfinding for attacks
 
 ===== JSON Configuration =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/AirElemental.json|AirElemental.json]] - Sprite configuration
 
 ===== String Resources =====
-  * No specific string resources for this entity (name and description use default class name)
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1417-L1420|strings_all.xml]] - AirElemental_Name, AirElemental_Desc
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L31-L34|strings_all.xml]] - AirElemental_Name, AirElemental_Desc
+  * All languages: Search for "AirElemental_" in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/|res/]] directory
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Key Implementation Details =====
+  * **Stats Adjustment**: Stats scale with dungeon depth via adjustStats(int depth) method
+  * **HP Formula**: hp = depth * 3 + 1
+  * **Defense Skill**: baseDefenseSkill = depth * 2 + 1
+  * **Attack Skill**: baseAttackSkill = baseDefenseSkill * 2 + 1
+  * **Experience**: expForKill = depth + 1
+  * **Max Level**: maxLvl = depth + 2
+  * **Damage Reduction**: dr = expForKill / 5
+  * **Damage Range**: dmgMin = 0, dmgMax = ht() / 4
+  * **Flying**: Always flying (flying = true)
+  * **Carcass Chance**: 0 (no carcass drop)
+  * **Loot**: 10% chance to drop PotionOfLevitation
+  * **Immunities**: Immune to Bleeding buff
+  * **Special Attack**: Uses WindGust spell via zapProc() method
+  * **Attack Range**: Can attack at distance up to skillLevel cells
+  * **Movement**: Special getCloser() logic that combines approach and retreat behavior
