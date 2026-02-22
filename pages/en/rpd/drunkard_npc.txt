@@ -1,6 +1,6 @@
 ====== Drunkard NPC ======
 
-{{ rpd:images:drunkardnpc_sprite.png|Drunkard NPC Sprite }}
+{{ rpd:images:drunkard_npc_mob.png|Drunkard NPC Sprite }}
 
 ==== Overview ====
 
@@ -20,12 +20,12 @@ The Drunkard is an NPC found in the [[en:rpd:inn|Inn]] level of Remixed Dungeon.
 
 ==== Behavior ====
 
-When interacted with, the Drunkard randomly says one of four possible phrases:
+When interacted with, the Drunkard randomly says one of four possible phrases from the string resources:
 
-  * "MOR BOOZ PLEAS!"
-  * "Who neids water when yau hav beir"
-  * "This beir tastes lik dirt"
-  * "Zzzzzz..."
+  * `Drunkard_Phrase_1` - "MOR BOOZ PLEAS!"
+  * `Drunkard_Phrase_2` - "Who neids water when yau hav beir"
+  * `Drunkard_Phrase_3` - "This beir tastes lik dirt"
+  * `Drunkard_Phrase_4` - "Zzzzzz..."
 
 The NPC automatically enters a sleeping state when active.
 
@@ -36,13 +36,21 @@ The NPC automatically enters a sleeping state when active.
 
 ==== Implementation ====
 
-  * **Script**: Drunkard NPC is controlled by a Lua script (scripts/npc/Drunkard.lua)
-  * **Configuration**: Mob properties defined in mobsDesc/DrunkardNPC.json
+  * **Lua Script**: Drunkard NPC behavior is controlled by `scripts/npc/Drunkard.lua`
+  * **Configuration**: Mob properties defined in `mobsDesc/DrunkardNPC.json`
   * **Sprite**: Animated with 9 frames for idle state, with a 5 FPS animation speed
-  * **Sprite Configuration**: spritesDesc/DrunkardNPC.json
+  * **Sprite Configuration**: `spritesDesc/DrunkardNPC.json`
+
+==== Code References ====
+
+  * Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/Drunkard.lua|Drunkard.lua]]
+  * JSON Config: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/DrunkardNPC.json|DrunkardNPC.json]]
+  * Sprite Config: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/DrunkardNPC.json|DrunkardNPC.json (sprite)]]
 
 ==== Notes ====
 
   * The Drunkard NPC is unique in that it has no combat function and is purely for flavor
   * Other NPCs, such as the Inn Servant, may comment about the Drunkard with the phrase: "This drunkard drives me mad!"
   * The NPC cannot be moved or removed from the game once placed
+
+{{tag> rpd npcs inn neutral }}
