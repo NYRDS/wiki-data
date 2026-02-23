@@ -1,39 +1,55 @@
 ====== Shops ======
 
-Shops are areas in the dungeon where the hero can buy and sell items in Remixed Dungeon.
+{{ rpd:images:shopkeeper_mob.png|Shopkeeper }}
+
+Shops are special rooms in the dungeon where players can purchase items, equipment, and services from NPCs in Remixed Dungeon. Each shop specializes in different types of items.
 
 ==== Description ====
 Shops are special areas of the dungeon where the hero can trade gold for useful items or sell unwanted equipment. They provide valuable services that can be crucial for survival.
 
 ==== Shop Types ====
-  * **General Stores** - Sell basic items like food and potions
-  * **Wand Shops** - Specialized in magical wands
+  * **[[en:rpd:shopkeeper_npc|General Stores]]** - Sell basic items like food, potions, and scrolls
+  * **[[en:rpd:wandmaker_npc|Wand Shops]]** - Specialized in magical wands
   * **Armor Shops** - Sell various types of armor
   * **Weapon Shops** - Specialized in weapons
+  * **Food Shops** - Food items for sustenance
   * **Rare Shops** - Feature unique or hard-to-find items
 
 ==== Shop Mechanics ====
-  * **Currency**: Items are bought and sold using gold
+  * **Currency**: Items are bought and sold using [[en:rpd:gold_item|gold]]
   * **Inventory**: Shops stock different items depending on the dungeon level
   * **Limited Supply**: Some items are available in limited quantities
   * **Quality**: Items in deeper shops are generally better quality
+  * **Price Reduction**: [[en:rpd:ring_of_haggler_item|Ring of Haggler]] can reduce prices by 25% when the hero has the Haggling buff
+  * **Random Rotation**: Items in shops rotate with each visit
+  * **Upgrade Levels**: Weapons and armor are usually upgraded to a random level
 
 ==== Common Shop Items ====
-  * **Potions**: Healing and utility potions
-  * **Scrolls**: Various magical scrolls
+  * **Potions**: Healing and utility potions (typically identified)
+  * **Scrolls**: Various magical scrolls (typically identified)
   * **Food**: Rations and special food items
-  * **Equipment**: Weapons and armor
+  * **Equipment**: Weapons and armor (with random upgrade levels)
   * **Upgrades**: Scrolls to enhance equipment
+  * **Special Items**: Rare or unique items may appear on occasion
 
 ==== Shopkeepers ====
   * **Shopkeeper NPCs**: Each shop is operated by a friendly NPC
-  * **Services**: Shopkeepers provide information and services
+  * **Services**: Shopkeepers provide information and trading services
   * **Locations**: Shops appear as special rooms in dungeon levels
+
+==== Strategy ====
+  * **Early game**: Focus on basic equipment upgrades
+  * **Mid game**: Prioritize useful consumables
+  * **Late game**: Look for rare or unique items that may appear
+  * **Gold Management**: Always keep some gold for emergency purchases
+  * **Ring of Haggler**: Consider using for significant savings (25% price reduction)
 
 ==== Code References ====
   * Shop System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/painters/ShopPainter.java|ShopPainter.java]] - How shops are created
-  * Shop Items: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/painters/ShopPainter.java#L30-L60|Shop inventory code]] - How items are stocked
+  * Shop Inventory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java#L75-L145|ShopPainter.fillInventory method]] - How items are stocked
   * Shopkeeper: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Shopkeeper.java|Shopkeeper.java]] - NPC shop operator
+  * Shop Transactions: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndTradeItem.java|WndTradeItem.java]] - Trading window
+  * Haggling Mechanic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfHaggler.java#L21|RingOfHaggler.Haggling class]] - Price reduction buff
   * Item Pricing: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java#L90-L100|Item pricing code]] - How item prices are calculated
   * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All shop-related text
 
@@ -42,5 +58,8 @@ Shops are special areas of the dungeon where the hero can trade gold for useful 
   * [[en:rpd:items|Items]]
   * [[en:rpd:gold_item|Gold]]
   * [[en:rpd:levels|Levels]]
+  * [[en:rpd:ring_of_haggler_item|Ring of Haggler]]
+  * [[en:rpd:shopkeeper_npc|Shopkeeper]]
+  * [[en:rpd:town_shop_level|Last Shop Level]]
 
-{{tag> rpd mechanics shops trading }}
+{{tag> en:rpd mechanics shops trading }}

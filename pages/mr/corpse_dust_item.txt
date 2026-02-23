@@ -1,6 +1,14 @@
 ====== Corpse Dust Item - Code References ======
 
-===== Java Classes =====
+{{ rpd:images:corpse_dust_item.png|Corpse Dust }}
+
+==== Java Classes ====
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/CorpseDust.java|CorpseDust.java]]
+  * **Package**: com.watabou.pixeldungeon.items.quest
+  * **Parent Class**: Artifact
+  * **Registration**: Registered in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+
+==== Java Class Content ====
 <code java>
 package com.watabou.pixeldungeon.items.quest;
 
@@ -38,14 +46,19 @@ public class CorpseDust extends Artifact {
 }
 </code>
 
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/CorpseDust.java|CorpseDust.java]] - Main implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/RageBuff.java|RageBuff.java]] - Related buff implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Artifact.java|Artifact.java]] - Base class
+==== Key Properties from Code ====
+  * **Type**: Artifact (Quest Item)
+  * **Image**: ItemSpriteSheet.DUST
+  * **Cursed**: Yes (setCursed(true))
+  * **Cursed Known**: Yes (setCursedKnown(true))
+  * **Identified**: Always (isIdentified() returns true)
+  * **Buff**: RageBuff (applied when equipped)
+  * **Weight**: 1 (default Artifact weight)
 
-===== JSON Configuration =====
+==== JSON Configuration ====
 This entity does not use JSON configuration.
 
-===== String Resources =====
+==== String Resources ====
 <code xml>
 <string name="CorpseDust_Name">corpse dust</string>
 <string name="CorpseDust_Info">The ball of corpse dust doesn\'t differ outwardly from a regular dust ball. However, you know somehow that it\'s better to get rid of it as soon as possible.</string>
@@ -57,9 +70,18 @@ This entity does not use JSON configuration.
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L522-L524|strings_all.xml]] - English strings
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L522-L524|strings_all.xml]] - Russian strings
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+==== Lua Scripts ====
+This entity is implemented in Java, no Lua script exists.
 
-===== Related Code References =====
+==== Related Code References ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registration
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/WandMaker.java|WandMaker.java]] - Used in quest
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/WandMaker.java|WandMaker.java]] - Used in quest (drops from skeletons)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/RageBuff.java|RageBuff.java]] - Related buff implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/alchemy_recipes.lua|alchemy_recipes.lua]] - Used in alchemy recipes
+
+==== Related Entities ====
+  * **Rage Buff**: [[mr:rage_buff|rage_buff]] - Buff applied by this item
+  * **English Page**: [[en:rpd:corpse_dust_item|corpse_dust_item]]
+  * **Russian Page**: [[ru:rpd:corpse_dust_item|corpse_dust_item]]
+  * **Chinese Page**: [[cn:rpd:corpse_dust_item|corpse_dust_item]]
+  * **Portuguese Page**: [[pt:rpd:corpse_dust_item|corpse_dust_item]]

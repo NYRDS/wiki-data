@@ -7,13 +7,22 @@
 ==== Описание ====
 Жижа обитает на пятом уровне. Она регенерирует, находясь в воде и может накачиваться для проведения усиленной атаки. Во время любой атаки имеет шанс повесить на героя эффект едкой слизи, который наносит урон до тех пор, пока не будет смыт водой.
 
-==== Свойства ====
+==== Характеристики ====
   * **Тип:** Босс
-  * **Уровень появления:** 5
-  * **Специальные способности:**
-    * **Регенерация в воде** - восстанавливает здоровье, когда находится в воде
-    * **Накачивание** - усиливает следующую атаку
-    * **Едкая слизь** - может наложить на героя эффект урона
+  * **Уровень появления:** 2 (Канализация)
+  * **HP:** 68
+  * **Опыт за убийство:** 9
+  * **Навык защиты:** 12
+  * **Навык атаки:** 11
+  * **Урон:** 4-11 (обычный), 7-21 (в накачанном состоянии)
+  * **Сопротивление урону (DR):** 2
+  * **Скорость:** Стандартная
+
+==== Свойства ====
+  * **Регенерация в воде** - восстанавливает 1 HP за ход, когда находится в воде
+  * **Накачивание** - усиливает следующую атаку (урон 7-21, навык атаки 26), может атаковать на расстоянии 2 клеток
+  * **Едкая слизь** - 33% шанс наложить эффект Ооze при попадании
+  * **Сопротивление** - устойчивость к токсичному газу
 
 ==== Стратегии боя ====
 Жижа, как и все остальные боссы, легко убивается огнём. Достаточно поджечь её семенем огнецвета, зельем жидкого пламени или палочкой огня. После поджога, постарайтесь сделать так, чтобы жижа горела как можно дольше. Для этого ведите её через двери и траву, продлевающие горение, и не давайте ей войти в воду.
@@ -27,11 +36,33 @@
   * Не позволяйте жиже находиться в воде
   * Избегайте усиленной атаки во время накачивания
   * Имейте доступ к воде для снятия эффекта едкой слизи
+  * Держите дистанцию, когда Жижа накачивается
+
+==== Добыча ====
+  * **[[ru:rpd:skeleton_key_item|Ключ скелета]]** - используется для открытия двери уровня босса
+  * Случайное зелье из сокровищницы зелий
+
+==== Местоположение ====
+  * Найдена на уровне Канализации (Уровень 2) как первый босс
 
 ==== См. также ====
   * [[ru:rpd:bossfight|Стратегии по прохождению боссов]] - другие тактики
+  * [[ru:rpd:mobs|Все мобы]]
+  * [[ru:rpd:sewers|Уровень канализации]]
+  * [[ru:rpd:ooze|Эффект слизи]]
 
 ==== Кодовые ссылки ====
   * **Java класс:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Goo.java|Goo.java]]
+  * **Конфигурация спрайта:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Goo.json|Goo.json]]
+  * **Механика накачивания:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Goo.java#L58-L72|Goo.java:L58-L72]]
+  * **Метод атаки:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Goo.java#L74-L81|Goo.java:L74-L81]]
 
-{{tag> ru:rpd mobs bosses goo}}
+==== Строковые ресурсы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L478|Goo_Name]]: "Жижа"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L479|Goo_Info]]: "Мало что известно о Жиже..."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L480|Goo_Aliases]]: "Жижа, Слизь"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L481|Goo_Desc]]: "Мало что известно о Жиже..."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L482|Goo_Boss]]: "Жижа"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L483|Goo_Defeated]]: "Жижа была побеждена"
+
+{{tag> ru:rpd mobs bosses goo sewer}}

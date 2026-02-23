@@ -1,13 +1,107 @@
 ====== Scorpio Mob - Code References ======
 
-===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Scorpio.java|Scorpio.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Cripple.java|Cripple.java]] - Scorpio's special attack effect
+{{ rpd:images:scorpio_mob.png|Scorpio }}
 
-===== JSON Configuration =====
+==== Java Classes ====
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Scorpio.java|Scorpio.java]]
+  * **Package**: com.watabou.pixeldungeon.actors.mobs
+  * **Parent Class**: Mob
+  * **Interfaces**: IZapper
+  * **Registration**: Registered in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]]
+
+==== Java Class Content ====
+<code java>
+package com.watabou.pixeldungeon.actors.mobs;
+
+import com.nyrds.pixeldungeon.ai.Hunting;
+import com.nyrds.pixeldungeon.mobs.common.IZapper;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.CharUtils;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.buffs.Cripple;
+import com.watabou.pixeldungeon.actors.buffs.Poison;
+import com.watabou.pixeldungeon.items.food.MysteryMeat;
+import com.watabou.pixeldungeon.items.potions.PotionOfHealing;
+import com.watabou.pixeldungeon.items.weapon.enchantments.Leech;
+import com.watabou.pixeldungeon.levels.Level;
+import com.watabou.utils.Random;
+
+import org.jetbrains.annotations.NotNull;
+
+public class Scorpio extends Mob implements IZapper {
+
+	public Scorpio() {
+
+		hp(ht(95));
+		baseDefenseSkill = 24;
+		baseAttackSkill  = 36;
+		dmgMin = 20;
+		dmgMax = 32;
+		dr = 16;
+
+		expForKill = 14;
+		maxLvl = 25;
+
+
+		if (Random.Int( 8 ) == 0) {
+			collect(new PotionOfHealing());
+		} else if (Random.Int( 6 ) == 0) {
+			collect(new MysteryMeat());
+		}
+
+		addResistance( Leech.class );
+		addResistance( Poison.class );
+	}
+
+	@Override
+	public void onSpawn(Level level) {
+		super.onSpawn(level);
+		setViewDistance(level.getViewDistance() + 1);
+	}
+
+	@Override
+    public boolean canAttack(@NotNull Char enemy) {
+		return CharUtils.canDoOnlyRangedAttack(this, enemy);
+	}
+
+	@Override
+	protected int zapProc(@NotNull Char enemy, int damage) {
+		if (Random.Int( 2 ) == 0) {
+			Buff.prolong( enemy, Cripple.class, Cripple.DURATION );
+		}
+		return damage;
+	}
+
+	@Override
+	public boolean getCloser(int target,  boolean ignorePets) {
+		if (getState() instanceof Hunting) {
+			return enemySeen && getFurther( target );
+		} else {
+			return super.getCloser( target, ignorePets );
+		}
+	}
+}
+</code>
+
+==== Key Properties from Code ====
+  * **HP**: 95 (ht(95))
+  * **Max Level**: 25
+  * **Defense Skill**: 24
+  * **Attack Skill**: 36
+  * **Damage**: 20-32
+  * **Armor (DR)**: 16
+  * **EXP for Kill**: 14
+  * **View Distance**: Level view distance + 1 (enhanced on spawn)
+  * **Resistances**: Leech, Poison
+  * **Attack Type**: Ranged only (canDoOnlyRangedAttack)
+  * **Special Attack**: 50% chance to apply Cripple debuff
+  * **AI Behavior**: Retreats from enemies when hunting (getFurther)
+  * **Drops**: PotionOfHealing (1/8 chance), MysteryMeat (1/6 chance)
+
+==== JSON Configuration ====
 This entity is implemented in Java, no separate JSON configuration exists.
 
-===== String Resources =====
+==== String Resources ====
 <code xml>
 <string name="Scorpio_Name">scorpio</string>
 <string name="Scorpio_Gender">masculine</string>
@@ -15,13 +109,24 @@ This entity is implemented in Java, no separate JSON configuration exists.
 <string name="Scorpio_Desc">These huge arachnid-like demonic creatures avoid close combat by all means, firing crippling serrated spikes from long distances.</string>
 </code>
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - English strings
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml]] - Russian strings
 
-===== Additional References =====
+==== Lua Scripts ====
+This entity is implemented in Java, no Lua script exists.
+
+==== Related Code References ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]] - for canDoOnlyRangedAttack method
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Hunting.java|Hunting.java]] - AI behavior
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Leech.java|Leech.java]] - Scorpio resistance
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]] - Scorpio resistance
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/MysteryMeat.java|MysteryMeat.java]] - Possible drop
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]] - Possible drop
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Cripple.java|Cripple.java]] - Special attack effect
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Acidic.java|Acidic.java]] - Child class (Acidic Scorpio)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/SummonBeast.lua|SummonBeast.lua]] - Summonable beast
+
+==== Related Entities ====
+  * **Acidic Scorpio**: [[mr:acidic_mob|acidic_mob]] - Child class variant
+  * **English Page**: [[en:rpd:scorpio_mob|scorpio_mob]]
+  * **Russian Page**: [[ru:rpd:scorpio_mob|scorpio_mob]]
