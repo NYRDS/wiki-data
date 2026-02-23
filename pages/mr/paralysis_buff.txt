@@ -1,24 +1,56 @@
 ====== Paralysis Buff - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/Paralysis.java|Paralysis.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/Buff.java|Buff.java]] (Parent class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]] - Main buff implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] - Parent class for flavour buffs
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Base buff class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Character class with paralyse() method
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java|CharSprite.java]] - Sprite state PARALYSED
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java|BuffIndicator.java]] - Buff icon indicator
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]] - Resistance mechanic
+
+===== Java Implementation Details =====
+  * **Duration**: 10f (base duration, modified by Resistance)
+  * **Icon**: BuffIndicator.PARALYSIS
+  * **Sprite State**: CharSprite.State.PARALYSED
+  * **Mechanic**: Damage can break paralysis (random check based on damage vs HP)
+  * **Resistance**: Affected by Ring of Elements resistance
 
 ===== JSON Configuration =====
-This entity does not have separate JSON configuration as it's implemented in Java.
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] - Paralysis in hero abilities
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json|Treasury.json]] - ParalysisArrow item spawn
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json|SpidersTreasury.json]] - ParalysisArrow item spawn
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/FetidRat.json|FetidRat.json]] - paralysisCloud particle effect
 
 ===== String Resources =====
 <code xml>
-<string name="Paralysis">paralysis</string>
-<string name="SandBag_Paralysis">paralysis</string>
+<!-- English strings -->
+<string name="ParalysisBuff_Name">Paralyzed</string>
+<string name="ParalysisBuff_Info">Completely paralyzed!</string>
+<string name="Char_OutParalysis">The pain snapped %s out of paralysis</string>
+<string name="Char_StaParalysed">paralysed</string>
+<string name="Hero_StaParalysis">You are paralysed!</string>
+<string name="ParalysisArrow_Name">paralyzing arrow</string>
+<string name="ParalysisArrow_Info">This arrow is coated in curare.</string>
+<string name="ParalysisArrow_Gender">feminine</string>
+<string name="Paralysis_Name_0">Stunning %s</string>
+<string name="Paralysis_Name_1">Stunning %s</string>
+<string name="Paralysis_Name_2">Stunning %s</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/GasesImmunity.lua|GasesImmunity.lua]] - Lists Paralysis as a gas immunity
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ChaosShieldLeft.lua|ChaosShieldLeft.lua]] - References Paralysis buff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Buffer.lua|Buffer.lua]] - Uses RPD.Buffs.Paralysis
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/RemixedFetidRat.lua|RemixedFetidRat.lua]] - Immunity to Paralysis, uses PARALYSIS speck
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - Binds Paralysis Java class to Lua
 
 ===== Entity Kind =====
-  * getEntityKind(): Returns "Paralysis" (class name)
+  * **getEntityKind()**: Returns "Paralysis" (class name)
+  * **NamedEntityKind**: Implemented by Paralysis class
+  * **Buff Type**: FlavourBuff (non-mechanical buff)
 
-===== Additional Code References =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Applied to characters
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] - Base for flavour buffs
+===== Related Entities =====
+  * [[mr:paralysis_arrow_item|mr:paralysis_arrow_item]] - Paralyzing arrow item
+  * [[mr:resistance_buff|mr:resistance_buff]] - Ring of Elements resistance
+  * [[mr:buff|mr:buff]] - Base buff system
