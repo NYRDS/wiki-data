@@ -1,7 +1,15 @@
 ====== Stun Buff - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]] - Main stun buff implementation
+  * Extends: `FlavourBuff`
+  * Key methods:
+    * `attachTo(Char target)` - Paralyzes the target when attached
+    * `detach()` - Removes paralysis when buff expires
+    * `icon()` - Returns `BuffIndicator.PARALYSIS` icon
+    * `charSpriteStatus()` - Returns `CharSprite.State.PARALYSED`
+    * `attachVisual()` - Shows "stunned" status and adds paralyzed sprite effect
+  * Default duration: 10 seconds (modified by `RingOfElements.Resistance`)
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -15,7 +23,7 @@ This entity is implemented in Java, no JSON configuration exists
 This entity is implemented in Java, no Lua script exists
 
 ===== Related mr Entities =====
-  * [[mr:nightmare_mob|Nightmare (Mob)]]
-  * [[mr:spider_guard_mob|Spider Guard (Mob)]]
-  * [[mr:paralysis_enchantment|Paralysis Enchantment (Item)]]
-  * [[mr:paralysis_arrow_item|Paralysis Arrow (Item)]]
+  * [[mr:nightmare_mob|Nightmare (Mob)]] - Can inflict stun
+  * [[mr:spider_guard_mob|Spider Guard (Mob)]] - Can inflict stun
+  * [[mr:paralysis_enchantment|Paralysis Enchantment (Item)]] - Related paralysis effect
+  * [[mr:paralysis_arrow_item|Paralysis Arrow (Item)]] - Related paralysis effect

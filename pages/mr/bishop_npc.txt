@@ -1,14 +1,23 @@
-====== Bishop N P C - Code References ======
+====== Bishop NPC - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check:
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+This entity is implemented in Lua/JSON, no Java class exists. See:
+  * RemixedDungeon/src/main/assets/mobsDesc/BishopNPC.json
+  * RemixedDungeon/src/main/assets/scripts/npc/Bishop.lua
 
 ===== JSON Configuration =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BishopNPC.json|BishopNPC.json]] - NPC configuration
+    * `baseSpeed: 0` - Cannot move
+    * `spriteDesc: spritesDesc/BishopNPC.json` - Sprite configuration
+    * `scriptFile: scripts/npc/Bishop` - Lua script reference
+    * `friendly: true` - Friendly to player
+    * `movable: false` - Cannot be moved
+    * `aiState: Passive` - Passive AI state
+    * `fraction: NEUTRAL` - Neutral faction
+    * `immortal: true` - Cannot be killed
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Church.json|Church.json]] - Level placement
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Church_2021_03.json|Church_2021_03.json]] - Alternative level placement
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/BishopNPC.json|BishopNPC.json]] - Sprite configuration (spritesDesc)
 
 ===== String Resources =====
 <code xml>
@@ -24,6 +33,14 @@ This entity may be implemented in Java, but no matching class was found. Check:
 
 ===== Lua Scripts =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/Bishop.lua|Bishop.lua]] - NPC behavior script
+  * Key functions:
+    * `interact(self, chr)` - Handles player interaction
+    * `die(self, cause)` - Death handler (curses player when killed)
+    * `spawn(me, level)` - Spawn handler (sets AI to "NpcDefault")
+  * Services offered:
+    * Lesser Blessing: 100 * difficultyFactor gold, applies Blessed buff for 100 turns
+    * Greater Blessing: 500 * difficultyFactor gold, applies Blessed buff for 500 turns (twice)
+    * Remove Curse: 200 * difficultyFactor gold, removes curses from all items
 
 ===== Related String Resources =====
   * BishopNPC_Name
