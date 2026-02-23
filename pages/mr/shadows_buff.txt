@@ -1,7 +1,11 @@
 ====== Shadows Buff - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Shadows.java|Shadows.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Shadows.java|Shadows.java]] - Main buff implementation (extends Invisibility)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfShadows.java|RingOfShadows.java]] - Ring that grants Shadows buff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Foliage.java|Foliage.java]] - Applies Shadows buff to hero in foliage
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]] - Hunger rate modified by Shadows buff (1.5x slower)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] - Buff registration and factory
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -14,6 +18,14 @@ This entity is implemented in Java, no JSON configuration exists
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Implementation Details =====
+  * Extends: Invisibility buff
+  * Applied by: Ring of Shadows, Foliage blob
+  * Duration: 2 seconds (prolonged while in shadows with no visible enemies)
+  * Effect: Stealth bonus, hunger rate reduced to 1.5x slower
+  * Detaches when: left timer expires or visible enemies > 0
+  * Sound: Assets.SND_MELD when applied
 
 ===== Related mr Entities =====
   * [[mr:invisibility_buff|Invisibility Buff]]
