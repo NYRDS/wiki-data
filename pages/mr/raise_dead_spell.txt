@@ -1,5 +1,10 @@
 ====== Raise Dead Spell - Code References ======
 
+{{ rpd:images:raise_dead_spell.png|Raise Dead Spell }}
+
+===== Overview =====
+Raise Dead is a necromancy spell that summons the spirit of the most recently killed hostile mob as a temporary pet.
+
 ===== Java Classes =====
 This entity is implemented in Lua, no Java class exists for this spell.
 
@@ -8,16 +13,41 @@ This entity is implemented in Lua, no JSON configuration exists for this spell.
 
 ===== String Resources =====
 <code xml>
+<!-- English (values/strings_all.xml) -->
 <string name="RaiseDead_Name">Raise Dead</string>
-<string name="RaiseDead_Info">Summons the spirit of the most recently killed hostile mob, turning it into a temporary pet.</string>
-<string name="RaiseDead_NoSpace">There's no space to place the creature.</string>
-<string name="RaiseDead_NoKill">There are no recent kills to raise.</string>
+<string name="RaiseDead_Info">Attempt to raise the latest (Ritual requires quite a fresh material) slain creature. When using this dark art, remember: almost any creature can be raised, but not everyone's will is easy to bend.</string>
+<string name="RaiseDead_NoSpace">Raise Dead failed because there is no free space nearby.</string>
+<string name="RaiseDead_NoKill">You need to kill someone before attempting to raise it.</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="RaiseDead_Name">Поднять мертвеца</string>
+<string name="RaiseDead_Info">Попытка поднять недавно (Ритуал требует только свежайший материал) убитое существо. При использовании этого темного искусства не забывайте: почти любое существо можно поднять из мертвых, но далеко не всех можно подчинить своей воле.</string>
+<string name="RaiseDead_NoKill">Вам нужно сначала убить кого-то, прежде чем пытаться оживить его труп.</string>
+<string name="RaiseDead_NoSpace">Поднятие мертвеца не удалось потому что здесь нет свобдного места.</string>
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/RaiseDead.lua|RaiseDead.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/spells/RaiseDead.lua|RaiseDead.lua]] - Main spell implementation
+
+===== Implementation Details =====
+  * **Spell Level:** 4
+  * **Magic Affinity:** Necromancy
+  * **Cast Time:** 3 turns
+  * **Spell Cost:** 15 mana
+  * **Targeting Type:** none (self-cast)
+  * **Storage Key:** __latest_dead_mob (stores the last killed mob that can be a pet)
+
+===== Code Mechanics =====
+  * Uses storage system to track the latest killed mob that can become a pet
+  * Only mobs that ''canBePet()'' and are not MirrorImage can be raised
+  * Raised mobs become undead and are converted to pets
+  * Requires valid cell position near the caster
+  * Applies shadow particle curse effects on both caster and raised mob
+  * Plays cursed sound effect on successful cast
 
 ===== Related mr Entities =====
   * [[mr:necromancer_class|Necromancer (Class)]]
   * [[mr:exhumation_spell|Exhumation (Spell)]]
   * [[mr:dark_sacrifice_spell|Dark Sacrifice (Spell)]]
+
+{{tag> rpd spells necromancy mr}}
