@@ -2,30 +2,23 @@
 
 {{ rpd:images:kusarigama_item.png|Kusarigama }}
 
-The **Kusarigama** is a unique polearm weapon that combines a sickle with a weighted chain. This weapon has special mechanics that make it particularly effective against multiple enemies.
+The **Kusarigama** is a unique tier 3 melee weapon that combines a sickle with a weighted chain. This weapon has a special pull ability and visual chain effects when attacking from range.
 
 ==== Stats ====
-  * **Weapon Type:** [[en:rpd:polearms|Polearm]]
-  * **Tier:** 5
-  * **Damage:** 15-21 (18 average)
+  * **Weapon Type:** [[en:rpd:melee_weapons|Melee Weapon]]
+  * **Tier:** 3
+  * **Damage:** 2-8 (5 average, scaled by tier)
   * **Durability:** 100%
-  * **Weight:** 10
+  * **Weight:** 1.0 (normal)
   * **Speed:** 1.0x (normal speed)
   * **Weapon Augmentation:** Not applicable
   * **[[en:rpd:weapon_enchantments|Enchantment]] Slots:** 1
 
 ==== Special Properties ====
-  * **Chain Effect:** The weighted chain can hit multiple enemies in a line
-  * **[[en:rpd:mechanics|AoE Attack]]:** Slightly wider attack range than other weapons
-  * **[[en:rpd:damage_over_time|Damage Per Turn]]:** Can deal damage to enemies over multiple turns if they remain in range
-  * **[[en:rpd:mechanics|Multi-target]]:** Can potentially hit more than one enemy per attack
-
-==== Combat Mechanics ====
-The Kusarigama has unique mechanics that distinguish it from other polearms:
-  * The chain can wrap around enemies, allowing for potential multi-target hits
-  * Range extends slightly beyond standard melee range
-  * When attacking, the chain will attempt to affect adjacent enemies as well
-  * The weapon's animation is longer but has a wider area of effect
+  * **Chain Visual:** When attacking from range, displays a chain visual effect connecting the user to the target
+  * **Pull Ability:** Can pull enemies or objects toward the wielder using the chain
+  * **Vertigo Effect:** 10% chance to inflict [[en:rpd:vertigo_buff|Vertigo]] on hit (confuses the target)
+  * **Animation:** Uses sword attack animation class
 
 ==== Upgrade Mechanics ====
   * Can be [[en:rpd:upgrading|upgraded]] using [[en:rpd:scroll_of_upgrade_item|Scrolls of Upgrade]]
@@ -35,56 +28,45 @@ The Kusarigama has unique mechanics that distinguish it from other polearms:
 
 ==== Acquisition ====
 The Kusarigama can be found in:
-  * [[en:rpd:halls|Demon Halls]] - highest chance
-  * [[en:rpd:prison_level|Prison Level]] - moderate chance
-  * [[en:rpd:shops|Shops]] - rare availability
-  * [[en:rpd:chests_mechanic|Golden Chests]] - as special reward
+  * [[en:rpd:dungeon|Dungeon]] - Random weapon drops
+  * [[en:rpd:shops|Shops]] - Available for purchase
+  * [[en:rpd:chests_mechanic|Chests]] - As random loot
 
 ==== Strategy ====
-  * Most effective when fighting groups of enemies
-  * Good for heroes with high [[en:rpd:strength_attribute|Strength]]
-  * Use in narrow corridors where enemies cluster
-  * Pair with defensive tactics as it has average damage but special AoE potential
-  * Consider enchantments that complement its multi-target nature
+  * Effective for heroes who prefer melee combat with utility
+  * The pull ability can be used to reposition enemies
+  * Chain visual effect provides feedback when attacking from distance
+  * Vertigo effect can confuse enemies, making them attack randomly
+  * Consider enchantments that complement confusion effects
 
 ==== Comparison ====
 Compared to other [[en:rpd:weapons|weapons]]:
-  * Higher average damage than most tier 4 weapons
-  * Special chain effect vs standard melee damage
-  * Slower attack animation but wider effect
-  * Better multi-target potential than regular [[en:rpd:swords|swords]]
-
-==== Enchantment Synergy ====
-  * [[en:rpd:fire_enchantment|Fire]]: Spreads fire to adjacent targets
-  * [[en:rpd:poison_enchantment|Poison]]: Affects multiple enemies simultaneously
-  * [[en:rpd:shocking_enchantment|Shocking]]: Chains lightning to nearby enemies
-  * [[en:rpd:death_enchantment|Death]]: Can instantly kill multiple weak enemies
+  * Standard tier 3 damage output
+  * Unique pull utility not found on other weapons
+  * Visual chain effect distinguishes it from standard melee weapons
+  * 10% vertigo chance adds crowd control capability
 
 ==== Content Verification ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/weapons/Kusarigama.java|Kusarigama.java]]
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Kusarigama.java|Kusarigama.java]]
   * Entity Kind: Kusarigama (returns simple class name via getEntityKind())
-  * Stats verification: Extracted directly from Kusarigama.java constructor and methods
-  * Special mechanics: Based on code analysis of Kusarigama.java combat implementation
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2465-L2466|Kusarigama_Name, Kusarigama_Info]]
-  * Russian string resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2467-L2468|Kusarigama_Name (русс.), Kusarigama_Info (русс.)]]
-  * Sprite resource: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L112|ItemSpriteSheet.KUSARIGAMA]]
-  * Combat mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/weapons/Kusarigama.java#L45-L78|hitEnemy method]] implements chain effects
-  * Special attack pattern: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/weapons/Kusarigama.java#L60-L65|multi-target checking]]
-  * Weapon properties: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/weapons/Kusarigama.java#L22-L25|tier, damage, speed settings]]
-  * Upgrade system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Weapon.java|Weapon base class]] handles standard upgrade mechanics
-  * Enchantments: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Weapon.java#L200-L210|enchant method]] handles enchantment application
-  * Item factory registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L150|ItemFactory.java]] includes Kusarigama in weapon generation
-  * JSON configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/Kusarigama.json|Kusarigama.json]] - weapon properties defined in JSON
+  * Stats verification: Extracted directly from Kusarigama.java constructor `super(3, 2f, 1f)` - tier 3, damage factor 2.0, speed factor 1.0
+  * Special mechanics: Based on code analysis of Kusarigama.java
+    - Chain visual effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/KusarigamaChain.java|KusarigamaChain.java]]
+    - Pull ability: `AC_PULL` action in Kusarigama.java
+    - Vertigo effect: 10% chance in `postAttack()` method
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Kusarigama_Name, Kusarigama_Info]]
+  * Russian string resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|Kusarigama_Name (русс.), Kusarigama_Info (русс.)]]
+  * Sprite resource: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.KUSARIGAMA]]
+  * Item factory registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] includes Kusarigama in weapon generation
   * Last updated: January 2, 2026
 
 ==== See Also ====
   * [[en:rpd:weapons|Weapons]] - Other weapons in the game
-  * [[en:rpd:polearms|Polearms]] - Other polearm weapons
-  * [[en:rpd:weapon_enchantments|Weapon Enchantments]] - How enchantments work
   * [[en:rpd:melee_weapons|Melee Weapons]] - All close combat weapons
+  * [[en:rpd:weapon_enchantments|Weapon Enchantments]] - How enchantments work
+  * [[en:rpd:vertigo_buff|Vertigo]] - Status effect this weapon can inflict
   * [[en:rpd:combat_mechanics|Combat]] - General combat mechanics
   * [[en:rpd:upgrading|Upgrading]] - How to upgrade weapons
   * [[en:rpd:shops|Shops]] - Where to buy equipment
-  * [[en:rpd:halls|Demon Halls]] - Where to find this weapon
 
-{{tag> rpd weapons polearms tier5 melee }}
+{{tag> rpd weapons melee tier3 }}
