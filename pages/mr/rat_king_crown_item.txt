@@ -1,9 +1,26 @@
 ====== Rat King Crown Item - Code References ======
 
+{{ rpd:images:rat_king_crown_item.png|Rat King's Crown }}
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/RatKingCrown.java|RatKingCrown.java]] - Main implementation of the Rat King Crown artifact
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L307|ItemFactory.java]] - Registers the RatKingCrown class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L162|BuffFactory.java]] - Registers the RatKingAuraBuff inner class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/RatKing.java|RatKing.java]] - NPC that drops the crown
+
+===== Implementation Details =====
+  * **Class**: `com.nyrds.pixeldungeon.items.common.RatKingCrown`
+  * **Extends**: `Artifact`
+  * **Package**: `items/common`
+  * **Identified**: Always identified (`isIdentified()` returns `true`)
+  * **Sprite**: `items/artifacts.png` at index 17
+  * **Buff**: Creates `RatKingAuraBuff` when equipped
+
+===== RatKingAuraBuff Inner Class =====
+  * **Icon**: `BuffIndicator.RATTNESS`
+  * **Name Resource**: `R.string.RatKingCrownBuff_Name` ("Ratness")
+  * **Description Resource**: `R.string.RatKingCrownBuff_Info` ("Hail the Lord of the rats, every rat shall obey and praise.")
+  * **Effect**: When attacking a `Rat` mob while wearing the crown, the rat becomes a pet via `Mob.makePet()`
 
 ===== JSON Configuration =====
 No specific JSON configuration file found for this item.
@@ -23,3 +40,7 @@ This entity is implemented in Java, no Lua script exists
   * The RatKingCrown is an Artifact with an inner RatKingAuraBuff class
   * The RatKingAuraBuff allows taming of defeated rats when worn
   * Found in the items/common package
+  * Dropped by the Rat King NPC
+  * Part of the Rat King quest line
+
+{{tag> mr items artifacts rat_king code_reference }}
