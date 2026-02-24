@@ -1,26 +1,47 @@
 ====== Ration Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Ration.java|Ration.java]]
+  * Main class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Ration.java|Ration.java]]
   * Item factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L351|ItemFactory.java]] (registerItemClass)
+  * Base class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]]
+  * Related: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenRation.java|RottenRation.java]] (poisoned ration)
+
+===== Class Implementation Details =====
+  * Package: com.watabou.pixeldungeon.items.food
+  * Extends: Food
+  * Image: ItemSpriteSheet.RATION
+  * Energy: Hunger.HUNGRY (restores hunger to HUNGRY level)
+  * Price formula: 10 * quantity (base price of 10 gold per ration)
+  * Poison behavior: When poisoned, morphs to RottenRation class
 
 ===== JSON Configuration =====
-  * Starting items: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L64|initHeroes.json]] (Ration in starting items for most classes)
-  * Treasury: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L56|Treasury.json]] (Ration drop chance)
+  * Starting items: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] (Ration in starting items for most hero classes)
+  * Treasury drops: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L56|Treasury.json]] (Ration drop chance)
   * Spiders Treasury: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L53|SpidersTreasury.json]] (Ration drop chance)
 
 ===== String Resources (All Languages) =====
-  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1923-L1924|Ration_Name, Ration_Info]]
-  * Spanish: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L1923-L1924|Ration_Name, Ration_Info]]
-  * Portuguese: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L1923-L1924|Ration_Name, Ration_Info]]
-  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1923-L1924|Ration_Name, Ration_Info]]
-  * Chinese (Simplified): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1923-L1924|Ration_Name, Ration_Info]]
-  * Chinese (Traditional): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L1923-L1924|Ration_Name, Ration_Info]]
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Spanish: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Portuguese (Brazilian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Chinese (Simplified): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Chinese (Traditional): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * German: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * French: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Japanese: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Korean: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ko/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Italian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-it/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Polish: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pl/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Ukrainian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-uk/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Hungarian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-hu/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Turkish: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-tr/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Greek: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-el/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Indonesian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-in/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
+  * Malay: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ms/strings_all.xml#L1929-L1930|Ration_Name, Ration_Info]]
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
 ===== Related Files =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]] - Base food class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]] - Hunger system
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenRation.java|RottenRation.java]] - Ration when it rots
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]] - Hunger buff system
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - Sprite definitions (RATION constant)
