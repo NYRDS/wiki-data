@@ -2,21 +2,39 @@
 
 **狀態效果**（Status Effects）是在 Remixed Dungeon 中影響角色和生物的各種增益（Buffs）和減益（Debuffs）效果。
 
+==== 描述 ====
+狀態效果是暫時改變角色能力、外觀或行為的條件。它們可以是有益的、有害的或中性的，通常持續有限的回合數。
+
 ==== 類型 ====
+
+狀態效果分為兩大類：增益效果和減益效果。
+
 ==== 增益效果（Buffs） ====
   * **正面狀態效果：** 對角色有益的狀態效果，例如：
     * [[zh:rpd:regeneration_buff|自然回復]] - 逐漸恢復生命值
-    * [[zh:rpd:invisibility_mechanic|隱身]] - 暫時隱身
-    * [[zh:rpd:haste_mechanic|加速]] - 增加移動速度
+    * [[zh:rpd:mana_regeneration_buff|法力回復]] - 逐漸恢復法力值
+    * [[en:rpd:invisibility_buff|隱身]] - 暫時隱身
+    * [[en:rpd:levitation_buff|浮空]] - 允許飛越陷阱
+    * [[en:rpd:haste_buff|加速]] - 增加行動速度
+    * [[en:rpd:heroism_buff|英勇]] - 增加傷害和生命值
 
 ==== 減益效果（Debuffs） ====
   * **負面狀態效果：** 對角色有弊的狀態效果，例如：
-    * [[zh:rpd:poison_mechanic|中毒]] - 造成持續傷害
-    * [[zh:rpd:burning_mechanic|燃燒]] - 造成持續傷害並損壞物品
-    * [[zh:rpd:paralysis_mechanic|麻痹]] - 暫停角色行動
+    * [[zh:rpd:electricity_debuff|電擊]] - 造成持續傷害
+    * [[zh:rpd:one_way_cursed_love_buff|詛咒之愛]] - 特殊負面效果
+    * [[en:rpd:poison_buff|中毒]] - 造成持續傷害
+    * [[en:rpd:burning_buff|燃燒]] - 造成持續傷害並損壞物品
+    * [[en:rpd:paralysis_buff|麻痹]] - 暫停角色行動
+    * [[en:rpd:weakness_buff|虛弱]] - 減少力量和傷害
+    * [[en:rpd:terror_buff|恐懼]] - 強制角色逃跑
 
 ==== 機制 ====
 每個狀態效果都有特定的持續時間和效果。有些可以堆疊，有些不能。
+
+  * **持續時間**：大多數效果持續特定回合數
+  * **堆疊**：某些效果可以堆疊，其他效果會刷新持續時間
+  * **抗性**：角色可能對某些效果有抗性或免疫
+  * **移除**：某些物品和技能可以移除負面狀態效果
 
 ==== 解除狀態 ====
   * 某些物品可以解除負面狀態效果
@@ -26,10 +44,13 @@
 ==== 代碼參考 ====
   * **增益基類：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
   * **狀態效果實現：** [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs|Buffs 包]]
+  * **角色系統：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - 角色如何與增益互動
+  * **字符串資源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - 所有效果名稱和描述
 
 ==== 相關項目 ====
-  * [[zh:rpd:buffs|增益與減益]] - 通用術語
-  * [[zh:rpd:combat_mechanic|遊戲機制]] - 其他核心系統
-  * [[zh:rpd:items|物品]] - 可能造成狀態效果的物品
+  * [[zh:rpd:melee_mechanic|遊戲機制]] - 近戰機制
+  * [[en:rpd:items|物品 (English)]] - 可能造成狀態效果的物品
+  * [[en:rpd:status_effects|Status Effects (English)]] - 英文版狀態效果頁面
+  * [[ru:rpd:status_effects|Статусные эффекты (Russian)]] - 俄文版狀態效果頁面
 
 {{tag> rpd mechanics status_effects buffs debuffs}}

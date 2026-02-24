@@ -1,20 +1,31 @@
+{{ rpd:images:battle_mage_armor_item.png|Battle Mage Armor }}
+
 ====== Battle Mage Armor Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/BattleMageArmor.java|BattleMageArmor.java]] - Main implementation class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MageArmor.java|MageArmor.java]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration (line 372)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/battle_mage_armor.json
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/armor.json|armor.json]] - Sprite animation configuration (image index 12)
 
 ===== String Resources =====
 <code xml>
-<string name="BattleMageArmor_Name">[Name]</string>
-<string name="BattleMageArmor_Info">[Description]</string>
+<string name="MageArmor_Name">Battle Mage Armor</string>
+<string name="MageArmor_NotMage">Only Battle Mages can equip this armor!</string>
+<string name="HeroSubClass_NameBatM">Battle Mage</string>
+<string name="HeroSubClass_DescBatM">[Subclass description]</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Implementation Details =====
+  * **Entity Kind**: BattleMageArmor (from class name)
+  * **Sprite**: armor sprite with image index 12
+  * **Type**: Special armor for Battle Mage subclass
+  * **Restriction**: Can only be equipped by heroes with [[en:rpd:shaman_subclass|Battle Mage]] subclass
+  * **Parent Class**: Extends [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MageArmor.java|MageArmor]]
+  * **Has Collar**: true (visual feature)
+  * **Registration**: Registered in ItemFactory.java line 372
