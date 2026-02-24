@@ -5,6 +5,22 @@
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/artifacts/CandleOfMindVision.java|CandleOfMindVision.java]]
 
+**Key Implementation Details:**
+  * Extends: `Artifact` class
+  * Implements: `IActingItem` interface
+  * Package: `com.nyrds.pixeldungeon.items.artifacts`
+  * Max charges: 50
+  * Applies `MindVision` buff when equipped
+  * Charges deplete over time when activated
+  * Has 5 visual states based on remaining charges (images 0-4)
+
+**Core Methods:**
+  * `doEquip(Char hero)` - Applies MindVision buff on equip
+  * `doUnequip(Char hero, boolean collect)` - Removes MindVision buff on unequip
+  * `spend(Char hero, float time)` - Depletes charges over time
+  * `image()` - Returns sprite index based on charge level
+  * `desc()` - Returns description based on activation/charge state
+
 ===== JSON Configuration =====
   * This entity is implemented in Java, no JSON configuration exists
 
