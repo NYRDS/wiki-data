@@ -1,21 +1,37 @@
 ====== Plague Doctor Mob - Code References ======
 
 ===== Java Classes =====
-This entity does not exist as a mob in the game. The Plague Doctor is implemented as an NPC, not a hostile mob.
-  * See: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/PlagueDoctorNPC.java|PlagueDoctorNPC.java]]
+This entity does not exist as a hostile mob in the game. The Plague Doctor is implemented as an NPC, not a hostile mob.
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/PlagueDoctorNPC.java|PlagueDoctorNPC.java]] - Main NPC class extending ImmortalNPC
+  * **Note**: The entity kind is "PlagueDoctorNPC" but for wiki naming conventions, use `_npc` suffix for NPCs
 
 ===== JSON Configuration =====
 This entity does not exist as a mob in the game. No JSON configuration exists for a Plague Doctor mob.
+  * NPC placement is defined in TiledMaps: [[https://github.com/NYRDS/remixed-dungeon/blob/master/TiledMaps/Town.tmx|Town.tmx]] (object id="17" name="PlagueDoctorNPC")
+  * Sprite configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/TiledMaps/tilesets/Mobs.tsx|Mobs.tsx]] (property name="kind" value="PlagueDoctorNPC")
 
 ===== String Resources =====
 <code xml>
 <string name="PlagueDoctorNPC_Name">plague doctor</string>
+<string name="PlagueDoctorNPC_Gender">masculine</string>
+<string name="PlagueDoctorNPC_Name_Objective">plague doctor</string>
 <string name="PlagueDoctorNPC_Desc">The whole body of this humpbacked person is hidden under a leather jumpsuit. Also, from him comes a bitter smell of medicine and ... garlic?</string>
 </code>
 
 ===== Lua Scripts =====
 This entity does not exist as a mob in the game. The Plague Doctor NPC quest system is implemented via Lua.
-  * See: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/PlagueDoctor.lua|PlagueDoctor.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/PlagueDoctor.lua|PlagueDoctor.lua]] - NPC quest system and dialogue
 
 ===== Related mr Entities =====
-  * [[mr:plague_doctor_npc|Plague Doctor (NPC)]]
+  * [[mr:plague_doctor_npc|Plague Doctor (NPC)]] - Correct entity type (NPC, not mob)
+  * [[mr:plague_doctor_quest|Plague Doctor Quest]] - Quest system
+  * [[mr:plague_doctor_mask_item|Plague Doctor Mask]] - Related item
+  * [[mr:plague_doctor_armor_item|Plague Doctor Armor]] - Related armor
+
+===== Additional Information =====
+  * **Entity Type**: NPC (non-player character), not a hostile mob
+  * **Location**: Town area
+  * **Quest Giver**: Yes - provides rat hide quest
+  * **Hostile**: No - peaceful NPC
+  * **Related Mobs**: Rats (quest target)
+  * **Implementation Pattern**: Uses ImmortalNPC base class for unkillable behavior
