@@ -1,14 +1,71 @@
 ====== Shopkeeper Mob - Code References ======
 
+{{ rpd:images:shopkeeper_mob.png|Shopkeeper Sprite }}
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Shopkeeper.java|Shopkeeper.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/TownShopkeeper.java|TownShopkeeper.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/NPC.java|NPC.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Shopkeeper.java|Shopkeeper.java]] - Main Shopkeeper class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/TownShopkeeper.java|TownShopkeeper.java]] - Town variant of Shopkeeper
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/ImpShopkeeper.java|ImpShopkeeper.java]] - Imp variant for Last Shop Level
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]] - Special NPC extending Shopkeeper
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/NPC.java|NPC.java]] - Base NPC class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Base Mob class
+
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.actors.mobs.npcs;
+
+import com.nyrds.Packable;
+import com.nyrds.pixeldungeon.game.GameLoop;
+import com.nyrds.pixeldungeon.items.Treasury;
+import com.nyrds.pixeldungeon.mechanics.NamedEntityKind;
+import com.nyrds.pixeldungeon.windows.WndShopOptions;
+import com.nyrds.util.ModdingBase;
+import com.watabou.pixeldungeon.Badges;
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.CharUtils;
+import com.watabou.pixeldungeon.actors.buffs.Regeneration;
+import com.watabou.pixeldungeon.effects.CellEmitter;
+import com.watabou.pixeldungeon.effects.particles.ElmoParticle;
+import com.watabou.pixeldungeon.items.Item;
+import com.watabou.pixeldungeon.items.bags.Bag;
+import com.watabou.pixeldungeon.items.food.Food;
+import com.watabou.pixeldungeon.items.food.OverpricedRation;
+import com.watabou.pixeldungeon.scenes.GameScene;
+import com.watabou.pixeldungeon.windows.WndBag;
+import org.jetbrains.annotations.NotNull;
+
+public class Shopkeeper extends NPC {
+	{
+		spriteClass = "spritesDesc/Shopkeeper.json";
+		movable = false;
+		addImmunity(Regeneration.class);
+	}
+
+	@Packable
+	public String bagSold = "";
+
+	@Override
+	public void damage(int dmg, @NotNull NamedEntityKind src ) {
+		destroy();
+		getSprite().killAndErase();
+		CellEmitter.get( getPos() ).burst( ElmoParticle.FACTORY, 6 );
+	}
+
+	@Override
+	public boolean reset() {
+		return true;
+	}
+
+	@Override
+	public boolean interact(final Char hero) {
+		// Shop interaction logic
+	}
+}
+</code>
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Shopkeeper.json|Shopkeeper.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Shopkeeper.json|Shopkeeper.json]] - Sprite configuration
 
 ===== String Resources =====
 <code xml>
@@ -25,6 +82,13 @@
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Usage in Code =====
+  * Shop painter creates Shopkeeper in shops: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java#L66|ShopPainter.java#L66]]
+  * Registered in MobFactory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L262|MobFactory.java#L262]]
+  * Used in WndDontLikeAds: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndDontLikeAds.java#L15|WndDontLikeAds.java#L15]]
+  * TownShopLevel creates TownShopkeeper variant: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/TownShopLevel.java#L94|TownShopLevel.java#L94]]
+
 ===== Related mr Entities =====
   * [[mr:npc|NPC]]
   * [[mr:imp_shopkeeper_mob|Imp Shopkeeper (Mob)]]
+  * [[mr:azuterron_npc|Azuterron NPC]]

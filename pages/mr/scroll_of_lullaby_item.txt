@@ -1,20 +1,99 @@
 ====== Scroll Of Lullaby Item - Code References ======
 
+{{ rpd:images:scroll_of_lullaby_item.png|Scroll of Lullaby }}
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfLullaby.java|ScrollOfLullaby.java]] - Main Scroll of Lullaby class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]] - Base Scroll class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Sleep.java|Sleep.java]] - Sleep buff applied by the scroll
+
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.items.scrolls;
+
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.audio.Sample;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.Assets;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.buffs.Sleep;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.pixeldungeon.effects.Speck;
+import com.watabou.pixeldungeon.levels.Level;
+import com.watabou.pixeldungeon.utils.GLog;
+import com.watabou.pixeldungeon.utils.Utils;
+import org.jetbrains.annotations.NotNull;
+
+public class ScrollOfLullaby extends Scroll {
+
+	@Override
+	protected void doRead(@NotNull Char reader) {
+		reader.getSprite().centerEmitter().start( Speck.factory( Speck.NOTE ), 0.3f, 5 );
+		Sample.INSTANCE.play( Assets.SND_LULLABY );
+
+		int count = 0;
+		Mob affected = null;
+		Level level = reader.level();
+		for (Mob mob : level.getCopyOfMobsArray()) {
+			if (level.fieldOfView[mob.getPos()]) {
+				Buff.affect( mob, Sleep.class );
+				if (mob.hasBuff( Sleep.class )) {
+					affected = mob;
+					count++;
+				}
+			}
+		}
+
+		switch (count) {
+		case 0:
+            GLog.i(StringsManager.getVar(R.string.ScrollOfLullaby_Info1));
+			break;
+		case 1:
+            GLog.i(Utils.format(R.string.ScrollOfLullaby_Info2, affected.getName()));
+			break;
+		default:
+            GLog.i(StringsManager.getVar(R.string.ScrollOfLullaby_Info3));
+		}
+		setKnown();
+
+		reader.spend( TIME_TO_READ );
+	}
+
+	@Override
+	public int price() {
+		return isKnown() ? 50 * quantity() : super.price();
+	}
+}
+</code>
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/scroll_of_lullaby.json
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/scroll_of_lullaby.json|scroll_of_lullaby.json]] - Sprite configuration (if exists)
 
 ===== String Resources =====
 <code xml>
-<string name="ScrollOfLullaby_Name">[Name]</string>
-<string name="ScrollOfLullaby_Info">[Description]</string>
+<string name="ScrollOfLullaby_Name">Scroll of Lullaby</string>
+<string name="ScrollOfLullaby_Info">When read aloud, this scroll will put all nearby enemies to sleep.</string>
+<string name="ScrollOfLullaby_Info1">The scroll emits a soothing melody, but no one falls asleep.</string>
+<string name="ScrollOfLullaby_Info2">%s falls asleep.</string>
+<string name="ScrollOfLullaby_Info3">All nearby enemies fall asleep.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Usage in Code =====
+  * Registered in ItemFactory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L268|ItemFactory.java#L268]]
+  * Listed in Scroll.java for common scrolls: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java#L40|Scroll.java#L40]]
+  * Succubus has 5% chance to drop: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Succubus.java#L36|Succubus.java#L36]]
+
+===== Effect =====
+  * Puts all visible enemies to sleep
+  * Applies Sleep buff to affected mobs
+  * Has sound effect: Assets.SND_LULLABY
+  * Price: 50 gold when known
+
+===== Related mr Entities =====
+  * [[mr:scroll_item|Scroll]]
+  * [[mr:sleep_buff|Sleep Buff]]
+  * [[mr:succubus_mob|Succubus]]
