@@ -1,18 +1,67 @@
 ====== Kobold Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/Kobold.java|Kobold.java]] - Main mob class in icecaves package
+
+**Class Details:**
+<code java>
+package com.nyrds.pixeldungeon.mobs.icecaves;
+
+import com.watabou.pixeldungeon.actors.buffs.Terror;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.pixeldungeon.items.potions.PotionOfFrost;
+
+public class Kobold extends Mob {
+	public Kobold() {
+		hp(ht(60));           // Health: 60 HP
+		baseDefenseSkill = 18; // Defense skill: 18
+		baseAttackSkill  = 21; // Attack skill: 21
+		dmgMin = 10;          // Damage min: 10
+		dmgMax = 17;          // Damage max: 17
+		dr = 9;               // Damage reduction: 9
+		expForKill = 10;      // EXP for kill: 10
+		maxLvl = 20;          // Max level: 20
+		loot(new PotionOfFrost(), 0.1f); // 10% drop chance for Potion of Frost
+		addImmunity( Terror.class );     // Immune to Terror buff
+	}
+}
+</code>
+
+**Stats from code:**
+  * Health (HP): 60
+  * Attack Skill: 21
+  * Defense Skill: 18
+  * Damage: 10-17
+  * Damage Reduction (DR): 9
+  * EXP for Kill: 10
+  * Max Level: 20
+  * Immunities: Terror
+  * Loot: PotionOfFrost (10% chance)
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Kobold.json|Kobold.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Kobold.json|Kobold.json]] - Sprite configuration
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
-<string name="Kobold_Name">[Name]</string>
-<string name="Kobold_Info">[Description]</string>
+<string name="Kobold_Name">kobold</string>
+<string name="Kobold_Gender">masculine</string>
+<string name="Kobold_Name_Objective">kobold</string>
+<string name="Kobold_Desc">It was believed that Kobolds are nothing more but a legend. The ancestors of common gnolls, kobolds dwelled in the deepest and coldest caves. It is also told that their race mastered engineering and machinery long before dwarfs did.</string>
+</code>
+
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="Kobold_Name">кобольд</string>
+<string name="Kobold_Gender">masculine</string>
+<string name="Kobold_Name_Objective">кобольда</string>
+<string name="Kobold_Desc">Вважалося, що кобольти це всього лише легенда. Предки теперішніх гнолів, кобольти жили глибоко в холодних печерах. Казали, що їхній народ оволодів мистецтвом машинерії та інженерії ще раніше за дворфів. Але незрозуміло, через що вони зникли багато років тому...</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related Entities =====
+  * [[mr:kobold_icemancer_mob|Kobold Icemancer]] - Elite variant of Kobold
+  * [[mr:caged_kobold_npc|Caged Kobold]] - NPC variant for quest
+

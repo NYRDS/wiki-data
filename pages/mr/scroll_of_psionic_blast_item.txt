@@ -1,12 +1,77 @@
 ====== Scroll Of Psionic Blast - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfPsionicBlast.java|ScrollOfPsionicBlast.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfPsionicBlast.java|ScrollOfPsionicBlast.java]] - Main scroll class
+
+===== Full Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.items.scrolls;
+
+import com.nyrds.platform.audio.Sample;
+import com.watabou.pixeldungeon.Assets;
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.buffs.Blindness;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.buffs.Invisibility;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.pixeldungeon.scenes.GameScene;
+import com.watabou.utils.Random;
+
+import org.jetbrains.annotations.NotNull;
+
+public class ScrollOfPsionicBlast extends Scroll {
+
+	@Override
+	protected void doRead(@NotNull Char reader) {
+
+		GameScene.flash( 0xFFFFFF );
+
+		Sample.INSTANCE.play( Assets.SND_BLAST );
+		Invisibility.dispel(reader);
+
+		// Affect all visible mobs
+		for (Mob mob : Dungeon.level.getCopyOfMobsArray()) {
+			if (Dungeon.level.fieldOfView[mob.getPos()]) {
+				// Blind for 3-6 turns
+				Buff.prolong( mob, Blindness.class, Random.Int( 3, 6 ) );
+				// Damage: 1 to 2/3 of max HP
+				mob.damage( Random.IntRange( 1, mob.ht() * 2 / 3 ), this );
+			}
+		}
+
+		// Also affect the reader
+		Buff.prolong( reader, Blindness.class, Random.Int( 3, 6 ) );
+		reader.observe();
+
+		setKnown();
+
+		reader.spend( TIME_TO_READ );
+	}
+
+	@Override
+	public int price() {
+		return isKnown() ? 80 * quantity() : super.price();
+	}
+}
+</code>
+
+**Effects from code:**
+  * Visual Effect: Screen flash (0xFFFFFF - white)
+  * Sound Effect: Assets.SND_BLAST
+  * Dispels: Invisibility from reader
+  * Damage: Random.IntRange(1, mob.ht() * 2 / 3) - 1 to 2/3 of target's max HP
+  * Blindness Duration: Random.Int(3, 6) - 3 to 6 turns
+  * Area of Effect: All creatures visible to reader (fieldOfView)
+  * Affects: Both mobs and the reader
+  * Price (known): 80 gold
+  * Price (unknown): Base scroll price
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
 <string name="ScrollOfPsionicBlast_Name">Scroll of Psionic Blast</string>
 <string name="ScrollOfPsionicBlast_Info">The energy of this scroll will discharge a psionic blast, dealing tremendous damage to all creatures in your field of view. The damage is so immense that it will also temporarily blind you.</string>
@@ -16,5 +81,17 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="ScrollOfPsionicBlast_Uses">Uses: %d</string>
 </code>
 
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="ScrollOfPsionicBlast_Name">Свиток псионического взрыва</string>
+<string name="ScrollOfPsionicBlast_Info">Энергия этого свитка высвободит псионический взрыв, наносящий огромный урон всем существам в вашем поле зрения. Урон настолько велик, что также временно ослепит вас.</string>
+<string name="ScrollOfPsionicBlast_Kill">Псионический взрыв убил вас...</string>
+</code>
+
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:scroll_item|Scroll (Item)]] - Base item type
+  * [[mr:blindness_buff|Blindness (Buff)]] - Debuff applied by scroll
+  * [[mr:invisibility_buff|Invisibility (Buff)]] - Buff dispelled by scroll

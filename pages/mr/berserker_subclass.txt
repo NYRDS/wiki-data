@@ -1,20 +1,97 @@
 ====== Berserker Subclass - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Fury.java|Fury.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass definition
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Fury.java|Fury.java]] - Fury buff class
+
+===== Full Java Class Content =====
+
+**HeroSubClass.java - BERSERKER Definition:**
+<code java>
+// Enum definition (line 44)
+BERSERKER(R.string.HeroSubClass_NameBers, R.string.HeroSubClass_DescBers, "BerserkArmor")
+</code>
+
+**Fury Buff Activation (from HeroSubClass.java):**
+<code java>
+@Override
+public int charGotDamage(int damage, NamedEntityKind src, Char target) {
+    switch (this) {
+        case BERSERKER:
+            // Activate Fury when HP drops to 40% or below (Fury.LEVEL = 0.4f)
+            if (0 < target.hp() && target.hp() <= target.ht() * Fury.LEVEL) {
+                if (!target.hasBuff(BuffFactory.FURY)) {
+                    Buff.affect(target, BuffFactory.FURY);
+                }
+            }
+            break;
+    }
+    return damage;
+}
+</code>
+
+**Fury.java - Buff Implementation:**
+<code java>
+package com.watabou.pixeldungeon.actors.buffs;
+
+public class Fury extends Buff {
+    // Fury activates when HP is at or below 40% of max HP
+    public static final float LEVEL = 0.4f;
+
+    @Override
+    public boolean act() {
+        // Detach Fury when HP rises above 40%
+        if (target.hp() > target.ht() * LEVEL) {
+            detach();
+        }
+        spend(TICK * 10);
+        return true;
+    }
+
+    @Override
+    public int attackProc(Char attacker, Char defender, int damage) {
+        // Double damage while in Fury state
+        return damage * 2;
+    }
+
+    @Override
+    public int icon() {
+        return BuffIndicator.FURY;
+    }
+}
+</code>
+
+**Stats from code:**
+  * Fury Activation Threshold: 40% of max HP (Fury.LEVEL = 0.4f)
+  * Fury Damage Bonus: 2x (damage * 2)
+  * Fury Duration: Persistent while HP <= 40%
+  * Associated Armor: "BerserkArmor"
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1085|BERSERKER_SubclassName]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1097|BERSERKER_SubclassDesc]]
+English (values/strings_all.xml):
+<code xml>
+<string name="BERSERKER_SubclassName">Berserker</string>
+<string name="BERSERKER_SubclassDesc">When severely wounded, the Berserker enters a state of wild Fury, significantly increasing his damage output.</string>
+<string name="Brute_Enraged">%s is enraged!</string>
+<string name="Brute_StaEnraged">ENRAGED</string>
+</code>
+
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="BERSERKER_SubclassName">Берсерк</string>
+<string name="BERSERKER_SubclassDesc">Когда берсерк тяжело ранен, он впадает в состояние неистовства, значительно увеличивая свой урон.</string>
+<string name="Brute_Enraged">%s в ярости!</string>
+<string name="Brute_StaEnraged">ЯРОСТЬ</string>
+</code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
 ===== Related mr Entities =====
-  * [[mr:warrior_class|Warrior (Class)]]
-  * [[mr:fury_buff|Fury (Buff)]]
-  * [[mr:berserker_armor_item|Berserker Armor (Item)]]
+  * [[mr:warrior_class|Warrior (Class)]] - Parent class
+  * [[mr:fury_buff|Fury (Buff)]] - Buff that powers Berserker
+  * [[mr:berserker_armor_item|Berserker Armor (Item)]] - Special armor for Berserker
+  * [[mr:gladiator_subclass|Gladiator (Subclass)]] - Alternative Warrior subclass
