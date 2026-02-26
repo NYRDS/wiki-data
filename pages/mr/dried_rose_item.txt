@@ -1,7 +1,82 @@
 ====== Dried Rose Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DriedRose.java|DriedRose.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DriedRose.java|DriedRose.java]] - Main quest artifact item class
+  * Location: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DriedRose.java
+  * Extends: [[mr:artifact_item|Artifact]]
+  * Sprite: ItemSpriteSheet.ROSE
+
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.items.quest;
+
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.items.rings.Artifact;
+import com.watabou.pixeldungeon.items.rings.ArtifactBuff;
+import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
+import com.watabou.pixeldungeon.ui.BuffIndicator;
+
+public class DriedRose extends Artifact {
+
+	public DriedRose() {
+		image = ItemSpriteSheet.ROSE;
+	}
+
+	@Override
+	public ArtifactBuff buff() {
+		if (!isCursed()) {
+			return new OneWayLoveBuff();
+		} else {
+			return new OneWayCursedLoveBuff();
+		}
+	}
+
+	@Override
+	public boolean isIdentified() {
+		return true;
+	}
+
+	@Override
+	public String info() {
+        return super.info() + "\n\n" + StringsManager.getVar(R.string.DriedRose_Info2);
+	}
+
+	public static class OneWayLoveBuff extends ArtifactBuff {
+		@Override
+		public int icon() {
+			return BuffIndicator.ROSE;
+		}
+
+		@Override
+		public String name() {
+            return StringsManager.getVar(R.string.DriedRoseBuff_Name);
+        }
+
+		@Override
+		public String desc() {
+            return StringsManager.getVar(R.string.DriedRoseBuff_Info);
+        }
+	}
+
+	public static class OneWayCursedLoveBuff extends ArtifactBuff {
+		@Override
+		public int icon() {
+			return BuffIndicator.CURSED_ROSE;
+		}
+
+		@Override
+		public String name() {
+            return StringsManager.getVar(R.string.DriedRoseCursedBuff_Name);
+        }
+
+		@Override
+		public String desc() {
+            return StringsManager.getVar(R.string.DriedRoseCursedBuff_Info);
+        }
+	}
+}
+</code>
 
 ===== JSON Configuration =====
 This entity may have JSON configuration, but no matching config was found. Check:
@@ -21,7 +96,14 @@ This entity may have JSON configuration, but no matching config was found. Check
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Usage in Codebase =====
+  * **Succubus.java**: Uses DriedRose.OneWayLoveBuff to check for charm status and reverse targeting
+  * **Ghost.java**: Quest item - can be obtained from Ghost NPC quest in Sewers
+  * **WndSadGhost.java**: Used in ghost quest dialog window
+
 ===== Related mr Entities =====
   * [[mr:ghost_npc|Ghost NPC]]
   * [[mr:one_way_love_buff|One Way Love Buff]]
   * [[mr:one_way_cursed_love_buff|One Way Cursed Love Buff]]
+  * [[mr:artifact_item|Artifact]]
+  * [[mr:succubus_mob|Succubus]]
