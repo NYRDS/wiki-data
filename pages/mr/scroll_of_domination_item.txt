@@ -1,10 +1,29 @@
 {{ rpd:images:scroll_of_domination_item.png|Scroll of Domination }}
 
-====== Scroll Of Domination Item - Code References ======
+====== scroll_of_domination_item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfDomination.java|ScrollOfDomination.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfDomination.java|ScrollOfDomination.java]] - Main scroll implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]] - Parent scroll class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfDomination.java#L24-L54|ScrollOfDomination.doRead()]] - Effect implementation
+
+===== Entity Properties =====
+  * **getEntityKind():** Returns "ScrollOfDomination" (class name)
+  * **Type:** Consumable scroll
+  * **Price:** 80 gold (when identified)
+  * **Target:** Single creature in line of sight
+  * **Effect:** Converts enemy to pet/allied creature
+
+===== Implementation Details =====
+The ScrollOfDomination class extends the base Scroll class and implements the doRead() method which:
+  * Shows domination spell sprite
+  * Plays dominance sound effect
+  * Dispels invisibility from reader
+  * Finds all mobs in player's line of sight
+  * Filters out bosses, pets, and NPCs
+  * Randomly selects one valid target
+  * Converts selected mob to pet using Mob.makePet()
+  * Shows flare effect on successful domination
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -18,7 +37,8 @@ This entity is implemented in Java, no JSON configuration exists
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
-===== Related mr Entities =====
-  * [[mr:mob_npc|NPC (Entity)]]
+===== Related mr: Entities =====
+  * [[mr:scroll_item|Scroll (Base Entity)]]
   * [[mr:pet_buff|Pet (Buff)]]
   * [[mr:invisibility_buff|Invisibility (Buff)]]
+  * [[mr:mob|Mob (Entity)]]

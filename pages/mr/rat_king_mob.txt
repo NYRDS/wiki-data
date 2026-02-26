@@ -1,10 +1,41 @@
-====== Rat King Mob - Code References ======
+{{ rpd:images:rat_king_mob.png|Rat King }}
+
+====== rat_king_mob - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/RatKing.java|RatKing.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/NPC.java|NPC.java]] (Parent class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/RatKing.java|RatKing.java]] - Main Rat King implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/NPC.java|NPC.java]] - Parent NPC class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/RatKingPainter.java|RatKingPainter.java]] - Paints the level where Rat King appears
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Registered in factory
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/SewerBossLevel.java|SewerBossLevel.java]] - Where Rat King appears
+
+===== Entity Properties =====
+  * **getEntityKind():** Returns "RatKing" (class name)
+  * **Type:** NPC / Boss mob
+  * **HP:** 30 (ht(30))
+  * **Base Defense Skill:** 20
+  * **Base Attack Skill:** 15
+  * **Damage:** 4-10 (dmgMin=4, dmgMax=10)
+  * **Damage Reduction:** 5 (dr=5)
+  * **Speed:** 2.0 (fast)
+  * **EXP for Kill:** 1
+  * **Initial State:** Sleeping
+  * **Gender:** Male
+  * **Fraction:** Changes from friendly to DUNGEON when angered
+
+===== Implementation Details =====
+The RatKing class extends NPC and implements unique behavior:
+  * Starts in Sleeping state
+  * Has an anger counter (starts at 0)
+  * Friendly to hero when anger < 2
+  * First interaction: Wakes up and says greeting (R.string.RatKing_Info1)
+  * Second interaction: Becomes angry, mentions treasure (R.string.RatKing_Info2)
+  * Third interaction: Becomes hostile, changes fraction to DUNGEON, summons guards (R.string.RatKing_Info3)
+  * On death: Says final words (R.string.RatKing_Died)
+  * Automatically collects RatKingCrown item on spawn
+  * Immune to buffs while friendly to hero
+  * Always resets (reset() returns true)
+  * Cannot be damaged by hero while friendly (anger set to 2 instead)
 
 ===== JSON Configuration =====
 This entity does not have separate JSON configuration as it's implemented in Java.
@@ -28,14 +59,11 @@ This entity does not have separate JSON configuration as it's implemented in Jav
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
-===== Entity Kind =====
-  * getEntityKind(): Returns "RatKing" (class name)
+===== Drops =====
+  * [[mr:rat_king_crown_item|RatKingCrown]] - Item dropped on death
 
-===== Additional Code References =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Base mob class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/RatKingCrown.java|RatKingCrown.java]] - Item that Rat King drops
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/SewerBossLevel.java|SewerBossLevel.java]] - Where Rat King appears
-
-===== Related mr Entities =====
+===== Related mr: Entities =====
   * [[mr:rat_king_crown_item|Rat King Crown (Item)]]
   * [[mr:rats_crown_buff|Rats Crown (Buff)]]
+  * [[mr:npc|NPC (Base Entity)]]
+  * [[mr:mob|Mob (Base Entity)]]
