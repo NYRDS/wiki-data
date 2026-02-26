@@ -4,6 +4,17 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]] - Main buff class implementing Doom interface
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Poison.java|Poison enchantment]] - Weapon enchantment that applies poison
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java]] - Trap that applies poison
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/particles/PoisonParticle.java|PoisonParticle.java]] - Visual particle effects for poison
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/PoisonArrow.java|PoisonArrow.java]] - Missile weapon that applies poison
+
+===== Implementation Details =====
+  * **Class Hierarchy**: `Poison extends Buff implements Doom`
+  * **Icon**: `BuffIndicator.POISON` (icon ID 4)
+  * **Damage Formula**: `target.damage((int)(timeLeft / 3) + 1, this)` - deals damage based on remaining duration
+  * **Duration Factor**: Modified by `RingOfElements.Resistance` buff
+  * **Visual Effect**: `PoisonParticle.SPLASH` burst effect (5 particles)
+  * **Status Display**: Shows `Char_StaPoisoned` status text on affected character
+  * **Hero Death**: Triggers `Badges.validateDeathFromPoison()` and displays death message
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -20,6 +31,7 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="PoisonArrow_Gender">0</string>
 <string name="PoisonBuff_Name">Poisoned</string>
 <string name="PoisonBuff_Info">The poison is slowly eating away at your health.\n\nDamage dealt: %d</string>
+<string name="Char_StaPoisoned">Poisoned</string>
 
 <!-- Russian strings (values-ru/strings_all.xml) -->
 <string name="Poison_Name_0">Отравленное %s</string>
@@ -31,6 +43,7 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="PoisonArrow_Gender">0</string>
 <string name="PoisonBuff_Name">Отравление</string>
 <string name="PoisonBuff_Info">Яд постепенно истощает ваше здоровье.\n\nНанесённый урон: %d</string>
+<string name="Char_StaPoisoned">Отравлен</string>
 </code>
 
 ===== Lua Scripts =====
@@ -48,3 +61,5 @@ This entity is implemented in Java, no JSON configuration exists
   * Used in FrozenCarpaccio.java and MysteryMeat.java to remove poison
   * Used in BuffFactory.java to register the buff
   * Used in various enchantments and plant effects
+  * Damage calculation: deals `(timeLeft / 3) + 1` damage per tick
+  * Duration is affected by Ring of Elements resistance

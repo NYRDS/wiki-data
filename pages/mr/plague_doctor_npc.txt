@@ -1,7 +1,30 @@
 ====== Plague Doctor NPC - Code References ======
 
+{{ rpd:images:plague_doctor_npc_mob.png|Plague Doctor NPC }}
+
+**PlagueDoctorNPC** is an NPC entity in Remixed Dungeon that provides a quest involving rat hides and rewards the player with accessories.
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/PlagueDoctorNPC.java|PlagueDoctorNPC.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/PlagueDoctorNPC.java|PlagueDoctorNPC.java]] - Main NPC class extending ImmortalNPC
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]] - Parent class for immortal NPCs
+
+===== Code Behavior =====
+  * **Quest giver**: Offers a quest to collect 5 rat hides from rats
+  * **Quest reward**: Gives MedicineMask after quest completion, PlagueDoctorMaskHood and PlagueDoctorMask for first completion
+  * **Spawns in**: Sewers level (Town area)
+  * **Special behavior**: Removed if hero class is DOCTOR (onSpawn check)
+  * **Quest tracking**: Uses Journal.Feature.PLAGUEDOCTOR for quest tracking
+  * **Rat interaction**: Rat.java calls PlagueDoctorNPC.Quest.process() when rat dies
+
+===== Related Java Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/accessories/PlagueDoctorMask.java|PlagueDoctorMask.java]] - Quest reward accessory
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/accessories/PlagueDoctorMaskHood.java|PlagueDoctorMaskHood.java]] - Quest reward accessory
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/accessories/MedicineMask.java|MedicineMask.java]] - Quest completion reward
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/RatHide.java|RatHide.java]] - Quest item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/RatArmor.java|RatArmor.java]] - Quest reward item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java|Rat.java]] - Calls quest process on death
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] - Quest reset and bundle storage
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Journal.java|Journal.java]] - Quest journal feature
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
