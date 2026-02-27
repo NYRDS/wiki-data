@@ -1,20 +1,111 @@
 ====== Necromancer Robe Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+Java implementation found:
+  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/NecromancerRobe.java
+
+Full Java class content:
+<code java>
+package com.nyrds.pixeldungeon.items.common.armor;
+
+import com.nyrds.pixeldungeon.mechanics.NamedEntityKind;
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.hero.HeroClass;
+import com.watabou.pixeldungeon.items.armor.Armor;
+import com.watabou.pixeldungeon.utils.GLog;
+
+import org.jetbrains.annotations.NotNull;
+
+public class NecromancerRobe extends Armor {
+
+    public String desc() {
+        return info2;
+    }
+
+    public NecromancerRobe() {
+        super(1);
+        image = 23;
+    }
+
+    @Override
+    public boolean doEquip(@NotNull Char hero) {
+        if (hero.getHeroClass() == HeroClass.NECROMANCER) {
+            return super.doEquip(hero);
+        } else {
+            GLog.w(StringsManager.getVar(R.string.NecromancerArmor_NotNecromancer));
+            return false;
+        }
+    }
+
+    @Override
+    public void charDied(Char victim, NamedEntityKind cause) {
+		getOwner().accumulateSkillPoints(1);
+    }
+}
+</code>
+
+Key properties from Java code:
+  * **Base class**: Armor (extends Armor with tier 1)
+  * **Armor tier**: 1 (super(1) in constructor)
+  * **Image index**: 23
+  * **Class restriction**: Can only be equipped by NECROMANCER hero class
+  * **Special ability**: Accumulates 1 skill point when a character dies
+  * **Description**: Uses info2 string resource
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/necromancer_robe.json
+Entity is referenced in JSON configuration files:
+  * RemixedDungeon/src/main/assets/hero/initHeroes.json - Starting equipment for NECROMANCER class
+  * RemixedDungeon/src/main/assets/hero/initHeroesDebug.json - Debug configuration
+  * RemixedDungeon/src/main/assets/levelsDesc/Treasury.json - Treasury loot table
+
+JSON usage example (initHeroes.json):
+<code json>
+"NECROMANCER": {
+  "armor": {
+    "kind": "NecromancerRobe",
+    "identified": true
+  }
+}
+</code>
 
 ===== String Resources =====
+English string resources (values/strings_all.xml):
 <code xml>
-<string name="NecromancerRobe_Name">[Name]</string>
-<string name="NecromancerRobe_Info">[Description]</string>
+<string name="NecromancerRobe_Name">necromancer robe</string>
+<string name="NecromancerRobe_Info">This robe will allow the Necromancer to summon a Deathling at a cost of 5 souls. The Deathling is an undead minion that grows stronger alongside their master.</string>
+<string name="NecromancerRobe_Info2">This robe is imbued with dark magic and will allow the Necromancer to consume souls of fallen monsters.</string>
+<string name="NecromancerRobe_PetLimitReached">Necromancy: summon limit reached (Current max: %d)!</string>
 </code>
+
+Russian string resources (values-ru/strings_all.xml):
+<code xml>
+<string name="NecromancerRobe_Name">мантия некроманта</string>
+<string name="NecromancerRobe_Info">Эта мантия позволяет некроманту призвать Смертника за 5 душ. Смертник - это нежить-миньон, который становится сильнее вместе со своим хозяином.</string>
+<string name="NecromancerRobe_Info2">Эта мантия наполнена темной магией и позволит некроманту поглощать души павших монстров.</string>
+</code>
+
+Other available localizations:
+  * German (values-de/strings_all.xml)
+  * Spanish (values-es/strings_all.xml)
+  * Greek (values-el/strings_all.xml)
+  * And other supported languages
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Game Mechanics =====
+  * **Equipment restriction**: Only Necromancer hero class can equip this robe
+  * **Soul accumulation**: Gains 1 skill point per character death (via charDied method)
+  * **Starting item**: Provided as starting equipment for Necromancer class
+  * **Armor tier**: Tier 1 (lowest armor tier)
+  * **Visual**: Uses image index 23 from armor sprite sheet
+
+===== Related Code References =====
+  * Base Armor class: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java
+  * Hero class check: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java
+  * Item factory registration: RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java
+  * NamedEntityKind interface: RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java
+
+{{tag> rpd items armor necromancer class_specific tier1}}
