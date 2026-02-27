@@ -15,6 +15,8 @@
   * **Special behavior**: Removed if hero class is DOCTOR (onSpawn check)
   * **Quest tracking**: Uses Journal.Feature.PLAGUEDOCTOR for quest tracking
   * **Rat interaction**: Rat.java calls PlagueDoctorNPC.Quest.process() when rat dies
+  * **Badge unlock**: Unlocks DOCTOR_QUEST_COMPLETED badge on first completion
+  * **Quest state**: Tracks given, completed, processed, and depth state in bundles
 
 ===== Related Java Files =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/accessories/PlagueDoctorMask.java|PlagueDoctorMask.java]] - Quest reward accessory
@@ -25,6 +27,8 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java|Rat.java]] - Calls quest process on death
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] - Quest reset and bundle storage
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Journal.java|Journal.java]] - Quest journal feature
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] - Badge tracking
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Hero class check for DOCTOR
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -51,4 +55,7 @@ This entity is implemented in Java, no Lua script exists
   * [[mr:rat_hide_item|Rat Hide (Item)]]
   * [[mr:rat_armor_item|Rat Armor (Item)]]
   * [[mr:medicine_mask_item|Medicine Mask (Item)]]
+  * [[mr:plague_doctor_mask_item|Plague Doctor Mask (Item)]]
+  * [[mr:plague_doctor_mask_hood_item|Plague Doctor Mask Hood (Item)]]
   * [[mr:doctor_class|Doctor (Class)]]
+  * [[mr:rat_mob|Rat (Mob)]]

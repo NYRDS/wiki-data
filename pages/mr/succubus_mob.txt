@@ -1,16 +1,38 @@
 ====== Succubus Mob - Code References ======
 
+{{ rpd:images:succubus_mob.png|Succubus }}
+
+**Succubus** is a mob entity in Remixed Dungeon, a demon that can charm heroes and blink around the battlefield.
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Succubus.java|Succubus.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Succubus.java|Succubus.java]] - Main mob class extending Mob
+
+===== Code Behavior =====
+  * **HP**: 80
+  * **Attack**: 15-25 damage with 40 attack skill
+  * **Defense**: 10 DR with 25 defense skill
+  * **Special Ability**: 33% chance to apply Charm buff for 2-5 turns on attack
+  * **Blink Ability**: Can blink to target every 5 turns if target is visible and more than 2 cells away
+  * **View Distance**: Increased by 1 compared to normal mobs
+  * **Immunities**: Immune to Sleep and Leech enchantment
+  * **Loot**: 5% chance to drop Scroll of Lullaby
+  * **Experience**: 12 EXP, max level 25
+  * **Carcass Chance**: 0% (no corpse left)
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Succubus.json|Succubus.json]]
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="Succubus_Name">[Name]</string>
-<string name="Succubus_Info">[Description]</string>
+<string name="Succubus_Name">succubus</string>
+<string name="Succubus_Name_Objective">succubus</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:charm_buff|Charm (Buff)]]
+  * [[mr:sleep_buff|Sleep (Buff)]]
+  * [[mr:scroll_of_lullaby_item|Scroll of Lullaby (Item)]]
+  * [[mr:leech_enchantment|Leech (Enchantment)]]
