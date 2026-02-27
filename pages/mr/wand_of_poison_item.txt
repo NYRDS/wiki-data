@@ -2,6 +2,10 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfPoison.java|WandOfPoison.java]] - Main item implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - Base wand class with WandOfPoison registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/SimpleWand.java|SimpleWand.java]] - Parent class for simple wands
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/WandMaker.java|WandMaker.java]] - NPC that can reward WandOfPoison
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration and factory
 
 ===== JSON Configuration =====
 This entity may have JSON configuration, but no matching config was found. Check:
@@ -9,6 +13,9 @@ This entity may have JSON configuration, but no matching config was found. Check
   * RemixedDungeon/src/main/assets/spritesDesc/wand_of_poison.json
 
 ===== String Resources =====
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|WandOfPoison_Name, WandOfPoison_Info, WandOfPoison_Info1]]
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|WandOfPoison_Name, WandOfPoison_Info, WandOfPoison_Info1]]
+
 <code xml>
 <string name="WandOfPoison_Name">Wand of Poison</string>
 <string name="WandOfPoison_Info">The vile blast from this twisted bit of wood will coats its target with a deadly venom. The poisoned creature will suffer periodic damage until the effect ends. The duration of the effect increases with the level of the staff.</string>
@@ -17,3 +24,15 @@ This entity may have JSON configuration, but no matching config was found. Check
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Implementation Details =====
+  * **Parent Class:** SimpleWand
+  * **Effect:** Applies Poison buff to target
+  * **Poison Duration:** (5 + effectiveLevel()) * Poison.durationFactor(ch)
+  * **Visual Effect:** MagicMissile.poison from caster to target
+  * **Sound:** Assets.SND_ZAP
+  * **Wand Maker Reward:** Case 4 in WandMaker quest reward selection
+
+===== Related Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]] - Poison buff implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|MagicMissile.java]] - Magic missile visual effects

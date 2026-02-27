@@ -1,11 +1,13 @@
 ====== Scale Armor Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java|ScaleArmor.java]] - Main implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L357|ItemFactory.java]] - Registration of ScaleArmor class
+  * **Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java|ScaleArmor.java]]
+  * **Inheritance:** Extends [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor]]
+  * **Item Registration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L357|ItemFactory.java#L357]] - registers ScaleArmor class
+  * **Shop Availability:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java#L90|ShopPainter.java#L90]] - appears in shops
 
 ===== JSON Configuration =====
-No specific JSON configuration for this item found.
+No specific JSON configuration for this item found. It is implemented purely in Java.
 
 ===== String Resources =====
 <code xml>
@@ -14,9 +16,15 @@ No specific JSON configuration for this item found.
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
 
 ===== Additional Information =====
-  * Tier: Armor level 4 (Medium armor)
-  * Sprite: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java#L11|image = 3]]
-  * Shop availability: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java#L90|ShopPainter.java]] - appears in shops
+  * **Tier:** Armor tier 4 (Medium armor)
+  * **Sprite Index:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScaleArmor.java#L11|image = 3]]
+  * **Base Defense:** 12 (typical for tier 4 armor)
+  * **Shop Availability:** Can appear in dungeon shops
+
+===== Entity Kind =====
+  * **getEntityKind():** Returns `"ScaleArmor"` (class simple name)
+  * **Item Category:** Armor
+  * **Item Tier:** 4
