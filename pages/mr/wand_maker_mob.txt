@@ -1,20 +1,57 @@
 ====== Wand Maker Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * Main class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/WandMaker.java|WandMaker.java]] - Extends NPC, implements wand maker quest mechanics
+  * Mob factory registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L250|MobFactory.java#L250]] - Registers WandMaker.class
+  * Quest window: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndWandmaker.java|WndWandmaker.java]] - Dialog for wand selection
+  * Level objects factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObjectsFactory.java#L79|LevelObjectsFactory.java#L79]] - Registers Rotberry.class
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/wand_maker.json
+This entity does not use JSON configuration. It is implemented entirely in Java.
 
 ===== String Resources =====
 <code xml>
-<string name="WandMaker_Name">[Name]</string>
-<string name="WandMaker_Info">[Description]</string>
+<string name="WandMaker_Name">old wandmaker</string>
+<string name="WandMaker_Desc">This old but hale gentleman wears a slightly confused expression. He is protected by a magic shield.</string>
+<string name="WandMaker_Defense">absorbed</string>
+<string name="WandMaker_Berry1">Oh, what a pleasant surprise to meet a decent person in such place! I came here for a rare ingredient - a _Rotberry seed_. Being a magic user, I'm quite able to defend myself against local monsters, but I'm getting lost in no time, it's very embarrassing. Probably you could help me? I would be happy to pay for your service with one of my best wands.</string>
+<string name="WandMaker_Berry2">Any luck with a Rotberry seed, %s? No? Don't worry, I'm not in a hurry.</string>
+<string name="WandMaker_Dust1">Oh, what a pleasant surprise to meet a decent person in such place! I came here for a rare ingredient - _corpse dust_. It can be gathered from skeletal remains and there is an ample number of them in the dungeon. Being a magic user, I'm quite able to defend myself against local monsters, but I'm getting lost in no time, it's very embarrassing. Probably you could help me? I would be happy to pay for your service with one of my best wands.</string>
+<string name="WandMaker_Dust2">Any luck with corpse dust, %s? Bone piles are the most obvious places to look through.</string>
+<string name="WandMaker_RotberryName">Rotberry</string>
+<string name="WandMaker_RotberryDesc">Berries of this shrub taste like sweet, sweet death.</string>
+<string name="WandMaker_RotberryInfo">The seed emits a roar that echoes throughout the dungeon!</string>
 </code>
 
+Available in multiple languages:
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1876|strings_all.xml#L1876]]
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|values-ru/strings_all.xml]]
+  * And other languages in the respective resource files
+
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
+
+===== Implementation Details =====
+  * **Parent Class**: NPC (com.watabou.pixeldungeon.actors.mobs.npcs.NPC)
+  * **Defense**: Immune to damage (defenseSkill returns 1000, damage method does nothing)
+  * **Immune to Buffs**: add(Buff buff) returns false
+  * **Reset Immunity**: reset() returns true
+  * **Spawn Location**: PrisonLevel, in a random room
+  * **Spawn Condition**: Dungeon depth > 6, random chance (10 - depth)
+  * **Quest Types**:
+    - Alternative 0: Collect Corpse Dust from skeletons
+    - Alternative 1: Collect Rotberry Seed (plant grows when placed)
+  * **Rewards**:
+    - Battle wand (random from: Avalanche, Disintegration, Firebolt, Lightning, Poison)
+    - Non-battle wand (random from: Amok, Blink, Regrowth, Slowness, Telekinesis)
+  * **Inner Classes**:
+    - Quest: Manages quest state (spawned, alternative, given)
+    - Rotberry: Plant class with toxic gas effect
+    - Rotberry.Seed: Alchemy seed that produces Potion of Strength
+
+===== Related Files =====
+  * NPC base class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/NPC.java|NPC.java]]
+  * Corpse Dust item: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/CorpseDust.java|CorpseDust.java]]
+  * Rotberry plant: Implemented as inner class in WandMaker.java
+  * Prison Level: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/PrisonLevel.java|PrisonLevel.java]]
+  * Journal feature: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Journal.java|Journal.java]]

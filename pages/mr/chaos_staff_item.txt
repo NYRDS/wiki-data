@@ -1,10 +1,11 @@
 ====== Chaos Staff Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosStaff.java|ChaosStaff.java]]
+  * Main class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosStaff.java|ChaosStaff.java]] - Extends Wand, implements chaos staff mechanics
+  * Item factory registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L322|ItemFactory.java#L322]] - Registers ChaosStaff.class
 
 ===== JSON Configuration =====
-This entity does not use JSON configuration.
+This entity does not use JSON configuration. It is implemented entirely in Java.
 
 ===== String Resources =====
 <code xml>
@@ -14,16 +15,31 @@ This entity does not use JSON configuration.
 </code>
 
 Available in multiple languages:
-  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1183|strings_all.xml]]
-  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1169|values-ru/strings_all.xml]]
-  * German: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L1110|values-de/strings_all.xml]]
-  * French: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L1171|values-fr/strings_all.xml]]
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1188|strings_all.xml#L1188]]
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|values-ru/strings_all.xml]]
+  * German: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml|values-de/strings_all.xml]]
+  * French: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml|values-fr/strings_all.xml]]
   * And many other languages in the respective resource files
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
+
+===== Implementation Details =====
+  * **Parent Class**: Wand (com.watabou.pixeldungeon.items.wands.Wand)
+  * **Image**: items/chaosStaff.png (image index 0)
+  * **Charge Mechanism**: Accumulates charge when owner takes damage (ownerTakesDamage method)
+  * **Visual Progression**: Image changes based on level (level / 3, max 4)
+  * **Zap Effect**: Uses ChaosCommon.doChaosMark() to mark cells with chaos energy
+  * **Random Effects**: 10% chance to trigger one of 5 effects on zap:
+    - Instant kill
+    - Convert to pet
+    - Spawn duplicate
+    - Teleport
+    - Heal target
 
 ===== Related Files =====
-  * Item factory registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L322|ItemFactory.java]]
   * Chaos system implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCommon.java|ChaosCommon.java]]
-  * Used in Chaos Crystal fusion: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCrystal.java#L99|ChaosCrystal.java]]
+  * Used in Chaos Crystal fusion: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCrystal.java#L99|ChaosCrystal.java#L99]]
+  * Wand base class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]]
+  * Teleportation wand (used in effects): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfTeleportation.java|WandOfTeleportation.java]]
+  * Healing potion (used in effects): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]]
