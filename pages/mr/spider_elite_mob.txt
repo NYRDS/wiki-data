@@ -8,13 +8,55 @@ This entity is implemented in Lua, no direct Java class exists
 
 ===== JSON Configuration =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/SpiderElite.json|Mobs Description]]
+  * Stats:
+    * HP (ht): 40
+    * Damage: 10-15 (dmgMin/dmgMax)
+    * Defense Skill: 18
+    * Attack Skill: 20
+    * Damage Reduction (dr): 8
+    * Base Speed: 1.2
+    * Attack Delay: 1
+    * Max Level: 13
+    * Experience: 5
+    * View Distance: 6
+    * Loot Chance: 7%
+    * Loot: MysteryMeat
+    * Walking Type: NORMAL
+    * Can Be Pet: true
+    * Flying: false
+    * Friendly: false
+    * Variant: 2
+  * Sprite: spritesDesc/SpiderElite.json
 
 ===== String Resources =====
 <code xml>
-<string name="SpiderElite_Name">Spider Elite</string>
-<string name="SpiderElite_Desc">A more dangerous variant of the common spider found in spider nests. This spider appears to be an elite guard that protects the nest.</string>
+<!-- English (values/strings_all.xml) -->
+<string name="SpiderElite_Name">spider elite guard</string>
+<string name="SpiderElite_Gender">masculine</string>
+<string name="SpiderElite_Name_Objective">spider elite guard</string>
+<string name="SpiderElite_Desc">Much like soldiers, spider guards are sworn to protect their kingdom. The elite guard's venom is used to disorient their target.</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="SpiderElite_Name">Элитный паучий страж</string>
+<string name="SpiderElite_Gender">masculine</string>
+<string name="SpiderElite_Name_Objective">паука</string>
+<string name="SpiderElite_Desc">Подобно солдатам, пауки-стражи поклялись защищать свое королевство. Яд элитного стража деориентирует жертву.</string>
 </code>
 
 ===== Lua Scripts =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/SpiderElite.lua|SpiderElite.lua]] - Main implementation
     * Special attack: 20% chance to apply Vertigo debuff to enemy when attacking
+    * Uses mob.init with attackProc function
+    * Vertigo duration based on skill level
+
+===== Bestiary Placement =====
+  * Found in Spider Nest levels (level 10s)
+  * Spawn rate: 0.3 (30% relative weight in spider nest spawns)
+  * Appears alongside: SpiderServant, SpiderExploding, SpiderMind, SpiderGuard, SpiderMindAmber
+
+===== Related Entities =====
+  * SpiderServant - Basic spider mob
+  * SpiderExploding - Exploding spider variant
+  * SpiderMind - Mind-controlling spider
+  * SpiderGuard - Guard spider variant
+  * SpiderMindAmber - Rare amber mind spider
