@@ -1,20 +1,84 @@
 ====== Dark Sacrifice Spell - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/spells/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/spells/*.java
+{{ rpd:images:dark_sacrifice_spell.png|Dark Sacrifice Spell }}
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/spellsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/dark_sacrifice.json
+===== Lua Script Implementation =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/spells/DarkSacrifice.lua|DarkSacrifice.lua]]
 
-===== String Resources =====
-<code xml>
-<string name="DarkSacrifice_Name">[Name]</string>
-<string name="DarkSacrifice_Info">[Description]</string>
+**Script Details:**
+  * File: ''scripts/spells/DarkSacrifice.lua''
+  * Type: Spell (Necromancy affinity)
+  * Targeting: Character targeting
+  * Level requirement: 3
+  * Mana cost: 3
+  * Cast time: 0.5 seconds
+
+**Spell Mechanics (from Lua code):**
+<code lua>
+return spell.init{
+    desc  = function ()
+        return {
+            image         = 1,
+            imageFile     = "spellsIcons/necromancy.png",
+            name          = "DarkSacrifice_Name",
+            info          = "DarkSacrifice_Info",
+            magicAffinity = "Necromancy",
+            targetingType = "char",
+            level         = 3,
+            spellCost     = 3,
+            castTime      = 0.5
+        }
+    end,
+    castOnChar = function(self, spell, caster, sacrifice)
+        -- Sacrifices a owned minion to create liquid flame explosion
+        -- Explosion damage based on minion HP and caster skill level
+    end
+}
 </code>
 
-===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/DarkSacrifice.lua|DarkSacrifice.lua]]
+**Behavior:**
+  * Targets a character (must be owned by the caster)
+  * Sacrifices the targeted minion
+  * Creates a Liquid Flame blob at the sacrifice location
+  * Explosion damage scales with: ''sacrifice:hp() * caster:skillLevel()''
+  * Plays cursed sound effect on successful sacrifice
+  * Shows shadow particle curse effect on sacrifice sprite
+
+===== String Resources =====
+**English (values/strings_all.xml):**
+<code xml>
+<string name="DarkSacrifice_Name">Dark Sacrifice</string>
+<string name="DarkSacrifice_Info">Sacrifice your loyal minion to cause an explosion. The area covered by the explosion will depend on the remaining health of the servant and your skill level.</string>
+<string name="DarkSacrifice_Ok">My life is yours!</string>
+<string name="DarkSacrifice_Resist">You have no power over me</string>
+<string name="DarkSacrifice_Hint">Choose your loyal servant to sacrifice!</string>
+</code>
+
+**Russian (values-ru/strings_all.xml):**
+<code xml>
+<string name="DarkSacrifice_Name">Тёмная жертва</string>
+<string name="DarkSacrifice_Info">Пожертвуйте своим верным прислужником, чтобы вызвать взрыв. Площадь, охваченная взрывом, будет зависеть от оставшегося здоровья слуги и вашего уровня мастерства.</string>
+<string name="DarkSacrifice_Ok">Моя жизнь принадлежит тебе!</string>
+<string name="DarkSacrifice_Resist">Ты не имеешь власти надо мной</string>
+<string name="DarkSacrifice_Hint">Выберите верного слугу для жертвоприношения!</string>
+</code>
+
+**Other Languages:**
+  * German (values-de): ''Dunkle Opferung''
+  * Ukrainian (values-uk): ''Темна жертва''
+  * Greek (values-el): ''Σκοτεινή θυσία''
+  * Indonesian (values-in): ''Pengorbanan Gelap''
+
+===== Related Code References =====
+  * Spell base class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]]
+  * Common classes: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]]
+  * Liquid Flame blob: Used for explosion effect
+  * Sound effect: ''snd_cursed''
+  * Particle effect: ''RPD.Sfx.ShadowParticle.CURSE''
+
+===== Game Mechanics References =====
+  * Magic Affinity: [[en:rpd:spell_affinities#necromancy|Necromancy]]
+  * Spell system: [[en:rpd:spell_system|Spell System]]
+  * Spells overview: [[en:rpd:spells_overview|Spells Overview]]
+
+{{tag> mr spell necromancy code-reference lua}}
