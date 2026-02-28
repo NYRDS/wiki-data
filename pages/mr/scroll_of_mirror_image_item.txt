@@ -5,37 +5,75 @@
 ===== Java Classes =====
   * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfMirrorImage.java|ScrollOfMirrorImage.java]]
   * **Package**: com.watabou.pixeldungeon.items.scrolls
-  * **Parent Class**: Scroll
+  * **Parent Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll]]
   * **Related Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/MirrorImage.java|MirrorImage.java]] (NPC clone created by scroll)
+  * **Registration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (line 274)
+  * **Scroll Array**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]] (lines 43, 60)
+
+===== MirrorImage NPC Class Details =====
+  * **Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/MirrorImage.java|MirrorImage.java]]
+  * **Package**: com.watabou.pixeldungeon.actors.mobs.npcs
+  * **Parent Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob]]
+  * **AI State**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Hunting.java|Hunting]]
+  * **HP**: 1 (fixed)
+  * **Carcass Chance**: 0 (no corpse dropped)
+  * **Immunities**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning]]
+  * **Attack Behavior**: Destroy itself after one attack (attackProc method)
+  * **Sprite**: Uses [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/HeroSpriteDef.java|HeroSpriteDef]] to copy hero appearance
 
 ===== JSON Configuration =====
   * No specific JSON configuration file for this item
-  * Item registration may be in general items configuration
+  * Item registration in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] (general items configuration)
 
 ===== String Resources =====
 **English (values/strings_all.xml)**:
 <code xml>
 <string name="ScrollOfMirrorImage_Name">Scroll of Mirror Image</string>
-<string name="ScrollOfMirrorImage_Info">The incantation of this scroll will create illusory twins of the reader, which will hunt his enemies.</string>
+<string name="ScrollOfMirrorImage_Info">The incantation on this scroll will create illusionary twins of the reader, which will chase his enemies.</string>
 </code>
+Lines: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1762-L1763|1762-1763]]
 
 **Russian (values-ru/strings_all.xml)**:
 <code xml>
 <string name="ScrollOfMirrorImage_Name">свиток зеркального образа</string>
-<string name="ScrollOfMirrorImage_Info">Заклинание этого свитка создаст иллюзорных двойников читающего, которые будут преследовать его врагов.</string>
+<string name="ScrollOfMirrorImage_Info">Прочтение свитка создаст твоего иллюзорного близнеца, который устремится в погоню за врагами.</string>
 </code>
+Lines: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1878-L1879|1878-1879]]
 
 **Other Languages**:
-  * German: Schriftrolle des Spiegelbildes
-  * Spanish: Pergamino de Imagen Espejo
-  * French: Parchemin d'Image Miroir
-  * Greek: πάπυρος κατοπτρικής εικόνας
+  * **German** (values-de/strings_all.xml): Schriftrolle des Spiegelbildes
+  * **Spanish** (values-es/strings_all.xml): Pergamino de Imagen Espejo
+  * **French** (values-fr/strings_all.xml): Parchemin d'Image Miroir
+  * **Greek** (values-el/strings_all.xml): πάπυρος κατοπτρικής εικόνας
+  * **Japanese** (values-ja/strings_all.xml): 鏡像のスクロール
+  * **Chinese Simplified** (values-zh-rCN/strings_all.xml): 镜像卷轴
+  * **Chinese Traditional** (values-zh-rTW/strings_all.xml): 鏡像的捲軸
+  * **Indonesian** (values-in/strings_all.xml): Gulungan Bayangan cermin
+  * **Malay** (values-ms/strings_all.xml): Skrol Imej Cermin
+  * **Turkish** (values-tr/strings_all.xml): Ayna Görüntüsü Parşömeni
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
 ===== Game Mechanics =====
-  * **Effect**: Creates 3 illusory clones of the reader that hunt enemies
-  * **Implementation**: Uses WandOfBlink.appear() for clone appearance
-  * **Clone Behavior**: Clones are created in adjacent empty cells
-  * **Invisibility**: Dispels invisibility on use
+  * **Effect**: Creates 3 illusory clones (NIMAGES = 3) of the reader that hunt enemies
+  * **Implementation**: Uses [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfBlink.java|WandOfBlink.appear()]] for clone appearance
+  * **Clone Behavior**: Clones are created in adjacent empty cells using Level.getEmptyCellNextTo()
+  * **Invisibility**: Dispels invisibility on use via Invisibility.dispel(reader)
+  * **Sound**: Plays Assets.SND_READ sound effect
+  * **Read Time**: Uses TIME_TO_READ constant from Scroll base class
+  * **Known Status**: Sets scroll as known if at least one image was created
+
+===== Code Flow =====
+<code java>
+1. ScrollOfMirrorImage.doRead(Char reader) is called
+2. Gets current dungeon level
+3. Loops NIMAGES (3) times:
+   - Gets empty cell next to reader
+   - Creates clone using reader.makeClone()
+   - Teleports clone to cell using WandOfBlink.appear()
+4. If images were created, sets scroll as known
+5. Plays read sound effect
+6. Dispels invisibility from reader
+7. Spends TIME_TO_READ turns
+</code>

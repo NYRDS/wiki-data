@@ -7,21 +7,24 @@ The Scroll of Psionic Blast is a type of scroll in Remixed Dungeon that creates 
 
 ==== Effect ====
 When this scroll is read, it creates a psionic blast that affects all creatures visible to the reader:
-  * **Damage:** Deals damage between 1 and 2/3 of the target's max HP to all affected creatures
-  * **Blindness:** Causes blindness for 3-6 turns to all affected creatures including the player
-  * **Area of Effect:** Affects all creatures that are currently visible to the player
+  * **Damage:** Deals damage between 1 and 2/3 of the target's max HP (Random.IntRange(1, mob.ht() * 2 / 3))
+  * **Blindness:** Causes blindness for 3-6 turns (Random.Int(3, 6)) to all affected creatures including the player
+  * **Area of Effect:** Affects all creatures in the field of view (fieldOfView array check)
   * **Self-Damage:** Also damages the player who reads the scroll
+  * **Visual Effect:** Screen flashes white (0xFFFFFF color) via GameScene.flash()
+  * **Sound:** Plays Assets.SND_BLAST sound effect
 
 ==== Properties ====
   * **Weight:** 5
-  * **Price:** 80 gold coins when identified, 60 when unidentified (base price)
-  * **Identification:** One use to identify (read to learn effect)
+  * **Price:** 80 gold coins when identified, base price when unidentified (price() method)
+  * **Identification:** One use to identify (read to learn effect, sets known status)
 
 ==== Function ====
   * **Reading:** When read aloud, the screen flashes white and a blast sound is played
-  * **Invisibility Dispel:** Dispels invisibility from the reader
-  * **Blindness Effect:** Causes temporary blindness to all creatures in range (including reader)
+  * **Invisibility Dispel:** Dispels invisibility from the reader via Invisibility.dispel()
+  * **Blindness Effect:** Causes temporary blindness to all creatures in field of view (including reader)
   * **High Risk/High Reward:** Can eliminate multiple enemies but at considerable risk to player
+  * **Mob Iteration:** Iterates through all mobs on the level using Dungeon.level.getCopyOfMobsArray()
 
 ==== Obtaining ====
   * Found as random drops in dungeon levels
