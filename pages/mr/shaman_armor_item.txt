@@ -1,20 +1,60 @@
 ====== Shaman Armor Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ShamanArmor.java|ShamanArmor.java]] - Main implementation class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ElfArmor.java|ElfArmor.java]] - Parent class (ShamanArmor extends ElfArmor)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration (line 295)
+
+===== Class Implementation Details =====
+<code java>
+public class ShamanArmor extends ElfArmor {
+    public ShamanArmor() {
+        name = StringsManager.getVar(R.string.ElfArmor_Name);
+        image = 19;
+        hasHelmet = true;
+        coverHair = true;
+    }
+    
+    @Override
+    public boolean doEquip(@NotNull Char hero) {
+        if (hero.getSubClass() == HeroSubClass.SHAMAN) {
+            return super.doEquip(hero);
+        } else {
+            GLog.w(StringsManager.getVar(R.string.ElfArmor_NotElf));
+            return false;
+        }
+    }
+}
+</code>
+
+===== Key Properties =====
+  * **Image ID**: 19 (sprite index in armor atlas)
+  * **Has Helmet**: true (armor includes a hood/helmet)
+  * **Cover Hair**: true (helmet covers hero's hair)
+  * **Restriction**: Can only be equipped by heroes with SHAMAN subclass
+  * **Name Source**: R.string.ElfArmor_Name (shared with ElfArmor)
+  * **Warning Message**: R.string.ElfArmor_NotElf (shown when non-Shaman tries to equip)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/shaman_armor.json
+This entity is implemented in Java, no JSON configuration exists.
 
 ===== String Resources =====
 <code xml>
-<string name="ShamanArmor_Name">[Name]</string>
-<string name="ShamanArmor_Info">[Description]</string>
+<string name="ElfArmor_Name">[Name]</string>
+<string name="ElfArmor_NotElf">[Warning message when non-Shaman tries to equip]</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
+
+===== Related Entities =====
+  * [[mr:elf_class|Elf Class]] - Base class for Shaman subclass
+  * [[mr:shaman_subclass|Shaman Subclass]] - Required subclass to equip this armor
+  * [[mr:armor_kit_item|Armor Kit Item]] - Used to create Shaman Armor from regular armor
+  * [[mr:elf_armor_item|Elf Armor]] - Parent class implementation
+
+===== Usage in Code =====
+  * Created via Armor Kit transformation on any armor piece
+  * Equipment restriction enforced in doEquip() method
+  * Inherits all properties from base armor (level, upgrades, enchantments)
+  * Part of the Elf class mastery system

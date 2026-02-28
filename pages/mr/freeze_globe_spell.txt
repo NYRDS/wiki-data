@@ -1,16 +1,92 @@
 ====== Freeze Globe Spell - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/FreezeGlobe.java|FreezeGlobe.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/FreezeGlobe.java|FreezeGlobe.java]] - Main implementation class
+
+===== Class Implementation Details =====
+<code java>
+public class FreezeGlobe extends Spell {
+    FreezeGlobe() {
+        targetingType = SpellHelper.TARGET_CELL;
+        magicAffinity = SpellHelper.AFFINITY_ELEMENTAL;
+        level = 3;
+        image = 3;
+        spellCost = 4;
+    }
+
+    @Override
+    public boolean cast(@NotNull Char chr, int cell) {
+        if(!Dungeon.level.cellValid(cell)) {
+            return false;
+        }
+        boolean triggered = false;
+        if(Ballistica.cast(chr.getPos(), cell, false, true) == cell) {
+            Char ch = Actor.findChar(cell);
+            if (ch != null) {
+                ch.getSprite().emitter().burst(SnowParticle.FACTORY, 5);
+                ch.getSprite().burst(0xFF99FFFF, 3);
+                Buff.affect(ch, Frost.class, Frost.duration(ch));
+                Buff.affect(ch, Slow.class, Slow.duration(ch));
+                Sample.INSTANCE.play(Assets.SND_SHATTER);
+                triggered = true;
+            }
+            if(triggered) {
+                castCallback(chr);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String texture() {
+        return "spellsIcons/elemental.png";
+    }
+}
+</code>
+
+===== Key Properties =====
+  * **Targeting Type**: TARGET_CELL (targets a specific cell, not a character)
+  * **Magic Affinity**: AFFINITY_ELEMENTAL (elemental magic)
+  * **Spell Level**: 3 (Advanced spell)
+  * **Image ID**: 3 (sprite index in elemental spells atlas)
+  * **Spell Cost**: 4 (mana cost to cast)
+  * **Texture**: spellsIcons/elemental.png
+
+===== Effects Applied =====
+  * **Frost Buff**: Applies Frost.class with Frost.duration(ch) - freezes target in place
+  * **Slow Buff**: Applies Slow.class with Slow.duration(ch) - reduces movement speed
+  * **Visual Effects**: 
+    - Snow particle burst (5 particles)
+    - Light blue color burst (0xFF99FFFF, 3 particles)
+  * **Sound Effect**: Assets.SND_SHATTER (shattering sound)
+
+===== Targeting Mechanics =====
+  * Uses Ballistica.cast() for path validation
+  * Requires clear line of sight to target cell
+  * Only affects characters if present on target cell
+  * Validates cell through Dungeon.level.cellValid()
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check:
-  * RemixedDungeon/src/main/assets/spellsDesc/
-  * RemixedDungeon/src/main/assets/spritesDesc/
+This entity is implemented in Java, no JSON configuration exists.
 
 ===== String Resources =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L16|String: FreezeGlobe_Name]] - The display name for the spell
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L17|String: FreezeGlobe_Info]] - The description text for the spell
+<code xml>
+<string name="FreezeGlobe_Name">Freeze Globe</string>
+<string name="FreezeGlobe_Info">Freezes the selected character, making it unable to perform any actions for a short period of time.</string>
+</code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
+
+===== Related Entities =====
+  * [[mr:frost_buff|Frost Buff]] - Status effect that freezes target
+  * [[mr:slow_buff|Slow Buff]] - Status effect that reduces speed
+  * [[mr:elemental_magic|Elemental Magic]] - Magic affinity type
+  * [[mr:spells_overview|Spells Overview]] - List of all spells
+
+===== Usage in Code =====
+  * Registered in Spell system via SpellFactory
+  * Cast on cells, affects any character occupying that cell
+  * Requires line of sight validation via Ballistica
+  * Part of elemental magic spell family
