@@ -7,21 +7,34 @@
 Mace
 
 ===== Stats =====
-  * **Damage**: 3 (base)
-  * **Speed**: 1.0x (relative to normal weapon speed)
-  * **Accuracy**: 0.8x (relative to normal weapon accuracy)
-  * **Type**: Melee Weapon (Sword attack animation)
+  * **Damage**: 3 (base damage)
+  * **Speed**: 1.0x (normal weapon speed)
+  * **Accuracy**: 0.8x (reduced accuracy compared to standard weapons)
+  * **Type**: Melee Weapon (uses sword attack animation)
+  * **Parent Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon]]
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check:
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/mace.json
+This entity is implemented directly in Java without separate JSON configuration. The item properties are defined in the Mace.java class constructor:
+  * Constructor call: super(3, 1f, 0.8f)
+  * Image: ItemSpriteSheet.MACE
+  * Animation: SWORD_ATTACK
 
 ===== String Resources =====
-  * <code xml>
+  * **Name Key**: Mace_Name
+  * **Description Key**: Mace_Info
+  * **Gender Key**: Mace_Gender
+  * Values in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]:
+    * <code xml>
 <string name="Mace_Name">mace</string>
 <string name="Mace_Info">The iron head of this weapon inflicts substantial damage.</string>
-  * </code>
+<string name="Mace_Gender">feminine</string>
+    * </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented entirely in Java, no Lua script exists
+
+===== Implementation Details =====
+  * The Mace is a basic melee weapon in the weapon category
+  * It uses the sword attack animation (animation_class = SWORD_ATTACK)
+  * Lower accuracy (0.8x) is balanced by normal speed and moderate damage
+  * The sprite is defined in ItemSpriteSheet as MACE
