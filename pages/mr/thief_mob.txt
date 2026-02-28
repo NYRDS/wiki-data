@@ -1,25 +1,116 @@
 ====== Thief Mob - Code References ======
 
+Machine-readable reference page for the Thief mob entity in Remixed Dungeon.
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Thief.java|Thief.java]]
+
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Thief.java|Thief.java]] - Main Thief mob class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/ThiefFleeing.java|ThiefFleeing.java]] - AI state for fleeing behavior after stealing
+
+===== Java Implementation Details =====
+
+**Stats (from Thief.java):**
+<code java>
+{
+    hp(ht(20));              // Health points: 20
+    baseDefenseSkill = 12;   // Defense skill: 12
+    baseAttackSkill = 12;    // Attack skill: 12
+    dmgMin = 1;              // Minimum damage: 1
+    dmgMax = 7;              // Maximum damage: 7
+    dr = 3;                  // Damage reduction: 3
+    expForKill = 5;          // Experience for kill: 5
+    maxLvl = 10;             // Maximum level: 10
+    loot(RingOfHaggler.class, 0.01f); // 1% drop chance for Ring of Haggler
+}
+</code>
+
+**Special Abilities:**
+  * **Steal Attack**: Can steal items from the player on attack (attackProc method)
+  * **Fleeing Behavior**: Enters ThiefFleeing AI state after successful steal
+  * **Gold Drop**: Drops gold when hit while in fleeing state (defenseProc method)
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Thief.json|Thief.json]]
 
-===== String Resources =====
-<code xml>
-<string name="Thief_Name">[Name]</string>
-<string name="Thief_Info">[Description]</string>
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Thief.json|Thief.json]] - Sprite animation configuration
+
+**Sprite Configuration (Thief.json):**
+<code json>
+{
+  "idle": { "looped": true, "frames": [0,0,0,1,0,0,0,0,1], "fps": 1 },
+  "die": { "looped": false, "frames": [5,6,7,8,9], "fps": 10 },
+  "attack": { "looped": false, "frames": [10,11,12,0], "fps": 12 },
+  "run": { "looped": true, "frames": [0,0,2,3,3,4], "fps": 15 },
+  "texture": "thief.png",
+  "width": 12,
+  "height": 13,
+  "bloodColor": "0xffbb0000"
+}
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/ScriptedThief.lua|ScriptedThief.lua]] - Lua script that defines special attack behavior for stealing items
 
-==== Related mr Entities ====
-  * [[mr:ring_of_haggler_item|Ring of Haggler]]
-  * [[mr:gold_item|Gold Item]]
-  * [[mr:thief_fleeing_ai|Thief Fleeing AI]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/mobs/ScriptedThief.lua|ScriptedThief.lua]] - Lua script that defines special attack behavior for stealing items
 
-==== Related Standard Entities ====
+**Lua Implementation (ScriptedThief.lua):**
+<code lua>
+return mob.init{
+    attackProc = function(self, enemy, dmg)
+        if not self:getLoot() then
+            local belongins = enemy:getBelongings()
+            if belongins then
+                local items = belongins.backpack.items
+                local item = items:get(math.random(0,items:size()-1))
+                item:removeItemFrom(enemy)
+                self:loot(item)
+                RPD.glog("%s stole %s from %s", self:name(), item:name(), enemy:name())
+                RPD.setAi(self, "ThiefFleeing")
+            end
+        end
+        return dmg
+    end
+}
+</code>
+
+===== String Resources =====
+
+**English (values/strings_all.xml):**
+<code xml>
+<string name="Thief_Name">crazy thief</string>
+<string name="Thief_Gender">masculine</string>
+<string name="Thief_Name_Objective">crazy thief</string>
+<string name="Thief_Desc">Deeper levels of the dungeon have always been a hiding place for all kinds of criminals. Not all of them could keep a clear mind during their extended periods so far from daylight. Long ago, these crazy thieves and bandits forgot who they are and why they steal.</string>
+<string name="Thief_Stole">%1$s stole %2$s from you!</string>
+<string name="Thief_Carries">\n\n%1$s is carrying a _%2$s_. Stolen obviously.</string>
+</code>
+
+**Russian (values-ru/strings_all.xml):**
+<code xml>
+<string name="Thief_Name">свихнувшийся вор</string>
+<string name="Thief_Gender">masculine</string>
+<string name="Thief_Name_Objective">вора</string>
+<string name="Thief_Desc">Глубинные уровни подземелья всегда служили хорошим укрытием для всякого рода преступников. Но не всякий преступник мог сохранить рассудок, будучи отлучённым от дневного света на долгое время. Давным-давно эти безумные бандиты и воры позабыли, кто они и зачем совершают преступления.</string>
+<string name="Thief_Stole">%1$s украл у тебя предмет %2$s!</string>
+<string name="Thief_Carries">\n\n%1$s носит _%2$s_. Добро, конечно, краденое.</string>
+</code>
+
+===== Related mr: Entities =====
+
+  * [[mr:ring_of_haggler_item|Ring of Haggler]] - Rare drop from Thief (1% chance)
+  * [[mr:gold_item|Gold Item]] - Dropped by Thief when hit while fleeing
+  * [[mr:thief_fleeing_ai|Thief Fleeing AI]] - AI state entered after successful steal
+
+===== Related Standard Entities =====
+
   * [[en:rpd:ring_of_haggler_item|Ring of Haggler]]
   * [[en:rpd:gold_item|Gold]]
+  * [[en:rpd:thief_fleeing_ai|Thief Fleeing AI]]
+
+===== Localization Keys =====
+
+The Thief mob uses the following localization keys across all supported languages:
+  * Thief_Name - Display name
+  * Thief_Gender - Grammatical gender (masculine)
+  * Thief_Name_Objective - Objective case name
+  * Thief_Desc - Description text
+  * Thief_Stole - Message when Thief steals from player
+  * Thief_Carries - Description of stolen item carried by Thief
