@@ -1,8 +1,8 @@
 ====== Guts Level - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/GutsLevel.java|GutsLevel.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/RegularLevel.java|RegularLevel.java]] (Parent class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/GutsLevel.java|GutsLevel.java]] - Main level implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/RegularLevel.java|RegularLevel.java]] - Parent class
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -23,6 +23,22 @@ This entity is implemented in Java, no Lua script exists
 
 ===== Entity Kind =====
   * getEntityKind(): Returns "GutsLevel" (class name)
+
+===== Level Properties (from Java code) =====
+  * **Color 1:** 0x534f3e (dark olive)
+  * **Color 2:** 0xb9d661 (light green)
+  * **Objects Kind:** 5
+  * **View Distance:** 6
+  * **Mob Count:** 12 + (Dungeon.depth % 5) + Random(4)
+  * **Water Generation:** 45-60% coverage via Patch.generate()
+  * **Grass Generation:** 35-55% coverage via Patch.generate()
+  * **Music:** "ost_guts"
+
+===== Level Configuration Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Dungeon.json|Dungeon.json]] - Depths 27-30
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Dungeon_no_town.json|Dungeon_no_town.json]] - Depths 27-30
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Dungeon_debug.json|Dungeon_debug.json]] - Depths 27-30
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - Mob spawn configuration
 
 ===== Related mr Entities =====
   * [[mr:regular_level|Regular Level]]
