@@ -1,8 +1,10 @@
 ====== Chaos Bow Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosBow.java|ChaosBow.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Bow.java|Bow.java]] (parent class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosBow.java|ChaosBow.java]] - Main chaos bow implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Bow.java|Bow.java]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCrystal.java|ChaosCrystal.java]] - Can fuse into ChaosBow
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -17,5 +19,24 @@ This entity is implemented in Java, no JSON configuration exists
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Code Details =====
+  * **Image:** `items/chaosBow.png` (image index 0)
+  * **Tier:** 3
+  * **Speed factor:** 1.0f
+  * **Damage factor:** 1.0f
+  * **Upgradable:** No (isUpgradable returns false)
+  * **Charge mechanic:** Accumulates charge on hit, loses charge on taking damage
+  * **Level threshold:** Charge required = 5 × level^1.5
+  * **Visual states:** 5 image variants based on level (level/3, capped at 4)
+  * **Chaos Mark:** On miss, creates chaos mark at target position
+
 ===== Related mr Entities =====
   * [[mr:chaos_set_item|Chaos Set (Item)]]
+  * [[mr:chaos_sword_item|Chaos Sword (Item)]]
+  * [[mr:chaos_staff_item|Chaos Staff (Item)]]
+  * [[mr:chaos_armor_item|Chaos Armor (Item)]]
+  * [[mr:chaos_crystal_item|Chaos Crystal (Item)]]
+  * [[mr:bow_item|Bow (Item)]] - Parent class
+  * [[mr:compound_bow_item|Compound Bow (Item)]] - Related bow
+  * [[mr:wooden_bow_item|Wooden Bow (Item)]] - Related bow
+  * [[mr:ruby_bow_item|Ruby Bow (Item)]] - Related bow
