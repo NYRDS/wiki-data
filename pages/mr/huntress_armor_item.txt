@@ -1,20 +1,56 @@
 ====== Huntress Armor Item - Code References ======
 
+{{ rpd:images:huntress_armor_item.png|Huntress Armor }}
+
+**Huntress Armor** is a class-specific armor in Remixed Dungeon. It can only be equipped by the Huntress hero class and allows the use of a special ability that attacks all visible enemies.
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/HuntressArmor.java|HuntressArmor.java]] - Main armor class extending ClassArmor
+  * Location: ``RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/HuntressArmor.java``
+  * Extends: ``ClassArmor`` class
+  * Image ID: ``14``
+  * Has helmet: ``true``
+  * Covers hair: ``true``
+
+===== Special Ability =====
+The Huntress Armor has a special ability that creates a fan of spectral blades:
+  * **Method**: ``doSpecial(Char user)``
+  * **Effect**: Attacks all enemies in field of view within maximum distance (ShadowCaster.MAX_DISTANCE)
+  * **Projectile**: Uses ``Shuriken`` as the projectile sprite
+  * **Damage**: Scales with currently equipped melee weapon
+  * **Restriction**: Only works when enemies are visible
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
+This entity is implemented in Java, no JSON configuration found. Check:
   * RemixedDungeon/src/main/assets/itemsDesc/*.json
   * RemixedDungeon/src/main/assets/spritesDesc/huntress_armor.json
 
 ===== String Resources =====
+English string resources:
 <code xml>
-<string name="HuntressArmor_Name">[Name]</string>
-<string name="HuntressArmor_Info">[Description]</string>
+<string name="HuntressArmor_ACSpecial">special ability</string>
+<string name="HuntressArmor_Desc">A huntress in such a cloak can make a fan of spectral blades. Each of these blades will target a single enemy in the huntress's field of view, dealing damage based on her currently equipped melee weapon.</string>
+<string name="HuntressArmor_NoEnemies">No enemies in sight</string>
+<string name="HuntressArmor_NotHuntress">Only huntresses can use this armor!</string>
+</code>
+
+Russian string resources (values-ru/strings_all.xml):
+<code xml>
+<string name="HuntressArmor_ACSpecial">особое действие</string>
+<string name="HuntressArmor_Desc">Мисливица с таким плащом может создать вихрь спектральных клинков. Каждый из этих клинков будет направлен на одного врага в поле зрения мисливицы, нанося урон в зависимости от её текущего оружия ближнего боя.</string>
+<string name="HuntressArmor_NoEnemies">Врагов в поле зрения нет.</string>
+<string name="HuntressArmor_NotHuntress">Только мисливицы могут использовать эту броню!</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
+
+===== Equipment Restrictions =====
+  * **Required Class**: Huntress (``HeroClass.HUNTRESS``)
+  * **Equip Check**: ``doEquip(Char hero)`` validates hero class before equipping
+  * **Warning Message**: Displays ``HuntressArmor_NotHuntress`` if non-Huntress tries to equip
+
+===== Related Entities =====
+  * Parent class: [[mr:class_armor_item|Class Armor]]
+  * Hero class: [[mr:huntress_class|Huntress]]
+  * Projectile used: [[mr:shuriken_item|Shuriken]]

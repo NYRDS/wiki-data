@@ -1,20 +1,89 @@
 ====== Tengu Liver Item - Code References ======
 
+{{ rpd:images:tengu_liver_item.png|Tengu Liver }}
+
+**Tengu Liver** is a special collectible item in Remixed Dungeon. It is dropped by Tengu boss when defeated by the Gnoll hero class, and allows the Gnoll to choose a subclass.
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+This entity is implemented in Lua, no Java class exists.
+Related Java classes:
+  * Item pickup validation: ``RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java``
+  * Badge validation: ``RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java``
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
+This entity is implemented in Lua, no JSON configuration found. Check:
   * RemixedDungeon/src/main/assets/itemsDesc/*.json
   * RemixedDungeon/src/main/assets/spritesDesc/tengu_liver.json
 
 ===== String Resources =====
+English string resources:
 <code xml>
-<string name="TenguLiver_Name">[Name]</string>
-<string name="TenguLiver_Info">[Description]</string>
+<string name="TenguLiver_Name">Tengu liver</string>
+<string name="TenguLiver_Info">A strange trophy dropped by Tengu when killed by Gnoll.</string>
+</code>
+
+Russian string resources (values-ru/strings_all.xml):
+<code xml>
+<string name="TenguLiver_Name">Печень Тенгу</string>
+<string name="TenguLiver_Info">Странный трофей, выпадающий из Тенгу, когда его убивает Гнолл.</string>
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/TenguLiver.lua|TenguLiver.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/TenguLiver.lua|TenguLiver.lua]] - Main item implementation
+  * Location: ``RemixedDungeon/src/main/assets/scripts/items/TenguLiver.lua``
+
+**Script Details:**
+<code lua>
+return item.init{
+    desc  = function ()
+        return {
+            image     = 1,
+            imageFile = "items/mastery_items.png",
+            name      = "TenguLiver_Name",
+            info      = "TenguLiver_Info",
+            defaultAction = "Food_ACEat",
+            price         = 0
+        }
+    end,
+
+    actions = function() return {RPD.Actions.eat} end,
+
+    execute = function(self, item, hero, action)
+        if action == RPD.Actions.eat then
+            local wnd = luajava.newInstance(RPD.Objects.Ui.WndChooseWay, hero, item,
+                hero:getSubClassByName("GUARDIAN"), hero:getSubClassByName("WITCHDOCTOR") )
+            RPD.GameScene:show(wnd)
+        end
+    end,
+
+    onPickUp = function(self, item, chr)
+        RPD.Badges:validateMastery(chr:getHeroClass())
+    end
+}
+</code>
+
+**Item Properties:**
+  * **Image ID**: 1 (from items/mastery_items.png sprite sheet)
+  * **Sprite Sheet**: ``items/mastery_items.png``
+  * **Default Action**: ``Food_ACEat`` (eat action)
+  * **Price**: 0 (cannot be sold)
+  * **Action**: Eat (consumes the item to choose subclass)
+
+**Behavior:**
+  * **On Eat**: Opens ``WndChooseWay`` dialog to choose between Guardian or Witchdoctor subclass
+  * **On Pickup**: Validates mastery badge for Gnoll hero class
+  * **Drop Condition**: Only drops when Tengu is killed by Gnoll class
+
+===== Drop Conditions =====
+  * **Source**: [[mr:tengu_mob|Tengu]] boss
+  * **Requirement**: Must be killed by [[mr:gnoll_class|Gnoll]] hero class
+  * **Quantity**: One per run (when conditions met)
+  * **Purpose**: Subclass selection item for Gnoll class
+
+===== Related Entities =====
+  * Boss mob: [[mr:tengu_mob|Tengu]]
+  * Hero class: [[mr:gnoll_class|Gnoll]]
+  * Subclasses: Guardian, Witchdoctor
+  * UI: ``WndChooseWay`` (subclass selection dialog)
+
+{{tag> mr item collectible mastery gnoll lua}}

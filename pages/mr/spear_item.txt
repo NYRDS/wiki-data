@@ -1,18 +1,44 @@
 ====== Spear Item - Code References ======
 
+{{ rpd:images:spear_item.png|Spear }}
+
+**Spear** is a melee weapon in Remixed Dungeon. It is a polearm-type weapon with extended reach.
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Spear.java|Spear.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Spear.java|Spear.java]] - Main weapon class extending Polearm
+  * Location: ``RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Spear.java``
+  * Extends: ``Polearm`` class
+  * Constructor parameters: ``super(2, 1f, 1.5f)`` - damage, speed, reach factor
+  * Sprite: ``ItemSpriteSheet.SPEAR``
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check:
+This entity is implemented in Java, no JSON configuration found. Check:
   * RemixedDungeon/src/main/assets/itemsDesc/*.json
   * RemixedDungeon/src/main/assets/spritesDesc/spear.json
 
 ===== String Resources =====
+English string resources:
 <code xml>
 <string name="Spear_Name">spear</string>
 <string name="Spear_Info">A slender wooden rod tipped with sharpened iron.</string>
 </code>
 
+Russian string resources (values-ru/strings_all.xml):
+<code xml>
+<string name="Spear_Name">копье</string>
+<string name="Spear_Info">Тонкое деревянное древко с острым железным наконечником.</string>
+</code>
+
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
+
+===== Weapon Stats =====
+  * **Damage**: 2 (base)
+  * **Speed**: 1.0 (normal attack speed)
+  * **Reach**: 1.5 (extended reach as polearm)
+  * **Type**: Polearm (melee weapon with extended range)
+  * **Sprite**: ItemSpriteSheet.SPEAR
+
+===== Related Entities =====
+  * Parent class: [[mr:polearm_item|Polearm]]
+  * Weapon category: [[mr:melee_weapon|Melee Weapon]]
