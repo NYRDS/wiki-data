@@ -1,25 +1,200 @@
-====== Lightning Bolt Spell - Code References ======
+====== Lightning Bolt Spell - Machine Readable References ======
+
+This page contains machine-readable references for the Lightning Bolt spell entity in Remixed Dungeon.
+
+===== Entity Identification =====
+
+  * **Entity Name**: LightningBolt
+  * **Entity Type**: Spell
+  * **Magic Affinity**: Witchcraft
+  * **Implementation**: Lua script
+  * **getEntityKind()**: Returns spell file name from Lua implementation
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]]
+
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Base spell class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellManager.java|SpellManager.java]] - Spell management system
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/CharUtils.java|CharUtils.java]] - Contains lightningProc method used by spell
+
+===== Lua Script Implementation =====
+
+**File**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/LightningBolt.lua|LightningBolt.lua]]
+
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local spell = require "scripts/lib/spell"
+
+return spell.init{
+    desc  = function ()
+        return {
+            image         = 1,
+            imageFile     = "spellsIcons/witchcraft.png",
+            name          = "LightningBolt_Name",
+            info          = "LightningBolt_Info",
+            magicAffinity = "Witchcraft",
+            targetingType = "char_not_self",
+            level         = 2,
+            castTime      = 1,
+            spellCost     = 5,
+            cooldown      = 2
+        }
+    end,
+
+    castOnChar = function(self, spell, caster, victim)
+        local lvl = caster:lvl()
+        local damage = math.random(lvl,caster:skillLevel() * math.sqrt(lvl) + lvl)
+        RPD.CharUtils:lightningProc(caster, victim:getPos(), damage)
+        return true
+    end
+}
+</code>
+
+**Spell Properties from Lua**:
+  * **image**: 1 (icon index)
+  * **imageFile**: spellsIcons/witchcraft.png
+  * **name**: LightningBolt_Name (string resource key)
+  * **info**: LightningBolt_Info (string resource key)
+  * **magicAffinity**: Witchcraft
+  * **targetingType**: char_not_self
+  * **level**: 2
+  * **castTime**: 1 turn
+  * **spellCost**: 5 mana
+  * **cooldown**: 2 turns
+
+**Damage Formula**:
+<code lua>
+damage = math.random(lvl, caster:skillLevel() * math.sqrt(lvl) + lvl)
+</code>
 
 ===== JSON Configuration =====
-This entity is implemented in Lua, no JSON configuration exists
+
+This entity is implemented entirely in Lua. No JSON configuration file exists for this spell.
 
 ===== String Resources =====
+
+**English** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|values/strings_all.xml]]):
 <code xml>
 <string name="LightningBolt_Name">Lighting Bolt</string>
 <string name="LightningBolt_Info">A spell that is shared among ancient shamans, that will shock your enemies twice as effectively, especially if they are foolish enough to be on standing on water.</string>
 </code>
 
-===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/LightningBolt.lua|LightningBolt.lua]]
+**Russian** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|values-ru/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">Молния</string>
+<string name="LightningBolt_Info">Заклятье известное ещё древнейшим шаманам вдарит по твоим врагам.</string>
+</code>
 
-===== Spell Properties =====
-  * Magic Affinity: Witchcraft
-  * Targeting Type: char_not_self
-  * Level: 2
-  * Cast Time: 1 turn
-  * Spell Cost: 5 mana
-  * Cooldown: 2 turns
-  * Image File: spellsIcons/witchcraft.png
+**Spanish** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml|values-es/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">Rayo de luz</string>
+<string name="LightningBolt_Info">Un hechizo que comparten los antiguos chamanes, que conmocionará a tus enemigos con el doble de efectividad, especialmente si son lo suficientemente tontos como para estar sobre el agua.</string>
+</code>
+
+**French** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml|values-fr/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">Trait de foudre</string>
+<string name="LightningBolt_Info">Un sort partagé par les anciens chamans, qui choquera vos ennemis deux fois plus efficacement, surtout s'ils sont assez fous pour se tenir sur l'eau.</string>
+</code>
+
+**German** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml|values-de/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">Blitzschlag</string>
+<string name="LightningBolt_Info">Ein Zauberspruch wird unter uralten Schamanen geteilt, der deine Gegner doppelt so effektiv schockt. Vor allem, wenn sie in Wasser stehen.</string>
+</code>
+
+**Portuguese (Brazilian)** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml|values-pt-rBR/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">Relâmpago</string>
+<string name="LightningBolt_Info">Um feitiço que é compartilhado entre os xamãs antigos, que chocará seus inimigos duas vezes mais efetivamente, especialmente se eles forem tolos o suficiente para ficarem de pé na água.</string>
+</code>
+
+**Polish** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pl/strings_all.xml|values-pl/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">Piorun</string>
+<string name="LightningBolt_Info">To przekazywane wsród starożytnych szamanów zaklęcie porazi twoich przeciwników z zdwojoną mocą, szczególnie jeśli są na tyle głupi aby stać w wodzie.</string>
+</code>
+
+**Japanese** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml|values-ja/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">ライティングボルト</string>
+<string name="LightningBolt_Info">古代のシャーマンの間で共有されている呪文で、敵に 2 倍のショックを与えることができる。特に、水の上に立っているような愚かな敵には効果的だ。</string>
+</code>
+
+**Korean** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ko/strings_all.xml|values-ko/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">번개</string>
+<string name="LightningBolt_Info">고대의 무당들이 공유하는 마법으로, 특히 물 위에 서 있는 어리석은 적들에게 두 배로 더 효과적으로 전격을 가할 수 있습니다.</string>
+</code>
+
+**Chinese (Simplified)** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml|values-zh-rCN/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">闪电箭</string>
+<string name="LightningBolt_Info">一个在古代萨满之间共享的咒语，它会使你的敌人受到双倍的打击，尤其是当他们愚蠢到站在水面上的时候。</string>
+</code>
+
+**Ukrainian** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-uk/strings_all.xml|values-uk/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">Молнія</string>
+<string name="LightningBolt_Info">Закляття, яким користувалися давні шамани, вражає ваших ворогів удвічі ефективніше, особливо якщо вони достатньо дурні, щоб стояти на воді.</string>
+</code>
+
+**Turkish** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-tr/strings_all.xml|values-tr/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">Yıldırım oku</string>
+<string name="LightningBolt_Info">Kadim şamanlar arasında paylaşılan bir büyü, özellikle su üzerinde duracak kadar aptallarsa, düşmanlarınızı iki kat daha etkili bir şekilde şok edecek.</string>
+</code>
+
+**Greek** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-el/strings_all.xml|values-el/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">Αστραπή</string>
+<string name="LightningBolt_Info">Ένα ξόρκι που είναι γνωστό στους κύκλους των αρχαίων σαμάνων. Θα κατακεραυνώσει τους εχθρούς με διπλάσια αποτελεσματικότητα--ειδικά αν είναι τόσο ανόητοι ώστε να στέκονται στο νερό.</string>
+</code>
+
+**Hungarian** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-hu/strings_all.xml|values-hu/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">Villámlás</string>
+<string name="LightningBolt_Info">Ez a varázslat, amelyet az ősi sámánok ismertek, sokkolja az ellenségeidet kétszer olyan hatékonyan, különösen, ha elég ostobák ahhoz, hogy vízben álljanak.</string>
+</code>
+
+**Indonesian** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-in/strings_all.xml|values-in/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">cahaya petir</string>
+<string name="LightningBolt_Info">Mantra yang dibagikan di antara dukun kuno, yang akan mengejutkan musuh Anda dua kali lebih efektif, terutama jika mereka cukup bodoh untuk berdiri di atas air.</string>
+</code>
+
+**Malay** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ms/strings_all.xml|values-ms/strings_all.xml]]):
+<code xml>
+<string name="LightningBolt_Name">Sambaran kilat</string>
+</code>
+
+===== Spell Registration =====
+
+**File**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]]
+
+<code lua>
+spells["Witchcraft"] = {"Roar","LightningBolt","Heal","Order"}
+</code>
+
+The spell is registered under the Witchcraft magic affinity category.
+
+===== Related Entities =====
+
+  * **Witchcraft Spells**: Roar, Heal, Order (same magic affinity)
+  * **Lightning Effects**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/CharUtils.java|CharUtils.lightningProc]] - Lightning damage effect
+  * **Spell System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/|Spell mechanics]]
+
+===== Images =====
+
+  * **Spell Icon**: lightning_bolt_spell.png (processed for wiki)
+  * **Generic Icon**: spellsIcons/witchcraft.png (used in-game)
+  * **Wiki Image Reference**: {{ rpd:images:lightning_bolt_spell.png|Lightning Bolt Spell }}
+
+===== Code References Summary =====
+
+  * **Lua Script**: RemixedDungeon/src/main/assets/scripts/spells/LightningBolt.lua
+  * **Spell Registration**: RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua
+  * **Base Spell Class**: RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java
+  * **Lightning Effect**: RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/CharUtils.java
+  * **String Resources**: Multiple values-XX/strings_all.xml files across all supported languages
+
+{{tag> mr spell witchcraft lightning lua}}
