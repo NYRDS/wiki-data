@@ -1,20 +1,117 @@
 ====== Amok Dart Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/AmokDart.java|AmokDart.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/AmokDart.java|AmokDart.java]] - Main item class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Dart.java|Dart.java]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Amok.java|Amok.java]] - Buff applied on hit
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Speed.java|Speed.java]] - Speed buff applied on hit
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/RageBuff.java|RageBuff.java]] - Rage buff applied on hit
+  * Registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (line 438)
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
+<!-- English (values/strings_all.xml) -->
 <string name="AmokDart_Name">Amok Dart</string>
 <string name="AmokDart_Gender">masculine</string>
 <string name="AmokDart_Info">Solution on the tip of this dart will turn anyone into a mindless, merciless berserk.</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="AmokDart_Name">Дротик Буйства</string>
+<string name="AmokDart_Gender">masculine</string>
+<string name="AmokDart_Info">Раствор на наконечнике этого дротика превратит любого в беспощадного берсерка.</string>
+
+<!-- Spanish (values-es/strings_all.xml) -->
+<string name="AmokDart_Name">Dardo Amok</string>
+<string name="AmokDart_Gender">masculine</string>
+<string name="AmokDart_Info">La solución en la punta de este dardo convertirá a cualquiera en un berserker sin mente y despiadado.</string>
+
+<!-- French (values-fr/strings_all.xml) -->
+<string name="AmokDart_Name">Fléchette Amok</string>
+<string name="AmokDart_Gender">feminine</string>
+<string name="AmokDart_Info">Le liquide empreignant la pointe de cette fléchette transformera tout être vivant en fou furieux sans pitié.</string>
+
+<!-- German (values-de/strings_all.xml) -->
+<string name="AmokDart_Name">Amok Dart</string>
+<string name="AmokDart_Gender">masculine</string>
+<string name="AmokDart_Info">Die Lösung auf der Spitze dieses Dartes wird jeden in einen geistlosen und gnadenlosen Berserker verwandeln.</string>
+
+<!-- Italian (values-it/strings_all.xml) -->
+<string name="AmokDart_Name">Dardo della follia</string>
+<string name="AmokDart_Gender">masculine</string>
+<string name="AmokDart_Info">La sostanza sulla punta di questo dardo farà diventare chiunque in un pazzo e spietato supermatto</string>
+
+<!-- Portuguese (values-pt-rBR/strings_all.xml) -->
+<string name="AmokDart_Name">Dardo Amok</string>
+<string name="AmokDart_Gender">masculine</string>
+<string name="AmokDart_Info">A solução na ponta deste dardo transformará qualquer um em um berserker sem mente e impiedoso.</string>
+
+<!-- Japanese (values-ja/strings_all.xml) -->
+<string name="AmokDart_Name">逆上のダーツ</string>
+<string name="AmokDart_Gender">masculine</string>
+<string name="AmokDart_Info">このダーツの先端についた溶液は、誰をも心なき無慈悲な凶暴者に変えてしまう。</string>
+
+<!-- Korean (values-ko/strings_all.xml) -->
+<string name="AmokDart_Name">광란의 다트</string>
+<string name="AmokDart_Gender">masculine</string>
+<string name="AmokDart_Info">이 다트 끝의 용액은 누구에게나 무자비한 광전사로 만듭니다.</string>
+
+<!-- Chinese Simplified (values-zh-rCN/strings_all.xml) -->
+<string name="AmokDart_Name">疯狂飞镖</string>
+<string name="AmokDart_Info">这个飞镖尖端的诅咒将使任何生物变得无情、狂暴。</string>
+
+<!-- Chinese Traditional (values-zh-rTW/strings_all.xml) -->
+<string name="AmokDart_Name">瘋狂飛鏢</string>
+<string name="AmokDart_Info">這個飛鏢尖端的詛咒將使任何生物變得無情、狂暴。</string>
+
+<!-- Polish (values-pl/strings_all.xml) -->
+<string name="AmokDart_Name">Strzałka Amoku</string>
+<string name="AmokDart_Gender">feminine</string>
+<string name="AmokDart_Info">Roztwór na końcu tej strzałki zamieni każdego w bezmyślnego, bezlitosnego berserkera.</string>
+
+<!-- Ukrainian (values-uk/strings_all.xml) -->
+<string name="AmokDart_Name">Шалений дротик</string>
+<string name="AmokDart_Gender">masculine</string>
+<string name="AmokDart_Info">Розчин на вістрі дротика здатний перетворити будь кого в розлюченого берсерка.</string>
+
+<!-- Hungarian (values-hu/strings_all.xml) -->
+<string name="AmokDart_Name">Amok dobónyíl</string>
+<string name="AmokDart_Info">A vegyület a dobónyíl végén bárkit eszméletlen, kegyetlen örjöngővé vált.</string>
+
+<!-- Turkish (values-tr/strings_all.xml) -->
+<string name="AmokDart_Name">Amok Oku</string>
+<string name="AmokDart_Gender">masculine</string>
+<string name="AmokDart_Info">Bu okun ucundaki solüsyon herkesi akılsız, acımasız bir berserker'e dönüştürür.</string>
+
+<!-- Greek (values-el/strings_all.xml) -->
+<string name="AmokDart_Name">Βέλος Αμόκ</string>
+<string name="AmokDart_Gender">neuter</string>
+<string name="AmokDart_Info">Το διάλυμα στην άκρη αυτού του βέλους θα μετατρέψει οποιονδήποτε σε έναν ανόητο, ανελέητο μπερσέρκερ.</string>
+
+<!-- Indonesian (values-in/strings_all.xml) -->
+<string name="AmokDart_Name">Amuk Dart</string>
+<string name="AmokDart_Gender">masculine</string>
+<string name="AmokDart_Info">Solusi di ujung panah ini akan mengubah siapa pun menjadi pengamuk tanpa ampun.</string>
+
+<!-- Malay (values-ms/strings_all.xml) -->
+<string name="AmokDart_Name">Damak Mengamok</string>
+<string name="AmokDart_Info">Hujung damak ini disaluti dengan cecair yang menyebabkan anda mengamuk tanpa sebab.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Implementation Details =====
+  * **Parent Class**: Dart
+  * **Image ID**: 16
+  * **STR Requirement**: 14
+  * **MIN Damage**: 1
+  * **MAX Damage**: 3
+  * **Random Quantity**: 2-5 when found
+  * **Price**: 12 gold per dart
+  * **Effects on Hit**: Applies Amok (20 ticks), Speed (20 ticks), and RageBuff to target
 
 ===== Related mr Entities =====
   * [[mr:dart_item|Dart (Item)]]

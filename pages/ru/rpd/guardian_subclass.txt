@@ -1,9 +1,9 @@
-====== Подкласс Guardian ======
+====== Подкласс Страж ======
 
-{{ rpd:images:guardian_subclass.png|Guardian}}
+{{ rpd:images:gnoll_guardian_hero.png|Страж }}
 
 ==== Описание ====
-Guardian - это подкласс класса Gnoll в Remixed Dungeon. Guardian'ы специализируются на использовании щитов и защитных способностей, что позволяет им отлично поглощать урон и защищать союзников в бою.
+**Страж** (Guardian) — это подкласс класса [[ru:rpd:gnoll_class|Гнолл]] в Remixed Dungeon. Стражи специализируются на использовании щитов и защитных способностей, что позволяет им отлично поглощать урон и защищать союзников в бою.
 
 ==== Способности ====
   * **Мастерство щита:** Повышенная эффективность при использовании щитов - снижение урона врагам при использовании щитов (из метода HeroSubClass.java defenceProc)
@@ -17,26 +17,26 @@ Guardian - это подкласс класса Gnoll в Remixed Dungeon. Guardi
   * Эффект снижения урона зависит от уровня навыков героя при использовании щитов
 
 ==== История ====
-Подкласс Guardian представляет собой защитных воинов гнолльего общества, поклявшихся защищать свою территорию и вожаков любой ценой. Их броня и боевые навыки разработаны для поглощения урона, в то время как они поддерживают свою стаю.
+Подкласс Страж представляет собой защитных воинов гнолльего общества, поклявшихся защищать свою территорию и вожаков любой ценой. Их броня и боевые навыки разработаны для поглощения урона, в то время как они поддерживают свою стаю.
 
 ==== Получение ====
-Подкласс Guardian можно разблокировать, прочитав Том Мастерства после победы над вторым боссом, Тенгу. Доступен только для класса Гнолл.
+Подкласс Страж можно разблокировать, прочитав Том Мастерства после победы над вторым боссом, Тенгу. Доступен только для класса Гнолл.
 
 ==== Снаряжение ====
-  * Специальная броня: [[ru:rpd:guardian_armor_item|Броня Guardian]] может быть получена с помощью набора брони (Armor Kit) на обычной броне (в частности, GnollArmor)
+  * Специальная броня: [[en:rpd:guardian_armor_item|Броня Стража]] (en) может быть получена с помощью набора брони (Armor Kit) на обычной броне (в частности, GnollArmor)
   * Предпочтительное оружие: Бои с использованием щитов - особый метод defenceProc при использовании щитов
   * Защитные предметы: Зелья и свитки, повышающие выживаемость
   * Первый или второй слот с оружием должен содержать предмет с "Shield" в его имени сущности для получения бонуса
 
 ==== Механика ====
-  * **Метод defenceProc:** При использовании щита (оружие с "Shield" в имени сущности), Guardian отражает процент урона, нанесенного атакующему
+  * **Метод defenceProc:** При использовании щита (оружие с "Shield" в имени сущности), Страж отражает процент урона, нанесенного атакующему
   * **Формула:** Отраженный урон = (Random.Float(1, уровень_навыка + 1) / (уровень_навыка + 3)) * исходный урон
   * **Обнаружение щита:** Проверяет оба слота (первичный оружие и вторичный левая рука) на наличие предметов, содержащих "Shield" в их имени сущности
 
 ==== Ссылки на исходный код ====
-  * **Java enum:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Линии 55 и 137-141 содержат реализацию Guardian
-  * **Метод defenceProc:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L159-L166|HeroSubClass.java#L159-L166]] - Содержит особую механику щита
-  * **Броня Guardian:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GuardianArmor.java|GuardianArmor.java]] - Основана на GnollArmor
+  * **Java enum:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] — Линии 55 и 137-141 содержат реализацию Стража
+  * **Метод defenceProc:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L159-L166|HeroSubClass.java#L159-L166]] — Содержит особую механику щита
+  * **Броня Стража:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GuardianArmor.java|GuardianArmor.java]] — Основана на GnollArmor
   * **Класс брони:** "GuardianArmor" указан в перечислении HeroSubClass (строка 55)
   * **Строковые ресурсы:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2821-L2822|HeroSubClass_NameGuardian и HeroSubClass_DescGuardian]]
 
@@ -48,10 +48,11 @@ Guardian - это подкласс класса Gnoll в Remixed Dungeon. Guardi
   * Приоритетно используйте предметы с "Shield" в их имени сущности для активации преимуществ подкласса
 
 ==== См. также ====
-  * [[ru:rpd:gnoll_class|Класс Гнолл]] - Родительский класс
-  * [[ru:rpd:witchdoctor_subclass|Witchdoctor]] - Альтернативный подкласс Гнолл
-  * [[ru:rpd:armor_kit_item|Набор брони]] - Используется для получения брони подкласса
-  * [[ru:rpd:subclass|Подклассы]] - Общая информация о подклассах
-  * [[ru:rpd:shields|Щиты]] - Предметы, которые хорошо работают с подклассом Guardian
+  * [[ru:rpd:gnoll_class|Класс Гнолл]] — Родительский класс
+  * [[ru:rpd:witchdoctor_subclass|Witchdoctor]] — Альтернативный подкласс Гнолл
+  * [[en:rpd:armor_kit_item|Набор брони]] (en) — Используется для получения брони подкласса
+  * [[en:rpd:subclass|Подклассы]] (en) — Общая информация о подклассах
+  * [[en:rpd:shields|Щиты]] (en) — Предметы, которые хорошо работают с подклассом Страж
+  * [[en:rpd:guardian_armor_item|Броня Стража]] (en) — Специальная броня подкласса
 
 {{tag> rpd subclasses gnoll}}
