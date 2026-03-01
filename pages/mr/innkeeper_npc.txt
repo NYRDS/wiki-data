@@ -1,5 +1,7 @@
 ====== InnKeeperNPC - Code References ======
 
+{{ rpd:images:innkeepernpc_sprite.png|Innkeeper NPC }}
+
 ==== Java Classes ====
 This entity is not implemented in Java. It uses Lua scripting instead.
 
@@ -20,42 +22,62 @@ This entity is not implemented in Java. It uses Lua scripting instead.
    "immortal"      :true
 }
 </code>
-  * Found in: RemixedDungeon/src/main/assets/mobsDesc/InnKeeperNPC.json
+  * Found in: `RemixedDungeon/src/main/assets/mobsDesc/InnKeeperNPC.json`
+  * **Key Properties**:
+    * `friendly: true` - NPC is non-hostile to the player
+    * `movable: false` - NPC cannot move from its position
+    * `aiState: "Passive"` - Uses passive AI behavior
+    * `fraction: "NEUTRAL"` - Belongs to neutral faction
+    * `immortal: true` - NPC cannot be killed
 
 ==== Sprite Configuration ====
 <code json>
 {
   "texture" : "mobs/town_townsfolk_innkeeper.png",
-  "frames"  : [ { "x": 0, "y": 0, "width": 32, "height": 32 } ]
+  "width"  : 16,
+  "height" : 16,
+  "idle"   : { "fps" : 5, "looped" : true,     "frames" : [0,0,0,1,2,3,4,5,6,7] },
+  "run"    : { "fps" : 1, "looped" : true,     "frames" : [0,0,0] },
+  "attack" : { "fps" : 1, "looped" : false,    "frames" : [0,0,0] },
+  "die"    : { "fps" : 1, "looped" : false,    "frames" : [0,0,0] },
+  "bloodColor" : "0xCC0000"
 }
 </code>
-  * Found in: RemixedDungeon/src/main/assets/spritesDesc/InnKeeperNPC.json
+  * Found in: `RemixedDungeon/src/main/assets/spritesDesc/InnKeeperNPC.json`
+  * **Animation Details**:
+    * Idle animation: 10 frames at 5 FPS, looped
+    * Run/Attack/Die: Placeholder animations (not used for stationary NPC)
 
 ==== String Resources ====
 <code xml>
 <string name="InnKeeperNPC_Name">inn keeper</string>
 <string name="InnKeeperNPC_Name_Objective">inn keeper</string>
-<string name="InnKeeperNPC_Desc">The innkeeper is proud of himself.</string>
+<string name="InnKeeperNPC_Gender">masculine</string>
+<string name="InnKeeperNPC_Desc">The inn keeper is proud of himself.</string>
 </code>
-  * Source: RemixedDungeon/src/main/res/values/strings_all.xml
-  * Also available in multiple languages in corresponding values-* directories
+  * Source: `RemixedDungeon/src/main/res/values/strings_all.xml` (lines 2666-2669)
+  * Also available in multiple languages in corresponding `values-*` directories
 
 ==== Lua Scripts ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/Innkeeper.lua|Innkeeper.lua]]
-  * Script implements:
-    * spawn() - Initializes NPC with trade items (FriedFish, ChargrilledMeat, FrozenCarpaccio)
-    * interact() - Opens trade window between NPC and player
-    * priceForSell() - Sets sell price multiplier (10x item base price)
-    * sellMode() - Uses CARCASS backpack mode for selling
-    * buyMode() - Uses FOR_BUY backpack mode for purchasing
+  * Script implements the following functions:
+    * `spawn()` - Initializes NPC with trade items (FriedFish, ChargrilledMeat, FrozenCarpaccio)
+    * `interact()` - Opens trade window between NPC and player
+    * `priceForSell()` - Sets sell price multiplier (10x item base price)
+    * `sellMode()` - Uses `CARCASS` backpack mode for selling items to player
+    * `buyMode()` - Uses `FOR_BUY` backpack mode for purchasing items from player
+  * Uses `scripts/lib/mob` library for mob initialization
+  * Uses `scripts/lib/commonClasses` (RPD) for common functions
 
 ==== Level Placement ====
-  * Found in: RemixedDungeon/src/main/assets/levelsDesc/Inn_2021_03.json
-  * Found in: RemixedDungeon/src/main/assets/levelsDesc/ScriptsArena.json
+  * Found in: `RemixedDungeon/src/main/assets/levelsDesc/Inn_2021_03.json`
+  * Found in: `RemixedDungeon/src/main/assets/levelsDesc/ScriptsArena.json`
+  * Spawned as a stationary NPC in town/inn areas
 
 ==== Related mr Entities ====
-  * [[mr:barman_npc|BarmanNPC]]
-  * [[mr:bard_npc|BardNPC]]
-  * [[mr:servant_npc|ServantNPC]]
+  * [[mr:shopkeeper_npc|ShopkeeperNPC]] - Shop trader NPC
+  * [[mr:bard_npc|BardNPC]] - Town NPC
+  * [[mr:healer_npc|HealerNPC]] - Town healer NPC
+  * [[mr:librarian_npc|LibrarianNPC]] - Town librarian NPC
 
 {{tag> mr npc innkeeper innkeepernpc town trader}}
