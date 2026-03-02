@@ -1,28 +1,68 @@
 ====== Fetid Rat Mob - Code References ======
 
+// Machine-readable reference page for the Fetid Rat mob entity //
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Ghost.java|Ghost.java]] - Contains the FetidRat inner class (lines 313-332)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Registration of the Fetid Rat (line 194)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/alchemy/AlchemyRecipes.java|AlchemyRecipes.java]] - Fetid Rat used in alchemy recipe definitions (line 159)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Mob factory registration for RemixedFetidRat
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/RemixedFetidRat.json|RemixedFetidRat.json]] - Stats and configuration data
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/TestLevelSewers.json]] - Test level with RemixedFetidRat
-
-===== String Resources =====
-<code xml>
-<string name="FetidRat_Name">fetid rat</string>
-<string name="FetidRat_Info">This disgusting little rodent barely looks like a living thing. It carries a putrid stench that seems to originate from its skin.</string>
-<string name="FetidRat_Gender">masculine</string>
-<string name="FetidRat_Name_Objective">fetid rat</string>
-<string name="FetidRat_Desc">This disgusting little rodent barely looks like a living thing. It carries a putrid stench that seems to originate from its skin.</string>
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/RemixedFetidRat.json|RemixedFetidRat.json]] - Complete mob configuration:
+<code json>
+{
+  "defenseSkill": 5,
+  "attackSkill": 12,
+  "exp": 0,
+  "maxLvl": 1,
+  "dmgMin": 2,
+  "dmgMax": 6,
+  "dr": 2,
+  "ht": 15,
+  "loot": {"kind":"RatSkull"},
+  "lootChance": 1,
+  "name": "FetidRat_Name",
+  "name_objective": "FetidRat_Name_Objective",
+  "description": "FetidRat_Desc",
+  "gender": "FetidRat_Gender",
+  "spriteDesc": "spritesDesc/Rat.json",
+  "walkingType": "NORMAL",
+  "scriptFile": "scripts/mobs/RemixedFetidRat"
+}
 </code>
 
-===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/RemixedFetidRat.lua|RemixedFetidRat.lua]]
+===== String Resources =====
+String resource keys used across all localizations:
+  * **FetidRat_Name** - Display name (varies by language)
+  * **FetidRat_Name_Objective** - Objective case name
+  * **FetidRat_Desc** - Description text
+  * **FetidRat_Gender** - Grammatical gender (feminine in most languages)
 
-===== Alchemy Recipes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/alchemy_recipes.lua]] - Contains recipes to create Fetid Rat
+Localization files containing FetidRat strings:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|values/strings_all.xml]] - English (source)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|values-ru/strings_all.xml]] - Russian: "мерзкая крыса"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml|values-de/strings_all.xml]] - German: "stinkende Ratte"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml|values-ja/strings_all.xml]] - Japanese: "腐ったネズミ"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml|values-zh-rCN/strings_all.xml]] - Chinese (Simplified): "腐臭老鼠"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-in/strings_all.xml|values-in/strings_all.xml]] - Indonesian: "Tikus busuk"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ms/strings_all.xml|values-ms/strings_all.xml]] - Malay: "tikus kohong"
+
+===== Lua Scripts =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/RemixedFetidRat.lua|RemixedFetidRat.lua]] - Mob behavior script:
+    - Implements three gas emission types (paralytic, confusion, toxic)
+    - Uses commonClasses and mob libraries
+    - Places gas blobs based on random kind selection (1-3)
+
+===== Sprite References =====
+  * Sprite configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Rat.json|spritesDesc/Rat.json]] - Shared rat sprite configuration
+  * Wiki image: {{ rpd:images:rat_sprite.png|Fetid Rat Sprite }} (uses standard rat sprite)
 
 ===== Related mr Entities =====
-  * [[mr:ghost_npc|Ghost NPC]]
-  * [[mr:rat_skull_item|Rat Skull Item]]
+  * [[mr:rat_skull_item|Rat Skull Item]] - Loot dropped by Fetid Rat
+  * [[mr:ghost_npc|Ghost NPC]] - Related to rat questline
+  * [[mr:suspicious_rat_mob|Suspicious Rat Mob]] - Similar rat variant
+  * [[mr:rat_mob|Rat Mob]] - Base rat mob type
+
+===== Entity Kind =====
+  * **Entity Kind**: RemixedFetidRat
+  * **Used in**: JSON configs, Lua scripts, AlchemyRecipes.java
+  * **Mob Type**: Standard mob with special gas emission behavior
