@@ -1,13 +1,17 @@
 ====== Mana Regeneration Buff - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/ManaRegeneration.java|ManaRegeneration.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/ManaRegeneration.java|ManaRegeneration.java]] - Main buff implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Base buff class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Character class with manaRegenerationBonus method
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] - Buff registration and factory
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no specific JSON configuration exists
 
 ===== String Resources =====
 <code xml>
+<!-- English (values/strings_all.xml) -->
 <string name="ManaRegenerationBuff_Name">Mana Regeneration</string>
 <string name="ManaRegenerationBuff_Info">The function for mana regeneration is in a buff form to make things easier.</string>
 <string name="Mana_Title">Mana</string>
@@ -16,10 +20,52 @@ This entity is implemented in Java, no specific JSON configuration exists
 <string name="ClassArmor_LowMana">Insufficient mana!</string>
 <string name="HeroClass_NecromancerPerks_1">Necromancers use mana to cast Death spells.</string>
 <string name="HeroClass_MagPerks_4">Mages use mana to cast Elemental spells.</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="ManaRegenerationBuff_Name">Регенерация маны</string>
+<string name="ManaRegenerationBuff_Info">Функция регенерации маны оформлена в виде баффа для удобства.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Implementation Details =====
+  * **Class**: `com.watabou.pixeldungeon.actors.buffs.ManaRegeneration`
+  * **Extends**: `Buff`
+  * **Regeneration Delay**: 20 turns base (REGENERATION_DELAY constant)
+  * **Bonus Calculation**: spend time = REGENERATION_DELAY / 1.2^bonus
+  * **Fast Mana Regeneration**: Adds +10 bonus when facilitation is enabled
+  * **Skill Points**: Accumulates 1 skill point per tick in unsafe areas
+  * **Buff Attachment**: Only attaches if target already has this buff or via super.attachTo()
+
+===== Code Fragment =====
+<code java>
+public class ManaRegeneration extends Buff {
+    private static final float REGENERATION_DELAY = 20;
+
+    @Override
+    public boolean act() {
+        if (target.isAlive()) {
+            if (!target.level().isSafe()) {
+                target.accumulateSkillPoints(1);
+            }
+
+            final int[] bonus = {0};
+
+            if(Dungeon.isFacilitated(Facilitations.FAST_MANA_REGENERATION)) {
+                bonus[0] += 10;
+            }
+
+            target.forEachBuff(b-> bonus[0] +=b.manaRegenerationBonus(target));
+
+            spend((float) (REGENERATION_DELAY / Math.pow(1.2, bonus[0])));
+        } else {
+            deactivate();
+        }
+        return true;
+    }
+}
+</code>
 
 ===== Related Information =====
   * This buff handles the regeneration of mana for characters
@@ -27,3 +73,4 @@ This entity is implemented in Java, no Lua script exists
   * If Fast Mana Regeneration facilitation is enabled, it adds a +10 bonus
   * When in unsafe areas, it accumulates skill points for the character
   * The regeneration rate is affected by other buffs that provide manaRegenerationBonus
+  * Hero classes and subclasses can provide manaRegenerationBonus through their implementations
