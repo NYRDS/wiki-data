@@ -1,8 +1,12 @@
 ====== Rat King Aura Buff - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/RatKingCrown.java|RatKingCrown.java]] - Contains the RatKingAuraBuff class definition
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/RatKingCrown.java|RatKingCrown.java]] - Contains the RatKingAuraBuff inner class definition
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] - Registers the RatKingAuraBuff class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Artifact.java|Artifact.java]] - Base class for RatKingCrown artifact
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/ArtifactBuff.java|ArtifactBuff.java]] - Base class for RatKingAuraBuff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java|Rat.java]] - Rat mob class that can be tamed
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Contains makePet method for taming rats
 
 ===== JSON Configuration =====
 No specific JSON configuration file found for this buff.
@@ -19,4 +23,8 @@ This entity is implemented in Java, no Lua script exists
 ===== Additional Information =====
   * The RatKingAuraBuff is an ArtifactBuff that belongs to the Rat King Crown artifact
   * When active, it allows the player to tame rats they defeat
+  * Buff icon: BuffIndicator.RATTNESS
+  * Effect: When attacking a Rat mob with buff level > 0, the rat becomes a pet via Mob.makePet()
   * Found in RatKingCrown.RatKingAuraBuff inner class
+  * The Rat King Crown artifact is automatically identified (isIdentified() returns true)
+  * Artifact image: items/artifacts.png at index 17
