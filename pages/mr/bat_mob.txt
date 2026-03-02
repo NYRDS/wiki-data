@@ -3,7 +3,7 @@
 {{ rpd:images:bat_mob.png|Bat }}
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Bat.java|Bat.java]] - Main mob class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Bat.java|Bat.java]] - Main mob class implementation (com.watabou.pixeldungeon.actors.mobs.Bat)
 
 ===== JSON Configuration =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Bat.json|Bat.json]] - Sprite configuration
@@ -25,19 +25,52 @@ Russian (values-ru/strings_all.xml):
 This entity is implemented in Java, no Lua script exists
 
 ===== Entity Mechanics =====
-  * **HP**: 30 (base)
-  * **Defense Skill**: 15
-  * **Attack Skill**: 16
-  * **Damage**: 6-12
-  * **Defense**: 4
-  * **EXP for Kill**: 7
-  * **Max Level**: 15
-  * **Speed**: 2.0 (flying, faster than normal)
-  * **Flying**: true (immune to ground traps)
-  * **Leech Resistance**: true (immune to lifesteal enchantments)
-  * **Loot**: Potion of Healing (12.5% drop chance)
-  * **Special Ability**: Heals for damage dealt on attack (vampiric)
+  * **HP**: 30 (base) - Set via ''hp(ht(30))'' in constructor
+  * **Defense Skill**: 15 - Set via ''baseDefenseSkill = 15''
+  * **Attack Skill**: 16 - Set via ''baseAttackSkill = 16''
+  * **Damage**: 6-12 - Set via ''dmgMin = 6'' and ''dmgMax = 12''
+  * **Defense (DR)**: 4 - Implemented in ''dr()'' method
+  * **EXP for Kill**: 7 - Set via ''expForKill = 7''
+  * **Max Level**: 15 - Set via ''maxLvl = 15''
+  * **Speed**: 2.0 (flying, faster than normal) - Set via ''baseSpeed = 2f''
+  * **Flying**: true (immune to ground traps) - Set via ''flying = true''
+  * **Leech Resistance**: true (immune to lifesteal enchantments) - Added via ''addResistance(Leech.class)''
+  * **Loot**: Potion of Healing (12.5% drop chance) - Set via ''loot(PotionOfHealing.class, 0.125f)''
+  * **Special Ability**: Heals for damage dealt on attack (vampiric) - Implemented in ''attackProc(Char enemy, int damage)'' method via ''heal(damage, enemy)''
+
+===== Code Implementation Details =====
+The Bat class extends ''Mob'' and implements vampiric behavior:
+<code java>
+// In Bat.java constructor
+public Bat() {
+    hp(ht(30));
+    baseDefenseSkill = 15;
+    baseAttackSkill  = 16;
+    baseSpeed = 2f;
+    dmgMin = 6;
+    dmgMax = 12;
+    expForKill = 7;
+    maxLvl = 15;
+    flying = true;
+    loot(PotionOfHealing.class, 0.125f);
+    addResistance( Leech.class );
+}
+
+// Defense rating
+@Override
+public int dr() {
+    return 4;
+}
+
+// Vampiric attack - heals bat for damage dealt
+@Override
+public int attackProc(@NotNull Char enemy, int damage ) {
+    heal(damage, enemy);
+    return damage;
+}
+</code>
 
 ===== Related mr: Entities =====
-  * [[mr:potion_of_healing_item|Potion of Healing]] - Possible drop
+  * [[mr:potion_of_healing_item|Potion of Healing]] - Possible drop (12.5% chance)
   * [[mr:leech_enchantment|Leech Enchantment]] - Bat has resistance to this enchantment
+  * [[mr:healing_mechanic|Healing Mechanic]] - Bat uses healing mechanic for vampiric ability
