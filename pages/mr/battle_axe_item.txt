@@ -1,26 +1,46 @@
-====== Battle Axe Item - Code References ======
+====== mr:battle_axe_item ======
 
-===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/BattleAxe.java|BattleAxe.java]] - Main battle axe implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]] - Parent class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java|ShopPainter.java]] - Shop spawn (case 16)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/WaterOfTransmutation.java|WaterOfTransmutation.java]] - Transmutation (↔ Longsword)
+=== Entity Information ===
+  * **Class Name**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/BattleAxe.java|BattleAxe.java]]
+  * **Entity Kind**: BattleAxe
+  * **Type**: Item
+  * **Category**: Weapon
+  * **Subcategory**: Melee weapon
 
-===== JSON Configuration =====
+=== Statistics ===
+  * **Tier**: 4
+  * **Speed**: 1.2
+  * **Base Damage**: Inherits from MeleeWeapon parent class
+  * **Animation Class**: HEAVY_ATTACK
+  * **Slot**: WEAPON
+  * **Block Slot**: LEFT_HAND
+
+=== Special Abilities ===
+  * **Heavy Attack**: Uses heavy attack animation (slower but powerful)
+  * **Melee Attack**: Standard melee weapon attack
+  * **Two-handed**: Requires both hands to wield effectively
+
+=== Code References ===
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/BattleAxe.java|BattleAxe.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]]
+
+=== String Resources ===
+  * **Name**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1112-L1112|BattleAxe_Name]] (English: "battle axe")
+  * **Info**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1113-L1113|BattleAxe_Info]] (English: "The enormous steel head of this battle axe puts considerable heft behind each stroke.")
+  * **Gender**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1114-L1114|BattleAxe_Gender]] (English: "masculine")
+
+=== Configuration Files ===
 This entity is implemented in Java, no JSON configuration exists
 
-===== String Resources =====
-<code xml>
-<string name="BattleAxe_Name">battle axe</string>
-<string name="BattleAxe_Info">The enormous steel head of this battle axe puts considerable heft behind each stroke.</string>
-<string name="BattleAxe_Gender">masculine</string>
-</code>
-
-===== Lua Scripts =====
+=== Lua Scripts ===
 This entity is implemented in Java, no Lua script exists
 
-===== Related mr Entities =====
-  * [[mr:longsword_item|Longsword (Item)]] - Transmutation pair
+=== Related mr Entities ===
+  * [[mr:longsword_item|Longsword (Item)]] - Transmutation pair (via Water of Transmutation)
   * [[mr:mace_item|Mace (Item)]] - Related heavy weapon
   * [[mr:glaive_item|Glaive (Item)]] - Related heavy weapon
   * [[mr:warhammer_item|Warhammer (Item)]] - Related heavy weapon
+
+{{tag> rpd items weapons melee_weapon machine_readable }}
