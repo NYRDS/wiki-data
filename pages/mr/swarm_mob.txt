@@ -1,16 +1,26 @@
 ====== Swarm Mob - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Swarm.java|Swarm.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Swarm.java|Swarm.java]] - Main implementation of the Swarm mob
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Base class for Swarm
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Swarm.json|Swarm.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Swarm.json|Swarm.json]] - Sprite configuration
 
 ===== String Resources =====
-<code xml>
-<string name="Swarm_Name">[Name]</string>
-<string name="Swarm_Info">[Description]</string>
-</code>
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Swarm_Name and Swarm_Info]] - English localization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|Swarm_Name and Swarm_Info]] - Russian localization
+
+===== Key Code Details =====
+  * **HP:** 80 (base health)
+  * **Attack Skill:** 12 (base attack skill)
+  * **Defense Skill:** 5 (base defense skill)
+  * **Damage:** 1-4 (damage range)
+  * **Max Level:** 10
+  * **Flying:** true (can fly over pits and water)
+  * **Loot:** 20% chance to drop [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing]]
+  * **Split Mechanic:** Splits into smaller swarms when taking damage (if HP >= damage + 2)
+  * **Generation:** Tracks swarm generation for split mechanics
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists

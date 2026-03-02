@@ -33,3 +33,16 @@ This entity is implemented in Java, no Lua script exists
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L14|DURATION constant]] - Invisibility duration (15f time units)
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L17-L24|attachTo/detach methods]] - Logic for applying/removing the buff
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L32-L36|dispel method]] - Method to explicitly dispel invisibility
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L38-L42|dispel static method]] - Dispel logic (only if target has visible enemies)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L44-L47|attachVisual method]] - Shows "Invisible" status on character
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L49-L51|charSpriteStatus method]] - Returns CharSprite.State.INVISIBLE
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L26-L30|icon method]] - Returns BuffIndicator.INVISIBLE for UI display
+
+===== Key Code Details =====
+  * **Duration:** 15 time units (default)
+  * **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff]] (no visual effect over time)
+  * **Effect:** Increases target.invisible counter, making character invisible
+  * **Dispel Condition:** Only dispelled when target has visible enemies nearby
+  * **Visual:** Shows "Invisible" status message in positive (green) color
+  * **Sprite State:** Sets character sprite to INVISIBLE state
+  * **Buff Icon:** Displays invisibility icon in buff indicator
