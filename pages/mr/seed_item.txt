@@ -1,25 +1,46 @@
 ====== Seed Item - Code References ======
 
+This page contains machine-readable reference data for Seed items in Remixed Dungeon.
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Seed.java|Seed.java]] - Base seed class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Firebloom.java#L42-L54|Firebloom.Seed]] - Specific seed subclass
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java#L38-L49|Sungrass.Seed]] - Specific seed subclass
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L43-L53|Earthroot.Seed]] - Specific seed subclass
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java#L41-L51|Icecap.Seed]] - Specific seed subclass
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Moongrace.java#L49-L61|Moongrace.Seed]] - Specific seed subclass
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Dreamweed.java#L31-L42|Dreamweed.Seed]] - Specific seed subclass
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sorrowmoss.java#L37-L47|Sorrowmoss.Seed]] - Specific seed subclass
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Fadeleaf.java#L43-L54|Fadeleaf.Seed]] - Specific seed subclass
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/WandMaker.java#L290-L293|WandMaker.Rotberry.Seed]] - Specific seed subclass
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/bags/SeedPouch.java|SeedPouch.java]] - Container for seeds
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Seed.java|Seed.java]] - Base seed class (com.watabou.pixeldungeon.plants.Seed)
+    - Extends: Item
+    - Key methods: onThrow(), _execute(), actions()
+    - Properties: stackable=true, imageFile="items/seeds.png"
+    - Actions: AC_PLANT (plant in soil), AC_EAT (consume seed)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Firebloom.java#L42-L54|Firebloom.Seed]] - Firebloom seed subclass
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java#L38-L49|Sungrass.Seed]] - Sungrass seed subclass
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L43-L53|Earthroot.Seed]] - Earthroot seed subclass
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java#L41-L51|Icecap.Seed]] - Icecap seed subclass
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Moongrace.java#L49-L61|Moongrace.Seed]] - Moongrace seed subclass
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Dreamweed.java#L31-L42|Dreamweed.Seed]] - Dreamweed seed subclass
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sorrowmoss.java#L37-L47|Sorrowmoss.Seed]] - Sorrowmoss seed subclass
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Fadeleaf.java#L43-L54|Fadeleaf.Seed]] - Fadeleaf seed subclass
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Rotberry.java#L40-L52|Rotberry.Seed]] - Rotberry seed subclass (WandMaker quest)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/bags/SeedPouch.java|SeedPouch.java]] - Container for storing seeds
+
+===== Plant Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java|Plant.java]] - Base plant class that seeds grow into
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Firebloom.java|Firebloom.java]] - Fire plant (burns enemies)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java|Sungrass.java]] - Healing plant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java|Earthroot.java]] - Armor plant (temporary HP)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java|Icecap.java]] - Freezing plant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Moongrace.java|Moongrace.java]] - Evasion plant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Dreamweed.java|Dreamweed.java]] - Invisibility plant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sorrowmoss.java|Sorrowmoss.java]] - Poison plant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Fadeleaf.java|Fadeleaf.java]] - Teleportation plant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Rotberry.java|Rotberry.java]] - Quest plant (WandMaker)
 
 ===== JSON Configuration =====
-No specific JSON configuration files exist for individual seed types.
+No specific JSON configuration files exist for individual seed types. Seeds are defined in Java code.
 
 ===== String Resources =====
-Individual seeds have their own string resources:
+Seed-related string resources in strings_all.xml:
 <code xml>
+<!-- Base seed -->
 <string name="Seed_Prototype">seed</string>
+
+<!-- Individual seeds -->
 <string name="FirebloomSeed_Name">Firebloom Seed</string>
 <string name="FirebloomSeed_Info">This seed can be planted in soil. When fresh, it glows with a warm red light.</string>
 <string name="SungrassSeed_Name">Sungrass Seed</string>
@@ -38,6 +59,10 @@ Individual seeds have their own string resources:
 <string name="RotberrySeed_Info">This seed can be planted in soil. When fresh, it emits a deathly glow.</string>
 <string name="MoongraceSeed_Name">Moongrace Seed</string>
 <string name="MoongraceSeed_Info">This seed can be planted in soil. When fresh, it shines with a soft, silver light.</string>
+
+<!-- Seed pouch -->
+<string name="SeedPouch_Name">Seed Pouch</string>
+<string name="SeedPouch_Info">This small embroidered pouch keeps your seeds fresh and organized.</string>
 </code>
 
 ===== Lua Scripts =====
@@ -47,3 +72,18 @@ This entity is implemented in Java, no Lua script exists.
   * Seeds can be planted in soil tiles to grow plants
   * Each seed corresponds to a specific plant type
   * Seeds can be stored in SeedPouch containers
+  * Seeds can be eaten (provides minimal food value)
+  * Seeds are stackable items
+  * Planting action takes 1 game tick (TIME_TO_PLANT = 1f)
+  * Eating action takes Food.TIME_TO_EAT ticks
+
+===== Sprite References =====
+  * Base seed sprite: items/seeds.png
+  * Individual seed sprites: Generated from plant classes
+  * Wiki images: firebloom_seed_item.png, sungrass_seed_item.png, etc.
+
+===== Related Entities =====
+  * [[mr:plant]] - Plants that grow from seeds
+  * [[mr:seed_pouch_item]] - Container for seeds
+  * [[mr:alchemy|Alchemy]] - Seeds used in alchemy recipes
+  * [[mr:wandmaker_npc|WandMaker NPC]] - Quest involving Rotberry seed
