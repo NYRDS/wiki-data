@@ -1,20 +1,48 @@
-====== Armor Template Item - Code References ======
+====== Armor Template Item - Code Reference Template ======
+
+**Note:** This is a template page demonstrating the format for item code reference pages. The entity ``armor_template`` does not exist in the game codebase.
+
+This page serves as an example of how item code reference pages should be structured in the mr: namespace. For actual items, replace the placeholder information with real code references.
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
+Items are typically implemented in Java. Check these locations for item class implementations:
+  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/*.java
+  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/*.java
   * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
   * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
 
+For a real item, the Java class file would be listed here with its full path.
+
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/armor_template.json
+Items have JSON configuration files that define their properties:
+  * RemixedDungeon/src/main/assets/itemsDesc/*.json - Item descriptions and stats
+  * RemixedDungeon/src/main/assets/spritesDesc/*.json - Sprite configurations
+
+For a real item, the specific JSON config file path would be listed here.
 
 ===== String Resources =====
+Item names and descriptions are stored in string resource files:
 <code xml>
-<string name="ArmorTemplate_Name">[Name]</string>
-<string name="ArmorTemplate_Info">[Description]</string>
+<!-- Example format for item string resources -->
+<string name="ItemName_Name">[Display Name]</string>
+<string name="ItemName_Info">[Description Text]</string>
+<string name="ItemName_Gender">[Gender]</string>
 </code>
 
+String resource files are located in:
+  * RemixedDungeon/src/main/res/values/strings_all.xml (English)
+  * RemixedDungeon/src/main/res/values-ru/strings_all.xml (Russian)
+  * Other language-specific directories for additional localizations
+
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/ArmorTemplate.lua|ArmorTemplate.lua]]
+Some items may have Lua script implementations for custom behavior:
+  * RemixedDungeon/src/main/assets/scripts/items/*.lua - Item-specific scripts
+
+For items with Lua scripts, the script paths would be listed here.
+
+===== See Also =====
+  * [[mr:item_naming|Item Naming Conventions]] - Guidelines for naming item entities
+  * [[mr:json_configuration|JSON Configuration Format]] - How to structure item JSON files
+  * [[mr:lua_scripting|Lua Scripting Guide]] - Using Lua for custom item behavior
+
+{{tag> mr template items reference}}
