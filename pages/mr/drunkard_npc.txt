@@ -1,0 +1,45 @@
+====== Drunkard NPC - Code References ======
+
+===== Entity Kind =====
+drunkard
+
+===== JSON Configuration =====
+  * Mob Config: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/DrunkardNPC.json|DrunkardNPC.json]]
+  * Sprite Config: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/DrunkardNPC.json|DrunkardNPC.json (sprite)]]
+
+===== String Resources =====
+<code xml>
+<string name="DrunkardNPC_Name">drunkard</string>
+<string name="DrunkardNPC_Name_Objective">drunkard</string>
+<string name="DrunkardNPC_Gender">masculine</string>
+<string name="DrunkardNPC_Desc">Regular inn customer in natural state.</string>
+</code>
+
+===== Lua Scripts =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/Drunkard.lua|Drunkard.lua]]
+
+===== Code Implementation =====
+This NPC is defined through JSON configuration and Lua script:
+
+  * **baseSpeed**: 0 (immobile)
+  * **sprite**: mobs/town_townsfolk_drunkard.png (16x16 pixels)
+  * **friendly**: true (neutral faction)
+  * **movable**: false (stationary)
+  * **aiState**: Passive
+  * **immortal**: true (cannot be killed)
+  * **fraction**: NEUTRAL
+
+===== Sprite Animation =====
+  * **idle**: 5 FPS, looped, frames [0,0,0,1,2,3,4,5,5,6,6,7,8]
+  * **run**: 1 FPS, looped, frames [0,0,0] (not used)
+  * **attack**: 1 FPS, not looped, frames [0,0,0] (not used)
+  * **die**: 1 FPS, not looped, frames [0,0,0] (not used)
+  * **bloodColor**: 0xCC0000
+
+===== Lua Script Behavior =====
+  * **interact**: Says one of four random phrases (Drunkard_Phrase_1 through Drunkard_Phrase_4)
+  * **act**: Sets state to "Sleeping"
+
+===== Location =====
+  * Found in the [[en:rpd:inn|Inn]] level (Inn_2021_03.json)
+  * Also referenced in Tiled map (Inn.tmx)
