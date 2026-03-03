@@ -6,8 +6,8 @@ The **Ring of Evasion** is a [[en:rpd:rings|ring]] in Remixed Dungeon that enhan
 
 ==== Item Overview ====
   * **Type:** [[en:rpd:rings|Ring]]
-  * **Special Effect:** Increases [[en:rpd:hero|hero]]'s chance to [[en:rpd:mechanics|dodge]] enemy attacks
-  * **Mechanics:** Each level of the ring provides +1 [[en:rpd:defence_skill|defense skill]] bonus
+  * **Special Effect:** Increases [[en:rpd:hero|hero]]'s chance to [[en:rpd:mechanic|dodge]] enemy attacks
+  * **Mechanics:** Each level of the ring provides +1 [[en:rpd:defence_skill_mechanic|defense skill]] bonus
   * **Upgrading:** Can be [[en:rpd:enchantments|upgraded]] to increase effectiveness
 
 ==== Mechanics ====
@@ -22,20 +22,24 @@ According to the game's string resources: "This ring increases your chance to do
 
 ==== Obtaining ====
   * Found in [[en:rpd:chests_mechanic|chests]] throughout dungeon levels
-  * Available in [[en:rpd:shopkeeper_npc|shops]]
+  * Available in [[en:rpd:shops|shops]]
   * Dropped by various [[en:rpd:mobs|mobs]]
 
 ==== Strategy ====
-  * Pair with medium [[en:rpd:armor|armor]] for balanced protection
+  * Pair with medium [[en:rpd:armor_item|armor]] for balanced protection
   * Useful against [[en:rpd:mobs|enemies]] with high attack accuracy
   * Better for mobile, evasive fighting styles
   * Particularly effective against consistent, low-damage attacks
   * Works well with [[en:rpd:hero_class|hero classes]] that can maintain distance from enemies
 
-==== Data Sources ====
+==== Code References ====
   * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfEvasion.java|RingOfEvasion.java]]
-  * **Base Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java|Ring.java]]
+  * **Base Ring Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java|Ring.java]]
+  * **Defense Skill Mechanic**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Defense skill calculation
+  * **Combat Mechanics**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Hit and dodge calculations
   * **String Resources**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L51-L52|RingOfEvasion strings]] - Name and description
+  * **Item Factory**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration
+  * **Treasury Configuration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json|Treasury.json]] - Drop rates
 
 ==== Related Items ====
   * [[en:rpd:rings|Other Rings]]
@@ -43,5 +47,6 @@ According to the game's string resources: "This ring increases your chance to do
   * [[en:rpd:armor|Armor]] - Other defensive equipment
   * [[en:rpd:hero|Hero]] - Main playable character
   * [[en:rpd:combat_mechanic|Combat]] - Game combat mechanics
+  * [[en:rpd:defence_skill_mechanic|Defense Skill]] - Defense skill mechanics
 
 {{tag> rpd items ring accessories evasion}}
