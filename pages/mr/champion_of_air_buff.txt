@@ -1,20 +1,151 @@
 ====== Champion Of Air Buff - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+{{tag> mr buffs champions}}
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/champion_of_air.json
+===== Entity Information =====
 
-===== String Resources =====
-<code xml>
-<string name="ChampionOfAir_Name">[Name]</string>
-<string name="ChampionOfAir_Info">[Description]</string>
+  * **Entity Name:** ChampionOfAir
+  * **Entity Type:** Buff (Flavor Buff)
+  * **Implementation:** Lua script
+  * **Display Name:** Champion of Air
+  * **String Resource Keys:** ChampionOfAirBuff_Name, ChampionOfAirBuff_Info
+
+===== Java Code References =====
+
+**Buff Factory Registration:**
+  * File: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]]
+  * Constant: CHAMPION_OF_AIR = "ChampionOfAir" (line 71)
+  * Usage in Mob.java for champion selection logic
+
+**Mob Champion Logic:**
+  * File: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * Champions can be assigned: CHAMPION_OF_EARTH, CHAMPION_OF_FIRE, CHAMPION_OF_WATER, CHAMPION_OF_AIR
+  * Logic checks for existing champion buffs before assignment
+
+===== Lua Script Implementation =====
+
+**Script Location:**
+  * File: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ChampionOfAir.lua|ChampionOfAir.lua]]
+
+**Script Content:**
+<code lua>
+local buff = require "scripts/lib/buff"
+
+local RPD  = require "scripts/lib/commonClasses"
+
+return buff.init{
+    desc  = function ()
+        return {
+            icon          = -1,
+            name          = "ChampionOfAirBuff_Name",
+            info          = "ChampionOfAirBuff_Info",
+        }
+    end,
+
+    attachTo = function(self, buff, target)
+        self.data.activated = self.data.activated or false
+
+        if target:hasBuff(buff:getEntityKind()) then
+            return false
+        end
+
+        target:setGlow(0xAAAABB, 1)
+
+        if not self.data.activated then
+            self.data.activated = true
+        end
+
+        return true
+    end,
+
+    hasteLevel = function(self, buff)
+        return buff.target:lvl()
+    end
+}
 </code>
 
-===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ChampionOfAir.lua|ChampionOfAir.lua]]
+**Script Behavior:**
+  * **Icon:** -1 (no icon displayed)
+  * **Name:** Uses string resource key "ChampionOfAirBuff_Name"
+  * **Description:** Uses string resource key "ChampionOfAirBuff_Info"
+  * **Visual Effect:** Sets target glow color to 0xAAAABB (light blue) with intensity 1
+  * **Haste:** Provides haste level equal to target's level
+
+===== String Resources =====
+
+**English (values/strings_all.xml):**
+<code xml>
+<string name="ChampionOfAirBuff_Name">Champion of Air</string>
+<string name="ChampionOfAirBuff_Info">This trait bestows the creature with the essence of the winds, enhancing its agility and prowess in combat. The Champion of Air becomes a formidable adversary, capable of unleashing swift and devastating attacks that can swiftly alter the course of battle.</string>
+</code>
+
+**Russian (values-ru/strings_all.xml):**
+<code xml>
+<string name="ChampionOfAirBuff_Name">Чемпион воздуха</string>
+<string name="ChampionOfAirBuff_Info">Эта черта наделяет существо сущностью ветров, повышая его ловкость и мастерство в бою. Чемпион воздуха становится грозным противником, способным наносить быстрые и разрушительные атаки, которые могут быстро изменить ход битвы.</string>
+</code>
+
+**Chinese Simplified (values-zh-rCN/strings_all.xml):**
+<code xml>
+<string name="ChampionOfAirBuff_Name">风之冠军</string>
+<string name="ChampionOfAirBuff_Info">这种特质赋予生物风的本质，提高其敏捷性和战斗能力。风之冠军成为了一个强大的对手，有能力发动迅速而毁灭性的攻击，可以快速改变战斗的进程。</string>
+</code>
+
+**Japanese (values-ja/strings_all.xml):**
+<code xml>
+<string name="ChampionOfAirBuff_Name">風の覇者</string>
+<string name="ChampionOfAirBuff_Info">この特性は生き物に風のエッセンスを授け、その敏捷性と戦闘能力を強化する。風の覇者は手強い敵になり、戦況を一変させるような素早く壊滅的な攻撃を放つことができる。</string>
+</code>
+
+**German (values-de/strings_all.xml):**
+<code xml>
+<string name="ChampionOfAirBuff_Name">Champion der Luft</string>
+<string name="ChampionOfAirBuff_Info">Diese Eigenschaft verleiht der Kreatur das Wesen der Winde, verbessert ihre Beweglichkeit und Kampfkraft. Der Champion der Luft wird zu einem gefährlichen Gegner, der in der Lage ist, schnelle und verheerende Angriffe auszuführen, die den Verlauf der Schlacht rasch verändern können.</string>
+</code>
+
+**Spanish (values-es/strings_all.xml):**
+<code xml>
+<string name="ChampionOfAirBuff_Name">Campeón del Aire</string>
+<string name="ChampionOfAirBuff_Info">Este rasgo otorga a la criatura la esencia de los vientos, mejorando su agilidad y destreza en combate. El Campeón del Aire se convierte en un adversario formidable, capaz de desatar ataques rápidos y devastadores que pueden rápidamente cambiar el curso de la batalla.</string>
+</code>
+
+**Italian (values-it/strings_all.xml):**
+<code xml>
+<string name="ChampionOfAirBuff_Name">Campione dell'Aria</string>
+<string name="ChampionOfAirBuff_Info">Questa caratteristica dona alla creatura l'essenza dei venti, migliorando la sua agilità e abilità in combattimento. Il Campione dell'Aria diventa un avversario formidabile, capace di scatenare attacchi rapidi e devastanti che possono cambiare rapidamente il corso della battaglia.</string>
+</code>
+
+**Turkish (values-tr/strings_all.xml):**
+<code xml>
+<string name="ChampionOfAirBuff_Name">Hava Şampiyonu</string>
+<string name="ChampionOfAirBuff_Info">Bu özellik, yaratığa rüzgarın özünü verir ve savaşta çeviklik ve yeteneklerini artırır. Hava Şampiyonu, savaşın seyrini hızla değiştirebilen hızlı ve yıkıcı saldırılar sergileyebilen korkutucu bir rakip haline gelir.</string>
+</code>
+
+**Indonesian (values-in/strings_all.xml):**
+<code xml>
+<string name="ChampionOfAirBuff_Name">Juara Udara</string>
+</code>
+
+**Malay (values-ms/strings_all.xml):**
+<code xml>
+<string name="ChampionOfAirBuff_Name">Juara Udara</string>
+</code>
+
+===== Related Champions =====
+
+  * [[mr:champion_of_earth_buff|Champion of Earth Buff]]
+  * [[mr:champion_of_fire_buff|Champion of Fire Buff]]
+  * [[mr:champion_of_water_buff|Champion of Water Buff]]
+
+===== Related Buffs =====
+
+  * [[mr:anesthesia_buff|Anesthesia Buff]]
+  * [[mr:gases_immunity_buff|Gases Immunity Buff]]
+
+===== Notes =====
+
+  * Champion buffs are applied to mobs to create elite variants
+  * The air champion provides haste/speed enhancement based on mob level
+  * Visual indicator is a light blue glow (0xAAAABB)
+  * Part of the champion system that creates tougher mob variants
+  * No dedicated sprite image exists - uses generic buff icon (-1)
