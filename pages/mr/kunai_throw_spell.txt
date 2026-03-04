@@ -1,20 +1,78 @@
 ====== Kunai Throw Spell - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/spells/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/spells/*.java
+===== Entity Information =====
+  * **Entity Kind**: kunai_throw_spell
+  * **Entity Type**: Spell
+  * **Namespace**: mr: (machine-readable)
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/spellsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/kunai_throw.json
+===== Lua Script Implementation =====
+  * **Script Location**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua|KunaiThrow.lua]]
+  * **Script Dependencies**: 
+    * scripts/lib/commonClasses (RPD)
+    * scripts/lib/spell (spell.init)
+
+===== Spell Configuration =====
+<code lua>
+desc = function ()
+    return {
+        image         = 3,
+        imageFile     = "spellsIcons/rogue.png",
+        name          = "KunaiThrow_Name",
+        info          = "KunaiThrow_Info",
+        magicAffinity = "Rogue",
+        targetingType = "self",
+        level         = 2,
+        castTime      = 0.01,
+        spellCost     = 5
+    }
+end
+</code>
+
+===== Spell Behavior =====
+<code lua>
+cast = function(self, spell, caster)
+    local n = spellTier(caster)  -- Returns 1, 2, or 3 based on caster skill level
+    local enemies = caster:visibleEnemies()
+    if enemies == 0 then
+        return false
+    end
+    local ownPos = caster:getPos()
+    for i = 1, n do
+        local tgt = caster:randomEnemy()
+        RPD.zapEffect(ownPos,tgt:getPos(),"Kunai")
+        tgt:damage(math.random( n, n + caster:lvl()*n ), caster)
+    end
+    return true
+end
+</code>
+
+===== Damage Calculation =====
+  * **Base Damage**: math.random(n, n + caster:lvl()*n) where n = spellTier(caster)
+  * **spellTier Formula**: math.min(caster:skillLevel() - 2 + 1, 3)
+  * **Damage Range**: n to (n + caster_level * n)
+  * **Maximum Projectiles**: 3 (based on caster skill level)
 
 ===== String Resources =====
 <code xml>
-<string name="KunaiThrow_Name">[Name]</string>
-<string name="KunaiThrow_Info">[Description]</string>
+<string name="KunaiThrow_Name">Kunai Throw</string>
+<string name="KunaiThrow_Info">This Deadly Kunai throw will be done extremely fast, so fast that you won't even be able to select a target.
+
+True Masters able to throw more than one Kunai at once.</string>
 </code>
 
-===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/spells/KunaiThrow.lua|KunaiThrow.lua]]
+===== Related Files =====
+  * **Sprite**: spell_KunaiThrow.png, kunai_throw_spell_icon.png
+  * **Item Sprite**: item_Kunai.png, kunai_item.png
+  * **Affinity**: Rogue affinity (magicAffinity = "Rogue")
+
+===== API Functions Used =====
+  * caster:skillLevel() - Returns the caster's skill level
+  * caster:visibleEnemies() - Returns count of visible enemies
+  * caster:randomEnemy() - Returns a random enemy target
+  * caster:getPos() - Returns caster's position
+  * caster:lvl() - Returns caster's level
+  * RPD.zapEffect(from, to, effectName) - Creates zap effect
+  * target:damage(amount, source) - Applies damage to target
+
+===== Tags =====
+{{tag> mr spell kunai_throw rogue spell_code}}

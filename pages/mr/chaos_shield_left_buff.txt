@@ -13,25 +13,38 @@ This page was auto-generated but the entity "chaos_shield_left_buff" does not ex
 The following related entities exist in the codebase:
 
 **Chaos Shield Item:**
-  * Java Class: Not directly found (may be implemented differently)
-  * String Resources: 
+  * Java Class: Referenced in ChaosCrystal.java as "ChaosShield"
+  * String Resources:
     - `ChaosShield_name` - "Chaos Shield"
     - `ChaosShield_desc` - "The Chaos Shield is the result of fusing a Chaos Crystal with ordinary shield, causing it to manifest random chaotic effects upon a successful block."
   * Sprite: `items/chaosShield.png`
   * Usage: Referenced in `ChaosCrystal.java` for chaos set collection
 
-**Possible Buffer Mechanism:**
-The chaos shield may apply temporary effects through a different mechanism than a named buff class. Check:
-  * Shield blocking logic in armor/shield classes
-  * Chaos Crystal effect application code
-  * Combat damage resolution with shield mechanics
+**Chaos Crystal Item:**
+  * Java Class: `com/nyrds/pixeldungeon/items/chaos/ChaosCrystal.java`
+  * Usage: Used to fuse with shields to create Chaos Shield
+  * Code Reference: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCrystal.java|ChaosCrystal.java]]
+
+**Possible Buff Mechanism:**
+The chaos shield may apply temporary effects through a different mechanism than a named buff class. The shield likely:
+  * Applies effects through shield blocking logic in armor/shield classes
+  * Uses Chaos Crystal effect application code
+  * Triggers effects during combat damage resolution with shield mechanics
+
+The "left_buff" naming suggests this may have been a planned buff for tracking chaos shield effects that was either:
+  * Renamed to a different identifier
+  * Implemented through a different mechanism
+  * Removed during development
 
 ===== Code References =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCrystal.java|ChaosCrystal.java]] - Chaos set collection logic
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCrystal.java|ChaosCrystal.java]] - Chaos set collection logic, line 105-106
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2907-L2908|strings_all.xml]] - Chaos Shield string resources
   * Sprite: `RemixedDungeon/src/main/assets/items/chaosShield.png`
 
 ===== Notes for Wiki Maintainers =====
-This page should be updated or removed once the actual buff mechanism for Chaos Shield is identified. The chaos shield likely applies effects through a different system than standard buffs.
+This page should be updated or removed once the actual buff mechanism for Chaos Shield is identified. The chaos shield likely applies effects through a different system than standard buffs. Consider investigating:
+  * Shield class implementations in `com/watabou/pixeldungeon/items/armor/`
+  * Combat blocking mechanics in `com/watabou/pixeldungeon/actors/Char.java`
+  * Chaos effect application in chaos-related code
 
-{{tag> mr stub needs_verification }}
+{{tag> mr stub needs_verification chaos}}
