@@ -1,20 +1,46 @@
-====== Potion Of Frost Item - Code References ======
+====== Potion of Frost Item - Code References ======
+
+{{ rpd:images:potion_of_frost_item.png|Potion of Frost }}
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * Main Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java|PotionOfFrost.java]]
+  * Parent Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|UpgradablePotion.java]]
+  * Registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L287|ItemFactory.java#L287]]
+  * Alchemy Plant: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java#L49|Icecap.java#L49]] (Icecap plant produces this potion)
+
+===== Key Methods =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java#L28-L47|shatter(int cell)]] - Creates freezing cloud effect in 2-cell radius
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java#L49-L51|desc()]] - Returns item description from string resources
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java#L53-L55|basePrice()]] - Returns base price of 50 gold
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java#L57-L62|moistenArrow(Arrow arrow, Char owner)]] - Creates FrostArrow when moistening arrows
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/potion_of_frost.json
+No specific JSON configuration file for this item. Uses default potion configuration.
 
 ===== String Resources =====
 <code xml>
-<string name="PotionOfFrost_Name">[Name]</string>
-<string name="PotionOfFrost_Info">[Description]</string>
+<!-- English strings -->
+<string name="PotionOfFrost_Name">Potion of Frost</string>
+<string name="PotionOfFrost_Info">Upon exposure to open air, this chemical will evaporate into a freezing cloud, causing any creature that contacts it to be frozen in place, unable to act and move.</string>
+
+<!-- Russian strings -->
+<string name="PotionOfFrost_Name">Зелье Мороза</string>
+<string name="PotionOfFrost_Info">При контакте с воздухом этот химикат испарится, образуя леденящее облачко, примораживающее к месту всякое коснувшееся его существо, лишая того возможности пошевелится.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
+
+===== Related Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] - Blob effect applied by shatter
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java|FrostArrow.java]] - Arrow type created by moisten effect
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/Kobold.java#L21|Kobold.java#L21]] - 10% drop chance
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mobs/elementals/WaterElemental.java#L24|WaterElemental.java#L24]] - 10% drop chance
+
+===== Game Constants =====
+  * **Shatter Distance**: 2 cells (DISTANCE constant)
+  * **Base Price**: 50 gold
+  * **Label Index**: 0 (first potion label variant)
+  * **Quality Factor**: Affects shatter radius based on potion quality/upgrade level
+
+{{tag> rpd items potions frost code}}
