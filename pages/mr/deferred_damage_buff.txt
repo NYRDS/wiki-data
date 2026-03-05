@@ -2,38 +2,87 @@
 
 {{ rpd:images:deferred_damage_buff.png|Deferred Damage Buff }}
 
+**Machine-readable reference page for the Deferred Damage buff entity.**
+
 ===== Entity Kind =====
-Viscosity.DeferredDamage
+Viscosity.DeferedDamage
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Viscosity.java#L64-L102|Viscosity.java]] - The nested class implementing the buff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Viscosity.java#L64-L120|Viscosity.java]] - The nested class implementing the buff (DeferedDamage)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] - Buff registration
 
 ===== Class Details =====
+  * **Full Class Name**: com.watabou.pixeldungeon.items.armor.glyphs.Viscosity.DeferedDamage
   * **Parent Class**: Buff
   * **Package**: com.watabou.pixeldungeon.items.armor.glyphs.Viscosity
-  * **Type**: Nested static class (DeferedDamage)
+  * **Type**: Nested static class (DeferedDamage - note spelling)
   * **Icon**: BuffIndicator.DEFERRED (ID 28)
 
-===== Special Properties =====
+===== Buff Properties =====
   * **Buff Type**: Negative buff (debuff)
   * **Applied by**: [[en:rpd:glyph_of_viscosity_item|Glyph of Viscosity]] on armor
   * **Effect**: Delays received damage over time (1 damage per turn instead of all at once)
   * **Damage Processing**: Deals 1 damage per tick until all deferred damage is dealt
   * **Death from Buff**: If target dies from deferred damage, death is attributed to the glyph
 
+===== Java Code Fragment =====
+<code java>
+public static class DeferedDamage extends Buff {
+
+    @Packable
+    public int damage = 0;
+
+    @Override
+    public int icon() {
+        return BuffIndicator.DEFERRED;
+    }
+
+    @Override
+    public boolean act() {
+        if (target.isAlive()) {
+            target.damage( 1, this );
+            if (target == Dungeon.hero && !target.isAlive()) {
+                Glyph glyph = new Viscosity();
+                Dungeon.fail( Utils.format( ResultDescriptions.getDescription(ResultDescriptions.Reason.GLYPH), glyph.name(), Dungeon.depth ) );
+                GLog.n(StringsManager.getVar(R.string.DeferedDamage_Killed_Txt), glyph.name() );
+                Badges.validateDeathFromGlyph();
+            }
+            spend( TICK );
+            if (--damage <= 0) {
+                detach();
+            }
+        } else {
+            detach();
+        }
+        return true;
+    }
+}
+</code>
+
 ===== String Resources =====
 <code xml>
-<string name="DeferredDamageBuff_Name">Deferred Damage (%d)</string>
-<string name="DeferredDamageBuff_Info">The pain has been turned into a slowing pain, lessening the damage taken at once.
-Damage left to receive %d</string>
-<string name="DeferredDamage_Killed_Txt">%s killed you...</string>
+<!-- English (values/strings_all.xml) -->
+<string name="DeferedDamageBuff_Name">Deferred Damage (%d)</string>
+<string name="DeferedDamageBuff_Info">The pain has been turned into a slowing pain, lessening the damage taken at once.\nDamage left to receive %d</string>
+<string name="DeferedDamage_Killed_Txt">%s killed you...</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="DeferedDamageBuff_Name">Отложенный урон (%d)</string>
+<string name="DeferedDamageBuff_Info">Боль заметно растянулась, что значительно уменьшило одновременно получаемый урон. \nУрона осталось получить %d</string>
+<string name="DeferedDamage_Killed_Txt">%s убивает тебя...</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented entirely in Java. No Lua script exists for this buff.
 
 ===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+This entity is implemented entirely in Java. No JSON configuration exists for this buff.
 
-===== Related mr Entities =====
+===== Related mr: Entities =====
   * [[mr:armor_glyphs|Armor Glyphs (Configuration)]]
+  * [[mr:viscosity_glyph|Glyph of Viscosity]]
+
+===== Notes =====
+  * The class name uses the spelling "DeferedDamage" (single 'r'), not "DeferredDamage"
+  * The buff deals exactly 1 damage per tick regardless of the total deferred amount
+  * If the target dies from deferred damage, it counts as being killed by the Viscosity glyph
