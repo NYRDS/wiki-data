@@ -4,9 +4,10 @@
 
 ===== Java Classes =====
 This entity is implemented in Lua, no Java class exists
+  * Referenced in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L79-L79|HeroClass.java#L79]] - BONE_SAW constant definition
 
 ===== JSON Configuration =====
-  * Starting items: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L225|initHeroes.json]] (kind: "BoneSaw")
+  * Starting weapon for DOCTOR class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L225-L228|initHeroes.json#L225-L228]]
   * Starting items (debug): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroesDebug.json#L258|initHeroesDebug.json]] (kind: "BoneSaw")
 
 ===== String Resources (All Languages) =====
@@ -19,6 +20,12 @@ This entity is implemented in Lua, no Java class exists
 
 ===== Lua Scripts =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/BoneSaw.lua|BoneSaw.lua]] - Main implementation
+    - Damage: (user_level + lvl) * random(lvl to lvl*2)
+    - STR requirement: 9
+    - Attack proc: Applies Bleeding buff, critical hits for Doctor class
+    - Critical hit: Attack roll > defense roll * 3 = 50% bonus damage
+    - Doctor class: Critical hits drop ToxicGland, RottenOrgan, or BoneShard
+    - Doctor class: 100% bonus damage (2x) to paralyzed foes
 
 ===== Entity Implementation Details =====
   * **Implementation:** Lua script (scripts/items/BoneSaw.lua)
@@ -28,19 +35,19 @@ This entity is implemented in Lua, no Java class exists
   * **Slot:** Both hands
   * **Price:** 20 gold
   * **STR Requirement:** 9
-  * **Damage:** 1-2 per level (lvl to lvl*2)
-  * **Accuracy Factor:** 1.0
-  * **Attack Delay Factor:** 1.0
+  * **Damage:** Scales with user level and item level
+  * **Accuracy Factor:** 1.0 + (lvl + user_level) * 0.15
+  * **Attack Delay Factor:** max(1 - (lvl + user_level) * 0.05, 0.25)
   * **Special Effects:**
     - Applies Bleeding buff on hit
-    - Critical hits (attack roll > defense roll * 2) deal 50% bonus damage
+    - Critical hits (attack roll > defense roll * 3) deal 50% bonus damage
     - Doctor class: Critical hits drop random harvestable items (ToxicGland, RottenOrgan, BoneShard)
     - Doctor class: Deals 100% bonus damage (2x) to paralyzed foes
 
 ===== Related Files =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] - Base weapon class reference
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Bleeding.java|Bleeding.java]] - Bleeding effect applied on hit
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L390|ItemFactory.java]] - item registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L390|ItemFactory.java]] - Item registration
 
 ===== Related mr Entities =====
   * [[mr:bleeding_buff|Bleeding (Buff)]]
