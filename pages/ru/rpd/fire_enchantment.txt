@@ -1,30 +1,33 @@
 ====== Огненные Чары ======
 
-{{ rpd:images:wand_of_firebolt_item.png|Огненные Чары }}
+**Огненные чары** (Fire Enchantment) — это [[ru:rpd:enchantments|чары]] для оружия в Remixed Dungeon, которые имеют шанс поджечь врагов при попадании.
 
 ==== Описание ====
-Огненные чары имеют шанс поджечь врагов при попадании по ним оружием. Это вызывает дополнительный урон со временем.
+Огненные чары имеют шанс поджечь врагов при попадании по ним оружием. Это вызывает дополнительный урон со временем от эффекта [[ru:rpd:burning_buff|горение]].
 
 ==== Механика ====
-  - Шанс поджечь врага зависит от уровня оружия
-  - При срабатывании накладывает эффект [[ru:rpd:burning_buff|Горение]] на несколько ходов
-  - Урон от огня суммируется с существующим бонусом огненного урона оружия
+  * Шанс поджечь врага зависит от уровня оружия
+  * При срабатывании накладывает эффект [[ru:rpd:burning_buff|горение]] на несколько ходов
+  * Урон от огня суммируется с существующим бонусом огненного урона оружия
+  * Эффект применяется через метод proc() с вероятностью, увеличивающейся с уровнем оружия
 
 ==== Источники кода ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Fire.java|Fire.java]]
-  * Эффект применяется в методе proc() с вероятностью, увеличивающейся с уровнем оружия
+  * Java класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Fire.java|Fire.java]]
+  * Эффект применяется в методе proc()
+  * Строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml]] (ru)
 
 ===== Тип =====
-[[ru:rpd:enchantments|Чары]]
+[[ru:rpd:enchantments|Чары для оружия]]
+
+==== Стратегия ====
+  * Эффективно против врагов, уязвимых к огню
+  * Хорошо сочетается с быстрым оружием для частого срабатывания
+  * Дополнительный урон со временем помогает в затяжных боях
 
 ==== См. также ====
   - [[ru:rpd:burning_buff|Горение]] - Статусный эффект, вызванный этими чарами
   - [[ru:rpd:enchantments|Чары]] - Список всех чар для оружия
   - [[ru:rpd:weapons|Оружие]] - Оборудование, на которое можно наложить чары
-
-==== Другие языки ====
-  - [[en:rpd:fire_enchantment|English]]
-  - [[es:rpd:fire_enchantment|Español]]
-  - [[pt:rpd:fire_enchantment|Português]]
+  - [[ru:rpd:fire_elemental_mob|Огненный элементаль]] - Враг, связанный с огнём
 
 {{tag> rpd items enchantments fire}}

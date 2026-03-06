@@ -1,10 +1,32 @@
 ====== Rotting Fist Mob - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/RottingFist.java|RottingFist.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/RottingFist.java|RottingFist.java]] - Main mob class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Mob registration (line 194)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java|YogsEye.java]] - References RottingFist as secondary boss (line 72)
+
+===== Mob Stats (from Java) =====
+  * **HP/HT:** 500
+  * **Base Defense Skill:** 25
+  * **Base Attack Skill:** 36
+  * **Damage Min:** 34
+  * **Damage Max:** 46
+  * **Damage Reduction:** 15
+  * **EXP for Kill:** 0 (boss mob)
+  * **AI State:** Wandering
+  * **Regeneration:** 10 HP when in water
+
+===== Resistances and Immunities =====
+  * **Resistance:** [[mr:toxic_gas|ToxicGas]]
+  * **Immunity:** [[mr:amok|Amok]], [[mr:sleep|Sleep]], [[mr:terror|Terror]], [[mr:poison|Poison]], [[mr:burning|Burning]]
+
+===== Special Abilities =====
+  * **Ooze Application:** 33% chance on attack to apply [[mr:ooze|Ooze]] debuff
+  * **Beckon:** When damaged, beckons all nearby mobs to its position
+  * **Water Regeneration:** Regenerates 10 HP when standing in water and HP < max
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/RottingFist.json|RottingFist.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/RottingFist.json|RottingFist.json]] - Sprite animation configuration
 
 <code json>
 {
@@ -34,6 +56,7 @@
 </code>
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
 <string name="RottingFist_Name">rotting fist</string>
 <string name="RottingFist_Gender">masculine</string>
@@ -41,9 +64,26 @@
 <string name="RottingFist_Desc">Rotting Fist of Old God</string>
 </code>
 
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="RottingFist_Desc">Гнойный кулак Бога</string>
+<string name="RottingFist_Gender">masculine</string>
+<string name="RottingFist_Name">гнойный кулак</string>
+<string name="RottingFist_Name_Objective">гнойный кулак</string>
+</code>
+
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Spawn Location =====
+  * Found in [[mr:guts_level|Guts Level]]
+  * Secondary boss mob alongside other fist variants
+
 ===== Related mr Entities =====
-  * [[mr:guts_level|Guts Level]]
-  * [[mr:yogs_eye_mob|Yogs Eye (Mob)]]
+  * [[mr:guts_level|Guts Level]] - Spawn location
+  * [[mr:yogs_eye_mob|Yogs Eye (Mob)]] - Related boss mob
+  * [[mr:burning_fist_mob|Burning Fist (Mob)]] - Similar fist mob
+  * [[mr:yogs_brain_mob|Yogs Brain (Mob)]] - Related boss component
+  * [[mr:yogs_heart_mob|Yogs Heart (Mob)]] - Related boss component
+  * [[mr:yogs_teeth_mob|Yogs Teeth (Mob)]] - Related boss component
+  * [[mr:ooze|Ooze]] - Debuff applied by Rotting Fist

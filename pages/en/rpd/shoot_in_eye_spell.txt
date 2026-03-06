@@ -1,37 +1,48 @@
-====== Shoot In Eye ======
+====== Shoot In Eye Spell ======
 
-**Shoot In Eye** — a [[en:rpd:spell|spell]] in Remixed Dungeon that applies the [[en:rpd:blindness_buff|blindness]] effect to an enemy.
+{{ rpd:images:shoot_in_eye_spell.png|Shoot In Eye Spell }}
+
+**Shoot In Eye** is a Huntress affinity [[en:rpd:spell|spell]] in Remixed Dungeon that applies the [[en:rpd:blindness_buff|blindness]] effect to an enemy and deals physical damage based on the equipped weapon.
 
 ===== General Information =====
   * **Type:** [[en:rpd:spell|Spell]]
-  * **Purpose:** Applying [[en:rpd:debuff|debuff effect]]
-  * **Target:** Enemy
-  * **Effect:** [[en:rpd:blindness_buff|Blindness]]
+  * **Magic Affinity:** [[en:rpd:huntress_class|Huntress]]
+  * **Targeting:** Character (not self)
+  * **Level:** 1
+  * **Mana Cost:** 5
+  * **Cast Time:** 1
+  * **Effect:** [[en:rpd:blindness_buff|Blindness]] + physical damage
+  * **Image File:** spellsIcons/hunting.png (index 0)
 
 ===== Mechanics =====
-  * Applies [[en:rpd:blindness_buff|blindness]] effect to the target
-  * Interrupts some of the target's actions
-  * Temporarily limits the target's perception
-  * Duration of the effect depends on the spell's strength
+  * Applies [[en:rpd:blindness_buff|blindness]] effect to the target for a duration equal to caster's skill level
+  * Deals physical damage equal to sqrt(skillLevel) × weaponDamageRoll
+  * Uses Boomerang zap effect visually
+  * Requires a weapon to be equipped (uses weapon's damage roll)
+  * Triggers wound sound effect on hit
 
 ===== Acquisition =====
-  * The spell can be acquired through:
-    * [[en:rpd:spell_book|Spellbook]]
-    * [[en:rpd:scroll|Scrolls]] of specific [[en:rpd:spell|spells]]
-    * [[en:rpd:artifact|Artifacts]] related to [[en:rpd:spell|spells]]
+  * Available as a starting spell for certain hero builds
+  * Can be found in [[en:rpd:spell_book|Spellbooks]]
+  * May appear through [[en:rpd:scroll|scrolls]] or [[en:rpd:artifact|artifacts]] related to spells
 
 ===== Strategy =====
-  * Useful for blinding strong enemies for a short time
-  * Can help avoid strong attacks from the enemy
-  * Effective when combined with other [[en:rpd:spell|spells]] or [[en:rpd:potion_item|potions]]
-  * Useful in fighting enemies that rely on sight
-
-===== Comparison =====
-  * Unlike physical attacks, doesn't deal direct damage
-  * Focused on enemy control
-  * Has limited utility but effective at the right moment
+  * Useful for blinding strong enemies to reduce their accuracy
+  * Deals additional physical damage based on your weapon
+  * Effective at level 1, making it useful early game
+  * Low mana cost (5) allows frequent casting
+  * Particularly effective when combined with high-damage weapons
+  * Blindness effect duration scales with skill level
 
 ===== Code Reference =====
   * Lua script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/ShootInEye.lua|ShootInEye.lua]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] (ShootInEye_Name, ShootInEye_Info)
+  * Hero initialization: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]]
 
-{{tag> rpd spells debuffs status_effects}}
+===== See Also =====
+  * [[en:rpd:blindness_buff|Blindness]] - The debuff effect applied
+  * [[en:rpd:spells|Spells]] - Overview of all spells
+  * [[en:rpd:huntress_class|Huntress Class]] - Primary affinity for this spell
+  * [[en:rpd:weapons|Weapons]] - Damage source for the spell
+
+{{tag> rpd spells debuffs huntress}}
