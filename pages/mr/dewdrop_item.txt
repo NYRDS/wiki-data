@@ -1,18 +1,43 @@
 ====== Dewdrop Item - Code References ======
 
-===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Dewdrop.java|Dewdrop.java]]
+{{ mr:images:dewdrop_item.png|Dewdrop }}
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check:
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/dewdrop.json
+===== Overview =====
+The **Dewdrop** is a consumable item in Remixed Dungeon that restores HP or can be collected by Dew Vial.
+
+===== Java Implementation =====
+  * **Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Dewdrop.java|Dewdrop.java]]
+  * **Package**: com.watabou.pixeldungeon.items
+  * **Extends**: Item
+  * **Sprite**: ItemSpriteSheet.DEWDROP
+
+===== Key Methods =====
+  * **doPickUp(Char hero)**: Handles dewdrop collection
+    - If hero has DewVial and it's not full: collects dew into vial
+    - If hero HP < max HP: heals hero for (1 + (depth - 1) / 5) HP per dewdrop
+    - Plays sound: Assets.SND_DEWDROP
+  * **burn(int cell)**: Returns null (dewdrop cannot burn)
+  * **announcePickUp()**: Returns false (no announcement)
+
+===== Properties =====
+  * **stackable**: true (can stack multiple dewdrops)
+  * **image**: ItemSpriteSheet.DEWDROP
+  * **Healing Formula**: min(hero.maxHP - hero.currentHP, (1 + (depth - 1) / 5 + buff bonuses) * quantity)
 
 ===== String Resources =====
-<code xml>
-<string name="Dewdrop_Name">dewdrop</string>
-<string name="Dewdrop_Info">A crystal clear dewdrop.</string>
-</code>
+  * **English**:
+    - Name: ''dewdrop'' (Dewdrop_Name)
+    - Description: ''A crystal clear dewdrop.'' (Dewdrop_Info)
+  * **Russian**:
+    - Name: ''капля росы'' (Dewdrop_Name)
+    - Description: ''Кристально чистая капля росы.'' (Dewdrop_Info)
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+===== Related Items =====
+  * [[mr:dew_vial_item|Dew Vial]] - Collects and stores dewdrops
+  * [[mr:healing|Healing]] - Dewdrops provide healing effect
+
+===== Code References =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Dewdrop.java|Dewdrop.java]] - Main implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java|DewVial.java]] - Related item that collects dewdrops
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - Sprite definition
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - String resources
