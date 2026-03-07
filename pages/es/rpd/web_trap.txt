@@ -1,31 +1,44 @@
 ====== Telaraña ======
 
+La **Telaraña** es un efecto de tipo blob en Remixed Dungeon que ralentiza y enraíza a los personajes que la pisan. Es comúnmente creada por los mobs Spinner y por la Armadura Arácnida.
+
 ==== Descripción ====
-La Telaraña es una trampa encontrada a lo largo de la mazmorra que puede inmovilizar a los personajes. Cuando un personaje pisa terreno con telaraña, se queda atrapado e incapaz de moverse hasta que se libere o se elimine la telaraña.
+Cuando los personajes pisan la telaraña:
+  * **Enraizamiento:** Los personajes quedan enraizados en su lugar, incapaces de moverse
+  * **Duración:** El efecto dura hasta que la telaraña se disipa
+  * **Prevención de movimiento:** Los personajes enraizados no pueden moverse pero aún pueden realizar otras acciones
 
 ==== Propiedades ====
-  * **Tipo**: Trampa/Terreno
-  * **Efecto**: Inmoviliza al personaje
-  * **Duración**: Hasta que se rompa o se elimine
-  * **Interacción**: Puede ser eliminada con ciertos objetos o habilidades
+  * **Tipo**: Blob/Efecto ambiental
+  * **Efecto**: Enraíza e inmoviliza al personaje
+  * **Duración**: Hasta que se disipa gradualmente
+  * **Interacción**: Puede ser eliminada con ataques de fuego
 
 ==== Mecánicas ====
-  * Los personajes que pisan terreno con telaraña se inmovilizan
-  * Algunas armaduras, como la [[es:rpd:spider_armor_item|Armadura Arácnida]], permiten movimiento libre sobre terreno con telaraña
-  * Puede ser eliminada usando ataques basados en fuego u otros métodos
-  * Se extiende en ciertas condiciones
+  * **Creación:** Generada por los mobs [[es:rpd:spinner_mob|Spinner]] cuando atacan
+  * **Armadura Arácnida:** [[es:rpd:spider_armor_item|Armadura Arácnida]] crea campos de telaraña cuando el usuario recibe daño
+  * **Persistencia:** La telaraña permanece durante varios turnos antes de disiparse
+  * **Inmunidad:** Los personajes que usan [[es:rpd:spider_armor_item|Armadura Arácnida]] son inmunes a los efectos de telaraña
+  * **Disipación:** Las telarañas desaparecen gradualmente con el tiempo
 
 ==== Estrategia ====
-  * Tenga cuidado al moverse por áreas con telarañas
-  * Considere llevar objetos basados en fuego para eliminar telarañas
-  * La Armadura Arácnida permite movimiento seguro por áreas con telarañas
+  * **Evitación:** Tenga cuidado al combatir spinners, ya que intentarán enraizarlo en su lugar
+  * **Armadura Arácnida:** Proporciona inmunidad y puede ser útil cuando lucha contra enemigos araña
+  * **Paciencia:** Si queda atrapado en telaraña, espere a que se disipe o muevase a otra celda si es posible
+  * **Combate con Spinners:** Luche contra spinners en áreas abiertas donde quedar enraizado sea menos desventajoso
 
 ==== Referencias de Código ====
   * Implementación Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Web.java|Web.java]]
+  * Clase base: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java|Blob.java]]
+  * Creador (Spinner): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Spinner.java|Spinner.java]]
+  * Inmunidad (Armadura): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/SpiderArmor.java|SpiderArmor.java]]
 
 ==== Vea También ====
-  * [[es:rpd:spider_armor_item|Armadura Arácnida]]
-  * [[es:rpd:traps|Trampas]]
-  * [[es:rpd:spider_creatures_overview|Arañas]]
+  * [[es:rpd:spinner_mob|Spinner]] - Mob que crea campos de telaraña
+  * [[es:rpd:spider_armor_item|Armadura Arácnida]] - Objeto que crea telarañas y proporciona inmunidad
+  * [[es:rpd:roots_buff|Enraizamiento]] - El efecto aplicado por la telaraña (inmoviliza al personaje)
+  * [[es:rpd:blobs|Blobs]] - Otros efectos de blob en el juego
+  * [[es:rpd:freezing_buff|Congelación]] - Otro efecto de blob ambiental
+  * [[es:rpd:toxic_gas|Gas Tóxico]] - Otro efecto de blob ambiental
 
-{{tag> rpd traps terrain web}}
+{{tag> rpd mechanics blobs web}}

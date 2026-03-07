@@ -1,20 +1,42 @@
-====== Scarecrow N P C Mob - Code References ======
+====== Scarecrow NPC - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ScarecrowNPC.java|ScarecrowNPC.java]]
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/scarecrow_n_p_c.json
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="ScarecrowNPC_Name">[Name]</string>
-<string name="ScarecrowNPC_Info">[Description]</string>
+<string name="ScarecrowNPC_Name">scarecrow</string>
+<string name="ScarecrowNPC_Gender">neuter</string>
+<string name="ScarecrowNPC_Name_Objective">scarecrow</string>
+<string name="ScarecrowNPC_Desc">There is no doubt... this scarecrow is watching your every move. It's red glowing eyes pierce right through you, but surprisingly enough, you don't feel threatened by it.</string>
+<string name="ScarecrowNPC_Quest_Start_Male">Why hello little boy, how do you do?\nI've got something exciting for you!\n\nOh how grateful would I be,\nIf you go and collect some candies for me!\n\n</string>
+<string name="ScarecrowNPC_Quest_Start_Female">Why hello little girl, how do you do?\nI've got something exciting for you!\n\nOh how grateful would I be,\nIf you go and collect some candies for me!\n\n</string>
+<string name="ScarecrowNPC_Quest_Reminder">Five candies is all I need.\nOh, the reward will be so sweet!</string>
+<string name="ScarecrowNPC_Quest_End">Oh jolly, oh my!\nFor this, you'll get a sweet slice of pie!</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:candy_item|Candy_Item]]
+  * [[mr:pumpkin_pie_item|Pumpkin_Pie_Item]]
+
+===== Entity Implementation Details =====
+  * **Package:** com.nyrds.pixeldungeon.mobs.npc
+  * **Base Class:** ImmortalNPC
+  * **Entity Kind:** ScarecrowNPC
+  * **Type:** NPC (Non-Player Character)
+  * **Behavior:** Immortal (cannot be killed), Quest-giver
+  * **Purpose:** Gives candy collection quest in early dungeon levels
+  * **Quest Mechanics:** Collect 5 candies from enemy drops, receive 5 Pumpkin Pies as reward
+  * **Candy Generation:** 1 candy per 5 kills after quest initiation, stops after 25 kills total
+  * **Gender-specific Dialogue:** Uses different dialogue based on hero gender
+
+===== Related Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]] - base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]] - actor system
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/entities/Entity.java|Entity.java]] - entity system

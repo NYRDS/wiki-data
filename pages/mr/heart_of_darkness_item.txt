@@ -14,6 +14,8 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="HeartOfDarkness_Name">Heart of darkness</string>
 <string name="HeartOfDarkness_Info">Black pulsating heart of the Treacherous Spirit.</string>
 <string name="HeartOfDarkness_Gender">neuter</string>
+<string name="DarkVeilBuff_Name">Dark Veil</string>
+<string name="DarkVeilBuff_Info">Summons Spirit of Pain when attacked</string>
 </code>
 
 ===== Lua Scripts =====
@@ -23,6 +25,28 @@ This entity is implemented in Java, no Lua script exists
   * [[mr:heart_of_darkness_buff|Heart_Of_Darkness_Buff]]
   * [[mr:treacherous_spirit_mob|Treacherous_Spirit_Mob]]
   * [[mr:stranger_npc|Stranger_Npc]]
+  * [[mr:potion_of_might_item|Potion_Of_Might_Item]]
+  * [[mr:spirit_of_pain_mob|Spirit_Of_Pain_Mob]]
+
+===== Entity Implementation Details =====
+  * **Package:** com.nyrds.pixeldungeon.items.guts
+  * **Base Class:** Artifact
+  * **Entity Kind:** HeartOfDarkness
+  * **Type:** Artifact
+  * **Equipment Slot:** Artifact slot
+  * **Identified:** Always identified when picked up
+  * **Buff:** Provides HeartOfDarknessBuff (Dark Veil) when equipped
+  * **Buff Effect:** Spawns Spirit of Pain adjacent to hero when damage is taken
+  * **Quest Function:** Can be exchanged with AzuterronNPC for PotionOfMight
+  * **Drop Source:** TreacherousSpirit boss in Guts area
+
+===== Related Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/HeartOfDarkness.java|HeartOfDarkness.java]] - main artifact class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]] - quest exchange
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/TreacherousSpirit.java|TreacherousSpirit.java]] - drop source
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/SpiritOfPain.java|SpiritOfPain.java]] - summoned ally
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Artifact.java|Artifact.java]] - base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/ArtifactBuff.java|ArtifactBuff.java]] - buff base class
 
 ===== Content Verification =====
   * Information source: Java code and string resources
