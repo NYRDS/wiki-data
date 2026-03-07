@@ -1,10 +1,66 @@
 ====== Свиток подчинения ======
 
+{{ rpd:images:scroll_of_domination_item.png|Свиток подчинения }}
+
+**Свиток подчинения** — это свиток в Remixed Dungeon, который позволяет подчинить одно существо в поле зрения игрока. Подчиненное существо будет сражаться на вашей стороне до своей смерти.
+
+==== Описание ====
 Этот свиток сломит волю одного из существ в твоём поле зрения. Существо будет биться за тебя не щадя живота своего.
 
-===== БагоФичи =====
+==== Характеристики ====
+  * **Тип:** Свиток
+  * **Вес:** 1
+  * **Цена:** 80 золотых (после идентификации)
+  * **Радиус действия:** Все существа в поле зрения
+  * **Время чтения:** Стандартное время чтения свитка
 
-Подчиненное существо будет вас атаковать, если его запугать (магическим свитком). Вы все так же не сможете с ним сражаться, потому что он будет якобы вашим союзником 
+==== Эффект ====
+При чтении свиток подчинения:
+  * Показывает визуальный эффект DOMINATION над читающим
+  * Воспроизводит звук DOMINANCE
+  * Снимает невидимость с читающего
+  * Выбирает случайное существо в поле зрения (не босс, не питомец, не NPC)
+  * Если существо может стать питомцем, оно становится вашим союзником
+  * Показывает эффект вспышки на подчиненном существе
 
+==== Механика ====
+  * Свиток выбирает только тех существ, которые находятся в поле зрения (fieldOfView)
+  * Боссы не могут быть подчинены
+  * Питомцы не могут быть подчинены
+  * NPC не могут быть подчинены
+  * Существо должно иметь возможность стать питомцем (canBePet())
+  * Если ни одно существо не может быть подчинено, свиток не имеет эффекта
 
-{{tag> ru:rpd ru:items}}
+==== Стратегия ====
+  * Используйте в бою против групп врагов для получения преимущества
+  * Эффективен против сильных обычных врагов
+  * Не работает против боссов
+  * Может быть использован для отвлечения внимания других врагов
+  * Полезно в сложных ситуациях, когда нужно дополнительное подкрепление
+
+==== Получение ====
+  * Находится в случайных контейнерах
+  * Может быть куплен в магазинах после идентификации
+  * Выпадает из некоторых врагов
+
+==== Код ====
+  * **Java реализация:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfDomination.java|ScrollOfDomination.java]]
+  * **Базовый класс:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]]
+  * **Регистрация:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+  * **Звуковой эффект:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Assets.java|Assets.SND_DOMINANCE]]
+  * **Визуальный эффект:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/SpellSprite.java|SpellSprite.DOMINATION]]
+  * **Строка ресурсов (RU):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1864-L1865|strings_all.xml#L1864-L1865]]
+  * **Строка ресурсов (EN):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|ScrollOfDomination_Name, ScrollOfDomination_Info]]
+
+==== Примечания ====
+  * Подчиненное существо будет атаковать вас, если его запугать (магическим свитком)
+  * Вы все еще не сможете сражаться с ним, потому что оно будет считаться вашим союзником
+  * Это известная особенность игры (багофича)
+
+==== Связанные элементы ====
+  * [[ru:rpd:scrolls|Свитки]]
+  * [[ru:rpd:charm_spell|Заклинание очарования]]
+  * [[ru:rpd:mobs|Мобы]]
+  * [[ru:rpd:pet_mechanic|Механика питомцев]]
+
+{{tag> ru:rpd ru:items ru:scrolls ru:control}}

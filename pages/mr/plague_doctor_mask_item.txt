@@ -1,20 +1,65 @@
 ====== Plague Doctor Mask Item - Code References ======
 
+{{ rpd:images:plague_doctor_mask_item.png|Plague Doctor Mask }}
+
+**Plague Doctor Mask** is an accessory item (artifact) in Remixed Dungeon that provides immunity to gases when equipped. It is obtained through the Plague Doctor NPC quest.
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * **Main Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/accessories/PlagueDoctorMask.java|PlagueDoctorMask.java]]
+  * **Parent Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/accessories/Accessory.java|Accessory.java]]
+  * **Related NPC:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/PlagueDoctorNPC.java|PlagueDoctorNPC.java]]
+  * **Related Item (Hood variant):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/accessories/PlagueDoctorMaskHood.java|PlagueDoctorMaskHood.java]]
+
+===== Java Implementation Details =====
+  * **Image Index:** 23 (in artifacts sprite sheet)
+  * **coverFacialHair:** true (covers facial hair when worn)
+  * **coverHair:** false (does not cover hair)
+  * **nonIap():** true (not an in-app purchase item)
+  * **haveIt():** Requires Badge.DOCTOR_QUEST_COMPLETED badge to be unlocked
+  * **Equipment Slot:** Artifact slot
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/plague_doctor_mask.json
+This item is configured through Lua scripting rather than JSON configuration files.
 
 ===== String Resources =====
+  * **English:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2991-L2992|strings_all.xml#L2991-L2992]]
 <code xml>
-<string name="PlagueDoctorMask_Name">[Name]</string>
-<string name="PlagueDoctorMask_Info">[Description]</string>
+<string name="PlagueDoctorMask_Name">Plague Doctor mask</string>
+<string name="PlagueDoctorMask_Info">This… this is no mere mask. It's… a barrier. A shield against the forces of decay that Plague Doctor tirelessly battle against. Crafted from the finest ebony wood, intricately carved with the visage of a ravenous skull. Its hollow eye sockets are filled with glittering, amethyst gemstones that pulse faintly, like the dying embers of a fire. Each breath you take, each utterance you make, is filtered through a labyrinthine network of tubes and filters. A concoction of potent herbs and exotic spices infuses the air within, masking the stench of death that clings to you like a shroud.</string>
 </code>
 
+  * **Russian:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (Russian)]]
+  * **Other Languages:** Available in de, fr, uk, ko, el, and more
+
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/PlagueDoctorMask.lua|PlagueDoctorMask.lua]]
+  * **Item Script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/PlagueDoctorMask.lua|PlagueDoctorMask.lua]]
+  * **NPC Script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/PlagueDoctor.lua|PlagueDoctor.lua]]
+
+===== Lua Implementation Details =====
+  * **Price:** 20 gold
+  * **Image:** Index 26 in items/artifacts.png
+  * **Equipment Slot:** RPD.Slots.artifact
+  * **Effect on Equip:** Grants permanent "GasesImmunity" buff
+  * **Effect on Unequip:** Removes "GasesImmunity" buff
+
+===== Related Entities =====
+  * **PlagueDoctorMaskHood:** Hood variant with similar effects
+  * **PlagueDoctorNPC:** NPC that provides the quest for this item
+  * **GasesImmunity:** Buff granted when equipped
+  * **Doctor Quest:** Quest line to obtain this item
+
+===== Badge Requirement =====
+  * **Badge:** DOCTOR_QUEST_COMPLETED
+  * **Badge Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]]
+
+===== Game Integration =====
+  * **Dungeon.java:** Quest reset and save/restore integration
+  * **Journal.java:** Journal entry PLAGUEDOCTOR
+  * **HeroClass.java:** PlagueDoctor magic affinity perks
+
+===== See Also =====
+  * [[en:rpd:plague_doctor_class|Plague Doctor Class]]
+  * [[en:rpd:accessory_item|Accessories]]
+  * [[en:rpd:artifacts|Artifacts]]
+  * [[mr:plague_doctor_npc|mr:plague_doctor_npc]]
+  * [[mr:gases_immunity_buff|mr:gases_immunity_buff]]
