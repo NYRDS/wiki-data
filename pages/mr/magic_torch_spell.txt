@@ -3,16 +3,34 @@
 {{ rpd:images:magic_torch_spell_icon.png|Magic Torch Spell }}
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/MagicTorch.java|MagicTorch.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/MagicTorch.java|MagicTorch.java]] - Main spell implementation class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Base spell class that MagicTorch extends
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]] - Helper class with targeting and affinity constants
+
+===== Implementation Details =====
+  * **Targeting Type**: TARGET_SELF (self-cast spell)
+  * **Magic Affinity**: AFFINITY_COMMON (available to all hero classes)
+  * **Spell Cost**: 1 mana point
+  * **Buff Applied**: Light buff with duration of 80 ticks
+  * **Visual Effect**: FlameParticle emitter at character center
 
 ===== JSON Configuration =====
   * This spell is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="MagicTorch_SpellName">Magic Torch</string>
-<string name="MagicTorch_SpellInfo">Illuminates a wide area around the user, revealing hidden passages and traps.</string>
+<!-- English (values/strings_all.xml) -->
+<string name="MagicTorch_Name">Magic torch</string>
+<string name="MagicTorch_Info">A spell that produces light, to illuminate the dark levels of the dungeon.</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="MagicTorch_Name">Волшебный факел</string>
+<string name="MagicTorch_Info">Заклинание, которое производит свет, озаряющий тёмные уровни подземелья.</string>
 </code>
 
 ===== Lua Scripts =====
   * This spell is implemented in Java, no Lua script exists
+
+===== Related Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Light.java|Light.java]] - Buff class applied by this spell
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/particles/FlameParticle.java|FlameParticle.java]] - Particle effect used for visual feedback
