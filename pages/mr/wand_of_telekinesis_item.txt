@@ -1,8 +1,28 @@
 ====== Wand Of Telekinesis Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfTelekinesis.java|WandOfTelekinesis.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] (Base class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfTelekinesis.java|WandOfTelekinesis.java]] - Main wand implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - Base class for all wands
+
+===== Java Implementation Details =====
+  * **Class**: `com.watabou.pixeldungeon.items.wands.WandOfTelekinesis`
+  * **Extends**: `Wand` base class
+  * **Properties**:
+    * `hitChars = false` - Does not directly target characters
+    * `hitObjects = true` - Targets objects and terrain
+  * **Key Methods**:
+    * `onZap(int cell, Char victim)` - Main zap effect implementation
+    * `transport(Heap heap)` - Transports items to hero's backpack
+    * `fx(int cell, Callback callback)` - Visual effects (MagicMissile.force)
+    * `desc()` - Returns localized description from string resources
+  * **Max Distance**: `effectiveLevel() + 4` cells
+  * **Effects**:
+    * Triggers traps along the path
+    * Tramples high vegetation
+    * Opens closed doors and closes open ones
+    * Pushes back monsters
+    * Transports heap items to hero's backpack
+    * Activates level objects via `Presser` interface
 
 ===== JSON Configuration =====
 <code json>
@@ -26,3 +46,5 @@ This entity is implemented in Java, no Lua script exists
 
 ===== Related mr Entities =====
   * [[mr:wand_item|Wand (Base Item)]]
+  * [[mr:ballistica_mechanic|Ballistica (Targeting System)]]
+  * [[mr:magic_missile|Magic Missile Effects]]
