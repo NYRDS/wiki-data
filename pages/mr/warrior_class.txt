@@ -1,7 +1,9 @@
 ====== Warrior Class - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Hero class enumeration and initialization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Main hero actor class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/WarriorArmor.java|WarriorArmor.java]] - Class-specific armor for Warrior
 
 ===== JSON Configuration =====
 <code json>
@@ -43,13 +45,83 @@
   }
 }
 </code>
+(Source: RemixedDungeon/src/main/assets/hero/initHeroes.json)
 
 ===== String Resources =====
 <code xml>
-<string name="hero_name_warrior">Warrior</string>
-<string name="Warrior_Name">warrior</string>
-<string name="Warrior_Info">The Warrior is a melee-focused class with high durability. He starts with a unique short sword (+1) that can be used to identify potions, a knuckleduster, and a mysterious Dew Vial.</string>
+<string name="HeroClass_War">warrior</string>
+<string name="HeroClass_WarPerks_0">Warriors start with 11 points of Strength.</string>
+<string name="HeroClass_WarPerks_1">Warriors start with a unique short sword. This sword can be later "reforged" to upgrade another melee weapon.</string>
+<string name="HeroClass_WarPerks_2">Warriors are less proficient with missile weapons.</string>
 </code>
+
+Other language translations:
+<code xml>
+<string name="HeroClass_War">воин</string>
+<string name="HeroClass_WarPerks_0">Воины начинают с 11 очками Силы.</string>
+<string name="HeroClass_WarPerks_1">Воины начинают с уникальным коротким мечом. Этот меч может быть позже "перекован" для улучшения другого оружия ближнего боя.</string>
+<string name="HeroClass_WarPerks_2">Воины менее эффективно используют метательное оружие.</string>
+</code>
+(Russian - values-ru/strings_all.xml)
+
+<code xml>
+<string name="HeroClass_War">Krieger</string>
+<string name="HeroClass_WarPerks_0">Krieger starten mit 11 Punkten Stärke.</string>
+<string name="HeroClass_WarPerks_1">Krieger starten mit einem einzigartigen Kurzschwert. Dieses Schwert kann später "umgeschmiedet" werden, um eine andere Nahkampfwaffe zu verbessern.</string>
+<string name="HeroClass_WarPerks_2">Krieger sind weniger geübt mit Fernkampfwaffen.</string>
+</code>
+(German - values-de/strings_all.xml)
+
+<code xml>
+<string name="HeroClass_War">guerrero</string>
+<string name="HeroClass_WarPerks_0">Los guerreros comienzan con 11 puntos de Fuerza.</string>
+<string name="HeroClass_WarPerks_1">Los guerreros comienzan con una espada corta única. Esta espada puede ser más tarde "reforjada" para mejorar otra arma cuerpo a cuerpo.</string>
+<string name="HeroClass_WarPerks_2">Los guerreros son menos competentes con armas a distancia.</string>
+</code>
+(Spanish - values-es/strings_all.xml)
+
+<code xml>
+<string name="HeroClass_War">guerrier</string>
+<string name="HeroClass_WarPerks_0">Les guerriers commencent avec 11 points de Force.</string>
+<string name="HeroClass_WarPerks_1">Les guerriers commencent avec une épée courte unique. Cette épée peut être plus tard "reforgée" pour améliorer une autre arme de mêlée.</string>
+<string name="HeroClass_WarPerks_2">Les guerriers sont moins compétents avec les armes à distance.</string>
+</code>
+(French - values-fr/strings_all.xml)
 
 ===== Lua Scripts =====
 This entity is implemented in Java/JSON, no Lua script exists
+
+===== Entity Properties =====
+  * **Type**: Hero Class
+  * **Starting Strength**: 11 (10 base + 1 bonus)
+  * **Base HP**: 22
+  * **Base Shield**: 3
+  * **Base Accuracy**: 10
+  * **Base Evasion**: 10
+  * **Base Damage**: 1
+  * **Base Defense**: 0
+  * **Attack Skill**: 14
+  * **Defense Skill**: 10
+  * **Speed**: 12
+  * **Magic Affinity**: Combat
+  * **Starting Equipment**:
+    - Short Sword (+1, identified)
+    - Knuckleduster (0, identified)
+    - Dew Vial (0, identified)
+  * **Class Armor**: Warrior Armor (Heroic Leap ability)
+  * **Special Ability**: Can reforge short sword to upgrade other melee weapons
+  * **Proficiency Penalty**: Less proficient with missile weapons
+
+===== Class Armor Special Ability =====
+  * **Ability Name**: Heroic Leap
+  * **Action String**: WARRIOR_ARMOR_LEAP
+  * **Effect**: Leaps towards targeted location, slamming down to stun all neighboring enemies
+  * **Restriction**: Only warriors can use this armor
+
+===== Related mr Entities =====
+  * [[mr:warrior_subclass|Warrior Subclasses]]
+  * [[mr:warrior_armor_item|Warrior Armor (Item)]]
+  * [[mr:short_sword_item|Short Sword (Item)]]
+  * [[mr:knuckles_item|Knuckleduster (Item)]]
+  * [[mr:dew_vial_item|Dew Vial (Item)]]
+  * [[mr:hero_class|Hero Class]]

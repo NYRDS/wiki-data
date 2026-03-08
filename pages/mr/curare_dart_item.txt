@@ -2,6 +2,7 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CurareDart.java|CurareDart.java]] - Main item class extending Dart
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Dart.java|Dart.java]] - Parent class for all darts
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registers CurareDart class
 
 ===== JSON Configuration =====
@@ -33,6 +34,90 @@ Other language translations:
 </code>
 (Greek - values-el/strings_all.xml)
 
+<code xml>
+<string name="CurareDart_Name">dardo paralizante</string>
+<string name="CurareDart_Info">Estos pequeños dardos no hacen mucho daño, pero pueden paralizar al objetivo dejándolo indefenso y sin movimiento por algún tiempo.</string>
+</code>
+(Spanish - values-es/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">flèchette paralysante</string>
+<string name="CurareDart_Info">Ces petites fléchettes ne font que peu de dommages mais elles peuvent paralyser leur cible, la laissant immobile et sans défense pour un certain temps.</string>
+</code>
+(French - values-fr/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">dardo curatore</string>
+<string name="CurareDart_Info">Questi piccoli e malefici dardi non provocano tanto danno, ma possono paralizzare il bersaglio lasciandolo immobile e indifeso per qualche tempo.</string>
+</code>
+(Italian - values-it/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">trująca rzutka</string>
+<string name="CurareDart_Info">Te małe, złowrogie rzutki nie zadają dużo obrażeń, ale mogą sparaliżować cel, pozostawiając go bezbronnym i unieruchomionym na pewien czas.</string>
+</code>
+(Polish - values-pl/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">dardo envenenado</string>
+<string name="CurareDart_Info">Estes pequenos dardos malignos não fazer muito dano, mas eles podem paralisar o alvo deixando-o indefeso e imóvel por algum tempo.</string>
+</code>
+(Portuguese Brazilian - values-pt-rBR/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">クラーレダーツ</string>
+<string name="CurareDart_Info">この邪悪な小さなダーツは大したダメージは与えないが、標的を麻痺させ、しばらくの間無力化することができる。</string>
+</code>
+(Japanese - values-ja/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">큐라레 다트</string>
+<string name="CurareDart_Info">이 작고 사악한 다트는 많은 피해를 주지 않지만 대상을 마비켜서 잠시동안 무력화되게 할 수 있습니다.</string>
+</code>
+(Korean - values-ko/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">麻痹飞镖</string>
+<string name="CurareDart_Info">这些邪恶的小飞镖伤害不大，但能把目标麻痺，剩它静立无助一会。</string>
+</code>
+(Chinese Simplified - values-zh-rCN/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">麻痹飛鏢</string>
+<string name="CurareDart_Info">這些提摩般邪惡的飛鏢傷害不大，但能把目標麻痺，剩它靜立無助一會。</string>
+</code>
+(Chinese Traditional - values-zh-rTW/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">дротик з кураре</string>
+<string name="CurareDart_Info">Ці маленькі зловісні дротики не здатні завдати значної шкоди, проте можуть тимчасово паралізувати ворога.</string>
+</code>
+(Ukrainian - values-uk/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">kuráre dart</string>
+<string name="CurareDart_Info">Ezek a gonosz kis nyilacskák nem okoznak túl nagy sebzést, de le tudják bénítani a célpontot mozdulatlanul és tehetetlenül egy időre.</string>
+</code>
+(Hungarian - values-hu/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">zehirli ok</string>
+<string name="CurareDart_Info">Bu küçük oklar fazla zarar vermese de rakibini hareketsiz ve savunmasız bırakabilir</string>
+</code>
+(Turkish - values-tr/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">curare dart</string>
+<string name="CurareDart_Info">Anak panah kecil yang jahat ini tidak memberikan banyak kerusakan, tetapi mereka dapat melumpuhkan target sehingga membuatnya tidak berdaya dan tidak bergerak untuk beberapa waktu.</string>
+</code>
+(Indonesian - values-in/strings_all.xml)
+
+<code xml>
+<string name="CurareDart_Name">damak kurare</string>
+<string name="CurareDart_Info">Damak kecil ini tidak menghasilkan kecederaan yang ketara, tetapi ia boleh melumpuhkan sasaran dan menyebabkan dia tidak dapat bergerak dalam satu tempoh masa.</string>
+</code>
+(Malay - values-ms/strings_all.xml)
+
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
@@ -41,11 +126,14 @@ This entity is implemented in Java, no Lua script exists
   * **Base Damage**: MIN=1, MAX=3
   * **Special Effect**: Applies Paralysis buff for 3 seconds on hit
   * **STR Requirement**: 14
-  * **Random Quantity**: 2-4 when generated randomly
+  * **Random Quantity**: 2-4 when generated randomly (Random.Int(2, 5))
   * **Price**: 12 gold per dart
   * **Image ID**: 4 (from missiles atlas)
+  * **Parent Class**: Dart
+  * **Duration**: DURATION = 3f (3 seconds paralysis)
 
 ===== Related mr Entities =====
   * [[mr:dart_item|Dart (Item)]]
   * [[mr:paralysis_buff|Paralysis (Buff)]]
   * [[mr:shuriken_item|Shuriken (Item)]]
+  * [[mr:missile_weapon|Missile Weapon (Item)]]
