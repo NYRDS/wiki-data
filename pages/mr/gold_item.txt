@@ -1,7 +1,10 @@
 ====== Gold Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Gold.java|Gold.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Gold.java|Gold.java]] - Main Gold item class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration (line 248: registerItemClass(Gold.class))
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/RandomItemGenerator.java|RandomItemGenerator.java]] - Gold as fallback item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/GoldenSword.java|GoldenSword.java]] - Weapon that drops gold on hit
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -15,8 +18,20 @@ This entity is implemented in Java, no JSON configuration exists
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/alchemy_recipes.lua|alchemy_recipes.lua]] - Alchemy recipe: 1 Gold + 1 Iron Key = Mimic (line 52-56)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/PlagueDoctor.lua|PlagueDoctor.lua]] - Quest reward currency (line 24)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/test/TestItem.lua|TestItem.lua]] - Test item for ads reward (line 273)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/RaiseDead.lua|RaiseDead.lua]] - Loot removal from raised dead (line 54)
+
+===== Usage in Code =====
+  * **Bones.java** (line 41): Gold dropped as bone item when no equipment available
+  * **RatKingPainter.java** (line 72): Gold as potential chest prize
+  * **TreasuryPainter.java** (lines 33, 42): Gold spawned in treasury rooms
+  * **StandardPainter.java** (line 114): Gold dropped in graves
+  * **ServiceManNPC.java** (line 32): Gold as video ad reward
+  * **Mob loot tables**: Multiple mobs have Gold.class loot entries (DreadKnight, Zombie, EnslavedSoul, ExplodingSkull, DeathKnight, Worm, PseudoRat, ZombieGnoll, ColdSpirit)
 
 ===== Related mr Entities =====
   * [[mr:golden_key_item|Golden Key (Item)]]
   * [[mr:dark_gold_item|Dark Gold (Item)]]
+  * [[mr:golden_sword_item|Golden Sword (Item)]]
