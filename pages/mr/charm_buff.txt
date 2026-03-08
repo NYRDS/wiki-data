@@ -2,21 +2,40 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charm.java|Charm.java]] - Main Charm buff implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L90|BuffFactory.java]] - CHARM constant definition
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] - Parent class for flavor buffs
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Character class that uses pacified flag
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java|BuffIndicator.java]] - Buff icon definitions (HEART icon)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]] - Ring of Elements provides resistance
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DriedRose.java|DriedRose.java]] - Dried Rose interactions with Charm
 
 ===== JSON Configuration =====
 No specific JSON configuration for this buff found.
 
 ===== String Resources =====
 <code xml>
-<string name="Charm_Name">Charm</string>
-<string name="Charm_Info">You are charmed.</string>
+<!-- English strings -->
+<string name="CharmBuff_Name">Charmed</string>
+<string name="CharmBuff_Info">The mind and body was charmed!</string>
+<string name="Hero_StaCharm">You are charmed!</string>
+<string name="CharmSpell_Name">Charm</string>
+<string name="CharmSpell_Info">Everyone deserve some love, right?</string>
+
+<!-- Russian strings -->
+<string name="CharmBuff_Name">Зачарован</string>
+<string name="CharmBuff_Info">Очарование помутняет разум.</string>
+<string name="Hero_StaCharm">Ты зачарован!</string>
+<string name="CharmSpell_Name">Очарование</string>
+<string name="CharmSpell_Info">Каждому нужно немного любви, ведь так?</string>
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Charm.lua|Charm.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/spells/Charm.lua|Charm.lua]] - Charm spell implementation
 
 ===== Additional Information =====
-  * Used by: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Succubus.java|Succubus.java]]
-  * Glyph: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Affection.java|Affection.java]] (armor glyph that applies charm)
+  * Used by: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Succubus.java|Succubus.java]] - Succubus demon applies Charm
+  * Glyph: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Affection.java|Affection.java]] - Armor glyph that applies charm to both hero and enemy
   * Plant effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java|Sungrass.java]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Moongrace.java|Moongrace.java]]
+  * Spell: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/spells/Charm.lua|Charm Spell]] - Huntress affinity spell
+  * Effect: Sets target.pacified = true, preventing attacks
+  * Immunity: DriedRose.OneWayLoveBuff provides immunity to Charm
+  * Resistance: Ring of Elements provides resistance to Charm duration
