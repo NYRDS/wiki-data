@@ -1,10 +1,11 @@
 ====== Goo - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Goo.java|Goo.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Goo.java|Goo.java]] - Main boss mob implementation
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Goo.json|Goo.json]] - Sprite configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Goo.json|Goo.json]] - Mob configuration (battle music)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Goo.json|Goo.json]] - Sprite configuration (animations, texture)
 
 ===== String Resources =====
 <code xml>
@@ -15,6 +16,10 @@
 <string name="Goo_Boss">Goo</string>
 <string name="Goo_Defeated">Goo was defeated</string>
 <string name="Goo_Defeat2">Goo was defeated, but you sense that something else has awakened.</string>
+<string name="Goo_StaInfo1">PUMPING UP!</string>
+<string name="Goo_Info1">Goo is pumping up!</string>
+<string name="Goo_Info2">Goo was defeated...</string>
+<string name="Goo_Info3">Goo notices you!</string>
 </code>
 
 ===== Lua Scripts =====
@@ -22,5 +27,50 @@ This entity is implemented in Java, no Lua script exists
 
 ===== Additional Information =====
   * **Entity Type**: Boss mob
-  * **Level**: Found in Sewers (level 2)
-  * **Special Mechanics**: Acid Blob spawning, damage scaling based on Goo's lost HP
+  * **Level**: Found in Sewers (boss of level 2)
+  * **Parent Class**: Boss (extends Boss class)
+
+===== Stats (from Java code) =====
+  * **HP**: 68 (hp(ht(68)))
+  * **Experience**: 9 (expForKill = 9)
+  * **Base Defense Skill**: 12
+  * **Base Attack Skill**: 11
+  * **Damage Reduction**: 2 (dr = 2)
+  * **Damage (normal)**: 4-11
+  * **Damage (pumped up)**: 7-21
+  * **Attack Skill (normal)**: 11
+  * **Attack Skill (pumped up)**: 26
+  * **Loot**: Potions (80% chance)
+  * **Resistance**: ToxicGas (immune to toxic gas)
+  * **Special Item**: Drops SkeletonKey on death
+
+===== Special Mechanics (from Java code) =====
+  * **Pump Up**: Goo can "pump up" to increase damage and attack range
+    * Pump up delay: 2.2 seconds (PUMP_UP_DELAY = 2.2f)
+    * When pumped: damage increases to 7-21, attack skill to 26, range extends to 2 tiles
+    * Visual indicator: plays "pump" extra animation, shows "PUMPING UP!" status
+  * **Ooze Effect**: 33% chance (1 in 3) to apply Ooze buff on attack
+  * **Water Healing**: Heals 1 HP per turn when standing in water and not at full HP
+  * **Camera Shake**: Pumped up attacks cause camera shake (intensity 3, duration 0.2s)
+
+===== Sprite Configuration =====
+  * **Texture**: goo.png
+  * **Dimensions**: 20x14 pixels
+  * **Animations**:
+    - Idle: frames [0, 1], 10 fps, looped
+    - Run: frames [0, 1], 10 fps, looped
+    - Attack: frames [5, 0, 6], 10 fps, not looped
+    - Zap: frames [5, 0, 6], 10 fps, not looped
+    - Die: frames [2, 3, 4], 10 fps, not looped
+    - Pump (extra): frames [0, 1], 20 fps, looped
+  * **Blood Color**: 0xFF000000 (black)
+
+===== Music Configuration =====
+  * **Battle Music**: ost_boss_1_fight
+  * **Fallback Music**: ost_boss_fight
+
+===== Related Buffs =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Ooze.java|Ooze]] - Applied on attack (33% chance)
+
+===== Related Items =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/SkeletonKey.java|SkeletonKey]] - Dropped on death, collected automatically
