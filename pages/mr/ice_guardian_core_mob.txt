@@ -1,20 +1,49 @@
 ====== Ice Guardian Core Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * **Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardianCore.java|IceGuardianCore.java]]
+  * **Inheritance:** Inherits from [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java|Boss]]
+  * **Package:** com.nyrds.pixeldungeon.mobs.icecaves
+  * **Registration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L236|MobFactory.java:236]]
+
+===== Stats (from Java code) =====
+  * **HP:** 1000 (ht(1000))
+  * **Experience for Kill:** 5
+  * **Base Defense Skill:** 10
+  * **Base Attack Skill:** 26
+  * **Damage:** 13-23 (dmgMin-dmgMax)
+  * **Defense Rating:** 11
+  * **Base Speed:** 0.5f (slower than normal)
+
+===== Immunities (from Java code) =====
+  * Paralysis
+  * ToxicGas
+  * Terror
+  * Death (enchantment)
+  * Amok
+  * Blindness
+  * Sleep
+
+===== Drops (from Java code) =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/icecaves/WandOfIcebolt.java|WandOfIcebolt]] (upgraded)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/SkeletonKey.java|SkeletonKey]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/icecaves/IceKey.java|IceKey]]
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/ice_guardian_core.json
+This entity is implemented purely in Java, no JSON configuration found.
 
 ===== String Resources =====
 <code xml>
-<string name="IceGuardianCore_Name">[Name]</string>
-<string name="IceGuardianCore_Info">[Description]</string>
+<string name="IceGuardianCore_Name">ice guardian</string>
+<string name="IceGuardianCore_Name_Objective">ice guardian</string>
+<string name="IceGuardianCore_Desc">Ice guardians were manufactured by ancient kobolds to protect their caves. Power stored within it's core allows Ice guardian to reconstruct itself as long it has enough energy.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Additional References =====
+  * **Related Mob:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardian.java|IceGuardian.java]] - IceGuardianCore spawns IceGuardian mobs
+  * **Death Behavior:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardianCore.java#L48-L56|IceGuardianCore.die()]] - kills all IceGuardian mobs on death
+  * **Badge:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.Badge.ICE_GUARDIAN_SLAIN]] - validates boss slain badge
+  * **Sprite:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/IceGuardianCore.json|IceGuardianCore.json (sprite)]]

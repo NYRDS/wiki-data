@@ -2,8 +2,22 @@
 
 ===== Java Classes =====
   * **Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DarkGold.java|DarkGold.java]]
-  * **Inheritance:** Inherits from [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]]
-  * **Sprite:** Uses [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L15|ItemSpriteSheet.ORE]] as sprite
+  * **Inheritance:** Inherits from [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item]]
+  * **Package:** com.watabou.pixeldungeon.items.quest
+  * **Sprite:** Uses [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L15|ItemSpriteSheet.ORE]]
+
+===== Item Properties (from Java code) =====
+  * **Stackable:** Yes (stackable = true)
+  * **Upgradable:** No (isUpgradable() returns false)
+  * **Identified:** Always identified (isIdentified() returns true)
+  * **Price:** Equals quantity (price() returns quantity())
+  * **Category:** Quest item
+
+===== Special Behavior (from Java code) =====
+  * **Melting:** Dark gold melts when dropped or thrown on the surface (Dungeon.depth <= 0)
+  * **Drop Behavior:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DarkGold.java#L37-L46|DarkGold.doDrop()]] - melts on surface, drops normally in dungeon
+  * **Throw Behavior:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DarkGold.java#L48-L56|DarkGold.onThrow()]] - melts on surface, throws normally in dungeon
+  * **Melt Effect:** Plays SND_PUFF sound and creates splash effect (color: 0xa38d1c)
 
 ===== JSON Configuration =====
 This item is implemented purely in Java, no JSON configuration found.
@@ -19,6 +33,5 @@ This entity is implemented in Java, no Lua script exists
 
 ===== Additional References =====
   * **Blacksmith Quest:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Blacksmith.java#L84|Blacksmith.java]] - used in blacksmith quest requiring 15 dark gold
-  * **Dropping Behavior:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DarkGold.java#L33-L42|DarkGold.doDrop()]] - melts when dropped on surface
-  * **Throwing Behavior:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DarkGold.java#L44-L52|DarkGold.onThrow()]] - melts when thrown on surface
   * **Mining:** Found in caves and can be mined with [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/quest/Pickaxe.java|Pickaxe]]
+  * **Sprite Configuration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Ore.json|Ore.json (sprite)]]
