@@ -2,6 +2,11 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/Candy.java|com.nyrds.pixeldungeon.items.food.Candy]]
+  * **Package:** com.nyrds.pixeldungeon.items.food
+  * **Extends:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|com.watabou.pixeldungeon.items.food.Food]]
+  * **Image:** items/artifacts.png (frame 21)
+  * **Price:** 20 gold per unit
+  * **Action:** Eat (CommonActions.AC_EAT)
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -17,6 +22,14 @@ This entity is implemented in Java, no JSON configuration exists
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Behavior =====
+  * **Consumption:** When eaten, displays warning message (Candy_Warning_1)
+  * **Hunger:** Does not satisfy hunger (unlike regular food)
+  * **Visual Effect:** Shows FOOD spell sprite when consumed
+  * **Sound:** Plays SND_EAT sound effect
+  * **Time to Eat:** Uses Food.TIME_TO_EAT constant
+
 ===== Related mr Entities =====
-  * [[mr:scarecrow_npc|Scarecrow NPC]]
-  * [[mr:pumpkin_pie_item|Pumpkin Pie (Item)]]
+  * [[mr:scarecrow_npc|Scarecrow NPC]] - Quest giver related to candy
+  * [[mr:pumpkin_pie_item|Pumpkin Pie (Item)]] - Similar food item
+  * [[mr:food_item|Food Item]] - Base food category
