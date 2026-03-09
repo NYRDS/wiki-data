@@ -1,7 +1,9 @@
 ====== Wand Of Teleportation Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfTeleportation.java|WandOfTeleportation.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfTeleportation.java|WandOfTeleportation.java]] - Main wand implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L322|ItemFactory.java#L322]] - Item class registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/chaos/ChaosStaff.java#L98|ChaosStaff.java#L98]] - Used by ChaosStaff for teleportation effect
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -17,8 +19,26 @@ This entity is implemented in Java, no JSON configuration exists
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Implementation Details =====
+  * **Class**: com.watabou.pixeldungeon.items.wands.WandOfTeleportation
+  * **Parent Class**: Wand
+  * **Key Methods**:
+    - teleport(Char ch, Char caster) - Static method to teleport a character to a random respawn cell
+    - onZap(int cell, Char ch) - Handles wand activation on target
+    - fx(int cell, Callback callback) - Visual and audio effects (cold light magic missile, SND_ZAP sound)
+  * **Behavior**:
+    - When used on self: Teleports the caster to a random location
+    - When used on movable non-boss mobs: Teleports the target to a random respawn cell
+    - When used on bosses or immovable targets: Has no effect ("nothing happened")
+  * **Visual Effects**: MagicMissile.coldLight animation
+  * **Sound**: Assets.SND_ZAP
+
 ===== Related mr Entities =====
   * [[mr:wand_of_avalanche_item|Wand of Avalanche]]
   * [[mr:wand_of_disintegration_item|Wand of Disintegration]]
   * [[mr:wand_of_lightning_item|Wand of Lightning]]
   * [[mr:wand_of_magic_missile_item|Wand of Magic Missile]]
+  * [[mr:wand_of_frost_item|Wand of Frost]]
+  * [[mr:wand_of_poison_item|Wand of Poison]]
+  * [[mr:wand_of_icebolt_item|Wand of Icebolt]]
+  * [[mr:wand_of_firebolt_item|Wand of Firebolt]]
