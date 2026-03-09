@@ -1,10 +1,36 @@
 ====== bellanpc_mob - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/BellaNPC.java|BellaNPC.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/BellaNPC.java|BellaNPC.java]] - Main NPC class that extends ImmortalNPC
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Registers BellaNPC class for mob spawning
+
+===== Class Implementation =====
+<code java>
+package com.nyrds.pixeldungeon.mobs.npc;
+
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.scenes.GameScene;
+import com.watabou.pixeldungeon.windows.WndQuest;
+
+public class BellaNPC extends ImmortalNPC {
+
+	public BellaNPC() {
+	}
+
+	@Override
+	public boolean interact(final Char hero) {
+		getSprite().turnTo( getPos(), hero.getPos() );
+
+        GameScene.show(new WndQuest(this, StringsManager.getVar(R.string.BellaNPC_Message)));
+		return true;
+	}
+}
+</code>
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/BellaNPC.json|BellaNPC.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/BellaNPC.json|BellaNPC.json]] - Sprite configuration
 
 ===== String Resources =====
 <code xml>
@@ -23,5 +49,22 @@
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
-===== Additional References =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - registers BellaNPC class
+===== Entity Kind =====
+  * **Entity Kind:** BellaNPC (returned by getEntityKind() method)
+  * **Base Class:** ImmortalNPC
+  * **Mob Type:** NPC (Non-player character)
+
+===== Behavior =====
+  * **Interaction:** When player interacts, Bella turns to face the hero and displays a quest window with her standard message
+  * **Gender:** Feminine (affects dialogue variations with amulet)
+  * **Quest Role:** Part of the end-game content involving the amulet of yendor
+  * **Personality:** Posh, condescending attitude toward the player ("plebs")
+
+===== Registration =====
+  * Registered in MobFactory.java at line 246: `registerMobClass(BellaNPC.class);`
+  * Available for spawning through the mob factory system
+
+===== Related NPCs =====
+  * [[mr:immortal_npc|ImmortalNPC]] - Base class
+  * [[mr:npc|NPC]] - General NPC information
+  * [[mr:townsfolk_npc_mob|TownsfolkNPC]] - Similar town NPC type
