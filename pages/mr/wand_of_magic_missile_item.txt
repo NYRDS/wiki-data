@@ -1,20 +1,79 @@
 ====== Wand Of Magic Missile Item - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+==== Java Classes ====
+This entity is implemented in Java:
+  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfMagicMissile.java
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/wand_of_magic_missile.json
+<code java>
+// WandOfMagicMissile.java - Main class implementation
+package com.watabou.pixeldungeon.items.wands;
 
-===== String Resources =====
-<code xml>
-<string name="WandOfMagicMissile_Name">[Name]</string>
-<string name="WandOfMagicMissile_Info">[Description]</string>
+public class WandOfMagicMissile extends SimpleWand  {
+	public static final String AC_DISENCHANT    = "WandOfMagicMissile_ACDisenchant";
+	
+	{
+		image = ItemSpriteSheet.WAND_MAGIC_MISSILE;
+	}
+	
+	@Override
+	protected void onZap( int cell, Char ch ) {
+		if (ch != null) {
+			int level = effectiveLevel();
+			ch.damage( Random.Int( 1, 6 + level * 2 ), this );
+		}
+	}
+}
 </code>
 
-===== Lua Scripts =====
+==== JSON Configuration ====
+This entity is referenced in JSON configuration files:
+  * RemixedDungeon/src/main/assets/hero/initHeroes.json - Starting equipment for Mage class
+  * RemixedDungeon/src/main/assets/hero/initHeroesDebug.json - Debug starting equipment
+  * RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json - Spawn configuration
+  * RemixedDungeon/src/main/assets/levelsDesc/Treasury.json - Spawn configuration
+
+<code json>
+// initHeroes.json - Mage starting equipment
+{
+    "kind": "WandOfMagicMissile",
+    "level": 0
+}
+</code>
+
+==== String Resources ====
+<code xml>
+<!-- English strings (values/strings_all.xml) -->
+<string name="WandOfMagicMissile_Name">Wand of Magic Missile</string>
+<string name="WandOfMagicMissile_Info">This wand of common magic missile shoots bolts of pure magical energy. Right click to disenchant and transfer its energy to another wand.</string>
+<string name="WandOfMagicMissile_Info1">Killed by your own wand...</string>
+<string name="WandOfMagicMissile_SelectWand">Select a wand to enchant</string>
+<string name="WandOfMagicMissile_Desinchanted">%s is disenchanted!</string>
+<string name="WandOfMagicMissile_ACDisenchant">Disenchant</string>
+</code>
+
+==== Lua Scripts ====
 This entity is implemented in Java, no Lua script exists
+
+==== Entity Registration ====
+The WandOfMagicMissile class is registered in the item factory:
+  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java
+
+<code java>
+// ItemFactory.java - Item registration
+import com.watabou.pixeldungeon.items.wands.WandOfMagicMissile;
+
+registerItemClass(WandOfMagicMissile.class);
+</code>
+
+==== Game Mechanics ====
+  * **Type**: Wand (SimpleWand subclass)
+  * **Damage**: Random.Int(1, 6 + level * 2) - scales with wand level
+  * **Special Ability**: Disenchant - transfers energy to another wand
+  * **Known Status**: Always known (isKnown() returns true)
+  * **Image**: ItemSpriteSheet.WAND_MAGIC_MISSILE
+
+==== Related Entities ====
+  * Parent class: SimpleWand
+  * Parent class: Wand
+  * Used by: Mage class (starting equipment)
+  * Related item: ScrollOfUpgrade (alternative upgrade method)
