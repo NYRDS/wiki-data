@@ -1,32 +1,54 @@
 ====== Black Cat Mob - Code References ======
 
+**Entity Kind**: `BlackCat`
+
+**Entity Type**: Mob (NPC - Neutral/Friendly)
+
+**Description**: Black Cat is a friendly, immortal NPC mob that appears in fortune shops and special levels. It has passive AI behavior and cannot be killed.
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/CustomMob.java|CustomMob.java]] - Base class for JSON-defined mobs like Black Cat
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Base mob class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Base character class
 
 ===== JSON Configuration =====
+Black Cat is defined in JSON configuration at `RemixedDungeon/src/main/assets/mobsDesc/BlackCat.json`:
+
 <code json>
 {
-  "entityKind": "BlackCat",
-  "HP": "1",
-  "attackSkill": "2",
-  "damage": "1",
-  "defenceSkill": "2",
-  "dmgReduction": "0",
-  "exp": "0",
-  "maxLvl": "1",
-  "mobClass": "NPC",
-  "loot": "nothing",
-  "lootChance": "0.0",
-  "aggressive": "false",
-  "friendly": "true",
-  "flying": "false",
-  "immunities": [],
-  "spriteDesc": "spritesDesc/BlackCat.json",
-  "scriptFile": "scripts/npc/BlackCat"
+   "defenseSkill": 3,
+   "attackSkill": 8,
+   "exp": 2,
+   "maxLvl": 4,
+   "dmgMin": 1,
+   "dmgMax": 4,
+   "dr": 1,
+   "attackDelay": 1,
+   "ht": 10,
+   "baseSpeed": 1,
+   "spriteDesc": "spritesDesc/BlackCat.json",
+   "scriptFile": "scripts/npc/BlackCat",
+   "aiState": "Passive",
+   "fraction": "NEUTRAL",
+   "friendly": true,
+   "immortal": true
 }
 </code>
 
+**Configuration Notes**:
+  * `friendly: true` - Cannot be targeted by player attacks
+  * `immortal: true` - Cannot be killed
+  * `aiState: "Passive"` - Passive AI behavior, wanders randomly
+  * `fraction: "NEUTRAL"` - Neutral faction, doesn't attack other mobs
+  * `ht: 10` - Has 10 hit points (but cannot die due to immortal flag)
+
+**Level Spawns**: Black Cat appears in fortune-related levels:
+  * `levelsDesc/Fortune_2021_03.json`
+  * `levelsDesc/FortuneShop.json`
+  * `levelsDesc/Fortune.json`
+
 ===== String Resources =====
+**English** (`values/strings_all.xml`):
 <code xml>
 <string name="BlackCat_Name">Black cat</string>
 <string name="BlackCat_Gender">feminine</string>
@@ -38,6 +60,7 @@
 <string name="BlackCat_Phrases_2">Meow!</string>
 </code>
 
+**Russian** (`values-ru/strings_all.xml`):
 <code xml>
 <string name="BlackCat_Name">Чёрная кошка</string>
 <string name="BlackCat_Gender">feminine</string>
@@ -49,10 +72,20 @@
 <string name="BlackCat_Phrases_2">Мяу!</string>
 </code>
 
+**Other Languages**: Black Cat is localized in all supported languages including Indonesian, Greek, Spanish, French, German, Portuguese, Italian, Japanese, Korean, Chinese, Polish, Ukrainian, Hungarian, Turkish, and Malay.
+
 ===== Lua Scripts =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/BlackCat.lua|BlackCat.lua]] - NPC behavior script
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/ai/BlackCat.lua|BlackCat AI]] - Behavior patterns and food seeking
 
+**Script Behavior**: The Black Cat Lua script implements:
+  * Passive wandering behavior
+  * Random meowing phrases
+  * Food-seeking behavior (attracted to food items)
+  * Special interaction when player offers food
+
 ===== Related mr Entities =====
-  * [[mr:black_cat_npc_mob|Black Cat NPC (Mob)]]
-  * [[mr:npc|NPC (Base Class)]]
+  * [[mr:npc|NPC (Base Class)]] - NPC behavior base
+  * [[mr:custom_mob|Custom Mob System]] - JSON-defined mob system
+  * [[mr:fortune_shop_level|Fortune Shop Level]] - Level where Black Cat spawns
+  * [[mr:mob_ai|Mob AI System]] - AI state machine

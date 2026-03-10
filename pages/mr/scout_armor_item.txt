@@ -1,20 +1,69 @@
 ====== Scout Armor Item - Code References ======
 
+**Entity Kind**: `ScoutArmor`
+
+**Entity Type**: Item (Armor)
+
+**Description**: Scout Armor is a subclass-specific armor item for the Scout subclass (Elf class mastery path). It extends ElfArmor and can only be equipped by heroes with the Scout subclass.
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScoutArmor.java|ScoutArmor.java]] - Main armor class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ElfArmor.java|ElfArmor.java]] - Parent armor class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass definition (SCOUT enum references "ScoutArmor")
+
+**Key Implementation Details**:
+<code java>
+public class ScoutArmor extends ElfArmor {
+    public ScoutArmor() {
+        name = StringsManager.getVar(R.string.ElfArmor_Name);
+        image = 18;
+        hasHelmet = false;
+    }
+
+    @Override
+    public boolean doEquip(@NotNull Char hero) {
+        if (hero.getSubClass() == HeroSubClass.SCOUT) {
+            return super.doEquip(hero);
+        } else {
+            GLog.w(StringsManager.getVar(R.string.ElfArmor_NotElf));
+            return false;
+        }
+    }
+}
+</code>
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/scout_armor.json
+This armor is not defined in JSON configuration. It is a hardcoded Java item class that is automatically registered through the ItemFactory system.
+
+**Registration in ItemFactory**:
+<code java>
+// From ItemFactory.java
+import com.watabou.pixeldungeon.items.armor.ScoutArmor;
+registerItemClass(ScoutArmor.class);
+</code>
 
 ===== String Resources =====
+ScoutArmor uses the parent class (ElfArmor) string resources:
+
+**English** (`values/strings_all.xml`):
 <code xml>
-<string name="ScoutArmor_Name">[Name]</string>
-<string name="ScoutArmor_Info">[Description]</string>
+<string name="ElfArmor_Name">Scout Armor</string>
+<string name="ElfArmor_Desc">...</string>
+<string name="ElfArmor_NotElf">Only Scouts can wear this armor!</string>
+</code>
+
+**Russian** (`values-ru/strings_all.xml`):
+<code xml>
+<string name="ElfArmor_Name">Броня Разведчика</string>
+<string name="ElfArmor_Desc">...</string>
+<string name="ElfArmor_NotElf">Только Разведчики могут носить эту броню!</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented entirely in Java, no Lua script exists.
+
+===== Related mr Entities =====
+  * [[mr:elf_armor_item|Elf Armor Item]] - Parent armor class
+  * [[mr:scout_subclass|Scout Subclass]] - Required subclass to equip
+  * [[mr:hero_subclass|Hero Subclass System]] - Subclass mechanics
+  * [[mr:armor_item|Armor Item Base]] - Base armor item class
