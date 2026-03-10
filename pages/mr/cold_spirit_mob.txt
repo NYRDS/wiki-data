@@ -1,20 +1,76 @@
 ====== Cold Spirit Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/ColdSpirit.java|ColdSpirit.java]] - Main implementation
+  * Location: `com/nyrds/pixeldungeon/mobs/icecaves/ColdSpirit.java`
+  * Extends: `Mob`
+
+<code java>
+public class ColdSpirit extends Mob {
+    public ColdSpirit(){
+        hp(ht(50));
+        baseSpeed = 1.3f;
+        baseDefenseSkill = 16;
+        baseAttackSkill  = 22;
+        flying = true;
+        expForKill = 8;
+        maxLvl = 20;
+        dmgMin = 12;
+        dmgMax = 15;
+        dr = 22;
+        loot(Gold.class, 0.02f);
+    }
+
+    @Override
+    public int attackProc(@NotNull Char enemy, int damage ) {
+        if (Random.Int( 4 ) == 1) {
+            Freezing.affect( enemy.getPos());
+        }
+        return damage;
+    }
+}
+</code>
+
+===== Stats from Code =====
+  * **HP:** 50
+  * **Base Speed:** 1.3
+  * **Base Defense Skill:** 16
+  * **Base Attack Skill:** 22
+  * **Flying:** true
+  * **EXP for Kill:** 8
+  * **Max Level:** 20
+  * **Damage Min:** 12
+  * **Damage Max:** 15
+  * **Defense Rating:** 22
+  * **Loot:** 2% chance to drop Gold
+
+===== Abilities =====
+  * **Freezing Attack:** 25% chance on attack to apply Freezing effect to enemy position
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/cold_spirit.json
+This entity is implemented in Java, no JSON configuration found.
 
 ===== String Resources =====
 <code xml>
-<string name="ColdSpirit_Name">[Name]</string>
-<string name="ColdSpirit_Info">[Description]</string>
+<string name="ColdSpirit_Name">cold spirit</string>
+<string name="ColdSpirit_Gender">masculine</string>
+<string name="ColdSpirit_Name_Objective">cold spirit</string>
+<string name="ColdSpirit_Desc">The cold spirit is the embodiment of frost, in it's purest form. Being a mindless clot of magical energy, he obeys the will of the mage who called him or instead acts accordingly to basic instincts.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
+
+===== Related Classes =====
+  * `com.watabou.pixeldungeon.actors.blobs.Freezing` - Freezing effect applied on attack
+  * `com.watabou.pixeldungeon.items.Gold` - Potential loot drop
+  * `com.watabou.pixeldungeon.actors.mobs.Mob` - Parent class
+
+===== Localization Files =====
+  * English: `RemixedDungeon/src/main/res/values/strings_all.xml`
+  * Russian: `RemixedDungeon/src/main/res/values-ru/strings_all.xml`
+  * German: `RemixedDungeon/src/main/res/values-de/strings_all.xml`
+  * Japanese: `RemixedDungeon/src/main/res/values-ja/strings_all.xml`
+  * Indonesian: `RemixedDungeon/src/main/res/values-in/strings_all.xml`
+  * Malay: `RemixedDungeon/src/main/res/values-ms/strings_all.xml`
+  * And other localization files
