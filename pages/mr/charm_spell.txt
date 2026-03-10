@@ -1,7 +1,9 @@
 ====== Charm Spell - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charm.java|Charm.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charm.java|Charm.java]] - Buff implementation that handles charm effect
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/Speck.java|Speck.java]] - Heart particle effect (Speck.HEART)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java|BuffIndicator.java]] - Buff icon (BuffIndicator.HEART)
 
 ===== JSON Configuration =====
 This entity is implemented in Lua, no JSON configuration exists
@@ -13,8 +15,25 @@ This entity is implemented in Lua, no JSON configuration exists
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Charm.lua|Charm.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Charm.lua|Charm.lua]] - Spell implementation
+  * Spell affinity: Huntress
+  * Targeting type: char_not_self
+  * Level: 2
+  * Cast time: 0
+  * Spell cost: 3 mana
+
+===== Implementation Details =====
+  * **Buff Type**: FlavourBuff (temporary status effect)
+  * **Effect**: Pacifies target (target.pacified = true)
+  * **Duration**: sqrt(caster.skillLevel * caster.level) + 5 turns
+  * **Visual**: Heart particles (Speck.HEART) emitted from target sprite
+  * **Sound**: Assets.SND_CHARMS played on cast
+  * **Resistance**: Affected by RingOfElements.Resistance
+  * **Special Interaction**: Blocked by DriedRose.OneWayLoveBuff
+  * **Cursed Interaction**: Duration doubled by DriedRose.OneWayCursedLoveBuff
 
 ===== Related mr Entities =====
   * [[mr:charm_buff|Charm (Buff)]]
   * [[mr:succubus_mob|Succubus (Mob)]]
+  * [[mr:dried_rose_item|Dried Rose (Item)]]
+  * [[mr:huntress_armor_item|Huntress Armor (Item)]]
