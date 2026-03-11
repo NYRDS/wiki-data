@@ -1,20 +1,58 @@
 ====== Ring Of Elements Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * **Main Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]]
+  * **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java|Ring.java]]
+  * **Item Registration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (line 304)
+  * **Buff Factory:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] (line 103 - RING_OF_ELEMENTS constant)
+
+===== Inner Classes =====
+  * **Resistance:** Inner class within RingOfElements.java that provides the ring's buff effect
+    * Provides resistance to: Burning, ToxicGas, Poison, LightningTrap.Electricity, Warlock, Eye, BurningFist, LiquidFlame
+    * Uses probabilistic resistance based on ring level (level + 3 chance)
+    * Duration factor formula: (2 + 0.5 * level) / (2 + level) for positive levels
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/ring_of_elements.json
+  * **Treasury Spawns:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json|Treasury.json]] (line 76)
+  * **Spider's Treasury:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json|SpidersTreasury.json]] (line 75)
 
 ===== String Resources =====
-<code xml>
-<string name="RingOfElements_Name">[Name]</string>
-<string name="RingOfElements_Info">[Description]</string>
-</code>
+  * **English:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L50-L51|strings_all.xml]] (RingOfElements_Name, RingOfElements_Info)
+  * **Russian:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1733-L1734|strings_all.xml]] (Кольцо Стихий)
+  * **Spanish:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L1661-L1662|strings_all.xml]] (Anillo Elemental)
+  * **French:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L1719-L1720|strings_all.xml]] (Anneau des éléments)
+  * **German:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L1646-L1647|strings_all.xml]] (Ring der Elemente)
+  * **Portuguese (BR):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L1622-L1623|strings_all.xml]] (Anel dos Elementos)
+  * **Italian:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-it/strings_all.xml#L1485-L1486|strings_all.xml]] (Anello degli Elementi)
+  * **Japanese:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml#L1675-L1676|strings_all.xml]] (元素のリング)
+  * **Korean:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ko/strings_all.xml#L1514-L1515|strings_all.xml]] (원소의 반지)
+  * **Chinese (Simplified):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1648-L1649|strings_all.xml]] (元素戒指)
+  * **Chinese (Traditional):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L1584-L1585|strings_all.xml]] (元素之戒)
+  * **Polish:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pl/strings_all.xml#L1732-L1733|strings_all.xml]] (Pierścień Żywiołów)
+  * **Ukrainian:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-uk/strings_all.xml#L1619-L1620|strings_all.xml]] (Перстень стихій)
+  * **Hungarian:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-hu/strings_all.xml#L1539-L1540|strings_all.xml]] (Az Elemek Gyűrűje)
+  * **Turkish:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-tr/strings_all.xml#L1643-L1644|strings_all.xml]] (Elementler Yüzüğü)
+  * **Greek:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-el/strings_all.xml#L1726-L1727|strings_all.xml]] (δαχτυλίδι των στοιχείων)
+  * **Indonesian:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-in/strings_all.xml#L1618-L1619|strings_all.xml]] (Cincin Elemen)
+  * **Malay:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ms/strings_all.xml#L1526-L1527|strings_all.xml]] (Cincin Unsur)
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Buffs Used By =====
+The Resistance inner class is imported and used by multiple buff classes:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charm.java|Charm.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Weakness.java|Weakness.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]]
+
+===== Game Mechanics =====
+  * **Resistances Provided:** Fire (Burning, LiquidFlame), Poison (ToxicGas, Poison), Electricity (LightningTrap), Dark Magic (Warlock, Eye, BurningFist)
+  * **Resistance Chance:** Random.Int(level + 3) >= 3 (increases with ring level)
+  * **Duration Reduction:** Formula (2 + 0.5 * level) / (2 + level) reduces negative effect duration
+  * **Spawn Locations:** Treasury, Spider's Treasury dungeon levels
