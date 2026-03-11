@@ -1,25 +1,55 @@
 ====== Náusea ======
 
-**Náusea** é um [[pt:rpd:debuff|debuff]] que é aplicado ao consumir [[pt:rpd:rotten_food_item|comida podre]].
+{{ rpd:images:rotten_meat_item.png|Comida Podre }}
+
+**Náusea** é o efeito que ocorre ao consumir [[pt:rpd:rotten_food_item|comida podre]] no Remixed Dungeon.
+
+==== Descrição ====
+Ao consumir comida podre, o personagem exibe uma mensagem de desgosto e libera gases tóxicos na área ao redor.
 
 ==== Efeitos ====
   * Exibe a mensagem "Nojento!" ao consumir comida podre
-  * Reduz a efetividade da cura
+  * Cria um efeito de gás na célula onde foi consumida (aleatoriamente):
+    * [[pt:rpd:confusion_gas|Gás da Confusão]]
+    * [[pt:rpd:paralytic_gas|Gás Paralisante]]
+    * [[pt:rpd:toxic_gas|Gás Tóxico]]
+  * Não aplica um debuff real ao personagem
 
 ==== Obtenção ====
-  * Ao consumir [[pt:rpd:rotten_food_item|Comida Podre]]
+  * Ao consumir [[pt:rpd:rotten_food_item|Comida Podre]] (qualquer tipo)
+  * [[pt:rpd:rotten_meat_item|Carne Podre]]
+  * [[pt:rpd:rotten_ration_item|Ração Podre]]
+  * [[pt:rpd:rotten_fish_item|Peixe Podre]]
+  * [[pt:rpd:rotten_pasty_item|Pastel Podre]]
+  * [[pt:rpd:rotten_pumpkin_pie_item|Torta de Abóbora Podre]]
 
 ==== Mecânica ====
-  * É um efeito de curta duração
-  * A duração depende da profundidade da masmorra
+  * Não é um buff ou debuff real, apenas um efeito instantâneo
+  * Ao comer, libera um dos três tipos de gás aleatoriamente na célula atual
+  * Cada tipo de gás tem duração e efeito diferentes:
+    * Gás da Confusão: 150 + 10 × profundidade da masmorra
+    * Gás Paralisante: 500 unidades
+    * Gás Tóxico: 500 unidades
+  * 25% de chance de não liberar nenhum gás
 
 ==== Estratégia ====
-  * Evite consumir comida podre para não receber este efeito
-  * Use [[pt:rpd:potion_of_purity_item|Poção de Pureza]] para converter comida podre novamente em comestível
+  * Evite consumir comida podre a menos que seja necessário para sobrevivência
+  * Use [[pt:rpd:potion_of_purity_item|Poção de Pureza]] para converter comida podre em comida normal
+  * Use [[pt:rpd:potion_of_levitation_item|Poção de Levitação]] para evitar efeitos de gás
+  * Em situações de emergência, comer comida podre é melhor que morrer de fome, mas esteja preparado para os efeitos do gás
+
+==== Referências de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]] - Implementação base da comida podre
+  * **Recursos de String (Português)**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L1682|RottenFood_Message]] - "nojento!"
 
 ==== Páginas Relacionadas ====
   * [[pt:rpd:rotten_food_item|Comida Podre]] - Item que causa o efeito
-  * [[pt:rpd:potion_of_purity_item|Poção de Pureza]] - Para neutralizar o efeito
-  * [[pt:rpd:buffs|Buffs e Debuffs]] - Informação geral sobre efeitos de status
+  * [[pt:rpd:potion_of_purity_item|Poção de Pureza]] - Para neutralizar comida podre
+  * [[pt:rpd:potion_of_levitation_item|Poção de Levitação]] - Para evitar efeitos de gás
+  * [[pt:rpd:toxic_gas|Gás Tóxico]] - Um dos possíveis efeitos
+  * [[pt:rpd:paralytic_gas|Gás Paralisante]] - Um dos possíveis efeitos
+  * [[pt:rpd:confusion_gas|Gás da Confusão]] - Um dos possíveis efeitos
+  * [[pt:rpd:food_item|Comida]] - Informação geral sobre comida
+  * [[pt:rpd:hunger|Fome]] - Mecânica de fome
 
-{{tag> pt:rpd buffs debuffs nausea status_effect }}
+{{tag> rpd food effects rotten_gas }}
