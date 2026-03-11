@@ -1,26 +1,39 @@
 ====== Pumpkin Pie Item - Code References ======
 
+{{ rpd:images:pumpkin_pie_item.png|Pumpkin Pie }}
+
 ===== Java Classes =====
-  * **Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/PumpkinPie.java|PumpkinPie.java]]
-  * **Inheritance:** Extends [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food]]
-  * **Item Registration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L399|ItemFactory.java#L399]] - registers PumpkinPie class
-  * **Related Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/RottenPumpkinPie.java|RottenPumpkinPie.java]] - rotten variant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/PumpkinPie.java|PumpkinPie.java]]
+    * Entity Kind: ''getEntityKind()'' returns "PumpkinPie"
+    * Inheritance: Extends ''Food'' class
+    * Image: ''imageFile = "items/food.png"'', ''image = 9'' (sprite index in food atlas)
+    * Energy: ''Hunger.STARVING'' - satisfies hunger completely
+    * Price: ''30 * quantity()'' gold
+    * Poison Behavior: ''poison()'' morphs to ''RottenPumpkinPie'' class
+    * Upgradable: No - inherits default behavior from ''Food''
+
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/RottenPumpkinPie.java|RottenPumpkinPie.java]] - Rotten variant
+    * Morphs back to ''PumpkinPie'' when cured
 
 ===== JSON Configuration =====
 This item is implemented purely in Java, no JSON configuration found.
 
 ===== String Resources =====
-<code xml>
-<string name="PumpkinPie_Name">pumpkin pie</string>
-<string name="PumpkinPie_Info">A delicious pumpkin pie, just like your mom used to bake.</string>
-</code>
+  * English: ''PumpkinPie_Name'' = "pumpkin pie"
+  * English: ''PumpkinPie_Info'' = "A delicious pumpkin pie, just like your mom used to bake."
+  * Russian: ''PumpkinPie_Name'' = "тыквенный пирог"
+  * Russian: ''PumpkinPie_Info'' = "Вкусный тыквенный пирог, прямо как у твоей мамы."
+  * English: ''RottenPumpkinPie_Name'' = "rotten pumpkin pie"
+  * English: ''RottenPumpkinPie_Info'' = "No matter how good it was when it was still fresh, there is no way this thing is edible now."
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists.
 
 ===== Additional References =====
-  * **Used by NPC:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ScarecrowNPC.java#L44|ScarecrowNPC.java#L44]] - gives PumpkinPie as reward
-  * **Treasury Configs:**
+  * Item Registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L400|ItemFactory.java#L400]] - Registers PumpkinPie class
+  * Item Registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L401|ItemFactory.java#L401]] - Registers RottenPumpkinPie class
+  * NPC Reward: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ScarecrowNPC.java#L44|ScarecrowNPC.java#L44]] - Gives PumpkinPie as reward
+  * Treasury Configs:
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/TownShopTreasury.json#L8|TownShopTreasury.json#L8]]
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L38|Treasury.json#L38]]
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L38|SpidersTreasury.json#L38]]

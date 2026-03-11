@@ -1,20 +1,35 @@
 ====== Gases Immunity Buff - Code References ======
 
+{{ rpd:images:gases_immunity_buff.png|Gases Immunity }}
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+This entity is primarily implemented in Lua. Java reference:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L77|BuffFactory.java#L77]] - Defines constant ''GASES_IMMUNITY = "GasesImmunity"''
+  * Buff system uses Lua scripting for behavior definition
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/gases_immunity.json
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/gases_immunity.json|spritesDesc/gases_immunity.json]] - Sprite configuration (if exists)
+  * Buff configuration is handled via Lua script
 
 ===== String Resources =====
-<code xml>
-<string name="GasesImmunity_Name">[Name]</string>
-<string name="GasesImmunity_Info">[Description]</string>
-</code>
+  * English: ''GasImmuneBuff_Name'' = "Gas Immunity"
+  * English: ''GasImmuneBuff_Info'' = "Immune to all gases."
+  * Note: Actual display name and description are defined by these string resources
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/GasesImmunity.lua|GasesImmunity.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/buffs/GasesImmunity.lua|scripts/buffs/GasesImmunity.lua]]
+    * Immunities: Provides immunity to ''ToxicGas'', ''Paralysis'', and ''Vertigo'' buffs
+    * Icon: Uses icon index 25
+    * Name Key: ''GasImmuneBuff_Name''
+    * Info Key: ''GasImmuneBuff_Info''
+    * Implementation: Uses ''immunities()'' function to return gas buff names
+
+===== Additional References =====
+  * Base Buff System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
+  * Buff Factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] - Registers and creates buffs
+  * Lua Buff Library: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/lib/buff.lua|scripts/lib/buff.lua]] - Base buff functionality for Lua scripts
+
+===== Entity Kind =====
+  * **getEntityKind():** Returns "GasesImmunity" from Lua script configuration
+  * **Buff Category:** Positive buff / Immunity buff
+  * **Duration:** Temporary buff with timed duration

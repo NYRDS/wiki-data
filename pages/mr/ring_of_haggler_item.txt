@@ -1,28 +1,34 @@
 ====== Ring Of Haggler Item - Code References ======
 
+{{ rpd:images:ring_of_haggler_item.png|Ring of Haggler }}
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfHaggler.java|RingOfHaggler.java]]
     * Entity Kind: ''getEntityKind()'' returns "RingOfHaggler"
-    * Buff Class: ''buff()'' method returns ''Haggling()'' buff
-    * Pickup Behavior: ''doPickUp()'' validates RingOfHaggler badge
+    * Buff Class: ''buff()'' method returns ''Haggling'' buff (inner class ''RingOfHaggler.Haggling'')
+    * Pickup Behavior: ''doPickUp()'' validates RingOfHaggler badge via ''Badges.validateRingOfHaggler()''
     * Upgradable: No - ''isUpgradable()'' returns false
     * Random Generation: ''random()'' sets level to +1
     * Description: Uses string resource ''RingOfHaggler_Info'' when known
+    * Image: ''imageFile'' and ''image'' inherited from parent ''Ring'' class
+    * Price: Inherited from ''Ring'' class
 
 ===== JSON Configuration =====
   * Not applicable - Ring is implemented in Java code
 
 ===== String Resources =====
-<code xml>
-<string name="RingOfHaggler_Name">Ring of Haggler</string>
-<string name="RingOfHaggler_Info">In fact this ring doesn't provide any magic effect, but it demonstrates to shopkeepers and vendors, that the owner of the ring is a member of The Thieves' Guild. Usually they are glad to give a discount in exchange for temporary immunity guarantee. Upgrading this ring won't give any additional bonuses.</string>
-</code>
+  * English: ''RingOfHaggler_Name'' = "Ring of Haggler"
+  * English: ''RingOfHaggler_Info'' = "In fact this ring doesn't provide any magic effect, but it demonstrates to shopkeepers and vendors, that the owner of the ring is a member of The Thieves' Guild. Usually they are glad to give a discount in exchange for temporary immunity guarantee. Upgrading this ring won't give any additional bonuses."
+  * Russian: ''RingOfHaggler_Name'' = "Кольцо Торгаша"
+  * Russian: ''RingOfHaggler_Info'' = "Это кольцо не имеет волшебных эффектов, но торговцы и дельцы в курсе, что его может носить лишь член Гильдии Воров. Как правило, они готовы предложить скидку, чтобы избежать проблем. Улучшение этого кольца не принесёт дополнительных бонусов."
 
 ===== Lua Scripts =====
   * Not applicable - Ring is implemented in Java, no custom Lua script
 
 ===== Additional References =====
   * Parent Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java|Ring.java]] - Base ring class
-  * Item Registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java]] - Registers RingOfHaggler class
-  * Badge Validation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java]] - Badges.validateRingOfHaggler()
-  * Shop Interaction: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndTradeItem.java]] - Used in merchant interactions
+  * Item Registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L303|ItemFactory.java#L303]] - Registers RingOfHaggler class
+  * Badge Validation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] - ''Badges.validateRingOfHaggler()''
+  * Shop Interaction (Priest): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndPriest.java#L94|WndPriest.java#L94]] - Checks for ''Haggling'' buff
+  * Shop Interaction (Fortune Teller): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndFortuneTeller.java#L28|WndFortuneTeller.java#L28]] - Checks for ''Haggling'' buff
+  * Buff Class: Inner class ''RingOfHaggler.Haggling'' extends ''RingBuff''
