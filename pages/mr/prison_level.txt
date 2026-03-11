@@ -1,13 +1,55 @@
 ====== Prison Level - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/PrisonLevel.java|PrisonLevel.java]] - Main implementation
-  * Parent class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Patch.java|Patch.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/PrisonLevel.java|PrisonLevel.java]] - Main level implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/RegularLevel.java|RegularLevel.java]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Patch.java|Patch.java]] - Utility class for terrain generation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/NecroExitPainter.java|NecroExitPainter.java]] - Special exit room painter for depth 7
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Prison.json|levelsDesc/Prison.json]] - Level configuration
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|levelsDesc/Bestiary.json]] - Monster spawn configuration for this level
+This level is implemented primarily in Java. Configuration references:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|levelsDesc/Bestiary.json]] - Monster spawn configuration for PrisonLevel (depths 6-9)
+    - Depth 6: Skeleton (4), Thief (2), Swarm (1), Shaman (0.2), Bandit (0.06)
+    - Depth 7: Skeleton (3), Thief (1), Swarm (1), Shaman (1), Shadow (1), Bandit (0.03)
+    - Depth 8: Skeleton (3), Shaman (2), Thief (1), Swarm (1), Shadow (1), Bat (0.02), Bandit (0.03)
+    - Depth 9: Skeleton (3), Shaman (3), Thief (1), Swarm (1), Shadow (1), Bat (0.02), Brute (0.01), Bandit (0.03)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|levelsDesc/Bestiary.json]] - Boss configuration: PrisonBossLevel spawns Tengu
+
+===== String Resources =====
+<code xml>
+<string name="Prison_TileWater">Dark cold water.</string>
+<string name="Prison_TileDescDeco">There are old blood stains on the floor.</string>
+<string name="Prison_TileDescBookshelf">This is probably a vestige of a prison library. Might it burn?</string>
+</code>
+
+===== Lua Scripts =====
+This level is implemented in Java, no Lua scripts exist
+
+===== Implementation Details =====
+  * **Class**: com.watabou.pixeldungeon.levels.PrisonLevel
+  * **Extends**: RegularLevel
+  * **Depths**: 6-9 (regular), PrisonBossLevel (boss)
+  * **Tile Colors**: color1=0x6a723d, color2=0x88924c
+  * **Texture**: Assets.TILES_PRISON_XYZ, Assets.TILES_PRISON, Assets.TILES_PRISON_X
+  * **Water Texture**: Assets.WATER_PRISON
+  * **Special Features**:
+    - WandMaker NPC quest spawns in entrance room
+    - NecromancerNPC spawns at depth 7 exit if hero is not Necromancer class
+    - Depth 7 exit uses NecroExitPainter for special decoration
+    - Wall torches added on WALL_DECO tiles
+    - Barrels placed randomly (0-4)
+  * **Terrain Generation**:
+    - Water patches: 45% base, 65% with WATER feeling
+    - Grass patches: 40% base, 60% with GRASS feeling
+    - Empty floor decorations (EMPTY_DECO) placed based on wall adjacency
+  * **Room Types**: All TUNNEL rooms converted to PASSAGE
+
+===== Mob Drops =====
+  * PrisonBossLevel: Tengu (boss drop)
 
 ===== Related mr Entities =====
   * [[mr:tengu_mob|Tengu Mob]]
-  * [[mr:prison_level|Prison Level]]
+  * [[mr:wandmaker_npc|Wandmaker NPC]]
+  * [[mr:necromancer_npc|Necromancer NPC]]
+  * [[mr:sewers_level|Sewers Level]]
+  * [[mr:caves_level|Caves Level]]
