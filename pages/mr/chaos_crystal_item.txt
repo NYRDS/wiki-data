@@ -2,8 +2,28 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCrystal.java|ChaosCrystal.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/UsableArtifact.java|UsableArtifact.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/UsableArtifact.java|UsableArtifact.java]] (parent class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] (base class)
+
+===== Implementation Details =====
+  * Package: `com.nyrds.pixeldungeon.items.chaos`
+  * Extends: `UsableArtifact`
+  * Image: `items/artifacts.png` (index 9)
+  * Fuse duration: `TIME_TO_FUSE = 10`
+  * Use duration: `TIME_TO_USE = 1`
+  * Charge mechanism: Increases by 1 when owner takes damage (max 100)
+  * Identify levels: 3 levels (0=unknown, 1=Chaotic Crystal, 2=Chaos Crystal)
+  * Actions: `AC_USE` (set Chaos Mark), `AC_FUSE` (fuse with items)
+  * Fuse requirements: charge >= 50 and identifyLevel > 1
+  * Glow effect: Random color glow when unidentified
+
+===== Fuse Transformations =====
+  * Scroll → ScrollOfWeaponUpgrade
+  * Bow → ChaosBow
+  * MeleeWeapon → ChaosSword
+  * Armor → ChaosArmor
+  * Wand → ChaosStaff
+  * Shield → ChaosShield (via ItemFactory)
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
