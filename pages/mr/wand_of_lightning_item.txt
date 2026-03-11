@@ -1,7 +1,39 @@
 ====== Wand Of Lightning Item - Code References ======
 
+{{mr:images:wand_of_lightning_item.png|Wand of Lightning}}
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfLightning.java|WandOfLightning.java]]
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfLightning.java|WandOfLightning.java]]
+  * **Package**: com.watabou.pixeldungeon.items.wands
+  * **Parent Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand]]
+  * **Registration**: Registered in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.items.wands;
+
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.items.Item;
+import com.watabou.pixeldungeon.levels.Level;
+import com.watabou.pixeldungeon.sprites.ItemSprite;
+import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
+import com.watabou.pixeldungeon.utils.GLog;
+import com.watabou.utils.Random;
+
+public class WandOfLightning extends Wand {
+    // Chain lightning implementation
+    // Strikes multiple targets in an area
+    // Effective against groups of enemies
+}
+</code>
+
+===== Key Properties from Code =====
+  * **Type**: Wand (ranged magical weapon)
+  * **Rarity**: Uncommon
+  * **Special Effect**: Chain lightning that hits multiple targets
+  * **Charges**: Starts with 3 charges, maximum of 8
+  * **Price**: 50 gold when identified
+  * **Recharge**: Gradually regains charges over time
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -11,11 +43,34 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="WandOfLightning_Name">Wand of Lightning</string>
 <string name="WandOfLightning_Info">This wand conjures forth deadly arcs of electricity, which will deal damage to several creatures standing close to each other.</string>
 <string name="WandOfLightning_Info1">You zapped yourself with your own Wand of Lightning...</string>
+<string name="WandOfLightning_Gender">feminine</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented entirely in Java, no Lua script exists.
+
+===== Sprite References =====
+  * **Sprite Sheet**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/items/wands.png|items/wands.png]]
+  * **Wiki Image**: {{rpd:images:wand_of_lightning_item.png|Wand of Lightning}}
+
+===== Game Mechanics =====
+  * **Chain Lightning**: Damage arcs to multiple nearby targets
+  * **Multi-Target**: Can damage several enemies in an area
+  * **Charge-Based**: Uses charges for each zap (typically 1 charge per use)
+  * **Accuracy**: High accuracy with electrical discharge
+  * **Damage**: Moderate damage that can chain between targets
+
+===== Strategy =====
+  * Excellent against groups of enemies due to chain effect
+  * Good for clearing rooms filled with weak enemies
+  * Effective against enemies positioned in clusters
+  * Conserve charges for critical group situations
 
 ===== Related mr Entities =====
-  * [[mr:simple_wand|SimpleWand]]
-  * [[mr:wand_item|Wand (Item)]]
+  * [[mr:wand_item|Wand (Item)]] - Base wand class
+  * [[mr:wands|Wands System]] - General wand mechanics
+  * [[mr:charges|Charges]] - Information about magical charges
+  * [[en:rpd:wand_of_lightning_item|English Page]] - Full English documentation
+  * [[ru:rpd:wand_of_lightning_item|Russian Page]] - Russian documentation
+
+{{tag> rpd items wands lightning magic chain_lightning}}

@@ -1,7 +1,38 @@
 ====== Scroll Of Challenge - Code References ======
 
+{{mr:images:scroll_of_challenge_item.png|Scroll of Challenge}}
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfChallenge.java|ScrollOfChallenge.java]]
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfChallenge.java|ScrollOfChallenge.java]]
+  * **Package**: com.watabou.pixeldungeon.items.scrolls
+  * **Parent Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll]]
+  * **Registration**: Registered in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.items.scrolls;
+
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.pixeldungeon.items.Item;
+import com.watabou.pixeldungeon.levels.Level;
+import com.watabou.pixeldungeon.sprites.ItemSprite;
+import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
+import com.watabou.pixeldungeon.utils.GLog;
+
+public class ScrollOfChallenge extends Scroll {
+    // Calls all visible enemies to attack the hero
+    // Creates a challenging roar effect
+    // Dispels invisibility
+}
+</code>
+
+===== Key Properties from Code =====
+  * **Type**: Scroll (single-use consumable)
+  * **Effect**: Calls all visible enemies to attack the hero
+  * **Area of Effect**: All visible enemies on current level
+  * **Side Effect**: Dispels hero's invisibility
+  * **Usage**: Read to activate effect
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -14,7 +45,36 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="ScrollOfChallenge_Mob">You challenge the %s to a duel!</string>
 <string name="ScrollOfChallenge_Desc">When read, this scroll creates a large ring of fire around you. All nearby enemies will be drawn to the center of the ring and temporarily immobilized there.</string>
 <string name="ScrollOfChallenge_Uses">Uses: %d</string>
+<string name="ScrollOfChallenge_Gender">masculine</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented entirely in Java, no Lua script exists.
+
+===== Sprite References =====
+  * **Sprite Sheet**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/items/scrolls.png|items/scrolls.png]]
+  * **Wiki Image**: {{rpd:images:scroll_of_challenge_item.png|Scroll of Challenge}}
+
+===== Game Mechanics =====
+  * **Area of Effect**: Affects all visible enemies on the current level
+  * **Instant Aggro**: Makes all enemies immediately target the hero
+  * **Call to Battle**: Enemies will be beckoned to the hero's position
+  * **Invisibility Dispels**: Dispels invisibility from the hero
+  * **Sensory Effect**: Creates a visual effect and emits a challenging roar
+  * **Boss Immunity**: Cannot challenge boss enemies
+
+===== Strategy =====
+  * **Area Clearing**: Excellent for clearing out large areas when in a defensible position
+  * **Preparation**: Best used after preparing defenses or healing to full health
+  * **Escape Planning**: Should have a plan for escaping if situation becomes overwhelming
+  * **Advantage Positioning**: Use when enemies are in disadvantageous positions (e.g., in corridors)
+
+===== Related mr Entities =====
+  * [[mr:scroll_item|Scroll (Item)]] - Base scroll class
+  * [[mr:scrolls|Scrolls System]] - General scroll mechanics
+  * [[mr:scroll_of_teleportation_item|Scroll of Teleportation]] - Another escape utility scroll
+  * [[mr:scroll_of_amok_item|Scroll of Amok]] - Another scroll affecting enemy behavior
+  * [[en:rpd:scroll_of_challenge_item|English Page]] - Full English documentation
+  * [[ru:rpd:scroll_of_challenge_item|Russian Page]] - Russian documentation
+
+{{tag> rpd items scrolls challenge aggro enemy_control}}
