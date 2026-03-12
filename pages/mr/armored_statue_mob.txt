@@ -1,20 +1,48 @@
 ====== Armored Statue Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/ArmoredStatue.java|ArmoredStatue.java]] - Main mob implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Statue.java|Statue.java]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Mob registration (line 216, 274)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/armored_statue.json
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/ArmoredStatue.json|spritesDesc/ArmoredStatue.json]] - Sprite configuration
+  * This mob is implemented primarily in Java, no separate mobsDesc JSON file
 
 ===== String Resources =====
 <code xml>
-<string name="ArmoredStatue_Name">[Name]</string>
-<string name="ArmoredStatue_Info">[Description]</string>
+<string name="ArmoredStatue_Name">animated statue</string>
+<string name="ArmoredStatue_Gender">feminine</string>
+<string name="ArmoredStatue_Name_Objective">animated statue</string>
+<string name="ArmoredStatue_Desc">No one could even start thinking that it\'s just another regular statue. It\'s not just the red glowing eyes, but the fact that nobody would put an actual _%s_ on such thing.</string>
+</code>
+
+Russian localization (values-ru/strings_all.xml):
+<code xml>
+<string name="ArmoredStatue_Name">ожившая статуя</string>
+<string name="ArmoredStatue_Gender">feminine</string>
+<string name="ArmoredStatue_Name_Objective">статую</string>
+<string name="ArmoredStatue_Desc">Вряд ли кому-то могло показаться что это очередная обычная статуя. И дело не столько в светящихся красных глазах, но в факте того что никто, в здравом уме, не стал бы одевать статую в _%s_.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This mob is implemented in Java, no Lua scripts exist
+
+===== Implementation Details =====
+  * **Class**: com.nyrds.pixeldungeon.mobs.common.ArmoredStatue
+  * **Extends**: Statue (which extends Mob)
+  * **Damage**: 4-8 (base)
+  * **Defense Skill**: 4 + Dungeon.depth*2
+  * **Attack Skill**: (9 + Dungeon.depth) * 2
+  * **Special Features**:
+    - Drops equipped armor when defeated
+    - Armor is randomly selected from Treasury.Category.ARMOR
+    - Dropped armor is always identified and has positive level
+    - Armor can have random glyph inscription
+    - Required STR scales with armor level (minimum 12)
+  * **Challenge Interaction**: Disabled in NO_ARMOR challenge (MobFactory.java line 274)
+  * **Behavior**: Inherits Statue behavior (beacon/beckon mechanics)
+
+===== Related mr Entities =====
+  * [[mr:statue_mob|Statue Mob]] - Parent mob type
+  * [[mr:golden_statue_mob|Golden Statue Mob]] - Similar statue variant
