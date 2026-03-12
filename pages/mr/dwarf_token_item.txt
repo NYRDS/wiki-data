@@ -1,20 +1,43 @@
 ====== Dwarf Token Item - Code References ======
 
+{{ rpd:images:dwarf_token_item.png|Dwarf Token }}
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DwarfToken.java|DwarfToken.java]] - Main item class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndImp.java|WndImp.java]] - Quest window for trading tokens
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Imp.java|Imp.java]] - NPC that accepts tokens
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/dwarf_token.json
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="DwarfToken_Name">[Name]</string>
-<string name="DwarfToken_Info">[Description]</string>
+<!-- English (values/strings_all.xml lines 533-534) -->
+<string name="DwarfToken_Name">dwarf token</string>
+<string name="DwarfToken_Info">Many dwarves and some of their larger creations carry these small pieces of metal of unknown purpose. Maybe they are jewelry or maybe some kind of ID. Dwarves are strange folk.</string>
+
+<!-- Russian (values-ru/strings_all.xml lines 701-702) -->
+<string name="DwarfToken_Info">Многие дворфы и их наиболее массивные творения носили эти маленькие металлические штучки. Для чего они нужны, остаётся загадкой. Может, это были украшения или, своего рода, удостоверения. Дворфы - странный народец.</string>
+<string name="DwarfToken_Name">дворфийский жетон</string>
+
+<!-- Portuguese (values-pt-rBR/strings_all.xml lines 653-654) -->
+<string name="DwarfToken_Info">Muitos anões e algumas de suas criações maiores carregam esses pequenos pedaços de metal de propósito desconhecido. Talvez eles sejam jóias ou algum tipo de identificação. Anões são pessoas estranhas.</string>
+<string name="DwarfToken_Name">token de anão</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DwarfToken.java|DwarfToken.java]] - Item class with image=TOKEN, stackable=true
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Imp.java|Imp.java]] - Quest NPC that exchanges tokens for rewards
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L533-L534|DwarfToken strings in strings_all.xml]]
+
+===== Entity Usage =====
+  * Item type: Quest item
+  * Stackable: Yes
+  * Price: 100 gold per token
+  * Used in: Imp quest (exchange tokens for rewards)
+  * Drop source: Dwarves and their creations in City/Halls levels
+  * Sprite: ItemSpriteSheet.TOKEN
