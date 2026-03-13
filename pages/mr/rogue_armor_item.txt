@@ -1,28 +1,36 @@
 ====== Rogue Armor Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/RogueArmor.java|RogueArmor.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/AssasinArmor.java|AssasinArmor.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/FreeRunnerArmor.java|FreeRunnerArmor.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/RogueArmor.java|RogueArmor.java]] - Main class implementing rogue-specific armor behavior
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] - Parent class for all class-specific armors
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/AssasinArmor.java|AssasinArmor.java]] - Rogue subclass (Assassin) armor variant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/FreeRunnerArmor.java|FreeRunnerArmor.java]] - Rogue subclass (Freerunner) armor variant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] - Base armor class
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/RogueArmor.json|itemsDesc/RogueArmor.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|hero/initHeroes.json]] - Rogue class starting equipment configuration
+  * Armor sprite is defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/items/armor.png|items/armor.png]] sprite sheet (image index 8)
 
 ===== String Resources =====
-<code xml>
-<string name="RogueArmor_Name">rogue garb</string>
-<string name="RogueArmor_Desc">Wearing this dark garb, a rogue can perform a trick called "smoke bomb" (though no real explosives are used): he blinds enemies who can see him and jumps aside.</string>
-<string name="RogueArmor_ACSpecial">SMOKE BOMB</string>
-<string name="RogueArmor_NotRogue">Only rogues can use this armor!</string>
-<string name="RogueArmor_Fov">You can only jump to an empty location in your field of view</string>
-<string name="RogueArmor_Prompt">Choose a location to jump to</string>
-</code>
+  * **Name:** RogueArmor_Name = "rogue garb"
+  * **Description:** RogueArmor_Desc = "Wearing this dark garb, a rogue can perform a trick called \"smoke bomb\" (though no real explosives are used): he blinds enemies who can see him and jumps aside."
+  * **Special Action:** RogueArmor_ACSpecial = "SMOKE BOMB"
+  * **Class Restriction:** RogueArmor_NotRogue = "Only rogues can use this armor!"
+  * **Target Selection:** RogueArmor_Fov = "You can only jump to an empty location in your field of view"
+  * **Prompt:** RogueArmor_Prompt = "Choose a location to jump to"
+  * Source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented entirely in Java, no Lua script exists
+
+===== Implementation Details =====
+  * **Image Index:** 8 (in armor.png sprite sheet)
+  * **Special Ability:** Smoke Bomb - blinds enemies and teleports rogue to visible empty cell
+  * **Class Restriction:** Only usable by HeroClass.ROGUE
+  * **Special Cost Modifier:** 3 (from ClassArmor parent)
+  * **Inherits:** ClassArmor -> Armor
 
 ===== Related mr Entities =====
-  * [[mr:assassin_armor_item|Assassin Armor (Item)]]
-  * [[mr:freerunner_armor_item|Freerunner Armor (Item)]]
-  * [[mr:rogue_subclass|Rogue (Subclass)]]
+  * [[mr:assasin_armor_item|Assasin Armor (Item)]] - Rogue subclass armor
+  * [[mr:free_runner_armor_item|Free Runner Armor (Item)]] - Rogue subclass armor
+  * [[en:rpd:rogue_class|Rogue (Class)]] - Base hero class
