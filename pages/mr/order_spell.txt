@@ -2,15 +2,24 @@
 
 {{ rpd:images:order_spell.png|Order Spell }}
 
+**Order** is a spell in Remixed Dungeon that allows the caster to issue commands that are almost undeniable with proper concentration. This is a Witchcraft affinity spell used by Priest class and Witchcraft affinity heroes.
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ml/actions/Order.java|Order.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ml/actions/OrderCellSelector.java|OrderCellSelector.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/MoveOrder.java|MoveOrder.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/KillOrder.java|KillOrder.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/CommonActions.java|CommonActions.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ml/actions/Order.java|Order.java]] - Order action implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ml/actions/OrderCellSelector.java|OrderCellSelector.java]] - Cell selector for order targeting
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/MoveOrder.java|MoveOrder.java]] - AI behavior for move order
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/KillOrder.java|KillOrder.java]] - AI behavior for kill order
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/CommonActions.java|CommonActions.java]] - Common actions including Order
+
+===== Code Behavior =====
+  * **Spell Type**: Command/Control spell
+  * **Affinity**: Witchcraft
+  * **Target**: Can issue move or kill orders to targeted characters
+  * **Resistance**: Target may resist with Order_Resist message
+  * **Concentration**: Requires proper concentration for orders to be almost undeniable
 
 ===== JSON Configuration =====
-This entity is implemented in Lua, no JSON configuration exists
+This entity is implemented through Java ML (Machine Learning) actions, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
@@ -19,22 +28,24 @@ This entity is implemented in Lua, no JSON configuration exists
 <string name="Order_Info">With proper concentration, your orders are almost undeniable.</string>
 
 <!-- Russian (values-ru/strings_all.xml lines 1468-1469) -->
-<string name="Order_Info">При должной концентрации твои приказы почти неоспоримы.</string>
 <string name="Order_Name">Приказ</string>
+<string name="Order_Info">При должной концентрации твои приказы почти неоспоримы.</string>
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Order.lua|Order.lua]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]] - Spell list registration
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - CharAction_Order definition
-
-===== Related Files =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/CommonActions.java|CommonActions.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2700-L2701|Order_Name in strings_all.xml]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2700-L2701|Order_Info in strings_all.xml]]
+This entity is implemented in Java ML actions, no Lua script exists
 
 ===== Entity Usage =====
   * Used by: Witchcraft affinity (spells: Roar, LightningBolt, Heal, Order)
   * Used by: Priest hero class (spells: Heal, Calm, Charm, Order)
-  * Target action: CharAction_Order (ch_order in commonClasses.lua)
+  * Target action: CharAction_Order (implemented in CommonActions.java)
   * Target may resist with Order_Resist message
+
+===== Related mr Entities =====
+  * [[mr:witchcraft_affinity|Witchcraft Affinity]]
+  * [[mr:priest_class|Priest Class]]
+  * [[mr:heal_spell|Heal Spell]]
+  * [[mr:calm_spell|Calm Spell]]
+  * [[mr:charm_spell|Charm Spell]]
+  * [[mr:roar_spell|Roar Spell]]
+  * [[mr:lightning_bolt_spell|Lightning Bolt Spell]]

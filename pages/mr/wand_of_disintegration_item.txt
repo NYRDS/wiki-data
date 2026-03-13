@@ -1,20 +1,50 @@
 ====== Wand Of Disintegration Item - Code References ======
 
+{{ rpd:images:wand_of_disintegration_item.png|Wand of Disintegration }}
+
+**Wand of Disintegration** is a wand item in Remixed Dungeon that fires a beam of destructive energy that penetrates all creatures in its path.
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfDisintegration.java|WandOfDisintegration.java]] - Main wand class extending SimpleWand
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/SimpleWand.java|SimpleWand.java]] - Parent class for simple wands
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - Base wand class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/DeathRay.java|DeathRay.java]] - Visual effect for wand zap
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]] - Ballistics calculation for wand targeting
+
+===== Code Behavior =====
+  * **Zap Effect**: Fires a death ray beam that penetrates all creatures in its path
+  * **Distance**: effectiveLevel() + 4 tiles
+  * **Damage Formula**: Random Normal Int Range between (level + charsHit) and (8 + (level * level) / 3 + charsHit)
+  * **Damage Scaling**: Damage increases based on wand level and number of targets hit
+  * **Terrain Effect**: Can destroy doors and barricades (converts to embers), high grass (converts to grass)
+  * **Visual Effect**: Purple particle burst on each tile in the beam path
+  * **Hit Chars**: false (does not show hit characters on zap)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/wand_of_disintegration.json
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/WandOfDisintegration.json|WandOfDisintegration.json]] - Item configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/WandOfDisintegration.json|WandOfDisintegration.json]] - Sprite configuration
 
 ===== String Resources =====
 <code xml>
-<string name="WandOfDisintegration_Name">[Name]</string>
-<string name="WandOfDisintegration_Info">[Description]</string>
+<!-- English (values/strings_all.xml) -->
+<string name="WandOfDisintegration_Name">Wand of Disintegration</string>
+<string name="WandOfDisintegration_Info">This wand emits a ray of destructive energy, which penetrates all creatures in its path. The more targets it hits, the more damage it deals to each of them.</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="WandOfDisintegration_Name">Жезл дезинтеграции</string>
+<string name="WandOfDisintegration_Info">Этот жезл испускает луч разрушительной энергии, который пронзает всех существ на своем пути. Чем больше целей он поражает, тем больший урон он наносит каждой из них.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:wand_item|Wand (Item Type)]]
+  * [[mr:simple_wand_item|Simple Wand (Item Type)]]
+  * [[mr:death_ray_effect|Death Ray (Effect)]]
+  * [[mr:ballistica_mechanic|Ballistica (Mechanic)]]
+
+===== Usage in Game =====
+  * **WandMaker Quest**: Can be received as a reward from the WandMaker NPC quest
+  * **King Boss**: The King boss has resistance to WandOfDisintegration
+  * **Eye Mob**: The Eye mob has resistance to WandOfDisintegration

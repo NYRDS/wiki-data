@@ -1,58 +1,110 @@
 ====== Magic Arrow Spell - Code References ======
 
+{{ rpd:images:magic_arrow_spell.png|Magic Arrow Spell }}
+
+**Magic Arrow** is a spell in Remixed Dungeon described as "Good old magic arrow, the right choice when you run out of ammo." This is an Elf affinity spell available to Elf class heroes.
+
 ===== Java Classes =====
-  * This spell is implemented in Lua, no Java class exists
+  * This spell is referenced in hero initialization files, implementation details are in Lua scripts
   * Spell system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/lua/Spells.java|Spells.java]] (Lua spell integration)
+  * Hero initialization: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] (spell registration)
 
 ===== JSON Configuration =====
-This entity is implemented in Lua, no JSON configuration exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] - Registered as Elf spell (line 127)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroesDebug.json|initHeroesDebug.json]] - Debug version registration (line 127)
 
 ===== String Resources =====
-  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Spanish: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Portuguese (Brazilian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Chinese (Simplified): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Chinese (Traditional): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * German: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * French: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Japanese: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Korean: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ko/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Italian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-it/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Polish: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pl/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Ukrainian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-uk/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Hungarian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-hu/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Turkish: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-tr/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Greek: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-el/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Indonesian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-in/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
-  * Malay: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ms/strings_all.xml|MagicArrow_Name, MagicArrow_Info]]
+<code xml>
+<!-- English (values/strings_all.xml lines 2711-2712) -->
+<string name="MagicArrow_Name">Magic Arrow</string>
+<string name="MagicArrow_Info">Good old magic arrow, the right choice when you run out of ammo.</string>
+
+<!-- Russian (values-ru/strings_all.xml lines 1302-1303) -->
+<string name="MagicArrow_Name">Волшебная стрела</string>
+<string name="MagicArrow_Info">Старая добрая волшебная стрела, отличный выбор когда закончились боеприпасы.</string>
+
+<!-- Spanish (values-es/strings_all.xml lines 1250-1251) -->
+<string name="MagicArrow_Name">Flecha mágica</string>
+<string name="MagicArrow_Info">La buena y vieja flecha mágica, la elección correcta cuando te quedas sin munición.</string>
+
+<!-- Portuguese (Brazilian) (values-pt-rBR/strings_all.xml lines 1225-1226) -->
+<string name="MagicArrow_Name">Flecha Mágica</string>
+<string name="MagicArrow_Info">Boa e velha flecha mágica, a escolha certa se você estiver sem munição</string>
+
+<!-- French (values-fr/strings_all.xml lines 1286-1287) -->
+<string name="MagicArrow_Name">Flèche magique</string>
+<string name="MagicArrow_Info">La bonne vieille flèche magique, le bon choix quand on est à court de munitions.</string>
+
+<!-- German (values-de/strings_all.xml lines 1229-1230) -->
+<string name="MagicArrow_Name">Magischer Pfeil</string>
+<string name="MagicArrow_Info">Der gute alte Magische Pfeil, die richtige Entscheidung wenn dir die Munition ausgeht.</string>
+
+<!-- Chinese (Simplified) (values-zh-rCN/strings_all.xml lines 1246-1247) -->
+<string name="MagicArrow_Name">魔法箭</string>
+<string name="MagicArrow_Info">很好的古老魔法箭，弹尽粮绝时的正确选择。</string>
+
+<!-- Chinese (Traditional) (values-zh-rTW/strings_all.xml) -->
+<string name="MagicArrow_Name">魔法箭</string>
+<string name="MagicArrow_Info">很好的古老魔法箭，彈盡糧絕時的正確選擇。</string>
+
+<!-- Japanese (values-ja/strings_all.xml lines 1258-1259) -->
+<string name="MagicArrow_Name">マジックアロー</string>
+<string name="MagicArrow_Info">古き良き魔法の矢、弾薬を使い果たしたときの正しい選択だ。</string>
+
+<!-- Korean (values-ko/strings_all.xml lines 1133-1134) -->
+<string name="MagicArrow_Name">매직 애로</string>
+<string name="MagicArrow_Info">오래된 마법 화살. 탄약이 떨어졌을 때의 좋은 선택이다.</string>
+
+<!-- Italian (values-it/strings_all.xml) -->
+<string name="MagicArrow_Name">Freccia Magica</string>
+<string name="MagicArrow_Info">Vecchia e buona freccia magica, la scelta giusta quando rimani senza munizioni.</string>
+
+<!-- Polish (values-pl/strings_all.xml lines 1301-1302) -->
+<string name="MagicArrow_Name">Magiczna Strzała</string>
+<string name="MagicArrow_Info">Stara dobra magiczna strzała. idealna kiedy nie masz już amunicji.</string>
+
+<!-- Ukrainian (values-uk/strings_all.xml) -->
+<string name="MagicArrow_Name">Чарівна стріла</string>
+<string name="MagicArrow_Info">Стара добра чарівна стріла, правильний вибір, коли у вас закінчилися боєприпаси.</string>
+
+<!-- Hungarian (values-hu/strings_all.xml line 1161) -->
+<string name="MagicArrow_Name">Varázslövés</string>
+
+<!-- Turkish (values-tr/strings_all.xml lines 1242-1243) -->
+<string name="MagicArrow_Name">Büyülü Ok</string>
+<string name="MagicArrow_Info">Eski güzel sihirli ok, cephaneniz bittiğinde doğru seçim.</string>
+
+<!-- Greek (values-el/strings_all.xml lines 1295-1296) -->
+<string name="MagicArrow_Name">μαγικό βέλος</string>
+<string name="MagicArrow_Info">Ένα παλιό καλό μαγικό βέλος. Η σωστή επιλογή όταν σου τελειώσουν τα υπόλοιπα.</string>
+
+<!-- Indonesian (values-in/strings_all.xml lines 1218-1219) -->
+<string name="MagicArrow_Name">Anak panah Ajaib</string>
+<string name="MagicArrow_Info">Anak Panah tua yang bagus, pilihan yang tepat ketika Anda kehabisan amunisi.</string>
+
+<!-- Malay (values-ms/strings_all.xml) -->
+<string name="MagicArrow_Name">Panah Ajaib</string>
+<string name="MagicArrow_Info">Panah ajaib lama yang baik, pilihan tepat apabila anda kehabisan peluru.</string>
+</code>
 
 ===== Lua Scripts =====
-  * Main script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/MagicArrow.lua|MagicArrow.lua]]
-  * Spell list: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]] - Registered in Elf spell category
+Note: Lua script files for this spell are not present in the current codebase. The spell is registered in hero initialization files and uses the Lua spell system.
 
-===== Spell Configuration (from Lua) =====
-  * **Image Index:** 0
-  * **Image File:** spellsIcons/naturegift.png
-  * **Magic Affinity:** Elf
-  * **Targeting Type:** char_not_self (targets other characters)
-  * **Spell Level:** 1
-  * **Cast Time:** 0.1 seconds
-  * **Spell Cost:** 5 mana
-  * **Cooldown:** 1 second
-  * **Damage:** Random value between 1 and caster's HT/2 (half of caster's max health)
-  * **Zap Effect:** "magic_arrow" visual effect from caster to victim
+  * Spell registration: Referenced in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] as "MagicArrow"
+  * Spell category: Elf spells
+
+===== Spell Configuration (from Hero Init) =====
+  * **Magic Affinity**: Elf
+  * **Spell Category**: Elf spells (CustomSpellsList)
+  * **Usage**: Available to Elf class heroes
 
 ===== Implementation Details =====
-  * **Location:** scripts/spells/MagicArrow.lua
-  * **Dependencies:**
-    - scripts/lib/commonClasses.lua (RPD)
-    - scripts/lib/spell.lua
-  * **Cast Behavior:** Creates magic arrow zap effect and deals damage to target
-  * **Damage Formula:** math.random(1, caster:ht()/2)
-  * **Spell Category:** Elf spells (CustomSpellsList.lua)
+  * **Location**: Referenced in hero/initHeroes.json
+  * **Dependencies**: Lua spell system (Spells.java)
+  * **Spell Type**: Ranged damage spell (arrow-based)
 
-===== Related Files =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]] - Spell base class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - Common RPD functions
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]] - Spell category registration
+===== Related mr Entities =====
+  * [[mr:elf_class|Elf Class]]
+  * [[mr:elf_affinity|Elf Affinity]]
+  * [[mr:witchcraft_affinity|Witchcraft Affinity]]
+  * [[mr:magic_arrow_item|Magic Arrow (Item)]]
