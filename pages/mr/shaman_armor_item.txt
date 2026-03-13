@@ -7,23 +7,27 @@
 
 ===== Class Implementation Details =====
 <code java>
+package com.watabou.pixeldungeon.items.armor;
+
 public class ShamanArmor extends ElfArmor {
-    public ShamanArmor() {
+
+	public ShamanArmor()
+	{
         name = StringsManager.getVar(R.string.ElfArmor_Name);
-        image = 19;
-        hasHelmet = true;
-        coverHair = true;
-    }
-    
-    @Override
-    public boolean doEquip(@NotNull Char hero) {
-        if (hero.getSubClass() == HeroSubClass.SHAMAN) {
-            return super.doEquip(hero);
-        } else {
+		image = 19;
+		hasHelmet = true;
+		coverHair = true;
+	}
+
+	@Override
+	public boolean doEquip(@NotNull Char hero ) {
+		if (hero.getSubClass() == HeroSubClass.SHAMAN) {
+			return super.doEquip( hero );
+		} else {
             GLog.w(StringsManager.getVar(R.string.ElfArmor_NotElf));
-            return false;
-        }
-    }
+			return false;
+		}
+	}
 }
 </code>
 
@@ -34,13 +38,15 @@ public class ShamanArmor extends ElfArmor {
   * **Restriction**: Can only be equipped by heroes with SHAMAN subclass
   * **Name Source**: R.string.ElfArmor_Name (shared with ElfArmor)
   * **Warning Message**: R.string.ElfArmor_NotElf (shown when non-Shaman tries to equip)
+  * **Equipment Check**: doEquip() method validates HeroSubClass.SHAMAN before equipping
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists.
 
 ===== String Resources =====
 <code xml>
-<string name="ElfArmor_Name">[Name]</string>
+<!-- From values/strings_all.xml or values-ru/strings_all.xml -->
+<string name="ElfArmor_Name">[Armor name - shared with ElfArmor]</string>
 <string name="ElfArmor_NotElf">[Warning message when non-Shaman tries to equip]</string>
 </code>
 
@@ -49,7 +55,6 @@ This entity is implemented in Java, no Lua script exists.
 
 ===== Related Entities =====
   * [[mr:elf_class|Elf Class]] - Base class for Shaman subclass
-  * [[mr:shaman_subclass|Shaman Subclass]] - Required subclass to equip this armor
   * [[mr:armor_kit_item|Armor Kit Item]] - Used to create Shaman Armor from regular armor
   * [[mr:elf_armor_item|Elf Armor]] - Parent class implementation
 
@@ -58,3 +63,4 @@ This entity is implemented in Java, no Lua script exists.
   * Equipment restriction enforced in doEquip() method
   * Inherits all properties from base armor (level, upgrades, enchantments)
   * Part of the Elf class mastery system
+  * Only equippable by heroes with HeroSubClass.SHAMAN
