@@ -1,20 +1,28 @@
 ====== Gladiator Armor Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GladiatorArmor.java|GladiatorArmor.java]] - Main implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GladiatorArmor.java|GladiatorArmor.java]] - Main implementation (extends WarriorArmor)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WarriorArmor.java|WarriorArmor.java]] - Parent class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass restriction (GLADIATOR)
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
-<code xml>
-<string name="WarriorArmor_Name">Gladiator Armor</string>
-<string name="WarriorArmor_NotWarrior">Only a warrior who has mastered the sword and shield can use this armor!</string>
-</code>
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - ''WarriorArmor_Name'' ("Gladiator Armor"), ''WarriorArmor_NotWarrior'' ("Only a warrior who has mastered the sword and shield can use this armor!")
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml]] - ''WarriorArmor_Name'' ("Броня гладиатора"), ''WarriorArmor_NotWarrior'' ("Только воин, освоивший меч и щит, может использовать эту броню!")
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Usage in Code =====
+  * Registered in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (line 360)
+  * Subclass restriction checked in ''GladiatorArmor.doEquip()'' - only equippable by HeroSubClass.GLADIATOR
+  * Image ID: 7 (defined in static initializer)
+  * Has helmet: true (coverHair: true)
+
 ===== Related mr Entities =====
   * [[mr:warrior_armor_item|Warrior Armor (Item)]]
   * [[mr:gladiator_subclass|Gladiator (Subclass)]]
+  * [[mr:warrior_class|Warrior (Class)]]
+  * [[mr:armor_item|Armor (Item)]]
