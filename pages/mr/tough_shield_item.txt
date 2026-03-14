@@ -2,26 +2,71 @@
 
 {{ rpd:images:tough_shield_item.png|Tough Shield }}
 
+**Tough Shield** is a shield item in Remixed Pixel Dungeon. It is a tier 2 shield that provides better damage blocking than the wooden shield.
+
+===== Description =====
+This shield reinforced with leather straps looks tougher than a wooden one. It can certainly block more damage.
+
+===== Stats =====
+  * **Tier**: 2
+  * **Price**: 80 gold (40 × shield level)
+  * **Equip Slot**: Left hand
+  * **Upgradable**: Yes
+  * **Image**: items/shields.png (image index 1)
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/CustomItem.java|CustomItem.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/shields/Shield.java|Shield.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/CustomItem.java|CustomItem.java]] - Base class for custom items
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/shields/Shield.java|Shield.java]] - Base shield class
 
 ===== JSON Configuration =====
 This entity is implemented in Lua, no JSON configuration exists
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
 <string name="ToughShield_name">Leather Reinforced Shield</string>
 <string name="ToughShield_desc">This shield reinforced with leather straps looks tougher than a wooden one. It can certanly block more damage.</string>
 </code>
 
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="ToughShield_name">Усиленный кожаный щит</string>
+<string name="ToughShield_desc">Этот щит усиленный кожаными ремнями выглядит надежнее просто деревянного. Он точно может принять на себя больше урона.</string>
+</code>
+
+Other languages:
+  * **German**: Lederverstärkter Schild
+  * **Spanish**: Escudo reforzado de cuero
+  * **French**: Bouclier en cuir renforcé
+  * **Greek**: ενισχυμένη δερμάτινη ασπίδα
+  * **Japanese**: 革の盾
+  * **Polish**: Wzmocniona skórzana tarcza
+  * **Portuguese (BR)**: Escudo Reforçado em Couro
+  * **Indonesian**: Perisai yang diperkuat kulit
+  * **Italian**: Scudo rinforzato con cinghie di cuoio
+
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/ToughShield.lua|ToughShield.lua]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/shields.lua|shields.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/ToughShield.lua|ToughShield.lua]] - Main item implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/shields.lua|shields.lua]] - Shield library for shield creation
+
+===== Code Analysis =====
+The Tough Shield is defined in `ToughShield.lua` which uses the shields library:
+  * Uses `shields.makeShield(shieldLevel, shieldDesc)` with shieldLevel = 2
+  * Returns shield configuration with image from "items/shields.png" at index 1
+  * Price is calculated as 40 * shieldLevel = 80 gold
+  * Equipable in "left_hand" slot
+  * Can be upgraded with Upgrade Scroll
+
+===== Spawn Location =====
+Based on JSON configuration:
+  * **Spiders Treasury** (levelsDesc/SpidersTreasury.json): 0.5 spawn weight
+  * **Treasury** (levelsDesc/Treasury.json): 0.5 spawn weight
 
 ===== Related mr Entities =====
   * [[mr:shield_class|Shield (Class)]]
   * [[mr:shields_lib|Shields (Library)]]
   * [[mr:wooden_shield_item|Wooden Shield (Item)]]
+  * [[mr:spiders_treasury_level|Spiders Treasury Level]]
+  * [[mr:treasury_level|Treasury Level]]
 
-{{tag> rpd items shields tough_shield }}
+{{tag> rpd items shields tough_shield tier2 }}

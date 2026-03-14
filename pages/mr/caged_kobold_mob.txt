@@ -1,9 +1,53 @@
 ====== Caged Kobold Mob - Code References ======
 
+**Caged Kobold** is an NPC mob found in the Ice Caves level. He is part of a quest where the player must free him from a cage using an Ice Key.
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/CagedKobold.java|CagedKobold.java]] - Main implementation of the Caged Kobold NPC
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]] - Base class (CagedKobold extends ImmortalNPC)
+
+===== Code Analysis =====
+**Class Structure:**
+  * **Package**: com.nyrds.pixeldungeon.mobs.npc
+  * **Inheritance**: CagedKobold extends ImmortalNPC
+  * **Spawn Method**: static spawn(RegularLevel level, Room room)
+  * **Interaction Method**: interact(Char hero)
+
+**Quest Mechanics:**
+  * **Quest State Class**: Quest (inner static class)
+  * **State Variables**:
+    - `spawned`: Tracks if NPC has been spawned (resets per game)
+    - `given`: Quest given to player
+    - `processed`: Quest has been processed
+    - `completed`: Quest completed
+    - `depth`: Dungeon depth where quest is active
+
+  * **Quest Flow**:
+    1. Player approaches Caged Kobold in Ice Caves
+    2. NPC gives quest dialogue (CagedKobold_Intro)
+    3. Quest.given = true, Quest.processed = true
+    4. Journal entry added (Journal.Feature.CAGEDKOBOLD)
+    5. Player finds Ice Key
+    6. Player returns and exchanges Ice Key for CandleOfMindVision
+    7. Quest.complete() called
+    8. Journal entry removed
+    9. NPC transforms into candle (killAndErase)
+
+**Interaction Logic:**
+  * If Quest.completed: No interaction (returns true)
+  * If Quest.given:
+    - Checks if player has IceKey
+    - If has IceKey: Exchanges for CandleOfMindVision, completes quest
+    - If no IceKey: Says random phrase (Message1, Message2, or Message3)
+  * If not Quest.given: Gives intro dialogue, starts quest
+
+**Spawn Behavior:**
+  * Spawns only once per game (checks `spawned` flag)
+  * Spawns in random cell within room (not on EXIT tiles)
+  * Called from IceCavesLevel.java:exitRoom(0)
 
 ===== JSON Configuration =====
+Sprite configuration (spritesDesc/CagedKobold.json):
 <code json>
 {
    "texture" : "mobs/caged_kobold.png",
@@ -33,6 +77,7 @@
 </code>
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
 <string name="CagedKobold_Desc">A kobold, in a cage.</string>
 <string name="CagedKobold_Intro">Hey... HEY! You're the adventurer thingy, right? Help me out pal, these damn militarists locked me up in here! They wanted to reactivate an ancient weapon to conquer the humanoids up there! But it was too dangerous and I spoke against it, but they just threw me out and locked me up in this cage! Please find the cage key, in return I'll help you to the best of my abilities.</string>
@@ -45,9 +90,39 @@
 <string name="Journal_Caged_Kobold">Caged Kobold</string>
 </code>
 
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="CagedKobold_Desc">Кобольд в клетке.</string>
+<string name="CagedKobold_Intro">Эй, эй! Ты ведь тот искатель приключений, да? Помоги мне выбраться, приятель, эти чертовы милитаристы заперли меня здесь! Они хотели реактивировать древнее оружие, чтобы завоевать гуманоидов наверху! Но это было слишком опасно, и я выступил против, но они просто выкинули меня и заперли в этой клетке! Пожалуйста, найди ключ от клетки, а взамен я помогу тебе, чем смогу.</string>
+<string name="CagedKobold_Message1">Пожалуйста...</string>
+<string name="CagedKobold_Message2">Эй, приятель, ты должен помочь мне</string>
+<string name="CagedKobold_Message3">Я ненавижу всё в этой клетке</string>
+<string name="CagedKobold_Name">запертый кобольд</string>
+<string name="CagedKobold_Name_Objective">запертый кобольд</string>
+<string name="CagedKobold_Quest_End">О, спасибо, спасибо большое! Как тебе удалось найти ключ? Ты... ты уничтожил оружие?! Это невероятно! Знаешь что, я сказал, что помогу тебе, и я думаю, что знаю лучший способ сделать это. Я побуду с тобой некоторое время. *Запертый кобольд превратился в свечу</string>
+</code>
+
+Other languages:
+  * **German**: eingesperrter Kobold
+  * **Spanish**: kobold enjaulado
+  * **Greek**: φυλακισμένος καλικάντζαρος
+  * **French**: kobold en cage
+  * **Polish**: uwięziony kobold
+  * **Portuguese (BR)**: kobold engaiolado
+  * **Indonesian**: kobold yang dipenjara
+  * **Italian**: kobold in gabbia
+  * **Japanese**: 檻に入れられたコボルド
+
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
 ===== Related mr Entities =====
-  * [[mr:ice_key_item|Ice Key (Item)]]
-  * [[mr:candle_of_mind_vision_item|Candle of Mind Vision (Item)]]
+  * [[mr:ice_key_item|Ice Key (Item)]] - Required to free Caged Kobold
+  * [[mr:candle_of_mind_vision_item|Candle of Mind Vision (Item)]] - Reward for freeing
+  * [[mr:ice_caves_level|Ice Caves Level]] - Where Caged Kobold spawns
+  * [[mr:immortal_npc|Immortal NPC]] - Base class
+  * [[mr:cagedkobold_message1|Caged Kobold Message 1]]
+  * [[mr:cagedkobold_message2|Caged Kobold Message 2]]
+  * [[mr:cagedkobold_message3|Caged Kobold Message 3]]
+
+{{tag> rpd mobs npcs caged_kobold ice_caves quest immortal }}
