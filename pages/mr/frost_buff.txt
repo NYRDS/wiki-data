@@ -1,42 +1,55 @@
-====== Frost Buff - Code References ======
+====== frost_buff - Code References ======
+
+{{ rpd:images:frost_buff.png|Frost Buff }}
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]] - Main frost buff implementation
 
 ===== JSON Configuration =====
-  * No JSON configuration found
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L572-L574|Frost strings]]
+String resources available in multiple languages:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L572-L574|English strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L572-L574|Russian strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L568-L570|German strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L563-L565|Spanish strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L574-L576|French strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-it/strings_all.xml#L547-L548|Italian strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml#L565-L567|Japanese strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ko/strings_all.xml#L551-L552|Korean strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pl/strings_all.xml#L568-L570|Polish strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L563-L565|Portuguese (BR) strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-tr/strings_all.xml#L568-L570|Turkish strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-uk/strings_all.xml#L542-L543|Ukrainian strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L564-L566|Chinese (Simplified) strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L555-L556|Chinese (Traditional) strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-el/strings_all.xml#L572-L574|Greek strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-hu/strings_all.xml#L532-L533|Hungarian strings]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ms/strings_all.xml#L551-L552|Malay strings]]
 
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L563-L565|String resource]]
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists
 
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L574-L576|String resource]]
+===== Implementation Details =====
+  * **Package:** com.watabou.pixeldungeon.actors.buffs
+  * **Base Class:** FlavourBuff
+  * **Duration:** 5 seconds (base)
+  * **Effect:** Paralyzes target, freezes items
+  * **Icon:** BuffIndicator.FROST
+  * **Sprite State:** CharSprite.State.FROZEN
 
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ko/strings_all.xml#L551-L552|String resource]]
+===== Mechanics =====
+  * **Paralysis:** Target is paralyzed while frozen
+  * **Item Freezing:** Can freeze potions carried by target (shatter effect)
+  * **Damage Interaction:** Buff is removed when target takes damage
+  * **Resistance:** Duration affected by RingOfElements.Resistance
+  * **Visual:** Target sprite shows FROZEN state
 
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L563-L565|String resource]]
+===== Related mr Entities =====
+  * [[mr:burning_buff|Burning (Buff)]] - Opposite fire damage over time buff
+  * [[mr:poison_buff|Poison (Buff)]] - Damage over time buff
+  * [[mr:paralysis_buff|Paralysis (Buff)]] - Similar immobilization effect
+  * [[mr:ring_of_elements_item|Ring of Elements]] - Provides resistance to frost
 
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-uk/strings_all.xml#L542-L543|String resource]]
-
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-tr/strings_all.xml#L568-L570|String resource]]
-
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L555-L556|String resource]]
-
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L564-L566|String resource]]
-
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml#L565-L567|String resource]]
-
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ms/strings_all.xml#L551-L552|String resource]]
-
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L572-L574|String resource]]
-
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L568-L570|String resource]]
-
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-el/strings_all.xml#L572-L574|String resource]]
-
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-it/strings_all.xml#L547-L548|String resource]]
-
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pl/strings_all.xml#L568-L570|String resource]]
-
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-hu/strings_all.xml#L532-L533|String resource]]
+{{tag> mr rpd buffs frost freeze}}
