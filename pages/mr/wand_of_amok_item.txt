@@ -1,15 +1,19 @@
 ====== Wand Of Amok Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfAmok.java|WandOfAmok.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/SimpleWand.java|SimpleWand.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfAmok.java|WandOfAmok.java]] - Main wand implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/SimpleWand.java|SimpleWand.java]] - Base class for simple wands
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - Base wand class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Amok.java|Amok.java]] - Amok buff implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]] - Vertigo buff (applied to hero)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|MagicMissile.java]] - Visual effect for wand zap
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
+<!-- English strings -->
 <string name="WandOfAmok_Name">Wand of Amok</string>
 <string name="WandOfAmok_Info">The purple light from this wand will make the target run amok, attacking random creatures in its vicinity.</string>
 <string name="WandOfAmok_Info1">nothing happened</string>
@@ -18,8 +22,15 @@ This entity is implemented in Java, no JSON configuration exists
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Implementation Details =====
+  * **Zap Effect**: Applies Amok buff for 3f + effectiveLevel() turns on non-hero targets
+  * **Hero Target**: Applies Vertigo buff instead when targeting the hero
+  * **Visual Effect**: Uses MagicMissile.purpleLight() for the zap animation
+  * **Sound**: Plays Assets.SND_ZAP sound effect on use
+  * **No Target Message**: Displays "nothing happened" message when zap misses
+
 ===== Related mr Entities =====
-  * [[mr:amok_buff|Amok (Buff)]]
-  * [[mr:vertigo_buff|Vertigo (Buff)]]
-  * [[mr:wand_maker_mob|Wand Maker (Mob)]]
-  * [[mr:wand_item|Wand (Item)]]
+  * [[mr:amok_buff|Amok (Buff)]] - Status effect applied by wand
+  * [[mr:vertigo_buff|Vertigo (Buff)]] - Alternative effect when targeting hero
+  * [[mr:wand_maker_mob|Wand Maker (Mob)]] - NPC related to wands
+  * [[mr:wand_item|Wand (Item)]] - Base wand item type
