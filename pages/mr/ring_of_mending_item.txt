@@ -1,25 +1,63 @@
 ====== Ring Of Mending Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfMending.java|RingOfMending.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfMending.java|RingOfMending.java]] - Main ring implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java|Ring.java]] - Base ring class (registers RingOfMending.class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration and factory
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] - Buff registration (Rejuvenation buff)
 
-===== JSON Configuration =====
-<code json>
-{
-  "RingOfMending": 1
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.items.rings;
+
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.actors.Char;
+
+public class RingOfMending extends Ring {
+
+	@Override
+	public  ArtifactBuff buff( ) {
+		return new Rejuvenation();
+	}
+
+	@Override
+	public String desc() {
+        return isKnown() ? StringsManager.getVar(R.string.RingOfMending_Info) : super.desc();
+	}
+
+	public class Rejuvenation extends RingBuff {
+
+		@Override
+		public int regenerationBonus(Char chr) {
+			return level();
+		}
+	}
 }
 </code>
-This appears in Treasury.json and SpidersTreasury.json indicating drop rates/chances.
+
+===== JSON Configuration =====
+  * No direct JSON configuration found - RingOfMending is implemented entirely in Java
 
 ===== String Resources =====
 <code xml>
 <string name="RingOfMending_Name">Ring of Mending</string>
-<string name="RingOfMending_Info">This ring increases the body\'s regenerative properties, allowing one to recover lost health at an accelerated rate. Degraded rings will decrease or even halt one\'s natural regeneration.</string>
+<string name="RingOfMending_Info">This ring increases the body's regenerative properties, allowing one to recover lost health at an accelerated rate. Degraded rings will decrease or even halt one's natural regeneration.</string>
 </code>
+
+===== String Resource IDs =====
+  * RingOfMending_Name
+  * RingOfMending_Info
 
 ===== Lua Scripts =====
   * This entity is implemented in Java, no Lua script exists
 
+===== Code Usage =====
+  * Registered in Ring.java as part of the rings array
+  * Registered in ItemFactory.java via registerItemClass(RingOfMending.class)
+  * Buff class (Rejuvenation) referenced in BuffFactory.java
+
 ===== Related mr Entities =====
   * [[mr:ring_of_elements_item|Ring Of Elements (Item)]]
   * [[mr:ring_item|Ring (Item)]]
+  * [[mr:rejuvenation_buff|Rejuvenation (Buff)]]

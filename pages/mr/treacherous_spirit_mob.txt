@@ -1,13 +1,13 @@
 ====== Treacherous Spirit - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/TreacherousSpirit.java|TreacherousSpirit.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/SpiritOfPain.java|SpiritOfPain.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/TreacherousSpirit.java|TreacherousSpirit.java]] - Main mob implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/SpiritOfPain.java|SpiritOfPain.java]] - Summoned minion mob
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]] - Quest NPC that spawns Treacherous Spirit
 
 ===== Java Class Content =====
 <code java>
 package com.nyrds.pixeldungeon.mobs.guts;
-
 
 import com.nyrds.pixeldungeon.ai.MobAi;
 import com.nyrds.pixeldungeon.ai.Wandering;
@@ -61,31 +61,44 @@ public class TreacherousSpirit extends Mob {
 }
 </code>
 
+===== Mob Stats (from Java code) =====
+  * **HP**: 200
+  * **Base Defense Skill**: 35
+  * **Base Attack Skill**: 35
+  * **Damage**: 30-45
+  * **Defense Rating**: 25
+  * **Experience for Kill**: 45
+  * **Max Level**: 30
+  * **AI State**: Wandering
+  * **Drops**: HeartOfDarkness (guaranteed via collect())
+  * **Special Ability**: 25% chance on attack to summon SpiritOfPain
+
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/TreacherousSpirit.json|TreacherousSpirit.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/TreacherousSpirit.json|TreacherousSpirit.json]] - Sprite configuration
 
 ===== String Resources =====
 <code xml>
 <string name="TreacherousSpirit_Name">Treacherous spirit</string>
 <string name="TreacherousSpirit_Gender">masculine</string>
 <string name="TreacherousSpirit_Name_Objective">Treacherous spirit</string>
-<string name="TreacherousSpirit_Desc">This monstrous creature looks like a cloud of living darkness. It\'s gigantic eye is stares at you, while pulsating with each movement you make.</string>
+<string name="TreacherousSpirit_Desc">This monstrous creature looks like a cloud of living darkness. It's gigantic eye is stares at you, while pulsating with each movement you make.</string>
 </code>
 
-===== Related String Resources =====
-  * TreacherousSpirit_Desc
+===== String Resource IDs =====
   * TreacherousSpirit_Name
-  * TreacherousSpirit_Name_Objective
   * TreacherousSpirit_Gender
-
-===== Other Java Usage =====
-Found usage in:
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]]
+  * TreacherousSpirit_Name_Objective
+  * TreacherousSpirit_Desc
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * This entity is implemented in Java, no Lua script exists
+
+===== Code Usage =====
+  * Spawned by AzuterronNPC during quest initiation
+  * Drops HeartOfDarkness item (collected automatically)
+  * Summons SpiritOfPain minions on attack (25% chance)
 
 ===== Related mr Entities =====
   * [[mr:spirit_of_pain_mob|Spirit of Pain (Mob)]]
   * [[mr:heart_of_darkness_item|Heart of Darkness (Item)]]
-  * [[mr:azuterron_npc_mob|Azuterron NPC (Mob)]]
+  * [[mr:azuterron_npc|Azuterron NPC]]
