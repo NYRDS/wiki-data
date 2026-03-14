@@ -1,17 +1,98 @@
 ====== Spider Egg Mob - Code References ======
 
+{{ rpd:images:spider_egg_mob.png|Spider Egg Mob }}
+
+Machine-readable reference page for the Spider Egg mob entity in Remixed Dungeon.
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java|SpiderEgg.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java|SpiderEgg.java]] - Main implementation
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
-This entity does not have specific string resources in the main files
+This entity does not have specific string resources in the main files (non-speaking mob)
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Implementation Details =====
+  * **Package**: com.nyrds.pixeldungeon.mobs.spiders
+  * **Extends**: Mob (standard mob class)
+  * **Location**: Spider nest areas
+  * **Behavior**: Stationary egg that spawns spiders
+
+===== Code Fragment =====
+<code java>
+package com.nyrds.pixeldungeon.mobs.spiders;
+
+import com.nyrds.pixeldungeon.items.Treasury;
+import com.nyrds.pixeldungeon.mobs.common.MobSpawner;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+
+public class SpiderEgg extends Mob {
+
+	public SpiderEgg() {
+		hp(ht(2));
+		baseDefenseSkill = 1;
+		baseAttackSkill = 1;
+		baseSpeed = 0f;
+
+		expForKill = 0;
+		maxLvl = 9;
+
+		postpone(20);
+
+		loot(Treasury.Category.SEED, 0.2f);
+
+		movable = false;
+	}
+
+	@Override
+    public boolean act() {
+		super.act();
+
+		Char newSpider = MobSpawner.spawnRandomMob(level(), getPos(), 25);
+
+		if(newSpider.valid()) {
+			remove();
+			return true;
+		}
+
+		postpone(20);
+
+		return true;
+	}
+
+	@Override
+	public boolean canBePet() {
+		return false;
+	}
+}
+</code>
+
+===== Stats (from Code) =====
+  * **HP**: 2 (fixed via ht(2))
+  * **Base Defense Skill**: 1
+  * **Base Attack Skill**: 1
+  * **Base Speed**: 0 (stationary)
+  * **Exp for Kill**: 0 (no experience granted)
+  * **Max Level**: 9
+  * **Movable**: false (stationary object)
+  * **Can Be Pet**: false (cannot be tamed)
+  * **Loot**: 20% chance to drop seeds (Treasury.Category.SEED)
+  * **Act Delay**: 20 ticks between spawn attempts
+
+===== Behavior =====
+  * **Stationary**: Cannot move (movable = false)
+  * **Spawning**: Attempts to spawn a random spider mob every 20 ticks
+  * **Spawn Rate**: 25% chance to spawn a spider on each attempt
+  * **Self-Destruct**: Removes itself after successfully spawning a spider
+  * **Location**: Found in spider nest areas
+
 ===== Related mr Entities =====
   * [[mr:spider_queen_mob|Spider Queen (Mob)]]
   * [[mr:spider_nest_mob|Spider Nest (Mob)]]
+  * [[mr:spider_mob|Spider (Mob)]]
+  * [[mr:spinner_mob|Spinner (Mob)]]

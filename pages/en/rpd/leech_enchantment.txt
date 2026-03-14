@@ -1,22 +1,48 @@
 ====== Leech Enchantment ======
 
+{{ rpd:images:leech_enchantment.png|Leech Enchantment }}
+
+The Leech enchantment is a weapon enchantment that heals the wielder for a portion of the damage dealt when hitting an enemy. This creates a sustain mechanic for melee combat, allowing players to recover health while dealing damage.
 
 ==== Description ====
-The Leech enchantment has a chance to heal the wielder for a portion of the damage dealt when hitting an enemy. This creates a sustain mechanic for melee combat.
+The Leech enchantment provides life steal functionality, converting a percentage of damage dealt into healing for the attacker. The enchantment glows with a dark red color when active.
 
 ==== Mechanics ====
-  - Heals the wielder for a percentage of damage dealt
-  - The healing amount is based on the weapon's level
-  - Higher-level weapons provide more healing
-  - Works with both physical and magical damage
+  * **Proc Chance**: Based on weapon level and damage dealt
+  * **Healing Formula**: The healing amount is calculated as follows:
+    * Maximum heal value: damage * (level + 2) / (level + 6)
+    * Actual heal: Random value between 0 and max, capped by missing HP
+    * Only heals if the attacker has missing HP
+  * **Level Scaling**:
+    * Level 0: ~33% of damage (max)
+    * Level 1: ~43% of damage (max)
+    * Level 2: ~50% of damage (max)
+    * Higher levels continue to improve the ratio
+  * **Visual Effect**: Shows healing amount as green numbers above the character
+  * **Glow Color**: Dark red (RGB: 0x660022)
+
+==== Strategy ====
+  * Most effective on fast-hitting weapons that deal consistent damage
+  * Provides sustain in prolonged fights, reducing reliance on healing potions
+  * Less effective when at full health (no healing occurs)
+  * Works well with high-damage weapons for larger healing bursts
+  * Can be the difference between life and death in difficult encounters
 
 ==== Source Code ====
-  - Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Leech.java|Leech.java]]
-  - The effect is applied in the proc() method with healing amount scaling with weapon level
+  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Leech.java|Leech.java]]
+  * The effect is applied in the proc() method
+  * Healing amount scales with weapon level using the formula: damage * (level + 2) / (level + 6)
+  * Only heals if attacker has missing HP (attacker.ht() - attacker.hp() > 0)
+  * Uses Random.IntRange() for variability in healing amount
+
+==== String Resources ====
+  * The enchantment name and description are defined in the weapon enchantment string resources
 
 ==== See Also ====
-  - [[en:rpd:enchantments|Enchantments]] - List of all weapon enchantments
-  - [[en:rpd:weapons|Weapons]] - Equipment that can have enchantments
-  - [[en:rpd:heal_spell|Heal Spell]] - General information about healing in the game
+  * [[en:rpd:enchantments|Enchantments]] - List of all weapon enchantments
+  * [[en:rpd:weapons|Weapons]] - Equipment that can have enchantments
+  * [[en:rpd:heal_spell|Heal Spell]] - General information about healing in the game
+  * [[en:rpd:combat_mechanic|Combat Mechanics]] - How combat and damage work
+  * [[en:rpd:healing|Healing]] - All healing methods in the game
 
-{{tag> rpd items enchantments healing}}
+{{tag> rpd items enchantments healing life_steal}}

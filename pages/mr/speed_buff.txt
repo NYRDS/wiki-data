@@ -1,23 +1,58 @@
 ====== Speed Buff - Code References ======
 
+{{ rpd:images:speed_buff.png|Speed Buff }}
+
+Machine-readable reference page for the Speed buff entity in Remixed Dungeon.
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Speed.java|Speed.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] (parent class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Speed.java|Speed.java]] - Main implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] - Parent class
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="Speed_Name">[Name]</string>
-<string name="Speed_Info">[Description]</string>
+<!-- String resources would be defined in strings_all.xml -->
+<!-- Name and description strings for the Speed buff -->
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
 ===== Implementation Details =====
-  * Extends: `FlavourBuff`
-  * Duration constant: `DURATION = 10f` (10 seconds)
-  * Haste multiplier: `7.27254f` (approximately 7.27x movement/attack speed)
-  * Package: `com.watabou.pixeldungeon.actors.buffs`
+  * **Package**: com.watabou.pixeldungeon.actors.buffs
+  * **Extends**: FlavourBuff (flavor buff with no negative effects)
+  * **Duration Constant**: DURATION = 10f (10 seconds / 100 game ticks)
+  * **Haste Multiplier**: 7.27254f (approximately 7.27x movement/attack speed)
+  * **Method Override**: hasteLevel(Char chr) returns 7.27254f
+  * **Buff Type**: Positive buff (FlavourBuff subclass)
+  * **Target**: Applied to Char (character/actor)
+
+===== Code Fragment =====
+<code java>
+package com.watabou.pixeldungeon.actors.buffs;
+
+import com.watabou.pixeldungeon.actors.Char;
+
+public class Speed extends FlavourBuff {
+
+	public static final float DURATION = 10f;
+
+	@Override
+	public float hasteLevel(Char chr) {
+		return 7.27254f;
+	}
+}
+</code>
+
+===== Related Entities =====
+  * [[mr:flavour_buff|FlavourBuff]] - Parent buff class
+  * [[mr:buff|Buff]] - Base buff system
+  * [[mr:haste|haste]] - Speed-related mechanic
+
+===== Usage in Game =====
+  * Applied by various sources (potions, spells, equipment)
+  * Increases movement and attack speed by 7.27x
+  * Lasts for 10 seconds (100 game ticks)
+  * No negative side effects (FlavourBuff)
