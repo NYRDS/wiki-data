@@ -6,39 +6,56 @@
 
 ==== Descrição do Efeito ====
   * **Tipo:** Efeito de Status Benéfico (Buff)
-  * **Efeito:** Restaura HP gradualmente ao longo do tempo
-  * **Duração:** Período de tempo limitado
+  * **Efeito:** Restaura HP gradualmente ao longo do tempo baseado nos status e equipamentos do herói
+  * **Duração:** Período de tempo limitado (continua até ser removido manualmente ou o herói morrer)
   * **Acúmulo:** Não se acumula com outros efeitos de cura na maioria dos casos
+  * **Taxa:** Afetada pelo Atraso de Regeneração (REGENERATION_DELAY = 10) e vários bônus
 
 ==== Como Obter ====
   * De certas poções (por exemplo, [[pt:rpd:potion_of_healing_item|Poção de Cura]])
-  * De equipamentos específicos com propriedades curativas
-  * De habilidades ou feitiços de classe
-  * De características ambientais em certos níveis
+  * De equipamentos específicos com propriedades curativas (por exemplo, Anel de Conserto)
+  * De habilidades de classe e subclasse do herói (por exemplo, HeroSubClass.regenerationBonus)
+  * De características ambientais em certos níveis (quando não em zonas seguras)
+  * Através de facilitações do jogo (FAST_REGENERATION)
 
 ==== Mecânicas ====
-  * Restaura uma pequena quantidade de HP a cada turno
-  * O efeito é aplicado periodicamente ao longo de vários turnos
-  * Não funciona em zonas seguras/níveis (como áreas de cidade ou vila)
-  * Não funciona se o personagem estiver morrendo de fome
-  * Mais eficaz quando combinado com outros métodos de cura
+  * Restaura uma pequena quantidade de HP a cada turno baseado nos status e equipamentos do herói
+  * O efeito é aplicado periodicamente com REGENERATION_DELAY = 10 (do código fonte)
+  * A taxa é modificada por regenerationBonus do herói (de itens equipados, subclasses, etc.)
+  * Não funciona em zonas seguras/níveis (como áreas de cidade ou vila) - verificado via level().isSafe()
+  * Não funciona se o personagem estiver morrendo de fome (verificado via isStarving())
+  * Mais eficaz quando combinado com outros métodos de cura (efeito sinérgico)
+
+==== Referência de Código ====
+  * **Classe Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Regeneration.java|Regeneration.java]]
+  * **Localização do Código Fonte:** RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Regeneration.java
+  * **Constante de Atraso de Regeneração:** REGENERATION_DELAY = 10 (veja linha 13 no código fonte)
+  * **Facilitações:** Constante FAST_REGENERATION definida em Facilitations.java
+  * **Interação com Herói:** Classe Hero aplica automaticamente Regeneração em Hero.java (linha 236)
+  * **Imunidades:** Alguns mobs como Shopkeeper têm imunidades a Regeneração (veja Shopkeeper.java)
+  * **Interface CharModifier:** Taxa de regeneração pode ser modificada via CharModifier.regenerationBonus()
+
+==== Recursos de String ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L600|RegenerationBuff_Name]] - "Regeneração Natural"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L601|RegenerationBuff_Info]] - "A função de regeneração natural do corpo está em forma de buff para facilitar as coisas."
 
 ==== Estratégia ====
-  * Use durante áreas perigosas da masmorra para restaurar saúde sem consumir poções
-  * Particularmente valioso durante expedições longas à masmorra
-  * Não funciona ao descansar em áreas seguras como vila ou cidade
+  * Use durante áreas não seguras da masmorra para restaurar saúde sem consumir poções
+  * Particularmente valioso durante expedições longas à masmorra quando recursos de cura são escassos
+  * Não funciona ao descansar em áreas seguras como vila ou cidade (por design)
   * Priorize durante combates para manter o nível de saúde em áreas perigosas
+  * Combine com equipamentos como Anel de Conserto para regeneração mais rápida
 
 ==== Contraefetivos ====
   * Efeitos de dano ao longo do tempo (Veneno, Sangramento) podem reduzir a eficácia
   * Efeitos de dissipação podem remover a regeneração
-
-==== Referência de Código ====
-  * Classe Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/Regeneration.java|Regeneration.java]]
-  * Localização do Código Fonte: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/Regeneration.java
+  * Status de fome impede que a regeneração funcione
+  * Zonas seguras impedem que a regeneração funcione
 
 ==== Veja Também ====
   * [[pt:rpd:status_effects|Efeitos de Status]] - Outras alterações de status
   * [[pt:rpd:potion_of_healing_item|Poção de Cura]] - Fonte de regeneração
+  * [[pt:rpd:mechanics|Mecânicas do Jogo]] - Outros sistemas principais
+  * [[pt:rpd:mana_regeneration_buff|Regeneração de Mana]] - Efeito similar para mana
 
 {{tag> rpd mechanics status_effects buffs}}
