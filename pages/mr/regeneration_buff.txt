@@ -1,24 +1,24 @@
-====== Regeneration Buff - Code References ======
+====== Regeneration Buff ======
 
 Machine-readable reference page for the Regeneration buff entity.
 
-===== Entity Information =====
+==== Entity Information ====
   * **Entity Kind:** Regeneration
   * **Type:** Buff (healing over time)
   * **Implementation:** Java buff class
   * **File:** `com/watabou/pixeldungeon/actors/buffs/Regeneration.java`
 
-===== Java Classes =====
+==== Java Classes ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Regeneration.java|Regeneration.java]] - Main buff implementation
     * Extends `Buff` class
     * Default regeneration delay: 10 ticks
     * Supports fast regeneration facilitation bonus
     * Applies healing to non-starving targets in unsafe levels
 
-===== JSON Configuration =====
+==== JSON Configuration ====
 This entity is implemented in Java, no JSON configuration exists
 
-===== String Resources =====
+==== String Resources ====
   * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L605-L606|strings_all.xml]]
 <code xml>
 <string name="RegenerationBuff_Name">Natural Regeneration</string>
@@ -30,17 +30,17 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="RegenerationBuff_Name">Естественная регенерация</string>
 </code>
 
-===== Lua Scripts =====
+==== Lua Scripts ====
 This entity is implemented in Java, no Lua script exists
 
-===== Code Details =====
+==== Code Details ====
   * **Regeneration Rate:** Base 1 HP per 10 ticks
   * **Fast Regeneration:** +10 bonus when facilitation is enabled (for Hero)
   * **Healing Rate Formula:** healRate = 1.2^bonus
   * **Max Healing Rate:** Capped at 5x base rate (50 ticks)
   * **Conditions:** Only heals when not starving and in unsafe level
 
-===== Related mr: Entities =====
+==== Related mr: Entities ====
   * [[mr:buff|Buff Base Class]]
   * [[mr:hunger_buff|Hunger Buff]]
   * [[mr:fast_regeneration_facilitation|Fast Regeneration Facilitation]]
