@@ -9,11 +9,20 @@ This entity is implemented in Lua, no JSON configuration exists
 ===== String Resources =====
 <code xml>
 <string name="Roar_Name">Roar</string>
-<string name="Roar_Info">Creates a magical roar that terrifies enemies in a given area around the caster. The range and power depend on the caster\'s level.</string>
+<string name="Roar_Info">The mighty roar will surely terrify your enemies and inspire allies.</string>
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua|Roar.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua|Roar.lua]] - Main spell implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]] - Spell registration (line 13: spells["Witchcraft"] = {"Roar","LightningBolt","Heal","Order"})
+
+===== Entity Usage Analysis =====
+Using find_entity_usage.py:
+  * Lua file usage: CustomSpellsList.lua (line 13) - Registered as Witchcraft spell
+  * String resources: Roar_Info, Roar_Name
+  * No Java class implementation (Lua-based spell)
+  * No JSON configuration (Lua-based spell)
 
 ===== Related mr Entities =====
-  * [[mr:terror_buff|Terror (Buff)]]
+  * [[mr:terror_buff|Terror (Buff)]] - Applied by Roar spell
+  * [[mr:witchcraft|Witchcraft Affinity]] - Spell affinity
