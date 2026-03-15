@@ -1,6 +1,6 @@
 ====== Magic Torch - Code References ======
 
-{{ rpd:images:magic_torch_spell_icon.png|Magic Torch Spell }}
+{{ rpd:images:magic_torch_spell.png|Magic Torch Spell }}
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/MagicTorch.java|MagicTorch.java]] - Main spell implementation class
@@ -12,7 +12,8 @@
   * **Magic Affinity**: AFFINITY_COMMON (available to all hero classes)
   * **Spell Cost**: 1 mana point
   * **Buff Applied**: Light buff with duration of 80 ticks
-  * **Visual Effect**: FlameParticle emitter at character center
+  * **Visual Effect**: FlameParticle emitter at character center (3 particles, 0.2f rate)
+  * **Cast Method**: cast() - applies Light buff and spawns FlameParticle emitter
 
 ===== JSON Configuration =====
   * This spell is implemented in Java, no JSON configuration exists
@@ -34,3 +35,4 @@
 ===== Related Files =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Light.java|Light.java]] - Buff class applied by this spell
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/particles/FlameParticle.java|FlameParticle.java]] - Particle effect used for visual feedback
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/noosa/particles/Emitter.java|Emitter.java]] - Particle emitter class

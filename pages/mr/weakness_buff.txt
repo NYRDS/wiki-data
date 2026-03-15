@@ -1,20 +1,33 @@
 ====== Weakness Buff - Code References ======
 
+{{ rpd:images:weakness_buff.png|Weakness Buff }}
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Weakness.java|Weakness.java]] - Main buff implementation class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] - Parent class
+
+===== Implementation Details =====
+  * **Type**: FlavourBuff (temporary status effect)
+  * **Base Duration**: 40 ticks
+  * **Icon ID**: BuffIndicator.WEAKNESS
+  * **Effect**: Discharges hero's equipped items on attach
+  * **Duration Modifier**: Affected by RingOfElements.Resistance
+  * **Sources**: Warlock attack, ScrollOfCurse, EnslavedSoul attack, SpiderMindAmber
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/weakness.json
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="Weakness_Name">[Name]</string>
-<string name="Weakness_Info">[Description]</string>
+<string name="Weakness_Name">Weakness</string>
+<string name="Weakness_Info">Reduces effective Strength, potentially preventing the use of certain equipment.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:ring_of_elements_item|Ring of Elements]]
+  * [[mr:warlock_mob|Warlock]]
+  * [[mr:scroll_of_curse_item|Scroll of Curse]]
+  * [[mr:enslaved_soul_mob|Enslaved Soul]]
