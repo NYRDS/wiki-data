@@ -2,6 +2,64 @@
 
 {{ rpd:images:deathling_mob.png|Смертеныш }}
 
-  * Можно призвать с помощью [[ru:rpd:necromancer_armor|Робы Некроманта]].
-  * Уровень смертеныша повышается с уровнем [[ru:rpd:necromancer_class|Некроманта]].
-  * Можно призвать больше с помощью [[ru:rpd:bone_armor_item|Костяной брони]].
+**Смертеныш** (Deathling) - это нежить в Remixed Dungeon, которая призывается [[ru:rpd:necromancer_class|Некромантом]] с помощью заклинания [[ru:rpd:summon_deathling_spell|Призыв смертеныша]]. Это летающее существо нежити, которое временно сражается на стороне героя.
+
+==== Описание ====
+**Смертеныш** - это душа павшего героя, которому не повезло быть призванным другим искателем приключений, практикующим некромантию. Он сражается вместе с некромантом против врагов в подземелье.
+
+==== Характеристики ====
+  * **Здоровье:** 4 (базовое) + модификатор в зависимости от уровня и навыка владельца
+  * **Урон:** 1-4 + модификатор
+  * **Защита:** 1 + модификатор
+  * **Полёт:** Да
+  * **Нежить:** Да
+  * **Опыт:** 0 (не даёт опыта при убийстве)
+  * **Макс. уровень:** 32
+  * **Шанс выпадения туши:** 0%
+  * **Базовая скорость:** 1.1x
+
+==== Призыв ====
+  * Призывается с помощью заклинания [[ru:rpd:summon_deathling_spell|Призыв смертеныша]]
+  * Характеристики масштабируются с уровнем героя и уровнем навыка по формуле: модификатор = уровень_героя + (уровень_навыка)^2
+  * Здоровье полностью восстанавливается при первом появлении
+  * Служит временным союзником в бою
+
+==== Механика ====
+  * Функционирует как союзный боец, сражающийся вместе с призвавшим
+  * Остаётся активным, пока не будет побеждён или не рассеется
+  * Служит телохранителем и дополнительным источником урона для [[ru:rpd:necromancer_class|Некроманта]]
+  * Имеет специальные сопротивления и свойства нежити
+  * Настройка характеристик происходит каждый ход в методе ''act()''
+
+==== Детали реализации ====
+  * Реализован в Java в пакете ''com.nyrds.pixeldungeon.mobs.common.Deathling''
+  * Использует метод ''getOwner()'' для ссылки на призвавшего героя
+  * Модификатор рассчитывается как: hero.lvl() + hero.skillLevel()^2
+  * Диапазон урона: от 1 до (4 + модификатор)
+  * Снижение урона (DR) равно модификатору
+
+==== Строковые ресурсы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L628-L629|Deathling_Name]] - "смертёныш"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L628-L629|Deathling_Name_Objective]] - "смертёныша"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2178|SummonDeathling_Name]] - "Призывать Смертёныша"
+
+==== Ссылки на код ====
+  * Java класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Deathling.java|Deathling.java]]
+  * Заклинание призыва: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]]
+  * JSON конфигурация спрайта: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Deathling.json|Deathling.json]]
+
+==== Стратегия ====
+  * Обеспечивает дополнительную боевую мощь для [[ru:rpd:necromancer_class|Некроманта]]
+  * Может использоваться для поглощения урона, пока игрок атакует издалека или из безопасности
+  * Управление ресурсами душ является ключевым для поддержания союзников-смертёнышей
+  * Эффективно в сочетании с другими некромантскими способностями
+
+==== См. также ====
+  * [[ru:rpd:necromancer_class|Некромант]]
+  * [[ru:rpd:lich_subclass|Лич (подкласс)]]
+  * [[ru:rpd:summon_deathling_spell|Призыв смертеныша]]
+  * [[ru:rpd:souls|Души (ресурс)]]
+  * [[ru:rpd:soul_shard_item|Осколок души]]
+  * [[ru:rpd:mobs|Мобы]]
+
+{{tag> rpd mobs necromancer undead pet }}

@@ -1,15 +1,17 @@
-====== deathling_mob ======
+====== Deathling Mob ======
 
 {{ rpd:images:deathling_mob.png|Deathling }}
 
-===== Java Classes =====
+**Deathling** is a mob in Remixed Dungeon that is summoned by the [[mr:summon_deathling_spell|Summon Deathling]] spell. It is an undead flying creature that acts as a temporary ally in combat.
+
+==== Java Classes ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Deathling.java|Deathling.java]] - Main mob implementation
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]] - The spell that summons Deathling mobs
 
-===== JSON Configuration =====
+==== JSON Configuration ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Deathling.json|Deathling.json]] - Sprite configuration
 
-===== String Resources =====
+==== String Resources ====
 <code xml>
 <string name="Deathling_Name">deathling</string>
 <string name="Deathling_Gender">masculine</string>
@@ -17,7 +19,7 @@
 <string name="Deathling_Desc">The Deathling is a soul of a fallen hero who was unlucky enough to be summoned by a fellow adventurer, who practices necromancy.</string>
 </code>
 
-===== Stats =====
+==== Stats ====
   * **Health:** 4 (base) + modifier based on owner's level and skill
   * **Damage:** 1-4 + modifier
   * **Defense:** 1 + modifier
@@ -26,16 +28,28 @@
   * **Experience:** 0 (gives no experience when killed)
   * **Max Level:** 32
   * **Carcass Drop Chance:** 0%
+  * **Base Speed:** 1.1x
 
-===== Behavior =====
+==== Behavior ====
   * Summoned by the [[mr:summon_deathling_spell|Summon Deathling]] spell
-  * Stats scale with the summoner's level and skill level
+  * Stats scale with the summoner's level and skill level using the formula: modifier = hero.lvl() + hero.skillLevel()^2
   * Acts as a temporary ally in combat
+  * Health is fully restored on first spawn (firstAct flag)
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+==== Implementation Details ====
+  * Implemented in Java at ''com.nyrds.pixeldungeon.mobs.common.Deathling''
+  * Uses ''getOwner()'' method to reference the summoner
+  * Stats adjustment happens in the ''act()'' method each turn
+  * Defense and attack skills scale with the modifier
+  * Damage range: 1 to (4 + modifier)
+  * Damage reduction (DR) equals the modifier
 
-===== Related mr Entities =====
+==== Lua Scripts ====
+This entity is implemented entirely in Java, no Lua script exists
+
+==== Related mr: Entities ====
   * [[mr:summon_deathling_spell|Summon Deathling Spell]]
   * [[mr:necromancer_robe_item|Necromancer Robe]]
   * [[mr:necromancer_armor_item|Necromancer Armor]]
+
+{{tag> rpd mobs undead flying summoned}}
