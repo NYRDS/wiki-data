@@ -3,6 +3,15 @@
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/PseudoAmulet.java|PseudoAmulet.java]]
   * Used in: FakeLastLevel.java
+  * Package: com.nyrds.pixeldungeon.items.guts
+  * Extends: Item
+
+===== Behavior =====
+  * **Type**: Quest/Fake item
+  * **Purpose**: Mimics the Amulet of Yendor to spawn a mimic ambush
+  * **Pick Action**: When picked up, spawns a "MimicAmulet" mimic at the player's position
+  * **Implementation**: Uses CharUtils.tryToSpawnMimic() to create the ambush
+  * **Sprite**: Uses ItemSpriteSheet.AMULET (same as real Amulet)
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -10,13 +19,15 @@ This entity is implemented in Java, no JSON configuration exists
 ===== String Resources =====
 <code xml>
 <string name="Amulet_Name">Amulet of Yendor</string>
-<string name="Amulet_Info">The Amulet of Yendor is the most famous and powerful artifact of unknown origin. It is said that the amulet can fulfill any wish if the owner's willpower is strong enough to \"persuade\" it to do so.</string>
+<string name="Amulet_Info">The Amulet of Yendor is the most famous and powerful artifact of unknown origin. It is said that the amulet can fulfill any wish if the owner's willpower is strong enough to "persuade" it to do so.</string>
 </code>
 
-Note: PseudoAmulet uses the standard Amulet string resources (Amulet_Name, Amulet_Info) from the game's string files.
+Note: PseudoAmulet reuses the standard Amulet string resources (Amulet_Name, Amulet_Info) from the game's string files.
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
 ===== Related mr Entities =====
   * [[mr:guts_level|Guts Level]]
+  * [[mr:amulet_item|Amulet Item]]
+  * [[mr:mimic_mob|Mimic Mob]]

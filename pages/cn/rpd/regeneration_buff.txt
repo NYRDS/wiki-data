@@ -17,11 +17,12 @@
   * 从特定关卡的环境特征
 
 ==== 机制 ====
-  * 每回合恢复少量生命值
-  * 效果在多个回合中周期性应用
-  * 在安全区域/关卡（如城镇或城市区域）不起作用
-  * 当角色挨饿时不起作用
-  * 与其他治疗方法结合使用时更有效
+  * 每回合根据英雄属性和装备恢复少量生命值
+  * 效果周期性应用，延迟为 REGENERATION_DELAY = 10
+  * 受英雄的 regenerationBonus 修正（来自装备、子职业等）
+  * 在安全区域/关卡（如城镇或城市区域）不起作用 - 通过 level().isSafe() 检查
+  * 当角色挨饿时不起作用 - 通过 isStarving() 检查
+  * 与其他治疗方法结合使用时更有效（协同效果）
 
 ==== 策略 ====
   * 在地牢的非安全区域使用，无需消耗药水即可恢复生命值
@@ -32,13 +33,24 @@
 ==== 抵消效果 ====
   * 持续伤害效果（中毒、流血）可能会降低效果
   * 驱散效果可以移除自然回复
+  * 挨饿状态阻止自然回复功能
+  * 安全区域阻止自然回复功能
 
 ==== 代码参考 ====
-  * Java类：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/Regeneration.java|Regeneration.java]]
-  * 源代码位置：RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/Regeneration.java
+  * **Java 类：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/Regeneration.java|Regeneration.java]]
+  * **源代码位置：** RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Regeneration.java
+  * **回复延迟常量：** REGENERATION_DELAY = 10（见源代码第 13 行）
+  * **英雄交互：** Hero 类在 Hero.java 中自动应用自然回复（第 236 行）
+  * **免疫：** 某些 mobs 如 Shopkeeper 对自然回复免疫（见 Shopkeeper.java）
+
+==== 字符串资源 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L600|RegenerationBuff_Name]] - "自然回复"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L601|RegenerationBuff_Info]] - "自然回复功能以增益形式存在，以简化操作。"
 
 ==== 另请参阅 ====
   * [[cn:rpd:potion_of_healing_item|治疗药水]] - 自然回复的来源
-  * [[cn:rpd:mechanics|游戏机制]] - 其他核心系统
+  * [[cn:rpd:melee_mechanic|游戏机制]] - 其他核心系统
+  * [[cn:rpd:status_effects|状态效果]] - 其他状态变化
+  * [[cn:rpd:mana_regeneration_buff|法力回复]] - 类似的法力效果
 
 {{tag> rpd mechanics status_effects buffs}}
