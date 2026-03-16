@@ -14,16 +14,20 @@
   * **Defense Rating**: 10
   * **EXP for Kill**: 6
   * **Max Level**: 15
-  * **Type**: Undead (immune to many effects)
-  * **Special Attack**: 33% chance to poison target on hit (2-4 seconds)
+  * **Type**: Undead (immune to many effects via `setUndead(true)`)
+  * **Special Attack**: 33% chance (1 in 3) to poison target on hit for 2-4 seconds
   * **Loot**: Gold (2% drop chance)
-  * **Spawn Location**: Necropolis levels
+  * **Spawn Location**: Necropolis levels (necro1, necro2, necro3)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration for spawning. Check:
+Spawn configuration in Bestiary.json:
+  * **necro1**: Zombie spawn rate 1.0
+  * **necro2**: Zombie spawn rate 1.0 (with ExplodingSkull, EnslavedSoul, DeathKnight, DreadKnight)
+  * **necro3**: Zombie spawn rate 2.0 (with ExplodingSkull, EnslavedSoul, DeathKnight, DreadKnight)
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]
 
 ===== String Resources =====
+English string resources:
 <code xml>
 <string name="Zombie_Name">zombie</string>
 <string name="Zombie_Name_Objective">zombie</string>
@@ -31,11 +35,55 @@ This entity may have JSON configuration for spawning. Check:
 <string name="Zombie_Gender">masculine</string>
 </code>
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+String resources available in multiple languages:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|English (values/strings_all.xml)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|Russian (values-ru/strings_all.xml)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml|German (values-de/strings_all.xml)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml|French (values-fr/strings_all.xml)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml|Spanish (values-es/strings_all.xml)]]
+  * And other localization files
 
-===== Related mr Entities =====
-  * [[mr:poison_buff|Poison (Buff)]]
-  * [[mr:necromancer_class|Necromancer (Class)]]
-  * [[en:rpd:necropolis_level|Necropolis (Level)]]
-  * [[mr:zombie_gnoll_mob|Zombie Gnoll (Mob)]]
+===== Lua Scripts =====
+This entity is implemented entirely in Java. No Lua script exists for Zombie.
+
+===== Key Code Fragments =====
+
+**Java Implementation (Zombie.java)**:
+<code java>
+public class Zombie extends Mob {
+    {
+        hp(ht(33));
+        baseDefenseSkill = 10;
+        baseAttackSkill  = 10;
+        dmgMin = 3;
+        dmgMax = 10;
+        dr = 10;
+
+        expForKill = 6;
+        maxLvl = 15;
+
+        setUndead(true);
+        loot(Gold.class, 0.02f);
+    }
+
+    @Override
+    public int attackProc(@NotNull Char enemy, int damage ) {
+        //Poison proc - 33% chance (1 in 3)
+        if (Random.Int(3) == 1){
+            Buff.affect( enemy, Poison.class, Random.Int( 2, 4 ) * Poison.durationFactor( enemy ) );
+        }
+        return damage;
+    }
+}
+</code>
+
+===== Related mr: Entities =====
+  * [[mr:poison_buff|Poison (Buff)]] - Applied by Zombie's attack
+  * [[mr:necromancer_class|Necromancer (Class)]] - Related to Necropolis theme
+  * [[mr:skeleton_mob|Skeleton (Mob)]] - Another undead mob in Necropolis
+  * [[mr:death_knight_mob|Death Knight (Mob)]] - Another Necropolis mob
+  * [[mr:enslaved_soul_mob|Enslaved Soul (Mob)]] - Another Necropolis mob
+
+===== Related Wiki Pages =====
+  * [[en:rpd:necropolis_level|Necropolis (Level)]] - Where Zombies spawn
+  * [[en:rpd:undead|Undead (Mechanic)]] - Zombie type and immunities
