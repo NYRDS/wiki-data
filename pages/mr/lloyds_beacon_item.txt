@@ -1,18 +1,58 @@
 ====== Lloyds Beacon Item - Code References ======
 
+{{ rpd:images:lloyds_beacon_item.png|Lloyd's Beacon }}
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/LloydsBeacon.java|LloydsBeacon.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/LloydsBeacon.java|LloydsBeacon.java]] - Main implementation
+    - Extends: Item
+    - Image: ItemSpriteSheet.BEACON
+    - Usage time: 1 turn
+    - Actions: SET, RETURN
+    - Cannot be used on boss levels
+    - Cannot be used when adjacent creatures are present
+    - Teleports user to previously set location
+    - Resets after use
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/lloyds_beacon.json
+This entity is implemented in Java, no JSON configuration exists.
 
-===== String Resources =====
-<code xml>
-<string name="LloydsBeacon_Name">[Name]</string>
-<string name="LloydsBeacon_Info">[Description]</string>
-</code>
+===== String Resources (All Languages) =====
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2143-L2150|LloidsBeacon strings in strings_all.xml]]
+    - LloidsBeacon_Name: "lloyd's beacon"
+    - LloidsBeacon_Info: "Lloyd's beacon is an intricate magic device, that allows you to return to a place you have already been."
+    - LloidsBeacon_ACSet: "SET"
+    - LloidsBeacon_ACReturn: "RETURN"
+    - LloidsBeacon_Preventing: "Some kind of strong magic aura present here prevents you from using the lloyd's beacon!"
+    - LloidsBeacon_Creatures: "The psychic aura of neighbouring creatures doesn't allow you to use the lloyd's beacon at this moment."
+    - LloidsBeacon_Return: "The lloyd's beacon is successfully set at your current location, now you can return here anytime."
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|Russian strings in strings_all.xml]]
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Entity Implementation Details =====
+  * **Implementation:** Java class (com.watabou.pixeldungeon.items.LloydsBeacon)
+  * **Base Class:** Item
+  * **Entity Kind:** LloidsBeacon
+  * **Type:** Utility/Teleportation item
+  * **Slot:** Inventory
+  * **Identified:** Yes (always)
+  * **Upgradable:** No
+  * **Special Properties:**
+    - Can set a return point on any non-boss level
+    - Can teleport back to the set return point
+    - Cannot be used when adjacent to creatures
+    - Cannot be used on boss levels
+    - Resets after teleportation
+    - Plays sound effect (Assets.SND_BEACON) when set
+
+===== Related Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - Base item class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - Sprite definitions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L390|ItemFactory.java]] - Item registration
+
+===== Related mr Entities =====
+  * [[mr:item|Item (Base Class)]]
+  * [[mr:teleportation_mechanic|Teleportation Mechanic]]
+
+{{tag> mr items utility teleportation magic}}
