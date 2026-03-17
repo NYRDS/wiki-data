@@ -1,20 +1,52 @@
 ====== Demo Npc1 Mob - Code References ======
 
+===== Entity Overview =====
+DemoNpc1 is a demo/test NPC used for testing purposes in Remixed Dungeon. It appears in quest demo configurations.
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+This entity is spawned through JSON configuration, not as a Java class. The mob is created through the mob factory system.
+  * Mob spawning: RemixedDungeon/src/main/assets/levelsDesc/QuestDemo1.json
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/demo1.json
+This entity is defined in quest demo configuration files:
+  * RemixedDungeon/src/main/assets/levelsDesc/QuestDemo1.json - Contains DemoNpc1 spawn configuration with AI state "Passive"
+
+Example configuration from QuestDemo1.json:
+<code json>
+{
+  "kind": "DemoNpc1",
+  "x": 5,
+  "y": 10,
+  "aiState": "Passive"
+}
+</code>
 
 ===== String Resources =====
+String resources for DemoNpc1 (if they exist) would be in:
 <code xml>
 <string name="Demo1_Name">[Name]</string>
 <string name="Demo1_Info">[Description]</string>
 </code>
 
+Note: This is a demo entity and may not have actual string resources in the game.
+
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is not implemented in Lua. It is spawned through JSON configuration.
+
+===== Sprite Reference =====
+  * Sprite file: wiki-data/media/rpd/images/demo_npc1_mob.png
+  * Original sprite: RemixedDungeon/src/main/assets/sprites/mob_DemoNpc1.png
+
+===== Usage in Code =====
+  * Found in: QuestDemo1.json as a test NPC
+  * AI State: Passive (does not attack player)
+  * Purpose: Testing/demo purposes only
+
+===== Related Entities =====
+  * [[mr:demo_npc2_mob|Demo Npc2 Mob]] - Another demo NPC
+  * [[mr:quest_demo1_config|Quest Demo1 Configuration]] - Quest demo configuration
+
+===== Notes =====
+This is a test/demo entity used for development and testing purposes. It is not part of the main game content and may be used for testing mob behaviors, quest mechanics, or other game systems.
+
+{{tag> mr mobs demo test npc}}
