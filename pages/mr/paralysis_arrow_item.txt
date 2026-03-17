@@ -4,25 +4,27 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|ParalysisArrow.java]] - Main class implementation
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] - Base class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]] - Buff applied on hit (not Paralysis)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration (line 352)
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|ParalysisArrow_Name]] - Item name
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|ParalysisArrow_Info]] - Item description
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|ParalysisArrow_Gender]] - Grammatical gender
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L867|ParalysisArrow_Name]] - Item name ("paralyzing arrow")
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L868|ParalysisArrow_Info]] - Item description ("This arrow is coated in curare.")
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L869|ParalysisArrow_Gender]] - Grammatical gender ("feminine")
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
 ===== Implementation Details =====
+  * **Class**: `com.watabou.pixeldungeon.items.weapon.missiles.ParalysisArrow`
   * **Duration**: 4.0 seconds (DURATION constant)
   * **Effect**: Applies Stun buff on hit, not Paralysis
   * **Base Damage**: 0-4 (baseMin = 0, baseMax = 4)
   * **Base Delay**: 0.75 (baseDly = 0.75)
-  * **Price**: 5 gold per arrow
+  * **Price**: 5 gold per arrow (quantity * 5)
+  * **Sprite**: PARALYSIS_ARROW_IMAGE (from Arrow base class)
 
 ===== Related mr Entities =====
   * [[mr:arrow_item|Arrow (Item)]] - Base arrow type
@@ -30,3 +32,5 @@ This entity is implemented in Java, no Lua script exists
   * [[mr:paralysis_buff|Paralysis (Buff)]] - Different effect (not used by this arrow)
   * [[mr:poison_arrow_item|Poison Arrow (Item)]] - Similar special arrow
   * [[mr:frost_arrow_item|Frost Arrow (Item)]] - Similar special arrow
+  * [[mr:fire_arrow_item|Fire Arrow (Item)]] - Similar special arrow
+  * [[mr:common_arrow_item|Common Arrow (Item)]] - Basic arrow type
