@@ -1,10 +1,12 @@
-====== Composite Crossbow Item - Code References ======
+====== Composite Crossbow Item - Machine Readable Data ======
 
-===== Java Classes =====
-Actual implementation found in:
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/CompositeCrossbow.java|RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/CompositeCrossbow.java]]
+**Entity Kind:** CompositeCrossbow
+**Entity Type:** Ranged Weapon (Crossbow)
+**Implementation:** Java (com.nyrds.pixeldungeon.items.guts.weapon.ranged.CompositeCrossbow)
 
-===== Implementation Details =====
+===== Java Implementation =====
+Full class file: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/CompositeCrossbow.java|CompositeCrossbow.java]]
+
 <code java>
 package com.nyrds.pixeldungeon.items.guts.weapon.ranged;
 
@@ -31,22 +33,145 @@ public class CompositeCrossbow extends Crossbow {
 }
 </code>
 
-===== Notes =====
-  * Inherits from Crossbow class
-  * Tier 4 ranged weapon
-  * Damage factors: 1.1 (min) to 1.6 (max)
-  * Accuracy improves with level: 1 + level * 0.5
-  * Damage improves with level: 1 + level * 0.75
-  * Delay factor is 1.1 (making it slightly slower than base speed)
+===== Technical Specifications =====
+  * **Tier:** 4 (ranged weapon tier)
+  * **Base Damage Factors:** 1.1 (min) to 1.6 (max)
+  * **Accuracy Formula:** 1 + level * 0.5 (accuracy improves with weapon level)
+  * **Damage Formula:** 1 + level * 0.75 (damage improves with weapon level)
+  * **Delay Factor:** 1.1 (slightly slower than base attack speed)
+  * **Sprite Index:** 3 (from crossbow sprite sheet)
+  * **Parent Class:** Crossbow (com.nyrds.pixeldungeon.items.guts.weapon.ranged.Crossbow)
 
-===== JSON Configuration =====
-None found - implemented purely in Java
+===== JSON Configuration References =====
+Spawn configuration found in treasure levels:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json|Treasury.json]] - Spawn weight: 3
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json|SpidersTreasury.json]] - Spawn weight: 3
 
 ===== String Resources =====
-<code xml>
-<string name="CompositeCrossbow_Name">Composite Crossbow</string>
-<string name="CompositeCrossbow_Info">A high-tech crossbow with enhanced accuracy and power.</string>
-</code>
+English (values/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1805-L1807|strings_all.xml:1805-1807]]
+  * CompositeCrossbow_Name: "Composite crossbow"
+  * CompositeCrossbow_Info: "This reinforced crossbow proves to be a more efficient tool compared to it's wooden counterpart."
+  * CompositeCrossbow_Gender: "masculine"
+
+Russian (values-ru/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L561-L563|strings_all.xml:561-563]]
+  * CompositeCrossbow_Name: "Составной арбалет"
+  * CompositeCrossbow_Info: "Этот укреплённый арбалет зарекомендовал себя как более эффективное орудие, нежели его деревянный собрат."
+  * CompositeCrossbow_Gender: "masculine"
+
+Portuguese-BR (values-pt-rBR/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L519-L520|strings_all.xml:519-520]]
+  * CompositeCrossbow_Name: "Besta de compósito"
+  * CompositeCrossbow_Info: "Esta besta reforçada revela-se uma ferramenta mais eficiente em comparação com a sua contrapartida de madeira."
+
+Spanish (values-es/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L531-L532|strings_all.xml:531-532]]
+  * CompositeCrossbow_Name: "Ballesta compuesta"
+  * CompositeCrossbow_Info: "Esta ballesta reforzada es una herramienta más eficaz comparandola con una hecha de madera."
+
+French (values-fr/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L541-L543|strings_all.xml:541-543]]
+  * CompositeCrossbow_Name: "Arbalète composée"
+  * CompositeCrossbow_Info: "Cette arbalète renforcée s'avère être un outil plus efficace que son homologue en bois."
+  * CompositeCrossbow_Gender: "feminine"
+
+German (values-de/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml#L540-L541|strings_all.xml:540-541]]
+  * CompositeCrossbow_Name: "Verstärkte Armbrust"
+  * CompositeCrossbow_Info: "Diese verstärkte Armbrust verspricht eine effizientere Waffe zu sein, als sein hölzernes Pendant."
+
+Italian (values-it/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-it/strings_all.xml#L473-L475|strings_all.xml:473-475]]
+  * CompositeCrossbow_Name: "Balestra Composita"
+  * CompositeCrossbow_Info: "Questa balestra rinforzata sembra essere uno strumento più efficace della sua controparte di legno."
+  * CompositeCrossbow_Gender: "masculine"
+
+Japanese (values-ja/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml#L543-L545|strings_all.xml:543-545]]
+  * CompositeCrossbow_Name: "複合クロスボウ"
+  * CompositeCrossbow_Info: "この強化クロスボウは、木製のものと比べてより効率的な道具であることが証明された。"
+  * CompositeCrossbow_Gender: "masculine"
+
+Korean (values-ko/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ko/strings_all.xml#L483-L485|strings_all.xml:483-485]]
+  * CompositeCrossbow_Name: "합성 쇠뇌"
+  * CompositeCrossbow_Info: "이 개조된 쇠뇌는 나무 쇠뇌에 비해서 더 효율적인 도구임이 입증된 바 있다."
+  * CompositeCrossbow_Gender: "masculine"
+
+Chinese-Simplified (values-zh-rCN/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L530-L532|strings_all.xml:530-532]]
+  * CompositeCrossbow_Name: "复合弩"
+  * CompositeCrossbow_Info: "与木制弓弩相比，这种加强型弓弩被证明是一种更有效的工具。"
+  * CompositeCrossbow_Gender: "masculine"
+
+Chinese-Traditional (values-zh-rTW/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L508-L510|strings_all.xml:508-510]]
+  * CompositeCrossbow_Name: "復合弩"
+  * CompositeCrossbow_Info: "這種加強版的弩和木頭做的相比更有效率。"
+  * CompositeCrossbow_Gender: "masculine"
+
+Polish (values-pl/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pl/strings_all.xml#L553-L555|strings_all.xml:553-555]]
+  * CompositeCrossbow_Name: "Kusza kompozytowa"
+  * CompositeCrossbow_Info: "Ta wzmocniona kusza wydaje się być efektywniejszym narzędziem, w porównaniu do jej drewnianego odpowiednika."
+  * CompositeCrossbow_Gender: "feminine"
+
+Ukrainian (values-uk/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-uk/strings_all.xml#L522-L524|strings_all.xml:522-524]]
+  * CompositeCrossbow_Name: "Складений арбалет"
+  * CompositeCrossbow_Info: "Цей посилений арбалет виявився більш ефективним інструментом, аніж його дерев'яний колега."
+  * CompositeCrossbow_Gender: "masculine"
+
+Turkish (values-tr/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-tr/strings_all.xml#L525-L527|strings_all.xml:525-527]]
+  * CompositeCrossbow_Name: "Bileşik arbalet"
+  * CompositeCrossbow_Info: "Bu güçlendirilmiş arbalet, tahtadan yapılmış olana göre daha etkili bir alet gibi gözüküyor."
+  * CompositeCrossbow_Gender: "masculine"
+
+Hungarian (values-hu/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-hu/strings_all.xml#L498-L500|strings_all.xml:498-500]]
+  * CompositeCrossbow_Name: "Kompozit számszeríj"
+  * CompositeCrossbow_Info: "Ez a megerősített nyílpuska bizonyítja hogy sokkal hatékonyabb a fából készült társainál."
+  * CompositeCrossbow_Gender: "masculine"
+
+Greek (values-el/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-el/strings_all.xml#L550-L552|strings_all.xml:550-552]]
+  * CompositeCrossbow_Name: "σύνθετη βαλλίστρα"
+  * CompositeCrossbow_Info: "Αυτή η ενισχυμένη βαλλίστρα είναι ξεκάθαρα αποτελεσματικότερη σε σύγκριση με την ξύλινη."
+  * CompositeCrossbow_Gender: "feminine"
+
+Indonesian (values-in/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-in/strings_all.xml#L516-L517|strings_all.xml:516-517]]
+  * CompositeCrossbow_Name: "Busur silang buatan"
+  * CompositeCrossbow_Info: "Busur silang yang diperbagus ini terbukti lebih efisien dibandingkan versi kayunya."
+
+Malay (values-ms/strings_all.xml):
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ms/strings_all.xml#L495-L497|strings_all.xml:495-497]]
+  * CompositeCrossbow_Name: "Busur silang komposit"
+  * CompositeCrossbow_Info: "Busur silang diperkukuh ini membuktikan ada bahan yang lebih efisyen berbanding komponen kayu."
+  * CompositeCrossbow_Gender: "masculine"
+
+===== Item Registration =====
+Registered in ItemFactory:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L31|ItemFactory.java:31]] - Import statement
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L388|ItemFactory.java:388]] - Registration: registerItemClass(CompositeCrossbow.class)
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented purely in Java. No Lua script exists for this item.
+
+===== Sprite Reference =====
+  * Sprite file: [[https://github.com/NYRDS/remixed-dungeon/blob/master/wiki-data/media/rpd/images/composite_crossbow_item.png|composite_crossbow_item.png]]
+  * Sprite index in crossbow sprite sheet: 3
+
+===== Related Classes =====
+  * Parent: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Crossbow.java|Crossbow.java]]
+  * Base: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/RangedWeapon.java|RangedWeapon.java]]
+  * Item Factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+
+===== Wiki Pages =====
+  * English: [[en:rpd:composite_crossbow_item|Composite Crossbow]]
+  * Russian: [[ru:rpd:composite_crossbow_item|Составной арбалет]]
+  * Portuguese: [[pt:rpd:composite_crossbow_item|Besta de compósito]]
+
+{{tag> mr item ranged_weapon crossbow composite_crossbow}}
