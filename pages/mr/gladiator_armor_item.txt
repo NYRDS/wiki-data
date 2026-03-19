@@ -2,27 +2,49 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GladiatorArmor.java|GladiatorArmor.java]] - Main implementation (extends WarriorArmor)
+    * Location: ``com.watabou.pixeldungeon.items.armor.GladiatorArmor``
+    * Image ID: 7
+    * Has helmet: true (coverHair: true)
+    * Subclass restriction: Only equippable by HeroSubClass.GLADIATOR
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WarriorArmor.java|WarriorArmor.java]] - Parent class implementation
+    * Location: ``com.watabou.pixeldungeon.items.armor.WarriorArmor``
+    * Extends: ClassArmor
+    * Image ID: 5
+    * Special ability: Leap attack (stuns adjacent enemies)
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass restriction (GLADIATOR)
+    * Location: ``com.watabou.pixeldungeon.actors.hero.HeroSubClass``
+    * GLADIATOR constant references "GladiatorArmor" as armor key
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
-  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - ''WarriorArmor_Name'' ("Gladiator Armor"), ''WarriorArmor_NotWarrior'' ("Only a warrior who has mastered the sword and shield can use this armor!")
-  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml]] - ''WarriorArmor_Name'' ("Броня гладиатора"), ''WarriorArmor_NotWarrior'' ("Только воин, освоивший меч и щит, может использовать эту броню!")
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+    * ``WarriorArmor_Name`` - "warrior suit of armor"
+    * ``WarriorArmor_NotWarrior`` - "Only a warrior who has mastered the sword and shield can use this armor!"
+    * ``WarriorArmor_ACSpecial`` - Special action name
+    * ``WarriorArmor_Prompt`` - Ability targeting prompt
+    * ``WarriorArmor_Desc`` - Item description
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml]]
+    * ``WarriorArmor_Name`` - "Боевой доспех"
+    * ``WarriorArmor_NotWarrior`` - "Только воин, освоивший меч и щит, может использовать эту броню!"
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
 ===== Usage in Code =====
-  * Registered in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (line 360)
-  * Subclass restriction checked in ''GladiatorArmor.doEquip()'' - only equippable by HeroSubClass.GLADIATOR
-  * Image ID: 7 (defined in static initializer)
-  * Has helmet: true (coverHair: true)
+  * Registered in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (line 70 import, line 360 registration)
+  * Subclass restriction checked in ``GladiatorArmor.doEquip()`` - only equippable by HeroSubClass.GLADIATOR
+  * Parent class ``WarriorArmor`` restricts to HeroClass.WARRIOR
+  * Special ability: Leap attack that stuns adjacent enemies for 3 turns (SHOCK_TIME = 3)
+  * Leap time: 1 turn (LEAP_TIME = 1)
+  * Uses Ballistica for targeting
+  * Dispels Invisibility on use
+  * Creates dust particle effects and camera shake on landing
 
 ===== Related mr Entities =====
   * [[mr:warrior_armor_item|Warrior Armor (Item)]]
   * [[mr:gladiator_subclass|Gladiator (Subclass)]]
   * [[mr:warrior_class|Warrior (Class)]]
   * [[mr:armor_item|Armor (Item)]]
+  * [[mr:class_armor_item|Class Armor (Item)]]
