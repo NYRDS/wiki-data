@@ -1,32 +1,103 @@
 ====== Rage Buff - Code References ======
 
+{{ rpd:images:rage_buff.png|Rage Buff }}
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/RageBuff.java|RageBuff.java]]
+
+===== Java Class Content =====
+<code java>
+package com.nyrds.pixeldungeon.mechanics.buffs;
+
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.audio.Sample;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.Assets;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.effects.particles.ShadowParticle;
+import com.watabou.pixeldungeon.items.rings.ArtifactBuff;
+import com.watabou.pixeldungeon.ui.BuffIndicator;
+
+import org.jetbrains.annotations.NotNull;
+
+/**
+ * Created by mike on 25.03.2018.
+ * This file is part of Remixed Pixel Dungeon.
+ */
+public class RageBuff extends ArtifactBuff {
+    @Override
+    public boolean act() {
+        if (target.isAlive()) {
+            if (target.hp() > target.ht() / 5 && Math.random() < 0.1f) {
+                target.damage((int) (Math.random() * 5), this);
+                target.getSprite().emitter().burst(ShadowParticle.CURSE, 6);
+                Sample.INSTANCE.play(Assets.SND_CURSED);
+            }
+        } else {
+            deactivateActor();
+        }
+        spend(1);
+        return true;
+    }
+
+    @Override
+    public int attackProc(Char attacker, Char defender, int damage) {
+        return damage * 2;
+    }
+
+    @Override
+    public int icon() {
+        return BuffIndicator.BLOODLUST;
+    }
+
+    @Override
+    public String name() {
+        return StringsManager.getVar(R.string.CorpseDustBuff_Name);
+    }
+
+    @Override
+    public String desc() {
+        return StringsManager.getVar(R.string.CorpseDustBuff_Info);
+    }
+
+    @Override
+    public boolean attachTo(@NotNull Char target ) {
+        return target.hasBuff(BuffFactory.RAGE) || super.attachTo(target);
+    }
+}
+</code>
 
 ===== JSON Configuration =====
   * This buff is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="CorpseDustBuff_Name">Rage</string>
-<string name="CorpseDustBuff_Info">This character is in a state of rage, causing increased damage but reduced accuracy.</string>
+<string name="CorpseDustBuff_Name">Bloodlust</string>
+<string name="CorpseDustBuff_Info">Attacks are greatly increased for those filled with bloodlust, making them especially dangerous.</string>
 </code>
 
 ===== Lua Scripts =====
   * This buff is implemented in Java, no Lua script exists
 
 ===== Special Properties =====
-  * Doubles damage dealt (attackProc method returns damage * 2)
-  * Has 10% chance per turn to damage the affected character when HP > 1/5 max HP
-  * Extends ArtifactBuff (artifact-related buff)
-  * Self-removes when target dies (act method checks target.isAlive())
-  * Buff icon is BuffIndicator.BLOODLUST
-  * Uses CorpseDust item name for display (name() method)
-  * Prevents multiple instances on same target (attachTo method checks for existing buff)
+  * **Damage Doubling**: attackProc() method doubles all damage dealt by the affected character (damage * 2)
+  * **Self-Damage Risk**: Has 10% chance per turn to deal 1-5 damage to the affected character when HP > 1/5 of max HP
+  * **Curse Effect**: Self-damage triggers ShadowParticle.CURSE visual effect and plays Assets.SND_CURSED sound
+  * **Extends ArtifactBuff**: Inherits from ArtifactBuff class (ring-related buff)
+  * **Self-Removal**: Automatically deactivates when target dies (act method checks target.isAlive())
+  * **Buff Icon**: Uses BuffIndicator.BLOODLUST icon
+  * **Display Name**: Uses CorpseDustBuff_Name string resource for display (name() method returns "Bloodlust")
+  * **Prevents Duplicates**: attachTo() method prevents multiple Rage buffs on same target using BuffFactory.RAGE check
+
+===== Usage in Other Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|Registered in BuffFactory.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/AmokDart.java|Applied by AmokDart]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/AmokArrow.java|Applied by AmokArrow]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/CorpseDust.java|Created by CorpseDust item]]
 
 ===== Source Code Reference =====
   * attackProc() method doubles all damage dealt by the affected character
-  * act() method implements periodic self-damage when HP > ht()/5
+  * act() method implements periodic self-damage when HP > ht()/5 with 10% probability
   * attachTo() method prevents duplicate buffs on same target
   * icon() returns BuffIndicator.BLOODLUST
   * name() and desc() methods retrieve strings from CorpseDustBundle

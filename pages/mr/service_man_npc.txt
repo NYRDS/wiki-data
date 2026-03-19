@@ -4,6 +4,17 @@
 ServiceManNPC is implemented in Java at:
   * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ServiceManNPC.java
   * Extends ImmortalNPC base class
+  * Implements Packable interface for save/load functionality
+
+===== Key Methods =====
+  * **interact(Char hero)**: Handles player interaction, checks internet connection and viewing limits
+  * **getReward()**: Returns gold reward item (base 150 gold + bonus based on films seen)
+  * **getLimit()**: Calculates viewing limit (4 + hero level)
+  * **resetLimit()**: Resets the filmsSeen counter
+
+===== Fields =====
+  * **BASIC_GOLD_REWARD**: Constant = 150 (base gold reward)
+  * **filmsSeen**: Static tracked variable for total films watched by player
 
 ===== JSON Configuration =====
 This entity does not appear to have specific JSON configuration files.
@@ -25,7 +36,7 @@ This entity is implemented in Java, no Lua script exists
   * getEntityKind(): ServiceManNPC
 
 ===== Related mr Entities =====
-  * [[mr:immortal_npc_mob|Immortal NPC (Mob)]]
+  * [[mr:immortal_npc|Immortal NPC]]
 
 ===== Additional Information =====
   * ServiceManNPC is an NPC that provides video reward system functionality

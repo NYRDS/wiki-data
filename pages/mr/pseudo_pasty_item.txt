@@ -1,20 +1,67 @@
 ====== Pseudo Pasty Item - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+{{ rpd:images:pseudo_pasty_item.png|Pseudo Pasty }}
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/pseudo_pasty.json
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/PseudoPasty.java|PseudoPasty.java]]
+
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.items.food;
+
+import com.nyrds.pixeldungeon.mechanics.CommonActions;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.CharUtils;
+import com.watabou.pixeldungeon.actors.buffs.Hunger;
+import com.watabou.pixeldungeon.items.Item;
+import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
+
+import org.jetbrains.annotations.NotNull;
+
+public class PseudoPasty extends Food {
+
+	public PseudoPasty() {
+		image = ItemSpriteSheet.PASTY;
+		energy = Hunger.STARVING;
+	}
+
+	@Override
+	public Item pick(Char ch, int pos) {
+		return CharUtils.tryToSpawnMimic(this,ch, pos, "MimicPie");
+	}
+
+	@Override
+	public void _execute(@NotNull Char chr, @NotNull String action) {
+		if (action.equals(CommonActions.AC_EAT)) {
+			pick(chr, chr.level().getEmptyCellNextTo(chr.getPos()));
+			this.removeItemFrom(chr);
+			return;
+		}
+
+		super._execute(chr, action);
+	}
+}
+</code>
+
+===== Special Properties =====
+  * Extends Food class
+  * When eaten, attempts to spawn a "MimicPie" mimic mob next to the hero
+  * Uses PASTY sprite from ItemSpriteSheet
+  * Provides STARVING energy level (same as regular food)
+  * Has unique interaction behavior that overrides standard food consumption
+
+===== Usage in Other Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|Registered in ItemFactory.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Used in Level.java for item spawning]]
 
 ===== String Resources =====
 <code xml>
-<string name="PseudoPasty_Name">[Name]</string>
-<string name="PseudoPasty_Info">[Description]</string>
+<string name="PseudoPasty_Name">pasty</string>
+<string name="PseudoPasty_Info">This is an authentic Cornish pasty with the traditional filling of beef and potato.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== JSON Configuration =====
+This entity is implemented in Java as a class, no JSON configuration exists
