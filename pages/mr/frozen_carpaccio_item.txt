@@ -3,20 +3,48 @@
 {{ rpd:images:frozen_carpaccio_item.png|Frozen Carpaccio }}
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check:
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/FrozenCarpaccio.java|FrozenCarpaccio.java]]
+  * **Package**: com.watabou.pixeldungeon.items.food
+  * **Parent Class**: Food (extends Food)
+  * **Registration**: ItemFactory.java registers FrozenCarpaccio.class
+  * **Loot Tables**:
+    - IceGuardian.java (20% drop rate)
+    - IceElemental.java (10% drop rate)
+  * **Mystery Meat Transformation**: MysteryMeat.java can morphTo(FrozenCarpaccio.class)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/frozen_carpaccio.json
+  * **Treasury.json**: FrozenCarpaccio spawn weight = 0 (not in random treasure)
+  * **SpidersTreasury.json**: FrozenCarpaccio spawn weight = 0 (not in spider treasury)
 
 ===== String Resources =====
 <code xml>
-<string name="FrozenCarpaccio_Name">[Name]</string>
-<string name="FrozenCarpaccio_Info">[Description]</string>
+<!-- English (values/strings_all.xml) -->
+<string name="FrozenCarpaccio_Name">frozen carpaccio</string>
+<string name="FrozenCarpaccio_Info">It's a piece of frozen raw meat. The only way to eat it is by cutting thin slices of it. And this way it's surprisingly good.</string>
+<string name="FrozenCarpaccio_Info1">You see your hands turn invisible!</string>
+<string name="FrozenCarpaccio_Info2">You feel your skin harden!</string>
+<string name="FrozenCarpaccio_Info3">Refreshing!</string>
+<string name="FrozenCarpaccio_Info4">You feel better!</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="FrozenCarpaccio_Name">замороженное карпаччо</string>
+<string name="FrozenCarpaccio_Info">Кусок сырого промороженного мяса. Съесть его можно лишь отрезая тоненькие ломтики. Которые получаются на удивление вкусными.</string>
+<string name="FrozenCarpaccio_Info1">Твои руки становятся невидимыми!</string>
+<string name="FrozenCarpaccio_Info2">Ты чувствуешь, как твоя кожа крепчает!</string>
+<string name="FrozenCarpaccio_Info3">Освежает!</string>
+<string name="FrozenCarpaccio_Info4">Тебе похорошело!</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Code Implementation Details =====
+  * **Image**: ItemSpriteSheet.CARPACCIO
+  * **Energy**: Hunger.STARVING - Hunger.HUNGRY (restores hunger)
+  * **Price**: 10 gold per piece
+  * **Random Effects (20% each)**:
+    - Invisibility buff (Invisibility.DURATION)
+    - Barkskin buff (level = chr.ht() / 4)
+    - Cure: Poison, Cripple, Weakness, Bleeding removed
+    - Healing (chr.hp() + chr.ht() / 4)
+  * **Burn Transformation**: Burns into MysteryMeat via burn() method
