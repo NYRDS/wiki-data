@@ -1,21 +1,44 @@
 ====== Body Armor Spell - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/spells/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/spells/*.java
+This page contains raw code references and configuration excerpts for the Body Armor spell entity.
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/spellsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/body_armor.json
+==== Entity Kind ====
+  * **getEntityKind() value:** BodyArmor
 
-===== String Resources =====
-<code xml>
-<string name="BodyArmor_Name">[Name]</string>
-<string name="BodyArmor_Info">[Description]</string>
+==== Java Implementation ====
+  * **Implementation:** Spell entity referenced in hero configuration, no dedicated Java class found
+  * **Usage:** Referenced in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] as starting spell for hero classes
+
+==== JSON Configuration ====
+**Hero initialization:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|hero/initHeroes.json]]
+<code json>
+{
+  "spell": "BodyArmor"
+}
 </code>
 
-===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/BodyArmor.lua|BodyArmor.lua]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/BodyArmor.lua|BodyArmor.lua]]
+**Note:** No dedicated spell configuration file found in spellsDesc/ directory
+
+==== Lua Implementation ====
+  * **No Lua script found** - Entity may be implemented through Java code or JSON configuration only
+
+==== String Resources ====
+  * **English:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+<code xml>
+<string name="BodyArmorSpell_Name">Body Armor</string>
+<string name="BodyArmorSpell_Info">Activates the reserved muscle power, making them temporarily stronger, thus greatly increasing your armor but at cost of movement speed.</string>
+<string name="BodyArmorBuff_Name">Body Armor</string>
+<string name="BodyArmorBuff_Info">Armor is increased at the cost of movement speed.</string>
+</code>
+
+  * **Russian:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (ru)]]
+<code xml>
+<string name="BodyArmorSpell_Name">Тело-щит</string>
+<string name="BodyArmorSpell_Info">Активирует скрытые резервы мышц, делая их крепче и повышая защиту ценой скорости передвижения.</string>
+<string name="BodyArmorBuff_Name">Тело-щит</string>
+<string name="BodyArmorBuff_Info">Броня улучшена за счет скорости ходьбы.</string>
+</code>
+
+==== Related Entities ====
+  * **Buff:** BodyArmorBuff - The buff applied when spell is cast
+  * **Implementation Note:** Spell and buff share the same entity kind name
