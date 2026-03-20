@@ -4,19 +4,128 @@
 The entity is implemented in Java in the following file:
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DreadKnight.java|RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DreadKnight.java]] - Main implementation class
 
+===== Java Class Content =====
+<code java>
+package com.nyrds.pixeldungeon.mobs.necropolis;
+
+import com.nyrds.pixeldungeon.effects.DeathStroke;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.buffs.Stun;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.pixeldungeon.items.Gold;
+import com.watabou.utils.Random;
+
+import org.jetbrains.annotations.NotNull;
+
+/**
+ * Created by DeadDie on 12.02.2016
+ */
+// Rare of the Death Knight
+public class DreadKnight extends Mob {
+    {
+        hp(ht(40));
+        baseDefenseSkill = 15;
+        baseAttackSkill  = 17;
+
+        dmgMin = 8;
+        dmgMax = 16;
+        dr = 12;
+
+        expForKill = 8;
+        maxLvl = 15;
+        setUndead(true);
+
+        loot(Gold.class, 0.02f);
+    }
+
+    @Override
+    public int attackProc(@NotNull Char enemy, int damage ) {
+        //Double damage proc
+        if (Random.Int(4) == 1){
+            if (enemy !=null){
+                DeathStroke.hit(enemy);
+            }
+            return damage * 2;
+        }
+        //Paralysis proc
+        if (Random.Int(10) == 1){
+            Buff.affect(enemy, Stun.class);
+        }
+        return damage;
+    }
+}
+</code>
+
+===== Mob Stats (from Java Code) =====
+  * **HP**: 40
+  * **Base Defense Skill**: 15
+  * **Base Attack Skill**: 17
+  * **Damage**: 8-16
+  * **Defense Rating**: 12
+  * **Experience for Kill**: 8
+  * **Max Level**: 15
+  * **Type**: Undead
+  * **Loot**: Gold (2% chance)
+
+===== Special Abilities (from Java Code) =====
+  * **Double Damage**: 25% chance (Random.Int(4) == 1) to deal double damage with DeathStroke effect
+  * **Stun**: 10% chance (Random.Int(10) == 1) to apply Stun buff on attack
+
 ===== JSON Configuration =====
-This entity may have JSON configuration in these files:
+This entity has JSON configuration in these files:
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/DreadKnight.json|RemixedDungeon/src/main/assets/spritesDesc/DreadKnight.json]] - Sprite animations and effects configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json]] - Spawn rates in Necropolis levels (necro2, necro3, necro4)
+
+===== Sprite Configuration (from JSON) =====
+<code json>
+{
+   "texture" : "mobs/dread_knight.png",
+   "width" : 12,
+   "height" : 16,
+   "idle" : {
+      "fps" : 3,
+      "looped" : true,
+      "frames" : [0, 0, 0, 1, 1]
+   },
+   "run" : {
+      "fps" : 12,
+      "looped" : true,
+      "frames" : [2, 3, 4, 5, 6, 7]
+   },
+   "attack" : {
+      "fps" : 10,
+      "looped" : false,
+      "frames" : [8, 9, 10]
+   },
+   "die" : {
+      "fps" : 10,
+      "looped" : false,
+      "frames" : [11, 12, 13, 14, 15, 16, 17]
+   }
+}
+</code>
 
 ===== String Resources =====
+English strings from [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]:
 <code xml>
-<string name="DreadKnight_Name">Dread Knight</string>
-<string name="DreadKnight_Info">A rare variant of the Death Knight with enhanced stats and abilities.</string>
+<string name="DreadKnight_Name">dread knight</string>
+<string name="DreadKnight_Gender">masculine</string>
+<string name="DreadKnight_Name_Objective">dread knight</string>
+<string name="DreadKnight_Desc">The dread knight is an ancient warrior who, in life, neither knew good or righteousness. For his sins, he is doomed to everlasting wanderings in this broken body of death. And every moment of his tormented existence is full of pain and suffering, similar to what he inflicted on his victims.</string>
 </code>
+
+===== Spawn Locations (from Bestiary.json) =====
+  * **Necropolis Level 2**: 0.015 spawn rate
+  * **Necropolis Level 3**: 0.015 spawn rate
+  * **Necropolis Level 4**: 0.045 spawn rate
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
 ===== Related Files =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobs/dread_knight.png|Sprite Image]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DeathKnight.java|DeathKnight.java]] - Parent mob class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DeathKnight.java|DeathKnight.java]] - Parent mob class (Dread Knight is a rare variant)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] - Badge tracking for kills
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Mob registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/effects/DeathStroke.java|DeathStroke.java]] - Visual effect on double damage proc
