@@ -1,11 +1,12 @@
 ====== Chaos Staff Item - Code References ======
 
 ===== Java Classes =====
-  * Main class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosStaff.java|ChaosStaff.java]] - Extends Wand, implements chaos staff mechanics
+  * Main class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosStaff.java|ChaosStaff.java]] - Main chaos staff implementation, extends Wand
+  * Chaos effects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCommon.java|ChaosCommon.java]] - Shared chaos effect logic
   * Item factory registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L322|ItemFactory.java#L322]] - Registers ChaosStaff.class
 
 ===== JSON Configuration =====
-This entity does not use JSON configuration. It is implemented entirely in Java.
+This entity does not use JSON configuration. It is implemented entirely in Java code.
 
 ===== String Resources =====
 <code xml>
@@ -15,31 +16,32 @@ This entity does not use JSON configuration. It is implemented entirely in Java.
 </code>
 
 Available in multiple languages:
-  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1188|strings_all.xml#L1188]]
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] (search for ChaosStaff_Name)
   * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|values-ru/strings_all.xml]]
   * German: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml|values-de/strings_all.xml]]
   * French: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml|values-fr/strings_all.xml]]
   * And many other languages in the respective resource files
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists.
+This entity is implemented entirely in Java. No Lua script exists for ChaosStaff.
 
 ===== Implementation Details =====
   * **Parent Class**: Wand (com.watabou.pixeldungeon.items.wands.Wand)
-  * **Image**: items/chaosStaff.png (image index 0)
-  * **Charge Mechanism**: Accumulates charge when owner takes damage (ownerTakesDamage method)
-  * **Visual Progression**: Image changes based on level (level / 3, max 4)
-  * **Zap Effect**: Uses ChaosCommon.doChaosMark() to mark cells with chaos energy
+  * **Sprite**: items/chaosStaff.png (image index 0, changes with level)
+  * **Charge Mechanism**: Accumulates charge when owner takes damage (ownerTakesDamage method) - charge increases by 1 per damage instance
+  * **Visual Progression**: Image changes based on level (level / 3, max 4 different images)
+  * **Zap Effect**: Uses ChaosCommon.doChaosMark() to mark cells with chaos energy (10 + level * 10 + charge chaos points)
   * **Random Effects**: 10% chance to trigger one of 5 effects on zap:
-    - Instant kill
-    - Convert to pet
-    - Spawn duplicate
-    - Teleport
-    - Heal target
+    - Instant kill (mob.die)
+    - Convert to pet (Mob.makePet)
+    - Spawn duplicate (MobFactory.spawn at adjacent cell)
+    - Teleport (WandOfTeleportation.teleport)
+    - Heal target (PotionOfHealing.heal)
+  * **Boss/NPC Immunity**: Random effects do not trigger on bosses or NPCs
 
 ===== Related Files =====
-  * Chaos system implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCommon.java|ChaosCommon.java]]
-  * Used in Chaos Crystal fusion: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCrystal.java#L99|ChaosCrystal.java#L99]]
   * Wand base class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]]
+  * Chaos Crystal fusion: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCrystal.java#L99|ChaosCrystal.java#L99]]
   * Teleportation wand (used in effects): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfTeleportation.java|WandOfTeleportation.java]]
   * Healing potion (used in effects): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]]
+  * Mob factory (used in duplicate effect): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]]
