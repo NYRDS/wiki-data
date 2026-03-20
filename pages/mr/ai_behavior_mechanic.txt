@@ -1,0 +1,61 @@
+====== AI Behavior Mechanic - Code References ======
+
+===== Java Classes =====
+  * **AI State Interface:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/AiState.java|AiState.java]] - Base interface for all AI states
+  * **AI State Manager:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/MobAi.java|MobAi.java]] - Manages AI state transitions
+  * **Mob Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Contains AI state management logic
+
+===== AI State Implementations =====
+  * **Wandering AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Wandering.java|Wandering.java]] - Random movement, transitions to hunting when enemy spotted
+  * **Hunting AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Hunting.java|Hunting.java]] - Actively pursues enemies
+  * **Sleeping AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Sleeping.java|Sleeping.java]] - Dormant until woken by damage or enemy in FOV
+  * **Passive AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Passive.java|Passive.java]] - Does not initiate combat, only responds to damage
+  * **Fleeing AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Fleeing.java|Fleeing.java]] - Runs away from enemies
+  * **RunningAmok AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/RunningAmok.java|RunningAmok.java]] - Moves randomly while attacking everything
+  * **Horrified AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Horrified.java|Horrified.java]] - Frightened state causing mob to flee
+  * **ThiefFleeing AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/ThiefFleeing.java|ThiefFleeing.java]] - Specialized fleeing AI for thief-type mobs
+  * **ControlledAI AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/ControlledAi.java|ControlledAi.java]] - AI controlled by player (summons/pets)
+
+===== JSON Configuration =====
+AI states can be specified in mob JSON descriptors with the "aiState" parameter:
+  * **Mob Descriptors:** Located in ''RemixedDungeon/src/main/assets/mobsDesc/'' directory
+  * **Example:** <code json>{"aiState": "Sleeping"}</code>
+
+===== String Resources =====
+<code xml>
+<!-- AI Status Strings -->
+<string name="Mob_StaWanderingStatus">%s is wandering</string>
+<string name="Mob_StaHuntingStatus">%s is hunting</string>
+<string name="Mob_StaHuntingStatus2">%s is hunting %s</string>
+<string name="Mob_StaSleepingStatus">%s is sleeping</string>
+<string name="Mob_StaPassiveStatus">%s is passive</string>
+<string name="Mob_StaFleeingStatus">%s is fleeing</string>
+<string name="Mob_StaFleeingStatus2">%s is fleeing from %s</string>
+</code>
+
+===== Lua Scripts =====
+AI states can be manipulated via Lua scripts for custom mob behaviors:
+  * **Script Location:** ''RemixedDungeon/src/main/assets/scripts/mobs/''
+  * **AI Control:** Lua scripts can call Mob.setState() to change AI behavior
+
+===== AI State Transitions =====
+  * **Damage Trigger:** When mob takes damage → typically transitions to Hunting AI
+  * **Sight Trigger:** When mob sees enemy while Sleeping/Wandering → transitions to Hunting AI
+  * **Health Trigger:** When mob's health is low → may transition to Fleeing AI
+  * **Scripted Trigger:** Lua scripts can force AI state changes
+
+===== AiState Interface Methods =====
+<code java>
+public interface AiState {
+    void act(@NotNull Char me);                    // Called each turn to execute AI behavior
+    String status(Char me);                         // Returns status string for display
+    String getTag();                                // Returns AI state identifier
+    void gotDamage(Char me, NamedEntityKind src, int dmg);  // Called when mob takes damage
+    void onDie(@NotNull Char me);                   // Called when mob dies
+}
+</code>
+
+===== Entity Kind =====
+  * **Interface:** ''com.nyrds.pixeldungeon.ai.AiState''
+  * **Package:** ''com.nyrds.pixeldungeon.ai''
+  * **Pattern:** State Pattern for AI behavior management
