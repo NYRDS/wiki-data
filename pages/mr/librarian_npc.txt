@@ -1,12 +1,47 @@
 ====== Librarian NPC - Code References ======
 
+===== Entity Name =====
+librarian_npc
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/LibrarianNPC.java|LibrarianNPC.java]]
+
+===== Class Implementation =====
+<code java>
+package com.nyrds.pixeldungeon.mobs.npc;
+
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.scenes.GameScene;
+import com.watabou.pixeldungeon.windows.WndQuest;
+
+public class LibrarianNPC extends ImmortalNPC {
+
+	public LibrarianNPC() {
+	}
+
+	@Override
+	public boolean interact(final Char hero) {
+		getSprite().turnTo( getPos(), hero.getPos() );
+
+        GameScene.show(new WndQuest(this, StringsManager.getVar(R.string.LibrarianNPC_Message_Instruction)));
+		return true;
+	}
+
+}
+</code>
+
+===== Special Abilities =====
+  * **Immortal**: Cannot be killed (extends ImmortalNPC)
+  * **Library Interface**: Provides access to collected game entity information
+  * **Interaction**: Shows quest window with library instructions when interacted with
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
 <string name="LibrarianNPC_Name">librarian</string>
 <string name="LibrarianNPC_Desc">A very shy person, wearing an awkward looking sweater and a thick pair of glasses.</string>
@@ -16,11 +51,18 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="LibrarianNPC_Name_Objective">librarian</string>
 </code>
 
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="LibrarianNPC_Name">библиотекарь</string>
+<string name="LibrarianNPC_Desc">Очень застенчивый человек, одетый в нелепый свитер и толстые очки.</string>
+<string name="LibrarianNPC_Message_Instruction">З-здравствуйте. Добро пожаловать в Библиотеку. Здесь вы можете найти информацию обо всех вещах, которые можно найти в подземелье... на самом деле мы можем предоставить только знания, которые были открыты искателями приключений. Это... это немного смущает. Поэтому каждый раз, когда вы посещаете нас, вероятно, будут новые вещи для чтения.</string>
+<string name="LibrarianNPC_Message_Not_Ready">И... извините, б-библиотека ещё не открыта.</string>
+<string name="LibrarianNPC_Gender">masculine</string>
+<string name="LibrarianNPC_Name_Objective">библиотекаря</string>
+</code>
+
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
-
-===== Related mr Entities =====
-  * [[mr:library_level|Library (Level)]]
 
 ===== Entity Implementation Details =====
   * **Package:** com.nyrds.pixeldungeon.mobs.npc
@@ -32,8 +74,18 @@ This entity is implemented in Java, no Lua script exists
   * **Location:** Library special room in dungeon levels
   * **Interaction:** Shows WndQuest window with library instructions
 
+===== Related mr Entities =====
+  * [[mr:library_level|Library (Level)]]
+
 ===== Related Files =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - registration
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]] - base class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/Library.java|Library.java]] - library system
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndQuest.java|WndQuest.java]] - quest window
+
+===== Content Verification =====
+  * Information source: Java code (LibrarianNPC.java) and string resources
+  * Last updated: 2026-03-21 based on current codebase analysis
+  * Verified against: RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/LibrarianNPC.java
+
+{{tag>mr npcs code_reference}}
