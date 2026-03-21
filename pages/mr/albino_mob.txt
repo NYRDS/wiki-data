@@ -1,21 +1,121 @@
-====== Albino Mob - Code References ======
+====== mr:albino_mob ======
 
-===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Albino.java|Albino.java]]
+Machine-readable reference page for Albino mob in Remixed Dungeon.
 
-===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+==== Java Implementation ====
 
-===== String Resources =====
-<code xml>
-<string name="Albino_Name">albino rat</string>
-<string name="Albino_Gender">masculine</string>
-<string name="Albino_Name_Objective">albino rat</string>
-<string name="Albino_Desc">Marsupial rats are aggressive, but rather weak denizens of the sewers. They can be dangerous only in big numbers. This particular rat seems to be an albino. It also has abnormally sharp teeth.</string>
-</code>
+**Class File:**
+  * File: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Albino.java|Albino.java]]
+  * Package: com.watabou.pixeldungeon.actors.mobs
+  * Extends: Rat
+  * Entity Kind: Albino
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+**Stats:**
+  * HP: 15 (fixed)
+  * Defense: Inherits from Rat
+  * Damage: Inherits from Rat
 
-===== Related mr Entities =====
-  * [[mr:rat_mob|Related Entity (Mob)]]
+**Special Abilities:**
+  * Bleeding Attack: 50% chance on hit to apply Bleeding buff
+  * Bleeding level: Equals damage dealt
+
+==== Code Implementation ====
+
+```java
+public class Albino extends Rat {
+    {
+        hp(ht(15));
+    }
+
+    @Override
+    public int attackProc(@NotNull Char enemy, int damage) {
+        if (Random.Int(2) == 0) {
+            Buff.affect(enemy, Bleeding.class).level(damage);
+        }
+        return damage;
+    }
+}
+```
+
+==== Spawn Location ====
+
+**Dungeon Depth:**
+  * Sewers (depth 1-5)
+  * Rare spawn variant of Rat
+
+**Spawn Conditions:**
+  * Random chance replacement for normal Rat
+  * No special spawn requirements
+
+==== String Resources ====
+
+**English (values/strings_all.xml):**
+  * Albino_Name - Display name
+  * Albino_Info - Description text
+
+**Russian (values-ru/strings_all.xml):**
+  * Albino_Name - Russian name
+  * Albino_Info - Russian description
+
+==== Game Integration ====
+
+**Badge System:**
+  * File: Badges.java
+  * Badge: RARE_ALBINO
+  * Validation: validateRare(Mob mob) checks for instanceof Albino
+
+**Mob Factory Registration:**
+  * File: MobFactory.java
+  * Registered via: registerMobClass(Albino.class)
+  * Entity Kind: "Albino"
+
+==== Drops ====
+
+**Loot Table:**
+  * Inherits from Rat parent class
+  * No unique drops
+
+==== Behavior ====
+
+**AI Pattern:**
+  * Inherits from Rat
+  * Standard melee aggression
+  * No special AI behaviors
+
+==== Resistances ====
+
+**Immunities:**
+  * Inherits from Rat
+  * No unique immunities
+
+**Weaknesses:**
+  * No unique weaknesses
+
+==== Related Entities ====
+
+**Parent Class:**
+  * [[mr:rat_mob|mr:rat_mob]] - Rat base mob
+
+**Similar Mobs:**
+  * [[mr:gnoll_mob|mr:gnoll_mob]] - Sewers mob
+  * [[mr:crab_mob|mr:crab_mob]] - Sewers mob
+
+**Buffs Applied:**
+  * [[mr:bleeding_buff|mr:bleeding_buff]] - Bleeding damage over time
+
+==== Wiki Pages ====
+
+**English:**
+  * [[en:rpd:albino_rat_mob|Albino Rat]] - Main wiki page
+
+**Russian:**
+  * [[ru:rpd:albino_rat_mob|Крыса-альбинос]] - Russian wiki page
+
+==== Code References ====
+
+  * Class implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Albino.java|Albino.java]]
+  * Badge validation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java#L792|Badges.java:792]]
+  * Mob factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L148|MobFactory.java:148]]
+  * Bleeding buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Bleeding.java|Bleeding.java]]
+
+{{tag> mr mobs albino sewers reference machine-readable}}

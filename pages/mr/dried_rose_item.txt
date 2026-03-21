@@ -1,109 +1,139 @@
-====== Dried Rose Item - Code References ======
+====== mr:dried_rose_item ======
 
-===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DriedRose.java|DriedRose.java]] - Main quest artifact item class
-  * Location: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DriedRose.java
-  * Extends: [[mr:artifact_item|Artifact]]
-  * Sprite: ItemSpriteSheet.ROSE
+Machine-readable reference page for Dried Rose item in Remixed Dungeon.
 
-===== Java Class Content =====
-<code java>
-package com.watabou.pixeldungeon.items.quest;
+==== Java Implementation ====
 
-import com.nyrds.pixeldungeon.ml.R;
-import com.nyrds.platform.util.StringsManager;
-import com.watabou.pixeldungeon.items.rings.Artifact;
-import com.watabou.pixeldungeon.items.rings.ArtifactBuff;
-import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
-import com.watabou.pixeldungeon.ui.BuffIndicator;
+**Class File:**
+  * File: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DriedRose.java|DriedRose.java]]
+  * Package: com.watabou.pixeldungeon.items.quest
+  * Extends: Artifact
+  * Entity Kind: DriedRose
 
+**Item Properties:**
+  * Type: Quest Artifact
+  * Image: ItemSpriteSheet.ROSE
+  * Identified: Always identified (isIdentified() returns true)
+  * Stackable: No (single item)
+
+==== Code Implementation ====
+
+```java
 public class DriedRose extends Artifact {
+    public DriedRose() {
+        image = ItemSpriteSheet.ROSE;
+    }
 
-	public DriedRose() {
-		image = ItemSpriteSheet.ROSE;
-	}
+    @Override
+    public ArtifactBuff buff() {
+        // Returns appropriate buff based on curse state
+    }
 
-	@Override
-	public ArtifactBuff buff() {
-		if (!isCursed()) {
-			return new OneWayLoveBuff();
-		} else {
-			return new OneWayCursedLoveBuff();
-		}
-	}
-
-	@Override
-	public boolean isIdentified() {
-		return true;
-	}
-
-	@Override
-	public String info() {
-        return super.info() + "\n\n" + StringsManager.getVar(R.string.DriedRose_Info2);
-	}
-
-	public static class OneWayLoveBuff extends ArtifactBuff {
-		@Override
-		public int icon() {
-			return BuffIndicator.ROSE;
-		}
-
-		@Override
-		public String name() {
-            return StringsManager.getVar(R.string.DriedRoseBuff_Name);
-        }
-
-		@Override
-		public String desc() {
-            return StringsManager.getVar(R.string.DriedRoseBuff_Info);
-        }
-	}
-
-	public static class OneWayCursedLoveBuff extends ArtifactBuff {
-		@Override
-		public int icon() {
-			return BuffIndicator.CURSED_ROSE;
-		}
-
-		@Override
-		public String name() {
-            return StringsManager.getVar(R.string.DriedRoseCursedBuff_Name);
-        }
-
-		@Override
-		public String desc() {
-            return StringsManager.getVar(R.string.DriedRoseCursedBuff_Info);
-        }
-	}
+    @Override
+    public boolean isIdentified() {
+        return true;
+    }
 }
-</code>
+```
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check:
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/dried_rose.json
+==== Buffs ====
 
-===== String Resources =====
-<code xml>
-<string name="DriedRose_Name">dried rose</string>
-<string name="DriedRose_Info">This rose dried up long time ago, but it has somehow kept all its petals. And it hasn't lost it's charm.</string>
-<string name="DriedRoseBuff_Name">One way love</string>
-<string name="DriedRoseBuff_Info">Charming. The rose looks very charming.</string>
-<string name="DriedRoseCursedBuff_Name">One way cursed love</string>
-<string name="DriedRoseCursedBuff_Info">Amorous. The rose looks beautiful but not very charming.</string>
-</code>
+**Uncursed State:**
+  * Buff Class: OneWayLoveBuff
+  * Effect: "The rose looks very charming"
+  * Provides charm-related benefits
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+**Cursed State:**
+  * Buff Class: OneWayCursedLoveBuff
+  * Effect: "The rose looks beautiful but not very charming"
+  * Reduced charm effectiveness
 
-===== Usage in Codebase =====
-  * **Succubus.java**: Uses DriedRose.OneWayLoveBuff to check for charm status and reverse targeting
-  * **Ghost.java**: Quest item - can be obtained from Ghost NPC quest in Sewers
-  * **WndSadGhost.java**: Used in ghost quest dialog window
+==== Quest Integration ====
 
-===== Related mr Entities =====
-  * [[mr:ghost_npc|Ghost NPC]]
-  * [[mr:one_way_love_buff|One Way Love Buff]]
-  * [[mr:one_way_cursed_love_buff|One Way Cursed Love Buff]]
-  * [[mr:artifact_item|Artifact]]
-  * [[mr:succubus_mob|Succubus]]
+**Ghost NPC Quest:**
+  * File: WndSadGhost.java
+  * Quest Giver: Ghost NPC
+  * Quest Location: Sewers (depth 1-5)
+  * Quest Type: Fetch quest / Memorial
+
+**Quest Flow:**
+  1. Encounter Ghost NPC in Sewers
+  2. Ghost requests remembrance
+  3. Receive Dried Rose as quest item
+  4. Rose provides charm effects when equipped
+
+**Window Handling:**
+  * File: WndSadGhost.java
+  * Checks: item instanceof DriedRose
+  * String: R.string.WndSadGhost_Rose
+
+==== String Resources ====
+
+**English (values/strings_all.xml):**
+  * DriedRose_Name - Item name
+  * DriedRose_Info - Item description (uncursed)
+  * DriedRose_Info2 - Item description (cursed)
+  * DriedRoseBuff_Name - Buff name (uncursed)
+  * DriedRoseBuff_Info - Buff description (uncursed)
+  * DriedRoseCursedBuff_Name - Buff name (cursed)
+  * DriedRoseCursedBuff_Info - Buff description (cursed)
+
+**Russian (values-ru/strings_all.xml):**
+  * DriedRose_Name - Russian item name
+  * DriedRose_Info - Russian description
+  * DriedRoseBuff_Name - Russian buff name
+  * DriedRoseBuff_Info - Russian buff description
+
+==== Acquisition ====
+
+**Primary Source:**
+  * Ghost NPC quest reward
+  * Location: Sewers
+
+**Alternative Sources:**
+  * Special dungeon circumstances
+  * Mod-dependent spawns
+
+==== Mechanics ====
+
+**Charm Interaction:**
+  * Interacts with Charm spell mechanics
+  * Affects Succubus interactions
+  * Provides social/charm benefits
+
+**Curse Mechanics:**
+  * Can be cursed like other artifacts
+  * Curse state affects buff type
+  * Curse removal restores normal buff
+
+==== Related Entities ====
+
+**Related NPCs:**
+  * [[mr:ghost_npc|mr:ghost_npc]] - Quest giver
+
+**Related Buffs:**
+  * [[mr:charm_buff|mr:charm_buff]] - Charm effect
+  * mr:one_way_love_buff - Rose-specific buff
+
+**Related Mobs:**
+  * [[mr:succubus_mob|mr:succubus_mob]] - Charm-related mob
+
+**Related Spells:**
+  * [[mr:charm_spell|mr:charm_spell]] - Charm spell
+
+==== Wiki Pages ====
+
+**English:**
+  * [[en:rpd:dried_rose_item|Dried Rose]] - Main wiki page
+
+**Russian:**
+  * [[ru:rpd:dried_rose_item|Засушенная роза]] - Russian wiki page
+
+==== Code References ====
+
+  * Item implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DriedRose.java|DriedRose.java]]
+  * Quest window: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndSadGhost.java|WndSadGhost.java]]
+  * Succubus interaction: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Succubus.java|Succubus.java]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+
+{{tag> mr items quest artifact dried_rose reference machine-readable}}

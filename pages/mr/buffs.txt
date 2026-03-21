@@ -1,0 +1,136 @@
+====== mr:buffs ======
+
+Machine-readable reference page for Buff system in Remixed Dungeon.
+
+==== Java Implementation ====
+
+**Base Class:**
+  * File: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
+  * Package: com.watabou.pixeldungeon.actors.buffs
+  * Extends: Actor
+  * Implements: NamedEntityKind, CharModifier
+
+**Key Properties:**
+  * target: Char - The character affected by this buff
+  * buffLevel: int - The level/strength of the buff (default: 1)
+  * source: int - The source of the buff (default: -1)
+
+**Key Methods:**
+  * name() - Returns buff name from string resources ({entityKind}Buff_Name)
+  * desc() - Returns buff description from string resources ({entityKind}Buff_Info)
+  * textureSmall() - Returns buff icon texture path
+  * attach() - Attaches buff to a target character
+  * detach() - Removes buff from target
+  * tick() - Called each game tick to update buff state
+  * duration() - Returns remaining duration of the buff
+
+==== Buff Factory ====
+
+**Factory Class:**
+  * File: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]]
+  * Package: com.nyrds.pixeldungeon.mechanics.buffs
+
+**Factory Methods:**
+  * createBuff(String entityKind) - Creates a buff by entity kind name
+  * registerBuff(Class<? extends Buff> buffClass) - Registers a buff class for creation
+
+==== Common Buff Classes ====
+
+**Positive Buffs (Buffs):**
+  * Invisibility - Makes target invisible to enemies
+  * Haste - Increases movement and attack speed
+  * Regeneration - Restores health over time
+  * Shield - Provides temporary damage absorption
+  * Levitation - Allows flying over traps and obstacles
+  * Barkskin - Provides temporary armor
+  * Blessing - Provides various beneficial effects
+
+**Negative Buffs (Debuffs):**
+  * Poison - Deals damage over time
+  * Bleeding - Deals damage over time, scales with damage taken
+  * Cripple - Reduces movement speed
+  * Weakness - Reduces attack damage
+  * Fragility - Increases damage taken
+  * Blindness - Reduces accuracy
+  * Charm - Prevents attacking the source
+  * Paralysis - Prevents all actions
+  * Burning - Deals fire damage over time
+  * Freezing - Immobilizes target
+  * Amok - Causes target to attack randomly
+  * Corruption - Converts target to ally
+
+==== Buff Application Patterns ====
+
+**Affect (Apply new or extend):**
+```java
+Buff.affect(target, BuffClass.class).level(value);
+```
+
+**Prolong (Extend existing duration):**
+```java
+Buff.prolong(target, BuffClass.class, duration);
+```
+
+**Attach (Direct attachment):**
+```java
+buff.attachTo(target);
+```
+
+**Detach (Remove buff):**
+```java
+buff.detach();
+```
+
+==== String Resource Format ====
+
+Buff string resources follow this naming convention:
+  * Name: {entityKind}Buff_Name
+  * Description: {entityKind}Buff_Info
+
+Example:
+  * InvisibilityBuff_Name
+  * InvisibilityBuff_Info
+  * PoisonBuff_Name
+  * PoisonBuff_Info
+
+==== Lua Integration ====
+
+Buffs can be created and manipulated from Lua scripts:
+```lua
+-- Apply buff to character
+Buff.affect(target, "Poison"):level(damage)
+
+-- Prolong buff duration
+Buff.prolong(target, "Haste", duration)
+
+-- Check if character has buff
+if target:hasBuff("Invisibility") then
+    -- Handle invisible target
+end
+```
+
+==== Buff Icons ====
+
+Buff icons are stored in: RemixedDungeon/src/main/assets/assets/buffs.png
+Individual buff icons for wiki: wiki-data/media/rpd/images/{buff_name}_buff.png
+
+==== Related Pages ====
+
+**Machine-readable references:**
+  * [[mr:debuffs|mr:debuffs]] - Debuff-specific reference
+  * [[mr:invisibility_buff|mr:invisibility_buff]] - Example buff reference
+  * [[mr:poison_buff|mr:poison_buff]] - Example debuff reference
+
+**Wiki documentation:**
+  * [[en:rpd:status_effects|Status Effects]] - English wiki overview
+  * [[ru:rpd:buffs|Баффы]] - Russian wiki overview
+  * [[en:rpd:debuff_buff|Debuffs]] - English debuff overview
+
+==== Code References ====
+
+  * Base implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
+  * Buff factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]]
+  * All buff classes: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs|actors/buffs/]] directory
+  * Lua buff scripts: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets/scripts/buffs|scripts/buffs/]] directory
+
+{{tag> mr buffs reference machine-readable}}
