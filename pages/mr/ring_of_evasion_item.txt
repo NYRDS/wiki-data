@@ -1,8 +1,39 @@
 ====== Ring Of Evasion Item - Code References ======
 
+{{ rpd:images:ring_of_evasion_item.png|Ring of Evasion }}
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfEvasion.java|RingOfEvasion.java]]
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java|Ring.java]] (parent class)
+
+===== Full Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.items.rings;
+
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.actors.Char;
+
+public class RingOfEvasion extends Ring {
+
+	@Override
+	public  ArtifactBuff buff( ) {
+		return new Evasion();
+	}
+
+	@Override
+	public String desc() {
+        return isKnown() ? StringsManager.getVar(R.string.RingOfEvasion_Info) : super.desc();
+	}
+
+	public class Evasion extends RingBuff {
+		@Override
+		public int defenceSkillBonus(Char chr) {
+			return level();
+		}
+	}
+}
+</code>
 
 ===== JSON Configuration =====
 This entity does not appear to have JSON configuration
@@ -16,6 +47,16 @@ This entity does not appear to have JSON configuration
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
-===== Related Information =====
-  * The ring provides a defensive bonus equal to its level: defenceSkillBonus = level()
-  * It is part of the Ring system and follows standard ring mechanics
+===== Entity Usage Analysis =====
+Using find_entity_usage.py:
+  * Java file: ./RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfEvasion.java - Main class implementation
+  * Java file: ./RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java - Registered in Ring class (line 32)
+  * Java file: ./RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java - Buff registration (line 99)
+  * Java file: ./RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java - Item registration (line 300)
+  * String resources: RingOfEvasion_Name, RingOfEvasion_Info
+  * No Lua file usage (Java-based item)
+  * No JSON configuration (Java-based item)
+
+===== Related mr Entities =====
+  * [[mr:evasion_buff|Evasion (Buff)]] - Buff provided by this ring
+  * [[mr:ring_item|Ring (Item)]] - Parent item class
