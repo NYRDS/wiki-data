@@ -1,20 +1,145 @@
 ====== Suspicious Rat Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * ''com/nyrds/pixeldungeon/mobs/guts/SuspiciousRat.java'' - Main mob implementation
+  * Extends: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob]]
+  * Related: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/PseudoRat.java|PseudoRat]] - Transformation result
+
+===== Java Class Content =====
+<code java>
+package com.nyrds.pixeldungeon.mobs.guts;
+
+import com.nyrds.Packable;
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.audio.Sample;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.Assets;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.CharUtils;
+import com.watabou.pixeldungeon.actors.blobs.ToxicGas;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.pixeldungeon.sprites.CharSprite;
+import com.watabou.pixeldungeon.utils.GLog;
+
+import org.jetbrains.annotations.NotNull;
+
+public class SuspiciousRat extends Mob {
+
+	private static final float TIME_TO_HATCH = 4f;
+
+	{
+		hp(ht(140));
+		baseDefenseSkill = 25;
+		baseAttackSkill  = 25;
+		dmgMin = 10;
+		dmgMax = 15;
+		dr = 2;
+
+		expForKill = 1;
+		maxLvl = 30;
+
+		pacified = true;
+
+		addImmunity(ToxicGas.class);
+	}
+
+	@Packable
+	public boolean transforming = false;
+
+	@Override
+	public boolean act() {
+		if (enemySeen) {
+			if (!transforming) {
+				spend(TIME_TO_HATCH);
+				transforming = true;
+				if (CharUtils.isVisible(this)) {
+                    getSprite().showStatus(CharSprite.NEGATIVE, StringsManager.getVar(R.string.Goo_StaInfo1));
+                    GLog.n(StringsManager.getVar(R.string.SuspiciousRat_Info1));
+				}
+				getSprite().zap(getEnemy().getPos());
+			} else {
+				int wereratPos = this.getPos();
+				if (level().cellValid(wereratPos)) {
+					PseudoRat mob = new PseudoRat();
+					mob.setPos(wereratPos);
+					level().spawnMob(mob);
+					Sample.INSTANCE.play(Assets.SND_CURSED);
+				}
+				die(this);
+			}
+			return true;
+		}
+		return super.act();
+	}
+
+	@Override
+	public boolean zap(@NotNull Char enemy){
+		return false;
+	}
+}
+</code>
+
+===== Key Constants =====
+  * **Health Points:** HP = 140, HT = 140
+  * **Defense Skill:** baseDefenseSkill = 25
+  * **Attack Skill:** baseAttackSkill = 25
+  * **Damage:** dmgMin = 10, dmgMax = 15
+  * **Damage Reduction:** dr = 2
+  * **Experience:** expForKill = 1
+  * **Max Level:** maxLvl = 30
+  * **Transformation Time:** TIME_TO_HATCH = 4f (4 turns)
+  * **Pacified:** Starts in pacified state (pacified = true)
+  * **Immunity:** Immune to ToxicGas
+
+===== Transformation Mechanics =====
+  * **Trigger:** When enemy is seen (enemySeen = true)
+  * **Phase 1:** Begins transformation, spends 4 turns, shows visual effect
+  * **Phase 2:** Spawns PseudoRat at same position, dies
+  * **Sound:** Plays Assets.SND_CURSED on transformation
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/suspicious_rat.json
+Spawn configuration found in ''Bestiary.json'':
+<code json>
+"Guts": {
+  "SuspiciousRat": {
+    "chance": 1.0,
+    "max": 1
+  }
+}
+</code>
 
 ===== String Resources =====
+English (''values/strings_all.xml''):
 <code xml>
-<string name="SuspiciousRat_Name">[Name]</string>
-<string name="SuspiciousRat_Info">[Description]</string>
+<string name="SuspiciousRat_Name">Suspicious rat</string>
+<string name="SuspiciousRat_Gender">feminine</string>
+<string name="SuspiciousRat_Name_Objective">Suspicious rat</string>
+<string name="SuspiciousRat_Desc">A rat is not an uncommon sight in the dungeons, but for it to dwell so deep... You can see how the rat's whole body spasms when it moves.</string>
+<string name="SuspiciousRat_Info1">Suspicious rat is twitching violently.</string>
+</code>
+
+Russian (''values-ru/strings_all.xml''):
+<code xml>
+<string name="SuspiciousRat_Name">Подозрительная крыса</string>
+<string name="SuspiciousRat_Gender">feminine</string>
+<string name="SuspiciousRat_Name_Objective">Подозрительную крысу</string>
+<string name="SuspiciousRat_Desc">Крыса — обычное явление в подземельях, но как она оказалась настолько глубоко... Вы замечаете, как все тело крысы трясется при движении.</string>
+<string name="SuspiciousRat_Info1">Подозрительная крыса яростно дергается.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+No Lua script implementation. This mob is implemented entirely in Java.
+
+===== Spawn Location =====
+  * **Level:** Guts (этажи 26-30)
+  * **Configuration:** Bestiary.json - Guts section
+
+===== Related Mobs =====
+  * [[mr:pseudo_rat_mob|Pseudo Rat Mob]] - Transformation result
+  * [[mr:rat_mob|Albino Rat Mob]] - Related rat variant
+  * [[mr:fetid_rat_mob|Fetid Rat Mob]] - Related rat variant
+
+===== See Also =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob Base Class]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/PseudoRat.java|PseudoRat]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]

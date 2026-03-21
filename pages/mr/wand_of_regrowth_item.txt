@@ -1,20 +1,109 @@
 ====== Wand Of Regrowth Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * ''com/watabou/pixeldungeon/items/wands/WandOfRegrowth.java'' - Main wand implementation
+  * Extends: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/SimpleWand.java|SimpleWand]]
+  * Registered in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.items.wands;
+
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.audio.Sample;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.Assets;
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.blobs.Blob;
+import com.watabou.pixeldungeon.actors.blobs.Regrowth;
+import com.watabou.pixeldungeon.effects.MagicMissile;
+import com.watabou.pixeldungeon.levels.Level;
+import com.watabou.pixeldungeon.levels.Terrain;
+import com.watabou.pixeldungeon.mechanics.Ballistica;
+import com.watabou.pixeldungeon.scenes.GameScene;
+import com.watabou.pixeldungeon.utils.GLog;
+import com.watabou.utils.Callback;
+
+public class WandOfRegrowth extends SimpleWand {
+
+	@Override
+	protected void onZap( int cell, Char ch ) {
+
+		final Level level = Dungeon.level;
+
+		for (int i = 1; i < Ballistica.distance-1; i++) {
+			int p = Ballistica.trace[i];
+			int c = level.map[p];
+			if (c == Terrain.EMPTY ||
+				c == Terrain.EMBERS ||
+				c == Terrain.EMPTY_DECO) {
+
+				level.set( p, Terrain.GRASS );
+
+			}
+		}
+
+		int c = level.map[cell];
+		if (c == Terrain.EMPTY ||
+			c == Terrain.EMBERS ||
+			c == Terrain.EMPTY_DECO ||
+			c == Terrain.GRASS ||
+			c == Terrain.HIGH_GRASS) {
+
+			GameScene.add( Blob.seed( cell, (effectiveLevel() + 2) * 20, Regrowth.class ) );
+
+		} else {
+            GLog.i(StringsManager.getVar(R.string.WandOfRegrowth_Info1));
+		}
+	}
+
+	protected void fx( int cell, Callback callback ) {
+		MagicMissile.foliage( getOwner().getSprite().getParent(), getOwner().getPos(), cell, callback );
+		Sample.INSTANCE.play( Assets.SND_ZAP );
+	}
+
+	@Override
+	public String desc() {
+        return StringsManager.getVar(R.string.WandOfRegrowth_Info);
+    }
+}
+</code>
+
+===== Key Mechanics =====
+  * **Terrain Conversion:** Converts EMPTY, EMBERS, and EMPTY_DECO terrain to GRASS
+  * **Regrowth Blob:** Seeds regrowth blob with power = (effectiveLevel() + 2) * 20
+  * **Visual Effect:** Uses MagicMissile.foliage() for zap animation
+  * **Sound:** Plays Assets.SND_ZAP on zap
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/wand_of_regrowth.json
+No dedicated JSON configuration file found. Wand is implemented entirely in Java.
 
 ===== String Resources =====
+English (''values/strings_all.xml''):
 <code xml>
-<string name="WandOfRegrowth_Name">[Name]</string>
-<string name="WandOfRegrowth_Info">[Description]</string>
+<string name="WandOfRegrowth_Name">Wand of Regrowth</string>
+<string name="WandOfRegrowth_Info">"When life ceases new life always begins to grow... The eternal cycle always remains!"</string>
+<string name="WandOfRegrowth_Info1">nothing happened</string>
+</code>
+
+Russian (''values-ru/strings_all.xml''):
+<code xml>
+<string name="WandOfRegrowth_Name">Посох роста</string>
+<string name="WandOfRegrowth_Info">"Когда жизнь прекращается, новая жизнь всегда начинает расти... Вечный цикл всегда остается!"</string>
+<string name="WandOfRegrowth_Info1">ничего не произошло</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+No Lua script implementation. This wand is implemented entirely in Java.
+
+===== Related Effects =====
+  * [[mr:regrowth_blob|Regrowth Blob]] - The blob effect created by this wand
+  * [[mr:roots_buff|Roots Buff]] - Movement impairment effect from regrowth
+  * [[mr:grass_terrain|Grass Terrain]] - Terrain created by this wand
+
+===== See Also =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/SimpleWand.java|SimpleWand Base Class]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Regrowth.java|Regrowth Blob]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|MagicMissile Effects]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica]]
