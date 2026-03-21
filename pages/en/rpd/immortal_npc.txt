@@ -1,16 +1,17 @@
 ====== Immortal NPC ======
 
-==== Description ====
-ImmortalNPC is an abstract class that extends the base NPC class in Remixed Dungeon. NPCs that inherit from this class have special properties that make them essentially invulnerable to damage and unable to move.
+**ImmortalNPC** is an abstract class in Remixed Dungeon that extends the base [[en:rpd:npc|NPC]] class. NPCs that inherit from this class have special properties that make them essentially invulnerable to damage and unable to move.
+
+{{tag> rpd npcs immortal abstract}}
 
 ==== Properties ====
   * **Immobile**: Cannot move (movable = false)
-  * **Invulnerable**: Cannot take damage from any attacks
+  * **Invulnerable**: Cannot take damage from any attacks (damage method is overridden to do nothing)
   * **High Defense**: Defense skill is set to 1000 (effectively impossible to hit)
   * **Low Speed**: Speed is set to 0.5f (slower than normal)
-  * **Buff Immunity**: Cannot receive or be affected by buffs
-  * **Defensive**: Uses "wails" as its defense verb
-  * **Reset Behavior**: Automatically resets position after actions
+  * **Buff Immunity**: Cannot receive or be affected by buffs (add(Buff) returns false)
+  * **Defensive**: Uses "wails" as its defense verb (from Ghost_Defense string resource)
+  * **Reset Behavior**: Automatically resets position after actions (reset() returns true)
 
 ==== Implemented NPCs ====
 NPCs that extend ImmortalNPC include:
@@ -32,22 +33,25 @@ NPCs that extend ImmortalNPC include:
   * Other special NPCs in the game
 
 ==== Implementation ====
-  * **Abstract Class**: Cannot be instantiated directly
+  * **Abstract Class**: Cannot be instantiated directly, must be extended
   * **Protection**: Has special protection against damage and effects
   * **Purpose**: Designed for safe NPCs that provide services, lore, or other functions without risk of being killed
+  * **Location**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java]]
 
 ==== Strategy ====
   * These NPCs are completely safe to interact with
   * They cannot be killed or damaged in any way
   * They remain in fixed positions due to immobility
   * They serve as permanent fixtures in the game world
+  * Players can interact with them without worry of accidental harm
 
-==== Source Code References ====
-  * Java implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+==== Source Code ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+  * Parent Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/NPC.java|NPC.java]]
 
 ==== See Also ====
   * [[en:rpd:npc|NPCs]] - General information about non-player characters
   * [[en:rpd:npcs|NPCs]] - List of all NPCs in the game
-  * [[mr:immortal_npc|Technical Details]]
+  * [[mr:immortal_npc|Technical Details]] - Machine-readable reference page
 
-{{tag> rpd npcs immortal}}
+{{tag> rpd npcs immortal abstract}}

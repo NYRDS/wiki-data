@@ -1,23 +1,80 @@
 ====== Rotten Meat Item - Code References ======
 
+Machine-readable reference page for the Rotten Meat item in Remixed Dungeon.
+
+===== Entity Information =====
+  * **Entity Kind**: rotten_meat
+  * **Item Type**: Food (Rotten)
+  * **Tier**: Basic food item
+  * **Stackable**: Yes
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenMeat.java|RottenMeat.java]] - Main implementation class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]] - Base class that RottenMeat extends
 
+===== Class Implementation =====
+<code java>
+package com.watabou.pixeldungeon.items.food;
+
+import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
+
+public class RottenMeat extends RottenFood {
+	public RottenMeat() {
+		image   = ItemSpriteSheet.ROTTEN_MEAT;
+	}
+	
+	@Override
+	public Food purify() {
+		return new MysteryMeat();
+	}
+}
+</code>
+
+===== Key Methods =====
+  * **purify()**: Returns a new [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/MysteryMeat.java|MysteryMeat]] instance when purified
+  * **Constructor**: Sets the sprite image to ItemSpriteSheet.ROTTEN_MEAT
+
+===== Java Usage References =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/ChargrilledMeat.java|ChargrilledMeat.java]]: Line 22 - poison() method returns morphTo(RottenMeat.class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/MysteryMeat.java|MysteryMeat.java]]: Line 74 - poison() method returns morphTo(RottenMeat.class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]: 
+    * Line 100 - Import statement
+    * Line 260 - Registered item class: registerItemClass(RottenMeat.class)
+
 ===== JSON Configuration =====
-No specific JSON configuration found for Rotten Meat item.
+No specific JSON configuration found for Rotten Meat item. The item is implemented entirely in Java.
 
 ===== String Resources =====
 <code xml>
+<!-- English (values/strings_all.xml) -->
 <string name="RottenMeat_Name">Rotten meat</string>
 <string name="RottenMeat_Info">A piece of rotten meat</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="RottenMeat_Name">Испорченное мясо</string>
+<string name="RottenMeat_Info">Кусок испорченного мяса</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
 
 ===== Implementation Details =====
-  * **Entity Kind**: rotten_meat (from getEntityKind() returning simple class name)
   * **Sprite**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.ROTTEN_MEAT]]
-  * **Food Type**: Extends [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood]], which purifies into MysteryMeat
-  * **Function**: Alternative food source that is not harmful like regular food but provides no benefits
+  * **Parent Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood]]
+  * **Purification**: Transforms into [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/MysteryMeat.java|MysteryMeat]] when purified
+  * **Poison Transformation**: ChargrilledMeat and MysteryMeat transform into RottenMeat when poisoned
+  * **Function**: Alternative food source that is not harmful like regular spoiled food but provides no nutritional benefits
+
+===== Related Items =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/MysteryMeat.java|MysteryMeat]] - Purified form of rotten meat
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood]] - Base class for rotten food items
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/ChargrilledMeat.java|ChargrilledMeat]] - Can transform into RottenMeat when poisoned
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Ration.java|Ration]] - Standard food ration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food]] - Base food class
+
+===== Wiki Pages =====
+  * [[en:rpd:rotten_meat_item|Rotten Meat (English)]] - English wiki page
+  * [[en:rpd:food|Food]] - Food items overview
+  * [[en:rpd:items|Items]] - All items in the game
+
+{{tag> mr items food rotten_meat reference}}
