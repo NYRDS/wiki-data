@@ -1,17 +1,32 @@
 ====== Dagger Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Dagger.java|Dagger.java]] - Defines the dagger's stats and mechanics as a melee weapon with tier 1, speed 1.2f, and accuracy 1f
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Dagger.java|Dagger.java]] - Main dagger class extending MeleeWeapon with tier 1, speed 1.2f, accuracy 1f
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ElvenDagger.java|ElvenDagger.java]] - Elven dagger variant made of special metal alloy
 
 ===== JSON Configuration =====
 No specific JSON configuration exists for the dagger - it's implemented purely in Java code.
 
 ===== String Resources =====
 <code xml>
-<string name="Dagger_Name">Dagger</string>
-<string name="Dagger_Info">This small blade is easy to handle and inflicts decent damage.</string>
-<string name="Dagger_Quickslot">Wield dagger</string>
+<string name="Dagger_Name">dagger</string>
+<string name="Dagger_Info">A simple iron dagger with a well worn wooden handle.</string>
+<string name="Dagger_Gender">masculine</string>
+<string name="ElvenDagger_Name">elven dagger</string>
+<string name="ElvenDagger_Info">This weapon is made out of a special metal alloy, making it a lot lighter compared to a regular dagger.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists.
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/Kunai.lua|Kunai.lua]] - References "Dagger" as visual name for kunai item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/traps/Spawner.lua|Spawner.lua]] - Dagger listed as possible item drop from spawner trap (with Rat, Gnoll, RatHide, Barrel, Sorrowmoss)
+
+===== Java Usage Context =====
+  * **Item Registration**: Registered in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] line 328
+  * **Shop Inventory**: Available in town shop via [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/TownShopLevel.java|TownShopLevel.java]] line 71
+  * **Transmutation**: Can be transmuted to/from Knuckles via [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/WaterOfTransmutation.java|WaterOfTransmutation.java]] lines 77-78
+
+===== Entity Kind =====
+  * **getEntityKind()**: Returns "Dagger" (class simple name)
+  * **Item Category**: Melee weapon, tier 1
+  * **Sprite**: ItemSpriteSheet.DAGGER
+  * **Animation**: SWORD_ATTACK
