@@ -1,18 +1,69 @@
 ====== Kusarigama Item - Code References ======
 
-===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Kusarigama.java|Kusarigama.java]]
+{{ rpd:images:kusarigama_item.png|Kusarigama }}
+
+**Kusarigama** is a melee weapon with extended reach and a special pull ability.
+
+===== Java Implementation =====
+
+**Class**: `com.watabou.pixeldungeon.items.weapon.melee.Kusarigama`
+
+**Source**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Kusarigama.java|Kusarigama.java]]
+
+**Key Properties**:
+  * **Tier**: 3
+  * **Speed Factor**: 2.0f (slower than normal)
+  * **Damage Factor**: 1f
+  * **Range**: 2 (extended reach)
+  * **Animation Class**: SWORD_ATTACK
+  * **Image**: `items/kusarigama.png`
+
+**Special Ability**:
+  * **Pull Action** (`AC_PULL`): Can pull enemies or objects toward the user
+  * **Chain Visual Effect**: Uses `KusarigamaChain` effect to show chain connection
+  * **Vertigo Infliction**: 10% chance to inflict Vertigo buff on hit (3 seconds duration)
+
+**Key Methods**:
+  * `range()`: Returns 2 (extended reach)
+  * `preAttack(Char tgt)`: Draws chain visual effect before attack if target is at distance
+  * `postAttack(Char tgt)`: 10% chance to apply Vertigo buff
+  * `_execute()`: Handles pull action execution
+  * `actions()`: Returns available actions including pull when equipped
+
+**Dependencies**:
+  * `com.watabou.pixeldungeon.effects.KusarigamaChain` - Chain visual effect
+  * `com.watabou.pixeldungeon.actors.buffs.Vertigo` - Vertigo status effect
+  * `com.watabou.pixeldungeon.mechanics.Ballistica` - Ray casting for pull targeting
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/kusarigama.json
+No specific JSON configuration file found for this item. The item uses default tier-based stats.
+
+Check for potential configuration in:
+  * `RemixedDungeon/src/main/assets/itemsDesc/meleeWeapons.json` (if exists)
+  * `RemixedDungeon/src/main/assets/spritesDesc/kusarigama.json` (if exists)
 
 ===== String Resources =====
+
+**English** (`RemixedDungeon/src/main/res/values/strings_all.xml`):
 <code xml>
-<string name="Kusarigama_Name">[Name]</string>
-<string name="Kusarigama_Info">[Description]</string>
+<string name="Kusarigama_Name">Kusarigama</string>
+<string name="Kusarigama_Info">[Item description]</string>
+<string name="Kusarigama_Pull">Pull</string>
+</code>
+
+**Russian** (`RemixedDungeon/src/main/res/values-ru/strings_all.xml`):
+<code xml>
+<string name="Kusarigama_Name">Кусаригама</string>
+<string name="Kusarigama_Info">[Описание предмета]</string>
+<string name="Kusarigama_Pull">Тянуть</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented entirely in Java, no Lua script exists.
+
+===== Related Code References =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]] - Base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/KusarigamaChain.java|KusarigamaChain.java]] - Chain visual effect
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]] - Vertigo buff
+
+{{tag> rpd items weapons melee kusarigama tier3}}
