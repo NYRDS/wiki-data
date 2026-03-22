@@ -1,20 +1,52 @@
 ====== Spider Queen Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java|SpiderQueen.java]] - Main class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java|Boss.java]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders|spiders/]] - Spider mobs directory
+
+===== Class Details =====
+  * **Package:** com.nyrds.pixeldungeon.mobs.spiders
+  * **Extends:** Boss
+  * **HP:** 120
+  * **Base Defense Skill:** 18
+  * **Base Attack Skill:** 21
+  * **EXP for Kill:** 11
+  * **Damage Range:** 12-20
+  * **Damage Reduction:** 10
+  * **Immunities:** Fire, Burning
+  * **Special Abilities:**
+    - Spawns SpiderEgg on random turns (5% chance)
+    - 50% chance to apply Poison (7-9 turns) on attack
+    - Can only attack when adjacent and HP > 50%
+    - Retreats when HP < 50% and target is within 5 tiles
+  * **Drops:**
+    - SkeletonKey (100%)
+    - ChaosCrystal (33%)
+    - SpiderCharm (33%)
+    - SpiderArmor (34%)
+  * **Badge:** SPIDER_QUEEN_SLAIN
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
+This entity is implemented in Java. Configuration may exist in:
   * RemixedDungeon/src/main/assets/mobsDesc/*.json
   * RemixedDungeon/src/main/assets/spritesDesc/spider_queen.json
+  * RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json - Spawn configuration
 
 ===== String Resources =====
-<code xml>
-<string name="SpiderQueen_Name">[Name]</string>
-<string name="SpiderQueen_Info">[Description]</string>
-</code>
+  * Name: SpiderQueen_Name
+  * Description: SpiderQueen_Info
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (ru)]]
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related Entities =====
+  * [[mr:spider_servant_mob|Spider Servant Mob]] - Spider variant
+  * [[mr:spider_guard_mob|Spider Guard Mob]] - Spider variant
+  * [[mr:spider_mind_mob|Spider Mind Mob]] - Spider variant
+  * [[mr:spider_elite_mob|Spider Elite Mob]] - Spider variant
+  * [[mr:spider_nest_mob|Spider Nest Mob]] - Spider spawner
+  * [[mr:spider_armor_item|Spider Armor Item]] - Armor drop
+  * [[mr:spider_charm_item|Spider Charm Item]] - Charm drop

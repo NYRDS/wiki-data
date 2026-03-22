@@ -1,18 +1,36 @@
 ====== Wooden Bow Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/WoodenBow.java|WoodenBow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/WoodenBow.java|WoodenBow.java]] - Main class implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Bow.java|Bow.java]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/KindOfBow.java|KindOfBow.java]] - Base bow class
+
+===== Class Details =====
+  * **Package:** com.watabou.pixeldungeon.items.weapon.melee
+  * **Extends:** Bow
+  * **Tier:** 1
+  * **Base Accuracy:** 0.8f (80%)
+  * **Base Delay:** 1.5f (150% of base attack delay)
+  * **Accuracy Factor:** 1 + level * 0.1
+  * **Damage Factor:** 1 + level * 0.25
+  * **Sprite Index:** 0 (from items/ranged.png)
+  * **Burn Behavior:** Returns null (cannot burn)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
+This entity is implemented in Java. Configuration may exist in:
   * RemixedDungeon/src/main/assets/itemsDesc/*.json
   * RemixedDungeon/src/main/assets/spritesDesc/wooden_bow.json
 
 ===== String Resources =====
-<code xml>
-<string name="WoodenBow_Name">[Name]</string>
-<string name="WoodenBow_Info">[Description]</string>
-</code>
+  * Name: WoodenBow_Name
+  * Description: WoodenBow_Info
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (ru)]]
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related Entities =====
+  * [[mr:elven_bow_item|Elven Bow Item]] - Upgraded version
+  * [[mr:arrows_item|Arrows Item]] - Required ammunition
+  * [[mr:bow_item|Bow Item]] - Base bow type
