@@ -1,11 +1,8 @@
 ====== Око зла ======
 
-{{ rpd:images:eye_mob.png|Око зла}}
+{{ rpd:images:eye_mob.png|Око зла }}
 
 **Око зла** (Злое око) — опасный моб, встречающийся в Уделе в Remixed Dungeon. Имеет характерную дальнюю атаку, которая может поражать несколько целей на линии.
-
-==== Описание ====
-Око — это парящий одноглазый демонический сферический "шар ненависти". При виде врага он использует безрассудную "вспышку смерти", которая может поразить нескольких мобов на линии. Око иммунитет к эффекту ужаса и имеет высокое сопротивление различным магическим атакам.
 
 ==== Статистика ====
   * **Здоровье (HP)**: 100
@@ -39,19 +36,30 @@
 ==== Особые механики ====
 Око может атаковать врагов на расстоянии с помощью своей атаки взглядом. Атака распространяется по прямой линии от Ока до цели, потенциально поражая несколько врагов на своём пути. Это делает Око особенно опасным, когда несколько врагов выстроены в линию.
 
-==== Проверка содержимого ====
-  * Источник информации: Java-класс [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Eye.java|Eye.java]]
-  * Проверка статистики: Извлечено из Eye.java конструктора и методов
-  * Описание эффектов: На основе ресурсов строк и игровой механики
-  * Последнее обновление: Декабрь 2025, источник: Remixed Dungeon 1.9.3
+==== Стратегия ====
+  * **Избегайте линий**: Не стойте на одной линии с Око и другими врагами, чтобы избежать множественных попаданий
+  * **Приоритетная цель**: Убивайте Око в первую очередь из-за его способности атаковать несколько целей
+  * **Используйте укрытия**: Стены и препятствия блокируют атаку взглядом
+  * **Дистанционный бой**: Атакуйте Око издалека, чтобы избежать ответного удара
 
-==== Исходный код ====
-  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Eye.java|Eye.java]]
-  * Строки: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1242-L1245|Eye strings (RU)]]
+==== Ссылки на код ====
+  * **Java реализация**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Eye.java|Eye.java]] - Полная реализация моба Око
+  * **Проверка статистики**: Извлечено из Eye.java конструктора: HP=100, EXP=13, Defense=20, Attack=30, Damage=14-20, maxLvl=25
+  * **Иммунитеты**: Eye.java показывает иммунитет к Terror
+  * **Сопротивления**: Eye.java показывает сопротивление к жезлу дезинтеграции, зачарованию смерти и вампиризма
+  * **Атака взглядом**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Eye.java#L47-L71|doAttack() метод]] - Атакует по прямой линии, поражая всех на пути
+  * **Увеличенное зрение**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Eye.java#L35-L37|viewDistance метод]] - Возвращает дальность обзора уровня + 1
+  * **Дроп**: Eye.java показывает 50% шанс дропа росинки
+  * **Строковые ресурсы (Русский)**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1242-L1245|strings_all.xml#L1242-L1245]]
+  * **Строковые ресурсы (Английский)**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1242-L1245|strings_all.xml#L1242-L1245]]
+  * **JSON конфигурация**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Eye.json|Eye.json]] - Конфигурация спрайта и анимаций
+  * **RingOfElements**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]] - Показывает сопротивление Ока к различным эффектам
 
 ==== См. также ====
   * [[ru:rpd:halls|Удел]]
   * [[ru:rpd:mobs|Мобы]]
   * [[ru:rpd:buffs|Баффы и статус-эффекты]]
+  * [[ru:rpd:undead_mob|Нежить]]
+  * [[ru:rpd:demon_mob|Демоны]]
 
-{{tag> rpd mobs eye halls злое_око}}
+{{tag> rpd mobs eye halls злое_око }}
