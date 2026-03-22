@@ -28,6 +28,9 @@ This entity is implemented in Lua, no JSON configuration exists for this spell.
 
 ===== Lua Scripts =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/RaiseDead.lua|RaiseDead.lua]] - Main spell implementation
+  * Uses `scripts/lib/storage.lua` for tracking latest killed mob
+  * Uses `scripts/lib/mob.lua` for mob manipulation
+  * Uses `scripts/lib/spell.lua` for spell base functionality
 
 ===== Implementation Details =====
   * **Spell Level:** 4
@@ -44,6 +47,8 @@ This entity is implemented in Lua, no JSON configuration exists for this spell.
   * Requires valid cell position near the caster
   * Applies shadow particle curse effects on both caster and raised mob
   * Plays cursed sound effect on successful cast
+  * Strips all items from raised mob before converting to pet
+  * Uses ''mob:loot()'' to potentially drop gold from raised mob
 
 ===== Related mr Entities =====
   * [[mr:necromancer_class|Necromancer (Class)]]
