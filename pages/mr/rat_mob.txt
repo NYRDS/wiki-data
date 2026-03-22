@@ -1,14 +1,60 @@
 ====== Rat Mob - Code References ======
 
+{{ rpd:images:rat_mob.png|Rat }}
+
+**Rat** is a common enemy found in the early dungeon levels.
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java|Rat.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java|Rat.java]] - Main mob class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Albino.java|Albino.java]] - Variant mob class extending Rat
 
-===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Rat.json|Rat.json]] - Sprite configuration
+===== Implementation Details =====
+  * **Class**: com.watabou.pixeldungeon.actors.mobs.Rat
+  * **Extends**: Mob
+  * **Sprite**: spritesDesc/Rat.json
+  * **HP**: 8
+  * **Defense Skill**: 3
+  * **Attack Skill**: 8
+  * **Damage**: 1-5
+  * **Defense Rating**: 1
+  * **Max Level**: 7
+  * **AI**: Default mob AI with special behavior against Rat Skull Ratter aura
 
-===== String Resources =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1234|String: rat_name]] - The display name for the rat mob
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1235|String: rat_desc]] - The description text for the rat mob
+===== Special Behavior =====
+  * **Fear Response**: Rats flee from characters with the Rat Skull Ratter aura (from Plague Doctor NPC quest)
+  * **Terror**: When fleeing from Rat Skull Ratter aura, rats are also affected by Terror
+  * **Quest Mob**: Rats are involved in multiple NPC quests:
+    * Ghost's quest (sewers)
+    * Scarecrow NPC quest
+    * Plague Doctor NPC quest
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+===== Drops =====
+  * Can drop loot based on bestiary configuration
+  * Used in alchemy recipes (Rat Skull, Rat Hide, Rat Meat)
+
+===== Variants =====
+  * **Albino** - A rare white rat variant with 15 HP
+  * **Black Rat** - Another rat variant
+  * **Fetid Rat** - Created through alchemy
+  * **Suspicious Rat** - Special variant
+  * **Pseudo Rat** - Special variant
+  * **Remixed Fetid Rat** - Remixed version variant
+
+===== Alchemy Recipes =====
+  * Rat Skull (3x) + Skeleton Key = Skeleton
+  * Rat Meat + Rat Skull = Potion of Healing + Skeleton
+  * Dreamweed Seed + Rat Hide = Potion of Invisibility
+  * Carcass of Rat + Skeleton Key = Skeleton
+  * Corpse Dust (2x) + Dew Vial = Fetid Rat
+
+===== Related mr: Entities =====
+  * [[mr:albino_mob|Albino (Mob)]]
+  * [[mr:ghost_mob|Ghost (Mob)]]
+  * [[mr:plague_doctor_npc|Plague Doctor (NPC)]]
+  * [[mr:scarecrow_npc|Scarecrow (NPC)]]
+  * [[mr:rat_skull_item|Rat Skull (Item)]]
+  * [[mr:rat_hide_item|Rat Hide (Item)]]
+  * [[mr:rat_armor_item|Rat Armor (Item)]]
+  * [[mr:rat_king_crown_item|Rat King Crown (Item)]]
+
+{{tag> mr mobs rat sewers early_game}}

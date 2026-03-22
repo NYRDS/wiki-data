@@ -1,17 +1,52 @@
 ====== Statue Mob - Code References ======
 
+{{ rpd:images:statue_mob.png|Statue }}
+
+**Statue** is a special mob that appears as a decorative statue until triggered.
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Statue.java|Statue.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Statue.java|Statue.java]] - Main mob class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/ArmoredStatue.java|ArmoredStatue.java]] - Armored variant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/GoldenStatue.java|GoldenStatue.java]] - Golden variant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/StatuePainter.java|StatuePainter.java]] - Room painter that spawns statues
 
-===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Statue.json|Statue.json]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelObjects/statue.json|statue.json]]
+===== Implementation Details =====
+  * **Class**: com.watabou.pixeldungeon.actors.mobs.Statue
+  * **Extends**: Mob
+  * **Sprite**: spritesDesc/Statue.json
+  * **AI**: Passive (statues remain still until triggered)
+  * **HP**: 15 + (depth × 5) - scales with dungeon depth
+  * **Defense Skill**: 4 + depth
+  * **Attack Skill**: 4 + depth (same as defense)
+  * **Damage**: (depth / 4 + 1) to depth
+  * **Experience**: 0 (no experience awarded)
+  * **Carcass Chance**: 0 (does not leave carcass)
+  * **Max Level**: Scales with depth
 
-===== String Resources =====
-<code xml>
-<string name="Statue_Name">[Name]</string>
-<string name="Statue_Info">[Description]</string>
-</code>
+===== Immunities and Resistances =====
+  * **Immune to**: Toxic Gas, Poison, Leech, Bleeding
+  * **Resistant to**: Death enchantment, Scroll of Psionic Blast
 
-===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/objects/statue.lua|statue.lua]]
+===== Special Behavior =====
+  * **Passive State**: Statues start in passive state and do not move
+  * **Activation**: Statues activate when attacked or when player is adjacent
+  * **Challenge Interaction**: 
+    * In "No Weapon" challenge: Only ArmoredStatue spawns
+    * In "No Armor" challenge: Only regular Statue spawns
+  * **Loot**: Can drop equipment from previous heroes (armor, weapons)
+
+===== Variants =====
+  * **Armored Statue** - Wears armor, spawns in No Weapon challenge
+  * **Golden Statue** - Special golden variant that can drop valuable items
+
+===== Level Object Configuration =====
+  * **JSON**: levelObjects/statue.json - Defines statue placement and behavior
+  * **Lua**: scripts/objects/statue.lua - Custom statue behavior scripts
+
+===== Related mr: Entities =====
+  * [[mr:armored_statue_mob|Armored Statue (Mob)]]
+  * [[mr:golden_statue_mob|Golden Statue (Mob)]]
+  * [[mr:statue_level_object|Statue (Level Object)]]
+  * [[mr:challenges_mechanic|Challenges Mechanic]]
+
+{{tag> mr mobs statue construct passive}}
