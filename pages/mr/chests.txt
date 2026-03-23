@@ -1,22 +1,93 @@
 ====== Chests - Code References ======
 
-===== Java Classes =====
-  * Chest implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Challenges.java|Challenges.java]] (contains treasure generation logic)
-  * Level treasure generation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]]
-  * Item dropping mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+==== Java Classes ====
+  * **Heap Types**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Heap.java|Heap.java]] - Defines CHEST, LOCKED_CHEST, CRYSTAL_CHEST types
+  * **Open Chest Action**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ml/actions/OpenChest.java|OpenChest.java]] - Handles chest opening logic
+  * **Level Treasure**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]] - Locked/crystal chest handling
+  * **Room Painters**: Various painters place chests:
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/VaultPainter.java|VaultPainter.java]] - Places LOCKED_CHEST and CRYSTAL_CHEST
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/TreasuryPainter.java|TreasuryPainter.java]] - Places CHEST (may spawn Mimic)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/PoolPainter.java|PoolPainter.java]] - Places CHEST
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/TrapsPainter.java|TrapsPainter.java]] - Places CHEST
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/RatKingPainter.java|RatKingPainter.java]] - Places CHEST (may spawn Mimic)
 
-===== JSON Configuration =====
+==== Java Class Content ====
+<code java>
+// Heap.java - Chest type definitions
+public enum Type {
+    // ...
+    CHEST,
+    LOCKED_CHEST,
+    CRYSTAL_CHEST,
+    // ...
+}
+
+// Heap.java - Chest spawn weights
+static {
+    regularHeaps.put(Type.CHEST, 4f);
+    sageHeaps.put(Type.CHEST, 4f);
+}
+
+// OpenChest.java - Chest opening logic
+public class OpenChest extends CharAction {
+    public OpenChest(int dst) {
+        // ...
+        if (heap != null && (heap.type == Heap.Type.CHEST
+            || heap.type == Heap.Type.TOMB
+            || heap.type == Heap.Type.SKELETON
+            || heap.type == Heap.Type.LOCKED_CHEST
+            || heap.type == Heap.Type.CRYSTAL_CHEST
+            || heap.type == Heap.Type.MIMIC)) {
+            // Handle chest opening
+            if (heap.type == Heap.Type.LOCKED_CHEST
+                || heap.type == Heap.Type.CRYSTAL_CHEST) {
+                // Requires key
+                if (!hasKey) {
+                    GLog.w(StringsManager.getVar(R.string.Hero_LockedChest));
+                }
+            }
+        }
+    }
+}
+</code>
+
+==== Key Properties from Code ====
+  * **Chest Types**:
+    - `CHEST` - Regular chest, can be opened freely
+    - `LOCKED_CHEST` - Requires skeleton key to open
+    - `CRYSTAL_CHEST` - Requires crystal key to open
+    - `MIMIC` - May appear instead of CHEST (hostile monster)
+  * **Spawn Weights**: CHEST has weight of 4f in regular and sage heap distributions
+  * **Key Requirement**: LOCKED_CHEST and CRYSTAL_CHEST require corresponding keys
+  * **Mimic Chance**: Some chest spawns may be replaced by Mimics
+
+==== JSON Configuration ====
   * Level configurations that may include treasure: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets/levelsDesc|levelsDesc/]]
+  * Chest contents are generated dynamically by the Generator class
 
-===== String Resources =====
-Chest-related strings:
-  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
-  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|values-ru/strings_all.xml]]
-  * And other language files as appropriate
+==== String Resources ====
+<code xml>
+<!-- English strings -->
+<string name="Hero_LockedChest">This chest is locked and you don't have a key</string>
+<string name="WndInfoItem_Chest">Chest</string>
+<string name="WndInfoItem_CrystalChest">Crystal chest</string>
+<string name="WndInfoItem_LockedChest">Locked chest</string>
+</code>
 
-===== Lua Scripts =====
+==== Lua Scripts ====
 This entity is implemented in Java, no Lua script exists
 
-===== Related Files =====
-  * Level generation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]]
-  * Item creation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Generator.java|Generator.java]]
+==== Sprite References ====
+  * **Chest Level Objects**:
+    - {{rpd:images:chest_1_level_object.png|Chest 1}}
+    - {{rpd:images:chest_2_level_object.png|Chest 2}}
+    - {{rpd:images:chest_3_level_object.png|Chest 3}}
+
+==== Related Entities ====
+  * **Mimic**: [[mr:mimic_mob|mimic_mob]] - May appear instead of chest
+  * **Skeleton Key**: [[mr:skeleton_key_item|skeleton_key_item]] - Opens LOCKED_CHEST
+  * **Crystal Key**: [[mr:crystal_key_item|crystal_key_item]] - Opens CRYSTAL_CHEST
+  * **English Page**: [[en:rpd:chests|chests]]
+  * **Russian Page**: [[ru:rpd:chests|chests]]
+
+{{tag> rpd items chests containers loot dungeon_objects}}
