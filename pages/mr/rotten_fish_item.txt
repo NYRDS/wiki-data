@@ -9,8 +9,10 @@ This entity is implemented in Lua, no Java class exists
 This entity is implemented in Lua, no JSON configuration exists
 
 ===== String Resources =====
-String resources are defined in Lua script, check:
-  * RemixedDungeon/src/main/assets/scripts/items/RottenFish.lua
+  * `RottenFish_Name` - Item name
+  * `RottenFish_Info` - Item description
+  * `RottenFish_Taste` - Taste message when eaten
+  * Source: RemixedDungeon/src/main/res/values/strings_all.xml
 
 ===== Lua Scripts =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RottenFish.lua|RottenFish.lua]]
@@ -19,11 +21,19 @@ String resources are defined in Lua script, check:
   * **Type:** item
   * **Package:** scripts/items
   * **Base Entity:** Item (Lua implementation)
+  * **Image:** 15 (food.png sprite sheet index)
+  * **Stackable:** true
+  * **Action:** eat
+
+===== Behavior =====
+  * **On Eat:** Applies Poison buff for 2 * random(1, hero:lvl()) turns
+  * **Hunger Restoration:** Restores RPD.Buffs.Hunger.HUNGRY / 4 hunger
+  * **Taste Message:** Displays "RottenFish_Taste" string
 
 ===== Related mr Entities =====
-  * [[mr:raw_fish_item|Raw Fish (Item)]]
-  * [[mr:fried_fish_item|Fried Fish (Item)]]
-  * [[mr:frozen_fish_item|Frozen Fish (Item)]]
-  * [[mr:poison_buff|Poison (Buff)]]
+  * [[mr:raw_fish_item|raw_fish_item]]
+  * [[mr:fried_fish_item|fried_fish_item]]
+  * [[mr:frozen_fish_item|frozen_fish_item]]
+  * [[mr:poison_buff|poison_buff]]
 
 {{tag> mr rpd items food fish}}
