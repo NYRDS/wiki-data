@@ -1,16 +1,160 @@
 ====== Jar Of Souls Mob - Code References ======
 
+===== Entity Information =====
+  * **Entity Kind:** JarOfSouls
+  * **Entity Type:** Mob (undead)
+  * **Namespace:** mr: (machine-readable reference)
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/JarOfSouls.java|JarOfSouls.java]]
+
+===== Java Class Implementation =====
+<code java>
+package com.nyrds.pixeldungeon.mobs.necropolis;
+
+import com.nyrds.pixeldungeon.mobs.common.MobSpawner;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+
+import org.jetbrains.annotations.NotNull;
+
+public class JarOfSouls extends Mob {
+
+	public JarOfSouls() {
+		hp(ht(70));
+		baseDefenseSkill = 5;
+		baseAttackSkill = 1;
+		dr = 0;
+
+		dmgMin = 0;
+		dmgMax = 0;
+		pacified = true;
+
+		expForKill = 0;
+		maxLvl = 13;
+
+		postpone(20);
+
+		setUndead(true);
+
+		//loot = new SoulShard();
+		//lootChance = 1f;
+	}
+
+	@Override
+    public boolean act(){
+		super.act();
+		if (enemySeen){
+			playAttack(getEnemy().getPos());
+			MobSpawner.spawnRandomMob(level(),getPos(), -1);
+			postpone(15);
+		}
+		return true;
+	}
+
+	@Override
+	public boolean getCloser(int target, boolean ignorePets) {
+		return false;
+	}
+
+	@Override
+    public boolean getFurther(int target) {
+		return false;
+	}
+
+	@Override
+	public boolean canBePet() {
+		return false;
+	}
+
+	@Override
+	public boolean zap(@NotNull Char enemy) {
+		return false;
+	}
+}
+</code>
+
+===== Entity Stats (from Code) =====
+  * **HP:** 70
+  * **Base Defense Skill:** 5
+  * **Base Attack Skill:** 1
+  * **Defense Rating (DR):** 0
+  * **Damage:** 0-0 (does not deal direct damage)
+  * **EXP for Kill:** 0
+  * **Max Level:** 13
+  * **Pacified:** true (does not actively chase)
+  * **Undead:** true
+  * **Can Be Pet:** false
+  * **Action Delay:** 20 turns (reduced to 15 when enemy seen)
+
+===== Entity Behavior (from Code) =====
+  * Does not move (getCloser and getFurther return false)
+  * When enemy is seen, spawns random mob at its position using MobSpawner.spawnRandomMob()
+  * Uses playAttack() animation when attacking
+  * Does not zap enemies
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
+**English (values/strings_all.xml):**
 <code xml>
 <string name="JarOfSouls_Name">jar of souls</string>
 <string name="JarOfSouls_Desc">The glowing eyes of a skull depicted on this old jar, as well as the strange energy it emits, makes you feel uneasy.</string>
+<string name="JarOfSouls_Gender">masculine</string>
+<string name="JarOfSouls_Name_Objective">jar of souls</string>
+</code>
+
+**Russian (values-ru/strings_all.xml):**
+<code xml>
+<string name="JarOfSouls_Name">кусок душ</string>
+<string name="JarOfSouls_Desc">Светящиеся глаза черепа, изображённого на этом старом кувшине, а также странная энергия, которую он излучает, заставляют тебя чувствовать беспокойство.</string>
+<string name="JarOfSouls_Gender">masculine</string>
+<string name="JarOfSouls_Name_Objective">кусок душ</string>
+</code>
+
+**Spanish (values-es/strings_all.xml):**
+<code xml>
+<string name="JarOfSouls_Name">jarra de almas</string>
+<string name="JarOfSouls_Desc">Los ojos brillantes de un cráneo representado en esta vieja jarra, así como la extraña energía que emite, te hacen sentir incómodo.</string>
+<string name="JarOfSouls_Gender">masculine</string>
+<string name="JarOfSouls_Name_Objective">jarra de almas</string>
+</code>
+
+**Polish (values-pl/strings_all.xml):**
+<code xml>
+<string name="JarOfSouls_Name">słój dusz</string>
+<string name="JarOfSouls_Desc">Świecące oczy czaszki umieszczonej w tym starym słoju, podobnie zresztą jak i dziwna energia wyzwalająca się z przedmiotu, sprawiają że czujesz się nieswojo.</string>
+<string name="JarOfSouls_Gender">masculine</string>
+<string name="JarOfSouls_Name_Objective">słój dusz</string>
+</code>
+
+**Ukrainian (values-uk/strings_all.xml):**
+<code xml>
+<string name="JarOfSouls_Name">глечик душ</string>
+<string name="JarOfSouls_Desc">Сяйво очей зображеного на глечику черепа, та дивна магічна енергія, яку він випромінює, викликає у тебе занепокоєння.</string>
+<string name="JarOfSouls_Gender">masculine</string>
+<string name="JarOfSouls_Name_Objective">глечик душ</string>
+</code>
+
+**Indonesian (values-in/strings_all.xml):**
+<code xml>
+<string name="JarOfSouls_Name">toples jiwa</string>
+<string name="JarOfSouls_Desc">Mata yang bersinar pada tengkorak yang digambarkan pada tempayan tua ini, serta energi aneh yang dihasilkannya, membuat anda merasa gelisah</string>
+<string name="JarOfSouls_Gender">masculine</string>
+<string name="JarOfSouls_Name_Objective">toples jiwa</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Sprite Reference =====
+  * Sprite file: [[https://github.com/NYRDS/remixed-dungeon/blob/master/wiki-data/media/rpd/images/jar_of_souls_mob.png|jar_of_souls_mob.png]]
+  * Wiki image reference: {{ rpd:images:jar_of_souls_mob.png|Jar of Souls }}
+
+===== Related Entities =====
+  * Found in Necropolis dungeon level
+  * Spawns random mobs when detecting enemies
+  * Related to SoulShard item (commented out in code)
+
+{{tag> mr mob undead necropolis code_reference}}
