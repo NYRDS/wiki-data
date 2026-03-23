@@ -1,22 +1,37 @@
 ====== Rotten Ration Item - Code References ======
 
+{{ rpd:images:rotten_ration_item.png|Rotten Ration }}
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenRation.java|RottenRation.java]] - Main implementation extending RottenFood
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]] - Base class for rotten food items
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]] - Base food class
 
 ===== JSON Configuration =====
 This item does not have specific JSON configuration, as it extends the base RottenFood class.
 
 ===== String Resources =====
-<code xml>
-<string name="RottenRation_Name">Rotten ration</string>
-<string name="RottenRation_Info">Once upon a time it could be eaten</string>
-</code>
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+    - RottenRation_Name: Rotten ration
+    - RottenRation_Info: Once upon a time it could be eaten
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml]]
+    - RottenRation_Name: Испорченный паёк
+    - RottenRation_Info: Когда-то это можно было съесть
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Entity Implementation Details =====
+  * **Implementation:** Java class (com.watabou.pixeldungeon.items.food.RottenRation)
+  * **Base Class:** RottenFood
+  * **Entity Kind:** RottenRation
+  * **Type:** Food item
+  * **Price:** 1 gold (inherited from RottenFood)
+  * **Nutrition:** 0 (cannot restore hunger)
+  * **Special Effects:** Causes nausea when consumed
 
 ===== Related mr Entities =====
   * [[mr:ration_item|Ration]]
   * [[mr:overpriced_ration_item|Overpriced Ration]]
   * [[mr:food_item|Food Item]]
-  * [[mr:rotten_ration_item|Rotten Ration]]
+  * [[mr:rotten_food_item|Rotten Food]]
