@@ -1,20 +1,250 @@
 ====== Scroll Of Curse Item - Code References ======
 
+This page contains machine-readable information about the Scroll of Curse item for automated tools and AI assistants.
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfCurse.java|ScrollOfCurse.java]]
+  * **Parent Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]]
+  * **Package**: com.watabou.pixeldungeon.items.scrolls
+
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.items.scrolls;
+
+import com.nyrds.platform.audio.Sample;
+import com.watabou.pixeldungeon.Assets;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.buffs.Blindness;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.buffs.Charm;
+import com.watabou.pixeldungeon.actors.buffs.FlavourBuff;
+import com.watabou.pixeldungeon.actors.buffs.Invisibility;
+import com.watabou.pixeldungeon.actors.buffs.Roots;
+import com.watabou.pixeldungeon.actors.buffs.Slow;
+import com.watabou.pixeldungeon.actors.buffs.Vertigo;
+import com.watabou.pixeldungeon.actors.buffs.Weakness;
+import com.watabou.pixeldungeon.effects.particles.ShadowParticle;
+import com.watabou.pixeldungeon.items.Item;
+import com.watabou.utils.Random;
+
+import org.jetbrains.annotations.NotNull;
+
+public class ScrollOfCurse extends Scroll {
+
+	private static final Class<?>[] badBuffs = {
+			Blindness.class,
+			Charm.class,
+			Roots.class,
+			Slow.class,
+			Vertigo.class,
+			Weakness.class
+	};
+
+	@SuppressWarnings("unchecked")
+	@Override
+	protected void doRead(@NotNull Char reader) {
+		Invisibility.dispel(reader);
+
+		reader.getSprite().emitter().burst( ShadowParticle.CURSE, 6 );
+		Sample.INSTANCE.play( Assets.SND_CURSED );
+
+		Class <? extends FlavourBuff> buffClass = (Class<? extends FlavourBuff>) Random.oneOf(badBuffs);
+		Buff.prolong( reader, buffClass, 10);
+
+		reader.getBelongings().curseEquipped();
+
+		setKnown();
+		reader.spend( TIME_TO_READ );
+	}
+
+
+	public static void curse(Char hero, Item... items) {
+
+		boolean procced = false;
+		for(Item item:items) {
+			if(!item.isCursed()) {
+				item.setCursed(true);
+				item.setCursedKnown(true);
+				if(item.isCursed()) {
+					procced = true;
+				}
+			}
+		}
+
+		if (procced) {
+			hero.getSprite().emitter().start(ShadowParticle.UP, 0.05f, 10);
+		}
+	}
+
+	@Override
+	public int price() {
+		return isKnown() ? 300 * quantity() : super.price();
+	}
+}
+</code>
+
+===== Key Methods =====
+  * **doRead(Char reader)**: Main reading effect - applies random negative buff and curses equipped items
+  * **curse(Char hero, Item... items)**: Static method to curse multiple items
+  * **price()**: Returns 300 gold when known
+
+===== Applied Buffs (Random Selection) =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Blindness.java|Blindness]] - Vision impairment
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charm.java|Charm]] - Charmed state
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots]] - Immobilization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow]] - Slowed movement
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo]] - Disoriented movement
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Weakness.java|Weakness]] - Reduced attack power
+
+===== Buff Duration =====
+  * All negative buffs are applied for **10 turns** (via Buff.prolong)
+
+===== Visual/Sound Effects =====
+  * **Visual**: ShadowParticle.CURSE burst (6 particles) on reader sprite
+  * **Sound**: Assets.SND_CURSED
+  * **Curse Effect**: ShadowParticle.UP emitter when items are cursed
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/scroll_of_curse.json
+No dedicated JSON configuration file exists for this item. It is implemented entirely in Java.
 
 ===== String Resources =====
+**English** (values/strings_all.xml):
 <code xml>
-<string name="ScrollOfCurse_Name">[Name]</string>
-<string name="ScrollOfCurse_Info">[Description]</string>
+<string name="ScrollOfCurse_Name">Scroll of Curse</string>
+<string name="ScrollOfCurse_Info">This scroll created especially to punish thieves stupid enough to try use magic they can\'t understand. Scroll magic totally useless and even harmful for regular adventurer, but valued pretty well by merchants.</string>
+</code>
+
+**Russian** (values-ru/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">Этот свиток создан исключительно для наказания вора, который достаточно глуп, чтобы попытаться использовать магию неведомой ему природы. Заключённая в нём магия абсолютно бесполезна и даже вредна для искателя приключений, однако весьма ценится торговцами.</string>
+<string name="ScrollOfCurse_Name">Свиток Проклятья</string>
+</code>
+
+**Portuguese (Brazilian)** (values-pt-rBR/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">Este pergaminho foi criado especialmente para punir ladrões estúpidos o suficiente para tentar usar magia que eles não podem compreender. A magia do pergaminho é totalmente inútil e até prejudicial para o aventureiro qualquer, mas muito valorizada pelos comerciantes.</string>
+<string name="ScrollOfCurse_Name">Pergaminho da Maldição</string>
+</code>
+
+**Spanish** (values-es/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">Este pergamino fue creado específicamente para castigar a aquellos ladrones tan estúpido como para usar magia que no pueden entender. Es totalmente inútil, e incluso puede resultar dañino para un aventurero normal, pero está muy bien valorado por los mercaderes.</string>
+<string name="ScrollOfCurse_Name">Pergamino de Maldición</string>
+</code>
+
+**French** (values-fr/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">Ce parchemin fut créé spécialement pour punir les voleurs assez stupides pour essayer d\'utiliser la magie qu\'ils ne peuvent pas comprendre. La magie du parchemin est totalement inutile et encore plus douloureuse pour un aventurier, mais très estimé par les marchands.</string>
+<string name="ScrollOfCurse_Name">Parchemin de malédiction</string>
+</code>
+
+**German** (values-de/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">Dieser Spruch wurde speziell dazu entwickelt, um Diebe zu bestrafen, die dumm genug sind, um Magie zu benutzen, die sie nicht Verstehen können. Dieser Spruch ist komplett unnütz und für den normalen Abenteurer gefährlich, wird aber von Händlern gut Bezahlt.</string>
+<string name="ScrollOfCurse_Name">Schriftrolle des Fluches</string>
+</code>
+
+**Italian** (values-it/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">Pergamena creata appositamente per punire i ladri abbastanza stupidi per provare l\'uso della magia senza che riescano a capirla. Pergamena magica del tutto inutile e anche dannosa per un\'avventuriero regolare, ma valutata abbastanza bene dai commercianti.</string>
+<string name="ScrollOfCurse_Name">Pergamena di Sventura</string>
+</code>
+
+**Japanese** (values-ja/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">このスクロールは、理解できない魔法を使おうとする愚かな盗賊を罰するために特別に作られた。普通の冒険者には全く役に立たず、有害ですらあるが、商人には重宝されている。</string>
+<string name="ScrollOfCurse_Name">呪いのスクロール</string>
+</code>
+
+**Korean** (values-ko/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">이 두루마리는 마법을 이해하지 못할 정도로 충분히 멍청한 도둑들을 벌하기 위해 특별히 만들어졌습니다. 두루마리의 마법은 모험가들에게는 전체적으로 쓸모없고 오히려 해로울 것입니다. 하지만 상인들에게는 꽤 환영받을 것입니다.</string>
+<string name="ScrollOfCurse_Name">저주의 두루마리</string>
+</code>
+
+**Chinese (Simplified)** (values-zh-rCN/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">这张卷轴是专门为了惩罚那些尝试使用他们无法理解的魔法的愚蠢小偷而制作的。卷轴中的魔力对于通常冒险者完全无用甚至有害，但对于商人们却十分有价值。</string>
+<string name="ScrollOfCurse_Name">诅咒卷轴</string>
+</code>
+
+**Chinese (Traditional)** (values-zh-rTW/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">這張卷軸是專門為了懲罰那些嘗試使用他們無法理解的魔法的愚蠢小偷而制作的。卷軸中的魔力對於通常冒險者完全無用甚至有害，但對於商人們卻十分有價值。</string>
+<string name="ScrollOfCurse_Name">詛咒卷軸</string>
+</code>
+
+**Polish** (values-pl/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">Ten zwój powstał by karać złodziei na tyle głupich, by igrać z magią, której nie rozumieją. Magia zwoju jest bezużyteczna, a nawet groźna dla zwykłego podróżnego, ale jest ceniona przez kupców.</string>
+<string name="ScrollOfCurse_Name">Zwój Klątwy</string>
+</code>
+
+**Ukrainian** (values-uk/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">Цей сувій було створені виключно для покарання злодіїв, які виявляться досить дурними, аби використати невідому їм магію. Магія, яка тримається в сувої, абсолютно безкорисна, і може нашкодити шукачу пригод, однак дуже ціниться торговцями.</string>
+<string name="ScrollOfCurse_Name">Сувій прокляття</string>
+</code>
+
+**Hungarian** (values-hu/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">Ez a tekercs azért készült, hogy megbüntesse azokat az idióta tolvajokat, akik tudás nélkül szeretnék a varázslatát használni. A tekercs teljesen haszontalan, ráadásul veszélyes is az átlagos utazóra nézve, de egy kereskedőnek sokat ér.</string>
+<string name="ScrollOfCurse_Name">Átok tekercse</string>
+</code>
+
+**Turkish** (values-tr/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">Bu parşömen özellikle anlayamadıkları büyüyü kullanmayı deneyecek kadar aptal hırsızları cezalandırmak için yaratılmıştır. Parşömen büyüsü normal maceracılar için tamamen yararsız ve hatta zararlıdır, ancak tüccarlar tarafından oldukça değerlidir.</string>
+<string name="ScrollOfCurse_Name">lanet parşömeni</string>
+</code>
+
+**Greek** (values-el/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">Αυτός ο πάπυρος έχει φτιαχτεί για να τιμωρεί τους κουτούς ληστές που παν να κάνουν χρήση μαγείας που δεν κατανοούν. Η μαγεία του παπύρου είναι εντελώς άχρηστη -έως και επιβλαβής- για τον μέσο εξερευνητή, αλλά έχει μεγάλη αξία για τους εμπόρους.</string>
+<string name="ScrollOfCurse_Name">πάπυρος κατάρας</string>
+</code>
+
+**Indonesian** (values-in/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">Gulungan ini dibuat khusus untuk menghukum pencuri yang cukup bodoh untuk mencoba menggunakan sihir yang tidak mereka mengerti. Gulungan sihir sama sekali tidak berguna dan bahkan berbahaya bagi petualang biasa, tetapi dihargai cukup baik oleh para pedagang.</string>
+<string name="ScrollOfCurse_Name">gulungan kutukan</string>
+</code>
+
+**Malay** (values-ms/strings_all.xml):
+<code xml>
+<string name="ScrollOfCurse_Info">Skrol ini dicipta khusus untuk memberi pengajaran kepada pencuri bodoh yang cuba guna sihir yang mereka tidak fahami. Skrol ajaib sepenuhnya tidak berguna dan memberi kemudaratan kepada pengembara, tetapi bernilai tinggi kepda sipenjual.</string>
+<string name="ScrollOfCurse_Name">Skrol Sumpahan</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+No Lua scripts exist for this item. It is implemented entirely in Java.
+
+===== Registration in Item System =====
+**ItemFactory.java** (com.nyrds.pixeldungeon.items.common.ItemFactory):
+<code java>
+import com.watabou.pixeldungeon.items.scrolls.ScrollOfCurse;
+// ...
+registerItemClass(ScrollOfCurse.class);
+</code>
+
+**Scroll.java** (Parent class registration):
+<code java>
+ScrollOfCurse.class
+</code>
+
+===== Related Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]] - Parent scroll class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings.java]] - Contains curseEquipped() method
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/particles/ShadowParticle.java|ShadowParticle.java]] - Visual effects
+
+===== Game Mechanics =====
+  * **Effect Type**: Negative buff application + Item cursing
+  * **Buff Selection**: Random from 6 possible negative buffs
+  * **Buff Duration**: 10 turns
+  * **Item Cursing**: Curses all equipped items (armor, weapon, left hand, artifact, left artifact slots)
+  * **Invisibility Dispelling**: Removes invisibility on use
+  * **Base Price**: 300 gold (when known)
+
+===== Tags =====
+{{tag> mr items scrolls curse negative_effect java_implementation}}
