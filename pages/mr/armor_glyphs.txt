@@ -4,25 +4,28 @@ This page contains machine-readable information about Armor Glyphs in Remixed Du
 
 ==== Entity Information ====
   * **Entity Kind:** armor_glyphs
-  * **Type:** item_category
+  * **Type:** item_enchantment_category
   * **Namespace:** rpd
   * **Base Class:** Armor.Glyph (com.watabou.pixeldungeon.items.armor.Armor.Glyph)
+  * **Parent Class:** Buff
+  * **Interfaces:** Bundlable, NamedEntityKind, Doom
 
 ==== Known Armor Glyphs ====
+The following 10 glyphs are defined in Armor.java:
+  * **Bounce** - Reflects melee damage back to attacker
   * **Affection** - Applies Charm buff to attacker and defender on hit (pink glow)
   * **AntiEntropy** - Transfers burning/freezing between attacker and defender
-  * **Bounce** - Reflects melee damage back to attacker
-  * **Displacement** - Teleports attacker away on hit
-  * **Entanglement** - Applies roots/immobilization effects
-  * **Metabolism** - Converts damage to healing or vice versa
   * **Multiplicity** - Creates mirror images or duplicates
   * **Potential** - Generates energy/charge on hit
+  * **Metabolism** - Converts damage to healing or vice versa
   * **Stench** - Releases toxic gas cloud on hit (green glow)
   * **Viscosity** - Slows attacker or applies debuffs
+  * **Displacement** - Teleports attacker away on hit
+  * **Entanglement** - Applies roots/immobilization effects
 
 ==== Code References ====
   * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/|Glyphs directory]]
-  * **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.Glyph inner class]]
+  * **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L242|Armor.Glyph inner class]]
   * **Individual Glyphs:**
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Affection.java|Affection.java]]
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/AntiEntropy.java|AntiEntropy.java]]
@@ -35,16 +38,23 @@ This page contains machine-readable information about Armor Glyphs in Remixed Du
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Stench.java|Stench.java]]
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Viscosity.java|Viscosity.java]]
 
+==== Glyph Distribution ====
+  * All 10 glyphs have equal spawn chances (1.0 each)
+  * Random glyph selection: Armor.Glyph.random() method
+  * Glyphs can be applied to armor using Arcane Stylus
+
 ==== Configuration Files ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/|Item descriptions]]
 
 ==== String Resources ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2400-L2450|Glyph-related strings]]
-  * Example: Affection_Txt, Stench_Txt, etc.
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+  * Armor_Glyph - Base glyph name string
+  * Individual glyph names and descriptions in string resources
 
 ==== Related mr: Pages ====
   * [[mr:affection_glyph_item|mr:affection_glyph_item]]
   * [[mr:stench_glyph_item|mr:stench_glyph_item]]
   * [[mr:armor_item|mr:armor_item]]
+  * [[mr:arcane_stylus_item|mr:arcane_stylus_item]]
 
 {{tag> mr rpd items armor glyphs}}
