@@ -1,20 +1,76 @@
 ====== Maze Shadow Mob - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+{{ rpd:images:maze_shadow_mob.png|Maze Shadow }}
+
+**Maze Shadow** is a mob entity implemented primarily through Lua scripting with JSON configuration.
+
+===== Entity Kind =====
+The entity kind for this mob is: <code>maze_shadow</code>
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/maze_shadow.json
+Configuration file: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/MazeShadow.json|MazeShadow.json]]
 
-===== String Resources =====
-<code xml>
-<string name="MazeShadow_Name">[Name]</string>
-<string name="MazeShadow_Info">[Description]</string>
+Key configuration properties:
+  * **defenseSkill**: 15
+  * **attackSkill**: 10
+  * **experience**: 5
+  * **maxLevel**: 10
+  * **damageMin**: 5
+  * **damageMax**: 10
+  * **baseSpeed**: 2
+  * **attackDelay**: 0.5
+  * **hitPoints**: 20
+  * **name**: Shadow_Name (string resource key)
+  * **description**: Shadow_Desc (string resource key)
+  * **spriteDesc**: spritesDesc/Shadow.json
+  * **canBePet**: true
+  * **walkingType**: WALL
+  * **scriptFile**: scripts/mobs/MazeShadow
+  * **aiState**: Wandering
+
+===== Lua Script Implementation =====
+Script file: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/MazeShadow.lua|MazeShadow.lua]]
+
+The mob uses a custom interact function that swaps positions with the player:
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local mob = require"scripts/lib/mob"
+
+return mob.init({
+    interact = function(self, chr)
+        local ownPos  = self:getPos()
+        local newPos  = chr:getPos()
+
+        self:move(newPos)
+        self:getSprite():move(ownPos, newPos)
+
+        chr:move(ownPos)
+        chr:getSprite():move(newPos, ownPos)
+    end
+})
 </code>
 
-===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/MazeShadow.lua|MazeShadow.lua]]
+===== String Resources =====
+String resource keys used:
+  * <code xml>Shadow_Name</code> - Mob name
+  * <code xml>Shadow_Name_Objective</code> - Objective form of name
+  * <code xml>Shadow_Desc</code> - Mob description
+  * <code xml>Shadow_Gender</code> - Gender reference
+
+Example English strings (from values/strings_all.xml):
+<code xml>
+<string name="Shadow_Name">Shadow</string>
+<string name="Shadow_Name_Objective">Shadow</string>
+<string name="Shadow_Desc">Shadows silently wander the ruins of the old prison. They only occasionally show themselves to adventurers, usually on their last adventure.</string>
+</code>
+
+===== Sprite Configuration =====
+Sprite description: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Shadow.json|Shadow.json]]
+
+Wiki image: <code>maze_shadow_mob.png</code>
+
+===== Related Entities =====
+  * Similar mob: [[mr:shadow_mob|Shadow]] - Regular shadow mob
+  * Similar mob: [[mr:shadow_lord_mob|Shadow Lord]] - Boss variant
+
+{{tag> mr mob lua_script json_config}}
