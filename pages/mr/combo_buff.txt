@@ -1,5 +1,7 @@
 ====== Combo Buff - Code References ======
 
+{{ rpd:images:combo_buff.png|Combo Buff }}
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Combo.java|Combo.java]]
 
@@ -17,5 +19,15 @@ This entity is implemented in Java, no JSON configuration exists
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Behavior =====
+  * Applied to Gladiator subclass when using melee weapons
+  * Tracks consecutive hits (count variable)
+  * At 3+ hits, deals bonus damage: (damage * (count - 2) / 5f)
+  * Badge validation for 7-hit combo mastery
+  * Buff duration decreases with higher combo count (1.41f - count / 10f)
+  * Resets when attack misses or different action is taken
+
 ===== Related mr Entities =====
-  * [[mr:gladiator_subclass|Gladiator (Subclass)]]
+  * [[mr:gladiator_armor_item|Gladiator Armor]] - Armor related to Gladiator
+  * [[mr:short_sword_item|Short Sword]] - Example melee weapon
+  * [[mr:buffs|Buffs]] - Buff system category
