@@ -1,19 +1,134 @@
 ====== Snail Mob - Code References ======
 
+{{ rpd:images:snail_mob.png|Snail Mob Sprite }}
+
+**Snail** is a passive mob in Remixed Dungeon, found in sewer areas.
+
+===== Entity Type =====
+Mob (JSON configuration with Lua script support)
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+This entity is implemented through JSON configuration, no dedicated Java class exists.
+Uses standard mob classes from:
+  * `com.watabou.pixeldungeon.actors.mobs.Mob` - Base mob class
+  * `com.watabou.pixeldungeon.actors.Actor` - Actor system base
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Snail.json|Snail.json]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Snail.json|Snail.json]]
+**mobsDesc/Snail.json**:
+<code json>
+{
+   "defenseSkill"  :2,
+   "attackSkill"   :6,
+   "exp"           :1,
+   "maxLvl"        :2,
+   "dmgMin"        :1,
+   "dmgMax"        :3,
+   "dr"            :1,
+   "baseSpeed"     :0.5,
+   "attackDelay"   :1,
+   "ht"            :6,
+   "viewDistance"  :3,
+   "lootChance"    :0,
+   "name"          :"Snail_Name",
+   "name_objective":"Snail_Name_Objective",
+   "description"   :"Snail_Desc",
+   "gender"        :"Snail_Gender",
+   "spriteDesc"    :"spritesDesc/Snail.json",
+   "walkingType"   :"NORMAL",
+   "canBePet"      : true,
+   "flying"        : false,
+   "friendly"      : false
+}
+</code>
+
+**Stats Breakdown**:
+  * **HT (Health)**: 6 hit points
+  * **Attack Skill**: 6 accuracy
+  * **Defense Skill**: 2 dodge
+  * **Damage**: 1-3 points
+  * **DR (Damage Reduction)**: 1
+  * **Speed**: 0.5 (very slow - half normal speed)
+  * **Max Level**: 2
+  * **Experience**: 1 EXP on kill
+  * **View Distance**: 3 tiles
+  * **Loot Chance**: 0% (no drops)
+  * **Can Be Pet**: Yes (can be tamed)
+  * **Flying**: No (ground movement)
+  * **Friendly**: No (hostile to player)
+
+**spritesDesc/Snail.json**:
+<code json>
+{
+  "texture" : "mobs/snail.png",
+  "width"  : 16,
+  "height" : 16,
+  "scale"  : 1,
+  "idle"   : { "fps" : 2,  "looped" : true,     "frames" : [0,0,0,1] },
+  "run"    : { "fps" : 14, "looped" : true,     "frames" : [2,3,4,5,6] },
+  "attack" : { "fps" : 11, "looped" : false,    "frames" : [7,8,9,10,11] },
+  "die"    : { "fps" : 11, "looped" : false,    "frames" : [12,13,14,15] }
+}
+</code>
+
+**Animation Details**:
+  * **Texture**: `mobs/snail.png` (16x16 pixels)
+  * **Idle**: 4 frames [0,0,0,1] at 2 FPS, looped
+  * **Run**: 5 frames [2,3,4,5,6] at 14 FPS, looped
+  * **Attack**: 5 frames [7,8,9,10,11] at 11 FPS, not looped
+  * **Die**: 4 frames [12,13,14,15] at 11 FPS, not looped
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
-<string name="Snail_Name">[Name]</string>
-<string name="Snail_Info">[Description]</string>
+<string name="Snail_Name">Snail</string>
+<string name="Snail_Desc">This little mollusk has grown quite large by feeding on sewage, but it is still very slow which makes it an easy enemy to face.</string>
+</code>
+
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="Snail_Name">Улитка</string>
+<string name="Snail_Desc">Этот маленький моллюск довольно вырос, питаясь сточными водами, но он всё ещё очень медленный, что делает его лёгким противником.</string>
+</code>
+
+Spanish (values-es/strings_all.xml):
+<code xml>
+<string name="Snail_Name">caracol</string>
+<string name="Snail_Desc">Este pequeño molusco ha crecido bastante al alimentarse de aguas residuales, pero sigue siendo muy lento, lo que le convierte en un enemigo fácil de enfrentar.</string>
+</code>
+
+French (values-fr/strings_all.xml):
+<code xml>
+<string name="Snail_Name">escargot</string>
+<string name="Snail_Desc">Ce petit mollusque a bien grandi en se nourrissant des égouts, mais il reste toujours très lent ce qui en fait un adversaire facile à affronter.</string>
+</code>
+
+German (values-de/strings_all.xml):
+<code xml>
+<string name="Snail_Name">Schnecke</string>
+<string name="Snail_Desc">Dieser kleine Weichtier ist durch die Ernährung mit Abwässern ziemlich groß geworden, aber er ist immer noch sehr langsam, was ihn zu einem leichten Gegner macht.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+No dedicated Lua script for this mob. Uses default mob AI behavior.
+
+===== Related mr Entities =====
+  * [[mr:mob|Mob System]] - Base mob mechanics
+  * [[mr:sewers_level|Sewers Level]] - Where snails are found
+  * [[mr:pet_mechanic|Pet Mechanic]] - Can be tamed as pet
+  * [[mr:deep_snail_mob|Deep Snail]] - Faster variant found near water
+
+===== Game Mechanics =====
+  * **Spawn Location**: Sewers (level 1-5)
+  * **Behavior**: Passive mob, slow movement
+  * **Difficulty**: Easy enemy (low HP, low damage)
+  * **Pet Potential**: Can be tamed with appropriate items
+  * **Threat Level**: Low - suitable for early game combat practice
+  * **Speed**: Slowest mob in the game (0.5 base speed)
+
+===== Code Fragments =====
+Example of how Snail is loaded from JSON:
+<code java>
+// Mob loading from JSON configuration
+// The game reads mobsDesc/Snail.json and creates mob instance
+// Stats are applied from JSON properties to Mob object
+</code>

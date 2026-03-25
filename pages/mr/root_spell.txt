@@ -1,21 +1,102 @@
 ====== Root Spell - Code References ======
 
+{{ rpd:images:root_spell_spell.png|Root Spell Icon }}
+
+**Root** is an elemental spell that immobilizes targets by rooting them in place.
+
+===== Entity Type =====
+Spell (Java implementation)
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/RootSpell.java|RootSpell.java]]
+    * Package: `com.nyrds.pixeldungeon.mechanics.spells`
+    * Constructor configuration:
+      * `targetingType = SpellHelper.TARGET_CHAR_NOT_SELF` - Cannot target self
+      * `magicAffinity = SpellHelper.AFFINITY_ELEMENTAL` - Elemental magic affinity
+      * `level = 2` - Spell level requirement
+      * `image = 2` - Sprite index
+      * `spellCost = 2` - SP cost to cast
+    * Cast method applies `Roots` buff for 10 ticks
+    * Visual effects: EarthParticle emitter burst (5 particles) + light blue burst (3 particles)
+    * Sound effect: `Assets.SND_PUFF`
     * Used in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java|SpellFactory.java]] (Line 122)
+    * Texture: `spellsIcons/elemental.png`
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
 <string name="RootSpell_Name">Root</string>
 <string name="RootSpell_Info">Roots the selected character, making it unable for him to move for a short period of time.</string>
+</code>
+
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="RootSpell_Name">Корни</string>
+<string name="RootSpell_Info">Опутывает выбранного персонажа, не позволяя тому двигаться в течение короткого промежутка времени.</string>
+</code>
+
+Spanish (values-es/strings_all.xml):
+<code xml>
+<string name="RootSpell_Name">Raíces</string>
+<string name="RootSpell_Info">Raíces que sujetan a un personaje/enemigo y hacen imposible su movimiento por un corto tiempo.</string>
+</code>
+
+French (values-fr/strings_all.xml):
+<code xml>
+<string name="RootSpell_Name">Enraciner</string>
+<string name="RootSpell_Info">Enracine le personnage sélectionné le rendant incapable de bouger pour un court laps de temps.</string>
+</code>
+
+German (values-de/strings_all.xml):
+<code xml>
+<string name="RootSpell_Name">Verwurzeln</string>
+<string name="RootSpell_Info">Verwurzelt ausgewählten Charakter und macht es ihm unmöglich für eine kurze Weile sich zu Bewegen.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
 ===== Related mr Entities =====
-  * [[mr:roots_buff|Roots (Buff)]]
-  * [[mr:elemental_affinity_spell_mechanic|Elemental Affinity (Spell Mechanic)]]
+  * [[mr:roots_buff|Roots (Buff)]] - The buff applied by this spell
+  * [[mr:elemental_affinity_spell_mechanic|Elemental Affinity (Spell Mechanic)]] - Magic affinity type
+  * [[mr:mage_class|Mage Class]] - Has innate access to this spell
+  * [[mr:spell|Spell System]] - Base spell mechanics
+
+===== Game Mechanics =====
+  * **Target**: Any character except self
+  * **Duration**: 10 ticks (approximately 10 seconds)
+  * **Effect**: Prevents target movement
+  * **Magic Affinity**: Elemental
+  * **SP Cost**: 2 spell points
+  * **Level Requirement**: 2
+  * **Visual Effects**: Earth particles + light blue burst
+  * **Sound**: Puff sound effect
+
+===== Code Fragments =====
+<code java>
+// RootSpell.java constructor
+RootSpell() {
+    targetingType = SpellHelper.TARGET_CHAR_NOT_SELF;
+    magicAffinity = SpellHelper.AFFINITY_ELEMENTAL;
+    level = 2;
+    image = 2;
+    spellCost = 2;
+}
+
+// Cast method
+@Override
+public boolean cast(@NotNull Char chr, @NotNull Char target){
+    if(target.valid()) {
+        target.getSprite().emitter().burst( EarthParticle.FACTORY, 5 );
+        target.getSprite().burst( 0xFF99FFFF, 3 );
+        Buff.prolong( target, Roots.class, 10 );
+        Sample.INSTANCE.play( Assets.SND_PUFF );
+        castCallback(chr);
+        return true;
+    }
+    return false;
+}
+</code>

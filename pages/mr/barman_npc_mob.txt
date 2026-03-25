@@ -1,20 +1,154 @@
 ====== Barman NPC - Code References ======
 
+{{ rpd:images:barman_npc_mob.png|Barman NPC Sprite }}
+
+**Barman** is a passive NPC in Remixed Dungeon that serves as a test/demo character for NPC functionality.
+
+===== Entity Type =====
+NPC (Non-Player Character) - JSON configuration with Lua script
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check:
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+This entity is implemented through JSON configuration with Lua script, no dedicated Java class exists.
+Uses standard NPC classes from:
+  * `com.watabou.pixeldungeon.actors.mobs.npcs.NPC` - Base NPC class
+  * `com.watabou.pixeldungeon.actors.Actor` - Actor system base
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check:
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/barman_npc.json
+**mobsDesc/BarmanNPC.json**:
+<code json>
+{
+   "baseSpeed"     :0,
+   "spriteDesc"    :"spritesDesc/BarmanNPC.json",
+   "scriptFile"    :"scripts/npc/Barman",
+   "friendly"      :true,
+   "movable"       :false,
+   "aiState"       :"Passive",
+   "fraction"      :"NEUTRAL"
+}
+</code>
+
+**Configuration Breakdown**:
+  * **baseSpeed**: 0 (stationary, doesn't move)
+  * **spriteDesc**: References `spritesDesc/BarmanNPC.json` for animation
+  * **scriptFile**: Uses Lua script at `scripts/npc/Barman.lua`
+  * **friendly**: true (cannot be attacked by player)
+  * **movable**: false (cannot be moved/pushed)
+  * **aiState**: Passive (no aggressive behavior)
+  * **fraction**: NEUTRAL (not aligned with any faction)
+
+**spritesDesc/BarmanNPC.json**:
+<code json>
+{
+   "texture" : "mobs/barman.png",
+   "width" : 16,
+   "height" : 16,
+   "idle" : {
+      "fps" : 1,
+      "looped" : true,
+      "frames" : [0, 1,0,0,1, 2,0,2]
+   },
+   "run" : {
+      "fps" : 8,
+      "looped" : true,
+      "frames" : [0, 1, 2]
+   },
+   "attack" : {
+      "fps" : 8,
+      "looped" : true,
+      "frames" : [0, 1, 2]
+   },
+   "die" : {
+      "fps" : 8,
+      "looped" : true,
+      "frames" : [0, 1, 2]
+   }
+}
+</code>
+
+**Animation Details**:
+  * **Texture**: `mobs/barman.png` (16x16 pixels)
+  * **Idle**: 8 frames [0,1,0,0,1,2,0,2] at 1 FPS, looped
+  * **Run**: 3 frames [0,1,2] at 8 FPS, looped (not used - NPC is stationary)
+  * **Attack**: 3 frames [0,1,2] at 8 FPS, looped (not used - NPC is friendly)
+  * **Die**: 3 frames [0,1,2] at 8 FPS, looped (not used - NPC is friendly)
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
-<string name="BarmanNPC_Name">[Name]</string>
-<string name="BarmanNPC_Info">[Description]</string>
+<string name="BarmanNPC_Name">Barman</string>
+</code>
+
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="BarmanNPC_Name">Бармен</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+**scripts/npc/Barman.lua**:
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local mob = require"scripts/lib/mob"
+
+local dialog = function(index)
+    if index == 0 then
+        local hero = RPD.Dungeon.hero
+        local pos = RPD.getXy(hero)
+        RPD.Dungeon.hero:handle(RPD.Dungeon.level:cell(pos[1],pos[2]-3))
+        return
+    end
+
+    if index == 1 then
+        RPD.glog("okay...")
+    end
+end
+
+return mob.init({
+    interact = function(self, chr)
+        RPD.chooseOption( dialog,
+                "Test title",
+                "Go back",
+                "Yes",
+                "No")
+    end
+})
+</code>
+
+**Script Functionality**:
+  * Uses `RPD` module for game API access
+  * `interact` function triggers dialog when player interacts
+  * Dialog options:
+    * Option 0: Moves hero 3 tiles up from current position
+    * Option 1: Prints "okay..." to game log
+  * Demonstrates basic NPC interaction pattern for modders
+
+===== Related mr Entities =====
+  * [[mr:npc|NPC System]] - Base NPC mechanics
+  * [[mr:lua_scripting|Lua Scripting]] - Script system documentation
+  * [[mr:rpd_api|RPD API]] - Common classes API reference
+
+===== Game Mechanics =====
+  * **Purpose**: Test/demo NPC for modding examples
+  * **Interaction**: Dialog-based with teleportation feature
+  * **Location**: Not naturally spawning (test NPC only)
+  * **Behavior**: Stationary, friendly, non-combatant
+  * **Modding Use**: Reference implementation for custom NPCs
+
+===== Code Fragments =====
+Example interaction pattern from Barman.lua:
+<code lua>
+-- Basic NPC interaction template
+return mob.init({
+    interact = function(self, chr)
+        RPD.chooseOption( dialog,
+                "Dialog Title",
+                "Option 1",
+                "Option 2",
+                "Option 3")
+    end
+})
+</code>
+
+===== See Also =====
+  * Other NPC examples in `scripts/npc/` directory
+  * `scripts/lib/commonClasses.lua` for RPD API reference
+  * `scripts/lib/mob.lua` for mob initialization
