@@ -1,20 +1,95 @@
 ====== Terror Buff - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+  * Main Implementation: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java
+  * AI Handler: RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Horrified.java
+
+===== Class Details =====
+<code java>
+package com.watabou.pixeldungeon.actors.buffs;
+
+public class Terror extends FlavourBuff {
+    public static final float DURATION = 10f;
+
+    @Override
+    public int icon() {
+        return BuffIndicator.TERROR;
+    }
+
+    public static void recover(Char target) {
+        Terror terror = target.buff(Terror.class);
+        if (terror != null && terror.cooldown() < DURATION) {
+            target.remove(terror);
+        }
+    }
+
+    @Override
+    public boolean attachTo(@NotNull Char target) {
+        if(super.attachTo(target)) {
+            if(target instanceof Mob && target.fraction!=Fraction.NEUTRAL) {
+                Mob tgt = (Mob)target;
+                tgt.releasePet();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void attachVisual() {
+        target.showStatus(CharSprite.NEGATIVE, StringsManager.getVar(R.string.Char_StaFrightened));
+    }
+}
+</code>
+
+===== Key Methods =====
+  * **attachTo(Char target)**: Attaches the Terror buff to a character. If the target is a non-neutral Mob, releases any pet.
+  * **recover(Char target)**: Removes Terror buff if cooldown is less than DURATION (10f).
+  * **attachVisual()**: Shows "frightened" status message on the character sprite.
+  * **icon()**: Returns BuffIndicator.TERROR for the buff icon.
+
+===== Constants =====
+  * **DURATION**: 10f (10 seconds default duration)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/terror.json
+This entity does not have JSON configuration files. It is fully implemented in Java.
 
 ===== String Resources =====
 <code xml>
-<string name="Terror_Name">[Name]</string>
-<string name="Terror_Info">[Description]</string>
+<!-- English strings -->
+<string name="Char_StaFrightened">frightened</string>
+<string name="TerrorBuff_Info">It looks like someone was very frightened.</string>
+
+<!-- Russian strings -->
+<string name="Char_StaFrightened">испуган</string>
+<string name="TerrorBuff_Info">Похоже, кто-то очень испугался.</string>
 </code>
 
+===== String Resource References =====
+  * English: RemixedDungeon/src/main/res/values/strings_all.xml
+    - Char_StaFrightened (line ~335)
+    - TerrorBuff_Info (line ~615)
+  * Russian: RemixedDungeon/src/main/res/values-ru/strings_all.xml
+    - Char_StaFrightened (line ~335)
+
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
+
+===== Usage in Code =====
+  * **Immunity**: Many mobs have immunity to Terror:
+    - IceGuardian, IceGuardianCore, Kobold (Ice Caves)
+    - YogsHeart, YogsBrain, YogsEye, BurningFist, RottingFist (Guts)
+  * **AI Behavior**: The Horrified AI class handles terrorized mob behavior
+  * **Status Display**: Uses CharSprite.NEGATIVE for visual feedback
+  * **Pet Release**: Automatically releases pets when applied to non-neutral mobs
+
+===== Related Classes =====
+  * FlavourBuff (parent class)
+  * BuffIndicator (icon system)
+  * Horrified (AI handler for terrorized mobs)
+  * CharSprite (visual status display)
+  * Fraction (mob faction system)
+
+===== Source Code Links =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java|Terror.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Horrified.java|Horrified.java]]
