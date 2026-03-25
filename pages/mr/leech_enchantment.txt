@@ -1,0 +1,37 @@
+====== Leech Enchantment - Code References ======
+
+{{ rpd:images:leech_enchantment.png|Leech Enchantment }}
+
+**Leech** is a weapon enchantment entity in Remixed Dungeon that provides life steal functionality.
+
+==== Java Classes ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Leech.java|Leech.java]] - Main enchantment class extending Weapon.Enchantment
+
+==== Code Behavior ====
+  * **Type**: Weapon Enchantment
+  * **Glow Color**: Dark red (RGB: 0x660022)
+  * **Proc Effect**: Heals attacker for portion of damage dealt
+  * **Healing Formula**: damage * (level + 2) / (level + 6)
+  * **Level Scaling**:
+    * Level 0: ~33% of damage (max)
+    * Level 1: ~43% of damage (max)
+    * Level 2: ~50% of damage (max)
+  * **Heal Cap**: Cannot heal more than missing HP
+  * **Visual Feedback**: Shows healing amount as green positive numbers
+  * **Random Factor**: Actual heal is random between 0 and max value
+
+==== JSON Configuration ====
+This entity is implemented in Java, no JSON configuration exists
+
+==== String Resources ====
+<code xml>
+<!-- String resources are inherited from base Enchantment class -->
+</code>
+
+==== Lua Scripts ====
+This entity is implemented in Java, no Lua script exists
+
+==== Related mr Entities ====
+  * [[mr:combat_mechanic|Combat (Mechanic)]]
+  * [[mr:healing|Healing (Mechanic)]]
+  * [[mr:weapon_enchantment|Weapon Enchantment (Type)]]
