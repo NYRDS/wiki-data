@@ -7,27 +7,41 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/WandOfShadowbolt.java|WandOfShadowbolt.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (registration)
 
 ===== Configuration Files =====
   * **JSON**: This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
-  * **Name**: @string/WandOfShadowbolt_Name
-  * **Description**: @string/WandOfShadowbolt_Info
+  * **Name**: @string/WandOfShadowbolt_Name ("wand of shadowbolt")
+  * **Description**: @string/WandOfShadowbolt_Info ("This wand emits dark, malicious energy.")
+  * **English**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1659-L1660|strings_all.xml]]
+  * **Russian**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2362-L2363|strings_all.xml]]
 
 ===== Lua Scripts =====
   * This entity is implemented in Java, no Lua script exists
 
 ===== Implementation Details =====
-  * **Damage**: Random(4 + level*2, 3 + level*3)
-  * **Effect**: Bursts target with purple particles (0x551A8B) at intensity of level/2 + 3
-  * **Sprite**: Uses image index 13 from items/wands.png
-  * **Particle**: Purple particles (PurpleParticle.FACTORY)
-  * **Always Known**: Yes (isKnown() always returns true)
-  * **Sound**: Uses zap sound effect (Assets.SND_ZAP)
+  * **Parent Class**: Wand
+  * **Image File**: items/wands.png
+  * **Image Index**: 13
+  * **Known on Identify**: Yes (isKnown() returns true)
+  * **Sound Effect**: Assets.SND_ZAP
+  * **Particle Effect**: PurpleParticle.FACTORY (0x551A8B color)
+  * **Particle Interval**: 0.1f
 
 ===== Game Mechanics =====
-  * When zapped at a target, deals damage in the range of (4 + level*2) to (3 + level*3)
-  * Creates a burst of purple particles on the target
-  * The intensity of the particle burst increases with wand level
-  * Automatically identified (always known to the player)
+  * **Damage Formula**: Random.Int(4 + level*2, 3 + level*3)
+  * **Visual Effect**: ch.getSprite().burst(0x551A8B, level / 2 + 3)
+  * **Projectile Type**: MagicMissile.shadow()
+  * **Target**: Single enemy (Char)
+  * **Damage Type**: Magic damage from wand
+
+===== Code References =====
+  * **Constructor**: Sets imageFile to "items/wands.png" and image to 13
+  * **onZap()**: Deals damage and creates purple particle burst effect
+  * **fx()**: Creates shadow missile projectile and plays zap sound
+  * **isKnown()**: Returns true (wand is always identified)
+  * **emitter()**: Returns PurpleParticle.FACTORY for visual effect
+  * **emitterInterval()**: Returns 0.1f for particle emission rate
+  * **desc()**: Returns string from R.string.WandOfShadowbolt_Info
