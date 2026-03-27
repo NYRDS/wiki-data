@@ -2,57 +2,106 @@
 
 ===== Java Classes =====
 Actual implementation found in:
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/HeartOfDarkness.java|HeartOfDarkness.java]] - Contains the HeartOfDarknessBuff class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/HeartOfDarkness.java|HeartOfDarkness.java]] - Contains the HeartOfDarkness artifact and HeartOfDarknessBuff class
 
 ===== Implementation Details =====
+Full class implementation:
+
 <code java>
-public static class HeartOfDarknessBuff extends ArtifactBuff {
-	@Override
-	public int icon() {
-		return BuffIndicator.DARKVEIL;
+package com.nyrds.pixeldungeon.items.guts;
+
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.pixeldungeon.mobs.guts.SpiritOfPain;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.pixeldungeon.items.rings.Artifact;
+import com.watabou.pixeldungeon.items.rings.ArtifactBuff;
+import com.watabou.pixeldungeon.ui.BuffIndicator;
+
+public class HeartOfDarkness extends Artifact {
+
+	public HeartOfDarkness() {
+		imageFile = "items/artifacts.png";
+		image = 18;
 	}
 
 	@Override
-	public String name() {
-        return StringsManager.getVar(R.string.DarkVeilBuff_Name);
-    }
+	public boolean isIdentified() {
+		return true;
+	}
 
 	@Override
-	public String desc() {
-        return StringsManager.getVar(R.string.DarkVeilBuff_Info);
-    }
+	public ArtifactBuff buff() {
+		return new HeartOfDarknessBuff();
+	}
 
-	@Override
-	public int defenceProc(Char defender, Char enemy, int damage) {
-		int defenderPos = defender.getPos();
-		int spiritPos = defender.level().getEmptyCellNextTo(defenderPos);
-
-		if (defender.level().cellValid(spiritPos)) {
-			SpiritOfPain spirit = new SpiritOfPain();
-			spirit.setPos(spiritPos);
-			Mob.makePet(spirit, defender.getId());
-			defender.level().spawnMob(spirit, 0, defenderPos);
+	public static class HeartOfDarknessBuff extends ArtifactBuff {
+		@Override
+		public int icon() {
+			return BuffIndicator.DARKVEIL;
 		}
-		return damage;
+
+		@Override
+		public String name() {
+            return StringsManager.getVar(R.string.DarkVeilBuff_Name);
+        }
+
+		@Override
+		public String desc() {
+            return StringsManager.getVar(R.string.DarkVeilBuff_Info);
+        }
+
+		@Override
+		public int defenceProc(Char defender, Char enemy, int damage) {
+			int defenderPos = defender.getPos();
+			int spiritPos = defender.level().getEmptyCellNextTo(defenderPos);
+
+			if (defender.level().cellValid(spiritPos)) {
+				SpiritOfPain spirit = new SpiritOfPain();
+				spirit.setPos(spiritPos);
+				Mob.makePet(spirit, defender.getId());
+				defender.level().spawnMob(spirit, 0, defenderPos);
+			}
+			return damage;
+		}
 	}
 }
 </code>
 
-===== Notes =====
-  * This buff is part of the Heart of Darkness artifact
-  * Name in game: "Dark Veil" (not "Heart of Darkness")
-  * Effect: When the owner takes damage, summons a Spirit of Pain nearby
-  * Icon: BuffIndicator.DARKVEIL
-  * Implementation: defenceProc method triggers when taking damage
+===== Key Methods =====
+  * **icon()** - Returns BuffIndicator.DARKVEIL for the buff icon
+  * **name()** - Returns localized buff name from DarkVeilBuff_Name string resource
+  * **desc()** - Returns localized buff description from DarkVeilBuff_Info string resource
+  * **defenceProc()** - Called when the wearer takes damage; spawns a SpiritOfPain pet nearby
 
-===== JSON Configuration =====
-None found - implemented purely in Java
+===== Behavior =====
+The HeartOfDarknessBuff is automatically applied when the hero equips the Heart of Darkness artifact. Its primary function is:
+
+  * Triggers on damage taken (via defenceProc method)
+  * Spawns a SpiritOfPain mob as a pet adjacent to the defender
+  * The SpiritOfPain is allied with the hero (created via Mob.makePet())
+  * Requires a valid empty cell next to the hero for spawning
 
 ===== String Resources =====
 <code xml>
+<!-- English (values/strings_all.xml) -->
 <string name="DarkVeilBuff_Name">Dark veil</string>
 <string name="DarkVeilBuff_Info">A veil of darkness surrounds the owner, summoning a spirit every time damage is taken.</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="DarkVeilBuff_Name">Тёмная вуаль</string>
+<string name="DarkVeilBuff_Info">Вуаль тьмы окружает владельца, призывая духа каждый раз при получении урона.</string>
 </code>
 
+===== Related Entities =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/HeartOfDarkness.java|HeartOfDarkness]] - Parent artifact item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/SpiritOfPain.java|SpiritOfPain]] - Mob spawned by the buff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Artifact.java|Artifact]] - Base class for artifact items
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/ArtifactBuff.java|ArtifactBuff]] - Base class for artifact buffs
+
+===== JSON Configuration =====
+None - This buff is implemented purely in Java without JSON configuration.
+
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+None - This buff is implemented purely in Java without Lua scripting.

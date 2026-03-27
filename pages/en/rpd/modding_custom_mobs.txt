@@ -1,5 +1,7 @@
 ====== Creating Custom Mobs with JSON and Lua ======
 
+{{ rpd:images:bandit_mob.png|Custom Mob Example }}
+
 This guide shows how to create completely new creatures in Remixed Dungeon without any Java coding. You'll learn to use JSON configuration and Lua scripting to define new enemies, NPCs, and other creatures.
 
 ===== Mob Basics =====
@@ -535,32 +537,6 @@ To make your mobs appear in the dungeon, add them to ''levelsDesc/Bestiary.json'
 
 <code json>
 {
-  "level_1": [
-    {"class": "actors/mobs/custom_rat.json", "weight": 8},
-    {"class": "actors/mobs/healing_angel.json", "weight": 2}
-  ],
-  "level_5": [
-    {"class": "actors/mobs/treasure_mimic.json", "weight": 3},
-    {"class": "actors/mobs/dungeon_lord.json", "weight": 1}
-  ]
-}
-</code>
-
-===== Testing Your Mobs =====
-
-==== Common Testing Steps ====
-  * Enable your mod in-game
-  * Start a new game to see new mobs (they'll appear based on your bestiary settings)
-  * Verify that sprites appear correctly
-  * Test all mob behaviors and Lua scripts
-  * Check that mob descriptions are properly localized
-  * Confirm that mob stats are balanced
-
-==== Bestiary Integration ====
-To make your mobs appear in the dungeon, add them to ''levelsDesc/Bestiary.json'':
-
-<code json>
-{
   "SewerLevel": [
     {"class": "PoisonRat", "weight": 8},
     {"class": "HealingSprite", "weight": 2}
@@ -601,3 +577,5 @@ To make your mobs appear in the dungeon, add them to ''levelsDesc/Bestiary.json'
   - ''name'', ''description'', ''spriteDesc'', ''scriptFile'', ''isBoss'', ''flying'', ''canBePet''
 
 Creating custom mobs without Java is quite powerful in Remixed Dungeon. With JSON and Lua, you can create complex behaviors, unique mechanics, and engaging new creatures for players to encounter!
+
+{{tag> rpd mods mobs json lua scripting}}

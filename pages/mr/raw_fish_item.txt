@@ -1,20 +1,66 @@
 ====== Raw Fish Item - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+===== Java Implementation =====
+This entity is not implemented as a separate Java class. It is a basic food item that uses the default item system.
+
+Usage in Java code:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Piranha.java|Piranha.java]] - Piranhas drop RawFish when collected
+
+<code java>
+// From Piranha.java
+collect(ItemFactory.itemByName("RawFish"));
+</code>
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/raw_fish.json
+RawFish is referenced in level configuration files as a placeable item:
+
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/TestLevelSewers.json|TestLevelSewers.json]] - Placed at coordinates (13, 10)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json|Treasury.json]] - Listed in item distribution
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json|SpidersTreasury.json]] - Listed in item distribution
+
+<code json>
+// From TestLevelSewers.json
+{"kind":"RawFish","x":13,"y":10}
+
+// From Treasury.json and SpidersTreasury.json
+"RawFish": 0
+</code>
 
 ===== String Resources =====
+RawFish has localized strings in all supported languages:
+
 <code xml>
-<string name="RawFish_Name">[Name]</string>
-<string name="RawFish_Info">[Description]</string>
+<!-- English (values/strings_all.xml) -->
+<string name="RawFish_Name">raw fish</string>
+<string name="RawFish_Info">Raw fish, eat at your own risk</string>
+<string name="RawFish_Taste">Fishy!</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="RawFish_Name">сырая рыба</string>
+<string name="RawFish_Info">Сырая рыба, ешьте на свой страх и риск</string>
+<string name="RawFish_Taste">Рыбненько!</string>
+
+<!-- German (values-de/strings_all.xml) -->
+<string name="RawFish_Name">Roher Fisch</string>
+<string name="RawFish_Info">Roher Fisch, essen auf eigene Gefahr</string>
+<string name="RawFish_Taste">Fischig!</string>
+
+<!-- Japanese (values-ja/strings_all.xml) -->
+<string name="RawFish_Name">生の魚</string>
+<string name="RawFish_Info">生魚は自己責任で食べること</string>
+<string name="RawFish_Taste">魚っぽい！</string>
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RawFish.lua|RawFish.lua]]
+No Lua scripts are associated with this entity. It is a basic consumable item.
+
+===== Game Mechanics =====
+  * **Type**: Food item
+  * **Rarity**: Common drop from Piranhas
+  * **Effect**: Basic hunger restoration (specific values defined in game constants)
+  * **Taste Message**: "Fishy!" when consumed
+  * **Risk**: May have negative effects (implied by "eat at your own risk" description)
+
+===== Related Entities =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Piranha.java|Piranha]] - Mob that drops this item
+  * Food system - Part of the game's hunger mechanics

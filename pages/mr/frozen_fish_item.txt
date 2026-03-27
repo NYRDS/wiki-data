@@ -1,20 +1,68 @@
 ====== Frozen Fish Item - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+**Frozen Fish** is a food item in Remixed Dungeon. This page contains machine-readable reference information for the frozen_fish_item entity.
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/frozen_fish.json
+===== Entity Kind =====
+  * **Entity Kind**: frozen_fish
+  * **Entity Type**: item
+  * **Wiki Page**: [[en:rpd:frozen_fish_item|Frozen Fish Item]]
+
+===== Lua Implementation =====
+  * **Script File**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/FrozenFish.lua|FrozenFish.lua]]
+  * **Script Location**: RemixedDungeon/src/main/assets/scripts/items/FrozenFish.lua
+  * **Implementation Details**:
+    * Image: 14 (from items/food.png sprite sheet)
+    * Stackable: true
+    * Price: 15 gold
+    * Name String Key: FrozenFish_Name
+    * Info String Key: FrozenFish_Info
+    * **onThrow**: Spawns Piranha mob if thrown in water, otherwise drops as item
+    * **burn**: Transforms into FriedFish when burned
 
 ===== String Resources =====
+==== English (values/strings_all.xml) ====
 <code xml>
-<string name="FrozenFish_Name">[Name]</string>
-<string name="FrozenFish_Info">[Description]</string>
+<string name="FrozenFish_Name">frozen fish</string>
+<string name="FrozenFish_Info">Frozen fish, looks like it\'s alive, but frozen.</string>
 </code>
 
-===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/FrozenFish.lua|FrozenFish.lua]]
+==== Russian (values-ru/strings_all.xml) ====
+<code xml>
+<string name="FrozenFish_Name">замороженная рыба</string>
+<string name="FrozenFish_Info">Замороженная рыба, выглядит как живая, но замороженная.</string>
+</code>
+
+==== Chinese Simplified (values-zh-rCN/strings_all.xml) ====
+<code xml>
+<string name="FrozenFish_Name">冻鱼</string>
+<string name="FrozenFish_Info">冰冻的鱼，你拿在手上时感觉它好像动了一下，就像是还活的一样。</string>
+</code>
+
+==== Other Languages ====
+  * **German**: Gefrorener Fisch
+  * **Spanish**: pescado congelado
+  * **French**: poisson congelé
+  * **Italian**: pesce ghiacciato
+  * **Japanese**: 凍った魚
+  * **Korean**: 냉동 생선
+  * **Portuguese (BR)**: peixe congelado
+  * **Polish**: mrożona ryba
+  * **Ukrainian**: заморожена риба
+  * **Hungarian**: fagyott hal
+  * **Turkish**: dondurulmuş balık
+  * **Greek**: παγωμένο ψάρι
+  * **Indonesian**: Ikan Beku
+  * **Malay**: ikan beku
+
+===== Related Entities =====
+  * **Transforms to**: [[en:rpd:fried_fish_item|Fried Fish]] (when burned)
+  * **Spawns**: [[en:rpd:piranha_mob|Piranha]] (when thrown in water)
+  * **Related Items**: [[en:rpd:raw_fish_item|Raw Fish]], [[en:rpd:rotten_fish_item|Rotten Fish]]
+
+===== Code Reference Links =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/FrozenFish.lua|FrozenFish.lua on GitHub]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|English String Resources]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|Russian String Resources]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml|Chinese String Resources]]
+
+{{tag> rpd mr reference item food frozen_fish}}
