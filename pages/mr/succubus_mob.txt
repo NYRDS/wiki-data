@@ -5,19 +5,24 @@
 **Succubus** is a mob entity in Remixed Dungeon, a demon that can charm heroes and blink around the battlefield.
 
 ==== Java Classes ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Succubus.java|Succubus.java]] - Main mob class extending Mob
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Succubus.java|Succubus.java]] - Main mob class extending [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob]]
 
 ==== Code Behavior ====
-  * **HP**: 80
-  * **Attack**: 15-25 damage with 40 attack skill
-  * **Defense**: 10 DR with 25 defense skill
-  * **Special Ability**: 33% chance to apply Charm buff for 2-5 turns on attack
-  * **Blink Ability**: Can blink to target every 5 turns if target is visible and more than 2 cells away
-  * **View Distance**: Increased by 1 compared to normal mobs
-  * **Immunities**: Immune to Sleep and Leech enchantment
-  * **Loot**: 5% chance to drop Scroll of Lullaby
-  * **Experience**: 12 EXP, max level 25
-  * **Carcass Chance**: 0% (no corpse left)
+  * **HP**: 80 (set via `hp(ht(80))` in constructor)
+  * **Attack**: 15-25 damage (`dmgMin = 15`, `dmgMax = 25`) with 40 attack skill (`baseAttackSkill = 40`)
+  * **Defense**: 10 DR (`dr = 10`) with 25 defense skill (`baseDefenseSkill = 25`)
+  * **Special Ability**: 33% chance to apply Charm buff for 2-5 turns on attack (see `attackProc()` method)
+  * **Blink Ability**: Can blink to target every 5 turns (`BLINK_DELAY = 5`) if target is visible and more than 2 cells away (see `getCloser()` method)
+  * **View Distance**: Increased by 1 compared to normal mobs (set in `onSpawn()` method)
+  * **Immunities**: Immune to Sleep and Leech enchantment (`addImmunity(Sleep.class)`, `addResistance(Leech.class)`)
+  * **Loot**: 5% chance to drop Scroll of Lullaby (`loot(new ScrollOfLullaby(), 0.05f)`)
+  * **Experience**: 12 EXP (`expForKill = 12`), max level 25 (`maxLvl = 25`)
+  * **Carcass Chance**: 0% (no corpse left, `carcassChance = 0`)
+
+==== Key Methods ====
+  * `attackProc(Char enemy, int damage)` - Applies Charm buff with 33% chance on attack
+  * `getCloser(int target, boolean ignorePets)` - Handles blinking movement every 5 turns
+  * `onSpawn(Level level)` - Increases view distance by 1 when spawned
 
 ==== JSON Configuration ====
 This entity is implemented in Java, no JSON configuration exists
