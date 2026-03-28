@@ -1,7 +1,7 @@
 ====== Liquid Flame - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame.java]] - Main blob implementation that spreads fire and burns flammable terrain
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -16,8 +16,17 @@ This entity is implemented in Java, no JSON configuration exists
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Implementation Details =====
+  * **Class**: `com.watabou.pixeldungeon.actors.blobs.LiquidFlame`
+  * **Extends**: `Blob`
+  * **Behavior**: Spreads fire to adjacent flammable tiles, evaporates over time
+  * **Visual**: Uses `FlameParticle` emitter for rendering
+  * **Fire Spreading**: Burns adjacent flammable tiles with intensity value of 10
+  * **Decay**: Volume decreases by 1 each tick (after averaging with neighbors)
+
 ===== Related mr Entities =====
-  * [[mr:potion_of_liquid_flame_item|Potion of Liquid Flame (Item)]]
-  * [[mr:fire_elemental_mob|Fire Elemental (Mob)]]
-  * [[mr:fire_trap|Fire Trap (Trap)]]
-  * [[mr:wand_of_firebolt_item|Wand of Firebolt (Item)]]
+  * [[mr:potion_of_liquid_flame_item|Potion of Liquid Flame (Item)]] - Source potion that creates liquid flame
+  * [[mr:fire_elemental_mob|Fire Elemental (Mob)]] - Fire-based enemy
+  * [[mr:fire_trap|Fire Trap (Trap)]] - Fire-based trap
+  * [[mr:wand_of_firebolt_item|Wand of Firebolt (Item)]] - Fire-based wand
+  * [[mr:fire_blob|Fire Blob]] - Related fire blob implementation
