@@ -1,0 +1,90 @@
+====== Artifact Buff - Code References ======
+
+The **Artifact Buff** is a base class for all buffs that are applied by artifacts (rings, artifacts, and similar equipment). It extends the standard [[mr:buff|Buff]] system and provides special handling for artifact-sourced buffs.
+
+===== Java Classes =====
+
+**Base Implementation:**
+  * `com/watabou/pixeldungeon/items/rings/ArtifactBuff.java` - Base class for all artifact buffs
+  * Extends: `com/watabou/pixeldungeon/actors/buffs/Buff`
+  * Package: `com.watabou.pixeldungeon.items.rings`
+
+**Key Characteristics:**
+  * Artifact buffs are tied to their source artifact through the source ID system
+  * They automatically detach when the source artifact is removed
+  * They use the `EntityIdSource` system to track their origin
+
+**Key Methods:**
+<code java>
+// In ArtifactBuff.java
+public class ArtifactBuff extends Buff {
+    @Override
+    public boolean act() {
+        if(getSourceId()==EntityIdSource.INVALID_ID) { // non-artifact source
+            detach();
+        }
+        return super.act();
+    }
+
+    public String getEntityKind() {
+        return "artifactBuff" + super.getEntityKind();
+    }
+
+    @Override
+    public boolean dontPack() {
+        return getSourceId()!= EntityIdSource.INVALID_ID;
+    }
+}
+</code>
+
+===== Key Behaviors =====
+
+**Source Tracking:**
+  * Artifact buffs maintain a reference to their source artifact via `getSourceId()`
+  * If the source becomes invalid (`EntityIdSource.INVALID_ID`), the buff automatically detaches
+  * This ensures buffs don't persist after their source artifact is removed
+
+**Serialization:**
+  * The `dontPack()` method returns `true` for artifact buffs with valid sources
+  * This prevents unnecessary serialization of temporary buff state
+
+**Entity Kind:**
+  * Artifact buffs prepend "artifactBuff" to their entity kind
+  * This allows for easy identification and filtering of artifact-sourced buffs
+
+===== JSON Configuration =====
+
+Artifact buffs do not have separate JSON configuration files. They are:
+  * Defined entirely in Java code
+  * Registered through the buff factory system
+  * Associated with their parent artifacts
+
+===== String Resources =====
+
+Artifact buffs inherit their display names and descriptions from their parent artifacts. Individual buff implementations may override these in string resource files.
+
+===== Lua Scripts =====
+
+Artifact buffs are implemented entirely in Java. No Lua scripts are used for the base ArtifactBuff class.
+
+===== Related Entities =====
+
+**Base Classes:**
+  * [[mr:buff|Buff]] - Base buff system
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Full Buff implementation
+
+**Related Interfaces:**
+  * [[mr:named_entity_kind|NamedEntityKind]] - Entity identification interface
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/EntityIdSource.java|EntityIdSource.java]] - Source ID management
+
+**Example Artifact Buffs:**
+  * [[mr:stone_walking_buff|Stone Walking Buff]] - Doom-type artifact buff from Ring of Stone Blood
+  * [[en:rpd:ring_of_accuracy_item|Ring of Accuracy]] - Accuracy-boosting artifact buff
+  * [[en:rpd:ring_of_haste_item|Ring of Haste]] - Speed-boosting artifact buff
+
+===== Code References =====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/ArtifactBuff.java|ArtifactBuff.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/EntityIdSource.java|EntityIdSource.java]]
+
+{{tag> mr code reference buff artifact}}

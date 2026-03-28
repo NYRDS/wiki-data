@@ -1,0 +1,106 @@
+====== Doom Interface - Code References ======
+
+The **Doom** interface marks buffs that trigger special effects when the hero dies. It is used for curse-type effects and doom-related mechanics that activate upon character death.
+
+===== Java Classes =====
+
+**Interface Definition:**
+  * `com/watabou/pixeldungeon/actors/hero/Doom.java` - Interface for doom-type buffs
+  * Extends: `com.nyrds.pixeldungeon.mechanics.NamedEntityKind`
+  * Package: `com.watabou.pixeldungeon.actors.hero`
+
+**Key Method:**
+<code java>
+// In Doom.java
+public interface Doom extends NamedEntityKind {
+    void onHeroDeath();
+}
+</code>
+
+**Implementation Requirements:**
+  * Any class implementing `Doom` must implement the `onHeroDeath()` method
+  * The `onHeroDeath()` method is called when the hero dies while affected by the buff
+  * This allows for special death conditions, badges, and game-over scenarios
+
+**Example Implementation (StoneWalking):**
+<code java>
+// In RingOfStoneWalking.java
+public static class StoneWalking extends ArtifactBuff implements Doom {
+    @Override
+    public int icon() {
+        return BuffIndicator.STONEBLOOD;
+    }
+
+    @Override
+    public String name() {
+        return StringsManager.getVar(R.string.StoneBloodBuff_Name);
+    }
+
+    @Override
+    public String desc() {
+        return StringsManager.getVar(R.string.StoneBloodBuff_Info);
+    }
+
+    @Override
+    public void onHeroDeath() {
+        Badges.validateDeathInStone();
+        Dungeon.fail(Utils.format(ResultDescriptions.getDescription(ResultDescriptions.Reason.IMMURED), Dungeon.depth));
+        GLog.n(StringsManager.getVar(R.string.RingOfStoneWalking_ImmuredInStone));
+    }
+}
+</code>
+
+===== JSON Configuration =====
+
+The Doom interface does not have JSON configuration. It is:
+  * A Java interface implemented by specific buff classes
+  * Registered through the buff factory system
+  * Associated with artifacts or other buff sources
+
+===== String Resources =====
+
+Doom-type buffs use standard string resources for their display names and descriptions. The death messages may be customized per implementation.
+
+**Example String Resources (English):**
+<code xml>
+<string name="StoneBloodBuff_Name">Stone Blood</string>
+<string name="StoneBloodBuff_Info">Description of the buff effect</string>
+<string name="RingOfStoneWalking_ImmuredInStone">You are immured in stone. Forever.</string>
+</code>
+
+**Example String Resources (Russian):**
+<code xml>
+<string name="StoneBloodBuff_Name">Каменная Кровь</string>
+<string name="RingOfStoneWalking_ImmuredInStone">Замурован в камне. Навсегда.</string>
+</code>
+
+===== Lua Scripts =====
+
+The Doom interface is implemented entirely in Java. No Lua scripts are used.
+
+===== Related Entities =====
+
+**Base Interfaces:**
+  * [[mr:named_entity_kind|NamedEntityKind]] - Entity identification interface
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind.java]] - Full interface definition
+
+**Related Classes:**
+  * [[mr:artifact_buff|Artifact Buff]] - Base class for artifact buffs
+  * [[mr:buff|Buff]] - Base buff system
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Full Buff implementation
+
+**Example Doom Buffs:**
+  * [[mr:stone_walking_buff|Stone Walking Buff]] - Causes death by immurement in stone
+  * [[en:rpd:ring_of_stone_blood_item|Ring of Stone Blood]] - The artifact that applies Stone Walking
+
+**Related Systems:**
+  * `Badges` - Unlocks badges on special deaths
+  * `Dungeon.fail()` - Triggers game over with custom reason
+  * `ResultDescriptions` - Provides death reason descriptions
+
+===== Code References =====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Doom.java|Doom.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java|RingOfStoneWalking.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind.java]]
+
+{{tag> mr code reference buff doom interface}}
