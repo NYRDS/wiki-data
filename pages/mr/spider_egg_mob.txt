@@ -1,28 +1,38 @@
 ====== Spider Egg Mob - Code References ======
 
-{{ rpd:images:spider_egg_mob.png|Spider Egg Mob }}
+{{ rpd:images:spider_egg_mob.png|Spider Egg }}
 
 Machine-readable reference page for the Spider Egg mob entity in Remixed Dungeon.
 
-===== Java Classes =====
+==== Java Classes ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java|SpiderEgg.java]] - Main implementation
 
-===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+==== JSON Configuration ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/SpiderEgg.json|SpiderEgg.json]] - Sprite configuration
 
-===== String Resources =====
-This entity does not have specific string resources in the main files (non-speaking mob)
+==== String Resources ====
+English (values/strings_all.xml):
+<code xml>
+<string name="SpiderEgg_Name">spider egg</string>
+<string name="SpiderEgg_Name_Objective">spider egg</string>
+</code>
 
-===== Lua Scripts =====
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="SpiderEgg_Name">паучье яйцо</string>
+<string name="SpiderEgg_Name_Objective">яйцо</string>
+</code>
+
+==== Lua Scripts ====
 This entity is implemented in Java, no Lua script exists
 
-===== Implementation Details =====
+==== Implementation Details ====
   * **Package**: com.nyrds.pixeldungeon.mobs.spiders
   * **Extends**: Mob (standard mob class)
   * **Location**: Spider nest areas
-  * **Behavior**: Stationary egg that spawns spiders
+  * **Behavior**: Stationary egg that spawns spiders when disturbed
 
-===== Code Fragment =====
+==== Code Fragment ====
 <code java>
 package com.nyrds.pixeldungeon.mobs.spiders;
 
@@ -72,7 +82,7 @@ public class SpiderEgg extends Mob {
 }
 </code>
 
-===== Stats (from Code) =====
+==== Stats (from Code) ====
   * **HP**: 2 (fixed via ht(2))
   * **Base Defense Skill**: 1
   * **Base Attack Skill**: 1
@@ -84,14 +94,28 @@ public class SpiderEgg extends Mob {
   * **Loot**: 20% chance to drop seeds (Treasury.Category.SEED)
   * **Act Delay**: 20 ticks between spawn attempts
 
-===== Behavior =====
+==== Behavior ====
   * **Stationary**: Cannot move (movable = false)
   * **Spawning**: Attempts to spawn a random spider mob every 20 ticks
   * **Spawn Rate**: 25% chance to spawn a spider on each attempt
   * **Self-Destruct**: Removes itself after successfully spawning a spider
   * **Location**: Found in spider nest areas
 
-===== Related mr Entities =====
+==== Sprite Configuration (from JSON) ====
+<code json>
+{
+  "texture"    : "spider_egg.png",
+  "width"      : 16,
+  "height"     : 16,
+  "idle"       : { "fps" : 2,  "looped" : true,    "frames" : [0, 1, 2, 3] },
+  "run"        : { "fps" : 12,  "looped" : true,    "frames" : [0] },
+  "attack"     : { "fps" : 10,  "looped" : false,   "frames" : [0] },
+  "die"        : { "fps" : 10, "looped" : false,   "frames" : [0, 4, 5, 6, 7] },
+  "bloodColor" : "0xFFEAFF80"
+}
+</code>
+
+==== Related mr Entities ====
   * [[mr:spider_queen_mob|Spider Queen (Mob)]]
   * [[mr:spider_nest_mob|Spider Nest (Mob)]]
   * [[mr:spider_mob|Spider (Mob)]]

@@ -1,20 +1,169 @@
 ====== Yogs Teeth Mob - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+{{ rpd:images:yogs_teeth_mob.png|Yog's Teeth }}
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/yogs_teeth.json
+Machine-readable reference page for the Yogs Teeth mob entity in Remixed Dungeon.
 
-===== String Resources =====
+==== Java Classes ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsTeeth.java|YogsTeeth.java]] - Main implementation
+
+==== JSON Configuration ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/YogsTeeth.json|YogsTeeth.json]] - Sprite configuration
+
+==== String Resources ====
+English (values/strings_all.xml):
 <code xml>
-<string name="YogsTeeth_Name">[Name]</string>
-<string name="YogsTeeth_Info">[Description]</string>
+<string name="YogsTeeth_Name">yog's teeth</string>
+<string name="YogsTeeth_Name_Objective">Yog's teeth</string>
 </code>
 
-===== Lua Scripts =====
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="YogsTeeth_Name">пасть Йога</string>
+<string name="YogsTeeth_Name_Objective">пасть Йога</string>
+</code>
+
+==== Lua Scripts ====
 This entity is implemented in Java, no Lua script exists
+
+==== Implementation Details ====
+  * **Package**: com.nyrds.pixeldungeon.mobs.guts
+  * **Extends**: Mob (standard mob class)
+  * **Location**: Yog's guts level (boss area)
+  * **Behavior**: Boss mob with life drain, bleeding, and double damage procs
+
+==== Code Fragment ====
+<code java>
+package com.nyrds.pixeldungeon.mobs.guts;
+
+import com.nyrds.pixeldungeon.effects.Devour;
+import com.nyrds.pixeldungeon.mechanics.NamedEntityKind;
+import com.nyrds.platform.audio.Sample;
+import com.watabou.pixeldungeon.Assets;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.blobs.ToxicGas;
+import com.watabou.pixeldungeon.actors.buffs.Amok;
+import com.watabou.pixeldungeon.actors.buffs.Bleeding;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.buffs.Burning;
+import com.watabou.pixeldungeon.actors.buffs.Paralysis;
+import com.watabou.pixeldungeon.actors.buffs.Sleep;
+import com.watabou.pixeldungeon.actors.buffs.Terror;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.utils.Random;
+
+import org.jetbrains.annotations.NotNull;
+
+public class YogsTeeth extends Mob {
+    {
+        hp(ht(350));
+        baseDefenseSkill = 44;
+        baseAttackSkill  = 46;
+        dmgMin = 50;
+        dmgMax = 80;
+        dr = 21;
+
+        expForKill = 26;
+
+        addResistance(ToxicGas.class);
+
+        addImmunity(Paralysis.class);
+        addImmunity(Amok.class);
+        addImmunity(Sleep.class);
+        addImmunity(Terror.class);
+        addImmunity(Burning.class);
+    }
+
+    @Override
+    public void damage(int dmg, @NotNull NamedEntityKind src) {
+        for (Mob mob : level().mobs) {
+            mob.beckon(getPos());
+        }
+
+        super.damage(dmg, src);
+    }
+
+    @Override
+    public int attackProc(@NotNull Char enemy, int damage ) {
+        //Life drain proc
+        if (Random.Int(3) == 1){
+            heal(damage, this);
+        }
+
+        //Bleeding proc
+        if (Random.Int(3) == 1){
+            Buff.affect(enemy, Bleeding.class).level(damage);
+        }
+
+        //Double damage proc
+        if (Random.Int(3) == 1){
+            Devour.hit(enemy);
+            Sample.INSTANCE.play(Assets.SND_BITE);
+            return damage*2;
+        }
+        return damage;
+    }
+
+    @Override
+    public boolean canBePet() {
+        return false;
+    }
+}
+</code>
+
+==== Stats (from Code) ====
+  * **HP**: 350
+  * **Base Defense Skill**: 44
+  * **Base Attack Skill**: 46
+  * **Damage**: 50-80
+  * **Defense Rating**: 21
+  * **Exp for Kill**: 26
+  * **Can Be Pet**: false (cannot be tamed)
+
+==== Resistances and Immunities ====
+  * **Toxic Gas**: Resistant
+  * **Paralysis**: Immune
+  * **Amok**: Immune
+  * **Sleep**: Immune
+  * **Terror**: Immune
+  * **Burning**: Immune
+
+==== Special Abilities ====
+  * **Beckon on Damage**: When damaged, all nearby mobs are beckoned to the player's position
+  * **Life Drain**: 33% chance to heal for damage dealt
+  * **Bleeding**: 33% chance to apply bleeding buff to target
+  * **Double Damage**: 33% chance to deal double damage with special effect
+
+==== Sprite Configuration (from JSON) ====
+<code json>
+{
+   "texture" : "mobs/yogs_teeth.png",
+   "width" : 20,
+   "height" : 18,
+   "idle" : {
+      "fps" : 5,
+      "looped" : true,
+      "frames" : [0,1]
+   },
+   "run" : {
+      "fps" : 15,
+      "looped" : true,
+      "frames" : [3,4,5,4]
+   },
+   "attack" : {
+      "fps" : 12,
+      "looped" : false,
+      "frames" : [1,2,3]
+   },
+   "die" : {
+      "fps" : 12,
+      "looped" : false,
+      "frames" : [6,7,8]
+   }
+}
+</code>
+
+==== Related mr Entities ====
+  * [[mr:yogs_eye_mob|Yog's Eye (Mob)]]
+  * [[mr:yogs_heart_mob|Yog's Heart (Mob)]]
+  * [[mr:yogs_brain_mob|Yog's Brain (Mob)]]
