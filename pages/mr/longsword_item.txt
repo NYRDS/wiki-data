@@ -1,25 +1,27 @@
-====== Longsword Item - Code References ======
+====== longsword_item - Code References ======
 
 {{ rpd:images:longsword_item.png|Longsword }}
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Longsword.java|Longsword.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Longsword.java|Longsword.java]] - Main item class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]] - Parent class for melee weapons
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] - Base weapon class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings.java]] - Equipment slot system
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - Sprite definitions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/platform/util/StringsManager.java|StringsManager.java]] - String resource retrieval
 
 **Key Implementation Details:**
-  * Extends: `MeleeWeapon` class
-  * Package: `com.watabou.pixeldungeon.items.weapon.melee`
-  * Base damage: 4
-  * Attack speed factor: 1.0f
-  * Accuracy factor: 1.0f
-  * Animation class: `HEAVY_ATTACK`
-  * Sprite: `ItemSpriteSheet.LONG_SWORD`
-  * Slot: `WEAPON` (main hand)
-  * Block slot: `LEFT_HAND` (can be used for blocking)
-
-**Core Methods:**
-  * `desc()` - Returns weapon description from string resources
-  * `slot(Belongings belongings)` - Returns WEAPON slot
-  * `blockSlot()` - Returns LEFT_HAND slot for blocking
+  * **Package**: com.watabou.pixeldungeon.items.weapon.melee
+  * **Extends**: MeleeWeapon class
+  * **Constructor**: Longsword() - calls super(4, 1f, 1f)
+    - Base damage: 4
+    - Attack speed factor: 1.0f
+    - Accuracy factor: 1.0f
+  * **image**: ItemSpriteSheet.LONG_SWORD (sprite index)
+  * **animation_class**: HEAVY_ATTACK (animation type)
+  * **slot()**: Returns Belongings.Slot.WEAPON (main hand slot)
+  * **blockSlot()**: Returns Belongings.Slot.LEFT_HAND (can be used for blocking)
+  * **desc()**: Returns description from R.string.Longsword_Info via StringsManager
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -33,3 +35,22 @@ This entity is implemented in Java, no JSON configuration exists
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Entity Kind =====
+  * **Entity Kind**: Longsword (returns class simple name via getEntityKind())
+  * **Item Type**: Melee Weapon
+  * **Weapon Tier**: Based on damage value (4)
+  * **Slot**: WEAPON (main hand)
+  * **Block Slot**: LEFT_HAND (can block with weapon)
+  * **Animation**: HEAVY_ATTACK
+
+===== Weapon Stats =====
+  * **Base Damage**: 4
+  * **Speed Factor**: 1.0f (normal attack speed)
+  * **Accuracy Factor**: 1.0f (normal accuracy)
+  * **Animation Class**: HEAVY_ATTACK
+
+===== Related mr Entities =====
+  * [[mr:melee_weapon|MeleeWeapon (Base Class)]]
+  * [[mr:weapon_item|Weapon Item]]
+  * [[mr:belongings|Belongings System]]

@@ -6,6 +6,26 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Ignite.java|Ignite.java]] - Main spell implementation
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Base spell class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]] - Spell helper utilities
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]] - Ray casting for targeting
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/particles/FlameParticle.java|FlameParticle.java]] - Flame particle effects
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/CellEmitter.java|CellEmitter.java]] - Cell effect emitter
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]] - Fire blob spawned by spell
+
+**Key Implementation Details:**
+  * **Package**: com.nyrds.pixeldungeon.mechanics.spells
+  * **Constructor**: Ignite() - sets up spell properties
+  * **targetingType**: TARGET_CELL (targets a specific cell)
+  * **magicAffinity**: AFFINITY_ELEMENTAL
+  * **level**: 2 (spell level)
+  * **image**: 1 (sprite index)
+  * **spellCost**: 2 (magic points required)
+  * **texture()**: Returns "spellsIcons/elemental.png"
+  * **cast()**: Main casting method that:
+    - Validates target cell is valid
+    - Uses Ballistica.cast() for ray tracing
+    - Creates FlameParticle burst at target
+    - Spawns Fire blob with strength 5
+    - Calls castCallback() after effect
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -29,11 +49,13 @@ This entity is implemented in Java, no Lua script exists
   * **Texture**: spellsIcons/elemental.png
 
 ===== Effects =====
-  * Creates flame particles at target location
-  * Spawns Fire blob (5 strength) at target cell
+  * Creates flame particles at target location using CellEmitter.center().burst()
+  * Spawns Fire blob (5 strength) at target cell via GameScene.add()
   * Uses Ballistica for targeting validation
+  * Flame particle count scales with caster's skill level
 
 ===== Related mr Entities =====
   * [[mr:spell|Spell (Base Class)]]
   * [[mr:fire_blob|Fire Blob]]
   * [[mr:elemental_affinity|Elemental Affinity]]
+  * [[mr:ballistica|Ballistica]]
