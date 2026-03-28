@@ -16,14 +16,28 @@ This entity is implemented in Lua, no JSON configuration exists
 
 ===== Lua Scripts =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Exhumation.lua|Exhumation.lua]] - Main spell implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]] - Spell registration (line 8: spells["Necromancy"] includes "Exhumation")
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]] - Spell registration (spells["Necromancy"] includes "Exhumation")
 
-===== Additional Information =====
+===== Implementation Details =====
   * **Targeting Type**: cell
   * **Level**: 2
   * **Cast Time**: 2
   * **Spell Cost**: 10
   * **Magic Affinity**: Necromancy
-  * **Functionality**: Opens tombs and skeletons with chance to tame Wraiths nearby
+  * **Image**: 3 (from spellsIcons/necromancy.png)
+  * **Functionality**: Opens tombs and skeletons, tames nearby Wraiths with chance based on caster's magic level
   * **Spell Category**: Custom spell (Lua-implemented)
   * **Related Spells**: RaiseDead, DarkSacrifice, Possess (all Necromancy affinity)
+
+===== Code Behavior =====
+  * Checks if target cell contains a heap (tomb or skeleton)
+  * Opens the heap when cast on valid target
+  * Checks adjacent cells for Wraith mobs
+  * Tames Wraiths with probability: 1 - (1 / (magicLevel + 1))
+  * Tamed Wraith says "Exhumation_Ok" dialog
+  * Returns false if no valid heap found at target cell
+
+===== Additional Information =====
+  * Used by Necromancer class for corpse manipulation
+  * Synergizes with other Necromancy spells for undead army building
+  * Requires strategic positioning to maximize Wraith taming potential
