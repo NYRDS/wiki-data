@@ -1,10 +1,37 @@
 ====== Mimic Mob - Code References ======
 
+{{ rpd:images:mimic_mob.png|Mimic }}
+
+This page contains machine-readable reference information about the Mimic mob entity for automated tools and AI assistants.
+
+===== Entity Information =====
+  * **Entity Kind:** Mimic
+  * **Entity Type:** Mob (Monster)
+  * **Namespace:** mr: (machine-readable/metadata reference)
+  * **Implementation:** Java class
+
+===== Entity Stats (from Java) =====
+  * **HP/HT:** Scales with dungeon depth: (3 + level) * 4
+  * **Base Defense Skill:** 9 + level/2
+  * **Base Attack Skill:** 9 + level
+  * **Damage:** HT/10 to HT/4
+  * **EXP for Kill:** 2 + 2 * (level - 1) / 5
+  * **Max Level:** Varies by dungeon depth
+  * **Carcass Chance:** 0% (no corpse drops)
+
+===== Special Abilities (from Java) =====
+  * **Gold Steal:** 33% chance on attack to drop 1-HP worth of gold from hero
+  * **Psionic Blast Immunity:** Immune to ScrollOfPsionicBlast effects
+  * **Spawn from Heaps:** Can spawn from Mimic-type heaps when opened
+
+===== Loot Table (from Java) =====
+  * No standard loot - drops gold stolen from hero during combat
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mimic.java|Mimic.java]]
-    * Used in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Heap.java|Heap.java]]
-    * Used in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]]
-    * Used in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] (Line 199)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mimic.java|Mimic.java]] - Main Mimic class
+    * Used in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Heap.java|Heap.java]] - Spawns from mimic heaps
+    * Used in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]] - Beckons when hero attacks
+    * Used in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] (Line 199) - Mob class registration
 
 ===== JSON Configuration =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Mimic.json|Mimic.json]]
@@ -27,10 +54,16 @@
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/alchemy_recipes.lua|alchemy_recipes.lua]] - Contains alchemy recipe for mimics (Lines 52-56)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/alchemy_recipes.lua|alchemy_recipes.lua]] - Contains alchemy recipe for mimics (Lines 52-56): 1 Gold + 1 Iron Key = Mimic
 
-===== Additional Information =====
-  * Mimics can be spawned from Mimic-type heaps and are used in alchemy recipes
-  * They are immune to Psionic Blast scrolls
-  * They can appear when certain conditions occur with heaps in the dungeon
-  * There are different variants: Mimic, MimicPie, MimicAmulet
+===== Related mr Entities =====
+  * [[mr:mimic_pie_mob|Mimic Pie (Mob)]] - Variant that looks like a pasty
+  * [[mr:mimic_amulet_mob|Mimic Amulet (Mob)]] - Variant that looks like an amulet
+  * [[mr:heap_item|Heap (Item)]] - Mimics can spawn from mimic-type heaps
+  * [[mr:gold_item|Gold (Item)]] - Mimics drop gold stolen from heroes
+
+===== See Also =====
+  * [[en:rpd:mimic_mob|Mimic (English wiki)]]
+  * [[ru:rpd:mimic_mob|Мимик (Russian wiki)]]
+
+{{tag> mr mob mimic reference code}}
