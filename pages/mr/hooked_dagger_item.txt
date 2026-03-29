@@ -1,20 +1,111 @@
 ====== Hooked Dagger Item - Code References ======
 
+The **Hooked Dagger** is a Lua-scripted melee weapon item in Remixed Dungeon. It is a dagger-type weapon that causes bleeding on hit.
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+
+This entity is implemented entirely in Lua. No Java class exists for this item.
+
+The item uses the common Lua item framework:
+  * `scripts/lib/commonClasses.lua` - Common RPD Lua classes
+  * `scripts/lib/item.lua` - Base item implementation for Lua items
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/hooked_dagger.json
+
+This entity does not have a separate JSON configuration file. Item properties are defined in the Lua script.
+
+Item properties from Lua script:
+  * **Image index:** 3 (from items/daggers.png sprite sheet)
+  * **Image file:** items/daggers.png
+  * **Name string key:** HookedDagger_Name
+  * **Info string key:** HookedDagger_Info
+  * **Price:** 17 gold
+  * **Equipment slot:** Weapon slot (RPD.Slots.weapon)
+  * **Required STR:** 9
+  * **Attack delay factor:** 1.0
+  * **Accuracy factor:** 1.0
+  * **Damage roll:** level * 1 to level * 2 (scales with item level)
 
 ===== String Resources =====
+
 <code xml>
 <string name="HookedDagger_Name">[Name]</string>
 <string name="HookedDagger_Info">[Description]</string>
 </code>
 
+Note: Actual string values should be verified in the game's string resource files:
+  * English: `RemixedDungeon/src/main/res/values/strings_all.xml`
+  * Russian: `RemixedDungeon/src/main/res/values-ru/strings_all.xml`
+  * Other languages in their respective values-XX directories
+
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/HookedDagger.lua|HookedDagger.lua]]
+
+**Main Script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/items/HookedDagger.lua|HookedDagger.lua]]
+
+**Key Functions:**
+<code lua>
+-- Item description
+desc = function()
+    return {
+        image = 3,
+        imageFile = "items/daggers.png",
+        name = "HookedDagger_Name",
+        info = "HookedDagger_Info",
+        price = 17,
+        equipable = RPD.Slots.weapon
+    }
+end
+
+-- Melee weapon flag
+goodForMelee = function()
+    return true
+end
+
+-- Visual name (returns "Wand" - may be a placeholder)
+getVisualName = function()
+    return "Wand"
+end
+
+-- Attack animation class
+getAttackAnimationClass = function()
+    return "staff"
+end
+
+-- Damage calculation (scales with item level)
+damageRoll = function(item, user)
+    local lvl = item:level()
+    return math.random(lvl, lvl*2)
+end
+
+-- Attack proc: applies Bleeding buff for 3 turns
+attackProc = function(item, attacker, defender, damage)
+    RPD.affectBuff(defender, "Bleeding", 3)
+    return damage
+end
+
+-- Required strength
+typicalSTR = function()
+    return 9
+end
+</code>
+
+**Special Abilities:**
+  * **Bleeding Proc:** On hit, applies the Bleeding buff to the target for 3 turns
+  * **Level Scaling:** Damage scales with item level (1-2 damage per level)
+  * **Dual-wielding:** Can be equipped in main weapon slot, blocks left hand slot
+
+===== Related Entities =====
+
+**Buffs:**
+  * [[mr:bleeding_buff|Bleeding Buff]] - Applied on hit
+
+**Similar Items:**
+  * Other daggers in the `scripts/items/` directory
+  * Melee weapons that apply status effects
+
+===== Code References =====
+  * Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/items/HookedDagger.lua|HookedDagger.lua]]
+  * Lua Library: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/lib/commonClasses.lua|commonClasses.lua]]
+  * Lua Library: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/lib/item.lua|item.lua]]
+
+{{tag> mr code reference item weapon lua melee dagger}}
