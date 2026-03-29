@@ -1,28 +1,44 @@
 ====== Spider Exploding Mob - Code References ======
 
 ===== Java Classes =====
-SpiderExploding is implemented in Java at:
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderExploding.java
-  * Extends MultiKindMob base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderExploding.java|SpiderExploding.java]] - Main mob implementation
+  * Extends [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MultiKindMob.java|MultiKindMob]] base class
+  * Registered in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]]
+
+===== Mob Stats =====
+  * **HP**: 5
+  * **Defense**: 1
+  * **Attack Skill**: 125
+  * **Speed**: 2.0 (very fast)
+  * **Damage**: 3-6
+  * **Drop Rate**: 0% carcass
+  * **Experience**: 3 EXP
+  * **Max Level**: 9
 
 ===== JSON Configuration =====
 SpiderExploding appears in level spawn configuration:
-  * RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json - SpiderExploding spawn rates by level
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - Spider spawn rates:
+    - Level 7s: 0.5 spawn rate
+    - Level 8s: 0.5 spawn rate
+    - Level 9s: 1.0 spawn rate
+    - Level 10s: 1.0 spawn rate
 
 ===== String Resources =====
-<code xml>
-<string name="SpiderExploding_Name">spider worker</string>
-<string name="SpiderExploding_Desc">Hard workers during peaceful times, these creatures won't hesitate to charge to their enemies and grab first plant they run across, turning themselves into living bombs.</string>
-</code>
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1406-L1409|strings_all.xml]] (lines 1406-1409)
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2097-L2100|strings_all.xml]] (lines 2097-2100)
+  * All translations available in 18 languages
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+===== Special Mechanics =====
+  * **Plant Variety**: Can use 8 different plant types (Firebloom, Icecap, Sorrowmoss, Dreamweed, Sungrass, Earthroot, Fadeleaf, Moongrace)
+  * **Suicide Attack**: Dies after using plant effect on enemy
+  * **Loot**: Drops [[mr:mystery_meat_item|MysteryMeat]] with 6.7% chance
 
 ===== Entity Kind =====
   * getEntityKind(): SpiderExploding
 
-===== Additional Information =====
+===== Behavior =====
   * SpiderExploding is a spider mob that acts as a suicide bomber
-  * When attacking, it grabs a plant and uses its effect on the enemy, then dies
-  * Appears in spider-themed levels
-  * Found in levels 7s and above in the 10s range according to Bestiary.json
+  * When attacking successfully, it grabs a random plant and uses its effect on the enemy
+  * After the attack, the SpiderExploding dies immediately
+  * Appears in spider-themed dungeon levels
+  * Very fast movement speed (2.0x normal)
