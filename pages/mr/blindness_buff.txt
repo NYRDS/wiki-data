@@ -1,20 +1,48 @@
 ====== Blindness Buff - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Blindness.java|Blindness.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] (parent class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Blindness.java|Blindness.java]] - Main buff class extending FlavourBuff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] - Parent class for flavour buffs
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java|BuffIndicator.java]] - Buff icon definitions (BLINDNESS constant)
 
 ===== JSON Configuration =====
 This entity uses default buff configuration, no specific JSON config found:
   * RemixedDungeon/src/main/assets/buffsDesc/*.json
 
 ===== String Resources =====
+English (values/strings_all.xml):
+<code xml>
+<string name="BlindnessBuff_Name">Blinded</string>
+<string name="BlindnessBuff_Info">Completely blinded, only sounds can be heard.</string>
+<string name="Hero_StaBlindness">You have been blinded!</string>
+</code>
+
+Russian (values-ru/strings_all.xml):
 <code xml>
 <string name="BlindnessBuff_Name">Ослеплён</string>
 <string name="BlindnessBuff_Info">Полностью ослеплен, разве что слышны звуки вокруг.</string>
 <string name="Hero_StaBlindness">Тебя ослепили!</string>
 </code>
 
+Other languages:
+  * German (values-de/): Geblendet
+  * Spanish (values-es/): Cegado
+  * French (values-fr/): Aveuglé
+  * Greek (values-el/): Τύφλωση
+
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - Blindness class binding
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/ShootInEye.lua|ShootInEye.lua]] - Uses Blindness buff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - Blindness class binding: ''Blindness = luajava.bindClass("com.watabou.pixeldungeon.actors.buffs.Blindness")''
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/ShootInEye.lua|ShootInEye.lua]] - Uses Blindness buff: ''RPD.affectBuff(victim, RPD.Buffs.Blindness, caster:skillLevel())''
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/userServices/autoTestAi.lua|autoTestAi.lua]] - AI check: ''if hero:buffLevel('Blindness') > 0 then''
+
+===== Buff Mechanics =====
+  * **Type:** FlavourBuff (temporary status effect)
+  * **Effect:** Completely blinds the target, limiting vision to only immediate surroundings
+  * **Icon:** BuffIndicator.BLINDNESS
+  * **Attachment:** Calls target.observe() when attached to refresh vision
+  * **Detachment:** Calls target.observe() when removed to restore normal vision
+  * **Duration:** Determined by the source applying the buff
+
+===== Related Entities =====
+  * [[mr:shootineye_spell|ShootInEye Spell]] - Spell that applies Blindness
+  * [[mr:flavourbuff|FlavourBuff]] - Parent class for temporary buffs
