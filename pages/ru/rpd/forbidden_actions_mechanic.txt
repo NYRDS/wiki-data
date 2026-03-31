@@ -1,5 +1,7 @@
 ====== Механика запрещенных действий ======
 
+{{ rpd:images:forbidden_actions_mechanic.png|Механика запрещенных действий }}
+
 Механики игры позволяют ограничивать определенные действия для некоторых классов героев. Некоторые классы не могут выполнять определенные действия в игре.
 
 ==== Список возможных действий для запрета ====
@@ -24,11 +26,24 @@
   * ''WandOfMagicMissile_ACDisenchant'' - Расчарование жезлом магических стрел
 
 ==== Использование ====
-Эти действия могут быть ограничены в конфигурационном файле ''InitHeroes.json'' для конкретных классов героев.
+Эти действия могут быть ограничены в конфигурационном файле `initHeroes.json` для конкретных классов героев.
+
+Пример конфигурации для класса Воин:
+```json
+"forbiddenActions": [
+  "Scroll_ACRead",
+  "TomeOfMastery_ACRead",
+  "Stylus_ACInscribe"
+]
+```
+
+==== Реализация в коде ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Проверка запрещенных действий при использовании предметов
+  * Конфигурация: `RemixedDungeon/src/main/assets/hero/initHeroes.json` - Определение запрещенных действий для каждого класса
 
 ==== Проверка содержимого ====
-  * **Источник информации**: Конфигурация в файле ''RemixedDungeon/src/main/assets/hero/initHeroes.json''
+  * **Источник информации**: Конфигурация в файле `RemixedDungeon/src/main/assets/hero/initHeroes.json`
   * **Проверка механики**: Проверено на соответствие реальной реализации в игре
   * **Последнее обновление**: Февраль 2026
 
-{{tag> ru:rpd ru:mechanics }}
+{{tag> ru:rpd ru:mechanics ru:hero}}

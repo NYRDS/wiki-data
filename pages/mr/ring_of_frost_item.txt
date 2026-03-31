@@ -1,5 +1,7 @@
 ====== Ring of Frost Item ======
 
+{{ rpd:images:ring_of_frost_item.png|Ring of Frost }}
+
 ==== Entity Kind ====
 ring_of_frost
 
@@ -13,8 +15,9 @@ ring_of_frost
 (No specific Lua script for this item)
 
 ==== String Resource References ====
-  * ''RingOfFrost_Name'': "Ring of Frost"
-  * ''RingOfFrost_Info'': "This ring is carved from magical ice. It's wearer is protected by a frost aura, slowing and damaging the attacking enemies."
+  * `RingOfFrost_Name`: "Ring of Frost"
+  * `RingOfFrost_Info`: "This ring is carved from magical ice. It's wearer is protected by a frost aura, slowing and damaging the attacking enemies."
+  * Russian: `RingOfFrost_Name`: "Перстень морозу", `RingOfFrost_Info`: "Перстень вырезано из магического льда. Носитель перстня защищен ледяной аурой, замедляющей и наносящей урон нападающим."
 
 ==== Code Implementation ====
 This item inherits from Artifact class. It has the following key properties:
@@ -23,9 +26,19 @@ This item inherits from Artifact class. It has the following key properties:
   * **isUpgradable()**: Returns true, allowing the ring to be upgraded
   * **glowing()**: Returns a cyan glowing effect (0x00FFFF)
   * **buff()**: Returns a FrostAura buff which triggers when an enemy attacks the wearer
+  * **imageFile**: "items/rings.png"
+  * **image**: 13 (sprite index in rings.png)
 
 ==== FrostAura Buff Mechanics ====
 When an enemy within 1 tile distance attacks the wearer:
   * Applies Slow effect for (Slow.duration(enemy) / 5 + ring level) turns
   * Has (10% + ring level)% chance to apply Frost effect for (Frost.duration(enemy) / 5 + ring level) turns
   * Deals (ring level / 2) damage to the attacking enemy
+
+==== Related Code References ====
+  * Slow buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]]
+  * Frost buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
+  * Artifact base class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Artifact.java|Artifact.java]]
+  * ArtifactBuff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/ArtifactBuff.java|ArtifactBuff.java]]
+
+{{tag> mr code references items rings artifacts}}
