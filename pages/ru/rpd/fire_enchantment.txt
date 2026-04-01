@@ -1,33 +1,50 @@
 ====== Огненные Чары ======
 
+{{ rpd:images:fire_arrow_item.png|Огненные Чары }}
+
 **Огненные чары** (Fire Enchantment) — это [[ru:rpd:enchantments|чары]] для оружия в Remixed Dungeon, которые имеют шанс поджечь врагов при попадании.
 
 ==== Описание ====
 Огненные чары имеют шанс поджечь врагов при попадании по ним оружием. Это вызывает дополнительный урон со временем от эффекта [[ru:rpd:burning_buff|горение]].
 
 ==== Механика ====
-  * Шанс поджечь врага зависит от уровня оружия
+  * Шанс поджечь врага: **Random.Int(weapon_level + 3) >= 2**
+    * Уровень 0: 33% шанс
+    * Уровень 1: 50% шанс
+    * Уровень 2: 60% шанс
+    * Более высокие уровни: увеличивающийся шанс
   * При срабатывании накладывает эффект [[ru:rpd:burning_buff|горение]] на несколько ходов
+  * Дополнительный урон от огня: случайное значение от 1 до (уровень оружия + 2)
+  * Испускает огненные частицы: Уровень + 1 частиц
   * Урон от огня суммируется с существующим бонусом огненного урона оружия
+  * Визуально светится оранжевым (цвет: 0xFF4400)
   * Эффект применяется через метод proc() с вероятностью, увеличивающейся с уровнем оружия
 
 ==== Источники кода ====
   * Java класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Fire.java|Fire.java]]
   * Эффект применяется в методе proc()
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]] - эффект горения
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/particles/FlameParticle.java|FlameParticle.java]] - огненные частицы
   * Строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml]] (ru)
-
-===== Тип =====
-[[ru:rpd:enchantments|Чары для оружия]]
 
 ==== Стратегия ====
   * Эффективно против врагов, уязвимых к огню
   * Хорошо сочетается с быстрым оружием для частого срабатывания
   * Дополнительный урон со временем помогает в затяжных боях
+  * Полезно против врагов, боящихся огня
 
 ==== См. также ====
-  - [[ru:rpd:burning_buff|Горение]] - Статусный эффект, вызванный этими чарами
-  - [[ru:rpd:enchantments|Чары]] - Список всех чар для оружия
-  - [[ru:rpd:weapons|Оружие]] - Оборудование, на которое можно наложить чары
-  - [[ru:rpd:fire_elemental_mob|Огненный элементаль]] - Враг, связанный с огнём
+  * [[ru:rpd:burning_buff|Горение]] - Статусный эффект, вызванный этими чарами
+  * [[ru:rpd:enchantments|Чары]] - Список всех чар для оружия
+  * [[ru:rpd:weapons|Оружие]] - Оборудование, на которое можно наложить чары
+  * [[ru:rpd:fire_elemental_mob|Огненный элементаль]] - Враг, связанный с огнём
+  * [[ru:rpd:fire_trap|Огненная ловушка]] - Ловушка, вызывающая огонь
+  * [[ru:rpd:fire_arrow_item|Огненная стрела]] - Снаряд с огнём
+  * [[ru:rpd:wand_of_firebolt_item|Палочка огненного шара]] - Палочка с огнём
+
+==== Другие языки ====
+  * [[en:rpd:fire_enchantment|English]]
+  * [[es:rpd:fire_enchantment|Español]]
+  * [[pt:rpd:fire_enchantment|Português]]
 
 {{tag> rpd items enchantments fire}}
