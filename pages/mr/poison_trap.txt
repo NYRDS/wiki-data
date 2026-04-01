@@ -1,15 +1,104 @@
-====== Poison Trap - Code References ======
+====== Poison Trap - Machine Readable Data ======
 
-===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java]] - Main trap implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap.java]] - Trap system implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]] - Poison effect implementation
+This page contains machine-readable reference data for the Poison Trap entity in Remixed Dungeon.
+
+===== Entity Information =====
+  * **Entity Name:** PoisonTrap
+  * **Entity Type:** Trap (Level Object)
+  * **Namespace:** mr:poison_trap
+  * **Implementation Language:** Java
+  * **Package:** com.watabou.pixeldungeon.levels.traps
+
+===== Java Class Implementation =====
+
+**File:** ``RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java``
+
+**Full Class Content:**
+<code java>
+package com.watabou.pixeldungeon.levels.traps;
+
+import com.nyrds.pixeldungeon.levels.objects.ITrigger;
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.actors.Actor;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.buffs.Poison;
+import com.watabou.pixeldungeon.effects.CellEmitter;
+import com.watabou.pixeldungeon.effects.particles.PoisonParticle;
+
+import org.jetbrains.annotations.Nullable;
+
+public class PoisonTrap implements ITrigger {
+
+	// 0xBB66EE
+
+	public static void trigger( int pos, @Nullable Char ch ) {
+		if (ch == null){
+			ch = Actor.findChar(pos);
+		}
+		if (ch != null) {
+			Buff.affect( ch, Poison.class,Poison.durationFactor( ch ) * (4 + Dungeon.depth / 2) );
+		}
+		CellEmitter.center( pos ).burst( PoisonParticle.SPLASH, 3 );
+	}
+
+	@Override
+	public void doTrigger(int cell, Char ch) {
+		trigger(cell,ch);
+	}
+}
+</code>
+
+===== Key Methods =====
+
+**trigger(int pos, Char ch)**
+  * Static method that triggers the poison trap effect
+  * Parameters:
+    - ``int pos``: Cell position where trap is triggered
+    - ``Char ch``: Character triggering the trap (can be null)
+  * Behavior:
+    - If character is null, attempts to find character at position using ``Actor.findChar(pos)``
+    - If character exists, applies Poison buff with duration: ``Poison.durationFactor(ch) * (4 + Dungeon.depth / 2)``
+    - Emits poison particle splash effect at trap position (3 particles)
+  * Color comment: ``// 0xBB66EE`` (purple color reference)
+
+**doTrigger(int cell, Char ch)**
+  * Implementation of ITrigger interface method
+  * Delegates to static ``trigger(cell, ch)`` method
+
+===== Dependencies =====
+
+**Interfaces:**
+  * ``com.nyrds.pixeldungeon.levels.objects.ITrigger`` - Trap trigger interface
+
+**Classes Used:**
+  * ``com.watabou.pixeldungeon.Dungeon`` - Dungeon state access
+  * ``com.watabou.pixeldungeon.actors.Actor`` - Actor system for finding characters
+  * ``com.watabou.pixeldungeon.actors.Char`` - Character class
+  * ``com.watabou.pixeldungeon.actors.buffs.Buff`` - Buff application system
+  * ``com.watabou.pixeldungeon.actors.buffs.Poison`` - Poison buff class
+  * ``com.watabou.pixeldungeon.effects.CellEmitter`` - Cell-based particle emitter
+  * ``com.watabou.pixeldungeon.effects.particles.PoisonParticle`` - Poison particle effects
+  * ``org.jetbrains.annotations.Nullable`` - Nullability annotation
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/tilemapDesc/tiles_x_default.json#L23|tiles_x_default.json]] - Tile definition for poison trap
+  * **Tile Definition:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/tilemapDesc/tiles_x_default.json#L23|tiles_x_default.json#L23]] - Tile definition for poison trap
 
 ===== String Resources =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2086|Level_TilePoisonTrap]] - "Poison dart trap"
+  * **English Name:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2086|Level_TilePoisonTrap]] - "Poison dart trap"
+  * **Russian Name:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|Level_TilePoisonTrap]] - Localization in Russian
+
+===== Related Entities =====
+  * **Poison Buff:** ``com.watabou.pixeldungeon.actors.buffs.Poison`` - The poison effect applied by this trap
+  * **Trap System:** ``com.watabou.pixeldungeon.levels.objects.Trap`` - Base trap system
+  * **ITrigger Interface:** ``com.nyrds.pixeldungeon.levels.objects.ITrigger`` - Interface for triggerable objects
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented entirely in Java. No Lua script exists for PoisonTrap.
+
+===== GitHub Links =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java on GitHub]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap.java on GitHub]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java on GitHub]]
+
+{{tag> mr traps poison java code_reference}}
