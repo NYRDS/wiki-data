@@ -1,5 +1,7 @@
 ====== Cloak Spell - Code References ======
 
+{{ rpd:images:cloak_spell.png|Cloak Spell }}
+
 ===== Java Classes =====
 This entity is implemented in Lua, no Java class exists
 
@@ -11,11 +13,44 @@ This entity is implemented in Lua, no JSON configuration exists
 <string name="CloakSpell_Name">Cloak</string>
 <string name="CloakSpell_Info">Step into the shadows to become unseen. Greatly reduce your chances of being detected. Can't be used while enemies are nearby.</string>
 <string name="CloakSpell_EnemiesNearby">You can't step into the shadows while enemies are nearby.</string>
+<string name="CloakBuff_Name">Cloak</string>
+<string name="CloakBuff_Info">You are invisible, greatly reducing your chances of being detected.</string>
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Cloak.lua|Cloak.lua (Spell)]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Cloak.lua|Cloak.lua (Buff)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Cloak.lua|Cloak.lua (Spell)]] - Main spell implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Cloak.lua|Cloak.lua (Buff)]] - Buff applied by spell
+
+===== Spell Details =====
+  * **Magic Affinity:** Rogue
+  * **Targeting:** self
+  * **Level:** 1
+  * **Mana Cost:** 5
+  * **Cooldown:** 20 turns
+  * **Cast Time:** 0.5 turns
+  * **Duration:** Caster's skill level * 5 turns
+
+===== Key Functions =====
+  * `cast(caster, target)` - Main spell casting function
+  * `canCast(caster, target)` - Checks if spell can be cast (no visible enemies)
+  * `onCastComplete(caster, target)` - Applies cloak buff on successful cast
+  * `attach(target, duration)` - Attaches cloak buff to target
+
+===== Buff Details =====
+  * **Type:** Debuff (positive for caster)
+  * **Effect:** Invisibility, stealth bonus
+  * **Stealth Bonus:** Caster's skill level + caster's level / 4
+  * **Duration:** Expires automatically after duration
+  * **Visual:** Invisible status effect
 
 ===== Related mr Entities =====
-  * [[mr:cloak_buff|Cloak Buff]]
+  * [[mr:cloak_buff|Cloak Buff]] - Buff applied by this spell
+  * [[mr:hide_in_grass_spell|Hide in Grass Spell]] - Similar stealth spell
+  * [[mr:invisibility_buff|Invisibility Buff]] - Related status effect
+
+===== Code References =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/spells/Spell.java|Spell.java]] - Base spell class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/magic/MagicAffinity.java|MagicAffinity.java]] - Rogue affinity definition
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java|Invisibility.java]] - Base invisibility buff
+
+{{tag> mr spells reference rogue}}
