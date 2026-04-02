@@ -1,0 +1,47 @@
+====== Death Enchantment - Code References ======
+
+{{ rpd:images:death_enchantment.png|Death Enchantment }}
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Death.java|Death.java]]
+    * **Package:** com.watabou.pixeldungeon.items.weapon.enchantments
+    * **Extends:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Weapon.java|Weapon.Enchantment]]
+    * **Instant Kill Chance:** 8% base + 1% per level (Random.Int(level + 100) >= 92)
+    * **Glow Color:** BLACK (0x000000)
+    * **Effect:** Deals damage equal to defender's current HP (instant kill)
+    * **Visual Effect:** ShadowParticle.UP burst on proc
+    * **Badge:** Triggers Badges.validateGrimWeapon() on kill
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists
+
+===== String Resources =====
+<code xml>
+<string name="Death_Name">death</string>
+<string name="Death_Info">This grim enchantment is capable of instantly killing an enemy, although its power isn't very reliable. The higher the weapon's level, the more often it will happen.</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists
+
+===== Mechanics =====
+  * **Proc Chance Calculation:** ''Random.Int(level + 100) >= 92''
+    * Level 0: 8% chance (92-100 out of 100)
+    * Level 1: 9% chance (92-100 out of 101)
+    * Level 2: 10% chance (92-100 out of 102)
+    * Level 10: 18% chance (92-100 out of 110)
+  * **Damage:** Deals damage equal to defender's current HP (''defender.damage(defender.hp(), this)'')
+  * **Visual Effect:** ''defender.getSprite().emitter().burst(ShadowParticle.UP, 5)''
+  * **Badge Validation:** ''Badges.validateGrimWeapon()'' when hero kills with this enchantment
+
+===== Resistance System =====
+  * Some enemies have resistance to Death enchantment
+  * Resistance is checked via ''Char.resist(Death.class)'' method
+  * Example: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L36|Warlock has resistance to Death]]
+
+===== Related mr Entities =====
+  * [[mr:warlock_mob|Warlock Mob]] - Enemy with resistance to Death enchantment
+  * [[mr:enchantment|Enchantment Base]] - Base enchantment class
+  * [[mr:weapon_item|Weapon Item]] - Weapons that can have this enchantment
+
+{{tag> mr items weapons enchantments death}}
