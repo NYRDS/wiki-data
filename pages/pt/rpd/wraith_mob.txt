@@ -1,0 +1,75 @@
+====== Espectro ======
+
+{{ rpd:images:wraith_mob.png|Espectro }}
+
+==== Descrição ====
+**Os Espectros** são criaturas incorpóreas mortas-vivas que são mais difíceis de acertar em combate. Estão entre os inimigos mortos-vivos mais perigosos da masmorra. Um espectro é uma perigosa criatura morta-viva, formada do espírito de alguém que morreu violentamente ou com assuntos pendentes. Os espectros são inimigos fantasmagóricos com uma aparência translúcida. São particularmente difíceis de acertar em combate e podem passar por certos obstáculos que bloqueiam outras criaturas.
+
+==== Habilidades Especiais ====
+  * **Voo:** Sempre voando, pode passar sobre obstáculos e através de paredes (walkingType = WalkingType.ABSOLUTE)
+  * **Alta Evasão:** Muito difícil de acertar devido à alta habilidade de defesa
+  * **Imunidades**: Imune a efeitos de morte e terror
+  * **Alta Evasão**: A habilidade de ataque é muito alta e a defesa é 5x a habilidade de ataque, tornando-os difíceis de acertar
+  * **Incorpóreo**: Pode passar através de paredes devido à habilidade de voo (walkingType = ABSOLUTE)
+  * **Natureza Morta-Viva**: Imune a veneno, sangramento e outros efeitos direcionados a seres vivos
+  * **Escalonamento de Profundidade**: As estatísticas se ajustam com base na profundidade da masmorra através da interface IDepthAdjustable
+
+==== Estatísticas ====
+  * **Saúde**: 1 PV (fixo, não escala com o nível da masmorra) (hp(ht(1)))
+  * **Habilidade de Ataque**: 10 + profundidade da masmorra (baseAttackSkill = 10 + Dungeon.depth)
+  * **Habilidade de Defesa**: 5 vezes a habilidade de ataque (muito maior que a maioria das criaturas)
+  * **Dano**: 1-3 + profundidade da masmorra
+  * **Velocidade**: Rápida
+  * **Exp por Matar**: 0 (sem ganho de experiência)
+  * **Chance de Carcaça**: 0 (carcassChance = 0)
+  * **Nível Máximo**: 26
+
+==== Características ====
+  * **Incorpóreo**: Tem habilidade de voo, permitindo movimento através de paredes (walkingType = ABSOLUTE)
+  * **Difícil de Acertar**: Significativamente maior defesa que a maioria das criaturas
+  * **Traços Mortos-Vivos**: Imune a veneno, sangramento e outros efeitos direcionados a seres vivos
+  * **Escalonamento Baixo de Saúde**: Os PV escalam com a profundidade da masmorra mas começam com apenas 1 PV
+
+==== Combate ====
+  * **Evasão**: Muito difícil de acertar devido à alta habilidade de defesa
+  * **Imunidades**: Imune a efeitos de morte e terror
+  * **Voo**: Sempre voando, pode passar sobre obstáculos e através de paredes (walkingType = ABSOLUTE)
+  * **Aparições**: Com frequência crescente em níveis mais profundos da masmorra
+
+==== Localização ====
+Os Espectros podem ser encontrados em:
+  * Níveis mais profundos da masmorra onde habitam mortos-vivos mais poderosos
+  * [[pt:rpd:halls|Salões]] da masmorra
+  * Níveis das [[pt:rpd:caves|Cavernas]]
+  * Áreas com outras criaturas mortas-vivas poderosas
+
+==== Táticas ====
+  * Use ataques de área para aumentar a chance de acerto
+  * Itens ou habilidades que reduzam a evasão podem ser úteis
+  * Ataques à distância podem ser mais eficazes que corpo a corpo
+  * Dano de fogo ou sagrado tipicamente eficaz contra mortos-vivos
+  * Considere usar debilitamentos que reduzam precisão ou causem cegueira em seus inimigos
+  * Nota: Matá-los não fornece pontos de experiência
+
+==== Verificação de Conteúdo ====
+  * Fonte de informação: Classe Java [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Wraith.java|Wraith.java]]
+  * Mecânicas especiais: Extraídas de Wraith.java e implementação de WalkingType.java
+  * Recurso de String (Português): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml|Wraith_Name, Wraith_Desc]]
+
+==== Implementação ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Wraith.java|Wraith.java]]
+  * Mecânica de Movimento: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/WalkingType.java|WalkingType.java]]
+
+==== Relacionado ====
+  * Parte da categoria [[pt:rpd:undead_mob|Mortos-Vivos]]
+  * Mais forte que os [[pt:rpd:skeleton_mob|Esqueletos]] básicos
+  * Pode ser encontrado em áreas com outras criaturas mortas-vivas
+
+==== Notas ====
+Os Espectros são inimigos particularmente perigosos devido à sua habilidade de passar através de paredes e alta evasão, tornando-os difíceis de acertar ou escapar.
+
+==== Veja Também ====
+  * [[pt:rpd:mobs|Inimigos]] - Outras criaturas hostis
+  * [[pt:rpd:undead_mob|Mortos-Vivos]] - Categoria de entidades mortas-vivas
+
+{{tag> rpd mobs undead incorporeal wraith}}
