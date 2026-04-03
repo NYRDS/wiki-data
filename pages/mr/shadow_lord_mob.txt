@@ -1,20 +1,76 @@
 ====== Shadow Lord Mob - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * **Main Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/ShadowLord.java|ShadowLord.java]]
+    - Package: com.nyrds.pixeldungeon.mobs.common
+    - Extends: Boss
+    - Implements: IZapper
+    - Author: DeadDie (created 13.02.2016)
+  * **Related Classes:**
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java|Boss.java]] (base class)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/ShadowLordLevel.java|ShadowLordLevel.java]] (dedicated level)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Crystal.java|Crystal.java]] (spawns crystals)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/shadow_lord.json
+  * **Sprite Config:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/ShadowLord.json|ShadowLord.json]]
+  * **Bestiary:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] (spawn configuration)
+  * **Dungeon Config:** Referenced in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Dungeon.json|Dungeon.json]]
 
 ===== String Resources =====
 <code xml>
-<string name="ShadowLord_Name">[Name]</string>
-<string name="ShadowLord_Info">[Description]</string>
+<string name="ShadowLord_Name">Shadow Lord</string>
+<string name="ShadowLord_Intro">Intro dialogue when spawning minions</string>
+<string name="ShadowLord_Death">Death dialogue</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Key Implementation Details =====
+  * **HP/HT:** 260 (set in constructor: hp(ht(260)))
+  * **Base Defense Skill:** 40
+  * **Base Attack Skill:** 30
+  * **Damage Range:** 30-40
+  * **Damage Reduction:** 40
+  * **EXP for Kill:** 60
+  * **Drops:** Scroll of Weapon Upgrade (guaranteed)
+  * **Walking Type:** ABSOLUTE
+
+===== Special Abilities =====
+  * **spawnShadow():** Spawns a Shadow mob next to the Shadow Lord using WandOfBlink.appear()
+  * **spawnWraith():** Spawns 4 Wraiths at empty cells next to the Shadow Lord
+  * **twistLevel():** Transforms the level by:
+    - Creating an empty level with LevelTools.makeEmptyLevel()
+    - Building a maze with LevelTools.buildShadowLordMaze() (6 iterations)
+    - Spawning a Crystal at a pedestal location
+    - Filling area with Darkness blob (5x5 area)
+  * **canAttack():** Can attack targets within distance < 4 with clear Ballistica path
+  * **fx():** Uses purpleLight magic missile with zap sound effect
+  * **damage():** When damaged:
+    - Enters Fleeing state
+    - Blinks away from attacker using CharUtils.blinkAway()
+    - Calls twistLevel() to transform the arena
+    - Sets cooldown to 10 turns
+  * **act():** Per-turn behavior:
+    - Decrements cooldown
+    - When fleeing and cooldown < 0: returns to Wandering state, spawns minions (70% Wraith, 30% Shadow)
+    - Heals from Darkness blobs at current position
+    - Takes 1 damage from Foliage blobs (with bone particle effect)
+  * **die():** On death:
+    - Plays death dialogue
+    - Resets level with LevelTools.makeEmptyLevel()
+    - Unseals the level
+    - Validates SHADOW_LORD_SLAIN badge
+
+===== Immunities and Resistances =====
+  * Inherits from Boss class
+  * Special interaction with Darkness (healing) and Foliage (damage) blobs
+
+===== Code References =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Fleeing.java|Fleeing.java]] (AI state)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Wandering.java|Wandering.java]] (AI state)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/LevelTools.java|LevelTools.java]] (level manipulation)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]] (blink mechanics)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Darkness.java|Darkness.java]] (healing source)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Foliage.java|Foliage.java]] (damage source)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] (badge validation)
