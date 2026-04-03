@@ -1,20 +1,42 @@
 ====== Blank Scroll Item - Code References ======
 
+===== Entity Information =====
+  * **Entity Kind**: blank_scroll
+  * **Entity Type**: Item (Scroll)
+  * **Namespace**: mr: (machine-readable)
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/BlankScroll.java|BlankScroll.java]]
+  * **Package**: com.watabou.pixeldungeon.items.scrolls
+  * **Extends**: Scroll
+  * **Key Properties**:
+    * image = ItemSpriteSheet.SCROLL_BLANK
+    * stackable = true
+    * isIdentified() = true (always identified)
+    * price() = 10 * quantity
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/blank_scroll.json
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="BlankScroll_Name">[Name]</string>
-<string name="BlankScroll_Info">[Description]</string>
+<string name="BlankScroll_Name">blank scroll</string>
+<string name="BlankScroll_ReallyBlank">You read the blank scroll... Nothing happens.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Game Mechanics =====
+  * **Arcane Stylus Conversion**: When used with an Arcane Stylus, transforms into a random scroll
+  * **Transmutation Well**: Can be thrown into a Well of Transmutation to become a random scroll
+  * **Potion of Invisibility**: Can "moisten" up to 3 scrolls into blank scrolls
+  * **Reading Behavior**: When read, nothing happens except a message (collects back to inventory)
+
+===== Related Files =====
+  * **Sprite**: item_BlankScroll.png, blank_scroll_item.png
+  * **Item Factory Registration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L265|ItemFactory.java]]
+  * **Parent Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]]
+
+===== Tags =====
+{{tag> mr item blank_scroll scroll item_code}}
