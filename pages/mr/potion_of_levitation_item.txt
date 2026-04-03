@@ -1,7 +1,13 @@
 ====== Potion Of Levitation Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java|PotionOfLevitation.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java|PotionOfLevitation.java]] - Main potion class extending UpgradablePotion
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|UpgradablePotion.java]] - Base class for upgradeable potions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java|Levitation.java]] - Buff applied by this potion
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]] - Base potion class (registers PotionOfLevitation)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registers PotionOfLevitation class (line 280)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]] - Air Elemental can drop this potion (10% chance)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/TrapsPainter.java|TrapsPainter.java]] - Spawns this potion in trap rooms
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -11,10 +17,24 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="PotionOfLevitation_Name">Potion of Levitation</string>
 <string name="PotionOfLevitation_Info">Drinking this curious liquid will cause you to hover in the air, able to drift effortlessly over traps. Flames and gases fill the air, however, and cannot be bypassed while airborne.</string>
 <string name="PotionOfLevitation_Apply">You float into the air!</string>
+<string name="Potion_ItemFliesAway">Used when moistening other items</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Implementation Details =====
+  * **Base Price**: 35 gold
+  * **Label Index**: 2 (used for potion identification)
+  * **Extends**: UpgradablePotion (can be upgraded to improve effects)
+  * **Primary Effect**: Applies Levitation buff with duration based on quality: `Levitation.DURATION * qualityFactor()`
+  * **Moisten Effects**:
+    - Arrows: Detaches 10 * qualityFactor items, makes them fly away
+    - Scrolls: Detaches 3 * qualityFactor items, makes them fly away
+    - Rotten Food: Detaches 1 * qualityFactor items, makes them fly away
+  * **Drop Source**: Air Elemental has 10% chance to drop this potion
+  * **Spawn Location**: Generated in trap rooms by TrapsPainter
+
 ===== Related mr Entities =====
   * [[mr:levitation_buff|Levitation Buff]]
+  * [[mr:air_elemental_mob|Air Elemental Mob]]
