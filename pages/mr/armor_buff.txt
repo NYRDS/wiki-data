@@ -1,20 +1,69 @@
 ====== Armor Buff - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java|Earthroot.java]] (contains Armor as inner class)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/armor.json
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="Armor_Name">[Name]</string>
-<string name="Armor_Info">[Description]</string>
+<string name="Earthroot_ArmorBuff">Armor</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Buff Properties (from Earthroot.Armor) =====
+  * ''extends Buff'' - Inherits from base Buff class
+  * ''level'' - Stores the damage absorption amount (set to character's HT when applied)
+  * ''pos'' - Stores the position where the buff was applied
+  * ''absorb(damage)'' - Method that reduces incoming damage and detaches when depleted
+
+===== Buff Implementation =====
+<code java>
+public static class Armor extends Buff {
+    private static final float STEP = 1f;
+
+    @Packable
+    public int pos;
+    @Packable
+    public int level;
+
+    @Override
+    public boolean attachTo(@NotNull Char target) {
+        pos = target.getPos();
+        return super.attachTo(target);
+    }
+
+    @Override
+    public boolean act() {
+        if (target.getPos() != pos) {
+            detach();
+        }
+        spend(STEP);
+        return true;
+    }
+
+    public int absorb(int damage) {
+        if (damage >= level) {
+            detach();
+            return damage - level;
+        } else {
+            level -= damage;
+            return 0;
+        }
+    }
+}
+</code>
+
+===== Buff Behavior =====
+  * Applied when a character steps on an [[mr:earthroot_plant|Earthroot]] plant
+  * Level is set to the character's HT (hit points) when applied
+  * Absorbs incoming damage up to the level amount
+  * Detaches if the character moves from the position where it was applied
+  * Detaches after absorbing damage equal to or greater than its level
+
+===== Related mr Entities =====
+  * [[mr:earthroot_plant|Earthroot (Plant)]]
+  * [[mr:barkskin_buff|Barkskin (Buff)]]
