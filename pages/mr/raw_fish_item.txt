@@ -1,6 +1,10 @@
 ====== Raw Fish Item - Code References ======
 
-===== Java Implementation =====
+{{ rpd:images:raw_fish_item.png|Raw Fish }}
+
+**Raw Fish** is a basic food item in Remixed Pixel Dungeon. It is dropped by Piranhas and can be consumed to restore hunger, though it may have negative effects.
+
+==== Java Implementation ====
 This entity is not implemented as a separate Java class. It is a basic food item that uses the default item system.
 
 Usage in Java code:
@@ -11,7 +15,7 @@ Usage in Java code:
 collect(ItemFactory.itemByName("RawFish"));
 </code>
 
-===== JSON Configuration =====
+==== JSON Configuration ====
 RawFish is referenced in level configuration files as a placeable item:
 
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/TestLevelSewers.json|TestLevelSewers.json]] - Placed at coordinates (13, 10)
@@ -26,7 +30,7 @@ RawFish is referenced in level configuration files as a placeable item:
 "RawFish": 0
 </code>
 
-===== String Resources =====
+==== String Resources ====
 RawFish has localized strings in all supported languages:
 
 <code xml>
@@ -51,16 +55,16 @@ RawFish has localized strings in all supported languages:
 <string name="RawFish_Taste">魚っぽい！</string>
 </code>
 
-===== Lua Scripts =====
+==== Lua Scripts ====
 No Lua scripts are associated with this entity. It is a basic consumable item.
 
-===== Game Mechanics =====
+==== Game Mechanics ====
   * **Type**: Food item
   * **Rarity**: Common drop from Piranhas
   * **Effect**: Basic hunger restoration (specific values defined in game constants)
   * **Taste Message**: "Fishy!" when consumed
   * **Risk**: May have negative effects (implied by "eat at your own risk" description)
 
-===== Related Entities =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Piranha.java|Piranha]] - Mob that drops this item
+==== Related Entities ====
+  * [[mr:piranha_mob|Piranha]] - Mob that drops this item
   * Food system - Part of the game's hunger mechanics

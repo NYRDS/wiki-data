@@ -1,27 +1,27 @@
-====== Tough Shield Item ======
+====== Tough Shield Item - Code References ======
 
 {{ rpd:images:tough_shield_item.png|Tough Shield }}
 
 **Tough Shield** is a shield item in Remixed Pixel Dungeon. It is a tier 2 shield that provides better damage blocking than the wooden shield.
 
-===== Description =====
+==== Description ====
 This shield reinforced with leather straps looks tougher than a wooden one. It can certainly block more damage.
 
-===== Stats =====
+==== Stats ====
   * **Tier**: 2
   * **Price**: 80 gold (40 × shield level)
   * **Equip Slot**: Left hand
   * **Upgradable**: Yes
   * **Image**: items/shields.png (image index 1)
 
-===== Java Classes =====
+==== Java Classes ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/CustomItem.java|CustomItem.java]] - Base class for custom items
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/shields/Shield.java|Shield.java]] - Base shield class
 
-===== JSON Configuration =====
+==== JSON Configuration ====
 This entity is implemented in Lua, no JSON configuration exists
 
-===== String Resources =====
+==== String Resources ====
 English (values/strings_all.xml):
 <code xml>
 <string name="ToughShield_name">Leather Reinforced Shield</string>
@@ -45,11 +45,11 @@ Other languages:
   * **Indonesian**: Perisai yang diperkuat kulit
   * **Italian**: Scudo rinforzato con cinghie di cuoio
 
-===== Lua Scripts =====
+==== Lua Scripts ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/ToughShield.lua|ToughShield.lua]] - Main item implementation
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/shields.lua|shields.lua]] - Shield library for shield creation
 
-===== Code Analysis =====
+==== Code Analysis ====
 The Tough Shield is defined in `ToughShield.lua` which uses the shields library:
   * Uses `shields.makeShield(shieldLevel, shieldDesc)` with shieldLevel = 2
   * Returns shield configuration with image from "items/shields.png" at index 1
@@ -57,12 +57,12 @@ The Tough Shield is defined in `ToughShield.lua` which uses the shields library:
   * Equipable in "left_hand" slot
   * Can be upgraded with Upgrade Scroll
 
-===== Spawn Location =====
+==== Spawn Location ====
 Based on JSON configuration:
   * **Spiders Treasury** (levelsDesc/SpidersTreasury.json): 0.5 spawn weight
   * **Treasury** (levelsDesc/Treasury.json): 0.5 spawn weight
 
-===== Related mr Entities =====
+==== Related mr Entities ====
   * [[mr:shield_class|Shield (Class)]]
   * [[mr:shields_lib|Shields (Library)]]
   * [[mr:wooden_shield_item|Wooden Shield (Item)]]
