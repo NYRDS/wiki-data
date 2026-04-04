@@ -76,20 +76,32 @@ public class BurningFist extends Mob implements IZapper {
     }
 
     @Override
-    public void onZapped() {
-        GameScene.add(Blob.affect(getPos(), getLevel(), Fire.class));
+    public boolean act() {
+
+        for (int i = 0; i < Level.NEIGHBOURS9.length; i++) {
+            GameScene.add(Blob.seed(getPos() + Level.NEIGHBOURS9[i], 2, Fire.class));
+        }
+
+        return super.act();
     }
 
     @Override
-    public void act() {
-        super.act();
-        GameScene.add(Blob.affect(getPos(), getLevel(), Fire.class));
+    public void damage(int dmg, @NotNull NamedEntityKind src) {
+        for (Mob mob : level().mobs) {
+            mob.beckon(getPos());
+        }
+
+        super.damage(dmg, src);
     }
 
     @Override
-    @NotNull
-    public String getEntityKind() {
-        return getClass().getSimpleName();
+    public String getDescription() {
+        return StringsManager.getVar(R.string.Yog_Desc);
+    }
+
+    @Override
+    public boolean canBePet() {
+        return false;
     }
 }
 </code>
@@ -102,10 +114,11 @@ public class BurningFist extends Mob implements IZapper {
 ===== String Resources =====
 <code xml>
 <string name="BurningFist_Name">Burning Fist</string>
-<string name="BurningFist_Name_Objective">Burning Fist</string>
 <string name="BurningFist_Gender">masculine</string>
-<string name="BurningFist_Desc">Burning Fist of Old God.</string>
+<string name="Yog_Desc">Used for Burning Fist description (shares Yog's description)</string>
 </code>
+
+**Note:** The BurningFist uses `Yog_Desc` string resource for its description, not a dedicated `BurningFist_Desc` resource.
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
