@@ -1,6 +1,6 @@
 ====== Hotkeys ======
 
-Hotkeys in Remixed Dungeon allow players to use items and activate abilities quickly during gameplay.
+Hotkeys in Remixed Dungeon allow players to use items and activate abilities quickly during gameplay. The input handling is managed through the [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/scenes/GameScene.java|GameScene]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/Toolbar.java|Toolbar]] classes.
 
 ==== Default Hotkeys ====
   * **1-9, 0**: Access items in quickslots 1 through 10
@@ -19,10 +19,17 @@ Items assigned to quickslots can be used immediately by pressing the correspondi
   * And so on up to '0' for the 10th quickslot
 
 ==== Settings ====
-Hotkeys can be customized in the game settings menu under the "Controls" section.
+Hotkeys can be customized in the game settings menu under the "Controls" section. The key bindings are stored in the game's preferences system and can be customized through the [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndSettings.java|WndSettings]] window.
+
+==== Source Code ====
+  * Input handling: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/scenes/GameScene.java|GameScene.java]] - Main game scene input processing
+  * Quickslot input: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/QuickSlot.java|QuickSlot.java]] - Quickslot button handling
+  * Settings window: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndSettings.java|WndSettings.java]] - Settings UI implementation
+  * Keyboard shortcuts: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/input/KeyBindings.java|KeyBindings.java]] - Key binding configuration
 
 ==== Related ====
   * [[en:rpd:quickslots|Quickslots]]
   * [[en:rpd:control_effects|Control Effects]]
+  * [[en:rpd:ui|User Interface]]
 
 {{tag> rpd ui controls}}
