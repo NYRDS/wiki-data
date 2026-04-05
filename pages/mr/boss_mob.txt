@@ -1,0 +1,57 @@
+====== Boss Mob - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java|Boss.java]] - Abstract base class for all boss mobs
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Parent mob class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Hunting.java|Hunting.java]] - AI state used for battle music
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/SkeletonKey.java|SkeletonKey.java]] - Key dropped by bosses
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfPsionicBlast.java|ScrollOfPsionicBlast.java]] - Item bosses resist
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Death.java|Death.java]] - Enchantment bosses resist
+
+===== JSON Configuration =====
+  * Boss mobs are configured through individual JSON files in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/|mobsDesc/]] directory
+  * Specific boss configurations: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/King.json|King.json]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Goo.json|Goo.json]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Tengu.json|Tengu.json]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/DM300.json|DM300.json]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Yog.json|Yog.json]]
+
+===== String Resources =====
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - Search for "_Name" and "_Desc" patterns for boss entities
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml]] - Russian translations for boss entities
+  * All languages: Search for boss entity names in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/|res/]] directory
+
+===== Lua Scripts =====
+Boss entities are primarily implemented in Java. Some custom boss behaviors may be implemented in Lua scripts in [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets/scripts/|scripts/]] directory.
+
+===== Key Implementation Details =====
+  * **Abstract Class**: Boss is an abstract class that extends Mob
+  * **Boss Flag**: isBoss = true (set in constructor)
+  * **Max Level**: maxLvl = 50 (all bosses scale to level 50 maximum)
+  * **Pet Immunity**: cannotBePet() returns true (bosses cannot be pets)
+  * **Death Enchantment Resistance**: Adds resistance to Death enchantment
+  * **Psionic Blast Resistance**: Adds resistance to ScrollOfPsionicBlast
+  * **Battle Music**: Plays custom battle music when in Hunting state
+  * **Level Unsealing**: Unseals the level when boss dies (via level().unseal())
+  * **Boss Slain Event**: Triggers GameScene.bossSlain() on death
+  * **Skeleton Key**: Bosses carry a SkeletonKey (restored from bundle for old saves)
+  * **Music Fallback**: Uses battleMusicFallback if primary battleMusic is not found
+  * **Mod Support**: Supports ModQuirks.mobLevel for custom boss leveling
+  * **ShadowLord Exception**: ShadowLord boss does not get SkeletonKey restoration fix
+
+===== Known Boss Entities =====
+  * [[mr:goo_mob|Goo_Mob]] - Sewers boss
+  * [[mr:tengu_mob|Tengu_Mob]] - Prison boss
+  * [[mr:dm300_mob|DM300_Mob]] - Caves boss
+  * [[mr:king_mob|King_Mob]] - City boss (King of Dwarves)
+  * [[mr:yog_mob|Yog_Mob]] - Halls boss (Yog-Dzewa)
+  * [[mr:lich_mob|Lich_Mob]] - Necropolis boss
+  * [[mr:shadow_mob|Shadow_Mob]] - Shadow Lord (special endgame boss)
+
+===== Related mr Entities =====
+  * [[mr:king_mob|King_Mob]] - Example boss implementation
+  * [[mr:undead_mob|Undead_Mob]] - Minions summoned by King boss
+
+===== Content Verification =====
+  * Information source: Java code (Boss.java)
+  * Last updated: 2026-04-05 based on current codebase analysis
+  * Verified against: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java
+  * Key properties: isBoss=true, maxLvl=50, cannotBePet, Death/PsionicBlast resistance
+
+{{tag>mr mobs boss code_reference}}
