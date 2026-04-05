@@ -17,4 +17,15 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/BodyArmor.lua|BodyArmor.lua]]
 
 ===== Related mr Entities =====
-  * [[mr:body_armor_spell|Body Armor (Spell)]]
+  * [[mr:body_armor_spell|Body Armor (Spell)]] - Spell that applies this buff
+
+===== Implementation Details =====
+  * **Type:** buff (Lua-defined custom buff)
+  * **Base Class:** CustomBuff (for Lua-defined buffs)
+  * **Applied By:** BodyArmor spell
+  * **Duration:** 15 + 10 * caster:skillLevel() (from spell implementation)
+  * **Effect:** Increases armor at the cost of movement speed
+  * **JSON Config:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/effects/body_armor.json|body_armor.json]] - Effect particle configuration
+  * **Lua Script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/BodyArmor.lua|BodyArmor.lua]] - Buff implementation
+
+{{tag> mr rpd buffs combat lua_defined}}
