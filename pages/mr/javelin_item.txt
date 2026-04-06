@@ -2,9 +2,11 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Javelin.java|Javelin.java]] - Main implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Cripple.java|Cripple.java]] - Buff applied on hit
 
 ===== JSON Configuration =====
-This entity does not use JSON configuration
+This entity does not use JSON configuration (implemented in Java)
 
 ===== String Resources =====
 <code xml>
@@ -19,11 +21,41 @@ This entity is implemented in Java, no Lua script exists
 ===== Entity Kind =====
   * Entity Kind: javelin
 
+===== Implementation Details =====
+  * **Class**: `com.watabou.pixeldungeon.items.weapon.missiles.Javelin`
+  * **Extends**: `MissileWeapon`
+  * **Package**: `com.watabou.pixeldungeon.items.weapon.missiles`
+  * **Implementation Type**: Pure Java (no Lua/JSON)
+
+===== Constructor =====
+  * Default constructor: `Javelin()` - Creates single javelin
+  * Parameterized constructor: `Javelin(int number)` - Creates javelins with specified quantity
+  * Sets image: `ItemSpriteSheet.JAVELIN`
+  * Sets strength requirement: `setSTR(15)`
+  * Sets damage range: `MIN = 2`, `MAX = 15`
+
 ===== Stats =====
   * Base Damage: 2-15 (MIN: 2, MAX: 15)
   * Strength Required: 15 (setSTR: 15)
-  * Stackable: Yes, typically 5-15 quantity (random())
-  * Price: 15 gold per item
+  * Stackable: Yes, typically 5-15 quantity (Random.Int(5, 15))
+  * Price: 15 gold per item (15 * quantity())
 
 ===== Special Abilities =====
   * Attack Proc: Applies Cripple status effect for Cripple.DURATION turns
+  * Method: `attackProc(Char attacker, Char defender, int damage)`
+  * Effect: `Buff.prolong(defender, Cripple.class, Cripple.DURATION)`
+
+===== Random Generation =====
+  * Method: `random()`
+  * Quantity: Random between 5-15 javelins
+  * Returns: Modified item instance
+
+===== Price Calculation =====
+  * Method: `price()`
+  * Formula: 15 * quantity()
+  * Example: Stack of 10 javelins = 150 gold
+
+===== Code References =====
+  * Full Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Javelin.java|Javelin.java on GitHub]]
+  * Sprite Definition: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
