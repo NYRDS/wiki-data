@@ -1,13 +1,23 @@
-====== Assassin Subclass - Code References ======
+====== Assassin Subclass - Machine Reference ======
+
+This page provides machine-readable reference data for the Assassin hero subclass in Remixed Dungeon.
+
+===== Overview =====
+The Assassin is one of two mastery paths available to the [[mr:rogue_class|Rogue]] hero class, specializing in surprise attacks and burst damage. When performing a surprise attack on an enemy that has not seen the hero, the Assassin inflicts additional bonus damage.
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Enum definition for ASSASSIN subclass (line 47)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/AssasinArmor.java|AssasinArmor.java]] - Class armor for Assassin subclass
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/AssasinArmor.java|AssasinArmor.java]] - Class armor for Assassin subclass (note: spelling in code is "Assasin" with one 's')
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/RogueArmor.java|RogueArmor.java]] - Parent class for Assassin armor
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/TomeOfMastery.java|TomeOfMastery.java]] - Mastery selection for Assassin (line 84)
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndClass.java|WndClass.java]] - UI window for class selection (line 103)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] - Badge tracking for BOSS_SLAIN_3_ASSASSIN (lines 119, 683-684, 715)
 
 ===== JSON Configuration =====
-This entity is implemented in Java as an enum, no JSON configuration exists
+This entity is implemented in Java as an enum constant, no dedicated JSON configuration file exists. The subclass is defined in the HeroSubClass enum with the following properties:
+  * **Enum Constant**: ASSASSIN
+  * **String Resource Keys**: HeroSubClass_NameAssa, HeroSubClass_DescAssa
+  * **Armor Class**: "AssasinArmor" (note the spelling difference)
 
 ===== String Resources =====
 <code xml>
@@ -15,18 +25,44 @@ This entity is implemented in Java as an enum, no JSON configuration exists
 <string name="HeroSubClass_DescAssa">When performing a surprise attack, the _Assassin_ inflicts additional damage to his target.</string>
 </code>
 
+Additional string resources for Rogue armor (used by Assassin):
+<code xml>
+<string name="RogueArmor_Name">Rogue armor</string>
+<string name="RogueArmor_Info">This dark armor will allow the Rogue to use the "Smoke Bomb" ability.
+When wearing this armor, the Rogue can become invisible for a short time.</string>
+<string name="RogueArmor_NotRogue">Only rogues can use this armor!</string>
+</code>
+
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented entirely in Java, no Lua scripts exist for the Assassin subclass.
 
 ===== Implementation Details =====
   * **Enum Name**: ASSASSIN (HeroSubClass.java line 47)
   * **Armor Class**: AssasinArmor (note: spelling in code is "Assasin" not "Assassin")
-  * **Special Ability**: Deals bonus damage (Random.Int(1, damage)) when attacking enemies that haven't seen the hero (defender.enemySeen == false)
-  * **Parent Class**: Rogue (assassin is a subclass of Rogue hero class)
-  * **Attack Proc**: Bonus damage applied in attackProc() method when target is unaware
+  * **Parent Class**: Rogue hero class (assassin is a subclass/mastery path of Rogue)
+  * **Alternative Subclass**: [[mr:freerunner_subclass|Freerunner]] (the other Rogue mastery path)
+  * **Special Ability**: Smoke Bomb (inherited from Rogue armor) - allows the Rogue to become invisible for a short time
+  * **Passive Bonus**: Deals bonus damage when attacking enemies that haven't seen the hero (defender.enemySeen == false)
+  * **Attack Proc**: Bonus damage applied in attackProc() method when target is unaware, calculated as Random.Int(1, damage)
+  * **Badge**: BOSS_SLAIN_3_ASSASSIN - tracks killing 3 bosses in a row as Assassin
+
+===== Code Behavior =====
+From AssasinArmor.java:
+  * Only heroes with HeroSubClass.ASSASSIN can equip this armor
+  * Other classes receive warning: "Only rogues can use this armor!" (R.string.RogueArmor_NotRogue)
+  * Image index: 10
+
+From TomeOfMastery.java:
+  * Assassin is one of two mastery choices available to Rogue class heroes
+  * Selected at line 84: way2 = HeroSubClass.ASSASSIN
+
+From Badges.java:
+  * Badge BOSS_SLAIN_3_ASSASSIN tracks consecutive boss kills as Assassin
+  * Badge validation requires: BOSS_SLAIN_1, BOSS_SLAIN_2, BOSS_SLAIN_3, and BOSS_SLAIN_3_ASSASSIN
 
 ===== Related mr Entities =====
   * [[mr:rogue_class|Rogue (Class)]] - Parent hero class
   * [[mr:freerunner_subclass|Freerunner (Subclass)]] - Alternative Rogue subclass
   * [[mr:assasin_armor_item|Assassin Armor (Item)]] - Class-specific armor
   * [[mr:tome_of_mastery_item|Tome of Mastery (Item)]] - Item used to select subclass
+  * [[mr:rogue_armor_item|Rogue Armor (Item)]] - Base armor class for Assassin armor
