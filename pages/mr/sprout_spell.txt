@@ -23,10 +23,13 @@ This entity is implemented in Lua, no JSON configuration exists
   * **Level**: 2
   * **Mana Cost**: 5
   * **Cast Time**: 0.1 seconds
-  * **Effect**: Places Regrowth blob at target cell (caster's skill level * 10)
-  * **Secondary Effect**: Plants random seeds in adjacent passable tiles
-  * **Seed Types**: Earthroot, Firebloom, Sungrass, Dreamweed, Sorrowmoss, Icecap, Fadeleaf
-  * **Plant Chance**: Based on caster level vs dungeon depth ratio
+  * **Image**: Uses image index 1 from "spellsIcons/naturegift.png"
+  * **Primary Effect**: Places Regrowth blob at target cell (caster's skill level * 10)
+  * **Secondary Effect**: Plants random seeds in adjacent passable tiles on plain tiles only
+  * **Seed Types**: Earthroot.Seed, Firebloom.Seed, Sungrass.Seed, Dreamweed.Seed, Sorrowmoss.Seed, Icecap.Seed, Fadeleaf.Seed
+  * **Plant Chance**: Based on caster level vs dungeon depth ratio (caster:lvl()/(RPD.Dungeon.depth + 1) > math.random())
+  * **Cell Selection**: Iterates cells around target using forCellsAround, checks passable and plain tile conditions
+  * **Required Library**: Requires "scripts/lib/commonClasses" and "scripts/lib/spell"
 
 ===== Related mr Entities =====
   * [[mr:elf_class|Elf (Class)]]

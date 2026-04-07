@@ -2,6 +2,7 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/Badges.java|Badges.java]] - Contains BADGES_ALL_ENCUMBERED check for achievement
+  * Note: This buff is closely related to [[mr:encumbrance_buff|Encumbrance Buff]] - both use the same string resources but are separate Lua implementations
 
 ===== JSON Configuration =====
 This entity is implemented in Lua, no JSON configuration exists
@@ -18,7 +19,19 @@ This entity is implemented in Lua, no JSON configuration exists
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/UnsuitableItem.lua|UnsuitableItem.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/UnsuitableItem.lua|UnsuitableItem.lua]] - Main buff implementation
+  * Note: Related implementation at [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Encumbrance.lua|Encumbrance.lua]] - Separate but related buff using same string resources
+
+===== Implementation Details =====
+  * **Buff Type**: Debuff applied when wielding items without sufficient strength
+  * **String Resource Prefix**: EncumbranceBuff_ (shared with Encumbrance buff)
+  * **Display Name**: Uses "UnsuitableItemBuff_Name" string resource
+  * **Info Text**: Uses "UnsuitableItemBuff_Info" with item name parameter
+  * **Character Action Messages**: Uses EncumbranceBuff_CharAct_1 through 5 (commented out in code)
+  * **Difficulty Check**: Only active on difficulty levels below 2 (charAct function returns early on higher difficulties)
+  * **Icon**: Uses icon index 52
+  * **Trigger**: Applied when hero equips items that fail encumbranceCheck()
 
 ===== Related mr Entities =====
-  * [[mr:encumbrance_buff|Encumbrance Buff]]
+  * [[mr:encumbrance_buff|Encumbrance Buff]] - Related buff using same string resources
+  * [[mr:strength_mechanic|Strength Mechanic]] - Related mechanic for strength requirements

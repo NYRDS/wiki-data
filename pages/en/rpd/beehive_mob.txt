@@ -32,13 +32,11 @@ A beehive is a structure that houses a colony of bees. When damaged or destroyed
 
 ==== Behavior ====
   * **AI State**: Passive (does not actively seek targets)
-  * **Can be a pet**: No
-  * **Flying**: No
-  * **Movable**: No (immobile structure)
   * **Special Behavior**: When damaged or destroyed, activates BeeSpawner script to generate bees
   * **Bee Generation**: Randomly determines 3-8 total bees to potentially spawn at creation
   * **Spawn Limit**: Once the predetermined number of bees is spawned, no more bees are generated
   * **Cell Selection**: Spawns bees in an empty adjacent cell (using emptyCellNextTo())
+  * **Bee AI**: Spawned bees are set to "Hunting" AI state, immediately targeting nearby enemies
 
 ==== Drops ====
   * Beehives have a 0% chance to drop items
@@ -51,8 +49,6 @@ A beehive is a structure that houses a colony of bees. When damaged or destroyed
   * Beehives only spawn a predetermined number (3-8) of bees, so they're not an infinite source
   * Each time the beehive is damaged, it spawns 1 bee (if any remaining bees to spawn)
   * When destroyed, any remaining bees (if any) are released all at once
-  * Bee spawning uses the emptyCellNextTo() method, so bees appear in adjacent empty cells
-  * Bees are set to "Hunting" AI state when spawned, so they'll immediately target nearby enemies
 
 ==== Source Code References ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BeeHive.json|BeeHive.json Configuration]]
