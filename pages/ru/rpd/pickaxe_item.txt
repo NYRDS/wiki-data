@@ -8,13 +8,17 @@
 ==== Характеристики ====
   * **Тип**: Инструмент/Оружие
   * **Редкость**: Квестовый предмет
-  * **Вес**: 3
-  * **Урон**: 1-8 (схожий с боевым посохом)
+  * **Требуемая сила**: 14 СИЛ
+  * **Урон**: 3-12
+  * **Анимация атаки**: SWORD_ATTACK
 
 ==== Механика ====
   * **Добыча**: Используется для добычи [[ru:rpd:dark_gold_item|Мракозлата]] из руды в Пещерах
+  * **Время добычи**: 2 хода на добычу одной жилы
   * **Не требует экипировки**: Не обязательно экипировать в слот оружия для добычи
   * **Кровавая кирка**: При убийстве летучей мыши начинает мерцать красным цветом
+  * **Не улучшаема**: Нельзя улучшить
+  * **Всегда опознана**: Не требует опознания
   * **Квест**: Исчезает при сдаче квеста Кузнецу
 
 ==== Получение ====
@@ -22,23 +26,26 @@
   * Является обязательным элементом для выполнения квеста Кузнеца
 
 ==== Использование ====
-  * Добывает [[ru:rpd:dark_gold_item|Мракозлато]] из рудных жил в Пещерах
-  * Может использоваться как оружие (если экипирована)
+  * Добывает [[ru:rpd:dark_gold_item|Мракозлато]] из рудных жил в Пещерах (CavesLevel и CavesBossLevel)
+  * Также работает в уровнях Ледяных Пещер (производит останки Гноллов) и уровнях Внутренностей (производит Загадочное Мясо)
+  * Может использоваться как оружие в крайнем случае
+
+==== Стратегия ====
+  * Необходима для линии квеста Кузнеца
+  * Кровавая кирка имеет визуальное отличие, но ту же функциональность
+  * Добыча мракозлата необходима для услуг улучшения кузнеца
+  * Хорошее запасное оружие благодаря приличному диапазону урона
 
 ==== Код реализации ====
-  * **Реализация**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/quest/Pickaxe.java|Pickaxe.java]]
+  * **Реализация**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/Pickaxe.java|Pickaxe.java]]
   * **Спрайт**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L14|ItemSpriteSheet.PICKAXE]] - спрайт кирки
   * **Строковые ресурсы**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1259-L1260|strings_all.xml]] - Pickaxe_Name и Pickaxe_Info
   * **Квестовая логика**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Blacksmith.java|Blacksmith.java]] - как используется в квесте
 
-==== Примечания ====
-  * Не требуется экипировать для добычи руды
-  * Является одноразовым предметом - исчезает после сдачи квеста
-  * Важная часть квеста Кузнеца для получения 15 [[ru:rpd:dark_gold_item|Мракозлата]]
-
 ==== См. также ====
   * [[ru:rpd:dark_gold_item|Мракозлато]] - что можно добывать киркой
   * [[ru:rpd:blacksmith_npc|Кузнец]] - NPC, дающий кирку
+  * [[ru:rpd:bat_mob|Летучие мыши]] - существа для альтернативного квеста крови
   * [[ru:rpd:quest_items|Квестовые предметы]] - другие квестовые предметы
   * [[ru:rpd:quest|Квесты]] - общая информация о квестах
 

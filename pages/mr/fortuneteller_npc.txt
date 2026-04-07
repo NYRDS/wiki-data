@@ -3,7 +3,8 @@
 {{ rpd:images:fortuneteller_npc.png|Fortune Teller NPC }}
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/FortuneTellerNPC.java|FortuneTellerNPC.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/FortuneTellerNPC.java|FortuneTellerNPC.java]] - Main NPC class extending ImmortalNPC
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndFortuneTeller.java|WndFortuneTeller.java]] - Interaction window for item identification
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -14,10 +15,31 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="FortuneTellerNPC_Gender">feminine</string>
 <string name="FortuneTellerNPC_Name_Objective">fortune-teller</string>
 <string name="FortuneTellerNPC_Desc">This woman is dressed in a long, brightly colored robe. She looks surprisingly young for someone, who mastered arcane arts of fortune-telling. Coming closer, you can hear her mumbling, as she gazes into the crystal ball.</string>
+<string name="WndFortuneTeller_Instruction">I can identify your items for %d gold. What would you like to do?</string>
+<string name="WndFortuneTeller_No_Item">You don't have any items to identify.</string>
+<string name="WndFortuneTeller_IdentifyAll">Identify All</string>
+<string name="WndFortuneTeller_InvTitle">Select an item to identify</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Implementation Details =====
+  * **Parent Class:** ImmortalNPC (cannot be killed)
+  * **AI Behavior:** Passive NPC that waits for player interaction
+  * **Interaction:** Overrides interact(Char hero) method to show WndFortuneTeller window
+  * **Sprite Direction:** Uses turnTo() to face the hero during interaction
+
+===== Identification Mechanics =====
+  * **Base Cost:** 50 gold per item (GOLD_COST constant)
+  * **Difficulty Scaling:** Cost multiplied by GameLoop.getDifficultyFactor()
+  * **Ring of Haggler Discount:** 10% reduction when hero has RingOfHaggler.Haggling buff
+  * **Single Item:** Opens item selection dialog for WndBag.Mode.UNIDENTIFED items
+  * **Identify All:** Uses hero.getBelongings().identify() to identify all items at once
+  * **Gold Check:** Buttons disabled if hero.gold() < cost
+  * **Identification Method:** Uses ScrollOfIdentify.identify() for consistency
+
 ===== Related mr Entities =====
   * [[mr:wndfortuneteller|WndFortuneTeller]]
+  * [[mr:ringofhaggler|RingOfHaggler]]
+  * [[mr:scrollofidentify|ScrollOfIdentify]]
