@@ -5,33 +5,40 @@
 **Warden** is a [[en:rpd:subclasses|subclass]] for the [[en:rpd:huntress_class|Huntress]] class.
 
 ==== Description ====
-The Warden is a subclass of the Huntress that specializes in forest and nature-based combat. This subclass provides enhanced abilities when fighting in natural environments and special bonuses related to plant life and terrains.
+Having a strong connection with forces of nature gives **Wardens** an ability to gather dewdrops and seeds from plants. Also trampling high grass grants them a temporary armor buff.
 
 ==== Special Abilities ====
-  * **Enhanced abilities in natural terrains:** Special bonuses when fighting in grass, forest or other natural environments
-  * **Plant-based advantages:** Possible bonuses related to plants and seeds
-  * **Environmental mastery:** Other natural terrain-related benefits
+  * **Barkskin from High Grass**: When trampling high grass, Wardens receive a [[en:rpd:barkskin_buff|Barkskin]] buff with level equal to their HT/3, providing temporary damage reduction
+  * **Plant Interaction**: When stepping on or trampling plants, Wardens gain Barkskin and have a chance to collect seeds and dewdrops
+  * **Seed Collection**: 20% chance (1 in 5) to receive a random seed when interacting with plants
+  * **Dewdrop Collection**: 20% chance (1 in 5) to receive a [[en:rpd:dewdrop_item|Dewdrop]] when interacting with plants
 
 ==== Equipment ====
-The Warden may have special abilities related to natural tools and weapons.
+The Warden uses the **Warden Armor** as their subclass-specific armor, which is an upgraded version of the Huntress armor.
 
 ==== Strategy ====
-  * Make use of natural terrain features and vegetation
-  * Engage enemies in areas with high grass or other natural features
-  * Leverage environmental advantages during combat
+  * Make use of high grass tiles to gain Barkskin before engaging enemies
+  * Step on plants intentionally to collect seeds and dewdrops for alchemy
+  * The Barkskin buff scales with your maximum HT, making it more effective at higher levels
+  * Combine with [[en:rpd:ring_of_herbalism_item|Ring of Herbalism]] to increase dewdrop and seed collection rates from high grass
 
 ==== Technical Details ====
   * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1479-L1481|Warden string resources]]
+  * High Grass Feature: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java|HighGrass.java]]
+  * Plant Interaction: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java|Plant.java]]
+  * Armor Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WardenArmor.java|WardenArmor.java]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|HeroSubClass_DescWard]]
 
 ==== Code References ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1479-L1481|strings_all.xml]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
 
 ==== See Also ====
   * [[en:rpd:huntress_class|Huntress Class]]
   * [[en:rpd:hero_subclasses|Hero Subclasses]]
   * [[en:rpd:sniper_subclass|Sniper Subclass]]
-  * [[en:rpd:elemental_mob|Elementals]]
+  * [[en:rpd:barkskin_buff|Barkskin]]
+  * [[en:rpd:plants|Plants]]
+  * [[en:rpd:dewdrop_item|Dewdrop]]
 
-{{tag> rpd subclasses nature }}
+{{tag> rpd subclasses nature huntress }}
