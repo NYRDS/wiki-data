@@ -3,27 +3,29 @@
 {{ rpd:images:snipers_mark_buff.png|Snipers Mark }}
 
 ==== Description ====
-**Snipers Mark** is a debuff applied by the [[en:rpd:sniper_subclass|Sniper]] subclass when using ranged weapons. When active, it makes the affected target more vulnerable to attacks.
+**Snipers Mark** is a visual buff applied by the [[en:rpd:sniper_subclass|Sniper]] subclass when using ranged weapons. It serves as a visual indicator that the target has been marked by the Sniper's attack.
 
 ==== Stats ====
   * **Duration**: 1.1x attack delay of the attacker
-  * **Effect**: Increases damage taken by the affected enemy
+  * **Effect**: Visual indicator only (no mechanical effect on damage)
 
 ==== Effects ====
   * Visually marks the enemy with an icon to indicate the debuff is active
-  * Makes the target more susceptible to damage from subsequent attacks
+  * Displays the remaining duration of the mark
+  * Does not increase damage taken - purely a visual/flavor buff
 
 ==== Mechanism ====
-  * Applied when a Sniper successfully hits an enemy with a ranged weapon
+  * Applied when a Sniper successfully hits an enemy with a valid ranged weapon
   * Duration is calculated as 1.1 times the attacker's weapon attack delay
-  * Implemented using Buff.prolong(defender, SnipersMark.class, attacker.attackDelay() * 1.1f) in the HeroSubClass.java file
+  * Implemented as a FlavourBuff, meaning it has no mechanical actions beyond displaying the icon
+  * Code: `Buff.prolong(defender, SnipersMark.class, attacker.attackDelay() * 1.1f)` in HeroSubClass.java
 
 ==== Code References ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/SnipersMark.java|SnipersMark.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L172-L174|HeroSubClass.java#L172-L174]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L175|HeroSubClass.java#L175]]
 
 ==== See Also ====
-  * [[en:rpd:sniper_subclass|Sniper Subclass]] - The subclass that applies this debuff
+  * [[en:rpd:sniper_subclass|Sniper Subclass]] - The subclass that applies this buff
   * [[en:rpd:huntress_class|Huntress Class]] - Base class for the Sniper subclass
 
-{{tag> rpd buffs debuffs }}
+{{tag> rpd buffs visual }}

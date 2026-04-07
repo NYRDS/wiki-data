@@ -7,7 +7,9 @@
   * Extends: `FlavourBuff`
   * Key methods:
     * `icon()` - Returns `BuffIndicator.MARK` icon
-  * This is a flavour buff with no duration or special behavior, used to mark targets
+  * This is a flavour buff applied when the Sniper subclass hits an enemy with a valid ranged weapon
+  * Duration: `attacker.attackDelay() * 1.1f` (1.1x the attacker's weapon attack delay)
+  * Applied via: `Buff.prolong(defender, SnipersMark.class, attacker.attackDelay() * 1.1f)` in HeroSubClass.java
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -22,4 +24,4 @@ This entity is implemented in Java, no Lua script exists
   * [[mr:sniper_armor_item|Sniper Armor (Item)]] - Source of the sniper's mark effect
   * [[mr:elf_class|Elf (Class)]] - Hero class that can use Sniper Armor
 
-{{tag> rpd buffs flavour_buffs combat}}
+{{tag> mr buffs flavour_buffs combat}}
