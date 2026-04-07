@@ -3,8 +3,58 @@
 {{ rpd:images:brute_mob.png|Brute Mob }}
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Brute.java|Brute.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Gnoll.java|Gnoll.java]] (Parent class)
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Brute.java|Brute.java]]
+  * **Package**: com.watabou.pixeldungeon.actors.mobs
+  * **Parent Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob]]
+  * **Subclass**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shielded.java|Shielded]] extends Brute
+  * **Registration**: Registered in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]]
+
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.actors.mobs;
+
+import com.watabou.pixeldungeon.actors.buffs.Terror;
+import com.watabou.pixeldungeon.actors.hero.HeroSubClass;
+import com.watabou.pixeldungeon.items.Gold;
+
+public class Brute extends Mob {
+
+	public Brute() {
+
+		hp(ht(40));
+		baseAttackSkill = 15;
+		baseDefenseSkill = 20;
+		dmgMin = 8;
+		dmgMax = 18;
+
+		expForKill = 8;
+		maxLvl = 15;
+
+		dr = 8;
+
+		loot(Gold.class, 0.5f);
+
+		addImmunity( Terror.class );
+	}
+
+	@Override
+	public HeroSubClass getSubClass() {
+		return HeroSubClass.BERSERKER;
+	}
+}
+</code>
+
+===== Key Properties from Code =====
+  * **HP**: 40 (base hit points)
+  * **Attack Skill**: 15 (base attack skill level)
+  * **Defense Skill**: 20 (base defense skill level)
+  * **Damage**: 8-18 (damage range)
+  * **Defense Rating**: 8 (damage reduction)
+  * **Experience**: 8 (experience points for killing)
+  * **Max Level**: 15 (maximum level scaling)
+  * **Loot**: Gold (50% chance)
+  * **Immunities**: Terror buff
+  * **Hero Subclass**: Berserker (unlocks Berserker subclass for Warrior)
 
 ===== JSON Configuration =====
 This entity may have JSON configuration for spawning. Check:
@@ -27,5 +77,12 @@ This entity is implemented in Java, no Lua script exists
 ===== Additional Code References =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Base mob class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Gnoll.java|Gnoll.java]] - Gnoll parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shielded.java|Shielded.java]] - Subclass that extends Brute
+
+===== Related Entities =====
+  * **Gnoll**: [[mr:gnoll_mob|gnoll_mob]] - Parent mob class
+  * **Shielded**: [[mr:shielded_mob|shielded_mob]] - Subclass of Brute
+  * **English Page**: [[en:rpd:brute_mob|brute_mob]]
+  * **Russian Page**: [[ru:rpd:brute_mob|brute_mob]]
 
 {{tag> rpd mobs gnolls mr}}
