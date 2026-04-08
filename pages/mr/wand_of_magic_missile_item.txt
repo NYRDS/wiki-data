@@ -1,6 +1,8 @@
 ====== Wand Of Magic Missile Item - Code References ======
 
-==== Java Classes ====
+{{ rpd:images:wand_of_magic_missile_item.png|Wand of Magic Missile }}
+
+===== Java Classes =====
 This entity is implemented in Java:
   * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfMagicMissile.java
 
@@ -25,7 +27,7 @@ public class WandOfMagicMissile extends SimpleWand  {
 }
 </code>
 
-==== JSON Configuration ====
+===== JSON Configuration =====
 This entity is referenced in JSON configuration files:
   * RemixedDungeon/src/main/assets/hero/initHeroes.json - Starting equipment for Mage class
   * RemixedDungeon/src/main/assets/hero/initHeroesDebug.json - Debug starting equipment
@@ -40,7 +42,7 @@ This entity is referenced in JSON configuration files:
 }
 </code>
 
-==== String Resources ====
+===== String Resources =====
 <code xml>
 <!-- English strings (values/strings_all.xml) -->
 <string name="WandOfMagicMissile_Name">Wand of Magic Missile</string>
@@ -51,10 +53,10 @@ This entity is referenced in JSON configuration files:
 <string name="WandOfMagicMissile_ACDisenchant">Disenchant</string>
 </code>
 
-==== Lua Scripts ====
+===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
-==== Entity Registration ====
+===== Entity Registration =====
 The WandOfMagicMissile class is registered in the item factory:
   * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java
 
@@ -65,15 +67,17 @@ import com.watabou.pixeldungeon.items.wands.WandOfMagicMissile;
 registerItemClass(WandOfMagicMissile.class);
 </code>
 
-==== Game Mechanics ====
+===== Game Mechanics =====
   * **Type**: Wand (SimpleWand subclass)
   * **Damage**: Random.Int(1, 6 + level * 2) - scales with wand level
   * **Special Ability**: Disenchant - transfers energy to another wand
   * **Known Status**: Always known (isKnown() returns true)
   * **Image**: ItemSpriteSheet.WAND_MAGIC_MISSILE
 
-==== Related Entities ====
+===== Related Entities =====
   * Parent class: SimpleWand
   * Parent class: Wand
   * Used by: Mage class (starting equipment)
   * Related item: ScrollOfUpgrade (alternative upgrade method)
+
+{{tag> rpd wands items mr}}
