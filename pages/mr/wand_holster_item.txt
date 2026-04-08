@@ -1,21 +1,89 @@
-====== Wand Holster Item - Code References ======
+====== mr:wand_holster_item ======
 
-{{ rpd:images:wand_holster_item.png|Wand Holster }}
+Machine-readable reference page for Wand Holster item in Remixed Dungeon.
 
-===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/bags/WandHolster.java|WandHolster.java]]
+==== Java Implementation ====
 
-===== JSON Configuration =====
-  * This entity is implemented in Java, no JSON configuration exists
+**Class File:**
+  * File: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/bags/WandHolster.java|WandHolster.java]]
+  * Package: com.watabou.pixeldungeon.items.bags
+  * Extends: Bag
+  * Entity Kind: WandHolster
 
-===== String Resources =====
-<code xml>
-<string name="WandHolster_Name">wand holster</string>
-<string name="WandHolster_Info">This slim holder is made of leather of some exotic animal. It allows to compactly carry up to %d wands.</string>
+**Item Properties:**
+  * Type: Bag/Container
+  * Image: ItemSpriteSheet.HOLSTER
+  * Price: 50 gold
+  * Capacity: Holds up to a configurable number of wands (specified in WandHolster_Info string)
+
+==== Code Implementation ====
+
+<code java>
+package com.watabou.pixeldungeon.items.bags;
+
+import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
+
+public class WandHolster extends Bag {
+
+	{
+		image = ItemSpriteSheet.HOLSTER;
+	}
+
+	@Override
+	public int price() {
+		return 50;
+	}
+}
 </code>
 
-===== Lua Scripts =====
-  * This entity is implemented in Java, no Lua script exists
+==== String Resources ====
 
-===== Related mr Entities =====
-  * [[mr:wand_item|Wand (Item)]]
+**English (values/strings_all.xml):**
+  * WandHolster_Name - "wand holster"
+  * WandHolster_Info - "This slim holder is made of leather of some exotic animal. It allows to compactly carry up to %d wands."
+
+**Russian (values-ru/strings_all.xml):**
+  * WandHolster_Name - Russian item name
+  * WandHolster_Info - Russian description
+
+==== Acquisition ====
+
+**Primary Source:**
+  * Found in dungeon chests
+  * Available in shops
+
+**Alternative Sources:**
+  * Mod-dependent spawns
+
+==== Mechanics ====
+
+**Bag Functionality:**
+  * Extends Bag class for inventory management
+  * Specifically designed to hold wands
+  * Capacity defined by configuration (typically specified in the %d format string)
+
+**Price:**
+  * Fixed price of 50 gold when sold
+  * Uses price() method override
+
+==== Related Entities ====
+
+**Related Items:**
+  * [[mr:wand_item|mr:wand_item]] - Wands that can be stored
+  * [[mr:scroll_holder_item|mr:scroll_holder_item]] - Similar container for scrolls
+  * [[mr:potion_belt_item|mr:potion_belt_item]] - Similar container for potions
+
+==== Wiki Pages ====
+
+**English:**
+  * [[en:rpd:wand_holster_item|Wand Holster]] - Main wiki page
+
+**Russian:**
+  * [[ru:rpd:wand_holster_item|Кобура для жезлов]] - Russian wiki page
+
+==== Code References ====
+
+  * Item implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/bags/WandHolster.java|WandHolster.java]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+
+{{tag> mr items bag wand_holster reference machine-readable}}
