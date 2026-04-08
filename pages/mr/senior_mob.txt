@@ -1,22 +1,85 @@
 ====== Senior Mob - Code References ======
 
-{{ rpd:images:senior_mob.png|Senior }}
+{{ rpd:images:senior_mob.png|Senior Mob }}
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Senior.java|Senior.java]] - Main mob class extending Monk with stun attack
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Senior.java|Senior.java]]
+  * **Package**: com.watabou.pixeldungeon.actors.mobs
+  * **Parent Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Monk.java|Monk]]
+  * **Registration**: Registered in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]]
+
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.actors.mobs;
+
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.buffs.Stun;
+import com.watabou.utils.Callback;
+import com.watabou.utils.Random;
+
+import org.jetbrains.annotations.NotNull;
+
+public class Senior extends Monk {
+
+	{
+		spriteClass = "spritesDesc/Senior.json";
+		dmgMin = 12;
+		dmgMax = 20;
+	}
+
+	@Override
+	public int attackProc(@NotNull Char enemy, int damage ) {
+		if (Random.Int( 10 ) == 0) {
+			Buff.prolong( enemy, Stun.class, 1.1f );
+		}
+		return super.attackProc( enemy, damage );
+	}
+
+	@Override
+	public boolean actMeleeAttack(Char enemy) {
+		if (Random.Float() < 0.3f) {
+			// Play kick animation with callback to trigger attack logic
+			getSprite().playExtra("kick", new Callback() {
+				@Override
+				public void call() {
+					// After kick animation completes, perform the actual attack
+					if (isAlive()) {
+						onAttackComplete();
+					}
+				}
+			});
+			getSprite().turnTo(getPos(), enemy.getPos());
+			spend(attackDelay());
+			return false;
+		} else {
+			return super.actMeleeAttack(enemy);
+		}
+	}
+}
+</code>
+
+===== Key Properties from Code =====
+  * **HP**: Inherits from Monk parent class
+  * **Damage**: 12-20 (damage range)
+  * **Special Ability**: 10% chance to apply Stun buff for 1.1 seconds on attack
+  * **Animation**: 30% chance to play kick animation instead of normal attack
+  * **Sprite Configuration**: spritesDesc/Senior.json
+  * **Inheritance**: Extends Monk class
 
 ===== JSON Configuration =====
+This entity has JSON configuration for sprite:
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Senior.json|Senior.json]] - Sprite configuration
 
 ===== String Resources =====
 <code xml>
-<!-- English strings (values/strings_all.xml) -->
+<!-- English (values/strings_all.xml) -->
 <string name="Senior_Name">Senior</string>
 <string name="Senior_Name_Objective">Senior</string>
 <string name="Senior_Gender">0</string>
 <string name="Senior_Desc">A senior monk who moves fast and strikes with power.</string>
 
-<!-- Russian strings (values-ru/strings_all.xml) -->
+<!-- Russian (values-ru/strings_all.xml) -->
 <string name="Senior_Name">Старший</string>
 <string name="Senior_Name_Objective">Старшего</string>
 <string name="Senior_Gender">0</string>
@@ -26,14 +89,19 @@
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
-===== Implementation Details =====
-  * **Inheritance**: Extends [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Monk.java|Monk]] class
-  * **Damage Range**: 12-20 damage (dmgMin = 12, dmgMax = 20)
-  * **Special Ability**: 10% chance to apply [[en:rpd:stun_buff|Stun]] buff for 1.1 seconds on attack
-  * **Animation**: 30% chance to play kick animation instead of normal attack
-  * **Sprite Class**: Uses "spritesDesc/Senior.json" for sprite configuration
+===== Entity Kind =====
+  * getEntityKind(): Returns "Senior" (class name)
 
-===== Usage in Code =====
+===== Additional Code References =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Monk.java|Monk.java]] - Parent mob class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]] - Stun buff applied by Senior
   * Used in Badges.java to recognize Senior mob kills for rare mob badge
-  * Registered in MobFactory.java for mob instantiation
   * Found in temple areas alongside other monk-type enemies
+
+===== Related Entities =====
+  * **Monk**: [[mr:monk_mob|monk_mob]] - Parent mob class
+  * **Stun Buff**: [[mr:stun_buff|stun_buff]] - Buff applied by Senior's special attack
+  * **English Page**: [[en:rpd:senior_mob|senior_mob]]
+  * **Russian Page**: [[ru:rpd:senior_mob|senior_mob]]
+
+{{tag> rpd mobs monks mr}}
