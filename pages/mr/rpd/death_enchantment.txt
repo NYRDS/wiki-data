@@ -1,0 +1,77 @@
+====== mr:death_enchantment ======
+
+Machine-readable reference for the Death weapon enchantment in Remixed Dungeon.
+
+==== Entity Type ====
+Weapon Enchantment
+
+==== Java Implementation ====
+  * **Class**: `com.watabou.pixeldungeon.items.weapon.enchantments.Death`
+  * **File**: `RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Death.java`
+  * **Base Class**: `Weapon.Enchantment`
+  * **Package**: `com.watabou.pixeldungeon.items.weapon.enchantments`
+
+==== Proc Chance Formula ====
+Calculated in `proc()` method:
+  * **Formula**: `Random.Int(level + 100) >= 92`
+  * **Level 0**: 8% chance (values 92-99 out of 0-99)
+  * **Level 1**: 9% chance (values 92-99 out of 0-100)
+  * **Level 2**: 10% chance (values 92-99 out of 0-101)
+  * **General**: `(8 + level)%` approximately
+  * **Level Calculation**: `Math.max(0, weapon.level())` - negative levels treated as 0
+
+==== Effect ====
+When proc triggers:
+  * **Instant Kill**: `defender.damage(defender.hp(), this)` - deals damage equal to defender's current HP
+  * **Visual Effect**: `defender.getSprite().emitter().burst(ShadowParticle.UP, 5)` - black shadow particles
+  * **Returns**: `true` (proc occurred)
+
+When proc does not trigger:
+  * **Returns**: `false` (no special effect)
+
+==== Visual Appearance ====
+  * **Glow Color**: `BLACK` - `new Glowing(0x000000)` (pure black glow)
+  * **Method**: `glowing()` returns the black color for weapon display
+
+==== Badge Integration ====
+  * **Grim Weapon Badge**: `Badges.validateGrimWeapon()` called when:
+    * Death enchantment kills an enemy
+    * Attacker is a `Hero` instance
+    * Enemy dies as a result of the enchantment (not from other damage sources)
+
+==== Enemy Resistance ====
+  * Some enemies have resistance to death effects
+  * **Example**: `Warlock` mob has resistance to death-related effects
+  * Resistance is handled by the target's `resist()` method in `Char` class
+
+==== Affected Items ====
+  * Can be applied to any weapon that supports enchantments
+  * Applied via:
+    * `ScrollOfUpgrade` - can appear on upgraded weapons
+    * `ScrollOfEnchantment` - available as possible enchantment
+    * Shop purchases - may appear on pre-enchanted weapons
+
+==== String Resources ====
+  * Name key: `Death_Name`
+  * Description key: `Death_Info`
+  * Located in: `RemixedDungeon/src/main/res/values/strings_all.xml`
+  * Line references (approximate): L2204-L2205
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Death.java|Death.java - Full Implementation]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Enchantment.java|Enchantment.java - Base Class]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java - Damage and Resistance]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java - Grim Weapon Validation]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/particles/ShadowParticle.java|ShadowParticle.java - Visual Effect]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java|Warlock.java - Enemy with Resistance]]
+
+==== Related Enchantments ====
+  * Part of the weapon enchantment system
+  * Similar instant-kill or high-impact enchantments in the same package
+  * See `Enchantment.java` for registration and constants
+
+==== Wiki Pages ====
+  * English: [[en:rpd:death_enchantment|Death Enchantment]]
+  * Machine-readable namespace: `mr:death_enchantment`
+
+{{tag> mr enchantments weapons death reference instant_kill}}
