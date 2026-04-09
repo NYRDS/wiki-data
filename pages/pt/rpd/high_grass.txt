@@ -6,16 +6,25 @@
 Grama Alta é um terreno que bloqueia a visão, impedindo que o herói veja além dele até que seja explorado. Ela oculta itens preciosos como [[pt:rpd:dewdrop_item|Orvalho]], mas também pode esconder mobs perigosos.
 
 ==== Mecânicas ====
-  * **Visibilidade:** Bloqueia linha de visão até ser revelado
+  * **ID do Terreno:** 15 (constante Terrain.HIGH_GRASS)
+  * **Flags:** PASSABLE | LOS_BLOCKING | FLAMMABLE
+  * **Efeito de Pisoteamento:** Transforma-se em grama normal (Terrain.GRASS)
+  * **Visibilidade:** Normalmente não bloqueia linha de visão para o jogador
   * **Exploração:** Requer movimento físico para revelar o conteúdo
   * **Conteúdo:** Pode conter [[pt:rpd:dewdrop_item|Orvalho]], sementes ou mobs
   * **Movimentação:** Permite movimento normal sem penalidades
+  * **Itens Drops:** Pisotear pode produzir orvalho e sementes (chance aumenta com nível do Anel de Herbalismo)
+  * **Interações de Subclasse:**
+    - **Escoteiro:** Ganha 5 turnos de invisibilidade ao pisotear grama alta
+    - **Guardião:** Ganha pele de árvore (1/3 do HP) por um curto período ao pisotear grama alta
 
 ==== Estratégia ====
   * Revele gramas altas com cuidado, especialmente em áreas desconhecidas
   * Pode conter [[pt:rpd:dewdrop_item|Orvalho]] valioso que ajuda na cura
   * Esteja preparado para encontrar inimigos potenciais
   * Útil para táticas de emboscada ou esconderijo temporário
+  * Use as habilidades de subclasse ao pisotear para benefícios adicionais
+  * Considere usar o [[pt:rpd:ring_of_herbalism_item|Anel de Herbalismo]] para aumentar drops de sementes e orvalho
 
 ==== Referências de Código ====
   * Implementação: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Terrain.java|Terrain.java]]
