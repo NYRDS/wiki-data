@@ -1,20 +1,43 @@
 ====== Summon Beast Spell - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/spells/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/spells/*.java
+This entity is implemented in Lua, no Java class exists
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/spellsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/summon_beast.json
+This entity is implemented in Lua, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="SummonBeast_Name">[Name]</string>
-<string name="SummonBeast_Info">[Description]</string>
+<string name="SummonBeast_Name">Beast Call</string>
+<string name="SummonBeast_Info">Attempt to summon a horde of mighty beasts to obey your command.\nActual results may vary.</string>
+<string name="SummonBeast_AtYourCommand">At your command!</string>
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/SummonBeast.lua|SummonBeast.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/SummonBeast.lua|SummonBeast.lua]] - Main spell implementation
+
+===== Implementation Details =====
+  * **Script Location**: scripts/spells/SummonBeast.lua
+  * **Dependencies**: 
+    * scripts/lib/commonClasses (RPD)
+    * scripts/lib/spell
+  * **Spell Properties**:
+    * image = 3
+    * imageFile = "spellsIcons/hunting.png"
+    * name = "SummonBeast_Name"
+    * info = "SummonBeast_Info"
+    * magicAffinity = "Huntress"
+    * targetingType = "self"
+    * level = 4
+    * castTime = 1
+    * spellCost = 20
+  * **Behavior**:
+    * Spawns beasts in cells around the caster
+    * Beast pool: {"Snail", "Rat", "Crab", "Swarm", "Bat", "Spinner", "Scorpio", "Worm"}
+    * Beast selection based on skill level: math.random(skillLevel/2, skillLevel+1)
+    * Spawn chance: math.random() > 1/skillLevel
+    * Spawned beasts become hero's pets
+    * Beast says "SummonBeast_AtYourCommand" when summoned
+  * **Key Functions**:
+    * desc() - Returns spell description table
+    * cast(self, spell, caster) - Executes spell casting logic

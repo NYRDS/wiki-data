@@ -1,20 +1,38 @@
 ====== Wand Of Avalanche Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfAvalanche.java|WandOfAvalanche.java]] - Main wand implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/SimpleWand.java|SimpleWand.java]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - Base wand class (contains WandOfAvalanche in wand array)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration (line 318)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/WandMaker.java|WandMaker.java]] - NPC that can give this wand (line 110)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/wand_of_avalanche.json
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json|Treasury.json]] - Treasure room spawn configuration (weight: 5)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json|SpidersTreasury.json]] - Spider treasury spawn configuration (weight: 5)
 
 ===== String Resources =====
 <code xml>
-<string name="WandOfAvalanche_Name">[Name]</string>
-<string name="WandOfAvalanche_Info">[Description]</string>
+<string name="WandOfAvalanche_Name">Wand of Avalanche</string>
+<string name="WandOfAvalanche_Info">When a discharge of this wand hits a wall (or any other solid obstacle) it causes a rock slide, damaging and stunning all creatures in the area of effect.</string>
+<string name="WandOfAvalanche_Info1">You crushed yourself to death with your own Wand of Avalanche...</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Implementation Details =====
+  * **Package**: com.watabou.pixeldungeon.items.wands
+  * **Extends**: SimpleWand
+  * **Key Properties**:
+    * hitChars = false (doesn't hit characters directly)
+    * Creates rock slide effect when hitting walls
+    * Damage: Random.Int(2, 6 + (size - d) * 2) where size = 1 + level/3
+    * Stun chance: Random.Int(2 + d) == 0, duration: Random.IntRange(2, 6)
+    * Area of effect: PathFinder distance map with size = 1 + level/3
+    * Max distance: 8 + level
+  * **Effects**: 
+    * Speck.ROCK particle effect
+    * Camera shake: 3 intensity, 0.07f * (3 + (size - d)) duration
+    * Can stun affected creatures
+  * **Self-damage**: Can kill the hero if they hit a wall near themselves
