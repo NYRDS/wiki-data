@@ -2,13 +2,33 @@
 
 {{ rpd:images:knuckles_item.png|Knuckles }}
 
+===== Overview =====
+The Knuckles (also known as Knuckleduster) is a melee weapon in Remixed Dungeon. It is a basic weapon with low damage (1-1) and a speed factor of 0.5f, making it relatively slow but reliable.
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Knuckles.java|Knuckles.java]]
+  * **Main Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Knuckles.java|Knuckles.java]]
+    - Extends: `MeleeWeapon`
+    - Constructor: `super(1, 1f, 0.5f)` - damage: 1, accuracy factor: 1f, speed factor: 0.5f
+    - Image: `ItemSpriteSheet.KNUCKLEDUSTER`
+    - Description method: Returns `StringsManager.getVar(R.string.Knuckles_Info)`
+  * **Item Registration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+    - Registered via `registerItemClass(Knuckles.class)` at line 337
+  * **Shop Integration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/TownShopLevel.java|TownShopLevel.java]]
+    - Shopkeeper starts with a Knuckles: `shopkeeper.collect(new Knuckles().identify())` at line 72
+  * **Water of Transmutation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/WaterOfTransmutation.java|WaterOfTransmutation.java]]
+    - Special handling: Knuckles cannot be transmuted into other weapons (lines 76-79)
+    - When transmuted, returns a new Knuckles instance
+  * **Monk Disarm Immunity:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Monk.java|Monk.java]]
+    - Monks cannot disarm Knuckles from heroes (line 79)
+    - Check: `if (!(weapon instanceof Knuckles) && !weapon.isCursed() && enemy.getBelongings().drop(weapon))`
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check:
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/knuckles.json
+Knuckles appears in shop and treasury level configurations:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Shop_2021_03.json|Shop_2021_03.json]] - Spawned in shop level
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Shop_Town.json|Shop_Town.json]] - Spawned in town shop
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json|Treasury.json]] - Available in treasury loot (weight: 1)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json|SpidersTreasury.json]] - Available in spider's treasury (weight: 1)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/TownShopTreasury.json|TownShopTreasury.json]] - Available in town shop treasury (weight: 1)
 
 ===== String Resources =====
 English:
@@ -42,5 +62,10 @@ Other languages available in:
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related Pages =====
+  * [[en:rpd:knuckles_item|Knuckles (EN)]] - English wiki page
+  * [[en:rpd:melee_weapon_item|Melee Weapon]] - Parent item type
+  * [[en:rpd:monk_mob|Monk]] - Mob that cannot disarm Knuckles
 
 {{tag> rpd items weapons melee knuckles mr}}
