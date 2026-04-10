@@ -118,12 +118,15 @@ No dedicated Lua script for this mob. Uses default mob AI behavior.
   * [[mr:deep_snail_mob|Deep Snail]] - Faster variant found near water
 
 ===== Game Mechanics =====
-  * **Spawn Location**: Sewers (level 1-5)
+  * **Spawn Location**: Sewers (levels 1-5) - defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]
   * **Behavior**: Passive mob, slow movement
   * **Difficulty**: Easy enemy (low HP, low damage)
   * **Pet Potential**: Can be tamed with appropriate items
   * **Threat Level**: Low - suitable for early game combat practice
   * **Speed**: Slowest mob in the game (0.5 base speed)
+  * **Summoning**: Can be summoned by [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/spells/SummonBeast.lua|SummonBeast spell]]
+  * **Alchemy**: Carcass of Snail used in alchemy recipes (5 required for some recipes)
+  * **Quest**: Plague Doctor NPC quest requires 10 Carcass of Snail
 
 ===== Code Fragments =====
 Example of how Snail is loaded from JSON:
@@ -132,3 +135,9 @@ Example of how Snail is loaded from JSON:
 // The game reads mobsDesc/Snail.json and creates mob instance
 // Stats are applied from JSON properties to Mob object
 </code>
+
+===== Spawn Configuration =====
+From [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]:
+  * **Level 1**: Snail (weight: 1)
+  * **Level 2**: Snail (weight: 1), DeepSnail (weight: 0.03)
+  * **Level 4**: DeepSnail (weight: 0.1)
