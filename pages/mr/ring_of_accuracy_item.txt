@@ -4,10 +4,10 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfAccuracy.java|RingOfAccuracy.java]] - Main item class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java|Ring.java]] - Base ring class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.RingBuff.java#L19-L24|Ring.RingBuff.java]] - Base buff class for rings
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfAccuracy.java#L11-L15|RingOfAccuracy.Accuracy]] - Specific buff class that increases attack skill bonus
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfAccuracy.java#L17-L21|RingOfAccuracy.Accuracy]] - Specific buff class that increases attack skill bonus
 
 ===== JSON Configuration =====
-There are no specific JSON configuration files for this ring in the current assets directory.
+There are no specific JSON configuration files for this ring in the current assets directory. The ring is defined through Java code.
 
 ===== String Resources =====
 <code xml>
@@ -21,3 +21,12 @@ This entity is implemented in Java, no Lua script exists.
 ===== Item Mechanics =====
   * Provides attack skill bonus equal to ring level: level() bonus to attackSkill
   * Implemented through the Accuracy nested buff class
+  * The buff returns level() as the attack skill bonus (line 19 in RingOfAccuracy.java)
+  * Description is shown only when the ring is identified (isKnown() check on line 15)
+
+===== Implementation Details =====
+  * Extends Ring base class
+  * Contains nested Accuracy class that extends RingBuff
+  * Overrides buff() method to return Accuracy instance
+  * Overrides desc() method to provide conditional description
+  * Uses StringsManager for localization support
