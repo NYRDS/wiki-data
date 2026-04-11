@@ -1,20 +1,49 @@
 ====== Yogs Heart Mob - Code References ======
 
+{{ rpd:images:yogs_heart_mob.png|Yog's Heart }}
+
+**Yog's Heart** is a boss mob in Remixed Dungeon, part of the Yog-Dzewa boss encounter. It is one of the organs of the Old God that must be defeated.
+
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+  * Main implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsHeart.java|YogsHeart.java]]
+  * Parent class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * Mob factory registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] (line 208)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/yogs_heart.json
+  * Sprite configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/yogs_heart.json|yogs_heart.json]]
+  * Bestiary configuration: Referenced in boss encounter configurations
 
 ===== String Resources =====
 <code xml>
-<string name="YogsHeart_Name">[Name]</string>
-<string name="YogsHeart_Info">[Description]</string>
+<!-- English (values/strings_all.xml) -->
+<string name="YogsHeart_Name">Yog's Heart</string>
+<string name="YogsHeart_Desc">For centuries people believed that only heartless creatures were capable of pure evil. And here it is, the great beating heart of the Old God himself.</string>
+<string name="YogsHeart_Name_Objective">Yog's Heart</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="YogsHeart_Name">Сердце Йога</string>
+<string name="YogsHeart_Desc">Испокон веков люди верили, что лишь бессердечные создания способны на по-настоящему злые поступки. Вопреки этому, ты видишь перед собой огромное бьющееся сердце Старого Бога.</string>
+<string name="YogsHeart_Gender">neuter</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Implementation Details =====
+  * **HP**: 450 (ht(450))
+  * **Base Defense Skill**: 40
+  * **Base Attack Skill**: 26
+  * **Damage Range**: 35-45
+  * **Damage Reduction**: 22
+  * **Experience for Kill**: 12
+  * **Immunities**: ToxicGas, Paralysis, Amok, Sleep, Terror, Burning
+  * **Special Ability**: When damaged, beckons all nearby mobs to its position
+  * **Location**: Found in the Yog-Dzewa boss encounter
+  * **Boss Type**: Part of the multi-organ Yog-Dzewa boss fight
+
+===== Related mr Entities =====
+  * [[mr:yogs_brain_mob|Yog's Brain]]
+  * [[mr:yogs_eye_mob|Yog's Eye]]
+  * [[mr:burning_fist_mob|Burning Fist]]
+  * [[mr:rotting_fist_mob|Rotting Fist]]
+  * [[mr:yogs_teeth_mob|Yog's Teeth]]

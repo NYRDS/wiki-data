@@ -5,13 +5,12 @@
 **Magic Arrow** is a spell in Remixed Dungeon described as "Good old magic arrow, the right choice when you run out of ammo." This is an Elf affinity spell available to Elf class heroes.
 
 ===== Java Classes =====
-  * This spell is referenced in hero initialization files, implementation details are in Lua scripts
-  * Spell system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/lua/Spells.java|Spells.java]] (Lua spell integration)
+  * Spell system integration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/lua/Spells.java|Spells.java]] (Lua spell integration)
   * Hero initialization: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] (spell registration)
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] - Registered as Elf spell (line 127)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroesDebug.json|initHeroesDebug.json]] - Debug version registration (line 127)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] - Registered as Elf spell
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroesDebug.json|initHeroesDebug.json]] - Debug version registration
 
 ===== String Resources =====
 <code xml>
@@ -88,23 +87,28 @@
 </code>
 
 ===== Lua Scripts =====
-Note: Lua script files for this spell are not present in the current codebase. The spell is registered in hero initialization files and uses the Lua spell system.
+  * Main implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/MagicArrow.lua|MagicArrow.lua]]
+  * Spell list registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]] (line 15)
 
-  * Spell registration: Referenced in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] as "MagicArrow"
-  * Spell category: Elf spells
-
-===== Spell Configuration (from Hero Init) =====
+===== Spell Configuration (from Lua Script) =====
   * **Magic Affinity**: Elf
-  * **Spell Category**: Elf spells (CustomSpellsList)
-  * **Usage**: Available to Elf class heroes
+  * **Targeting Type**: char_not_self (targets other characters)
+  * **Level**: 1
+  * **Mana Cost**: 5 (spellCost)
+  * **Cast Time**: 0.1 turns
+  * **Cooldown**: 1 turn
+  * **Image File**: spellsIcons/naturegift.png
+  * **Effect**: Deals random damage between 1 and caster's HT/2 to the target
+  * **Visual Effect**: Magic arrow zap effect from caster to victim
 
 ===== Implementation Details =====
-  * **Location**: Referenced in hero/initHeroes.json
-  * **Dependencies**: Lua spell system (Spells.java)
+  * **Location**: RemixedDungeon/src/main/assets/scripts/spells/MagicArrow.lua
+  * **Dependencies**: Lua spell system (Spells.java), commonClasses (RPD)
   * **Spell Type**: Ranged damage spell (arrow-based)
+  * **Damage Formula**: math.random(1, caster:ht()/2)
+  * **Zap Effect**: Uses "magic_arrow" effect type
 
 ===== Related mr Entities =====
   * [[mr:elf_class|Elf Class]]
   * [[mr:elf_affinity|Elf Affinity]]
-  * [[mr:witchcraft_affinity|Witchcraft Affinity]]
   * [[mr:magic_arrow_item|Magic Arrow (Item)]]
