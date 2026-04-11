@@ -1,0 +1,67 @@
+====== Freerunner Subclass - Machine Reference ======
+
+This page provides machine-readable reference data for the Freerunner hero subclass in Remixed Dungeon.
+
+===== Overview =====
+The Freerunner is one of two mastery paths available to the [[mr:rogue_class|Rogue]] hero class, specializing in evasion, speed, and mobility. The Freerunner excels at avoiding damage and moving quickly through the dungeon, making them highly survivable despite lower offensive capabilities.
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Enum definition for FREERUNNER subclass (line 48)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/FreeRunnerArmor.java|FreeRunnerArmor.java]] - Class armor for Freerunner subclass
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/RogueArmor.java|RogueArmor.java]] - Parent class for Freerunner armor
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/TomeOfMastery.java|TomeOfMastery.java]] - Mastery selection for Freerunner (line 85)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndClass.java|WndClass.java]] - UI window for class selection (line 104)
+
+===== JSON Configuration =====
+This entity is implemented in Java as an enum constant, no dedicated JSON configuration file exists. The subclass is defined in the HeroSubClass enum with the following properties:
+  * **Enum Constant**: FREERUNNER
+  * **String Resource Keys**: HeroSubClass_NameFreR, HeroSubClass_DescFreR
+  * **Armor Class**: "FreeRunnerArmor"
+
+===== String Resources =====
+<code xml>
+<string name="HeroSubClass_NameFreR">freerunner</string>
+<string name="HeroSubClass_DescFreR">The _Freerunner_ is harder to hit and moves faster than other heroes.</string>
+</code>
+
+Additional string resources for Rogue armor (used by Freerunner):
+<code xml>
+<string name="RogueArmor_Name">Rogue armor</string>
+<string name="RogueArmor_Info">This dark armor will allow the Rogue to use the "Smoke Bomb" ability.
+When wearing this armor, the Rogue can become invisible for a short time.</string>
+<string name="RogueArmor_NotRogue">Only rogues can use this armor!</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented entirely in Java, no Lua scripts exist for the Freerunner subclass.
+
+===== Implementation Details =====
+  * **Enum Name**: FREERUNNER (HeroSubClass.java line 48)
+  * **Armor Class**: FreeRunnerArmor
+  * **Parent Class**: Rogue hero class (freerunner is a subclass/mastery path of Rogue)
+  * **Alternative Subclass**: [[mr:assassin_subclass|Assassin]] (the other Rogue mastery path)
+  * **Special Ability**: Smoke Bomb (inherited from Rogue armor) - allows the Rogue to become invisible for a short time
+  * **Passive Bonuses**: Increased evasion and movement speed
+  * **Haste Level**: 0 (no built-in haste, unlike Scout subclass)
+
+===== Code Behavior =====
+From FreeRunnerArmor.java:
+  * Only heroes with Rogue class can equip this armor
+  * Other classes receive warning: "Only rogues can use this armor!" (R.string.RogueArmor_NotRogue)
+  * Provides enhanced evasion and speed bonuses
+
+From TomeOfMastery.java:
+  * Freerunner is one of two mastery choices available to Rogue class heroes
+  * Selected at line 85: way2 = HeroSubClass.FREERUNNER
+
+From HeroSubClass.java:
+  * No special attackProc() behavior (unlike Assassin which has surprise attack bonus)
+  * No special defenceProc() behavior
+  * Immunities and resistances loaded from JSON configuration if available
+
+===== Related mr Entities =====
+  * [[mr:rogue_class|Rogue (Class)]] - Parent hero class
+  * [[mr:assassin_subclass|Assassin (Subclass)]] - Alternative Rogue subclass
+  * [[mr:freerunner_armor_item|Freerunner Armor (Item)]] - Class-specific armor
+  * [[mr:tome_of_mastery_item|Tome of Mastery (Item)]] - Item used to select subclass
+  * [[mr:rogue_armor_item|Rogue Armor (Item)]] - Base armor class for Freerunner armor

@@ -1,0 +1,66 @@
+====== Rogue Class - Machine Reference ======
+
+This page provides machine-readable reference data for the Rogue hero class in Remixed Dungeon.
+
+===== Overview =====
+The Rogue is one of the base hero classes in Remixed Dungeon, specializing in stealth, evasion, and surprise attacks. The Rogue starts with a dagger and has access to the Smoke Bomb special ability through their class armor. When choosing a mastery path, Rogues can become either an [[mr:assassin_subclass|Assassin]] or a [[mr:freerunner_subclass|Freerunner]].
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Enum definition for ROGUE class (line 56)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/RogueArmor.java|RogueArmor.java]] - Class armor for Rogue hero
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/TomeOfMastery.java|TomeOfMastery.java]] - Mastery selection system
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] - Badge tracking for MASTERY_ROGUE
+
+===== JSON Configuration =====
+This entity is implemented in Java as an enum constant, no dedicated JSON configuration file exists. The class is defined in the HeroClass enum with the following properties:
+  * **Enum Constant**: ROGUE
+  * **String Resource Keys**: HeroClass_Rog (title), HeroClass_RogPerks (perks list)
+  * **Armor Class**: "RogueArmor"
+  * **Badge**: MASTERY_ROGUE
+
+===== String Resources =====
+<code xml>
+<string name="HeroClass_Rog">rogue</string>
+</code>
+
+Rogue armor string resources:
+<code xml>
+<string name="RogueArmor_Name">Rogue armor</string>
+<string name="RogueArmor_Info">This dark armor will allow the Rogue to use the "Smoke Bomb" ability.
+When wearing this armor, the Rogue can become invisible for a short time.</string>
+<string name="RogueArmor_NotRogue">Only rogues can use this armor!</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented entirely in Java, no Lua scripts exist for the Rogue class.
+
+===== Implementation Details =====
+  * **Enum Name**: ROGUE (HeroClass.java line 56)
+  * **Armor Class**: RogueArmor
+  * **Mastery Badge**: MASTERY_ROGUE
+  * **Subclasses**: [[mr:assassin_subclass|Assassin]] (surprise attack bonus), [[mr:freerunner_subclass|Freerunner]] (evasion and speed)
+  * **Special Ability**: Smoke Bomb - allows the Rogue to become invisible for a short time
+  * **Gender**: MASCULINE (default)
+  * **Tag**: "rogue" (from name().toLowerCase())
+  * **Class Index**: 2 (ordinal() - 1)
+
+===== Code Behavior =====
+From HeroClass.java:
+  * ROGUE is the default class when restoring from bundle (line 276)
+  * Uses RogueArmor.class as its armor class
+  * Has mastery badge MASTERY_ROGUE
+  * Perks retrieved from R.array.HeroClass_RogPerks
+
+From RogueArmor.java:
+  * Only heroes with Rogue class can equip this armor
+  * Other classes receive warning: "Only rogues can use this armor!" (R.string.RogueArmor_NotRogue)
+  * Provides Smoke Bomb ability for temporary invisibility
+
+===== Related mr Entities =====
+  * [[mr:assassin_subclass|Assassin (Subclass)]] - One of two Rogue mastery paths
+  * [[mr:freerunner_subclass|Freerunner (Subclass)]] - Alternative Rogue subclass
+  * [[mr:rogue_armor_item|Rogue Armor (Item)]] - Class-specific armor
+  * [[mr:tome_of_mastery_item|Tome of Mastery (Item)]] - Item used to select subclass
+  * [[mr:warrior_class|Warrior (Class)]] - Another base hero class
+  * [[mr:mage_class|Mage (Class)]] - Another base hero class
+  * [[mr:huntress_class|Huntress (Class)]] - Another base hero class
