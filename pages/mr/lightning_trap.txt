@@ -1,0 +1,57 @@
+====== Lightning Trap - Code References ======
+
+{{ rpd:images:lightning_trap_level_object.png|Lightning Trap }}
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/LightningTrap.java|LightningTrap.java]]
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists
+
+===== String Resources =====
+<code xml>
+<string name="LightningTrap_Name">lightning trap</string>
+<string name="LightningTrap_Desc">You were killed by a discharge of a lightning trap...</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists
+
+===== Entity Implementation Details =====
+  * **Package:** com.watabou.pixeldungeon.levels.traps
+  * **Base Interface:** ITrigger
+  * **Entity Kind:** LightningTrap
+  * **Type:** Trap (level object)
+  * **Damage Type:** Electricity (LightningTrap.Electricity)
+  * **Damage Formula:** Math.max(1, Random.Int(ch.hp() / 3, 2 * ch.hp() / 3))
+  * **Damage Range:** 1/3 to 2/3 of target's current HP (minimum 1)
+  * **Visual Effect:** Lightning bolts in cross pattern (horizontal and vertical)
+  * **Camera Effect:** Camera shake (2 intensity, 0.3f duration) for hero
+  * **Particle Effect:** SparkParticle burst (3-4 particles)
+  * **Hero Equipment Effect:** Charges or discharges all equipment (ch.getBelongings().charge(false))
+
+===== Damage Type =====
+  * **Electricity Class:** LightningTrap.Electricity implements NamedEntityKind
+  * **Entity Kind Name:** "Electricity"
+  * **Used For:** Damage identification and resistance calculations
+
+===== Trigger Behavior =====
+  * **Activation:** Immediate when creature steps on trap
+  * **Target:** Creature at trap position (can be passed as parameter or found via Actor.findChar)
+  * **Area Effect:** Lightning extends in 4 directions (up, down, left, right) from center
+  * **Death Message:** "You were killed by a discharge of a lightning trap..."
+
+===== Related Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/Trap.java|Trap.java]] - base trap implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/Lightning.java|Lightning.java]] - lightning visual effect
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/particles/SparkParticle.java|SparkParticle.java]] - spark particle effect
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - character damage handling
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/belongings/Belongings.java|Belongings.java]] - equipment charging
+
+===== Related mr Entities =====
+  * [[mr:traps|Traps]] - General trap mechanics
+  * [[mr:electricity_debuff|Electricity (Debuff)]] - Lightning damage type
+  * [[mr:shaman_mob|Shaman (Mob)]] - Has lightning resistance
+  * [[mr:yogs_brain_mob|Yog's Brain (Mob)]] - Has lightning resistance
+
+{{tag> mr trap lightning electricity damage}}
