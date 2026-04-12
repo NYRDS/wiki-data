@@ -1,0 +1,87 @@
+{{ rpd:images:armor_kit_item.png|Armor Kit }}
+
+====== Armor Upgrades ======
+
+Armor upgrades in Remixed Dungeon enhance defensive capabilities through various mechanisms.
+
+==== Upgrade Methods ====
+
+===== Scroll of Upgrade =====
+The [[en:rpd:scroll_of_upgrade_item|Scroll of Upgrade]] can be used on any armor piece to:
+  * Increase the armor's level by +1
+  * Remove curses from the armor
+  * Potentially add or remove a glyph (random chance when armor has no glyph)
+  * Increase defense rating: DR = tier × 2 + level × tier (+ tier if glyphed)
+
+**Important:** When upgrading armor with a glyph, there's a chance the glyph may be lost if the armor's current level is low. The formula is: if Random.Int(level()) > 0, the glyph is removed.
+
+===== Armor Kit =====
+The [[en:rpd:armor_kit_item|Armor Kit]] is a special item that:
+  * Transforms regular armor into class-specific armor
+  * Cannot be upgraded itself (isUpgradable() returns false)
+  * Is already identified when found
+  * Is dropped by the [[en:rpd:king_mob|King]] boss
+  * When used, prompts the player to select an armor to transform
+  * Creates a new ClassArmor instance specific to the hero's class
+
+==== Class Armor System ====
+Class armor is a special type of armor unique to each hero class:
+  * **Warrior**: Cuirass of the Warrior
+  * **Mage**: Robe of the Mage
+  * **Rogue**: Garb of the Rogue
+  * **Huntress**: Suit of the Huntress
+  * **Elf**: Elven Armor
+  * **Necromancer**: Necromancer's Robes
+
+Class armor provides enhanced defensive capabilities and may have special properties unique to the hero class.
+
+==== Armor Defense Calculation ====
+The effective defense rating (DR) of armor is calculated as:
+  * **Base DR**: tier × 2
+  * **Per Level**: +tier per upgrade level
+  * **With Glyph**: +tier additional DR
+  * **Formula**: effectiveDr() = tier × 2 + level() × tier + (glyph != null ? tier : 0)
+
+For example, a tier 3 armor at +2 with a glyph has: DR = 3×2 + 2×3 + 3 = 15
+
+==== Glyph Interactions ====
+Armor can have glyphs (special enchantments) that:
+  * Provide additional defensive effects
+  * May be lost during upgrade if Random.Int(level()) > 0
+  * Are guaranteed to stay if the armor is being inscribed during upgrade
+  * Add +tier to the armor's defense rating
+
+==== Strength Requirements ====
+Armor has strength requirements based on tier:
+  * **Formula**: typicalSTR() = 7 + tier × 2
+  * **Examples**: Tier 1 = 9 STR, Tier 2 = 11 STR, Tier 3 = 13 STR
+  * Wearing armor without sufficient STR imposes penalties
+
+==== Identification Mechanics ====
+  * New armor starts unidentified
+  * Requires 10 hits taken while wearing to identify
+  * Once identified, shows the armor's level and stats
+  * Badges are awarded when item level is acquired
+
+==== Strategy ====
+  * Use Scroll of Upgrade on high-tier armor for maximum DR increase
+  * Be aware that glyphs may be lost during upgrades
+  * Save Armor Kit for the best armor you can find
+  * Consider strength requirements when planning armor upgrades
+  * Class armor is generally superior to regular armor of the same tier
+
+==== Source Code ====
+  * Armor Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]]
+  * Armor Upgrade Logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L70-L82|Armor.upgrade() method]]
+  * Armor Kit: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java|ArmorKit.java]]
+  * Class Armor: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]]
+  * Armor Glyphs: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/|glyphs/ directory]]
+
+==== See Also ====
+  * [[en:rpd:upgradeable_items|Upgradeable Items]]
+  * [[en:rpd:glyphs|Glyphs]]
+  * [[en:rpd:scroll_of_upgrade_item|Scroll of Upgrade]]
+  * [[en:rpd:armor_kit_item|Armor Kit]]
+  * [[en:rpd:king_mob|King (Boss)]]
+
+{{tag> rpd items armor upgrades mechanics }}

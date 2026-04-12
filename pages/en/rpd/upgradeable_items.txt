@@ -17,14 +17,15 @@ Upgradeable items are items in Remixed Dungeon that can be enhanced with scrolls
     * Does not add special properties like enchantments or inscriptions
   * **Scroll of Weapon Upgrade** - Specifically for weapon upgrades
     * Also adds a random enchantment to the weapon when upgraded
-  * **Scroll of Armor Upgrade** - Specifically for armor upgrades
-    * Also adds a random inscription to the armor when upgraded
+  * **Armor Kit** - Special item that upgrades armor to class-specific armor
+    * Transforms regular armor into class armor (e.g., Warrior's Cuirass, Mage's Robe)
+    * Found as a drop from the [[en:rpd:king_mob|King]] boss
   * **Special Abilities** - Some hero classes and subclasses have abilities to upgrade items
   * **NPC Services** - Some NPCs may provide item upgrade services
 
 ==== Effects of Upgrading ====
-  * **Weapons** - Increased damage range (min/max), potential enchantment addition
-  * **Armor** - Increased blocking power, potential inscription addition
+  * **Weapons** - Increased damage range (min/max), potential enchantment addition (with Scroll of Weapon Upgrade)
+  * **Armor** - Increased defense power (DR = tier * 2 + level * tier), potential glyph addition (with Scroll of Upgrade, may lose existing glyph)
   * **Rings** - Increased effect potency of the ring's special property
   * **Curses** - Upgrading removes curses from items
 
@@ -38,7 +39,9 @@ Upgradeable items are items in Remixed Dungeon that can be enhanced with scrolls
   * Item Upgrade System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java#L338-L370|Item.upgrade() and Item.degrade() methods]]
   * Weapon Upgrade System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java#L184-L196|Weapon.upgrade() method]]
   * Armor Upgrade System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L70-L82|Armor.upgrade() methods]]
+  * Armor Kit (Class Armor): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java|ArmorKit.java]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.upgrade()]]
   * Scroll of Upgrade: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfUpgrade.java|ScrollOfUpgrade.java]]
+  * Scroll of Weapon Upgrade: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfWeaponUpgrade.java|ScrollOfWeaponUpgrade.java]]
 
 ==== See Also ====
   * [[en:rpd:scroll_of_upgrade_item|Scroll of Upgrade]]

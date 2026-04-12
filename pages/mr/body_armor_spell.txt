@@ -20,7 +20,15 @@ This page contains raw code references and configuration excerpts for the Body A
 **Note:** No dedicated spell configuration file found in spellsDesc/ directory
 
 ==== Lua Implementation ====
-  * **No Lua script found** - Entity may be implemented through Java code or JSON configuration only
+  * **Spell script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/BodyArmor.lua|BodyArmor.lua]]
+    - Defines spell properties: magicAffinity = "Combat", targetingType = "self", level = 1, spellCost = 5, cooldown = 20, castTime = 0.5
+    - Cast function applies BodyArmor buff for duration: 15+10*caster:skillLevel()
+    - Sets buff level to caster's skill level
+    - Triggers "body_armor" top effect and sound
+  * **Buff script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/BodyArmor.lua|BodyArmor.lua (buff)]]
+    - drBonus function: armor bonus = (buff.target:effectiveSTR()-10) * (1 + buff:level())
+    - speedMultiplier function: returns 0.85 (15% speed reduction)
+    - Buff detaches on act (single-use trigger)
 
 ==== String Resources ====
   * **English:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
