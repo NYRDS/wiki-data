@@ -1,14 +1,28 @@
 ====== Spider Mind Mob - Code References ======
 
+{{ rpd:images:spider_mind_mob.png|Spider Mind }}
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderMind.java|SpiderMind.java]] - Main implementation
+    - Location: com.nyrds.pixeldungeon.mobs.spiders
+    - Extends: Mob
+    - HP: 5 (base), Max Level: 9, EXP: 6
+    - Attack: 10, Defense: 1, Speed: 1.0
+    - Damage: 0-0 (relies on zapProc for damage)
+    - Loot: MysteryMeat (6.7% chance)
+  * Key behaviors:
+    - Ranged-only attacker (canAttack returns CharUtils.canDoOnlyRangedAttack)
+    - Zapping proc buffs friendly mobs with random buffs (Speed, Barkskin, Blessed, Sungrass.Health, Earthroot.Armor, ManaShield, Fury)
+    - Gets further from enemies when in Hunting state (cowardly behavior)
+    - Buffs allies within field of view with visual shaft particle effects
 
 ===== JSON Configuration =====
 This entity may have JSON configuration, but no matching config was found. Check:
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
+  * RemixedDungeon/src/main/assets/mobsDesc/spider_mind.json
   * RemixedDungeon/src/main/assets/spritesDesc/spider_mind.json
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
 <string name="SpiderMind_Name">Psi-Spider</string>
 <string name="SpiderMind_Gender">masculine</string>
@@ -17,7 +31,18 @@ This entity may have JSON configuration, but no matching config was found. Check
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
+
+===== Mob Mechanics =====
+  * **Type**: Spider mob (spider colony)
+  * **Behavior**: Support/coward - buffs allies and avoids combat
+  * **Special Ability**: Zapping proc that randomly buffs friendly mobs in field of view
+  * **AI Pattern**: Gets further from enemies (cowardly), prefers ranged attacks
+  * **Habitat**: Spider-related levels (likely Spider's Nest)
+  * **Buffs Applied**: Speed, Barkskin, Blessed, Sungrass.Health, Earthroot.Armor, ManaShield, Fury
+  * **Visual Effects**: Shaft particle effects when buffing allies
 
 ===== Related mr Entities =====
-  * [[mr:spider_mind_amber_mob|Spider Mind Amber (Mob)]]
+  * [[mr:spider_mind_amber_mob|Spider Mind Amber (Mob)]] - Related spider entity
+  * [[mr:spider_queen_mob|Spider Queen (Mob)]] - Likely boss of spider colony
+  * [[mr:spider_egg_mob|Spider Egg (Mob)]] - Spider lifecycle entity
