@@ -5,26 +5,48 @@
 **Food** is a category of items that satiate the hero's hunger and restore health.
 
 ==== Description ====
-Food is necessary for survival in the dungeon. Without food, the hero will starve and eventually die of hunger.
+Food is necessary for survival in the dungeon. Without food, the hero will starve and eventually die of hunger. When the hero's hunger reaches critical levels, they begin to lose health and suffer from the [[en:rpd:hunger_buff|Hunger]] debuff.
 
 ==== Types of Food ====
   * [[en:rpd:ration_item|Ration]] - standard food that fully satisfies hunger
-  * [[en:rpd:overpriced_ration_item|Overpriced Ration]] - more expensive but equally nutritious food
-  * [[en:rpd:mystery_meat_item|Mystery Meat]] - can cause negative effects
-  * [[en:rpd:chargrilled_meat_item|Chargrilled Meat]] - safe cooked food
-  * [[en:rpd:rotten_ration_item|Rotten Ration]] - spoiled food that's harmful to health
-  * [[en:rpd:christmas_turkey_item|Christmas Turkey]] - special food that doesn't spoil
-  * [[en:rpd:pumpkin_pie_item|Pumpkin Pie]] - seasonal food
+  * [[en:rpd:overpriced_ration_item|Overpriced Ration]] - more expensive but equally nutritious food found in shops
+  * [[en:rpd:mystery_meat_item|Mystery Meat]] - raw meat from defeated monsters that can cause negative effects like [[en:rpd:nausea_buff|Nausea]] or [[en:rpd:poison_buff|Poison]]
+  * [[en:rpd:chargrilled_meat_item|Chargrilled Meat]] - safe cooked food made by cooking mystery meat on a [[en:rpd:fire_trap_level_object|Fire Trap]]
+  * [[en:rpd:rotten_ration_item|Rotten Ration]] - spoiled food that's harmful to health and causes [[en:rpd:nausea_buff|Nausea]]
+  * [[en:rpd:christmas_turkey_item|Christmas Turkey]] - special seasonal food that doesn't spoil
+  * [[en:rpd:pumpkin_pie_item|Pumpkin Pie]] - seasonal food available during autumn
 
 ==== Effects ====
-  * Satiates the hero's hunger
-  * Some types of food may provide temporary buffs
-  * Some types of food may cause negative effects
-  * Some types of food do not spoil when exposed to toxic gas
+  * Satiates the hero's hunger, preventing starvation
+  * Some types of food may provide temporary buffs (e.g., Christmas Turkey)
+  * Some types of food may cause negative effects (e.g., Mystery Meat, Rotten Ration)
+  * Some types of food do not spoil when exposed to toxic gas (e.g., Ration, Overpriced Ration)
+  * Food items have a spoilage mechanic - they can become [[en:rpd:rotten_ration_item|Rotten Ration]] over time or when exposed to [[en:rpd:toxic_gas_level_object|Toxic Gas]]
+
+==== Hunger Mechanics ====
+The hunger system works as follows:
+  * The hero has a hunger meter that depletes over time
+  * When hunger is critical, the hero receives a warning message
+  * Prolonged starvation causes health damage and eventually death
+  * Eating food restores the hunger meter to varying degrees depending on the food type
+
+==== Strategy ====
+  * Always carry at least one food item when exploring new levels
+  * Cook [[en:rpd:mystery_meat_item|Mystery Meat]] on [[en:rpd:fire_trap_level_object|Fire Traps]] to make it safe
+  * Rations are more reliable than Mystery Meat for sustained exploration
+  * Be cautious with Rotten Ration - it's better to discard it than risk the negative effects
+  * Seasonal foods (Christmas Turkey, Pumpkin Pie) are valuable because they don't spoil
+
+==== Code References ====
+  * Java class: `com.watabou.pixeldungeon.actors.buffs.Hunger`
+  * Food items extend the `Food` class in the game code
+  * Hunger mechanics are managed by the `Hunger` buff system
 
 ==== See Also ====
   * [[en:rpd:energy_system|Energy System]]
   * [[en:rpd:cooking|Cooking]]
   * [[en:rpd:hunger_buff|Hunger]]
+  * [[en:rpd:nausea_buff|Nausea]]
+  * [[en:rpd:fire_trap_level_object|Fire Trap]]
 
-{{tag> rpd items food }}
+{{tag> rpd items food consumables}}

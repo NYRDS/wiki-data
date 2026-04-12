@@ -2,63 +2,70 @@
 
 {{ rpd:images:exhumation_spell.png|Exhumation Spell }}
 
-Exhumation is a necromantic ability for the [[en:rpd:necromancer_class|Necromancer]] class that allows the performer to open graves and potentially subdue the soul of one lying within.
+**Exhumation** is a necromantic ability for the [[en:rpd:necromancer_class|Necromancer]] class that allows the performer to open graves and potentially subdue the soul of one lying within.
 
 ==== Description ====
 Opening the tomb is a sinister act on its own, but not enough for someone serving Death itself. The performer of this Dark Ritual has a great chance (and it will grow with the performer's mastery) to subdue a poor soul of one lying in the grave. This ability allows Necromancers to recruit additional undead minions from burial sites.
 
 ==== Stats ====
   * **Magic Affinity:** [[en:rpd:spell_affinities|Necromancy]]
-  * **Targeting:** cell
+  * **Targeting:** Cell
   * **Level:** 2
   * **Mana Cost:** 10
   * **Cast Time:** 2 turns
 
 ==== Mechanics ====
-  * **Location Requirement:** Must be used on a grave or burial site
-  * **Success Chance:** Probability increases with the Necromancer's mastery
-  * **Result:** Potentially raises a new undead minion from the grave
-  * **Type:** Usually raises a basic undead creature
-  * When cast on a tomb or skeleton heap, the spell:
-    * Opens the grave and raises any contents
-    * Has a chance to convert nearby [[en:rpd:wraith_mob|Wraiths]] into the caster's pet based on the caster's magic level
-    * Formula: chance = 1 - (1 / (caster:magicLvl() + 1))
+  * **Location Requirement:** Must be used on a [[en:rpd:heap_item|Heap]] of type TOMB or SKELETON
+  * **Grave Opening:** Opens the grave/heap and reveals its contents
+  * **Wraith Taming:** Has a chance to convert nearby [[en:rpd:wraith_mob|Wraiths]] into the caster's pet
+  * **Success Formula:** `chance = 1 - (1 / (caster:magicLvl() + 1))`
+    * At magic level 0: 0% chance
+    * At magic level 1: 50% chance
+    * At magic level 2: 66.7% chance
+    * At magic level 3: 75% chance
+    * Approaches 100% as magic level increases
+  * **Area of Effect:** Checks the 4 adjacent cells (up, down, left, right) from the caster's position
 
 ==== Usage ====
-  * **Prerequisite:** A grave or burial site must be present
-  * **Class Ability:** Exclusively for [[en:rpd:necromancer_class|Necromancer]] class
-  * **Tactical:** Can add to the Necromancer's undead army
-  * **Resource:** Uses existing dungeon features (graves) for advantage
+  * **Prerequisite:** A tomb or skeleton heap must be present
+  * **Class Ability:** Exclusively for [[en:rpd:necromancer_class|Necromancer]] class and related subclasses
+  * **Tactical:** Can add to the Necromancer's undead army by taming wraiths
+  * **Resource:** Uses existing dungeon features (graves/tombs) for advantage
+  * **Cell Targeting:** Must target a valid heap cell to activate
 
 ==== Classes ====
 Classes that can use this spell include:
-  * Classes with [[en:rpd:spell_affinities|Necromancy]] affinity
-  * [[en:rpd:necromancer_class|Necromancer]] class and related subclasses
+  * [[en:rpd:necromancer_class|Necromancer]] class
+  * Subclasses with [[en:rpd:spell_affinities|Necromancy]] affinity
 
 ==== Strategy ====
-  * Look for levels with graves for this ability's maximum effectiveness
-  * Particularly useful on levels with tombstones or burial themes
+  * Look for levels with graves, tombs, or skeleton heaps for this ability's maximum effectiveness
+  * Particularly useful on levels with tombstones or burial themes (e.g., [[en:rpd:necropolis_level|Necropolis]])
   * Can supplement other summoning abilities when resources are low
-  * Higher success rate with increased skill level
+  * Higher magic level significantly increases the chance to tame wraiths
   * Provides tactical flexibility in minion management
   * Best used when wraiths spawn near you after opening graves
-  * Higher magic level increases the chance to tame wraiths
+  * Position yourself strategically to maximize the number of adjacent wraiths that can be tamed
   * Synergizes with necromancy-related talents and equipment
 
-==== Data Validation ====
-This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
+==== Code References ====
+  * Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/spells/Exhumation.lua|Exhumation.lua]]
+  * Spell library: `scripts/lib/spell.lua`
+  * Uses `RPD.Heap.Type.TOMB` and `RPD.Heap.Type.SKELETON` for validation
+  * Implements `castOnCell` function for cell-targeting logic
 
 ==== Considerations ====
-  * **Location Dependent:** Only useful in areas with graves
-  * **Chance Based:** Success is not guaranteed
+  * **Location Dependent:** Only useful in areas with graves, tombs, or skeleton heaps
+  * **Chance Based:** Success is not guaranteed and depends on magic level
   * **Early Game:** Especially useful when other summoning resources are limited
+  * **Positioning:** Caster must be adjacent to wraiths for taming to work
   * **Ethical:** Reflects the dark nature of necromantic practices
 
 ==== Content Verification ====
-  * Information source: Lua Script in Remixed Dungeon codebase
-  * Effect descriptions: Generated from code analysis and string resources
-  * Last updated: 2025-12-14 based on Exhumation.lua
-  * Source code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Exhumation.lua|Exhumation.lua]]
+  * Information source: Lua Script [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/spells/Exhumation.lua|Exhumation.lua]]
+  * Effect descriptions: Extracted directly from spell implementation
+  * Last updated: 2025-04-12 based on Exhumation.lua analysis
+  * Source code: Remixed Dungeon codebase
 
 ==== Related ====
   * [[en:rpd:necromancer_class|Necromancer]] - The class that uses this ability
@@ -67,7 +74,7 @@ This information is extracted directly from the game code and validated against 
   * [[en:rpd:summon_deathling_spell|Summon Deathling]] - Other minion summoning ability
   * [[en:rpd:undead_mob|Undead]] - The type of minion created
   * [[en:rpd:wraith_mob|Wraith]] - Creatures that can be tamed
-  * [[en:rpd:spell_affinities|Spell Affinities]]
+  * [[en:rpd:heap_item|Heap]] - Dungeon feature required for this spell
   * [[en:rpd:spells_overview|Spells]]
 
-{{tag> rpd spells necromancy }}
+{{tag> rpd spells necromancy necromancer}}

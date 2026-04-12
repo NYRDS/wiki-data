@@ -6,44 +6,110 @@ This page contains raw code references and configuration excerpts for the Ring o
   * **getEntityKind() value:** StoneWalking
 
 ==== Java Implementation ====
-  * **Class location:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/armor/RingOfStoneWalking.java|RingOfStoneWalking.java]]
-  * **Parent Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item]]
+  * **Class location:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java|RingOfStoneWalking.java]]
+  * **Package:** com.watabou.pixeldungeon.items.rings
+  * **Parent Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Artifact.java|Artifact]]
 
-==== Code Fragments ====
-**Constructor:**
+==== Java Class Content ====
 <code java>
-public class RingOfStoneWalking extends Artifact {
+package com.watabou.pixeldungeon.items.rings;
 
-	{
-		name = "Ring of Stone Walking";
-		image = ItemSpriteSheet.ARTIFACT_STONEWALKING;
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.Badges;
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.ResultDescriptions;
+import com.watabou.pixeldungeon.actors.hero.Doom;
+import com.watabou.pixeldungeon.items.bags.Bag;
+import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
+import com.watabou.pixeldungeon.ui.BuffIndicator;
+import com.watabou.pixeldungeon.utils.GLog;
+import com.watabou.pixeldungeon.utils.Utils;
+
+public class RingOfStoneWalking extends Artifact{
+
+	public RingOfStoneWalking() {
+		image = ItemSpriteSheet.RING_OF_STONE_WALKING;
+		identify();
 	}
+
+	@Override
+	public ArtifactBuff buff( ) {
+		return new StoneWalking();
+	}
+
+	public static class StoneWalking extends ArtifactBuff implements Doom {
+		@Override
+		public int icon() {
+			return BuffIndicator.STONEBLOOD;
+		}
+
+		@Override
+		public String name() {
+            return StringsManager.getVar(R.string.StoneBloodBuff_Name);
+        }
+
+		@Override
+		public String desc() {
+            return StringsManager.getVar(R.string.StoneBloodBuff_Info);
+        }
+		@Override
+		public void onHeroDeath() {
+			Badges.validateDeathInStone();
+
+			Dungeon.fail( Utils.format( ResultDescriptions.getDescription(ResultDescriptions.Reason.IMMURED), Dungeon.depth ) );
+            GLog.n(StringsManager.getVar(R.string.RingOfStoneWalking_ImmuredInStone));
+
+		}
+	}
+
+	@Override
+	public String bag() {
+		return Bag.KEYRING;
+	}
+}
 </code>
 
-**Properties:**
-<code java>
-@Override
-protected ArtifactBuff passiveBuff() {
-	return new StoneWalkingTracker();
-}
-
-@Override
-public String desc() {
-	return Messages.get(this, "desc");
-}
-</code>
-
-**Stone Walking Tracker Buff:**
-<code java>
-public class StoneWalkingTracker extends ArtifactBuff {
-    // Implementation details for stone walking mechanics
-}
-</code>
-
-==== Configuration ====
-  * **Sprite Image:** ItemSpriteSheet.ARTIFACT_STONEWALKING
-  * **Entity Kind:** StoneWalking
+==== Key Properties from Code ====
+  * **Type**: Artifact
+  * **Image**: ItemSpriteSheet.RING_OF_STONE_WALKING
+  * **Auto-identified**: Yes (identify() called in constructor)
+  * **Bag Type**: Keyring
+  * **Buff Class**: StoneWalking
+  * **Buff Icon**: BuffIndicator.STONEBLOOD
+  * **Death Effect**: Implements Doom interface - triggers "immured in stone" death
 
 ==== String Resources ====
-  * **StoneWalking_Name:** Ring of Stone Walking
-  * **StoneWalking_Info:** A ring that allows the wearer to walk through stone.
+<code xml>
+<string name="RingOfStoneWalking_Name">Ring of Stone Blood</string>
+<string name="RingOfStoneWalking_Info">This strange ring is made of some sturdy stone. What you first thought was a ruby is actually liquid blood being held in place! Inside is an arrow pointing at what appears to be a wall, along with a broken heart... What might it do?</string>
+<string name="RingOfStoneWalking_ImmuredInStone"> You have been immured in stone. Forever.</string>
+<string name="StoneBloodBuff_Name">Stone Blood</string>
+<string name="StoneBloodBuff_Info">The blood turns to stone which merges with nearby walls, making traversing them much easier, but at what cost</string>
+</code>
+
+==== JSON Configuration ====
+This entity does not use JSON configuration.
+
+==== Lua Scripts ====
+This entity is implemented in Java, no Lua script exists.
+
+==== Code Behavior ====
+  * Extends Artifact class
+  * Provides StoneWalking buff when equipped
+  * StoneWalking buff allows walking through walls
+  * Implements Doom interface for special death handling
+  * Triggers "Death in Stone" badge on death
+  * Displays special failure message when dying while using the ring
+
+==== Related Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/StoneBlood.java|StoneBlood.java]] - Related buff implementation (if exists)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] - Badge validation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/bags/Bag.java|Bag.java]] - Bag type constants
+
+==== Related Entities ====
+  * **Stone Walking Buff**: [[mr:stone_walking_buff|stone_walking_buff]] - Buff applied by this item
+  * **English Page**: [[en:rpd:ring_of_stone_blood_item|ring_of_stone_blood_item]]
+  * **Russian Page**: [[ru:rpd:ring_of_stone_blood_item|ring_of_stone_blood_item]]
+
+{{tag> mr rpd items artifacts java_defined}}
