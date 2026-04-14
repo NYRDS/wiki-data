@@ -1,29 +1,68 @@
-====== Объекты Уровня ======
+====== Объекты уровня ======
 
-Общие атрибуты объектов:
-  * x, y - координаты объекта
-  * textureFile - путь к изображению объекта
-  * imageIndex - номер изображения, для анимированных объектов это индекс первого кадра.
+{{ rpd:images:level_object.png|Объекты уровня }}
+
+**Объекты уровня** - это интерактивные или декоративные элементы, которые можно размещать на уровнях подземелья. Они используются в моддинге для создания пользовательских карт.
+
+==== Общие атрибуты ====
+
+Объекты уровня имеют следующие атрибуты в JSON конфигурации:
+
+  * **x, y** - координаты объекта на карте
+  * **textureFile** - путь к файлу текстуры объекта
+  * **imageIndex** - номер изображения, для анимированных объектов это индекс первого кадра
 
 ==== Список объектов ====
 
 === Растения ===
 
-  * Dreamweed
-  * Earthroot
-  * Fadeleaf
-  * Firebloom
-  * Icecap
-  * Rotberry
-  * Sorrowmoss
-  * Sungrass
+Растения - это объекты, которые можно активировать, наступив на них:
+
+  * [[ru:rpd:dreamweed_plant|Сновидка]] (Dreamweed)
+  * [[ru:rpd:earthroot_plant|Корнезем]] (Earthroot)
+  * [[ru:rpd:fadeleaf_plant|Блеклолист]] (Fadeleaf)
+  * [[ru:rpd:firebloom_plant|Огнецвет]] (Firebloom)
+  * [[ru:rpd:icecap_plant|Ледяная шапка]] (Icecap)
+  * [[ru:rpd:rotberry_plant|Гнилоягода]] (Rotberry)
+  * [[ru:rpd:sorrowmoss_plant|Грустьмох]] (Sorrowmoss)
+  * [[ru:rpd:sungrass_plant|Солнечная трава]] (Sungrass)
 
 === Прочие объекты ===
 
-  * Sign
-    * text - текст на табличке
-  * Barrel
-  * ConcreteBlock
-    * str - сила необходимая, чтобы сдвинуть блок
+Другие интерактивные объекты уровня:
+
+  * **Sign** (Табличка)
+    * **text** - текст, отображаемый на табличке
+  * **Barrel** (Бочка)
+  * **ConcreteBlock** (Бетонный блок)
+    * **str** - сила, необходимая для перемещения блока
+
+==== JSON конфигурация ====
+
+Объекты уровня настраиваются через JSON файлы в директории `assets/levelObjects/`. Пример конфигурации:
+
+<code json>
+{
+  "type": "Sign",
+  "x": 10,
+  "y": 15,
+  "textureFile": "objects/sign.png",
+  "imageIndex": 0,
+  "text": "Опасная зона!"
+}
+</code>
+
+==== Связанные страницы ====
+
+  * [[ru:rpd:modding|Моддинг]] - Общая информация о создании модов
+  * [[ru:rpd:json_configs|JSON конфигурации]] - Руководство по JSON файлам
+  * [[ru:rpd:tiled|Tiled]] - Редактор карт для создания уровней
+
+==== Содержание подтверждено ====
+
+  * Information source: Java classes in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/|levels/objects/]]
+  * JSON configuration: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets/levelObjects|levelObjects/]] directory
+  * Stats verification: Extracted from level object Java classes and JSON schemas
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml]] (Russian localization)
 
 {{tag> rpd объекты уровень моддинг русский }} 
