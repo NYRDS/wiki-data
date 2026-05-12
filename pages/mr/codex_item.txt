@@ -1,15 +1,49 @@
-====== Codex Item - Code References ======
+====== Codex Item - Machine Readable Reference ======
+
+===== Overview =====
+The Codex is a readable item (book) in Remixed Dungeon that displays story text when read.
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Codex.java|Codex.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Codex.java|Codex.java]] - Main Codex class extending Book
+
+===== Class Hierarchy =====
+  * Extends: Book (com.nyrds.pixeldungeon.items.books.Book)
+  * Package: com.watabou.pixeldungeon.items
+
+===== Properties =====
+  * **stackable**: false (cannot stack)
+  * **image**: 4 (sprite index)
+  * **codexId**: int, default -1 (determines which story to display)
+  * **text**: String (custom text, can be null or "Unknown")
+
+===== Methods =====
+  * **doRead(Char hero)**: Displays story text via WndStory.showCustomStory()
+  * **fromJson(JSONObject itemDesc)**: Loads codex text from JSON configuration
+  * **price()**: Returns 5 * quantity()
+  * **getCodexId()**: Returns codex ID, randomizes if < 0, clamps to max
 
 ===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+This entity is primarily implemented in Java. JSON configuration may include:
+  * "text": Story text content (processed through StringsManager.maybeId())
 
 ===== String Resources =====
 <code xml>
 <string name="Codex_Blinded">You can't read while blinded</string>
+<string-array name="Codex_Story">
+  <!-- Array of story texts -->
+</string-array>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Behavior =====
+  * When read, displays custom text if set, otherwise displays story from Codex_Story array
+  * Uses StringsManager.getVars() to access story array
+  * Random story selection if codexId is not set
+  * Cannot be upgraded or identified beyond normal item behavior
+
+===== Usage in Game =====
+  * Found as loot in dungeon
+  * Provides lore/story content to player
+  * Part of the books item category
