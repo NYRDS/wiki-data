@@ -8,12 +8,12 @@
 治疗法术立即恢复目标部分生命值，使其在紧急情况下非常有价值。治疗量计算为20%目标最大生命值乘以施法者技能等级（最少恢复1点生命值）。
 
 ==== 属性 ====
-  * **魔法亲和力：** [[cn:rpd:witchcraft_affinity|巫术]]（也可在[[cn:rpd:priest_class|牧师]]和[[cn:rpd:plague_doctor_affinity|瘟疫医生]]亲和力中使用）
+  * **魔法亲和力：** [[cn:rpd_witchcraft_affinity|巫术]]（也可在[[cn:rpd_priest_class|牧师]]和[[cn:rpd_plague_doctor_affinity|瘟疫医生]]亲和力中使用）
   * **目标：** 角色（可在地图上瞄准任何角色）
   * **等级：** 2
   * **法力消耗：** 5
   * **施法时间：** 1回合
-  * **冷却时间：** 2回合
+  * **冷却时间：** 3回合
 
 ==== 机制 ====
 根据Lua实现，法术为(Max HP / 5 * 施法者技能等级)生命值恢复目标角色，最少恢复1点。
@@ -42,14 +42,14 @@ Lua代码中的确切公式是：heal = target:ht() / 5. * caster:skillLevel()
 
 ==== 亲和力 ====
 可使用此法术的亲和力包括：
-  * [[cn:rpd:witchcraft_affinity|巫术]]亲和力使用者
-  * [[cn:rpd:priest_class|牧师]]亲和力使用者
-  * [[cn:rpd:plague_doctor_affinity|瘟疫医生]]亲和力使用者
+  * [[cn:rpd_witchcraft_affinity|巫术]]亲和力使用者
+  * [[cn:rpd_priest_class|牧师]]亲和力使用者
+  * [[cn:rpd_plague_doctor_affinity|瘟疫医生]]亲和力使用者
 
 ==== 重要说明 ====
 有一个不同的基于Java的法术叫做"Healing"（不是"Heal"），具有不同的机制：
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Healing.java|Healing.java]] - 恢复目标最大生命值的30%，仅可对自己施法，消耗10法力，等级3法术
-  * 有关基于Java的治疗法术更多信息，请参见[[cn:rpd:healing_spell|治疗法术]]
+  * 有关基于Java的治疗法术更多信息，请参见[[cn:rpd_healing_spell|治疗法术]]
 
 ==== 代码参考 ====
   * **Lua实现：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Heal.lua|Heal.lua]]
