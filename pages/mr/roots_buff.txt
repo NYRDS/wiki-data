@@ -1,20 +1,29 @@
 ====== Roots Buff - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]] - Main buff implementation (extends FlavourBuff)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java|BuffIndicator.java]] - Icon definition (ROOTS)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Char status display (Char_StaRooted)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/roots.json
+This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="Roots_Name">[Name]</string>
-<string name="Roots_Info">[Description]</string>
+<string name="Char_StaRooted">Rooted</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Implementation Details =====
+  * Extends: FlavourBuff
+  * Effect: Prevents movement while grounded (cannot attach to flying targets)
+  * Icon: BuffIndicator.ROOTS
+  * Status: Shows "Rooted" status when attached
+  * Sound: No specific sound
+
+===== Related mr Entities =====
+  * [[mr:flavour_buff|Flavour Buff]]
+  * [[mr:earthroot_seed_item|Earthroot Seed Item]]
+  * [[mr:root_spell|Root Spell]]
