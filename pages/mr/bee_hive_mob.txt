@@ -1,22 +1,27 @@
 ====== Bee Hive Mob - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/CustomMob.java|CustomMob.java]] - Base class for JSON-defined mobs
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/CustomMob.java|CustomMob.java]] - Base class for JSON-defined mobs. BeeHive uses CustomMob with mobClass="BeeHive"
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BeeHive.json|BeeHive.json]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/BeeHive.json|BeeHive.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BeeHive.json|BeeHive.json]] - BeeHive mob configuration (ht: 64, passive AI, stationary, spawns bees on death/damage)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/BeeHive.json|BeeHive.json]] - Sprite configuration (texture: mobs/BeeHive.png)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Bee.json|Bee.json]] - Bee mob configuration (spawned by BeeHive)
 
 ===== String Resources =====
-<code xml>
-<string name="BeeHive_Name">BeeHive_Name</string>
-<string name="BeeHive_Name_Objective">BeeHive_Name_Objective</string>
-<string name="BeeHive_Desc">BeeHive_Desc</string>
-<string name="BeeHive_Gender">BeeHive_Gender</string>
-</code>
+  * **MISSING**: String resources for BeeHive (BeeHive_Name, BeeHive_Name_Objective, BeeHive_Desc, BeeHive_Gender) are referenced in BeeHive.json but NOT defined in any strings_all.xml files across all languages. This is a known issue in the game code.
 
 ===== Lua Scripts =====
-This entity is implemented in Java with JSON configuration, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/BeeSpawner.lua|BeeSpawner.lua]] - Controls BeeHive behavior: spawns 3-8 bees on death or when damaged
 
 ===== Related mr Entities =====
-  * [[mr:bee_mob|Bee (Mob)]]
+  * [[mr:bee_mob|Bee (Mob)]] - Spawned by BeeHive when damaged or destroyed
+
+===== Game Mechanics =====
+  * BeeHive is a stationary, passive mob (aiState: "Passive", baseSpeed: 0, movable: false)
+  * On death or when damaged, spawns 3-8 Bee mobs via BeeSpawner.lua script
+  * Bees spawned have Hunting AI and same level as BeeHive
+  * BeeHive has 64 HP, 0 damage, 0 defense skill, 1 attack skill
+  * No loot drops (lootChance: 0)
+
+{{tag> rpd mobs bee_hive custom_mob}}
