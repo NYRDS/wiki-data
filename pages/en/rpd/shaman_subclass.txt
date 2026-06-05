@@ -8,15 +8,15 @@ The Shaman is the Elf's subclass in Remixed Dungeon.
 Elven //Shamans// can use wands as melee weapons. Successful hits have a chance to activate the wand's power on a target without using a charge.
 
 ===== Unlocking =====
-The Shaman subclass can be unlocked by using a [[en:rpd_tome_of_mastery_item|Tome of Mastery]] after defeating the second boss (Tengu).
+The Shaman subclass can be unlocked by using a [[en:rpd:tome_of_mastery_item|Tome of Mastery]] after defeating the second boss (Tengu).
 
 ===== Special Mechanics =====
-  * Elven _Shamans_ can use [[en:rpd_wands|wands]] as [[en:rpd_melee_weapons|melee weapons]]
+  * Elven _Shamans_ can use [[en:rpd:wands|wands]] as [[en:rpd:melee_weapons|melee weapons]]
   * When attacking with a wand equipped as the primary weapon, there's a 25% chance (implemented as Random.Int(4) == 0) to zap the target with the wand's power without consuming a charge
   * This ability is implemented in the ''attackProc'' method of ''HeroSubClass.java'' (lines 144-153)
   * The wand must be equipped as the primary weapon (active weapon) for this mechanic to work
   * The wand needs to have charges available and the ''affectTarget()'' method must return true
-  * +1 dew bonus for enhanced [[en:rpd_mana_mechanic|mana recovery]]
+  * +1 dew bonus for enhanced [[en:rpd:mana_mechanic|mana recovery]]
   * **mr: namespace:** Check [[mr:shaman_subclass]] for machine-readable data
 
 ===== Technical Details =====
@@ -25,19 +25,19 @@ The Shaman subclass can be unlocked by using a [[en:rpd_tome_of_mastery_item|Tom
   * **Code Reference:** The specific implementation checks if the primary weapon is a wand, and if ''affectTarget()'' returns true and ''Random.Int(4) == 0'', then ''zapCell()'' is called to zap the enemy without consuming charges
 
 ===== Special Armor =====
-Using an [[en:rpd_armor_kit_item|Armor Kit]] on any armor will transform it into the [[en:rpd_shaman_armor_item|Shaman Armor]], which is specifically designed for this subclass.
+Using an [[en:rpd:armor_kit_item|Armor Kit]] on any armor will transform it into the [[en:rpd:shaman_armor_item|Shaman Armor]], which is specifically designed for this subclass.
 
 ===== Advantages =====
-  * Can use [[en:rpd_wands|wands]] as [[en:rpd_melee_weapons|melee weapons]]
+  * Can use [[en:rpd:wands|wands]] as [[en:rpd:melee_weapons|melee weapons]]
   * 25% chance to activate wand powers without consuming charges
-  * Versatile weapon options combining [[en:rpd_ranged_weapons|ranged]] and [[en:rpd_melee_combat|melee]]
+  * Versatile weapon options combining [[en:rpd:ranged_weapons|ranged]] and [[en:rpd:melee_combat|melee]]
   * Preserves wand charges when power activates
-  * Synergizes well with all [[en:rpd_wands|wand types]]
-  * +1 dew bonus for enhanced [[en:rpd_mana_mechanic|mana recovery]]
+  * Synergizes well with all [[en:rpd:wands|wand types]]
+  * +1 dew bonus for enhanced [[en:rpd:mana_mechanic|mana recovery]]
 
 ===== Disadvantages =====
   * Activation chance is not guaranteed (25% chance)
-  * Wand damage as [[en:rpd_melee_mechanic|melee weapon]] may be lower than dedicated weapons
+  * Wand damage as [[en:rpd:melee_mechanic|melee weapon]] may be lower than dedicated weapons
 
 ===== Data Validation =====
   * Information source: Java Enum ''com.watabou.pixeldungeon.actors.hero.HeroSubClass.SHAMAN''
@@ -72,12 +72,12 @@ Using an [[en:rpd_armor_kit_item|Armor Kit]] on any armor will transform it into
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L997|HeroSubClass_DescShaman]] - "Эльфийские шаманы могут использовать жезлы как оружие ближнего боя. Успешные атаки имеют шанс активировать силу жезла на цели без расхода заряда." (Russian)
 
 ===== See Also =====
-  * [[en:rpd_elf_class|Elf Class]]
-  * [[en:rpd_wands|Wands]]
+  * [[en:rpd:elf_class|Elf Class]]
+  * [[en:rpd:wands|Wands]]
   * [[playable_class_mechanic|Playable Classes]]
-  * [[en:rpd_subclasses|Subclasses]]
-  * [[en:rpd_shaman_armor_item|Shaman Armor]]
-  * [[en:rpd_hero|Hero]]
-  * [[en:rpd_mechanics_mechanic|Game Mechanics]]
+  * [[en:rpd:subclasses|Subclasses]]
+  * [[en:rpd:shaman_armor_item|Shaman Armor]]
+  * [[en:rpd:hero|Hero]]
+  * [[en:rpd:mechanics_mechanic|Game Mechanics]]
 
 {{tag> rpd subclasses shaman elf wand melee}}
