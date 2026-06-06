@@ -2,6 +2,10 @@
 
 ===== Java Classes =====
   * **Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/CandleOfMindVisionBuff.java|CandleOfMindVisionBuff.java]]
+    - Package: `com.watabou.pixeldungeon.actors.buffs`
+    - Extends: `MindVision` (base mind vision buff)
+    - **Duration:** 100f (constant `DURATION`)
+    - Overrides `name()` and `desc()` to use string resources
   * **Inheritance:** Inherits from [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/MindVision.java|MindVision.java]]
   * **Buff Registration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L142|BuffFactory.java]] - registers CandleOfMindVisionBuff class
 
@@ -13,9 +17,19 @@ This entity is implemented in Java, no JSON configuration exists.
 <string name="MindVisionBuff_Name">Mind Vision</string>
 <string name="MindVisionBuff_Info">You can somehow feel the presence of other creatures' minds.</string>
 </code>
+  * **MindVisionBuff_Name** - Display name of the buff
+  * **MindVisionBuff_Info** - Description shown when examining the buff
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
 
 ===== Additional References =====
-  * **Item Connection:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/artifacts/CandleOfMindVision.java|CandleOfMindVision.java]] - the item that applies this buff
+  * **Item Connection:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/artifacts/CandleOfMindVision.java|CandleOfMindVision.java]] - the artifact item that applies this buff when equipped
+  * **Base Buff (MindVision):** Provides mind vision effect (detecting nearby creatures' minds)
+  * **Entity Kind:** Uses `getEntityKind()` for identification in game systems
+
+===== Usage Context =====
+  * Applied by equipping the **Candle of Mind Vision** artifact
+  * Grants permanent mind vision effect (duration 100f = effectively permanent while equipped)
+  * Allows player to sense nearby creatures through walls
+  * Part of the artifact system in Remixed Dungeon
