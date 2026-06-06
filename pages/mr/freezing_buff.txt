@@ -1,0 +1,44 @@
+====== Freezing Buff - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] - Blob effect implementation that applies Frost buff and clears Fire/LiquidFlame blobs
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]] - Frost buff class applied by Freezing
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java|PotionOfFrost.java]] - Creates Freezing effect when shattered
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java|Icecap.java]] - Plant that creates Freezing effect
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/ColdSpirit.java|ColdSpirit.java]] - Mob that applies Freezing on attack
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/WaterElemental.java|WaterElemental.java]] - Mob that applies Freezing on attack
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]] - Fire blob cleared by Freezing
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame.java]] - Liquid Flame blob cleared by Freezing
+
+===== Lua Scripts =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - Freezing bound as PseudoBlob: `Freezing = luajava.bindClass("com.watabou.pixeldungeon.actors.blobs.Freezing")`
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/actors/Freeze.lua|Freeze.lua]] - Actor script that randomly places Freezing pseudo-blob on level
+
+===== JSON Configuration =====
+  * No specific JSON configuration found for Freezing blob effect
+  * Related items (PotionOfFrost, Icecap) may have JSON configs in itemsDesc/ and levelObjects/
+
+===== String Resources =====
+  * No direct string resources for "Freezing" blob (it's a pseudo-blob, not a visible buff)
+  * Related Frost buff strings:
+<code xml>
+<string name="FrostBuff_Name">frost</string>
+<string name="FrostBuff_Info">Movement speed is reduced. Fire damage is increased.</string>
+<string name="Frost_Shatter">The frost shatters!</string>
+</code>
+  * Potion of Frost strings:
+<code xml>
+<string name="PotionOfFrost_Name">potion of frost</string>
+<string name="PotionOfFrost_Info">When thrown, this potion creates a freezing blast that freezes everything in the area.</string>
+</code>
+
+===== Related mr Entities =====
+  * [[mr:frost_buff|Frost Buff]] - The buff applied by Freezing
+  * [[mr:potion_of_frost_item|Potion of Frost]] - Item that creates Freezing
+  * [[mr:icecap_level_object|Icecap]] - Plant that creates Freezing
+  * [[mr:cold_spirit_mob|Cold Spirit]] - Mob that applies Freezing
+  * [[mr:water_elemental_mob|Water Elemental]] - Mob that applies Freezing
+  * [[mr:fire_blob|Fire Blob]] - Blob cleared by Freezing
+  * [[mr:liquid_flame_blob|Liquid Flame Blob]] - Blob cleared by Freezing
+
+{{tag> rpd buffs status_effects freezing blobs }}

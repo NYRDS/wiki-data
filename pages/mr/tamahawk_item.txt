@@ -1,13 +1,110 @@
 ====== Tamahawk Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Tamahawk.java|Tamahawk.java]] - Base implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Tamahawk.java|Tamahawk.java]] - Base throwing axe implementation
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/GnollTamahawk.java|GnollTamahawk.java]] - Gnoll variant implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registers Tamahawk class for generation
+
+===== Tamahawk.java Full Implementation =====
+<code java>
+package com.watabou.pixeldungeon.items.weapon.missiles;
+
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.buffs.Bleeding;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.items.Item;
+import com.watabou.pixeldungeon.sprites.ItemSpriteSheet;
+import com.watabou.utils.Random;
+
+public class Tamahawk extends MissileWeapon {
+
+    public Tamahawk() {
+        this( 1 );
+    }
+
+    public Tamahawk( int number ) {
+        super();
+        image = ItemSpriteSheet.TOMAHAWK;
+
+        setSTR(17);
+
+        MIN = 4;
+        MAX = 20;
+
+        quantity(number);
+    }
+
+    @Override
+    public void attackProc(Char attacker, Char defender, int damage ) {
+        super.attackProc( attacker, defender, damage );
+        Buff.affect( defender, Bleeding.class ).level( damage );
+    }
+
+    @Override
+    public Item random() {
+        quantity(Random.Int( 5, 12 ));
+        return this;
+    }
+
+    @Override
+    public int price() {
+        return 20 * quantity();
+    }
+
+    @Override
+    public String getAttackAnimationClass() {
+        return SWORD_ATTACK;
+    }
+
+    @Override
+    public String getVisualName() {
+        return "Tomahawk";
+    }
+
+}
+</code>
+
+===== GnollTamahawk.java Full Implementation =====
+<code java>
+package com.nyrds.pixeldungeon.items.common;
+
+import androidx.annotation.Keep;
+
+import com.nyrds.Packable;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.items.weapon.missiles.Tamahawk;
+import com.watabou.utils.Bundle;
+import com.watabou.utils.Random;
+
+import org.jetbrains.annotations.NotNull;
+
+public class GnollTamahawk extends Tamahawk {
+
+    @Packable
+    public int imageIndex;
+
+    @Keep
+    public GnollTamahawk() {
+        super();
+    }
+
+    @Override
+    public void attackProc(Char attacker, Char defender, int damage) {
+        super.attackProc(attacker, defender, damage);
+        // Additional gnoll-specific effects could go here
+    }
+}
+</code>
+
+===== ItemFactory Registration =====
+In [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]:
+  * Line 197: `import com.watabou.pixeldungeon.items.weapon.missiles.Tamahawk;`
+  * Line 347: `registerItemClass(Tamahawk.class);` - Registers Tamahawk for procedural generation
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check:
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/tamahawk.json
+  * No dedicated JSON configuration file found for Tamahawk
+  * Check `RemixedDungeon/src/main/assets/itemsDesc/` for potential item descriptions
+  * Sprite configuration may exist in `RemixedDungeon/src/main/assets/spritesDesc/tamahawk.json`
 
 ===== String Resources =====
 <code xml>
@@ -17,9 +114,29 @@ This entity may have JSON configuration, but no matching config was found. Check
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists for base Tamahawk functionality.
+
+===== Usage in Game Code =====
+  * **Challenges.java**: Referenced in NO_HEALING challenge category (as PotionOfHealing, not directly Tamahawk)
+  * **ShopPainter.java**: May appear in shop inventories
+  * **Mob loot tables**: Various mobs can drop Tamahawk (Bat, Scorpio, SpiderNest, etc.)
+  * **Alchemy**: Not directly craftable via alchemy recipes
 
 ===== Related mr Entities =====
-  * [[mr:gnoll_tamahawk_item|Gnoll Tamahawk (Item)]]
+  * [[mr:gnoll_tamahawk_item|Gnoll Tamahawk (Item)]] - Gnoll variant with additional properties
+  * [[mr:javelin_item|Javelin]] - Similar throwing weapon
+  * [[mr:shuriken_item|Shuriken]] - Similar throwing weapon
+  * [[mr:boomerang_item|Boomerang]] - Similar returning weapon
 
-{{tag> rpd items weapons throwing_axes}}
+===== Item Properties =====
+  * **Type**: MissileWeapon (throwing axe)
+  * **Strength Requirement**: 17 STR
+  * **Damage**: 4-20 (scales with quantity)
+  * **Price**: 20 gold per unit
+  * **Special Effect**: Applies Bleeding on hit (damage = hit damage)
+  * **Quantity**: 5-12 when randomly generated
+  * **Sprite**: ItemSpriteSheet.TOMAHAWK
+  * **Attack Animation**: SWORD_ATTACK
+  * **Visual Name**: "Tomahawk"
+
+{{tag> rpd items weapons throwing_axes missiles bleeding}}
