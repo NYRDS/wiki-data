@@ -1,13 +1,19 @@
 ====== Chaos Armor Item - Code References ======
 
 ===== Java Classes =====
-  * ''RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java''
+  * ''RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java'' - Main class implementation
+  * ''RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCrystal.java'' - Creates ChaosArmor when fusing armor
+  * ''RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java'' - Registers ChaosArmor class
 
 ===== JSON Configuration =====
 No specific JSON configuration found for this item.
 
 ===== String Resources =====
   * ''RemixedDungeon/src/main/res/values/strings_all.xml'' - ''ChaosArmor_Name'', ''ChaosArmor_Info''
+  * ''RemixedDungeon/src/main/res/values-ru/strings_all.xml'' - Russian translations
+  * ''RemixedDungeon/src/main/res/values-de/strings_all.xml'' - German translations
+  * ''RemixedDungeon/src/main/res/values-es/strings_all.xml'' - Spanish translations
+  * And other localized string resource files
 
 ===== Java Implementation =====
 <code java>
@@ -19,69 +25,82 @@ import com.watabou.utils.Bundle;
 
 public class ChaosArmor extends Armor {
 
-	@Packable
-	public int charge = 0;
+        @Packable
+        public int charge = 0;
 
-	public ChaosArmor() {
-		super( 3 );
-		imageFile = "items/chaosArmor.png";
-		image = 0;
-	}
+        public ChaosArmor() {
+                super( 3 );
+                imageFile = "items/chaosArmor.png";
+                image = 0;
+        }
 
-	@Override
-	public boolean isUpgradable() {
-		return false;
-	}
+        @Override
+        public boolean isUpgradable() {
+                return false;
+        }
 
-	private int chargeForLevel() {
-		return (int) (5 * Math.pow(level(), 1.5));
-	}
+        private int chargeForLevel() {
+                return (int) (5 * Math.pow(level(), 1.5));
+        }
 
-	@Override
-	public void ownerTakesDamage(int damage) {
-		charge--;
-		if(charge < 0) {
-			charge = 0;
-		}
+        @Override
+        public void ownerTakesDamage(int damage) {
+                charge--;
+                if(charge < 0) {
+                        charge = 0;
+                }
 
-		if(level() > 3) {
-			if(charge == 0) {
-				degrade();
-				inscribe(null);
-				charge = chargeForLevel();
-				selectImage();
-			}
-		}
-	}
+                if(level() > 3) {
+                        if(charge == 0) {
+                                degrade();
+                                inscribe(null);
+                                charge = chargeForLevel();
+                                selectImage();
+                        }
+                }
+        }
 
-	@Override
-	public void ownerDoesDamage(int damage) {
+        @Override
+        public void ownerDoesDamage(int damage) {
 
-		if(isCursed()) {
-			return;
-		}
+                if(isCursed()) {
+                        return;
+                }
 
-		if(damage > 0) {
-			charge++;
-			if(charge > chargeForLevel()) {
-				upgrade(true);
-				selectImage();
-				charge = 0;
-			}
-		}
-	}
+                if(damage > 0) {
+                        charge++;
+                        if(charge > chargeForLevel()) {
+                                upgrade(true);
+                                selectImage();
+                                charge = 0;
+                        }
+                }
+        }
 
-	private void selectImage() {
-		image = Math.max(0, Math.min(level()/3, 4));
-	}
+        private void selectImage() {
+                image = Math.max(0, Math.min(level()/3, 4));
+        }
 
-	@Override
-	public void restoreFromBundle(Bundle bundle) {
-		super.restoreFromBundle(bundle);
+        @Override
+        public void restoreFromBundle(Bundle bundle) {
+                super.restoreFromBundle(bundle);
 
-		selectImage();
-	}
+                selectImage();
+        }
 }
+</code>
+
+===== Additional Java Usage =====
+<code java>
+// In ChaosCrystal.java - creates ChaosArmor when fusing armor
+if (item instanceof Armor) {
+    selector.collect(new ChaosArmor());
+    GLog.p(StringsManager.getVar(R.string.ChaosCrystal_ArmorFused));
+    return;
+}
+
+// In ItemFactory.java - registers the ChaosArmor class
+registerItemClass(ChaosArmor.class);
 </code>
 
 ===== String Resource Excerpts =====
