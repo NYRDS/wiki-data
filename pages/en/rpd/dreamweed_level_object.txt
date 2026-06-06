@@ -3,35 +3,38 @@
 {{ rpd:images:dreamweed_level_object.png|Dreamweed Level Object }}
 
 ==== Description ====
-The Dreamweed level object causes any creature that touches it to fall asleep. When a character or enemy steps on the tile containing a Dreamweed level object, they are put to sleep temporarily.
+The Dreamweed level object releases a cloud of confusion gas when touched. When a character or enemy steps on the tile containing a Dreamweed level object, a ConfusionGas blob is created at that position, affecting nearby creatures.
 
 ==== Effects ====
-  * Puts the creature that touches it to sleep temporarily
-  * Provides a control effect that neutralizes threats
-  * The sleep effect lasts for a duration
+  * Creates a ConfusionGas cloud at the touched position (radius based on dungeon depth)
+  * Confusion causes affected creatures to move randomly and act unpredictably
+  * The confusion effect lasts for a duration based on dungeon depth (300 + 20 * depth)
   * The level object disappears after being touched
 
 ==== Mechanics ====
   * Dreamweed level objects can be found growing in the dungeon
-  * The sleep effect is beneficial for avoiding combat
-  * Sleeping creatures cannot act while asleep
+  * The confusion gas effect is beneficial for disrupting enemy formations
+  * Confused creatures move randomly and may attack allies
+  * Dreamweed seeds can be planted to grow new Dreamweed level objects
+  * When eaten, Dreamweed seeds apply Vertigo and Mind Vision buffs
 
 ==== Strategy ====
-  * Dreamweed level objects are useful for bypassing difficult enemies
-  * Can be used to gain time in dangerous situations
-  * Effective against enemies that would otherwise be difficult to fight
-  * Consider using to pass through areas with dangerous stationary enemies
+  * Dreamweed level objects are useful for disrupting groups of enemies
+  * Can be used to create chaos and escape dangerous situations
+  * Effective against enemies that rely on coordinated attacks
+  * Consider planting Dreamweed seeds to create tactical confusion zones
 
 ==== Code Reference ====
-  * Plant Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/WandMaker.java|WandMaker.Dreamweed class]]
-  * Plant Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/WandMaker.java#L335-L340|Dreamweed.effect method]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1884-L1885|WandMaker_DreamweedName, WandMaker_DreamweedDesc]]
+  * Plant Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Dreamweed.java|Dreamweed.java]]
+  * Plant Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Dreamweed.java#L21-L30|Dreamweed.effect method]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2048-L2049|Dreamweed_Name, Dreamweed_Desc]]
 
 ==== Related ====
-  * [[en:rpd:dreamweed_seed_item|Dreamweed Seed]] - The seed used to grow Dreamweed level objects
   * [[en:rpd:plants|Plants]] - Other plants in the game
   * [[en:rpd:seeds|Seeds]] - Seeds that can be planted to grow useful plants
-  * [[en:rpd:sleep_buff|Sleep]] - The status effect applied by Dreamweed
+  * [[en:rpd:confusion_gas_buff|Confusion Gas]] - The status effect applied by Dreamweed
+  * [[en:rpd:vertigo_buff|Vertigo]] - Status effect from eating Dreamweed seeds
+  * [[en:rpd:mind_vision_buff|Mind Vision]] - Status effect from eating Dreamweed seeds
   * [[en:rpd:level_objects|Level Objects]] - Other interactive objects in dungeon levels
 
-{{tag> rpd plants items level_objects sleep}}
+{{tag> rpd plants items level_objects confusion_gas}}
