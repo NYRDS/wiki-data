@@ -17,10 +17,30 @@ This entity is implemented in Lua, no JSON configuration exists
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/DieHard.lua|DieHard.lua]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/DieHard.lua|DieHard.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/DieHard.lua|DieHard.lua]] - Main spell implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/DieHard.lua|DieHard.lua]] - Buff implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]] - Spell list registration (Combat affinity)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ChaosShieldLeft.lua|ChaosShieldLeft.lua]] - References DieHard as a possible random beneficial buff on shield block
+
+===== Key Properties from Code =====
+**Spell Affinity:** Combat (listed in CustomSpellsList.lua under "Combat" category)
+
+**Spell Mechanics:**
+  * **Targeting:** Self
+  * **Mana Cost:** 5
+  * **Cast Time:** 0.5 turns
+  * **Cooldown:** 50 turns
+  * **Spell Level:** 2 (affects requirements)
+
+**Buff Application:**
+  * Applies "DieHard" buff to caster
+  * **Buff Level:** `math.min(3, caster.skillLevel - spellLevel) + 2`
+  * **Duration:** `buffLevel * 20 + 20` turns
+  * **Regeneration Bonus:** Equal to buff level (HP per turn)
+  * **Early Removal Chance:** 1 / caster.skillLevel chance when damaged
 
 ===== Related mr Entities =====
   * [[mr:die_hard_buff|Die Hard (Buff)]]
+  * [[mr:chaos_shield_left_buff|Chaos Shield Left Buff]] - Can grant DieHard as random effect
 
-{{tag> mr spells reference}}
+{{tag> mr spells combat reference machine-readable}}
