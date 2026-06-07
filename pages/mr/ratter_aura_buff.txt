@@ -1,20 +1,31 @@
 ====== Ratter Aura Buff - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+  * **Buff Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/RatSkull.java#L32|RatSkull.RatterAura]] (nested class in RatSkull.java)
+  * **Artifact Source**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/RatSkull.java|RatSkull.java]] - Artifact that grants this buff
+  * **Buff Factory Registration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L166|BuffFactory.java#L166]] - Registered as RatSkull.RatterAura.class
+  * **Buff Constant**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L105|BuffFactory.RAT_SKULL_RATTER_AURA]] - Constant for the entity kind
+  * **Mob Interaction**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Rat.java#L33|Rat.java#L33]] - Rats check for this buff to flee
+
+===== Entity Kind =====
+**RatterAura** (from `RatSkull.RatterAura.getEntityKind()` which returns the simple class name "RatterAura")
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/ratter_aura.json
+No dedicated JSON configuration file exists for this buff. It is created programmatically by the RatSkull artifact.
 
 ===== String Resources =====
 <code xml>
-<string name="RatterAura_Name">[Name]</string>
-<string name="RatterAura_Info">[Description]</string>
+<string name="RatSkullBuff_Name">Ratter</string>
+<string name="RatSkullBuff_Info">The acrid stench terrifies all other rodents around, making them flee from the skull bearer.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
+
+===== Sprite =====
+  * **Wiki Image**: `{{ rpd:images:ratter_aura_buff.png|Ratter Aura }}`
+  * **Raw Sprite**: `buff_RatterAura.png` (processed to ratter_aura_buff.png)
+
+===== Related Entities =====
+  * [[mr:rat_skull_item|Rat Skull Item]] - Artifact that grants this buff
+  * [[mr:rat_mob|Rat Mob]] - Affected by this aura
