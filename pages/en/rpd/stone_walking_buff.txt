@@ -1,0 +1,44 @@
+====== Stone Walking Buff ======
+
+{{ rpd:images:stone_walking_buff.png|Stone Walking Buff }}
+
+The **Stone Walking** buff is an artifact buff applied by the [[en:rpd:ring_of_stone_blood_item|Ring of Stone Blood]]. It is a doom buff that triggers a special death condition when the hero dies while affected by it.
+
+==== Description ====
+The Stone Walking buff allows the hero to traverse walls as if they were open space. The hero's blood turns to stone which merges with nearby walls, making traversing them much easier. However, this power comes at a terrible cost - if the hero dies while affected by this buff, they are permanently immured in stone.
+
+==== Properties ====
+  * **Type:** Artifact Buff (extends ArtifactBuff)
+  * **Also Implements:** Doom interface
+  * **Icon:** BuffIndicator.STONEBLOOD
+  * **Source Item:** [[en:rpd:ring_of_stone_blood_item|Ring of Stone Blood]]
+  * **Badge:** Unlocks "Death in Stone" badge upon death while buffed
+
+==== Mechanics ====
+  * **Wall Traversal:** Allows the hero to walk through walls
+  * **Death Effect:** When the hero dies while buffed:
+    - Validates the "Death in Stone" badge
+    - Triggers a special game over: "You have been immured in stone. Forever."
+    - Uses the IMMURED death reason
+
+==== Code References ====
+  * Ring Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java|RingOfStoneWalking.java]]
+  * Buff Factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]]
+  * Item Factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L70-L72|RingOfStoneWalking strings]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L262-L263|StoneBloodBuff strings]]
+
+==== Related Entities ====
+  * [[en:rpd:ring_of_stone_blood_item|Ring of Stone Blood]] - The artifact ring that applies this buff
+  * [[en:rpd:artifact_buff|Artifact Buff]] - Base class for artifact buffs
+  * [[en:rpd:doom_interface|Doom Interface]] - Interface for doom-type buffs
+  * [[en:rpd:badges|Badges]] - Achievement system including "Death in Stone"
+
+==== String Resources ====
+  * **RingOfStoneWalking_Name:** "Ring of Stone Blood"
+  * **RingOfStoneWalking_Info:** "This strange ring is made of some sturdy stone. What you first thought was a ruby is actually liquid blood being held in place! Inside is an arrow pointing at what appears to be a wall, along with a broken heart... What might it do?"
+  * **RingOfStoneWalking_ImmuredInStone:** "You have been immured in stone. Forever."
+  * **StoneBloodBuff_Name:** "Stone blood"
+  * **StoneBloodBuff_Info:** "The blood turns stone which merges with the walls nearby and makes traversing them much easier, but at what cost."
+
+{{tag> rpd buffs artifact doom ring }}
