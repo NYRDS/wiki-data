@@ -1,0 +1,44 @@
+====== 石中血 Buf ======
+
+{{ rpd:images:stone_walking_buff.png|石中血 Buf }}
+
+**石中血** Buf 是由 [[cn:rpd:ring_of_stone_blood_item|石血之戒]] 施加的神器 Buf。这是一个厄运类 Buf，当英雄在受到其影响时死亡会触发特殊的死亡条件。
+
+==== 描述 ====
+石中血 Buf 允许英雄像穿越开放空间一样穿墙而过。英雄的血液变成石头，与附近的墙壁融合在一起，使穿墙变得更容易。然而，这种力量需要付出可怕的代价 —— 如果英雄在受到此 Buf 影响时死亡，他们将永远被困在石头中。
+
+==== 属性 ====
+  * **类型:** 神器 Buf (继承 ArtifactBuff)
+  * **同时实现:** Doom 接口
+  * **图标:** BuffIndicator.STONEBLOOD
+  * **来源物品:** [[cn:rpd:ring_of_stone_blood_item|石血之戒]]
+  * **成就:** 死亡时若带有此 Buf 则解锁"石中之死"成就
+
+==== 机制 ====
+  * **穿墙:** 允许英雄穿过墙壁
+  * **死亡效果:** 当英雄在带有此 Buf 时死亡:
+    - 验证"石中之死"成就
+    - 触发特殊游戏结束: "你的血液能够和墙壁融合在一起，使你能够穿过墙壁，但这要付出一些代价"
+    - 使用 IMMURED 死亡原因
+
+==== 代码参考 ====
+  * 戒指实现: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java|RingOfStoneWalking.java]]
+  * Buf 工厂: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]]
+  * 物品工厂: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+  * 字符串资源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L2168-L2169|StoneBloodBuff strings]]
+  * 字符串资源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1774-L1776|RingOfStoneWalking strings]]
+
+==== 相关实体 ====
+  * [[cn:rpd:ring_of_stone_blood_item|石血之戒]] - 施加此 Buf 的神器戒指
+  * [[cn:rpd:artifact_buff|神器 Buf]] - 神器 Buf 的基类
+  * [[cn:rpd:doom_interface|Doom 接口]] - 厄运类 Buf 的接口
+  * [[cn:rpd:badges|成就]] - 包含"石中之死"的成就系统
+
+==== 字符串资源 ====
+  * **RingOfStoneWalking_Name:** "石血之戒"
+  * **RingOfStoneWalking_Info:** "这个戒指由坚硬的石头制成，看起来很普通。如果不是因为里面有一滴液态血液脉动着取代了宝石。里面有一个指向墙壁的箭头和一颗破碎的心... 这意味着什么？"
+  * **RingOfStoneWalking_ImmuredInStone:** "被困在石头里。永远。"
+  * **StoneBloodBuff_Name:** "石中血"
+  * **StoneBloodBuff_Info:** "你的血液能够和墙壁融合在一起，使你能够穿过墙壁，但这要付出一些代价"
+
+{{tag> rpd buffs artifact doom ring }}
