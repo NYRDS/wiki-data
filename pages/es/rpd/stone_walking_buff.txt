@@ -1,0 +1,44 @@
+====== Buf Sangre de Piedra ======
+
+{{ rpd:images:stone_walking_buff.png|Buf Sangre de Piedra }}
+
+El buf **Sangre de Piedra** es un buf de artefacto aplicado por el [[es:rpd:ring_of_stone_blood_item|Anillo de Sangre de Piedra]]. Es un buf de maldición (doom) que activa una condición especial de muerte cuando el héroe muere mientras está afectado por él.
+
+==== Descripción ====
+El buf Sangre de Piedra permite al héroe atravesar paredes como si fueran espacio abierto. La sangre del héroe se convierte en piedra que se funde con las paredes cercanas, haciendo que atravesarlas sea mucho más fácil. Sin embargo, este poder tiene un terrible costo: si el héroe muere mientras está afectado por este buf, queda permanentemente inmurado en piedra.
+
+==== Propiedades ====
+  * **Tipo:** Buf de Artefacto (extiende ArtifactBuff)
+  * **También Implementa:** Interfaz Doom
+  * **Icono:** BuffIndicator.STONEBLOOD
+  * **Objeto Fuente:** [[es:rpd:ring_of_stone_blood_item|Anillo de Sangre de Piedra]]
+  * **Logro:** Desbloquea el logro "Muerte en Piedra" al morir con el buf activo
+
+==== Mecánicas ====
+  * **Travesía de Paredes:** Permite al héroe caminar a través de paredes
+  * **Efecto de Muerte:** Cuando el héroe muere con el buf activo:
+    - Valida el logro "Muerte en Piedra"
+    - Activa un fin de juego especial: "Has sido inmurado en piedra. Para siempre."
+    - Usa la razón de muerte IMMURED
+
+==== Referencias de Código ====
+  * Implementación del Anillo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java|RingOfStoneWalking.java]]
+  * Fábrica de Bufs: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]]
+  * Fábrica de Objetos: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+  * Recursos de Cadenas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L2180-L2181|StoneBloodBuff strings]]
+  * Recursos de Cadenas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L1774-L1776|RingOfStoneWalking strings]]
+
+==== Entidades Relacionadas ====
+  * [[es:rpd:ring_of_stone_blood_item|Anillo de Sangre de Piedra]] - El anillo de artefacto que aplica este buf
+  * [[es:rpd:artifact_buff|Buf de Artefacto]] - Clase base para bufs de artefacto
+  * [[es:rpd:doom_interface|Interfaz Doom]] - Interfaz para bufs tipo maldición
+  * [[es:rpd:badges|Logros]] - Sistema de logros incluyendo "Muerte en Piedra"
+
+==== Recursos de Cadenas ====
+  * **RingOfStoneWalking_Name:** "Anillo de Sangre de Piedra"
+  * **RingOfStoneWalking_Info:** "Este anillo, hecho de piedra resistente, parecería ordinario. Si no fuera por la gota de sangre líquida, pulsando en lugar de piedra. Dentro una flecha, apuntando a lo que parece una pared y a un corazón roto... ¿Qué podría significar?"
+  * **RingOfStoneWalking_ImmuredInStone:** "Inmurado en piedra. Para siempre."
+  * **StoneBloodBuff_Name:** "Piedra Sangrienta"
+  * **StoneBloodBuff_Info:** "La sangre se convierte en piedra que se funde con las paredes cercanas y hace que atravesarlas sea mucho más fácil, pero a qué precio."
+
+{{tag> rpd buffs artifact doom ring }}

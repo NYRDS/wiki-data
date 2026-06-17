@@ -1,0 +1,44 @@
+====== 石中血 Buff ======
+
+{{ rpd:images:stone_walking_buff.png|石中血 Buff }}
+
+**石中血** Buff 是由 [[zh:rpd:ring_of_stone_blood_item|石血之戒]] 施加的神器 Buff。這是一個厄運類 Buff，當英雄在受到其影響時死亡會觸發特殊的死亡條件。
+
+==== 描述 ====
+石中血 Buff 允許英雄像穿越開放空間一樣穿牆而過。英雄的血液變成石頭，與附近的牆壁融合在一起，使穿牆變得更容易。然而，這種力量需要付出可怕的代價 —— 如果英雄在受到此 Buff 影響時死亡，他們將永遠被困在石頭中。
+
+==== 屬性 ====
+  * **類型:** 神器 Buff (繼承 ArtifactBuff)
+  * **同時實現:** Doom 介面
+  * **圖標:** BuffIndicator.STONEBLOOD
+  * **來源物品:** [[zh:rpd:ring_of_stone_blood_item|石血之戒]]
+  * **成就:** 死亡時若帶有此 Buff 則解鎖"石中之死"成就
+
+==== 機制 ====
+  * **穿牆:** 允許英雄穿過牆壁
+  * **死亡效果:** 當英雄在帶有此 Buff 時死亡:
+    - 驗證"石中之死"成就
+    - 觸發特殊遊戲結束: "血液變成石頭，與附近的牆壁融為一體，使穿越它們變得容易得多，但代價是什麼。"
+    - 使用 IMMURED 死亡原因
+
+==== 代碼參考 ====
+  * 戒指實現: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java|RingOfStoneWalking.java]]
+  * Buff 工廠: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]]
+  * 物品工廠: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+  * 字符串資源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L2192-L2193|StoneBloodBuff strings]]
+  * 字符串資源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L1774-L1776|RingOfStoneWalking strings]]
+
+==== 相關實體 ====
+  * [[zh:rpd:ring_of_stone_blood_item|石血之戒]] - 施加此 Buff 的神器戒指
+  * [[zh:rpd:artifact_buff|神器 Buff]] - 神器 Buff 的基類
+  * [[zh:rpd:doom_interface|Doom 介面]] - 厄運類 Buff 的介面
+  * [[zh:rpd:badges|成就]] - 包含"石中之死"的成就系統
+
+==== 字符串資源 ====
+  * **RingOfStoneWalking_Name:** "石血之戒"
+  * **RingOfStoneWalking_Info:** "這枚戒指由堅硬的石頭製成，外觀看似普通。若非其中一滴液態血液脈動取代了寶石。裡面有一支指向牆壁的箭頭和一顆破碎的心... 這意味著什麼？"
+  * **RingOfStoneWalking_ImmuredInStone:** "被困在石頭裡。永遠。"
+  * **StoneBloodBuff_Name:** "石中血"
+  * **StoneBloodBuff_Info:** "血液變成石頭，與附近的牆壁融為一體，使穿越它們變得容易得多，但代價是什麼。"
+
+{{tag> rpd buffs artifact doom ring }}
