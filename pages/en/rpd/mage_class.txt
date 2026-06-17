@@ -8,23 +8,28 @@ The **Mage** is one of the starting [[en:rpd:hero_class|hero classes]] in Remixe
 The Mage is a magic-focused class that relies on wands and scrolls for combat effectiveness. The class is designed around magical energy usage and spellcasting, with a focus on utility and ranged magical combat. The Mage starts with a Wand of Magic Missile and an increased magic capacity.
 
 ==== Starting Equipment ====
-  * [[en:rpd:wand_of_magic_missile_item|Wand of Magic Missile]]
-  * [[en:rpd:scroll_of_identify_item|Scroll of Identify]]
-  * [[en:rpd:food_ration|Ration of Food]]
-  * [[en:rpd:scroll_of_magic_mapping_item|Scroll of Magic Mapping]]
+  * [[en:rpd:wand_of_magic_missile_item|Wand of Magic Missile]] (identified)
+  * [[en:rpd:cloth_armor_item|Cloth Armor]] (identified, requires 1 STR)
+  * [[en:rpd:ration_item|Ration of Food]] (on difficulty < 3)
   * 100 [[en:rpd:gold_item|Gold Coins]]
-  * [[en:rpd:mage_armor_item|Mage's Robe]] (Cloth armor with +1 durability)
+  * [[en:rpd:scroll_of_identify_item|Scroll of Identify]] is **identified from start** (known in encyclopedia, not in inventory)
+  * Quickslot 1: [[en:rpd:wand_of_magic_missile_item|Wand of Magic Missile]]
+  * Quickslot 2: [[en:rpd:wind_gust_spell|Wind Gust]] spell
 
 ==== Stats ====
   * **Starting Strength:** 10 (standard)
-  * **Starting HP:** 15 (standard)
+  * **Starting HP:** 20 (standard)
   * **Starting SP:** 15 (vs 10 for other classes)
-  * **Max Inventory:** 19 slots
+  * **Max SP:** 15 (vs 10 for other classes)
+  * **Magic Affinity:** [[en:rpd:elemental_magic_mechanic|Elemental]]
 
-==== Special Abilities ====
-  * **Wand Focus:** The Mage's [[en:rpd:wand_of_magic_missile_item|Wand of Magic Missile]] gains experience with each use, improving its effectiveness over time.
-  * **Magic Affinity:** Elemental magic affinity, allowing access to elemental spells like [[en:rpd:ignite_spell|Ignite]], [[en:rpd:magic_arrow_spell|Magic Arrow]], [[en:rpd:freeze_globe_spell|Freeze Globe]], etc.
-  * **Starting SP Bonus:** Begins with more Spell Points (SP) than other classes, allowing for more magical abilities.
+==== Class Perks (from string resources) ====
+  * **Unique Wand:** Starts with a unique [[en:rpd:wand_of_magic_missile_item|Wand of Magic Missile]] that can be [[en:rpd:wand_of_magic_missile_item#disenchant|disenchanted]] to upgrade another wand
+  * **Faster Wand Recharge:** Wands recharge faster for the Mage (TIME_TO_CHARGE / sqrt(1 + wand_level)) - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L416|Wand.java:416]]
+  * **Food Restores Wand Charges:** Eating any food restores 1 charge to all wands in inventory - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L816|Hero.java:816]]
+  * **Wands as Melee:** Wands can be used as melee weapons (range 1)
+  * **Elemental Spells:** Uses Spell Points (SP) to cast [[en:rpd:elemental_magic_mechanic|Elemental spells]] like [[en:rpd:ignite_spell|Ignite]], [[en:rpd:magic_arrow_spell|Magic Arrow]], [[en:rpd:freeze_globe_spell|Freeze Globe]], etc.
+  * **Identified Scrolls:** [[en:rpd:scroll_of_identify_item|Scrolls of Identify]] are identified from the beginning
 
 ==== Subclasses ====
 The Mage can choose between two Mastery paths after defeating Tengu (boss #2) with a [[en:rpd:tome_of_mastery_item|Tome of Mastery]]:
@@ -32,37 +37,44 @@ The Mage can choose between two Mastery paths after defeating Tengu (boss #2) wi
   * [[en:rpd:battle_mage_subclass|Battle Mage]]
 
 ==== Advantages ====
-  * Unique wand progression system
-  * Strong ranged combat capability
+  * Unique wand progression system (disenchant to upgrade other wands)
+  * Strong ranged combat capability with wands
   * Good utility with various scrolls
-  * Higher Spell Points pool
+  * Higher Spell Points pool (15 vs 10)
   * Access to magical items
+  * Faster wand recharging
+  * Food consumption restores wand charges
 
 ==== Disadvantages ====
-  * Lower health than Warrior class
+  * Lower health than Warrior class (same as standard)
   * Wand charges are limited and need to be recharged
-  * Relies heavily on consumables (scrolls)
+  * Relies heavily on consumables (scrolls, food for wand charges)
   * Vulnerable at close range without proper preparation
 
 ==== Strategy ====
-  * Preserve your Wand of Magic Missile as it becomes more powerful with use
+  * Preserve your Wand of Magic Missile as it becomes more powerful with use and can upgrade other wands
+  * Eat food strategically to restore wand charges
   * Identify wands early to determine how to use them effectively
   * Prioritize finding and upgrading wands for combat
   * Use scrolls strategically for their utility
-  * Focus on spell-based progression for magic affinity
+  * Focus on spell-based progression for elemental magic affinity
 
 ==== Content Verification ====
-  * Information source: Java Classes and initHeroes.json
-  * Starting equipment: RemixedDungeon/src/main/assets/hero/initHeroes.json
-  * Stats: RemixedDungeon/src/main/assets/hero/initHeroes.json
-  * Class implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]]
+  * **Starting equipment & stats**: ''RemixedDungeon/src/main/assets/hero/initHeroes.json'' (MAGE section)
+  * **Class implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]]
+  * **Faster wand recharge**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L416|Wand.java:416]]
+  * **Food restores wand charges**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L816|Hero.java:816]]
+  * **Class perks**: String resources in ''RemixedDungeon/src/main/res/values/strings_all.xml'' (HeroClass_MagPerks_0-5)
+  * **Wand of Magic Missile**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfMagicMissile.java|WandOfMagicMissile.java]]
 
 ==== See Also ====
   * [[en:rpd:hero_class|Hero Classes]]
-  * [[en:rpd:mage_armor_item|Mage's Robe]]
+  * [[en:rpd:cloth_armor_item|Cloth Armor]]
   * [[en:rpd:wand_of_magic_missile_item|Wand of Magic Missile]]
+  * [[en:rpd:wind_gust_spell|Wind Gust]]
   * [[en:rpd:warlock_subclass|Warlock Subclass]]
   * [[en:rpd:battle_mage_subclass|Battle Mage Subclass]]
   * [[en:rpd:hero_subclasses|Hero Subclasses]]
+  * [[en:rpd:elemental_magic_mechanic|Elemental Magic]]
 
 {{tag> rpd classes mage hero}}
