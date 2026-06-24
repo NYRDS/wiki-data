@@ -2,10 +2,10 @@
 
 {{ rpd:images:dash_spell.png|Dash Spell }}
 
-**Dash Spell** is a spell in Remixed Dungeon (Combat Affinity).
+**Dash** is a spell in Remixed Dungeon (Combat Affinity).
 
 ==== Description ====
-Dash towards a specified direction while colliding with enemies, dealing damage and causing maim.
+Dash towards a target cell while colliding with enemies, dealing damage and pushing them. The spell has a maximum range of 2 cells.
 
 ==== Stats ====
   * **Magic Affinity:** Combat
@@ -14,13 +14,23 @@ Dash towards a specified direction while colliding with enemies, dealing damage 
   * **Mana Cost:** 10
   * **Cooldown:** 30 turns
   * **Cast Time:** 0.5 turns
-  * **Special Effects:** Damages targets, pushes enemies, roots enemies in place, applies maim
+  * **Range:** 2 cells maximum
+  * **Special Effects:** Damages targets, pushes enemies, applies Vertigo
+
+==== Mechanics ====
+  * **Movement:** Caster dashes to target cell (max 2 cells away)
+  * **Damage:** Caster's effective STR - 5, plus weapon damage if equipped
+  * **Area Effect:** Hits all enemies in 3x3 area around destination cell
+  * **Push Effect:** Enemies at destination are pushed; if push fails, caster moves to adjacent cell
+  * **Vertigo:** Enemies hit receive Vertigo buff for duration based on caster's skill level
+  * **Self-cast:** Casting on own cell shows message and doesn't consume spell
+  * **Sound/Visual:** Plays "dash" sound and shows "dash" zap effect
 
 ==== Usage ====
 The Dash spell can be used for:
-  * **Offensive applications:** Close distance with enemies and deal damage - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Dash.lua#L52-L63|Dash.lua:damage calculation]]
-  * **Control applications:** Restrict enemy movement - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Dash.lua#L34-L46|Dash.lua:push mechanics]]
-  * **Strategic applications:** Reposition in combat
+  * **Offensive applications:** Close distance with enemies and deal damage
+  * **Control applications:** Push enemies and apply Vertigo to restrict movement
+  * **Strategic applications:** Reposition in combat or escape danger
   * **Utility purposes:** Quick traversal of corridors
 
 ==== Classes ====
@@ -57,5 +67,6 @@ How to effectively use the Dash spell:
   * [[en:rpd:mechanics_mechanic|Game Mechanics]]
   * [[en:rpd:combat|Combat Affinity]]
   * [[en:rpd:magic_affinity|Magic Affinity]]
+  * [[en:rpd:vertigo_buff|Vertigo]]
 
 {{tag> rpd spells combat }}
