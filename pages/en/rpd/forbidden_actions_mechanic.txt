@@ -3,32 +3,48 @@
 Game mechanics allow certain hero classes to have forbidden actions. Some classes cannot perform specific actions in the game.
 
 ==== List of Possible Actions to Forbid ====
-  * ''Scroll_ACRead'' - Reading scrolls
-  * ''Bag_ACOpen'' - Opening bags
-  * ''DewVial_ACDRINK'' - Drinking from dew vial
-  * ''Drink_ACDrink'' - Drinking potions
-  * ''EquipableItem_ACEquip'' - Equipping items
-  * ''EquipableItem_ACUnequip'' - Unequipping items
-  * ''Item_ACDrop'' - Dropping items
-  * ''Item_ACThrow'' - Throwing items
-  * ''TomeOfMastery_ACRead'' - Reading tome of mastery
-  * ''Torch_ACLight'' - Lighting torches
-  * ''Weightstone_ACApply'' - Applying weightstones
-  * ''Amulet_ACEnd'' - Ending game with Amulet of Yendor
-  * ''ArmorKit_ACAplly'' - Applying armor kit
-  * ''Pickaxe_ACMine'' - Mining with pickaxe
-  * ''Plant_ACPlant'' - Planting seeds
-  * ''Potion_ACMoisten'' - Moisten items with potions
-  * ''ShortSword_ACReforge'' - Reforging with shortsword
-  * ''Wand_ACZap'' - Zapping wands
-  * ''WandOfMagicMissile_ACDisenchant'' - Disenchanting with wand of magic missile
+  * ''CommonActions.AC_READ'' (''Scroll_ACRead'') - Reading scrolls
+  * ''Bag.AC_OPEN'' (''Bag_ACOpen'') - Opening bags
+  * ''CommonActions.AC_DRINK'' (''Potion_ACDrink'') - Drinking potions
+  * ''DewVial'' (''CommonActions.AC_DRINK'') - Drinking from dew vial
+  * ''CommonActions.AC_EQUIP'' (''EquipableItem_ACEquip'') - Equipping items
+  * ''CommonActions.AC_UNEQUIP'' (''EquipableItem_ACUnequip'') - Unequipping items
+  * ''Item.AC_DROP'' (''Item_ACDrop'') - Dropping items
+  * ''Item.AC_THROW'' (''Item_ACThrow'') - Throwing items
+  * ''TomeOfMastery.AC_READ'' (''TomeOfMastery_ACRead'') - Reading tome of mastery
+  * ''Torch.AC_LIGHT'' (''Torch_ACLight'') - Lighting torches
+  * ''Weightstone.AC_APPLY'' (''Weightstone_ACApply'') - Applying weightstones
+  * ''Amulet.AC_END'' (''Amulet_ACEnd'') - Ending game with Amulet of Yendor
+  * ''ArmorKit.AC_APPLY'' (''ArmorKit_ACAplly'') - Applying armor kit (note: typo in code: ACAplly)
+  * ''Pickaxe.AC_MINE'' (''Pickaxe_ACMine'') - Mining with pickaxe
+  * ''Plant.AC_PLANT'' - Planting seeds (Seed action)
+  * ''Potion.AC_MOISTEN'' (''Potion_ACMoisten'') - Moisten items with potions
+  * ''ShortSword.AC_REFORGE'' (''ShortSword_ACReforge'') - Reforging with shortsword
+  * ''Wand.AC_ZAP'' (''Wand_ACZap'') - Zapping wands
+  * ''WandOfMagicMissile.AC_DISENCHANT'' (''WandOfMagicMissile_ACDisenchant'') - Disenchanting with wand of magic missile
+  * ''Stylus.AC_INSCRIBE'' (''Stylus_ACInscribe'') - Inscribing with arcane stylus
 
 ==== Usage ====
-These actions can be restricted in the ''InitHeroes.json'' configuration file for specific hero classes.
+These actions can be restricted in the ''initHeroes.json'' configuration file for specific hero classes using the ''forbiddenActions'' array.
+
+==== Example: Gnoll Class ====
+The Gnoll class forbids reading scrolls, reading tome of mastery, and inscribing with arcane stylus:
+
+<code json>
+"forbiddenActions": [
+  "Scroll_ACRead",
+  "TomeOfMastery_ACRead",
+  "Stylus_ACInscribe"
+]
+</code>
+
+==== Implementation ====
+The ''HeroClass.forbidden(String action)'' method in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] checks if an action is in the class's ''forbiddenActions'' set. The action constants are defined in various item classes and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/CommonActions.java|CommonActions.java]].
 
 ==== Content Verification ====
   * **Information source**: Configuration in ''RemixedDungeon/src/main/assets/hero/initHeroes.json''
-  * **Mechanic verification**: Verified against actual game implementation
-  * **Last updated**: February 2026
+  * **Mechanic verification**: ''HeroClass.forbidden()'' method in ''HeroClass.java''
+  * **Action constants**: Defined in item classes and ''CommonActions.java''
+  * **Last updated**: June 2026
 
 {{tag> rpd mechanics}}
