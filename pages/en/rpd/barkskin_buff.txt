@@ -2,28 +2,41 @@
 
 {{ rpd:images:barkskin_buff.png|Barkskin }}
 
-**Barkskin** is a beneficial status effect in Remixed Dungeon that temporarily increases the character's armor, making them more resistant to damage.
+**Barkskin** is a beneficial status effect in Remixed Dungeon that temporarily increases the character's armor (DR), making them more resistant to physical damage.
 
 ==== Mechanics ====
-  * **Effect**: Increases armor value, reducing incoming physical damage
-  * **Duration**: Varies based on the source
+  * **Effect**: Increases DR (Damage Reduction) by an amount equal to the current buff level
+  * **Duration**: The buff level decreases by 1 each turn; when it reaches 0, the buff expires
+  * **Initial Level**: Set by the source applying the buff (see Sources below)
+  * **DR Bonus**: Equal to current buff level (checked via `drBonus()` method)
 
-==== How to Apply ====
+==== Sources ====
 The Barkskin buff can be applied through:
-  * [[en:rpd:nature_armor_spell|Nature Armor Spell]] - applies barkskin for duration of caster's skill level × caster's level turns
-  * Various other sources in the game
+
+  * **[[en:rpd:nature_armor_spell|Nature Armor Spell]]** (Elf spell) - applies Barkskin with initial level = caster's skill level × caster's level
+  * **Earthroot Plant** - applies Barkskin with initial level = hero's effective STR / 4
+  * **Generic Plant** - applies Barkskin with initial level = hero's max HP / 3
+  * **Frozen Carpaccio** (food) - applies Barkskin with initial level = hero's max HP / 4
+  * **High Grass** (level feature) - applies Barkskin with initial level = hero's max HP / 3
+  * **Spider Mind** (mob) - has Barkskin as one of its buffs
 
 ==== Code References ====
-  * **Implementation**: Barkskin functionality is part of the general buff system
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Barkskin.java|Barkskin.java]] - The actual implementation file if it exists
+  * **Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Barkskin.java|Barkskin.java]] - Core buff implementation
+  * **Nature Armor Spell**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/NatureArmor.lua|NatureArmor.lua]] - Applies Barkskin with level = skillLevel × casterLevel
+  * **Earthroot**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L66|Earthroot.java]] - Applies Barkskin with level = effectiveSTR / 4
+  * **Plant**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java#L48|Plant.java]] - Applies Barkskin with level = ht() / 3
+  * **Frozen Carpaccio**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/FrozenCarpaccio.java#L44|FrozenCarpaccio.java]] - Applies Barkskin with level = ht() / 4
+  * **High Grass**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java#L48|HighGrass.java]] - Applies Barkskin with level = ht() / 3
 
 ==== String Resources ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2757|BuffName_MldBarkskin]]: "Barkskin"
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2758|BuffInfo_MldBarkskin]]: "Your skin hardens, making you feel well protected."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L557-L558|English strings]]: Name="Barkskin", Info="The body is covered by bark which blocks some damage taken."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L210-L211|Russian strings]]: Name="Кожа-кора", Info="Тело покрыто твёрдой корой, которая блокирует некоторый урон."
 
 ==== See Also ====
   * [[en:rpd:buffs|Buffs and Debuffs]]
   * [[en:rpd:nature_armor_spell|Nature Armor Spell]]
+  * [[en:rpd:earthroot|Earthroot]]
+  oot]]
   * [[en:rpd:status_effects|Status Effects]]
 
 {{tag> rpd buffs status_effects protection }}
