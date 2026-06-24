@@ -1,0 +1,50 @@
+====== 疯狂强盗 ======
+
+{{ rpd:images:bandit_mob.png|疯狂强盗 }}
+
+**疯狂强盗** 是 Remixed Dungeon 中的敌对生物，是出现在地牢深层的小偷变体。与其他小偷一样，疯狂强盗拥有特殊的偷窃能力，并在攻击后逃跑。
+
+==== 描述 ====
+疯狂强盗是出现在地牢深层的一种小偷类怪物。它们因能从玩家背包中偷窃物品并随后逃离战斗而极具威胁。
+
+==== 机制 ====
+  * **偷窃机制**：攻击时，疯狂强盗有几率从玩家背包中偷走一个物品
+  * **逃跑**：成功偷窃后，疯狂强盗会逃跑而不是继续攻击
+  * **致盲**：当疯狂强盗成功偷窃时，会对玩家施加 5-12 回合的致盲效果
+  * **敌对**：疯狂强盗具有攻击性，看到玩家即会攻击
+
+==== 属性 ====
+  * **等级：** 7
+  * **生命值：** 20（基础值，可能随地牢层数缩放）
+  * **攻击技能：** 12（基础值）
+  * **防御技能：** 12（基础值）
+  * **伤害：** 1-7（基础值）
+  * **伤害减免：** 3（基础值）
+  * **经验值：** 5
+  * **最高等级：** 10
+  * **攻击间隔：** 0.5 秒
+
+==== 行为 ====
+  * 如果不在玩家相邻位置，疯狂强盗会向玩家移动
+  * 当与玩家相邻时，它们会攻击
+  * 如果攻击成功偷窃物品，疯狂强盗会逃跑
+  * 如果攻击未偷窃到物品，疯狂强盗会继续战斗
+  * 成功偷窃后，疯狂强盗使用 ThiefFleeing AI
+
+==== 策略 ====
+  * 将贵重物品放在辅助栏位或使用物品保护
+  * 与疯狂强盗战斗时做好可能致盲的准备
+  * 尽快击杀它们以防止偷窃尝试
+  * 远程武器可有效避免偷窃尝试
+
+==== 代码参考 ====
+  * Java 类：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Bandit.java|Bandit.java]]
+  * 继承自：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Thief.java|Thief.java]]
+  * 字符串资源：
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1180-L1183|Bandit_Name, Bandit_Gender, Bandit_Desc]]
+
+==== 相关怪物 ====
+  * [[cn:rpd:thief_mob|小偷]] - 基础类和相似怪物
+  * [[cn:rpd:mobs|怪物]] - 地牢中的其他敌人
+
+{{tag> rpd mobs 小偷 强盗}}
