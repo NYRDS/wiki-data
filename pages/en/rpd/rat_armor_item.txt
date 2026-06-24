@@ -1,14 +1,15 @@
-====== Rat Armor Item ======
+====== Rat Armor ======
 
 {{ rpd:images:rat_armor_item.png|Rat Armor }}
 
 ==== Description ====
-Rat Armor is a unique body armor item that can be obtained by completing the Plague Doctor's quest. It offers moderate protection with a balanced armor rating.
+**Rat Armor** is a unique tier 1 body armor item obtained by completing the Plague Doctor's quest. It offers moderate protection with a unique rat-themed appearance.
 
 ==== Statistics ====
-  * **Armor Rating**: 4-6 (depending on upgrades)
-  * **Durability**: 100%
-  * **Weight**: 10 units
+  * **Tier**: 1
+  * **Base DR (typicalDR)**: 5 (tier * 2 + 3 bonus from RatArmor class)
+  * **Effective DR**: 5 + upgrade level + (1 if glyph inscribed)
+  * **Required STR**: max(9 - upgrade level, 2)
   * **Value**: 40 gold (without upgrades)
 
 ==== Acquisition ====
@@ -17,22 +18,29 @@ Rat Armor is a unique body armor item that can be obtained by completing the Pla
   * After completing the quest, players receive the Rat Armor as a reward
 
 ==== Properties ====
-  * Provides moderate physical protection
-  * Can be upgraded like other armor items
-  * Has a unique rat-themed appearance
+  * Provides moderate physical protection (DR scales with upgrades)
+  * Can be upgraded using [[en:rpd:scroll_of_upgrade_item|Scrolls of Upgrade]]
+  * Maximum upgrade level is +10
+  * Can be inscribed with a [[en:rpd:armor_glyphs|glyph]] for additional effects
+  * Has a unique rat-themed appearance (image index 24)
 
 ==== Upgrades ====
 Rat Armor can be upgraded using [[en:rpd:scroll_of_upgrade_item|Scrolls of Upgrade]]:
-  * Each upgrade increases armor rating
+  * Each upgrade increases Effective DR by 1 (formula: 5 + level + glyph_bonus)
+  * Each upgrade reduces Required STR by 1 (formula: max(9 - level, 2))
   * Maximum upgrade level is +10
+  * At +10: Effective DR = 15 (or 16 with glyph), Required STR = 2
 
 ==== Tips ====
   * Early-game armor option that can be reliably obtained
   * Good alternative to [[en:rpd:mage_armor_item|Mage Armor]] if you encounter the Plague Doctor before the Wandmaker
   * Consider upgrading if available early in the game
+  * Low tier means it won't provide as much protection as higher-tier armors later in the game
 
 ==== Source Code References ====
-  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/accessories/RatArmor.java|RatArmor.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1589-L1596|RatArmor strings (RU)]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1395-L1402|RatArmor strings (EN)]]
+  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/RatArmor.java|RatArmor.java]]
+  * Armor Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] - effectiveDr(), typicalDR(), requiredSTR() formulas
+  * String Resources (EN): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1605-L1606|RatArmor strings]]
+  * String Resources (RU): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1700-L1701|RatArmor strings (RU)]]
 
 {{tag> rpd items armor quest_reward }}
