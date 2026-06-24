@@ -65,6 +65,43 @@ A tool that:
 
 ==== Additional Tool Suggestions from January 2026 Maintenance ====
 
+==== Additional Tool Suggestions from June 2026 Maintenance ====
+
+===== 1. Naming Convention Auto-Fixer =====
+  * During this session, several pages needed manual renaming (combat.txt → combat_mechanic.txt, hunger.txt → hunger_buff.txt, identification.txt → identification_mechanic.txt)
+  * An automated tool that detects and fixes naming convention violations would prevent these issues
+  * Could be implemented as a pre-commit hook or CI check
+
+===== 2. Food/Item Reference Validator =====
+  * The hunger_buff page had references to non-existent items (Meat Pie, Fruit) that don't exist in the game code
+  * A tool that validates all item/mob/spell references in wiki pages against the actual game code
+  * Should flag references to entities that don't exist in the codebase
+
+===== 3. Cross-Language Page Completeness Checker =====
+  * Created missing bandit_mob pages in 4 languages (es, pt, cn, zh)
+  * A tool that systematically checks which entities have pages in which languages
+  * Would help prioritize translation work and ensure consistent coverage
+
+===== 4. Development/Placeholder Content Detector =====
+  * Identified test_spell.txt as a development artifact that shouldn't be in the main wiki
+  * A tool that scans for pages with "test", "debug", "dev", "placeholder" indicators in content or code references
+  * Could flag or automatically move such pages to a developer namespace
+
+===== 5. Internal Link Consistency Checker Across Renames =====
+  * When pages are renamed (combat → combat_mechanic), many internal links need updating
+  * Found 38 references to the old combat.txt page across the wiki
+  * An automated tool to update all internal links when a page is renamed would save significant time
+
+===== 6. Code Reference Updater =====
+  * Code references in wiki pages often point to specific line numbers that change over time
+  * A tool that periodically verifies and updates line numbers in code reference URLs
+  * Could use git blame or similar to track line movements
+
+===== 7. Image Naming Convention Validator =====
+  * The kunai_throw_spell page used kunai_throw_spell_icon.png instead of the proper kunai_throw_spell.png
+  * A tool that validates image references follow the established naming convention
+  * Should check both the wiki page references and the actual image files in the media directory
+
 ===== MR Namespace Generator =====
   * A script that automatically generates missing mr: namespace pages based on entity lists
   * Should be able to scan the codebase and generate basic pages with code references
