@@ -1,0 +1,38 @@
+====== Piercing Enchantment - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Piercing.java|Piercing.java]] - Main enchantment class implementing the piercing effect
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] - Contains enchantment registration and proc logic (lines 248-252)
+
+===== JSON Configuration =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Piercing.json|Piercing.json]] - Sprite configuration for piercing enchantment visual effect
+
+===== String Resources =====
+<code xml>
+<!-- English (values/strings_all.xml) -->
+<string name="Piercing_Name_0">Piercing</string>
+<string name="Piercing_Name_1">Piercing</string>
+<string name="Piercing_Name_2">Piercing</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists
+
+===== Java Usage Context =====
+  * **Enchantment Registration**: Registered in Weapon.java as one of 11 possible enchantments (3% chance)
+  * **Boomerang Exception**: Boomerang.java prevents Piercing and Swing enchantments (line 57)
+  * **Instability Interaction**: Instability.java can randomly select Piercing as a replacement enchantment (line 15)
+  * **Proc Logic**: Deals damage in a straight line from the initial target with damage reduction formula: maxDamage = (int)(damage * Math.pow(2, -1d / (level + 1)))
+
+===== Entity Kind =====
+  * **getEntityKind()**: Returns "Piercing" (class simple name)
+  * **Category**: Weapon enchantment
+  * **Damage Reduction**: Based on weapon level, higher levels maintain more damage
+  * **Minimum Damage**: Stops piercing when damage falls below 1
+
+===== Related mr Entities =====
+  * [[mr:weapon_enchantments|Weapon Enchantments]]
+  * [[mr:boomerang_item|Boomerang (Item)]]
+  * [[mr:instability_enchantment|Instability Enchantment]]
+
+{{tag> rpd enchantments piercing mr}}
