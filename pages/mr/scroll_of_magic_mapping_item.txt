@@ -1,8 +1,12 @@
 ====== Scroll Of Magic Mapping Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfMagicMapping.java|ScrollOfMagicMapping.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]] (base class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfMagicMapping.java|ScrollOfMagicMapping.java]] - Main implementation with doRead() method that reveals level layout, secret doors, and level objects
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]] - Base Scroll class with TIME_TO_READ = 1f, scrolls array, and inscribableScrolls array
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java|ShopPainter.java]] - Adds ScrollOfMagicMapping to shop inventory (line 137)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Uses ScrollOfMagicMapping.discover() for secret door/trap discovery (lines 715, 722)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java|Tengu.java]] - Uses ScrollOfMagicMapping.discover() for trap discovery (line 115)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registers ScrollOfMagicMapping class (line 267)
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
