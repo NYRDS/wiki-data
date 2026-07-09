@@ -1,5 +1,7 @@
 ====== Cripple Buff - Code References ======
 
+{{ rpd:images:cripple_buff.png|Cripple Buff }}
+
 ===== Java Classes =====
   * ''com/watabou/pixeldungeon/actors/buffs/Cripple.java'' - Main buff implementation
   * Extends: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff]]
@@ -15,24 +17,27 @@ import com.watabou.pixeldungeon.actors.Char;
 import com.watabou.pixeldungeon.sprites.CharSprite;
 import com.watabou.pixeldungeon.ui.BuffIndicator;
 
+import com.nyrds.LuaInterface;
+
+@LuaInterface
 public class Cripple extends FlavourBuff {
 
-	public static final float DURATION	= 10f;
+        public static final float DURATION      = 10f;
 
-	@Override
-	public int icon() {
-		return BuffIndicator.CRIPPLE;
-	}
+        @Override
+        public int icon() {
+                return BuffIndicator.CRIPPLE;
+        }
 
-	@Override
-	public float speedMultiplier(Char chr) {
-		return 0.5f;
-	}
+        @Override
+        public float speedMultiplier(Char chr) {
+                return 0.5f;
+        }
 
-	@Override
-	public void attachVisual() {
+        @Override
+        public void attachVisual() {
         target.showStatus(CharSprite.NEGATIVE, StringsManager.getVar(R.string.Char_StaCrippled));
-	}
+        }
 }
 </code>
 
@@ -84,3 +89,5 @@ Removed by:
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff Base Class]]
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java|BuffIndicator]]
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java|CharSprite]]
+
+{{tag> rpd buffs debuffs}}
