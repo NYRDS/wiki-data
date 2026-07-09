@@ -1,0 +1,136 @@
+====== Sewers Level - Code References ======
+
+**Sewers** is the first level of Remixed Dungeon (depths 1-5). It serves as the tutorial area and introduces basic game mechanics.
+
+===== Entity Type =====
+Level/Dungeon Branch
+
+===== Java Classes =====
+**Level Generation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/SewerLevel.java|SewerLevel.java]]
+  * Package: `com.watabou.pixeldungeon.levels`
+  * Extends: `Level`
+  * Features: Water pools, grass, rat/snail spawns, hidden doors
+
+**Level Transition**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]]
+  * Line 308: `switchLevel()` - Level transitions
+  * Depths 1-5: Sewers
+  * Depth 5: Boss level (Goo)
+
+**Level Generator**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/LevelGenerator.java|LevelGenerator.java]]
+  * Sewer-specific room templates
+  * Water placement algorithm
+  * Secret door generation
+
+**Boss Level**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/SewerBossLevel.java|SewerBossLevel.java]]
+  * Depth 5
+  * Goo boss arena
+  * Special layout
+
+===== JSON Configuration =====
+**Bestiary Spawns**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]
+<code json>
+"levels": {
+  "1": { "mobs": [{"Rat": 1}, {"Snail": 1}] },
+  "2": { "mobs": [{"Rat": 1}, {"Snail": 1}, {"DeepSnail": 0.03}] },
+  "3": { "mobs": [{"Rat": 1}, {"Snail": 0.5}, {"Crab": 0.3}, {"DeepSnail": 0.1}] },
+  "4": { "mobs": [{"Rat": 0.8}, {"Crab": 0.5}, {"DeepSnail": 0.2}, {"Gnoll": 0.05}] },
+  "5": { "mobs": [{"Goo": 1}] } // Boss level
+}
+</code>
+
+**Level Objects**: `assets/levelObjects/` - Pedestals, statues, wells, barricades, traps
+
+===== String Resources =====
+English (values/strings_all.xml):
+<code xml>
+<string name="Sewers_Title">Sewers</string>
+<string name="Sewers_Desc">The ancient sewers beneath the city. Damp, dark, and inhabited by vermin.</string>
+<string name="SewerLevel_Water">water</string>
+<string name="SewerLevel_Grass">grass</string>
+<string name="SewerLevel_SecretDoor">secret door</string>
+</code>
+
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="Sewers_Title">Канализация</string>
+<string name="Sewers_Desc">Древняя канализация под городом. Влажная, темная и населенная грызунами.</string>
+</code>
+
+===== Lua Scripts =====
+  * **Sewer Level Events**: `scripts/levels/Sewers.lua` - Special events, rat king quest
+  * **Rat King Quest**: `scripts/npc/RatKing.lua` - Optional boss encounter
+  * **Hidden Rooms**: `scripts/objects/Pedestal.lua` - Pedestal puzzles
+
+===== Related mr Entities =====
+  * [[mr:rat_mob|Rat Mob]] - Primary enemy
+  * [[mr:snail_mob|Snail Mob]] - Passive enemy
+  * [[mr:deep_snail_mob|Deep Snail Mob]] - Water variant
+  * [[mr:crab_mob|Crab Mob]] - Armored enemy
+  * [[mr:goo_mob|Goo Mob]] - Boss (depth 5)
+  * [[mr:rat_king_mob|Rat King Mob]] - Optional boss
+  * [[mr:pet_mechanic|Pet Mechanic]] - First pets available here
+  * [[mr:secrets_mechanic|Secrets Mechanic]] - Hidden doors/rooms
+
+===== Game Mechanics =====
+  * **Depth Range**: 1-5 (5 is boss level)
+  * **Theme**: Damp stone, water pools, grass patches
+  * **Hazards**: Water (slows movement), hidden traps, gas traps
+  * **Special Features**:
+    * Rat King quest (depth 3-4)
+    * Hidden rooms behind secret doors
+    * Pedestal puzzles for rewards
+    * Wells for health restoration
+  * **Progression**: 
+    * Depths 1-2: Rats, Snails (easy)
+    * Depths 3-4: Crabs, Deep Snails, Gnolls (medium)
+    * Depth 5: Goo Boss (required to proceed)
+  * **Shortcuts**: 
+    * Sewer shortcut to Prison (unlocked after Goo)
+    * Backtracking for missed items
+
+===== Mob Spawn Weights (from Bestiary.json) =====
+| Depth | Rat | Snail | Deep Snail | Crab | Gnoll | Goo |
+|-------|-----|-------|------------|------|-------|-----|
+| 1     | 1.0 | 1.0   | -          | -    | -     | -   |
+| 2     | 1.0 | 1.0   | 0.03       | -    | -     | -   |
+| 3     | 1.0 | 0.5   | 0.1        | 0.3  | -     | -   |
+| 4     | 0.8 | -     | 0.2        | 0.5  | 0.05  | -   |
+| 5     | -   | -     | -          | -    | -     | 1.0 |
+
+===== Level Objects =====
+  * **Water Pools** - Terrain feature, slows movement
+  * **Grass Patches** - Tall grass, concealment
+  * **Pedestals** - Item placement triggers
+  * **Statues** - Decoration, sometimes interactive
+  * **Wells** - Health restoration
+  * **Barricades** - Destructible cover
+  * **Secret Doors** - Hidden passages
+
+===== Code Fragments =====
+SewerLevel generation:
+<code java>
+// SewerLevel.java
+public class SewerLevel extends Level {
+    @Override
+    protected void createMap() {
+        // Water pool generation
+        // Grass patch placement
+        // Standard room/corridor layout
+    }
+    
+    @Override
+    public String tilesTex() {
+        return "tiles/sewer.png";
+    }
+}
+</code>
+
+Boss level check:
+<code java>
+// Dungeon.java
+public static boolean isBossLevel() {
+    return Dungeon.depth % 5 == 0; // 5, 10, 15, 20, 25
+}
+</code>
+
+{{tag> rpd levels sewers tutorial depth1-5}}

@@ -1,0 +1,143 @@
+====== Mob System - Code References ======
+
+**Mob System** is the base entity system for all monsters, enemies, and NPCs in Remixed Dungeon. All mobs inherit from the base `Mob` class.
+
+===== Entity Type =====
+Base class for all mobile entities (enemies, NPCs, pets)
+
+===== Java Classes =====
+**Base Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * Package: `com.watabou.pixeldungeon.actors.mobs`
+  * Extends: `com.watabou.pixeldungeon.actors.Char`
+  * Implements: `com.nyrds.pixeldungeon.mechanics.NamedEntityKind`
+
+**Key Methods**:
+  * `getEntityKind()` - Returns entity identifier (class name or JSON config)
+  * `isPet()` - Checks if mob is player's pet
+  * `makePet(Hero hero)` - Tames mob to player
+  * `canBePet()` - Returns `canBePet` from JSON config
+  * `hp()`, `ht()` - Current/max health
+  * `attackSkill`, `defenseSkill` - Combat stats
+  * `damageRoll()` - Damage calculation
+
+**Factory**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]]
+  * `mobByName(String name)` - Creates mob instance by entityKind
+  * Registers all mob classes
+  * Handles custom/JSON mobs
+
+**AI System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/MobAi.java|MobAi.java]]
+  * Abstract base class for mob behavior
+  * State machine: `Wandering`, `Hunting`, `Sleeping`, `RunningAmok`, `Horrified`, `ControlledAi`
+  * `think()` - Main AI decision loop
+
+**Common Mob Subclasses** (in `com.watabou.pixeldungeon.actors.mobs`):
+  * `Rat`, `Snail`, `Crab`, `Gnoll`, `Skeleton`, `Zombie`, `Wraith`, `Ghost`
+  * `Tengu` (Boss), `DM300` (Boss), `Yog` (Final Boss)
+  * `Goo`, `Tengu`, `King` (Gnoll King), `Yog` - Boss mobs
+
+**NPC Classes** (in `com.watabou.pixeldungeon.actors.mobs.npcs`):
+  * `Shopkeeper`, `Wandmaker`, `GhostNPC`, `NecromancerNPC`, `Blacksmith`, `Imp`
+
+**Special**: `CustomMob` - For JSON-configured mobs without Java class
+
+===== JSON Configuration =====
+Individual mob configurations in `assets/mobsDesc/`:
+  * Each mob has a JSON file (e.g., `Rat.json`, `Snail.json`, `Tengu.json`)
+  * Properties:
+    * `ht` - Max health
+    * `dmgMin`, `dmgMax` - Damage range
+    * `defenseSkill` - Dodge chance
+    * `attackSkill` - Hit chance
+    * `baseSpeed` - Turn speed multiplier
+    * `viewDistance` - Detection range
+    * `lootChance` - Drop probability
+    * `canBePet` - Tameable
+    * `flying` - Ignores ground hazards
+    * `friendly` - Non-hostile
+    * `spriteDesc` - Sprite config reference
+
+**Spawn Configuration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]
+  * Defines mob spawn weights per depth
+  * Level-specific mob pools
+
+===== String Resources =====
+Common mob-related strings (values/strings_all.xml):
+<code xml>
+<string name="Mob_Attacking">attacking</string>
+<string name="Mob_StaFleeingStatus">fleeing</string>
+<string name="Mob_StaTerrorStatus">terrified</string>
+<string name="Mob_StaControlledStatus">controlled</string>
+<string name="MobAi_status">AI Status</string>
+<string name="Mob_CantDoIt">can't do it</string>
+<string name="Mob_StaSleepingStatus">sleeping</string>
+<string name="Mob_StaHuntingStatus">hunting</string>
+<string name="Mob_StaPassiveStatus">passive</string>
+<string name="Mob_Died">died</string>
+<string name="Mob_Desc">A generic mob description</string>
+<string name="Mob_GoingTo">going to</string>
+<string name="Mob_StaAmokStatus">amok</string>
+<string name="Mob_ReadyForOrder">ready for order</string>
+<string name="Mob_StaWanderingStatus">wandering</string>
+</code>
+
+===== Lua Scripts =====
+  * **Common Classes**: `scripts/lib/commonClasses.lua` - `Mob = luajava.bindClass("com.watabou.pixeldungeon.actors.mobs.Mob")`
+  * **Possess Spell**: `scripts/spells/Possess.lua` - `RPD.Mob:makePet(target, caster)`
+  * **Raise Dead**: `scripts/spells/RaiseDead.lua` - Creates undead pets
+  * **Exhumation**: `scripts/spells/Exhumation.lua` - Converts wraiths to pets
+  * **Plague Doctor NPC**: `scripts/npc/PlagueDoctor.lua` - Quest requiring mob carcasses
+
+===== Related mr Entities =====
+  * [[mr:rat_mob|Rat Mob]] - Basic sewer enemy
+  * [[mr:snail_mob|Snail Mob]] - Passive sewer mob
+  * [[mr:deep_snail_mob|Deep Snail Mob]] - Water variant
+  * [[mr:crab_mob|Crab Mob]] - Armored enemy
+  * [[mr:gnoll_mob|Gnoll Mob]] - Cave enemy
+  * [[mr:pet_mechanic|Pet Mechanic]] - Pet system
+  * [[mr:sewers_level|Sewers Level]] - Primary spawn location
+
+===== Game Mechanics =====
+  * **Entity Identification**: Uses `getEntityKind()` returning class name or JSON config name
+  * **Pet System**: Mobs with `canBePet: true` can be tamed via items/spells
+  * **Level Spawning**: Bestiary.json controls spawn rates per depth
+  * **AI States**: Dynamic state machine based on distance, health, conditions
+  * **Loot System**: `lootChance` controls drop probability
+  * **Buff Interactions**: Mobs can receive buffs (Terror, Amok, Sleep, etc.)
+  * **Experience**: `exp` value granted on kill
+  * **Level Scaling**: Stats scale with dungeon depth
+
+===== Code Fragments =====
+Mob creation from JSON:
+<code java>
+// MobFactory.java
+public static Mob mobByName(String name) {
+    if (mobClasses.containsKey(name)) {
+        return mobClasses.get(name).newInstance();
+    }
+    // Fallback to CustomMob with JSON config
+    return new CustomMob(name);
+}
+</code>
+
+Pet taming:
+<code java>
+// Mob.java
+public void makePet(Hero hero) {
+    this.petMaster = hero.id();
+    hero.pets.add(this);
+}
+
+// Possess spell (Lua)
+RPD.Mob:makePet(target, caster)
+</code>
+
+AI state transition:
+<code java>
+// MobAi.java
+public AiState getState() { return state; }
+public void setState(AiState state) { this.state = state; }
+
+// States: Wandering → Hunting → Fleeing/Amok/Sleeping
+</code>
+
+{{tag> rpd mechanics mobs ai pets entities}}

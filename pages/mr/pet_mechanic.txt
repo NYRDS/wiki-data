@@ -1,0 +1,181 @@
+====== Pet Mechanic - Code References ======
+
+**Pet Mechanic** allows the hero to tame and command mobs as permanent companions that fight alongside them.
+
+===== Entity Type =====
+Game Mechanic (AI/Pet System)
+
+===== Java Classes =====
+**Pet Management**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/PetInventoryManager.java|PetInventoryManager.java]]
+  * Package: `com.nyrds.pixeldungeon.items`
+  * Methods:
+    * `hasPets(Hero hero)` - Check if hero has pets
+    * `openPetInventoryFromToolbar(Hero hero)` - Open pet inventory UI
+    * `giveToPet(Hero hero, Item item)` - Transfer item to pet
+    * `takeFromPet(Pet pet, Item item)` - Take item from pet
+
+**Pet Base Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] (pet functionality)
+  * Mobs become pets via `Mob.makePet(Hero hero)`
+  * Pet state tracked in `Mob.petMaster` field (hero ID)
+
+**Mob Pet Methods**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * `makePet(Hero hero)` - Convert mob to pet
+  * `isPet()` - Check if mob is a pet
+  * `getPets_l()` - Get list of hero's pets (Lua)
+  * `canBePet()` - Check if mob species can be tamed
+
+**AI States**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/MobAi.java|MobAi.java]]
+  * `ControlledAi` - Direct player control state
+  * `Hunting` - Pet follows and attacks enemies
+  * `Wandering` - Idle behavior near hero
+  * `Fleeing` - Low health retreat
+
+**UI**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/Toolbar.java|Toolbar.java]]
+  * Pet inventory button (index 10, tinted)
+  * Opens `WndPetInventory` window
+
+**Windows**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndPetItem.java|WndPetItem.java]]
+  * Pet inventory management UI
+  * Actions: Give, Take, Equip, Unequip
+
+**Actions**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/CommonActions.java|CommonActions.java]]
+  * `AC_GIVE_TO_PET` - Give item to pet
+  * `AC_TAKE_FROM_PET` - Take item from pet
+
+===== JSON Configuration =====
+**Mob Pet Property**: In `mobsDesc/<Mob>.json`
+<code json>
+{
+  "canBePet": true,
+  "name": "Rat_Name",
+  ...
+}
+</code>
+
+Mobs with `"canBePet": true`:
+  * Rat, Snail, Crab, Bat, Spider, etc.
+  * Boss mobs: `false`
+  * Hostile NPCs: `false`
+
+===== String Resources =====
+English (values/strings_all.xml):
+<code xml>
+<string name="PetInventory_Title">Pet Inventory</string>
+<string name="PetInventory_ViewManage">View and manage your pet's equipment</string>
+<string name="PetInventory_GiveToPet">Give to Pet</string>
+<string name="PetInventory_TakeFromPet">Take from Pet</string>
+<string name="PetInventory_GaveItem">You gave %s to your pet</string>
+<string name="PetInventory_TookItem">You took %s from your pet</string>
+<string name="PetInventory_GiveN">Give %d</string>
+<string name="PetInventory_TakeN">Take %d</string>
+<string name="PetInventory_PetBackpackFull">Pet's backpack is full</string>
+<string name="PetInventory_HeroBackpackFull">Your backpack is full</string>
+<string name="PetInventory_TooFar">Pet is too far away</string>
+<string name="PetInventory_CantGiveEquipped">Can't give equipped items</string>
+<string name="Mob_Cannot_Be_Pet">This creature cannot be tamed</string>
+<string name="PetInventory_ACTakeFromPet">Take from Pet</string>
+<string name="PetInventory_ACGiveToPet">Give to Pet</string>
+</code>
+
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="PetInventory_Title">Инвентарь питомца</string>
+<string name="PetInventory_ViewManage">Просмотр и управление экипировкой питомца</string>
+<string name="PetInventory_GiveToPet">Отдать питомцу</string>
+<string name="PetInventory_TakeFromPet">Забрать у питомца</string>
+<string name="PetInventory_GaveItem">Вы отдали %s питомцу</string>
+<string name="PetInventory_TookItem">Вы забрали %s у питомца</string>
+<string name="PetInventory_GiveN">Отдать %d</string>
+<string name="PetInventory_TakeN">Забрать %d</string>
+<string name="PetInventory_PetBackpackFull">Рюкзак питомца полон</string>
+<string name="PetInventory_HeroBackpackFull">Ваш рюкзак полон</string>
+<string name="PetInventory_TooFar">Питомец слишком далеко</string>
+<string name="PetInventory_CantGiveEquipped">Нельзя отдать экипированные предметы</string>
+<string name="Mob_Cannot_Be_Pet">Это существо нельзя приручить</string>
+<string name="PetInventory_ACTakeFromPet">Забрать у питомца</string>
+<string name="PetInventory_ACGiveToPet">Отдать питомцу</string>
+</code>
+
+===== Lua Scripts =====
+  * **Pet AI**: `scripts/lib/commonClasses.lua` - `RPD.Mob:makePet(target, caster)`
+  * **Possess Spell**: `scripts/spells/Possess.lua` - Temporary pet control
+  * **Raise Dead**: `scripts/spells/RaiseDead.lua` - Undead pet creation
+  * **Exhumation**: `scripts/spells/Exhumation.lua` - Wraith pet creation
+  * **Summon Beast**: `scripts/spells/SummonBeast.lua` - Temporary summons
+
+===== Related mr Entities =====
+  * [[mr:mob|Mob System]] - Base mob class with pet support
+  * [[mr:rat_mob|Rat Mob]] - Tameable
+  * [[mr:snail_mob|Snail Mob]] - Tameable
+  * [[mr:crab_mob|Crab Mob]] - Tameable
+  * [[mr:bat_mob|Bat Mob]] - Tameable
+  * [[mr:spider_mob|Spider Mob]] - Tameable
+  * [[mr:posses_spell|Possess Spell]] - Temporary control
+  * [[mr:raise_dead_spell|Raise Dead Spell]] - Undead pets
+  * [[mr:summon_beast_spell|Summon Beast Spell]] - Temporary summons
+
+===== Game Mechanics =====
+  * **Taming Methods**:
+    * Scroll of Taming / Wand of Taming
+    * Possess Spell (temporary)
+    * Summon Beast Spell (temporary)
+    * Raise Dead (undead pets)
+    * Exhumation (Wraith pets)
+    * Certain items/artifacts
+  * **Pet Capabilities**:
+    * Follow hero automatically
+    * Attack enemies in range
+    * Can equip items (weapons, armor, rings)
+    * Have own inventory (accessible via toolbar)
+    * Gain experience and level up
+    * Can be healed with potions/spells
+  * **Pet Limits**:
+    * Max 3 active pets (configurable)
+    * Only mobs with `canBePet: true` in JSON
+    * Pets persist between levels
+  * **Pet Inventory**:
+    * Accessible via toolbar button (pet icon)
+    * Separate from hero inventory
+    * Can hold equipment and consumables
+    * Items dropped on pet death
+  * **Pet Commands** (via Possess):
+    * Move to position
+    * Attack target
+    * Follow/Stay
+    * Use item
+
+===== Code Fragments =====
+Taming a mob:
+<code java>
+// In Mob.java
+public void makePet(Hero hero) {
+    this.petMaster = hero.id();
+    hero.pets.add(this);
+    setState(MobAi.getStateByClass(Hunting.class)); // Follow and fight
+}
+</code>
+
+Pet inventory access:
+<code java>
+// In PetInventoryManager.java
+public static void giveToPet(Hero hero, Item item) {
+    Pet pet = getSelectedPet(hero);
+    if (pet != null && pet.collect(item)) {
+        GLog.p("PetInventory_GaveItem", item.name());
+    }
+}
+</code>
+
+Lua pet creation:
+<code lua>
+-- Possess spell
+RPD.Mob:makePet(target, caster)
+target:setState(RPD.MobAi:getStateByClass("ControlledAi"))
+
+-- Raise Dead
+local mob = RPD.MobFactory:mobByName(latestDeadMob.class)
+RPD.Mob:makePet(mob, chr)
+level:spawnMob(mob)
+</code>
+
+{{tag> rpd mechanics pets ai companions}}

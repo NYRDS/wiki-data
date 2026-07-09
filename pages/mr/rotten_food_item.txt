@@ -1,0 +1,184 @@
+====== Rotten Food Item - Code References ======
+
+**RottenFood** is the base class for all spoiled food items in Remixed Dungeon. Rotten food has negative effects when consumed but can be purified into edible food.
+
+===== Entity Type =====
+Item Base Class (Food Category)
+
+===== Java Classes =====
+**RottenFood Base Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]]
+  * Package: `com.watabou.pixeldungeon.items.food`
+  * Extends: `Food` → `Item`
+  * Key Methods:
+    * `purify()` - Returns purified food variant (to be implemented by subclasses)
+    * `execute(Hero hero)` - Consumption effects (negative)
+
+**Subclasses**:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenRation.java|RottenRation.java]] → purifies to `Ration`
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenMeat.java|RottenMeat.java]] → purifies to `ChargrilledMeat`
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenPasty.java|RottenPasty.java]] → purifies to `Pasty`
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenPumpkinPie.java|RottenPumpkinPie.java]] → purifies to `PumpkinPie`
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFish.java|RottenFish.java]] → purifies to `RawFish`
+
+**Item Factory**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+  * Line 261: `registerItemClass(RottenPasty.class)`
+  * Line 262: `registerItemClass(RottenRation.class)`
+  * Line 263: `registerItemClass(RottenMeat.class)`
+  * Line 264: `registerItemClass(RottenPumpkinPie.class)`
+  * Line 265: `registerItemClass(RottenFish.class)`
+
+**Food Base Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]]
+  * `purify()` - Abstract method for purification
+  * `execute(Hero hero)` - Consumption logic
+  * `quantity()` - Stack size
+
+**Moistening Mechanics**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]] (moistenRottenFood)
+  * Line 345: `moistenRottenFood((RottenFood) item, item.getOwner())`
+  * Water/potion interaction restores rotten food partially
+
+===== JSON Configuration =====
+Implemented in Java, no JSON configuration for base class. Subclasses registered in ItemFactory.
+
+===== String Resources =====
+English (values/strings_all.xml):
+<code xml>
+<!-- RottenRation -->
+<string name="RottenRation_Name">rotten ration</string>
+<string name="RottenRation_Info">it might once have been a ration, now it\'s just disgusting</string>
+
+<!-- RottenMeat -->
+<string name="RottenMeat_Name">rotten meat</string>
+<string name="RottenMeat_Info">this meat has gone bad, but fire could make it edible again</string>
+
+<!-- RottenPasty -->
+<string name="RottenPasty_Name">rotten pasty</string>
+<string name="RottenPasty_Info">it might once have been a pasty, now it\'s just disgusting</string>
+
+<!-- RottenPumpkinPie -->
+<string name="RottenPumpkinPie_Name">rotten pumpkin pie</string>
+<string name="RottenPumpkinPie_Info">this pie looks revolting, but can be restored</string>
+
+<!-- RottenFish -->
+<string name="RottenFish_Name">rotten fish</string>
+<string name="RottenFish_Info">this fish smells terrible, but cooking might help</string>
+</code>
+
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="RottenRation_Name">испорченный пайок</string>
+<string name="RottenRation_Info">когда-то это был пайок, теперь это просто отвратительно</string>
+<string name="RottenMeat_Name">испорченное мясо</string>
+<string name="RottenMeat_Info">мясо испортилось, но огонь может сделать его съедобным снова</string>
+<string name="RottenPasty_Name">тухлый пирог</string>
+<string name="RottenPasty_Info">выглядит мерзко</string>
+<string name="RottenPumpkinPie_Name">испорченный тыквенный пирог</string>
+<string name="RottenPumpkinPie_Info">этот пирог выглядит отвратительно, но его можно восстановить</string>
+<string name="RottenFish_Name">испорченная рыба</string>
+<string name="RottenFish_Info">эта рыба пахнет ужасно, но приготовление может помочь</string>
+</code>
+
+===== Lua Scripts =====
+  * **BlackCat AI**: `scripts/ai/BlackCat.lua` - Disgusting food detection
+  * Line 23: `RottenRation`, `RottenPasty`, `RottenPumpkinPie`, `RottenFish` marked as "disgusting"
+
+===== Related mr Entities =====
+  * [[mr:food_item|Food Item]] - Base food class
+  * [[mr:ration_item|Ration Item]] - Purified form of RottenRation
+  * [[mr:rotten_ration_item|Rotten Ration Item]] - Rotten variant
+  * [[mr:rotten_meat_item|Rotten Meat Item]] - Rotten variant
+  * [[mr:rotten_pasty_item|Rotten Pasty Item]] - Rotten variant
+  * [[mr:rotten_pumpkin_pie_item|Rotten Pumpkin Pie Item]] - Rotten variant
+  * [[mr:rotten_fish_item|Rotten Fish Item]] - Rotten variant
+  * [[mr:chargrilled_meat_item|Chargrilled Meat Item]] - Purified form
+  * [[mr:pasty_item|Pasty Item]] - Purified form of RottenPasty
+  * [[mr:pumpkin_pie_item|Pumpkin Pie Item]] - Purified form
+  * [[mr:raw_fish_item|Raw Fish Item]] - Purified form
+  * [[mr:moisten_mechanic|Moisten Mechanic]] - Restoration via water
+  * [[mr:blackcat_npc|Black Cat NPC]] - Avoids rotten food
+
+===== Game Mechanics =====
+  * **Consumption Effects**: 
+    * Hunger restoration (reduced vs fresh food)
+    * Chance of negative effects: Poison, Nausea, Paralysis
+    * Black Cat NPC refuses rotten food
+  * **Purification**: 
+    * Each rotten food has `purify()` method returning fresh variant
+    * Triggered by: Cooking, Alchemy, certain scrolls/spells
+    * Pasty.purify() → RottenPasty (reverse!)
+  * **Moistening**: 
+    * Water/potions can partially restore rotten food
+    * `Potion.moistenRottenFood()` method
+  * **Alchemy**: 
+    * Rotten foods used in recipes
+    * Carcass of mob + rotten food = various results
+  * **Drop Sources**:
+    * Mimic Pie drops RottenPasty
+    * Mimic drops various rotten foods
+    * Chests/containers in deeper levels
+    * Rare enemy drops
+
+===== Code Fragments =====
+RottenFood base class:
+<code java>
+package com.watabou.pixeldungeon.items.food;
+
+public class RottenFood extends Food {
+    // Base class for all rotten foods
+    // Implements negative consumption effects
+    // Subclasses must implement purify()
+}
+</code>
+
+RottenPasty implementation:
+<code java>
+public class RottenPasty extends RottenFood {
+    public RottenPasty() {
+        image = ItemSpriteSheet.ROTTEN_PASTY;
+    }
+
+    @Override
+    public Food purify() {
+        return new Pasty(); // Returns fresh pasty
+    }
+}
+</code>
+
+ItemFactory registration:
+<code java>
+// ItemFactory.java line 261-265
+registerItemClass(RottenPasty.class);
+registerItemClass(RottenRation.class);
+registerItemClass(RottenMeat.class);
+registerItemClass(RottenPumpkinPie.class);
+registerItemClass(RottenFish.class);
+</code>
+
+Moistening interaction:
+<code java>
+// Potion.java line 345-348
+if(item instanceof RottenFood) {
+    moistenRottenFood((RottenFood) item, item.getOwner());
+}
+</code>
+
+Lua "disgusting" food list:
+<code lua>
+local disgusting = {
+    RottenRation = true,
+    RottenPasty = true,
+    RottenPumpkinPie = true,
+    RottenFish = true
+}
+-- Black Cat AI refuses these
+</code>
+
+===== Subclass Purification Mapping =====
+| Rotten Variant | Purifies To | Sprite |
+|---|---|---|
+| RottenRation | Ration | RATION |
+| RottenMeat | ChargrilledMeat | CHARGRILLED_MEAT |
+| RottenPasty | Pasty | PASTY |
+| RottenPumpkinPie | PumpkinPie | PUMPKIN_PIE |
+| RottenFish | RawFish | RAW_FISH |
+
+{{tag> rpd items food rotten baseclass}}
