@@ -1,0 +1,100 @@
+====== Encounters Mechanic (Machine-Readable Reference) ======
+
+==== Entity Identification ====
+  * **Entity Kind**: Encounters
+  * **Entity Type**: Game Mechanic / System
+  * **Namespace**: Game mechanics, not a specific entity
+  * **Related Systems**: Mobs, Traps, NPCs, Level Objects, Level Generation
+
+==== Overview ====
+Encounters in Remixed Dungeon refer to all interactive events between the player character and dungeon elements. This mechanic encompasses the systems that govern how the player interacts with hostile, neutral, and friendly entities, as well as environmental features.
+
+==== Encounter Categories ====
+
+=== Hostile Encounters ===
+  * **Mobs** (`mobs_overview.txt`) - Active enemies that engage in combat
+    * Standard mobs with AI behavior
+    * Boss mobs with unique mechanics
+    * Special challenge mobs
+  * **Traps** (`traps_mechanic.txt`) - Hidden mechanisms triggered by player actions
+    * Pressure plates, dart traps, gas traps, alarm traps, etc.
+  * **Hostile NPCs** - NPCs that attack on sight (e.g., certain quest NPCs)
+
+=== Neutral Encounters ===
+  * **Passive Mobs** - Entities that don't attack unless provoked (e.g., Statue)
+  * **Utility Mobs** - Special interaction mobs (e.g., Mimics disguised as items)
+  * **Environmental Hazards** - Blob effects (toxic gas, paralytic gas, fire, etc.)
+
+=== Friendly Encounters ===
+  * **NPCs** (`npcs_overview.txt`) - Non-player characters offering services
+    * Shopkeepers (various shop types)
+    * Quest NPCs (Wandmaker, Ghost, etc.)
+    * Service NPCs (Blacksmith, etc.)
+  * **Ally Mobs** - Temporary or permanent companions
+    * Pets (from scrolls, items, or class abilities)
+    * Summoned allies (from spells, artifacts)
+    * Charmed enemies
+
+=== Environmental Encounters ===
+  * **Level Objects** (`level_objects_overview.txt`) - Interactive dungeon features
+    * Fountains (healing, dew, etc.)
+    * Altars (sacrifice, blessings)
+    * Pedestals (item placement)
+    * Barricades, statues, wells, chests
+  * **Terrain Features** - Passive environmental effects
+    * Water, grass, lava, chasms
+    * Secret doors, hidden passages
+  * **Stairs/Transitions** - Level progression mechanics
+    * Regular stairs, special level entrances
+
+==== Core Systems ====
+
+=== Combat System ===
+  * **Attack/Defense Skills**: `attackSkill()`, `defenseSkill()`
+  * **Damage Calculation**: Min/Max damage, accuracy, evasion
+  * **Status Effects**: Buffs/debuffs applied during encounters
+  * **Special Attacks**: Surprise attacks, critical hits, ranged attacks
+
+=== AI Behavior ===
+  * **Mob AI States**: Passive, Aggressive, Hunting, Fleeing
+  * **Target Selection**: Player priority, ally targeting
+  * **Pathfinding**: A* navigation, flying/swimming movement
+  * **Group Behavior**: Pack tactics, summoning, leader mechanics
+
+=== Interaction System ===
+  * **Action Types**: Attack, Use Item, Talk, Search, Disarm, Pick Up
+  * **Context Sensitivity**: Different actions based on target type
+  * **Quest Integration**: Special interactions for quest progression
+
+==== Configuration Files ====
+  * **Bestiary.json**: Mob spawn rates and level assignments
+    * Path: `assets/levelsDesc/Bestiary.json`
+  * **Level Objects**: Individual JSON configs in `assets/levelObjects/`
+  * **Mob Descriptions**: Individual configs in `assets/mobsDesc/`
+  * **Hero Classes**: `assets/hero/initHeroes.json` (starting equipment, known items)
+
+==== Lua Scripting ====
+  * **Custom Mob Behaviors**: Scripts in `scripts/mobs/`
+  * **Trap Behaviors**: Scripts in `scripts/traps/`
+  * **NPC Dialogues/Quests**: Scripts in `scripts/npcs/`
+  * **Level Object Interactions**: Scripts in `scripts/objects/`
+
+==== Code References ====
+  * **Mob Base Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * **Mob Factory**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]]
+  * **Level Generation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]]
+  * **AI System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/MobAi.java|MobAi.java]]
+  * **Trap System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/Trap.java|Trap.java]]
+  * **NPC System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/npc/NPC.java|NPC.java]]
+  * **Level Objects**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObject.java|LevelObject.java]]
+
+==== Related Wiki Pages ====
+  * **Mobs Overview**: [[en:rpd:mobs|Mobs]]
+  * **Traps**: [[en:rpd:traps|Traps]]
+  * **NPCs**: [[en:rpd:npcs|NPCs]]
+  * **Level Objects**: [[en:rpd:level_objects|Level Objects]]
+  * **Combat**: [[en:rpd:combat|Combat]]
+  * **Hero Classes**: [[en:rpd:hero_class|Hero Classes]]
+  * **Affinity System**: [[en:rpd:affinities_mechanic|Magic Affinities]]
+
+{{tag> rpd mechanics encounters mr }}

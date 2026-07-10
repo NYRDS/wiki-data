@@ -1,0 +1,66 @@
+====== Mimic Amulet Mob (Machine-Readable Reference) ======
+
+{{ rpd:images:mimic_amulet_mob.png|Mimic Amulet }}
+
+==== Entity Identification ====
+  * **Entity Kind**: MimicAmulet
+  * **Entity Type**: Mob (Enemy)
+  * **Java Class**: `com.nyrds.pixeldungeon.mobs.guts.MimicAmulet`
+  * **Package**: `com.nyrds.pixeldungeon.mobs.guts`
+  * **Inheritance**: `MimicAmulet` → `Mob` → `Actor` → `Char`
+  * **Related Entity**: `com.watabou.pixeldungeon.items.rings.MimicAmulet` (Item/Ring - different entity)
+
+==== Core Properties ====
+  * **Base Speed**: 1.25 (faster than normal)
+  * **Flying**: true (always levitates)
+  * **Carcass Chance**: 0 (no corpse)
+  * **Level Scaling**: Uses current dungeon depth as level
+  * **EXP for Kill**: 2 + 2 * (level - 1) / 5
+
+==== Stats (Level-Dependent) ====
+  * **HP**: `(3 + level) * 5`
+  * **Attack Skill**: `9 + level`
+  * **Defense Skill**: `2 * attackSkill + 1`
+  * **Damage**: `HP/10` to `HP/4` (based on current HP)
+  * **Defense Rating (DR)**: 0
+
+==== Immunities & Resistances ====
+  * **Immune to**: ToxicGas, Paralysis, Stun
+  * **Always Visible**: `enemySeen = true` (cannot become invisible/hidden)
+  * **Not a Pet**: `canBePet() = false`
+  * **Auto Levitation**: Applies Levitation buff if not already buffed
+
+==== Behavior ====
+  * **AI State**: Active hunter - always seeks player once detected
+  * **Spawn Location**: Guts level (floors 26-30)
+  * **Appearance**: Disguises as floating amulet item
+  * **Loot**: Always drops Skeleton Key for next level
+  * **Registration**: `MobFactory.registerMobClass(MimicAmulet.class)`
+
+==== Code References ====
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/MimicAmulet.java|MimicAmulet.java]]
+  * **Mob Factory Registration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L204|MobFactory.java#L204]]
+  * **PseudoAmulet Item** (spawns this mob): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/PseudoAmulet.java|PseudoAmulet.java]]
+  * **Alchemy Recipes** (non-resurrectable): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/alchemy/AlchemyRecipes.java#L161|AlchemyRecipes.java#L161]]
+
+==== String Resources ====
+  * **English Name**: `MimicAmulet_Name` = "Mimic Amulet"
+  * **English Info**: `MimicAmulet_Info` = "A floating amulet that looks valuable, but it's actually a dangerous mimic waiting to attack."
+  * **Russian Name**: `MimicAmulet_Name` = "Амулет-мимик"
+  * **Russian Info**: `MimicAmulet_Info` = "Парящий амулет, выглядящий ценным, но на самом деле это опасный мимик, готовый атаковать."
+
+==== Buff Indicator ====
+  * **Icon**: `BuffIndicator.CURSED_ROSE` (reuses cursed rose icon)
+
+==== Entity Kind ====
+  * **getEntityKind()**: Returns "MimicAmulet" (class simple name)
+  * **JSON Config**: No JSON configuration (implemented purely in Java)
+  * **Lua Scripts**: No Lua scripts
+
+==== Related Entities ====
+  * **Item Version**: [[mr:rpd:mimic_amulet_item|Mimic Amulet (Item/Ring)]] - Different entity, extends Ring
+  * **Other Mimics**: [[mr:rpd:mimic_mob|Mimic]], [[mr:rpd:mimic_pie_mob|Mimic Pie]]
+  * **Guts Level**: [[mr:rpd:guts_level|Guts Level]]
+  * **Skeleton Key**: [[mr:rpd:skeleton_key_item|Skeleton Key]]
+
+{{tag> rpd mobs mimic enemy floating guts mr }}

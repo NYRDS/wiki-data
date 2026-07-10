@@ -1,0 +1,77 @@
+====== Statue Mob (Machine-Readable Reference) ======
+
+{{ rpd:images:statue_mob.png|Statue }}
+
+==== Entity Identification ====
+  * **Entity Kind**: Statue
+  * **Entity Type**: Mob (Enemy)
+  * **Java Class**: `com.watabou.pixeldungeon.actors.mobs.Statue`
+  * **Package**: `com.watabou.pixeldungeon.actors.mobs`
+  * **Inheritance**: `Statue` → `Mob` → `Actor` → `Char`
+  * **Subclasses**: `ArmoredStatue`, `GoldenStatue`
+
+==== Core Properties ====
+  * **Base HP**: `ht(15 + depth * 5)` = 15 + (5 * dungeon depth)
+  * **Base Defense Skill**: `4 + depth`
+  * **Base Attack Skill**: Same as defense skill
+  * **Damage Range**: `depth / 4 + 1` to `depth`
+  * **EXP for Kill**: 0
+  * **Carcass Chance**: 0 (no corpse)
+  * **Speed**: Normal (1.0)
+  * **Flying**: false
+
+==== Immunities & Resistances ====
+  * **Immune to**: ToxicGas, Poison, Bleeding, Leech enchantment
+  * **Resistant to**: Death enchantment, Scroll of Psionic Blast
+
+==== AI Behavior ====
+  * **Default State**: Passive (does not attack first)
+  * **AI Class**: `com.nyrds.pixeldungeon.ai.Passive`
+  * **Activation**: Becomes hostile when attacked or when player is adjacent
+
+==== Loot ====
+  * **Guaranteed Drop**: The weapon it wields (melee weapon generated based on depth)
+  * **Weapon Generation**: Uses `Treasury.getLevelWeapon(depth)` or `ItemsList.getWeapon(depth)`
+
+==== Variants ====
+  1. **Statue** (base) - Standard animated statue
+  2. **ArmoredStatue** - Enhanced version with better armor/damage (appears in NO_WEAPON challenge)
+  3. **GoldenStatue** - Gold variant with higher HP (15 + depth * 5), better defense
+
+==== Spawning ====
+  * **Level Painter**: `com.watabou.pixeldungeon.levels.painters.StatuePainter`
+  * **Spawn Conditions**:
+    - 50% chance in rooms (StatuePainter)
+    - Challenge NO_WEAPON forces ArmoredStatue
+    - Challenge NO_ARMOR forces base Statue
+  * **Mob Factory Registration**: Registered in `MobFactory.registerMobClass(Statue.class)`
+  * **Non-Resurrectable**: Listed in AlchemyRecipes.nonResurrectableMobs
+
+==== String Resources ====
+  * **Name (EN)**: `Statue_Name` = "animated statue"
+  * **Description (EN)**: `Statue_Desc` = "You would think that it's just another ugly statue of this dungeon, but its red glowing eyes give itself away. While the statue itself is made of stone, the _%s_, it's wielding, looks real."
+  * **Gender**: `Statue_Gender` = "feminine"
+  * **Objective Name**: `Statue_Name_Objective` = "animated statue"
+  * **Journal Entry**: `Journal_Statue` = "Animated statue"
+
+==== Related Entities ====
+  * **ArmoredStatue** (`armored_statue_mob.txt`) - Enhanced variant
+  * **GoldenStatue** (`golden_statue_mob.txt`) - Gold variant
+  * **MimicAmulet** (`mimic_amulet_mob.txt`) - Another floating mimic enemy
+
+==== Code References ====
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Statue.java|Statue.java]]
+  * **Armored Statue**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/ArmoredStatue.java|ArmoredStatue.java]]
+  * **Golden Statue**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/GoldenStatue.java|GoldenStatue.java]]
+  * **Statue Painter**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/StatuePainter.java|StatuePainter.java]]
+  * **Mob Factory**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] (lines 92, 201, 278)
+  * **Alchemy Recipes**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/alchemy/AlchemyRecipes.java|AlchemyRecipes.java]] (line 161)
+
+==== Wiki Pages ====
+  * **English**: [[en:rpd:revived_statue|Revived Statue]] (covers base Statue)
+  * **Russian**: [[ru:rpd:revived_statue|Ожившая Статуя]]
+  * **Spanish**: [[es:rpd:revived_statue|Estatua Revivida]]
+  * **Portuguese**: [[pt:rpd:revived_statue|Estátua Revivida]]
+  * **Chinese**: [[cn:rpd:revived_statue|复活的雕像]]
+
+{{tag> rpd mobs mr }}

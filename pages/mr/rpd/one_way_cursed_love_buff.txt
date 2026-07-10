@@ -1,0 +1,56 @@
+====== One Way Cursed Love Buff (Machine-Readable Reference) ======
+
+{{ rpd:images:one_way_cursed_love_buff.png|One Way Cursed Love Buff }}
+
+==== Entity Identification ====
+  * **Entity Kind**: OneWayCursedLoveBuff
+  * **Entity Type**: Buff (Status Effect)
+  * **Java Class**: `com.watabou.pixeldungeon.items.quest.DriedRose.OneWayCursedLoveBuff`
+  * **Package**: `com.watabou.pixeldungeon.items.quest`
+  * **Inheritance**: `OneWayCursedLoveBuff` → `ArtifactBuff` → `Buff`
+  * **Parent Artifact**: `DriedRose` (quest item)
+
+==== Core Properties ====
+  * **Buff Type**: Negative/Debuff (cursed variant)
+  * **Icon**: `BuffIndicator.CURSED_ROSE`
+  * **Source**: Cursed Dried Rose artifact
+  * **Duration**: Permanent while cursed Dried Rose is equipped
+  * **Removable**: Only by removing curse from Dried Rose or unequipping
+
+==== Mechanics ====
+  * **Effect**: One-way charm - causes NPCs to interact differently with player
+  * **Charm Resistance**: In `Charm.java` resistance calculation:
+    * If target has `OneWayLoveBuff`: charm power = 0 (immune to charm)
+    * If target has `OneWayCursedLoveBuff`: charm power = 2 (enhanced charm effect)
+  * **Quest Related**: Part of Ghost NPC questline
+  * **Artifact Buff**: Extends `ArtifactBuff` base class
+
+==== Code References ====
+  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DriedRose.java#L52-L64|DriedRose.java#L52-L64]]
+  * **Parent Artifact**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DriedRose.java|DriedRose.java]]
+  * **Base Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/ArtifactBuff.java|ArtifactBuff.java]]
+  * **Charm Interaction**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charm.java#L55|Charm.java#L55]]
+  * **Buff Indicator**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java#L37|BuffIndicator.java#L37]]
+  * **Buff Factory**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L164|BuffFactory.java#L164]]
+
+==== String Resources ====
+  * **English Name**: `DriedRoseCursedBuff_Name` = "Amorous"
+  * **English Info**: `DriedRoseCursedBuff_Info` = "The rose looks beautiful but not very charming."
+  * **Russian Name**: `DriedRoseCursedBuff_Name` = "Влюблённый"
+  * **Russian Info**: `DriedRoseCursedBuff_Info` = "Роза выглядит красиво, но не очень очаровательно."
+
+==== JSON Configuration ====
+This entity is implemented as a nested Java class, no JSON configuration exists.
+
+==== Lua Scripts ====
+This entity is implemented in Java, no Lua script exists.
+
+==== Related Entities ====
+  * **Uncursed Version**: [[mr:rpd:one_way_love_buff|One Way Love Buff]]
+  * **Parent Item**: [[mr:rpd:dried_rose_item|Dried Rose]]
+  * **Base Buff Class**: [[mr:rpd:artifact_buff|Artifact Buff]]
+  * **Charm Mechanic**: [[mr:rpd:charm_buff|Charm Buff]]
+  * **Ghost NPC**: [[mr:rpd:ghost_npc|Ghost NPC]]
+  * **Status Effects**: [[mr:rpd:buff_mechanics|Buff Mechanics]]
+
+{{tag> rpd buffs status_effects cursed artifact quest mr }}
