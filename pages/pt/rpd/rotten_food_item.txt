@@ -1,26 +1,62 @@
 ====== Comida Estragada ======
 
+{{ rpd:images:rotten_ration_item.png|Comida Estragada }}
+
+**Comida Estragada** é um tipo de item de comida em Remixed Dungeon que apodreceu e se tornou prejudicial para consumir. Esses itens são criados quando itens de comida são deixados sem serem consumidos por muito tempo ou são corrompidos de outra forma.
+
 ==== Descrição ====
-Comida Estragada refere-se a qualquer item de comida que tenha apodrecido com o tempo ou por outros meios. Esses itens geralmente têm efeitos negativos quando consumidos.
+De acordo com a descrição do jogo: "Nojento!"
+
+==== Classe no Código ====
+  * **Classe Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]]
+  * **Herda de:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]]
+  * **Classe abstrata:** RottenFood é uma classe abstrata que outros itens de comida estragada herdam
+
+==== Propriedades ====
+  * **Satisfação de fome:** (Hunger.STARVING - Hunger.HUNGRY)/2 unidades (60 unidades)
+  * **Preço:** 1 ouro por unidade
+  * **Tipo:** Item de comida
+  * **Empilhável:** Sim (herda de Food)
+  * **Nutrição:** Fornece saciedade mínima mas tem efeitos negativos
+
+==== Efeitos ao Consumir ====
+  * Exibe mensagem: "Nojento!"
+  * Cria aleatoriamente nuvens de gás perigosas na localização do jogador:
+    * Gás de Confusão: 25% de chance (150 + 10 * profundidade da masmorra de potência)
+    * Gás Paralítico: 25% de chance (500 de potência)
+    * Gás Tóxico: 25% de chance (500 de potência)
+    * Sem efeito: 25% de chance
+
+==== Subtipos ====
+  * [[pt:rpd:rotten_meat_item|Carne Estragada]] — Carne misteriosa estragada
+  * [[pt:rpd:rotten_ration_item|Ração Estragada]] — Ração de ferro estragada
+  * [[pt:rpd:rotten_pumpkin_pie_item|Torta de Abóbora Podre]] — Torta de abóbora estragada
 
 ==== Mecânicas ====
-  * **Efeitos Negativos**: Geralmente causam redução de saúde, envenenamento ou outros efeitos de status negativos
-  * **Transformação**: Muitos itens de comida normais podem se transformar em versões estragadas com o tempo
-  * **Purificação**: Pode ser revertido a comida normal usando [[pt:rpd:potion_of_purity_item|Poção da Purificação]]
+  * Quando arremessada, pode criar nuvens de gás no local de aterrissagem (se não estiver em um objeto de nível que afeta itens)
+  * Pode ser purificada usando [[pt:rpd:potion_of_purity_item|Poção da Purificação]]
 
-==== Estratégia ====
-  * Evite consumir a menos que esteja em situação desesperadora
-  * Use [[pt:rpd:potion_of_purity_item|Poções da Purificação]] para converter em comida normal quando possível
-  * Algumas classes ou buffs podem reduzir os efeitos negativos
+==== Verificação de Conteúdo ====
+  * Fonte de informação: Classe Java [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]]
+  * Efeitos: Baseado na implementação em RottenFood.java
+  * Recursos de string: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1940|RottenFood_Message]]
 
 ==== Itens Relacionados ====
-  * [[pt:rpd:potion_of_purity_item|Poção da Purificação]] - Remove efeitos negativos
-  * [[pt:rpd:rotten_pumpkin_pie_item|Torta de Abóbora Podre]] - Exemplo de comida estragada
-  * [[pt:rpd:food_item|Comida]] - Informações gerais sobre comida
+  * [[pt:rpd:food_item|Comida]] — Informações gerais sobre itens de comida
+  * [[pt:rpd:mystery_meat_item|Carne Misteriosa]] — Pode se tornar carne estragada
+  * [[pt:rpd:ration_item|Ração de Ferro]] — Pode se tornar ração estragada
+  * [[pt:rpd:potion_of_purity_item|Poção da Purificação]] — Pode purificar comida estragada
+  * [[pt:rpd:chargrilled_meat_item|Carne Grelhada]] — Alternativa segura à carne misteriosa
+
+==== Páginas Relacionadas ====
+  * [[pt:rpd:hunger_buff|Fome]] — Mecânicas detalhadas de fome
+  * [[pt:rpd:confusion_gas_buff|Gás de Confusão]] — Efeito de gás que pode causar
+  * [[pt:rpd:paralytic_gas_buff|Gás Paralítico]] — Efeito de gás que pode causar
+  * [[pt:rpd:toxic_gas_buff|Gás Tóxico]] — Efeito de gás que pode causar
 
 ==== Outros Idiomas ====
   * [[en:rpd:rotten_food_item|English]]
-  * [[es:rpd:rotten_food_item|Español]]
   * [[ru:rpd:rotten_food_item|Русский]]
+  * [[es:rpd:rotten_food_item|Español]]
 
-{{tag> rpd items food }}
+{{tag> rpd items food rotten }}
