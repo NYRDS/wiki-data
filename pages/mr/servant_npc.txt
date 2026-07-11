@@ -12,22 +12,39 @@ This entity is implemented via JSON configuration and Lua script, no Java class 
     - `aiState`: "Passive" (passive AI behavior)
     - `fraction`: "NEUTRAL" (neutral faction)
     - `immortal`: true (cannot be killed)
+    - `spriteDesc`: "spritesDesc/ServantNPC.json" (sprite configuration)
+    - `scriptFile`: "scripts/npc/Servant" (Lua behavior script)
+
+===== JSON Configuration (Sprite) =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/ServantNPC.json|spritesDesc/ServantNPC.json]] - Sprite animation configuration
+
+===== Level Configuration =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Inn_2021_03.json|Inn_2021_03.json]] - Level configuration where ServantNPC spawns
+  * Location: `RemixedDungeon/src/main/assets/levelsDesc/Inn_2021_03.json`
+  * Spawn: Line 27, `"kind":"ServantNPC"`
 
 ===== String Resources =====
-<code xml>
-<string name="ServantNPC_Name">inn servant</string>
-<string name="ServantNPC_Name_Objective">inn servant</string>
-<string name="ServantNPC_Gender">feminine</string>
-<string name="ServantNPC_Desc">A very busy inn servant.</string>
-</code>
+  * **English** (`values/strings_all.xml`):
+    - `ServantNPC_Name` (line 1964): "inn servant"
+    - `ServantNPC_Name_Objective` (line 1965): "inn servant"
+    - `ServantNPC_Gender` (line 1966): "feminine"
+    - `ServantNPC_Desc` (line 1967): "A very busy inn servant."
+  * **Russian** (`values-ru/strings_all.xml`):
+    - `ServantNPC_Name`: "служанка"
+    - `ServantNPC_Name_Objective`: "служанку"
+    - `ServantNPC_Gender`: "feminine"
+    - `ServantNPC_Desc`: "Очень занятая служанка в таверне."
 
 ===== Lua Scripts =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/Servant.lua|Servant.lua]] - NPC behavior script
   * Location: `RemixedDungeon/src/main/assets/scripts/npc/Servant.lua`
+  * Behavior: Uses `mob.init()` with `interact` and `act` functions
+  * Interactions: Says random phrases from `InnServant_Phrase_1` to `InnServant_Phrase_4`
+  * AI: Moves randomly using `MoveOrder` state, avoids other ServantNPCs
 
 ===== Additional References =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Inn_2021_03.json|Inn_2021_03.json]] - Level configuration where ServantNPC spawns
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - String resource references
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml (EN)]] - English string resources
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (RU)]] - Russian string resources
 
 ===== Related mr Entities =====
   * [[mr:inn_level|Inn Level]]

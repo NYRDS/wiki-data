@@ -2,7 +2,11 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java#L68-L112|Sungrass.java]] - Health buff implementation (nested class Sungrass.Health)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L137|BuffFactory.java]] - Buff registration (line 137)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L137|BuffFactory.java]] - Buff registration (line 139)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummoningSpell.java#L55|SummoningSpell.java]] - Buff detachment in summoning spells (line 55)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Carcass.java#L220|Carcass.java]] - Buff detachment when using carcass item (line 222)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderMind.java#L30|SpiderMind.java]] - Referenced in spider mind control system (line 30)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/SpiderCharm.java#L12|SpiderCharm.java]] - Import for spider charm mechanics (line 12)
   * Actual buff class: com.watabou.pixeldungeon.plants.Sungrass$Health
 
 ===== JSON Configuration =====
@@ -18,10 +22,15 @@ No specific JSON configuration exists for this buff as it's part of the Sungrass
 This entity is implemented in Java, no Lua script exists.
 
 ===== Usage in Code =====
-  * **SpiderMind.java** (line 30): Referenced in spider mind control system
+  * **Sungrass.java** (lines 68-112): Main implementation of Health buff as nested class
+  * **BuffFactory.java** (line 139): Buff registration for the buff system
   * **SummoningSpell.java** (line 55): Buff detachment in summoning spells
-  * **Carcass.java** (line 220): Buff detachment when using carcass item
+  * **Carcass.java** (line 222): Buff detachment when using carcass item
+  * **SpiderMind.java** (line 30): Referenced in spider mind control system
   * **SpiderCharm.java** (line 12): Import for spider charm mechanics
+  * **GardenPainter.java** (line 27): Sungrass planting in garden rooms
+  * **LevelObjectsFactory.java** (line 81): Level object registration
+  * **ItemFactory.java** (line 413): Seed item registration
 
 ===== Buff Mechanics =====
   * Heals Math.max(target.ht() / 10, 1) health points every 5 turns
@@ -30,5 +39,8 @@ This entity is implemented in Java, no Lua script exists.
   * Applied by stepping on Sungrass plant or eating Sungrass seed
 
 ===== Related Entities =====
-  * [[mr:sungrass_plant]] - Parent plant entity
-  * [[mr:sungrass_seed_item]] - Seed item that can apply this buff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java|Sungrass Plant]] - Parent plant entity
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java|Sungrass Seed]] - Seed item that can apply this buff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummoningSpell.java|SummoningSpell]] - Spell that detaches this buff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Carcass.java|Carcass]] - Item that detaches this buff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderMind.java|SpiderMind]] - Spider AI that references this buff

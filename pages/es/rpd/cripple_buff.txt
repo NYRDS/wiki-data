@@ -1,40 +1,62 @@
-====== Buff de Mutilación ======
+====== Mutilación (Debuff) ======
 
-{{ rpd:images:cripple_buff.png|Buff de Mutilación }}
+{{ rpd:images:cripple_buff.png|Mutilación }}
 
-El **Mutilación** es un efecto de estado negativo en Remixed Dungeon que reduce la velocidad de movimiento.
+**Mutilación** es un efecto de estado negativo en Remixed Dungeon que reduce la velocidad de movimiento a la mitad.
 
 ==== Descripción ====
 Mutilación es un debuff que reduce a la mitad la velocidad de movimiento del personaje afectado, dificultando significativamente escapar de enemigos o moverse rápidamente por la mazmorra.
 
 ==== Mecánicas ====
   * **Duración:** 10 turnos (DURATION = 10f)
-  * **Efecto:** Velocidad de movimiento reducida al 50% de la velocidad normal
+  * **Efecto:** Velocidad de movimiento reducida al 50% de la velocidad normal (speedMultiplier = 0.5f)
   * **Indicador Visual:** Muestra el mensaje de estado "Mutilado" en texto rojo
   * **Icono:** Icono específico en la barra de buff (BuffIndicator.CRIPPLE)
 
 ==== Cómo Aplicar ====
 El debuff de Mutilación puede aplicarse a través de:
-  * Encantos y efectos de estado similares
+  * Encantamientos y efectos de estado similares
   * Varias habilidades de enemigos
-  * Algunas trampas en la mazmorra
+  * Algunas trampas en la mazmorra (ej. Trampa Agarrotante - GrippingTrap)
+  * Armas específicas (ej. Jabalina - Javelin)
 
 ==== Cómo Remover ====
   * [[es:rpd:potion_of_purity_item|Poción de Pureza]] remueve todos los debuffs incluyendo Mutilación
   * Algunos hechizos y habilidades pueden remover debuffs
   * Esperar a que la duración expire naturalmente
+  * Carpaccio Congelado (FrozenCarpaccio) - 25% probabilidad de remover
 
 ==== Código Fuente ====
   * Implementación Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Cripple.java|Cripple.java]]
-  * Recursos de Texto:
+  * Recursos de Texto (Inglés):
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L337|Char_StaCrippled]]
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L570|CrippleBuff_Name]]
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L571|CrippleBuff_Info]]
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L981|Hero_StaCripple]]
 
+==== Recursos de Texto (Español) ====
+  * Recursos en: RemixedDungeon/src/main/res/values-es/strings_all.xml
+  * Claves: Char_StaCrippled, CrippleBuff_Name, CrippleBuff_Info, Hero_StaCripple
+
+==== Implementación en Lua ====
+  * Definido en: scripts/lib/commonClasses.lua (como RPD.Buffs.Cripple)
+  * Usado por: scripts/mobs/Buffer.lua, scripts/buffs/ChaosShieldLeft.lua
+
+==== Referencias en Código ====
+  * **Trampa Agarrotante** (GrippingTrap): Aplica Mutilación + Sangrado al activarse
+  * **Abismo** (Chasm): Aplica Mutilación al caer el héroe
+  * **Poción de Curación** (PotionOfHealing): Remueve Mutilación al curar
+  * **Carpaccio Congelado** (FrozenCarpaccio): 25% probabilidad de remover Mutilación
+  * **Jabalina** (Javelin): Aplica Mutilación en golpe
+  * **Escorpión** (Scorpio): 50% probabilidad de aplicar Mutilación en ataque especial
+  * **Héroe** (Hero): Muestra mensaje "Hero_StaCripple" al recibir el debuff
+
 ==== Relacionado ====
   * [[es:rpd:status_effects|Efectos de Estado]]
   * [[en:rpd:debuffs|Debuffs]]
   * [[en:rpd:buffs|Buffs y Debuffs]]
+  * [[es:rpd:gripping_trap|Trampa Agarrotante]]
+  * [[es:rpd:javelin_item|Jabalina]]
+  * [[es:rpd:scorpio_mob|Escorpión]]
 
-{{tag> rpd buffs debuffs status_effects movement}}
+{{tag> rpd buffs debuffs status_effects movement es}}

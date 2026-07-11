@@ -1,20 +1,125 @@
 ====== Roots Buff - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+{{ rpd:images:roots_buff.png|Roots }}
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/roots.json
+**Roots** is a buff in Remixed Dungeon that roots a character in place, preventing movement but not other actions. Flying characters are immune.
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]] - Main buff class extending FlavourBuff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] - Parent class for flavor/effect buffs
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] - Registers Roots buff (ROOTS constant, registerBuffClass)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/RootSpell.java|RootSpell.java]] - Spell that applies Roots buff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Base buff class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java|BuffIndicator.java]] - UI indicator constants (ROOTS icon)
+
+===== Code Behavior =====
+  * **Effect**: Prevents movement (but not attacks, spells, or other actions)
+  * **Immunity**: Flying characters cannot be rooted (checked in attachTo())
+  * **Icon**: Uses BuffIndicator.ROOTS
+  * **Visual**: Shows "Rooted" status text (Char_StaRooted string) in red
+  * **Entity Kind**: getEntityKind() returns "Roots" (class name)
+
+===== Usage in Game =====
+  * **Root Spell**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/RootSpell.java|RootSpell]] applies Roots for 10 turns
+  * **Earthroot Plant**: Eating Earthroot applies Roots for 25 turns + Barkskin
+  * **Mystery Meat**: Random effect can apply Roots (duration based on Stun)
+  * **Scroll of Curse**: Can apply Roots as one of the random bad buffs
+  * **Mage Armor**: Special ability roots nearby enemies for 3 turns + Burning
+  * **Entanglement Glyph**: Detaches Roots when applying (opposite effect)
+  * **Worm (Guts mob)**: 1/7 chance on hit to apply Roots
+  * **Nightmare (Guts mob)**: 1/10 chance on hit to apply Roots
+  * **Elementals**: Earth Elemental and Ice Elemental are immune to Roots
+  * **Enslaved Soul**: Can inflict Roots as one of its debuffs
+  * **Azuterron NPC**: Immune to Roots
+
+===== Lua Scripts =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/userServices/autoTestAi.lua|autoTestAi.lua]] - AI checks for Roots buff level
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Dash.lua|Dash.lua]] - Detaches Roots when casting Dash
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/NatureAura.lua|NatureAura.lua]] - Mob immunity to Roots
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Buffer.lua|Buffer.lua]] - Mob can apply Roots
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - Binds Roots Java class for Lua access
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ChaosShieldLeft.lua|ChaosShieldLeft.lua]] - Chaos shield includes Roots in protected buffs
 
 ===== String Resources =====
 <code xml>
-<string name="Roots_Name">[Name]</string>
-<string name="Roots_Info">[Description]</string>
+<!-- English (values/strings_all.xml) -->
+<string name="RootsBuff_Name">Rooted</string>
+<string name="RootsBuff_Info">Roots sprouting from the ground entangle the body, not allowing a single step.</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="RootsBuff_Name">Укоренение</string>
+<string name="RootsBuff_Info">Корни, проросшие из земли, обвивают тело, не позволяя сделать ни шагу.</string>
+
+<!-- Spanish (values-es/strings_all.xml) -->
+<string name="RootsBuff_Name">Enraizado</string>
+<string name="RootsBuff_Info">Raíces brotando del suelo enredan el cuerpo, no permitiendo que dé un solo paso.</string>
+
+<!-- French (values-fr/strings_all.xml) -->
+<string name="RootsBuff_Name">Enraciné</string>
+<string name="RootsBuff_Info">Des racines jaillissant du sol enchevêtrent le corps, ne permettant pas de faire un seul pas.</string>
+
+<!-- German (values-de/strings_all.xml) -->
+<string name="RootsBuff_Name">Verwurzelt</string>
+<string name="RootsBuff_Info">Aus dem Boden sprießende Wurzeln umschlingen den Körper und erlauben keinen einzigen Schritt.</string>
+
+<!-- Portuguese/Brazilian (values-pt-rBR/strings_all.xml) -->
+<string name="RootsBuff_Name">Preso ao chão</string>
+<string name="RootsBuff_Info">Raízes brotando do chão enredam o corpo, não permitindo que ele dê um único passo.</string>
+
+<!-- Italian (values-it/strings_all.xml) -->
+<string name="RootsBuff_Name">Bloccato</string>
+<string name="RootsBuff_Info">Le radici che spuntano dal terreno intrappolano il corpo, impedendo di fare anche un solo passo.</string>
+
+<!-- Japanese (values-ja/strings_all.xml) -->
+<string name="RootsBuff_Name">根付き</string>
+<string name="RootsBuff_Info">地面から生えた根が体に絡みつき、一歩も動くことができない。</string>
+
+<!-- Korean (values-ko/strings_all.xml) -->
+<string name="RootsBuff_Name">묶임</string>
+<string name="RootsBuff_Info">땅에서 돋아난 뿌리가 몸을 휘감아 한 발짝도 움직이지 못한다</string>
+
+<!-- Chinese Simplified (values-zh-rCN/strings_all.xml) -->
+<string name="RootsBuff_Name">生根</string>
+<string name="RootsBuff_Info">从地面生长出的根缠绕住身体，寸步难行。</string>
+
+<!-- Chinese Traditional (values-zh-rTW/strings_all.xml) -->
+<string name="RootsBuff_Name">生根</string>
+<string name="RootsBuff_Info">從地面生長出的根纏繞住身體，寸步難行。</string>
+
+<!-- Polish (values-pl/strings_all.xml) -->
+<string name="RootsBuff_Name">Zakorzenienie</string>
+<string name="RootsBuff_Info">Korzenie wyrastające z ziemi splecione ciało, nie pozwalając na ani kroku.</string>
+
+<!-- Ukrainian (values-uk/strings_all.xml) -->
+<string name="RootsBuff_Name">Закорінення</string>
+<string name="RootsBuff_Info">Коріння, що проросли з землі, сплітають тіло, не дозволяючи зробити й крок.</string>
+
+<!-- Hungarian (values-hu/strings_all.xml) -->
+<string name="RootsBuff_Name">Legyökerezve</string>
+<string name="RootsBuff_Info">A földből sarjadő gyökerek ötfonják a testet, nem engedve megtenni egy lépést sem.</string>
+
+<!-- Turkish (values-tr/strings_all.xml) -->
+<string name="RootsBuff_Name">Kökleşme</string>
+<string name="RootsBuff_Info">Topraktan çıkıp büyükan kökler bedeni sarar, tek bir adım atılmasına izin vermez.</string>
+
+<!-- Greek (values-el/strings_all.xml) -->
+<string name="RootsBuff_Name">Ριζοβολία</string>
+<string name="RootsBuff_Info">Ρίζες που βγαίνουν από το έδαφος τυλίγουν το σώμα, δεν επιτρέποντας κανένα βήμα.</string>
+
+<!-- Indonesian (values-in/strings_all.xml) -->
+<string name="RootsBuff_Name">Berakar</string>
+<string name="RootsBuff_Info">Akar yang tumbuh dari tanah melilit tubuh, tidak mengizinkan ni satu langkah pun.</string>
+
+<!-- Malay (values-ms/strings_all.xml) -->
+<string name="RootsBuff_Name">Berakar</string>
+<string name="RootsBuff_Info">Akar yang tumbuh dari tanah melilit badan, tidak membenarkan sekecil apapun langkah.</string>
 </code>
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+===== Related mr Entities =====
+  * [[mr:flavour_buff|Flavour Buff (Base Class)]]
+  * [[mr:root_spell|Root Spell]]
+  * [[mr:earthroot_plant|Earthroot (Plant)]]
+  * [[mr:buff_factory|Buff Factory]]
+  * [[mr:buff_indicator|Buff Indicator]]
+
+{{tag> mr buffs roots }}

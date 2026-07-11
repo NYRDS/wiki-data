@@ -1,0 +1,67 @@
+====== Seeds Mechanic - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Seed.java|Seed.java]] - Base seed class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java|Plant.java]] - Base plant class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level.java]] - Level planting logic (line 1297)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/bags/SeedPouch.java|SeedPouch.java]] - Bag for storing seeds
+
+===== Seed Implementations =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java|Earthroot.java]] - Earthroot seed/plant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Firebloom.java|Firebloom.java]] - Firebloom seed/plant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java|Icecap.java]] - Icecap seed/plant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java|Sungrass.java]] - Sungrass seed/plant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sorrowmoss.java|Sorrowmoss.java]] - Sorrowmoss seed/plant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Fadeleaf.java|Fadeleaf.java]] - Fadeleaf seed/plant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Dreamweed.java|Dreamweed.java]] - Dreamweed seed/plant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Moongrace.java|Moongrace.java]] - Moongrace seed/plant
+
+===== JSON Configuration =====
+This mechanic is implemented in Java, no JSON configuration exists
+
+===== String Resources =====
+<code xml>
+<!-- English strings (values/strings_all.xml) -->
+<string name="Seed_Name">seed</string>
+<string name="Seed_Desc">A seed of some plant. It can be planted to grow a plant or eaten for an immediate effect.</string>
+
+<!-- Individual seed names would be defined in their respective plant classes -->
+</code>
+
+===== Lua Scripts =====
+This mechanic is implemented in Java, no Lua scripts exist for seeds directly
+
+===== Implementation Details =====
+  * **Base Class**: Seed extends Item
+  * **Planting**: Uses Level.plant(Seed seed, int pos) method
+  * **Eating**: Seeds can be eaten for immediate effects (different from original Pixel Dungeon)
+  * **Growth**: Seeds grow into plants over time when planted on suitable terrain
+  * **Seed Pouch**: Special bag for storing seeds (SeedPouch.java)
+
+===== Seed Effects When Eaten =====
+  * **Earthroot**: Barkskin buff (armor = STR/4), Roots debuff (25 turns)
+  * **Firebloom**: Burning buff, Speed buff (1 turn)
+  * **Icecap**: Heals 0-10% max HP, Frost buff (6-14 turns, 2x duration)
+  * **Sungrass**: Heals 0-25% max HP, Charm debuff (10-15 turns)
+  * **Sorrowmoss**: Poison debuff (level turns), Invisibility buff (2 turns)
+  * **Fadeleaf**: Teleports hero, Vertigo debuff (20 turns) - better to plant and step on plant
+  * **Dreamweed**: Mind Vision buff (1 turn), Vertigo debuff (20 turns)
+  * **Rotberry**: Creates toxic gas and paralytic gas clouds
+  * **Moongrace**: (Refer to Moongrace.java for specific effects)
+
+===== Related mr Entities =====
+  * [[mr:earthroot_seed_item|Earthroot Seed (Item)]]
+  * [[mr:firebloom_seed_item|Firebloom Seed (Item)]]
+  * [[mr:icecap_plant|Icecap (Plant)]]
+  * [[mr:sungrass_seed_item|Sungrass Seed (Item)]]
+  * [[mr:sorrowmoss_seed_item|Sorrowmoss Seed (Item)]]
+  * [[mr:fadeleaf_plant|Fadeleaf (Plant)]]
+  * [[mr:dreamweed_plant|Dreamweed (Plant)]]
+  * [[mr:rotberry_seed_item|Rotberry Seed (Item)]]
+  * [[mr:moongrace_seed_item|Moongrace Seed (Item)]]
+  * [[mr:plant|Plant (Mechanic)]]
+  * [[mr:seed_pouch_item|Seed Pouch (Item)]]
+  * [[mr:regrowth_mechanic|Regrowth (Mechanic)]]
+  * [[mr:alchemy_mechanic|Alchemy (Mechanic)]]
+
+{{tag> mr rpd mechanics seeds plants alchemy}}

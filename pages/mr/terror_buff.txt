@@ -1,44 +1,60 @@
 ====== Terror Buff - Code References ======
 
+{{ rpd:images:terror_buff.png|Terror Buff }}
+
 ===== Java Classes =====
-  * Main Implementation: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java
-  * AI Handler: RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Horrified.java
+  * Main Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java|Terror.java]]
+  * AI Handler: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Horrified.java|Horrified.java]]
 
 ===== Class Details =====
 <code java>
 package com.watabou.pixeldungeon.actors.buffs;
 
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.mobs.Fraction;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.pixeldungeon.sprites.CharSprite;
+import com.watabou.pixeldungeon.ui.BuffIndicator;
+
+import org.jetbrains.annotations.NotNull;
+
+import com.nyrds.LuaInterface;
+
+@LuaInterface
 public class Terror extends FlavourBuff {
-    public static final float DURATION = 10f;
 
-    @Override
-    public int icon() {
-        return BuffIndicator.TERROR;
-    }
+        public static final float DURATION = 10f;
 
-    public static void recover(Char target) {
-        Terror terror = target.buff(Terror.class);
-        if (terror != null && terror.cooldown() < DURATION) {
-            target.remove(terror);
+        @Override
+        public int icon() {
+                return BuffIndicator.TERROR;
         }
-    }
 
-    @Override
-    public boolean attachTo(@NotNull Char target) {
-        if(super.attachTo(target)) {
-            if(target instanceof Mob && target.fraction!=Fraction.NEUTRAL) {
-                Mob tgt = (Mob)target;
-                tgt.releasePet();
-            }
-            return true;
+        public static void recover( Char target ) {
+                Terror terror = target.buff( Terror.class );
+                if (terror != null && terror.cooldown() < DURATION) {
+                        target.remove( terror );
+                }
         }
-        return false;
-    }
 
-    @Override
-    public void attachVisual() {
+        @Override
+        public boolean attachTo(@NotNull Char target) {
+                if(super.attachTo(target)) {
+                        if(target instanceof Mob && target.fraction!=Fraction.NEUTRAL) {
+                                Mob tgt = (Mob)target;
+                                tgt.releasePet();
+                        }
+                        return true;
+                }
+                return false;
+        }
+
+        @Override
+        public void attachVisual() {
         target.showStatus(CharSprite.NEGATIVE, StringsManager.getVar(R.string.Char_StaFrightened));
-    }
+        }
 }
 </code>
 
@@ -59,21 +75,28 @@ This entity does not have JSON configuration files. It is fully implemented in J
 <!-- English strings -->
 <string name="Char_StaFrightened">frightened</string>
 <string name="TerrorBuff_Info">It looks like someone was very frightened.</string>
+<string name="Mob_StaTerrorStatus2">%s is terrified of %s!</string>
 
 <!-- Russian strings -->
 <string name="Char_StaFrightened">испуган</string>
 <string name="TerrorBuff_Info">Похоже, кто-то очень испугался.</string>
+<string name="Mob_StaTerrorStatus2">%s в ужасе перед %s!</string>
 </code>
 
 ===== String Resource References =====
   * English: RemixedDungeon/src/main/res/values/strings_all.xml
-    - Char_StaFrightened (line ~335)
-    - TerrorBuff_Info (line ~615)
+    - Char_StaFrightened
+    - TerrorBuff_Info
+    - Mob_StaTerrorStatus2
   * Russian: RemixedDungeon/src/main/res/values-ru/strings_all.xml
-    - Char_StaFrightened (line ~335)
+    - Char_StaFrightened
+    - TerrorBuff_Info
+    - Mob_StaTerrorStatus2
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists.
+  * Roar.lua: Uses RPD.Buffs.Terror to apply terror effect
+  * commonClasses.lua: Binds Terror class for Lua access
+  * ChaosShieldLeft.lua: Includes Terror in random debuff list
 
 ===== Usage in Code =====
   * **Immunity**: Many mobs have immunity to Terror:

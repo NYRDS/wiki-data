@@ -1,0 +1,90 @@
+====== Badges ======
+
+**Badges** are the achievement system in Remixed Dungeon. They track player accomplishments and are displayed in the game's badge collection menu. Badges are account-wide and persist across all playthroughs.
+
+==== Description ====
+Badges represent various achievements in the game, from simple milestones (like slaying 100 monsters) to complex challenges (like winning with specific hero classes on high difficulties). They provide long-term goals and track player progression.
+
+==== Badge Categories ====
+
+===== Monster Slaying =====
+  * **Monsters Slain I-V** - Defeat increasing numbers of monsters (100, 1000, 10000, 100000, 1000000)
+  * Tracks total monster kills across all runs
+
+===== Gold Collection =====
+  * **Gold Collected I-V** - Collect increasing amounts of gold (1000, 10000, 100000, 1000000, 10000000)
+  * Tracks total gold picked up across all runs
+
+===== Depth Reached =====
+  * **Level Reached I-V** - Reach increasing dungeon depths (level 5, 10, 15, 20, 25+)
+  * Tracks the deepest level reached in any run
+
+===== Item Identification =====
+  * **All Potions Identified** - Identify every potion type
+  * **All Scrolls Identified** - Identify every scroll type
+  * **All Rings Identified** - Identify every ring type
+  * **All Wands Identified** - Identify every wand type
+  * **All Items Identified** - Identify every item type (requires all of the above)
+
+===== Bag Purchases =====
+  * **Seed Pouch Bought** - Purchase a Seed Pouch
+  * **Scroll Holder Bought** - Purchase a Scroll Holder
+  * **Wand Holster Bought** - Purchase a Wand Holster
+  * **Potion Belt Bought** - Purchase a Potion Belt
+  * **Key Ring Bought** - Purchase a Key Ring
+  * **Quiver Bought** - Purchase a Quiver
+  * **All Bags Bought** - Purchase all 6 bag types
+
+===== Death Types =====
+  * **Death by Fire** - Die from burning
+  * **Death by Poison** - Die from poison
+  * **Death by Gas** - Die from toxic/paralytic gas
+  * Various other death-related badges
+
+===== Class Mastery =====
+  * **Mastery: Warrior/Mage/Rogue/Huntress/Elf/Necromancer/Gnoll/Priest/Doctor** - Win with each class
+  * **Victory: Warrior/Mage/Rogue/Huntress/Elf/Necromancer/Gnoll/Priest/Doctor** - Win on any difficulty
+  * **Boss Slain** - Defeat specific bosses
+
+===== Special Achievements =====
+  * **Death in Stone** - Die while affected by [[en:rpd:stone_walking_buff|Stone Walking Buff]]
+  * Many other special badges for unique accomplishments
+
+==== Code Implementation ====
+Badges are managed by the `Badges` class with a `Badge` enum defining all available badges:
+
+```java
+public enum Badge {
+    MONSTERS_SLAIN_1(R.string.Badges_MonsterSlain1, 0),
+    MONSTERS_SLAIN_2(R.string.Badges_MonsterSlain2, 1),
+    // ... more badges
+    MASTERY_PRIEST, MASTERY_DOCTOR,
+    VICTORY_PRIEST, VICTORY_DOCTOR,
+    BOSS_SLAIN_1_DOCTOR, BOSS_1_SLAIN_PRIEST;
+}
+```
+
+Key methods:
+  * `isUnlocked(Badge badge)` - Check if a badge is unlocked
+  * `unlock(Badge badge)` - Unlock a badge
+  * `saveGlobal()` / `loadGlobal()` - Persist badges across sessions
+  * `getUnlockedCount()` / `getTotalCount()` - Statistics
+
+==== String Resources ====
+Badge names and descriptions are stored in string resources:
+  * English: `values/strings_all.xml` (Badges_* keys)
+  * Russian: `values-ru/strings_all.xml`
+  * Other languages: Corresponding `values-*/strings_all.xml`
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml (EN)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (RU)]]
+
+==== Related Pages ====
+  * [[en:rpd:hero_class|Hero Classes]] - Class-specific badges
+  * [[en:rpd:stone_walking_buff|Stone Walking Buff]] - "Death in Stone" badge source
+  * [[en:rpd:doom_interface|Doom Interface]] - Buffs that validate badges on death
+  * [[en:rpd:buff_mechanics|Buff Mechanics]] - Buff system
+
+{{tag> rpd mechanics achievements progression }}

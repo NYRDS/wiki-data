@@ -1,0 +1,59 @@
+====== Sorrowmoss Seed - Code References ======
+
+This page contains raw code references and configuration excerpts for the Sorrowmoss Seed entity.
+
+===== Entity Kind =====
+  * **getEntityKind() value:** Sorrowmoss.Seed (inner class of Sorrowmoss plant)
+
+===== Java Implementation =====
+  * **Plant class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sorrowmoss.java|Sorrowmoss.java]]
+    - Contains inner Seed class extending Seed base class
+    - image = 2 (uses same sprite as plant)
+    - plantClass = Sorrowmoss.class
+    - alchemyClass = PotionOfToxicGas.class
+    - Eating effect: Applies Poison (duration based on hero level) + Invisibility (2 turns)
+  * **Seed registration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] line 415
+    - registerItemClassByName(Sorrowmoss.Seed.class, "Sorrowmoss.Seed")
+  * **Level object registration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObjectsFactory.java|LevelObjectsFactory.java]] line 80
+    - registerObjectClass(Sorrowmoss.class)
+
+===== JSON Configuration =====
+This entity is implemented in Java, no dedicated JSON configuration exists
+
+===== Lua Implementation =====
+**Alchemy recipe:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/alchemy_recipes.lua|alchemy_recipes.lua]]
+<code lua>
+-- Recipe: 1 Sorrowmoss seed + 1 Corpse Dust = Potion of Toxic Gas
+local sorrowmossRecipe = {}
+table.insert(sorrowmossRecipe, {name = "Sorrowmoss.Seed", count = 1})
+table.insert(sorrowmossRecipe, {name = "CorpseDust", count = 1})
+RPD.AlchemyRecipes.registerRecipeFromLua(sorrowmossRecipe, "PotionOfToxicGas")
+</code>
+
+**Sprout spell (random seed selection):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Sprout.lua|Sprout.lua]]
+  * Sorrowmoss.Seed included in random seed pool
+
+**Spawner trap:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/traps/Spawner.lua|Spawner.lua]]
+  * Sorrowmoss can spawn as level object from trap
+
+===== String Resources =====
+  * **English:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+<code xml>
+<string name="Sorrowmoss_Name">Sorrowmoss</string>
+<string name="Sorrowmoss_Desc">A Sorrowmoss is a flower (not a moss) with razor-sharp petals, coated with a deadly venom.</string>
+<string name="Plant_Seed">seed of %s</string>
+<!-- Seed name becomes "seed of Sorrowmoss" via Plant_Seed format -->
+</code>
+
+  * **Russian:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (ru)]]
+<code xml>
+<string name="Sorrowmoss_Name">Грустномох</string>
+<string name="Sorrowmoss_Desc">Грустномох - это цветок (а не мох) с бритвенно острыми лепестками, покрытыми смертельным ядом.</string>
+<string name="Plant_Seed">семена растения %s</string>
+<!-- Seed name becomes "семена растения Грустномох" via Plant_Seed format -->
+</code>
+
+===== Related Entities =====
+  * **Plant:** [[mr:sorrowmoss_level_object|Sorrowmoss (Plant)]]
+  * **Alchemy Result:** [[mr:potion_of_toxic_gas_item|Potion of Toxic Gas]]
+  * **Base Classes:** Seed, Plant

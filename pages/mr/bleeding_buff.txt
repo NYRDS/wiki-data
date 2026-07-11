@@ -1,16 +1,35 @@
 ====== Bleeding Buff - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/buffs/Bleeding.java|Bleeding.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Bleeding.java|Bleeding.java]] - Main buff implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java|BuffIndicator.java]] - Buff indicator constant (BLEEDING = 26)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ResultDescriptions.java|ResultDescriptions.java]] - Death reason BLEEDING
 
-===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/buffsDesc/Bleeding.json|Bleeding.json]] - Buff configuration
+===== Java Usage =====
+  * **Hero.java** - Handles bleeding status display and death message
+  * **Char.java** - Immunity management (addImmunity/removeImmunity for Bleeding.class)
+  * **BuffFactory.java** - Registers Bleeding class for buff system
+  * **Elementals (Earth, Air, Water, Fire)** - Add immunity to bleeding
+  * **DM300, Golem, Statue** - Add immunity to bleeding
+  * **Albino, YogsTeeth, Tamahawk** - Apply bleeding effect on hit
+  * **PotionOfHealing** - Removes bleeding effect
+  * **FrozenCarpaccio** - Removes bleeding effect
+  * **GrippingTrap** - Applies bleeding effect
 
 ===== String Resources =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|String: bleeding_buff_name]] - The display name for the bleeding buff
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|String: bleeding_buff_desc]] - The description text for the bleeding buff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|bleeding_buff_name]] - Display name
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|bleeding_buff_desc]] - Description
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Hero_StaBleeding]] - Status message
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Char_StaBleeding]] - Character status
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Bleeding_Death]] - Death message
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|ResultDescriptions_Bleeding]] - Death reason description
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== JSON Configuration =====
+No dedicated JSON configuration file exists for this buff (configured via BuffFactory)
+
 ===== Related mr Entities =====
+  * [[mr:buff_indicator|Buff Indicator Constants]]
+  * [[mr:result_descriptions|Result Descriptions]]

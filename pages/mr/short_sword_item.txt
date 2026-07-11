@@ -2,6 +2,8 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/ShortSword.java|ShortSword.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registers ShortSword class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] - Validates item level acquired for ShortSword
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no specific JSON configuration exists
@@ -25,3 +27,15 @@ This entity is implemented in Java, no Lua script exists
   * It has a required strength of 11 STR
   * It has a special "REFORGE" action that can be used to upgrade another weapon using this sword and a Scroll of Upgrade
   * When reforged, the Short Sword is consumed to upgrade another weapon and provide one level of upgrade
+  * Registered in ItemFactory for dynamic item creation
+  * Badge validation tracks ShortSword acquisition for level-based achievements
+
+===== Key Implementation Details =====
+  * **Base Damage**: 1-1 (min-max)
+  * **Animation**: Uses SWORD_ATTACK animation
+  * **STR Requirement**: 11
+  * **Max Level**: 12
+  * **Special Action**: AC_REFORGE ("REFORGE") - available when level > 0
+  * **Image Sprite**: ItemSpriteSheet.SHORT_SWORD
+  * **Reforge Time**: 2f seconds
+  * **Reforge Logic**: Removes ShortSword from inventory, applies upgrade to selected weapon via ScrollOfUpgrade.upgrade()

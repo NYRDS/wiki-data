@@ -1,0 +1,36 @@
+====== Web Blob - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Web.java|Web.java]] - Main blob implementation that applies roots effect to characters
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists
+
+===== String Resources =====
+<code xml>
+<!-- English (values/strings_all.xml) -->
+<string name="Web_Info">Web covers this tile. Creatures walking into it will be rooted.</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="Web_Info">Паутина покрывает эту клетку. Существа, входящие в неё, будут обездвижены.</string>
+</code>
+
+===== Lua Scripts =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - Binds Web class for Lua scripts
+
+===== Implementation Details =====
+  * **Class**: `com.wataboubou.pixeldungeon.actors.blobs.Web`
+  * **Extends**: `Blob`
+  * **Entity Kind**: `Web`
+  * **Behavior**: Applies Roots buff to characters that enter the web
+  * **Exception**: Characters wearing SpiderArmor are immune to the roots effect
+  * **Visual**: Uses `WebParticle.FACTORY` for particle effects
+  * **Spread**: Web spreads to adjacent tiles over time
+
+===== Related mr Entities =====
+  * [[mr:spinner_mob|Spinner (Mob)]] - Creates web when fleeing
+  * [[mr:spider_armor_item|Spider Armor (Item)]] - Grants immunity to web roots
+  * [[mr:roots_buff|Roots (Buff)]] - Status effect applied by web
+  * [[mr:poison_buff|Poison (Buff)]] - Spinner applies poison then flees to create web
+
+{{tag> mr blobs web roots}}

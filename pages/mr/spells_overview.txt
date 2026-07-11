@@ -1,0 +1,60 @@
+====== Spells Overview - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java|SpellFactory.java]] - Registers all available spells
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]] - Spell helper with affinity and targeting constants
+
+===== Spell Registration (from SpellFactory) =====
+  * **Elemental Spells** (AFFINITY_ELEMENTAL):
+    - [[mr:freeze_globe_spell|Freeze Globe]] - Level 3, cost 4 mana, targets cell, applies Frost + Slow
+    - [[mr:ignite_spell|Ignite]] - Fire elemental spell
+    - [[mr:magic_torch_spell|Magic Torch]] - Light/utility spell
+    - [[mr:wind_gust_spell|Wind Gust]] - Air elemental spell
+
+  * **Necromancy Spells** (AFFINITY_NECROMANCY):
+    - [[mr:raise_dead_spell|Raise Dead]] - Summons undead
+    - [[mr:exhumation_spell|Exhumation]] - Creates skeletons from corpses
+    - [[mr:summon_deathling_spell|Summon Deathling]] - Summons deathling minion
+
+  * **Rage/Combat Spells** (AFFINITY_RAGE / AFFINITY_COMBAT):
+    - [[mr:smash_spell|Smash]] - Melee attack enhancement
+    - [[mr:die_hard_spell|Die Hard]] - Defensive buff
+    - [[mr:roar_spell|Roar]] - Area effect stun/fear
+
+  * **Common Utility Spells** (AFFINITY_COMMON):
+    - [[mr:healing_spell|Healing]] - Restores HP
+    - [[mr:magic_missile_spell|Magic Missile]] - Ranged damage
+    - [[mr:magic_arrow_spell|Magic Arrow]] - Guided projectile
+    - [[mr:calm_spell|Calm]] - Pacifies enemies
+
+  * **Nature Spells** (AFFINITY_NATURE):
+    - [[mr:root_spell|Root]] - Entangles enemies
+    - [[mr:sprout_spell|Sprout]] - Creates plants
+    - [[mr:hide_in_grass_spell|Hide in Grass]] - Stealth
+
+  * **Shadow Spells** (AFFINITY_SHADOW):
+    - [[mr:shadow_step_spell|Shadow Step]] - Teleportation
+    - [[mr:dark_sacrifice_spell|Dark Sacrifice]] - HP for mana
+
+  * **Class-Specific Spells**:
+    - [[mr:huntress_class|Huntress]] spells: [[mr:backstab_spell|Backstab]], etc.
+    - [[mr:elf_class|Elf]] spells: [[mr:dash_spell|Dash]], etc.
+    - [[mr:witchcraft|Witchcraft]] spells
+
+===== Spell Properties =====
+  * **Targeting Types**: TARGET_SELF, TARGET_CELL, TARGET_CHAR, TARGET_CHAR_NOT_SELF, TARGET_ALLY, TARGET_ENEMY, TARGET_NONE
+  * **Levels**: 1-3 (higher level = more powerful/costly)
+  * **Cost**: Mana cost to cast
+  * **Image ID**: Sprite index in spell icons atlas
+
+===== Related mr Entities =====
+  * [[mr:spell_system|Spell System]] - Overall spell system architecture
+  * [[mr:spell_affinity|Spell Affinity]] - Magic affinity types
+  * [[mr:elemental_magic|Elemental Magic]] - Elemental affinity details
+  * [[mr:necromancy_magic|Necromancy Magic]] - Necromancy affinity details
+
+===== GitHub Links =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java|SpellFactory.java on GitHub]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java on GitHub]]
+
+{{tag> mr spells overview code_reference}}
