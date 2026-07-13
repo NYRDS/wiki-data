@@ -1,0 +1,79 @@
+====== Buff System - Code References ======
+
+===== Core Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] - Central registry for all buff types, maps class names to buff classes
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Base class for all buffs
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Actor base class with buff management (buff(), hasBuff(), buffLevel(), removeBuff())
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java|BuffIndicator.java]] - Icon constants for buff display in UI
+
+===== Key Interfaces =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Doom.java|Doom.java]] - Interface for deadly buffs that trigger special death conditions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/ArtifactBuff.java|ArtifactBuff.java]] - Base class for artifact-granted buffs
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/TemporaryBuff.java|TemporaryBuff.java]] - Base class for timed buffs
+
+===== Buff Registration =====
+BuffFactory maintains a static map of buff class names to Class objects:
+<code java>
+private static final Map<String, Class<? extends Buff>> buffMap = new HashMap<>();
+
+static {
+    // Register all buff classes
+    buffMap.put("Bleeding", Bleeding.class);
+    buffMap.put("Poison", Poison.class);
+    // ... etc
+}
+</code>
+
+Retrieving buff by name:
+<code java>
+public static Buff getBuffByName(String className) {
+    Class<? extends Buff> buffClass = buffMap.get(className);
+    return buffClass != null ? buffClass.newInstance() : null;
+}
+</code>
+
+===== Char Buff Management =====
+  * **buff(Class<? extends Buff> buffClass)** - Apply buff with default duration
+  * **buff(Class<? extends Buff> buffClass, float duration)** - Apply buff with specific duration
+  * **hasBuff(Class<? extends Buff> buffClass)** - Check if buff is present
+  * **buffLevel(Class<? extends Buff> buffClass)** - Get number of buff stacks
+  * **removeBuff(Class<? extends Buff> buffClass)** - Remove specific buff
+  * **clearBuffs()** - Remove all buffs
+
+===== Doom Buffs (Special Death) =====
+Buffs implementing Doom interface:
+  * [[mr:necrotism_buff|Necrotism]] - Spreads to nearby, kills on death
+  * [[mr:stone_blood_buff|StoneBlood]] - Wall walking, immurement on death
+  * [[mr:cursed_king_buff|CursedKing]] - Cursed King artifact buff
+  * [[mr:lich_essence_buff|LichEssence]] - Lich transformation buff
+
+===== Artifact Buffs =====
+Buffs granted by artifacts (implement ArtifactBuff):
+  * [[mr:stone_blood_buff|StoneBlood]] - Ring of Stone Walking
+  * [[mr:lich_essence_buff|LichEssence]] - Lich artifact
+  * [[mr:cursed_king_buff|CursedKing]] - Cursed King artifact
+  * [[mr:abyssal_presence_buff|AbyssalPresence]] - Abyssal artifact
+
+===== String Resources =====
+Standard string naming pattern for buffs:
+  * `{BuffName}_Name` - Display name
+  * `{BuffName}_Info` - Description
+  * `{BuffName}_Death` - Death message
+  * `ResultDescriptions_{BuffName}` - Death reason description
+
+===== JSON Configuration =====
+Most buffs are registered in BuffFactory, not configured via JSON.
+Some artifact buffs are configured in:
+  * `initHeroes.json` - Starting buffs for hero classes
+  * `levelsDesc/Bestiary.json` - Mob buff immunities
+
+===== Related mr Pages =====
+  * [[mr:buff_indicator|Buff Indicator Constants]]
+  * [[mr:doom_interface|Doom Interface]]
+  * [[mr:artifact_buff|Artifact Buff Base Class]]
+  * [[mr:necrotism_buff|Necrotism Buff]]
+  * [[mr:stone_blood_buff|StoneBlood Buff]]
+  * [[mr:bleeding_buff|Bleeding Buff]]
+  * [[mr:poison_buff|Poison Buff]]
+
+{{tag> mr code reference buff system mechanics}}

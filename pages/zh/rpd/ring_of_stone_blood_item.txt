@@ -1,0 +1,40 @@
+====== 石血之戒 ======
+
+{{ rpd:images:ring_of_stone_blood_item.png|石血之戒 }}
+
+**石血之戒** 允許佩戴者像穿越空氣一樣穿過堅硬的岩石。這當然是有代價的：每在牆壁內走一步，佩戴者就會失去一部分生命值。
+
+這是 **重混像素地牢** 獨有的神器。
+
+==== 描述 ====
+這枚奇異的戒指由堅硬的石頭製成。你以為是紅寶石的東西，實際上是被固定在原地的液態血液！裡面有一支指向牆壁的箭頭和一顆破碎的心... 這意味著什麼？
+
+==== 物品類別 ====
+  * **Java 類:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java|RingOfStoneWalking.java]]
+  * **精靈索引:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L80|RING_OF_STONE_WALKING = 133]]
+
+==== 特殊屬性 ====
+  * **石質構造:** 由堅硬的石頭材料製成
+  * **血液中心:** 中心似乎含有液態血液
+  * **獨特設計:** 具有箭頭和破碎心臀的圖像
+
+==== 效果 ====
+  * **穿牆:** 允許佩戴者像穿過可通行地形一樣穿過堅硬的牆壁/岩石
+  * **生命代價:** 在穿過堅固地形時每走一步，佩戴者受到等於 max(最大HP / 2, 2) 的傷害
+  * **石中血能力:** 血液變成石頭，與附近的牆壁融合，使穿越它們變得更容易，但代價是什麼
+  * **首領關卡限制:** 戒指在首領關卡不工作（穿牆能力被禁用）
+  * **死亡後果:** 如果玩家在使用此戒指時死亡，他們將永遠被困在石頭中
+
+==== 機制 ====
+戒指通過覆蓋 [[zh:rpd:hero|英雄]] 移動邏輯中的正常可通行性檢查來工作。當玩家嘗試移動到固體磚塊時（且不在首領關卡），移動被允許。然而，在固體地形中每走一步都會施加等於英雄當前 HP 的一半或 2 點傷害（取較大值）的傷害。
+
+==== 策略 ====
+  * 由於傷害基於當前 HP，如果你不想受太多傷害，可以在使用戒指前嘗試降低你的 HP
+  * 在首領關卡中戒指不工作，所以不要依賴它來逃離首領戰
+  * 如果你計劃大量使用穿牆能力，攜帶治療物品
+
+==== 相關連結 ====
+  * English: [[en:rpd:ring_of_stone_blood_item|Ring of Stone Blood]]
+  * [[zh:rpd:stone_walking_buff|石中血 Buff]]
+
+{{tag> rpd items rings artifact }}
