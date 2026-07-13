@@ -1,8 +1,10 @@
 ====== Lightning Bolt Spell - Machine Readable References ======
 
+{{ rpd:images:lightning_bolt_spell.png|Lightning Bolt Spell }}
+
 This page contains machine-readable references for the Lightning Bolt spell entity in Remixed Dungeon.
 
-===== Entity Identification =====
+==== Entity Identification ====
 
   * **Entity Name**: LightningBolt
   * **Entity Type**: Spell
@@ -10,13 +12,13 @@ This page contains machine-readable references for the Lightning Bolt spell enti
   * **Implementation**: Lua script
   * **getEntityKind()**: Returns spell file name from Lua implementation
 
-===== Java Classes =====
+==== Java Classes ====
 
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Base spell class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellManager.java|SpellManager.java]] - Spell management system
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/CharUtils.java|CharUtils.java]] - Contains lightningProc method used by spell
 
-===== Lua Script Implementation =====
+==== Lua Script Implementation ====
 
 **File**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/LightningBolt.lua|LightningBolt.lua]]
 
@@ -66,11 +68,11 @@ return spell.init{
 damage = math.random(lvl, caster:skillLevel() * math.sqrt(lvl) + lvl)
 </code>
 
-===== JSON Configuration =====
+==== JSON Configuration ====
 
 This entity is implemented entirely in Lua. No JSON configuration file exists for this spell.
 
-===== String Resources =====
+==== String Resources ====
 
 **English** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|values/strings_all.xml]]):
 <code xml>
@@ -167,7 +169,7 @@ This entity is implemented entirely in Lua. No JSON configuration file exists fo
 <string name="LightningBolt_Name">Sambaran kilat</string>
 </code>
 
-===== Spell Registration =====
+==== Spell Registration ====
 
 **File**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]]
 
@@ -177,19 +179,19 @@ spells["Witchcraft"] = {"Roar","LightningBolt","Heal","Order"}
 
 The spell is registered under the Witchcraft magic affinity category.
 
-===== Related Entities =====
+==== Related Entities ====
 
   * **Witchcraft Spells**: Roar, Heal, Order (same magic affinity)
   * **Lightning Effects**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/CharUtils.java|CharUtils.lightningProc]] - Lightning damage effect
   * **Spell System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/|Spell mechanics]]
 
-===== Images =====
+==== Images ====
 
   * **Spell Icon**: lightning_bolt_spell.png (processed for wiki)
   * **Generic Icon**: spellsIcons/witchcraft.png (used in-game)
   * **Wiki Image Reference**: {{ rpd:images:lightning_bolt_spell.png|Lightning Bolt Spell }}
 
-===== Code References Summary =====
+==== Code References Summary ====
 
   * **Lua Script**: RemixedDungeon/src/main/assets/scripts/spells/LightningBolt.lua
   * **Spell Registration**: RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua
