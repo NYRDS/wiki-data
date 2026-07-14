@@ -20,7 +20,7 @@ When read, the Scroll of Lullaby releases magical lullabies that put all enemies
   * **Caution**: Be careful not to wake sleeping enemies
 
 ==== Code References ====
-<code java>
+<code>
 package com.watabou.pixeldungeon.items.scrolls;
 
 import com.watabou.pixeldungeon.Dungeon;
@@ -33,7 +33,7 @@ public class ScrollOfLullaby extends Scroll {
 
 	@Override
 	protected void doRead() {
-		
+
 		for (Mob mob : Dungeon.level.mobs) {
 			if (Dungeon.visible[mob.pos]) {
 				Buff.affect( mob, Sleep.class );
@@ -43,13 +43,13 @@ public class ScrollOfLullaby extends Scroll {
 				mob.sprite.centerEmitter().start( Speck.factory( Speck.NOTE ), 0.3f, 4 );
 			}
 		}
-		
+
 		GLog.h( "The scroll utters a soothing melody. You feel very sleepy." );
 		setKnown();
-		
+
 		((ScrollOfMagicMapping)curItem).readAnimation();
 	}
-	
+
 	@Override
 	public String desc() {
 		return
@@ -60,6 +60,11 @@ public class ScrollOfLullaby extends Scroll {
 </code>
 
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfLullaby.java|ScrollOfLullaby.java]] - Main implementation
+
+==== Source Verification ====
+  * Source: Java class `com.watabou.pixeldungeon.items.scrolls.ScrollOfLullaby`
+  * Effect verified: Sleep buff applied to all visible mobs
+  * Description: Matches in-game string resource
 
 ==== Related Items ====
   * [[en:rpd:scrolls|Scrolls]] - List of all scrolls
