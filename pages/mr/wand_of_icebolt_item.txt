@@ -1,20 +1,111 @@
 ====== Wand Of Icebolt Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * ''com/nyrds/pixeldungeon/items/icecaves/WandOfIcebolt.java'' - Main wand implementation
+  * Extends: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand]]
+  * Registered in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (line 403: registerItemClass(WandOfIcebolt.class))
+  * Used by: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardianCore.java|IceGuardianCore.java]] (drops upgraded wand)
+
+===== Java Class Content =====
+<code java>
+package com.nyrds.pixeldungeon.items.icecaves;
+
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.audio.Sample;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.Assets;
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.buffs.Frost;
+import com.watabou.pixeldungeon.actors.buffs.Slow;
+import com.watabou.pixeldungeon.effects.MagicMissile;
+import com.watabou.pixeldungeon.levels.Level;
+import com.watabou.pixeldungeon.mechanics.Ballistica;
+import com.watabou.pixeldungeon.scenes.GameScene;
+import com.watabou.pixeldungeon.utils.GLog;
+import com.watabou.utils.Callback;
+
+public class WandOfIcebolt extends Wand {
+
+	{
+		setDefaultImage( ItemSpriteSheet.WAND_ICEBOLT );
+	}
+
+	@Override
+	protected void onZap( int cell, Char ch ) {
+		if ( ch != null ) {
+			int lvl = effectiveLevel();
+			ch.damage( Random.NormalIntRange( lvl + 2, lvl + 10 ), this );
+
+			if ( Random.Float() < 0.3f ) {
+				Frost.prolong( ch, Frost.DURATION * ( 1 + lvl / 10f ) );
+			}
+			if ( Random.Float() < 0.2f ) {
+				Slow.prolong( ch, Slow.DURATION * ( 1 + lvl / 10f ) );
+			}
+		} else {
+			GLog.n( StringsManager.getVar( R.string.WandOfIcebolt_Info1 ) );
+		}
+	}
+
+	protected void fx( int cell, Callback callback ) {
+		MagicMissile.iceBolt( getOwner().getSprite().getParent(), getOwner().getPos(), cell, callback );
+		Sample.INSTANCE.play( Assets.SND_ZAP );
+	}
+
+	@Override
+	public String desc() {
+		return StringsManager.getVar( R.string.WandOfIcebolt_Info );
+	}
+}
+</code>
+
+===== Key Mechanics =====
+  * **Damage:** Random range of (level + 2) to (level + 10)
+  * **Frost Chance:** 30% chance to apply Frost debuff with duration scaling by level
+  * **Slow Chance:** 20% chance to apply Slow debuff with duration scaling by level
+  * **Visual Effect:** Uses MagicMissile.iceBolt() for zap animation
+  * **Sound:** Plays Assets.SND_ZAP on zap
+  * **Default Image:** ItemSpriteSheet.WAND_ICEBOLT
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/wand_of_icebolt.json
+No dedicated JSON configuration file found. Wand is implemented entirely in Java.
 
 ===== String Resources =====
+English (''values/strings_all.xml''):
 <code xml>
-<string name="WandOfIcebolt_Name">[Name]</string>
-<string name="WandOfIcebolt_Info">[Description]</string>
+<string name="WandOfIcebolt_Name">Wand of Icebolt</string>
+<string name="WandOfIcebolt_Info">This wand launches an ice bolt, dealing light damage to the target. There is also a chance to slow down or even freeze the enemy.</string>
+<string name="WandOfIcebolt_Info1">You killed yourself with your own Wand of Icebolt...</string>
+</code>
+
+Russian (''values-ru/strings_all.xml''):
+<code xml>
+<string name="WandOfIcebolt_Name">Палочка Ледяной Стрелы</string>
+<string name="WandOfIcebolt_Info">Эта палочка запускает ледяной снаряд, который наносит небольшой урон цели. Так же есть шанс замедлить или даже заморозить противника.</string>
+<string name="WandOfIcebolt_Info1">Ты убил себя своей собственной ледяной стрелой...</string>
+</code>
+
+Chinese Simplified (''values-zh-rCN/strings_all.xml''):
+<code xml>
+<string name="WandOfIcebolt_Name">冰霜法杖</string>
+<string name="WandOfIcebolt_Info">这根法杖可以发射冰箭，对目标生物造成伤害。它还可以减慢甚至冻结目标。</string>
+<string name="WandOfIcebolt_Info1">你用你的冰霜法杖杀死了你……</string>
+</code>
+
+Chinese Traditional (''values-zh-rTW/strings_all.xml''):
+<code xml>
+<string name="WandOfIcebolt_Name">冰霜法杖</string>
+<string name="WandOfIcebolt_Info">這根法杖可以發射冰箭，對目標生物造成傷害。它還可以減慢甚至凍結目標。</string>
+<string name="WandOfIcebolt_Info1">你用你的冰霜法杖殺死了你...</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+No Lua script implementation. This wand is implemented entirely in Java.
+
+===== Related Effects =====
+  * [[mr:frost_buff|Frost Buff]] - Freezing effect applied by this wand
+  * [[mr:slow_buff|Slow Buff]] - Slowing effect applied by this wand
+  * [[mr:wand_of_frost_item|Wand of Frost (Historical)]] - Incorrect historical reference
+
+{{tag> rpd wands items mr icecaves}}
