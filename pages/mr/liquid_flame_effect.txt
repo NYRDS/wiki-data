@@ -1,9 +1,18 @@
 ====== Liquid Flame Effect - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java|Blob.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/Fireball.java|Fireball.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame.java]] - Main blob implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java|Blob.java]] - Base blob class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/Fireball.java|Fireball.java]] - Related fire effect
+
+===== Implementation Details =====
+  * **Class:** `com.watabou.pixeldungeon.actors.blobs.LiquidFlame`
+  * **Extends:** `Blob`
+  * **Lua Interface:** `@LuaInterface` annotation present
+  * **Key Methods:**
+    - `evolve()` - Handles flame spread and burning of flammable terrain
+    - `use(BlobEmitter)` - Emits flame particles
+    - `tileDesc()` - Returns fire info string from resources
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
