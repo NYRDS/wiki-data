@@ -1,13 +1,15 @@
 ====== Stone Walking Buff - Code References ======
 
+{{ rpd:images:stone_walking_buff.png|Stone Walking Buff }}
+
 The **Stone Walking** buff is an artifact buff applied by the [[en:rpd:ring_of_stone_blood_item|Ring of Stone Blood]]. It is a doom buff that triggers a special death condition when the hero dies while affected by it.
 
 ===== Java Classes =====
 
 **Buff Implementation:**
-  * `com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java` - Ring and buff implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java|RingOfStoneWalking.java]] - Ring and buff implementation
   * Inner class: `RingOfStoneWalking.StoneWalking` extends `ArtifactBuff` implements `Doom`
-  * Buff factory registration: `com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java`
+  * Buff factory registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] (line 166)
     - Constant: `RING_OF_STONE_WALKING`
     - Registered buff class: `RingOfStoneWalking.StoneWalking.class`
 
@@ -53,18 +55,20 @@ public static class StoneWalking extends ArtifactBuff implements Doom {
 
 **English (values/strings_all.xml):**
 <code xml>
-<string name="StoneBloodBuff_Name">[Name]</string>
-<string name="StoneBloodBuff_Info">[Description]</string>
-<string name="RingOfStoneWalking_ImmuredInStone">You are immured in stone. Forever.</string>
+<string name="StoneBloodBuff_Name">Stone blood</string>
+<string name="StoneBloodBuff_Info">The blood turns stone which merges with the walls nearby and makes traversing them much easier, but at what cost.</string>
+<string name="RingOfStoneWalking_ImmuredInStone">You have been immured in stone. Forever.</string>
 <string name="RingOfStoneWalking_Name">Ring of Stone Blood</string>
-<string name="RingOfStoneWalking_Info">[Ring description]</string>
+<string name="RingOfStoneWalking_Info">This strange ring is made of some sturdy stone. What you first thought was a ruby is actually liquid blood being held in place! Inside is an arrow pointing at what appears to be a wall, along with a broken heart... What might it do?</string>
 </code>
 
 **Russian (values-ru/strings_all.xml):**
 <code xml>
 <string name="StoneBloodBuff_Name">Каменная Кровь</string>
+<string name="StoneBloodBuff_Info">Кровь превращается в камень, вязкость которой подстраивается под близлежащие стены и значительно облегчает прохождение через них, но какой ценой.</string>
 <string name="RingOfStoneWalking_ImmuredInStone">Замурован в камне. Навсегда.</string>
 <string name="RingOfStoneWalking_Name">Кольцо Каменной Крови</string>
+<string name="RingOfStoneWalking_Info">Это кольцо, сделанное из крепкого камня, выглядело бы обычным. Если бы не капля жидкой крови, пульсирующая вместо камня. Внутри стрелка, указывающая на что-то вроде стены и на разбитое сердце... Что бы это могло значить?</string>
 </code>
 
 ===== Lua Scripts =====

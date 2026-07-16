@@ -1,7 +1,11 @@
 ====== Shuriken Item - Code References ======
 
+{{ rpd:images:shuriken_item.png|Shuriken }}
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Shuriken.java|Shuriken.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Shuriken.java|Shuriken.java]] - Main implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration (line 346)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/HuntressArmor.java|HuntressArmor.java]] - Special ability creates Shuriken instances (lines 39-40)
 
 ===== JSON Configuration =====
 This entity does not appear to have dedicated JSON configuration
@@ -20,7 +24,7 @@ This entity does not appear to have dedicated JSON configuration
   * **Delay**: 0.5f (very fast throwing rate)
   * **Price**: 15 * quantity
   * **Random Quantity**: 5-15
-  * **Projectile Behavior**: Fast rotating but does not fly straight
+  * **Projectile Behavior**: Fast rotating but does not fly straight (isFliesStraight() = false, isFliesFastRotating() = true)
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
