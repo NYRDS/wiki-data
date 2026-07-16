@@ -1,23 +1,89 @@
 ====== Жнец Душ ======
 
-{{ rpd:images:black_skull_item.png|Жнец Душ }}
+{{ rpd:images:black_skull_of_mastery_item.png|Жнец Душ }}
 
 ==== Описание ====
 Это древний артефакт, сотворённый первыми некромантами, для того чтобы собирать души павших. Мощное защитное заклятие среагировало на твои магические способности и заблокировало силы артефакта. Но не смотря на силу, ввиду возраста, сама структура заклятия крайне примитивна, и её не сложно разрушить.
 
+Название в игре: **Жнец Душ** (исходная строка: `BlackSkullOfMastery_Name` в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L263|strings_all.xml:263]])
+
+Английское название: **The Soulbringer** (исходная строка: `BlackSkullOfMastery_Name` в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L263|strings_all.xml:263]])
+
 ==== Получение ====
-С шансом в 100% падает с босса [[ru:rpd:lich_mob|Лича]] на [[ru:rpd:necropolis|Некрополе]]. Доступен только для игрового класса [[ru:rpd:necromancer_class|Некромант]].
+  * С шансом 100% падает с босса [[ru:rpd:lich_mob|Лича]] на [[ru:rpd:necropolis|Некрополе]].
+  * Доступен **только** для игрового класса [[ru:rpd:necromancer_class|Некромант]].
+  * Если герой не является Некромантом, вместо этого предмета выпадает [[ru:rpd:black_skull_item|Чёрный череп]] (BlackSkull).
 
 ==== Использование ====
-Есть два варианта использования:
-  * Разрушить магию и превратить его в обычный [[ru:rpd:obsidian_skull|Обсидиановый Череп]].
-  * Или стать игровым подклассом Некроманта, [[ru:rpd:lich_subclass|Личем]].
+Есть два варианта использования (источник: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/necropolis/BlackSkullOfMastery.java|BlackSkullOfMastery.java]]):
+
+  * **Разрушить заклятие** — превратить его в обычный [[ru:rpd:black_skull_item|Чёрный череп]] (BlackSkull).
+    * Это делается через действие "Разрушить заклятие" (BlackSkullOfMastery_Necromancer).
+    * При этом герой получает обычный Чёрный череп, который можно использовать по назначению.
+  * **Стать подклассом Лич** — стать игровым подклассом Некроманта, [[ru:rpd:lich_subclass|Личом]].
+    * Доступно только если герой — класс Некромант.
+    * Открывает окно выбора пути (WndChooseWay), где можно выбрать "Стать Личом" (BlackSkullOfMastery_Lich) или "Разрушить заклятие".
+    * При выборе "Стать Личом" предмет потребляется, герой становится подклассом Лич.
+
+==== Характеристики ====
+  * **Тип:** Артефакт / Предмет мастерства (MasteryItem)
+  * **Вес:** 0 (невесомый, как и все артефакты)
+  * **Цена:** Не продаётся (артефакт)
+  * **Изображение в инвентаре:** `items/artifacts.png`, индекс 19 (тот же, что и у Чёрного черепа)
+  * **Стекается:** Нет (`stackable = false`)
+  * **Время на чтение/использование:** 10 игровых тиков (`TIME_TO_READ = 10`)
+
+==== Механика (из кода) ====
+  * **Java класс:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/necropolis/BlackSkullOfMastery.java|BlackSkullOfMastery.java]] — Основная реализация предмета
+  * **Родительский класс:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/MasteryItem.java|MasteryItem.java]] — Базовый класс предметов мастерства
+  * **Связанный предмет:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/necropolis/BlackSkull.java|BlackSkull.java]] — Чёрный череп (получается при разрушении заклятия)
+  * **Выпадение с босса:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/Lich.java#L88|Lich.java:88]] — Лич сбрасывает этот предмет только для Некроманта
+  * **Окно выбора пути:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndChooseWay.java|WndChooseWay.java]] — Обработка выбора между Личом и Чёрным черепом
+  * **Регистрация предмета:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L407|ItemFactory.java:407]]
+
+==== Специальные способности ====
+  * **Некромантия (Necromancer_ACSpecial):** Доступно только Некроманту. Открывает выбор: стать Личом или разрушить заклятие.
+  * **Проверка класса:** Метод `givesMasteryTo()` возвращает `true` только для `HeroClass.NECROMANCER`.
+
+==== Строковые ресурсы (Русский) ====
+<code xml>
+<string name="BlackSkullOfMastery_Name">Жнец Душ</string>
+<string name="BlackSkullOfMastery_Info">Это древний артефакт, сотворённый первыми некромантами, для того чтобы собирать души павших. Мощное защитное заклятие среагировало на твои магические способности и заблокировало силы артефакта. Но не смотря на силу, ввиду возраста, сама структура заклятия крайне примитивна, и её не сложно разрушить.</string>
+<string name="BlackSkullOfMastery_Lich">Стать Личем</string>
+<string name="BlackSkullOfMastery_Necromancer">Разрушить заклятие</string>
+<string name="BlackSkullOfMastery_RemainHumanDesc">Но, если ты _разрушишь заклятие_, то сможешь использовать этот артефакт по назначению.</string>
+<string name="BlackSkullOfMastery_Title">Ты можешь разрушить заклятие. Или можешь изменить магическую формулу таким образом, что ты сможешь поглотить силу, как самого заклятия, так и черепа, превратив себя в Лича.</string>
+<string name="BlackSkullOfMastery_BecomeLichDesc">_Лич_ это некромант, который смог достичь вершины своего мастерства. Существующий между жизнью и смертью, он обладает невероятными способностями к некромантии, но его боевые навыки гораздо ниже, чем у простого человека.</string>
+</code>
+
+==== Строковые ресурсы (English) ====
+<code xml>
+<string name="BlackSkullOfMastery_Name">The Soulbringer</string>
+<string name="BlackSkullOfMastery_Info">It's an ancient artifact, crafted by first necromancers to collect souls of the fallen one's. Sensing your necromantic abilities it warded itself with a powerful spell. But since the spell is that of the old times, it's primitive structure is fairly easy to break.</string>
+<string name="BlackSkullOfMastery_Lich">Become a Lich</string>
+<string name="BlackSkullOfMastery_Necromancer">Break the spell</string>
+<string name="BlackSkullOfMastery_RemainHumanDesc">Or if you _break the spell_ you'll be able to use this artifact as intended.</string>
+<string name="BlackSkullOfMastery_Title">You may break the spell. Or you may manipulate it's magical formula in a way, which will allow you to consume powers of both the spell and artifact itself, turning yourself into a Lich.</string>
+<string name="BlackSkullOfMastery_BecomeLichDesc">The _Lich_ is a necromancer who reached pinnacle of his abilities. Existing between life and death _Lich_ excels in necromancy, but his combat skills are greatly lower than those of an ordinary person.</string>
+</code>
 
 ==== Примечание ====
 Имеет смысл после победы над боссом выложить все вещи на предыдущем этаже, вернуться и умереть с анхом в рюкзаке. В таком случае этаж будет сформирован заново и появится возможность повторно сразиться с боссом, в итоге получив и подкласс, и череп.
 
 ==== Кодовые ссылки ====
-  * Java класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/artifacts/SoulReaper.java|SoulReaper.java]] - Основная реализация предмета
-  * Java класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/classes/Necromancer.java|Necromancer.java]] - Класс некроманта
+  * Java класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/necropolis/BlackSkullOfMastery.java|BlackSkullOfMastery.java]] — Основная реализация предмета
+  * Java класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/necropolis/BlackSkull.java|BlackSkull.java]] — Чёрный череп (результат разрушения заклятия)
+  * Java класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/Lich.java|Lich.java]] — Босс, сбрасывающий предмет
+  * Java класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndChooseWay.java|WndChooseWay.java]] — Окно выбора пути
+  * Java класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/MasteryItem.java|MasteryItem.java]] — Базовый класс предметов мастерства
+  * Java класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] — Регистрация предмета
 
-{{tag> rpd предметы артефакты некромант подкласс лич}}
+==== См. также ====
+  * [[ru:rpd:lich_mob|Лич (босс)]] — Босс, сбрасывающий предмет
+  * [[ru:rpd:necromancer_class|Некромант]] — Класс, для которого доступен этот предмет
+  * [[ru:rpd:lich_subclass|Лич (подкласс)]] — Подкласс, который можно получить
+  * [[ru:rpd:black_skull_item|Чёрный череп]] — Результат разрушения заклятия
+  * [[ru:rpd:artifacts|Артефакты]] — Общая информация об артефактах
+  * [[ru:rpd:tome_of_mastery_item|Фолиант мастерства]] — Связанный предмет
+
+{{tag> rpd предметы артефакты некромант подкласс лич mastery }}

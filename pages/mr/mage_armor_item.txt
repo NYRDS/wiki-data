@@ -1,11 +1,18 @@
 ====== Mage Armor Item - Code References ======
 
+{{ rpd:images:mage_armor_item.png|Mage Armor }}
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MageArmor.java|MageArmor.java]] - Main class implementation
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/BattleMageArmor.java|BattleMageArmor.java]] - Subclass (upgraded form)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WarlockArmor.java|WarlockArmor.java]] - Subclass (upgraded form)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Hero class enum (MAGE references MageArmor)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration (line 372)
 
 ===== JSON Configuration =====
-  * RemixedDungeon/src/main/assets/spritesDesc/mage_armor.json - Sprite configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/mage_armor.json|spritesDesc/mage_armor.json]] - Sprite configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|hero/initHeroes.json]] - Hero initialization (Mage class starting equipment)
 
 ===== String Resources =====
 <code xml>
@@ -15,14 +22,55 @@
 <string name="MageArmor_NotMage">Only mages can use this armor!</string>
 </code>
 
+===== String Resource References (English) =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2245|strings_all.xml:2245]] — MageArmor_Name
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2246|strings_all.xml:2246]] — MageArmor_Desc
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2247|strings_all.xml:2247]] — MageArmor_ACSpecial
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2248|strings_all.xml:2248]] — MageArmor_NotMage
+
+===== String Resource References (Russian) =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2245|strings_all.xml:2245]] — MageArmor_Name
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2246|strings_all.xml:2246]] — MageArmor_Desc
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2247|strings_all.xml:2247]] — MageArmor_ACSpecial
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2248|strings_all.xml:2248]] — MageArmor_NotMage
+
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
 
 ===== Special Abilities =====
-  * Casting "Molten Earth" spell (special ability): Sets visible enemies on fire and roots them in place
+  * **Molten Earth** (special ability): Sets visible enemies on fire and roots them in place
   * Burns enemies via [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]]
   * Roots enemies via [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]]
 
-===== Implementation Notes =====
-  * Can only be equipped by Mage class
-  * Obtained by using Armor Kit on Tier-3 armor (Plate Mail, Scale Armor, Leather Armor)
+===== Implementation Details =====
+  * **Class restriction:** Can only be equipped by Mage class (`HeroClass.MAGE`)
+  * **Obtained by:** Using [[en:rpd:armor_kit_item|Armor Kit]] on Tier-3 armor (Plate Mail, Scale Armor, Leather Armor)
+  * **Base stats (from ClassArmor):** STR requirement 11, base DR varies by armor tier
+  * **Upgraded forms:**
+    * [[en:rpd:battle_mage_armor_item|Battle Mage Armor]] - upgraded with Tome of Mastery (requires MAGE class)
+    * [[en:rpd:warlock_armor_item|Warlock Armor]] - upgraded with Tome of Mastery (requires MAGE class)
+  * **Sprite:** `items/armors.png`, image index 11
+  * **Special action:** `MageArmor_ACSpecial` -> "MOLTEN EARTH"
+  * **Quality factor scaling:** Special ability damage/duration scales with armor quality factor
+
+===== Code References =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MageArmor.java#L21|MageArmor.java:21]] - Class definition extends ClassArmor
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MageArmor.java#L30|MageArmor.java:30]] - `special()` returns "MageArmor_ACSpecial"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MageArmor.java#L35|MageArmor.java:35]] - `desc()` returns localized description
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MageArmor.java#L40|MageArmor.java:40-55]] - `doSpecial()` - Molten Earth implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MageArmor.java#L57|MageArmor.java:57-65]] - `doEquip()` - class restriction check
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L60|HeroClass.java:60]] - MAGE class references MageArmor.class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L372|ItemFactory.java:372]] - registerItemClass(MageArmor.class)
+
+===== See Also =====
+  * [[en:rpd:mage_armor_item|Mage Armor (wiki page)]]
+  * [[en:rpd:battle_mage_armor_item|Battle Mage Armor]]
+  * [[en:rpd:warlock_armor_item|Warlock Armor]]
+  * [[en:rpd:mage_class|Mage Class]]
+  * [[en:rpd:class_armor_item|Class Armor]]
+  * [[en:rpd:armor_kit_item|Armor Kit]]
+  * [[en:rpd:tome_of_mastery_item|Tome of Mastery]]
+  * [[en:rpd:burning_buff|Burning]]
+  * [[en:rpd:roots_buff|Roots]]
+
+{{tag> rpd items armor mage class_armor }}
