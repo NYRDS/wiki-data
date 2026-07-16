@@ -7,35 +7,51 @@ The **Rat Hide** is a common item in Remixed Dungeon that serves as a basic craf
 ==== Item Overview ====
   * **Type:** Crafting Material
   * **Rarity:** Common
-  * **Special Effect:** Used in various crafting recipes
-  * **Usage:** Crafting and quest item
+  * **Special Effect:** Used in various crafting recipes and alchemy
+  * **Usage:** Crafting, quest item, alchemy ingredient
 
 ==== Description ====
 A small, filthy piece of flesh and fur from a rat. While seemingly useless at first glance, it can actually be of use to someone with the right knowledge. The item is stackable and always identified from the start.
 
 ==== Mechanics ====
-  * **Stackable:** Yes - can be stacked with other rat hides
-  * **Identified:** Always identified (no need to identify)
-  * **Upgradable:** No - cannot be upgraded
-  * **Image:** From items/artifacts.png, index 23
+  * **Stackable:** Yes (max stack size: 20)
+  * **Identified:** Always identified (isIdentified() returns true)
+  * **Upgradable:** No (isUpgradable() returns false)
+  * **Image:** ItemSpriteSheet.RAT_HIDE (items/artifacts.png, index 23)
 
 ==== Usage ====
-  * Used by the Plague Doctor NPC in various interactions and quests
-  * Used in certain crafting and transmutation recipes
-  * Can be used as a basic ingredient in alchemy
+  * **Alchemy Recipes:**
+    * 1 Dreamweed Seed + 1 Rat Hide = Potion of Invisibility
+    * 1 Sorrowmoss + 1 Rat Hide = Potion of Toxic Gas (via alchemy_recipes.lua)
+  * **Crafting/Transmutation:**
+    * Used in DemoTransmute trap (Rat Hide + Cloth Armor = Rat Armor)
+    * Used by Plague Doctor NPC in various interactions
+  * **Trap/Spawner Loot:** Can appear in Spawner traps as loot
 
 ==== Obtaining ====
-  * Dropped by various rat-type enemies throughout the dungeon
-  * Found in containers and special rooms, though rarely
-  * Available in shops (when not identified - though it's always identified anyway)
+  * **Primary Source:** Dropped by rat-type enemies (Rat, Black Rat, Fetid Rat, etc.)
+  * **Secondary Sources:** Containers, special rooms, Spawner traps
+  * **Shops:** Available for purchase (always identified)
+
+==== Technical Details ====
+  * **Java Class:** com.nyrds.pixeldungeon.items.common.RatHide
+  * **Entity Kind:** RatHide
+  * **String Resources:** RatHide_Name ("rat hide"), RatHide_Info ("A small, filthy piece of flesh and fur. Can these actually be of use to someone?")
+  * **Lua Scripts:** alchemy_recipes.lua (Potion of Invisibility, Potion of Toxic Gas), traps/DemoTransmute.lua, traps/Spawner.lua
 
 ==== Related Items ====
   * [[en:rpd:rat_mob|Rats]] - The enemies that drop rat hides
   * [[en:rpd:black_rat_mob|Black Rat]] - A rat variant that drops rat hides
   * [[en:rpd:plague_doctor_npc|Plague Doctor]] - NPC that uses rat hides in interactions
+  * [[en:rpd:potion_of_invisibility_item|Potion of Invisibility]] - Crafted using Rat Hide
+  * [[en:rpd:potion_of_toxic_gas_item|Potion of Toxic Gas]] - Crafted using Rat Hide
+  * [[en:rpd:rat_armor_item|Rat Armor]] - Crafted using Rat Hide (via DemoTransmute)
 
 ==== Code References ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/RatHide.java|RatHide.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/PlagueDoctorNPC.java|PlagueDoctorNPC.java]] (uses rat hides)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/PlagueDoctorNPC.java|PlagueDoctorNPC.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/alchemy_recipes.lua|alchemy_recipes.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/traps/DemoTransmute.lua|DemoTransmute.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/traps/Spawner.lua|Spawner.lua]]
 
-{{tag> rpd items crafting materials }}
+{{tag> rpd items crafting materials alchemy }}
