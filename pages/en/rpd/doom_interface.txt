@@ -5,7 +5,7 @@
 **Doom Interface** is a marker interface in Remixed Dungeon that identifies "doom-type" buffs - buffs that trigger special effects when the hero dies while affected by them.
 
 ==== Description ====
-The Doom interface extends [[en:rpd:named_entity_kind|NamedEntityKind]] and defines a single method `onHeroDeath()` that is called when the hero dies while the buff is active. This allows buffs to implement custom death effects, such as special game over messages, badge validation, or unique death reasons.
+The Doom interface extends [[en:rpd_named_entity_kind|NamedEntityKind]] and defines a single method `onHeroDeath()` that is called when the hero dies while the buff is active. This allows buffs to implement custom death effects, such as special game over messages, badge validation, or unique death reasons.
 
 ==== Interface Definition ====
 ```java
@@ -16,12 +16,12 @@ public interface Doom extends NamedEntityKind {
 
 ==== Implementations ====
 Classes implementing Doom must:
-  * Extend [[en:rpd:buff_mechanics|Buff]] (or a subclass like [[en:rpd:artifact_buff|ArtifactBuff]])
+  * Extend [[en:rpd_buff_mechanics|Buff]] (or a subclass like [[en:rpd_artifact_buff|ArtifactBuff]])
   * Implement the `onHeroDeath()` method to define custom death behavior
   * Implement `getEntityKind()` from NamedEntityKind for entity identification
 
 ==== Known Implementations ====
-  * [[en:rpd:stone_walking_buff|Stone Walking Buff]] - Implements Doom via ArtifactBuff
+  * [[en:rpd_stone_walking_buff|Stone Walking Buff]] - Implements Doom via ArtifactBuff
     * On death: Validates "Death in Stone" badge, shows "You have been immured in stone. Forever." message, uses IMMURED death reason
   * Other doom-type buffs may exist
 
@@ -42,9 +42,9 @@ for (Buff buff : hero.buffs()) {
 ```
 
 ==== Related Pages ====
-  * [[en:rpd:artifact_buff|Artifact Buff]] - Base class for artifact buffs (often implements Doom)
-  * [[en:rpd:stone_walking_buff|Stone Walking Buff]] - Example doom buff implementation
-  * [[en:rpd:buff_mechanics|Buff Mechanics]] - General buff system
-  * [[en:rpd:badges|Badges]] - Achievement system (often validated in onHeroDeath)
+  * [[en:rpd_artifact_buff|Artifact Buff]] - Base class for artifact buffs (often implements Doom)
+  * [[en:rpd_stone_walking_buff|Stone Walking Buff]] - Example doom buff implementation
+  * [[en:rpd_buff_mechanics|Buff Mechanics]] - General buff system
+  * [[en:rpd_badges|Badges]] - Achievement system (often validated in onHeroDeath)
 
 {{tag> rpd mechanics interfaces buffs doom }}
