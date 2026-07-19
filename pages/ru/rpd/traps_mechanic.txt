@@ -1,0 +1,88 @@
+====== Механика Ловушек ======
+
+{{ rpd:images:fire_trap_level_object.png|Механика Ловушек }}
+
+Ловушки — это скрытые механизмы, которые активируются при срабатывании в Remixed Dungeon.
+
+==== Описание ====
+Ловушки — это скрытые опасности, размещенные по всему подземелью, которые активируются при наступивании или запуске с расстояния. Они могут вызывать различные вредные эффекты и требуют осторожной навигации для избежания.
+
+==== Типы Ловушек ====
+  * **Огненная Ловушка** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/FireTrap.java|FireTrap.java]] - Создает горящие пламена, наносящие урон огнем
+  * **Ловушка с Ядом** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java]] - Выпускает отравленные дротики, накладывающие эффект отравления
+  * **Тревожная Ловушка** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/AlarmTrap.java|AlarmTrap.java]] - Создает громкий звук, привлекающий всех монстров в подземелье
+  * **Молниевая Ловушка** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/LightningTrap.java|LightningTrap.java]] - Наносит удар электрическим током, урон зависит от % HP
+  * **Токсичная Ловушка** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ToxicTrap.java|ToxicTrap.java]] - Выпускает токсичный газ, накладывающий эффект отравления
+  * **Парализующая Ловушка** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ParalyticTrap.java|ParalyticTrap.java]] - Выпускает газ, парализующий цель
+  * **Зажимающая Ловушка** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/GrippingTrap.java|GrippingTrap.java]] - Наносит урон и удерживает цель на месте
+  * **Призывающая Ловушка** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/SummoningTrap.java|SummoningTrap.java]] - Призывает врагов вокруг героя
+
+==== Распространенные Ловушки ====
+  * [[en:rpd:fire_trap]] - Создает горящие пламена
+  * [[en:rpd:poison_trap]] - Выпускает отравленный газ
+  * Тревожная Ловушка - Создает громкий шум, привлекающий врагов
+  * [[en:rpd:lightning_trap]] - Бьет электрическим током
+  * Гравийная Ловушка - Раскрывает невидимых врагов и предметы
+  * Призывающая Ловушка - Призывает врагов
+  * Телепортационная Ловушка - Телепортирует героя в случайное место
+  * Защитная Ловушка - Создает защитные барьеры
+  * Токсичная Ловушка - Выпускает токсичный газ
+  * [[en:rpd:paralytic_gas_trap_level_object]] - Парализует цели
+  * Зажимающая Ловушка - Зажимает и наносит урон целям
+
+==== Общие Механики ====
+  * **Скрытность**: Ловушки скрыты до срабатывания или обнаружения
+  * **Обезвреживание**: Некоторые классы могут обезвреживать ловушки для получения выгоды
+  * **Обнаружение**: Герой может научиться обнаруживать близкие ловушки по мере повышения уровня
+  * **Активация**: Обычно срабатывают при наступивании на них или прохождении мимо
+
+==== Ссылки на Код ====
+  * **Базовый Класс Ловушки**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java|Trap.java]] - Базовая реализация
+  * **Объекты Уровня**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObject.java|LevelObject.java]] - Как ловушки вписываются в объекты уровня
+  * **Реализации Ловушек**:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/FireTrap.java|FireTrap.java]] - Механика огненной ловушки
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java]] - Механика ловушки с ядом
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/AlarmTrap.java|AlarmTrap.java]] - Механика тревожной ловушки
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/LightningTrap.java|LightningTrap.java]] - Механика молниевой ловушки
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ToxicTrap.java|ToxicTrap.java]] - Механика токсичной ловушки
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ParalyticTrap.java|ParalyticTrap.java]] - Механика парализующей ловушки
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/GrippingTrap.java|GrippingTrap.java]] - Механика зажимающей ловушки
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/SummoningTrap.java|SummoningTrap.java]] - Механика призывающей ловушки
+  * **Система Обнаружения**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L200-L220|Обнаружение ловушек героем]] - Как герои обнаруживают ловушки
+  * **Система Подземелья**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] - Как ловушки размещаются
+  * **Строковые Ресурсы**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - Все тексты, связанные с ловушками
+
+==== Ссылки на Строковые Ресурсы ====
+<code xml>
+<string name="Level_TileToxicTrap">Токсичная газовая ловушка</string>
+<string name="Level_TileFireTrap">Огненная ловушка</string>
+<string name="Level_TileParalyticTrap">Парализующая газовая ловушка</string>
+<string name="Level_TilePoisonTrap">Ловушка с отравленными дротиками</string>
+<string name="Level_TileAlarmTrap">Тревожная ловушка</string>
+<string name="Level_TileLightningTrap">Молниевая ловушка</string>
+<string name="Level_TileGrippingTrap">Зажимающая ловушка</string>
+<string name="Level_TileSummoningTrap">Призывающая ловушка</string>
+<string name="Level_TileInactiveTrap">Сработавшая ловушка</string>
+<string name="Level_TileDescTrap">Наступление на скрытую плиту нагрузки активирует ловушку.</string>
+<string name="Level_TileDescInactiveTrap">Ловушка уже срабатывала ранее и больше не опасна.</string>
+<string name="AlarmTrap_Desc">Ловушка издает пронзительный звук, эхом разносищийся по подземелью!</string>
+<string name="LightningTrap_Name">молниевая ловушка</string>
+<string name="LightningTrap_Desc">Вы были убиты разрядом молниевой ловушки...</string>
+</code>
+
+==== Взаимодействие с Ловушками ====
+  * **Срабатывание**: Обычно происходит при наступивании на ловушку
+  * **Избегание**: Иногда можно заметить до срабатывания
+  * **Обезвреживание**: Некоторые классы могут безопасно обезвреживать ловушки
+  * **Эффекты**: Различные вредные, полезные или смешанные эффекты
+
+==== См. также ====
+  * [[en:rpd:levels]]
+  * [[en:rpd:mechanics]]
+  * [[en:rpd:status_effects]]
+  * [[en:rpd:level_objects]]
+  * [[en:rpd:ring_of_detection_item]]
+  * [[en:rpd:hero_class]] (взаимодействие с ловушками)
+  * [[en:rpd:challenges]] (челенджи, связанные с ловушками)
+
+{{tag> rpd traps ловушки механика }}
