@@ -1,20 +1,161 @@
-====== Champion Of Water Buff - Code References ======
+====== Champion of Water Buff - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+**Champion of Water** is a buff implemented in Lua that enhances a creature's resilience and fortitude, making it a stalwart adversary capable of enduring relentless attacks.
+
+===== Java Registration =====
+
+**Buff Factory Registration**:
+  * **Class**: `com.nyrds.pixeldungeon.mechanics.buffs.BuffFactory`
+  * **Constant**: `CHAMPION_OF_WATER = "ChampionOfWater"`
+  * **Source**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L72|BuffFactory.java#L72]]
+
+This buff is registered in the BuffFactory and instantiated via the Lua scripting system. No dedicated Java class exists for this buff.
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/champion_of_water.json
+No specific JSON configuration file found for this buff. Buff configuration is handled through the Lua script and string resources.
 
 ===== String Resources =====
+
+**English** (`RemixedDungeon/src/main/res/values/strings_all.xml`):
 <code xml>
-<string name="ChampionOfWater_Name">[Name]</string>
-<string name="ChampionOfWater_Info">[Description]</string>
+<string name="ChampionOfWaterBuff_Name">Champion of Water</string>
+<string name="ChampionOfWaterBuff_Info">The Champion of Water embodies the indomitable force of the oceans, enhancing the creature's resilience and fortitude. As a result, it becomes a stalwart adversary, capable of enduring a relentless barrage of attacks and standing as an unyielding guardian in the face of adversity.</string>
 </code>
 
-===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ChampionOfWater.lua|ChampionOfWater.lua]]
+**Russian** (`RemixedDungeon/src/main/res/values-ru/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">Чемпион Воды</string>
+<string name="ChampionOfWaterBuff_Info">Чемпион воды воплощает в себе неукротимую силу океанов, повышая устойчивость и стойкость существа. В результате оно становится непоколебимым противником, способным выдержать непрекращающийся шквал атак и стать непреклонным защитником перед лицом невзгод.</string>
+</code>
+
+**German** (`RemixedDungeon/src/main/res/values-de/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">Champion des Wassers</string>
+<string name="ChampionOfWaterBuff_Info">Der Wasserkämpfer verkörpert die unbesiegbare Kraft der Ozeane und steigert die Widerstandskraft und Standhaftigkeit des Wesens. Dadurch wird es zu einem unbeugsamen Gegner, der eine unerbittliche Flut von Angriffen aushalten und als unnachgiebiger Wächter gegen Widrigkeiten bestehen kann.</string>
+</code>
+
+**Spanish** (`RemixedDungeon/src/main/res/values-es/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">Campeón del Agua</string>
+<string name="ChampionOfWaterBuff_Info">El Campeón del Agua encarna la fuerza indomable de los océanos, mejorando la resistencia y la fortaleza de la criatura. Como resultado, se convierte en un adversario inquebrantable, capaz de soportar una lluvia implacable de ataques y mantenerse como un guardián inmutable frente a la adversidad.</string>
+</code>
+
+**French** (`RemixedDungeon/src/main/res/values-fr/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">Champion de l'Eau</string>
+<string name="ChampionOfWaterBuff_Info">Le Champion de l'Eau incarne la force indomptable des océans, améliorant la résistance et la ténacité de la créature. En conséquence, elle devient un adversaire infatigable, capable d'endurer un déluge incessant d'attaques et de se dresser comme un gardien inébranlable face à l'adversité.</string>
+</code>
+
+**Portuguese (Brazil)** (`RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">Campeão da Água</string>
+<string name="ChampionOfWaterBuff_Info">O Campeão da Água encarna a força indomável dos oceanos, aumentando a resiliência e a fortaleza da criatura. Como resultado, torna-se um adversário firme, capaz de resistir a um bombardeio incessante de ataques e se manter como um guardião inflexível diante da adversidade.</string>
+</code>
+
+**Italian** (`RemixedDungeon/src/main/res/values-it/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">Campione dell'Acqua</string>
+<string name="ChampionOfWaterBuff_Info">Il Campione dell'Acqua incarna la forza inarrestabile degli oceani, migliorando la resilienza e il coraggio della creatura. Di conseguenza, diventa un avversario infaticabile, capace di sopportare una fitta di attacchi incessanti e di stare come guardiano incrollabile di fronte alle avversità.</string>
+</code>
+
+**Japanese** (`RemixedDungeon/src/main/res/values-ja/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">水の覇者</string>
+<string name="ChampionOfWaterBuff_Info">水の覇者は海の不屈の力を体現し、生き物の回復力と不屈の精神を強化する。その結果、執拗な連撃に耐え、逆境に直面しても不屈の守護者として立ち向かえる、頑強な敵となる。</string>
+</code>
+
+**Korean** (`RemixedDungeon/src/main/res/values-ko/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">Kehebatan Air</string>
+<string name="ChampionOfWaterBuff_Info">물의 챔피언은 바다의 불굴의 힘을 구현하여 생물의 회복력과 인내력을 향상시킨다. 결과적으로 이는 끊임없는 공격을 견뎌내며 역경에 맞서는 불굴의 수호자가 될 수 있는 강인한 적이 된다.</string>
+</code>
+
+**Chinese (Simplified)** (`RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">水之冠军</string>
+<string name="ChampionOfWaterBuff_Info">水之勇士体现了海洋不可战胜的力量，增强了生物的韧性与坚毅。因此，它成为了坚定的对手，能够承受持续不断的攻击，并在逆境面前成为坚定不移的守护者。</string>
+</code>
+
+**Chinese (Traditional)** (`RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">水之冠軍</string>
+<string name="ChampionOfWaterBuff_Info">水之冠軍體現了海洋的不可戰勝之力，增強了生物的韌性和耐力。因此，它成為了一個堅定的對手，能夠經受住無情的攻擊轟炸，在逆境中成為不屈的守護者。</string>
+</code>
+
+**Polish** (`RemixedDungeon/src/main/res/values-pl/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">Mistrz Wody</string>
+<string name="ChampionOfWaterBuff_Info">Mistrz Wody ucieleśnia niezłomną siłę oceanów, zwiększając odporność i hart ducha stworzenia. W rezultacie staje się niezłomnym przeciwnikiem, zdolnym przetrwać nieustanną falę ataków i stać się nieustępliwym strażnikiem w obliczu przeciwności losu.</string>
+</code>
+
+**Ukrainian** (`RemixedDungeon/src/main/res/values-uk/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">Чемпіон Води</string>
+<string name="ChampionOfWaterBuff_Info">A víz bajnoka a tengerek elháríthatatlan erejét képviseli, megerősítve a lény ellenálló képességét. Ennek eredményeként a lény kitartó ellenfelet válik, amely képes megtartani a rohamló támadások relentless sort és az ellenáldozatokkal szemben kitartó őrzővárbörtönt alkotni.</string>
+</code>
+
+**Hungarian** (`RemixedDungeon/src/main/res/values-hu/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">Víz bajnok</string>
+<string name="ChampionOfWaterBuff_Info">A Víz Bajnoka az óceánok megtörhetetlen erejét testesíti meg, növelve a lény ellenállóképességét és szívósságát. Ennek eredményeként rendíthetetlen ellenféllé válik, képes elviselni a támadások könyörtelen sorozatát, és rendíthetetlen őrzőként megállni a nehézségekkel szemben.</string>
+</code>
+
+**Turkish** (`RemixedDungeon/src/main/res/values-tr/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">Su Şampiyonu</string>
+<string name="ChampionOfWaterBuff_Info">Suyun Şampiyonu, yaratığın dayanıklılığını ve azimini artırarak okyanusların yenilmez gücünü temsil eder. Sonuç olarak, sürekli saldırılara dayanabilen ve zorluklar karşısında boyun eğmeyen bir koruyucu olarak durabilir.</string>
+</code>
+
+**Greek** (`RemixedDungeon/src/main/res/values-el/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">Μαχητής του νερού</string>
+<string name="ChampionOfWaterBuff_Info">Ο μαχητής του νερού ενσαρκώνει την ακατάβλητη ισχύ των ωκεανών, ενισχύοντας την αντοχή και τη γενναιοψυχία του. Ως αποτέλεσμα, γίνεται ένας θαραλλέος αντίπαλος, ικανός να αντέχει και να στέκεται ως ακλόνητος φρουρός μπροστά στις αντιξοότητες.</string>
+</code>
+
+**Indonesian** (`RemixedDungeon/src/main/res/values-in/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">Juara Air</string>
+<string name="ChampionOfWaterBuff_Info">Juara Air mewujudkan kekuatan samudra yang tak terkalahkan, meningkatkan ketahanan dan kekuatan makhluk tersebut. Akibatnya, ia menjadi musuh yang tangguh, mampu menahan serangan bertubi-tubi dan berdiri sebagai penjaga yang tak kenal menyerah dalam menghadapi kesulitan.</string>
+</code>
+
+**Malay** (`RemixedDungeon/src/main/res/values-ms/strings_all.xml`):
+<code xml>
+<string name="ChampionOfWaterBuff_Name">Juara Air</string>
+<string name="ChampionOfWaterBuff_Info">Juara Air mewujudkan kekuatan lautan yang tidak dapat dikalahkan, meningkatkan ketahanan dan kekuatan makhluk itu. Akibatnya, ia menjadi musuh yang teguh, mampu menahan serangan bertubi-tubi dan berdiri sebagai penjaga yang tidak kenal menyerah dalam menghadapi kesulitan.</string>
+</code>
+
+===== Lua Script =====
+
+**Script**: `RemixedDungeon/src/main/assets/scripts/buffs/ChampionOfWater.lua`
+
+**Source**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ChampionOfWater.lua|ChampionOfWater.lua]]
+
+**Implementation Details**:
+  * This buff is implemented entirely in Lua using the game's buff scripting system
+  * The script defines the buff's behavior, visual effects, and stat modifications
+  * Registered in BuffFactory.java with constant `CHAMPION_OF_WATER = "ChampionOfWater"`
+
+===== Related Code References =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] - Buff registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ChampionOfWater.lua|ChampionOfWater.lua]] - Lua implementation
+  * String resources in all languages (see above)
+
+==== Other Languages ====
+  * [[ru:mr:champion_of_water_buff|Чемпион Воды (Russian)]]
+  * [[es:mr:champion_of_water_buff|Campeón del Agua (Spanish)]]
+  * [[fr:mr:champion_of_water_buff|Champion de l'Eau (French)]]
+  * [[de:mr:champion_of_water_buff|Champion des Wassers (German)]]
+  * [[pt:mr:champion_of_water_buff|Campeão da Água (Portuguese)]]
+  * [[it:mr:champion_of_water_buff|Campione dell'Acqua (Italian)]]
+  * [[ja:mr:champion_of_water_buff|水の覇者 (Japanese)]]
+  * [[ko:mr:champion_of_water_buff|Kehebatan Air (Korean)]]
+  * [[cn:mr:champion_of_water_buff|水之冠军 (Chinese)]]
+  * [[pl:mr:champion_of_water_buff|Mistrz Wody (Polish)]]
+  * [[uk:mr:champion_of_water_buff|Чемпіон Води (Ukrainian)]]
+  * [[hu:mr:champion_of_water_buff|Víz bajnok (Hungarian)]]
+  * [[tr:mr:champion_of_water_buff|Su Şampiyonu (Turkish)]]
+  * [[el:mr:champion_of_water_buff|Μαχητής του νερού (Greek)]]
+  * [[in:mr:champion_of_water_buff|Juara Air (Indonesian)]]
+  * [[ms:mr:champion_of_water_buff|Juara Air (Malay)]]
+
+{{tag> rpd buffs magic water}}
