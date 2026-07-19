@@ -1,0 +1,42 @@
+====== Armor Item - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] - Base armor class
+    * Location: ``com.watabou.pixeldungeon.items.armor.Armor``
+    * Extends: Item
+    * Abstract class defining common armor properties
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] - Class-restricted armor base
+    * Location: ``com.watabou.pixeldungeon.items.armor.ClassArmor``
+    * Extends: Armor
+    * Restricts equipping to specific HeroClass
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WarriorArmor.java|WarriorArmor.java]] - Warrior class armor
+    * Location: ``com.watabou.pixeldungeon.items.armor.WarriorArmor``
+    * Extends: ClassArmor
+    * Restricts to: HeroClass.WARRIOR
+    * Special ability: Leap attack
+
+===== Armor Properties (from Armor.java) =====
+  * **HP/HT**: Base health/health total
+  * **Defense Rating (DR)**: Damage reduction value
+  * **STR Requirement**: Minimum strength to equip without penalty
+  * **Degradation**: Armor degrades on hit, can be repaired
+  * **Upgradeable**: Can be upgraded with Scrolls of Upgrade
+
+===== String Resources =====
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+    * ``Armor_Name`` - "armor"
+    * ``Armor_Desc`` - "This piece of armor will protect you from physical damage."
+    * ``Armor_Cursed`` - "This armor is cursed!"
+    * ``Armor_Broken`` - "Your armor has fallen apart!"
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml]]
+    * ``Armor_Name`` - "броня"
+    * ``Armor_Desc`` - "Этот кусок брони защитит вас от физического урона."
+
+===== Related mr Entities =====
+  * [[mr:warrior_armor_item|Warrior Armor (Item)]]
+  * [[mr:class_armor_item|Class Armor (Item)]]
+  * [[mr:gladiator_armor_item|Gladiator Armor (Item)]]
+  * [[mr:berserk_armor_item|Berserker Armor (Item)]]
+  * [[mr:mage_armor_item|Mage Armor (Item)]]
+
+{{tag> mr items armor reference code}}
