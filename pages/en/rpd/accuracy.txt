@@ -1,0 +1,56 @@
+====== Accuracy ======
+
+==== Overview ====
+**Accuracy** in Remixed Dungeon represents the chance to successfully hit an enemy with an attack. It is a crucial combat mechanic that determines whether your attacks land or miss.
+
+==== How Accuracy Works ====
+Accuracy is calculated based on:
+  * **Attacker's Attack Skill** - Derived from hero's Dexterity and weapon bonuses
+  * **Defender's Defense Skill** - Derived from enemy's stats, armor, and buffs
+  * **Weapon Accuracy** - Base accuracy of the weapon being used
+  * **Buffs/Debuffs** - Effects like Blindness, Fury, etc. that modify accuracy
+
+The formula roughly follows: `Hit Chance = (Attack Skill / Defense Skill) * Weapon Accuracy * Modifiers`
+
+==== Factors Affecting Accuracy ====
+  * **Dexterity**: Higher Dexterity increases attack skill
+  * **Weapon Type**: Different weapons have different base accuracy
+  * **Weapon Enchantments**: Some enchantments (like Accuracy) improve hit chance
+  * **Armor Penalty**: Heavy armor without sufficient Strength reduces accuracy
+  * **Rings**: [[en:rpd:ring_of_accuracy_item|Ring of Accuracy]] increases accuracy
+  * **Buffs**: Effects like Fury, Haste can affect accuracy
+  * **Debuffs**: Blindness, Vertigo significantly reduce accuracy
+  * **Distance**: Ranged attacks may have distance penalties
+
+==== Accuracy vs. Evasion ====
+  * **Accuracy**: Attacker's ability to hit
+  * **Evasion**: Defender's ability to avoid being hit (represented by Defense Skill)
+  * High defense skill enemies (bosses, armored foes) are harder to hit
+  * Flying enemies may have additional evasion bonuses
+
+==== Improving Accuracy ====
+  * Increase **Dexterity** through leveling or equipment
+  * Use **Ring of Accuracy** for direct accuracy bonus
+  * Choose weapons with higher base accuracy
+  * Avoid heavy armor unless you have sufficient Strength
+  * Use **Scrolls of Upgrade** on weapons to improve accuracy
+  * Apply **Accuracy enchantment** to weapons
+  * Remove debuffs like Blindness quickly
+
+==== Related Mechanics ====
+  * **Critical Hits**: Separate mechanic from accuracy
+  * **Miss**: When accuracy check fails, attack misses entirely
+  * **Glancing Blows**: Some attacks may do reduced damage instead of missing
+
+==== Source Code ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Base character stats
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Hero stats including accuracy
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] - Weapon accuracy mechanics
+
+==== See Also ====
+  * [[en:rpd:ring_of_accuracy_item|Ring of Accuracy]]
+  * [[en:rpd:combat_mechanic|Combat Mechanics]]
+  * [[en:rpd:dexterity|Dexterity]]
+  * [[en:rpd:weapons|Weapons]]
+
+{{tag> rpd mechanics combat accuracy}}
