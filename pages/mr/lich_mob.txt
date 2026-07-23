@@ -3,6 +3,58 @@
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/Lich.java|Lich.java]]
 
+===== Java Class Content =====
+<code java>
+package com.nyrds.pixeldungeon.mobs.necropolis;
+
+import com.nyrds.pixeldungeon.items.necropolis.BlackSkull;
+import com.nyrds.pixeldungeon.items.necropolis.BlackSkullOfMastery;
+import com.watabou.pixeldungeon.Badges;
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.blobs.ToxicGas;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.buffs.Paralysis;
+import com.watabou.pixeldungeon.actors.buffs.Terror;
+import com.watabou.pixeldungeon.actors.buffs.Amok;
+import com.watabou.pixeldungeon.actors.buffs.Blindness;
+import com.watabou.pixeldungeon.actors.buffs.Sleep;
+import com.watabou.pixeldungeon.actors.hero.Hero;
+import com.watabou.pixeldungeon.actors.hero.HeroClass;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.pixeldungeon.effects.Speck;
+import com.watabou.pixeldungeon.items.Item;
+import com.watabou.pixeldungeon.items.keys.SkeletonKey;
+import com.watabou.pixeldungeon.levels.Level;
+import com.watabou.pixeldungeon.scenes.GameScene;
+import com.watabou.pixeldungeon.utils.GLog;
+import com.watabou.utils.Ballistica;
+import com.watabou.utils.Random;
+
+import org.jetbrains.annotations.NotNull;
+
+public class Lich extends Mob {
+    {
+        hp(ht(200));
+        baseDefenseSkill = 23;
+        baseAttackSkill  = 35;
+        dmgMin = 12;
+        dmgMax = 20;
+        dr = 15;
+
+        expForKill = 25;
+        maxLvl = 35;
+
+        addImmunity(Paralysis.class);
+        addImmunity(ToxicGas.class);
+        addImmunity(Terror.class);
+        addImmunity(Amok.class);
+        addImmunity(Blindness.class);
+        addImmunity(Sleep.class);
+    }
+    // ... (truncated for brevity - see full class at GitHub link)
+</code>
+
 ===== JSON Configuration =====
 <code json>
 {
@@ -15,6 +67,13 @@
    "attack" : { "fps" : 6, "looped" : false, "frames" : [2, 3, 4] },
    "zap"    : { "fps" : 7, "looped" : false,     "frames" : [5, 6, 7] },
    "die" : { "fps" : 6, "looped" : false, "frames" : [12, 13, 14, 15] }
+}
+</code>
+
+<code json>
+{
+   "battleMusic":"ost_boss_necro_fight",
+   "battleMusicFallback":"ost_boss_fight"
 }
 </code>
 
@@ -31,5 +90,108 @@
 <string name="Lich_Defense3">It\'s armor plating is too thick! (%d-%d damage)</string>
 </code>
 
+===== Translated String Resources =====
+<code xml>
+<!-- Chinese Simplified -->
+<string name="Lich_Name">巫妖</string>
+<string name="Lich_Desc">巫妖是试图通过将灵魂绑定在护符匣上来获得永生的古老巫师。仪式成功了，但他变成了一个对生者充满仇恨的不死生物。</string>
+<string name="Lich_Info">巫妖是试图通过将灵魂绑定在护符匣上来获得永生的古老巫师。仪式成功了，但他变成了一个对生者充满仇恨的不死生物。</string>
+
+<!-- Chinese Traditional -->
+<string name="Lich_Name">巫妖</string>
+<string name="Lich_Desc">巫妖是試圖通過將靈魂綁定在護符匣上來獲得永生的古老巫師。儀式成功了，但他變成了一個對生者充滿仇恨的不死生物。</string>
+<string name="Lich_Info">巫妖是試圖通過將靈魂綁定在護符匣上來獲得永生的古老巫師。儀式成功了，但他變成了一個對生者充滿仇恨的不死生物。</string>
+
+<!-- French -->
+<string name="Lich_Name">Liche</string>
+<string name="Lich_Desc">Un liche est un ancien sorcier qui a tenté d\'atteindre l\'immortalité en liant son âme à son phylactère. Le rituel a fonctionné, mais l\'a laissé en tant que créature morte-vivante avec une grande haine pour les vivants.</string>
+<string name="Lich_Info">Un liche est un ancien sorcier qui a tenté d\'atteindre l\'immortalité en liant son âme à son phylactère. Le rituel a fonctionné, mais l\'a laissé en tant que créature morte-vivante avec une grande haine pour les vivants.</string>
+
+<!-- German -->
+<string name="Lich_Name">Lich</string>
+<string name="Lich_Desc">Ein Lich ist ein alter Zauberer, der versuchte, Unsterblichkeit zu erlangen, indem er seine Seele an seinen Phylakterium band. Das Ritual funktionierte, ließ ihn aber als Untotes Wesen mit großem Hass auf die Lebenden zurück.</string>
+<string name="Lich_Info">Ein Lich ist ein alter Zauberer, der versuchte, Unsterblichkeit zu erlangen, indem er seine Seele an seinen Phylakterium band. Das Ritual funktionierte, ließ ihn aber als Untotes Wesen mit großem Hass auf die Lebenden zurück.</string>
+
+<!-- Italian -->
+<string name="Lich_Name">Lich</string>
+<string name="Lich_Desc">Un lich è un antico stregone che ha tentato di ottenere l'immortalità legando la sua anima al suo filatterio. Il rituale ha funzionato, ma lo ha lasciato come una creatura non morta con un grande odio per i vivi.</string>
+<string name="Lich_Info">Un lich è un antico stregone che ha tentato di ottenere l'immortalità legando la sua anima al suo filatterio. Il rituale ha funzionato, ma lo ha lasciato come una creatura non morta con un grande odio per i vivi.</string>
+
+<!-- Japanese -->
+<string name="Lich_Name">リッチ</string>
+<string name="Lich_Desc">リッチは、自分の魂を秘密の器（フィラクテリー）に結びつけることで不老不死を得ようとした古代の魔法使いだ。儀式は成功したが、生きる者への強い憎しみを抱くアンデッドの怪物となってしまった。</string>
+<string name="Lich_Info">リッチは、自分の魂を秘密の器（フィラクテリー）に結びつけることで不老不死を得ようとした古代の魔法使いだ。儀式は成功したが、生きる者への強い憎しみを抱くアンデッドの怪物となってしまった。</string>
+
+<!-- Korean -->
+<string name="Lich_Name">리치</string>
+<string name="Lich_Desc">리치는 자신의 영혼을 성물함에 묶음으로써 불멸을 얻으려 했던 고대 마법사입니다. 의식은 성공했지만, 산 자들에 대한 큰 증오를 가진 언데드 생물로 남게 되었습니다.</string>
+<string name="Lich_Info">리치는 자신의 영혼을 성물함에 묶음으로써 불멸을 얻으려 했던 고대 마법사입니다. 의식은 성공했지만, 산 자들에 대한 큰 증오를 가진 언데드 생물로 남게 되었습니다.</string>
+
+<!-- Polish -->
+<string name="Lich_Name">Liczyk</string>
+<string name="Lich_Desc">Liczyk to stary czarnoksiężnik, który próbował osiągnąć nieśmiertelność, wiąząc swoją duszę ze swoją filakterią. Rytuał się udał, ale został jako istota nieumarła z wielką nienawiścią do żywych.</string>
+<string name="Lich_Info">Liczyk to stary czarnoksiężnik, który próbował osiągnąć nieśmiertelność, wiąząc swoją duszę ze swoją filakterią. Rytuał się udał, ale został jako istota nieumarła z wielką nienawiścią do żywych.</string>
+
+<!-- Portuguese -->
+<string name="Lich_Name">Lich</string>
+<string name="Lich_Desc">Um lich é um antigo feiticeiro que tentou alcançar a imortalidade amarrando sua alma ao seu filactério. O ritual funcionou, mas o deixou como uma criatura morta-viva com um grande ódio pelos vivos.</string>
+<string name="Lich_Info">Um lich é um antigo feiticeiro que tentou alcançar a imortalidade amarrando sua alma ao seu filactério. O ritual funcionou, mas o deixou como uma criatura morta-viva com um grande ódio pelos vivos.</string>
+
+<!-- Russian -->
+<string name="Lich_Name">Лич</string>
+<string name="Lich_Desc">Лич — древний маг, пытавшийся обрести бессмертие, привязав свою душу к филактерии. Ритуал удался, но оставил его нежитью с великой ненавистью к живым.</string>
+<string name="Lich_Info">Лич — древний маг, пытавшийся обрести бессмертие, привязав свою душу к филактерии. Ритуал удался, но оставил его нежитью с великой ненавистью к живым.</string>
+
+<!-- Spanish -->
+<string name="Lich_Name">Lich</string>
+<string name="Lich_Desc">Un lich es un antiguo mago que intentó lograr la inmortalidad atando su alma a su filacteria. El ritual funcionó, pero lo dejó como una criatura no-muerta con un gran odio por los vivos.</string>
+<string name="Lich_Info">Un lich es un antiguo mago que intentó lograr la inmortalidad atando su alma a su filacteria. El ritual funcionó, pero lo dejó como una criatura no-muerta con un gran odio por los vivos.</string>
+
+<!-- Turkish -->
+<string name="Lich_Name">Lich</string>
+<string name="Lich_Desc">Lich, ruhunu filakterisine bağlayarak ölümsüzlüğe kavuşmaya çalışan eski bir büyücüdür. Ritüel işledi ancak onu canlılara karşı büyük bir nefretle ölümsüz bir yaratık olarak bıraktı.</string>
+<string name="Lich_Info">Lich, ruhunu filakterisine bağlayarak ölümsüzlüğe kavuşmaya çalışan eski bir büyücüdür. Ritüel işledi ancak onu canlılara karşı büyük bir nefretle ölümsüz bir yaratık olarak bıraktı.</string>
+</code>
+
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related mr: Entities =====
+  * [[mr:runic_skull_mob|Runic Skull Mob]]
+  * [[mr:black_skull_item|Black Skull Item]]
+  * [[mr:black_skull_of_mastery_item|Black Skull of Mastery Item]]
+  * [[mr:skeleton_key_item|Skeleton Key Item]]
+  * [[mr:necromancer_class|Necromancer Class]]
+  * [[mr:lich_subclass|Lich Subclass]]
+  * [[mr:paralysis_buff|Paralysis Buff]]
+  * [[mr:terror_buff|Terror Buff]]
+  * [[mr:amok_buff|Amok Buff]]
+  * [[mr:blindness_buff|Blindness Buff]]
+  * [[mr:sleep_buff|Sleep Buff]]
+
+===== Key Methods =====
+  * `act()` - Main AI loop, handles skull activation every 5 turns via `activateRandomSkull()`
+  * `jump()` - Teleportation mechanic with up to 15 attempts to find valid position
+  * `activateRandomSkull()` - Activates a random runic skull (heal, summon, gas, protection)
+  * `useSkull(int skullType)` - Applies the effect of a specific skull type
+  * `spawnSkulls()` - Finds pedestals and spawns 2-4 runic skulls based on difficulty
+  * `defenseProc(Char enemy, int damage)` - 50% chance to teleport when damaged
+  * `die(Char cause)` - Clears all runic skulls and removes all other mobs on level
+  * `canAttack(Char enemy)` - Checks if target is within 4 tiles using Ballistica
+
+===== Game Constants =====
+  * HP: `ht(200)` - Base HP 200 (scales with depth)
+  * Defense Skill: 23
+  * Attack Skill: 35
+  * Damage: 12-20
+  * Damage Reduction (DR): 15
+  * EXP: 25
+  * Max Level: 35
+  * Skulls by Difficulty: Easy=2, Normal=3, Hard+=4 (SKULLS_BY_DEFAULT)
+  * Skull Activation Interval: Every 5 turns
+  * Teleport Attempts: Up to 15
+  * Defense Proc Chance: 50%
+  * Runic Skull Types: RED (heal 7% max HP per skull), BLUE (summon skeleton), GREEN (toxic gas 30 cells per skull), PURPLE (invulnerability)
+  * Boss Badge: `Badges.LICH_SLAIN`
+  * Battle Music: `ost_boss_necro_fight` (fallback: `ost_boss_fight`)
+  * Drops: SkeletonKey (100%), BlackSkull (non-Necromancer) or BlackSkullOfMastery (Necromancer)
