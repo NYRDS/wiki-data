@@ -10,18 +10,26 @@ Machine-readable reference page for Bone Shard item in Remixed Dungeon.
   * Cost: 5 gold
 
 **Lua Definition**:
-  * No Lua script - implemented in Java
+  * Script File: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/BoneShard.lua|BoneShard.lua]]
+  * Script Location: RemixedDungeon/src/main/assets/scripts/items/BoneShard.lua
+  * Implementation Details:
+    * Image: 5 (from items/materials.png sprite sheet)
+    * Stackable: true
+    * Price: 5 gold
+    * Name String Key: BoneShard_Name
+    * Info String Key: BoneShard_Info
 
 ==== Effects ====
 
 **Primary Effects**:
-  * Throwable weapon
-  * Deals damage when thrown
-  * Can be found as loot
+  * Crafting material for alchemy
+  * Used in recipes: Vile Essence, Sacrificial Sword, Zombie creation
+  * Obtained from harvesting corpses with Bone Saw (Doctor class)
 
 **Implementation**:
-  * File: BoneShard.java
-  * Throwable weapon mechanics
+  * Lua script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/BoneShard.lua|BoneShard.lua]]
+  * Simple item with no special mechanics
+  * Registered via ItemFactory
 
 ==== String Resources ====
 
@@ -36,14 +44,17 @@ Machine-readable reference page for Bone Shard item in Remixed Dungeon.
 ==== Wiki Pages ====
 
 **English**:
-  * [[en:rpd:bone_shard_item|Bone Shard]] - Main wiki page
+  * Bone Shard - Main wiki page (not yet created)
 
 **Russian**:
-  * [[ru:rpd:bone_shard_item|Костяной осколок]] - Russian wiki page
+  * Костяной осколок - Russian wiki page (not yet created)
 
 ==== Code References ====
 
-  * Main implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/BoneShard.java|BoneShard.java]]
+  * Main implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/BoneShard.lua|BoneShard.lua]]
   * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml:BoneShard]]
+  * Referenced in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/BoneSaw.lua|BoneSaw.lua]] (Doctor class harvest drops)
+  * Referenced in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Carcass.java|Carcass.java]] (harvest items)
+  * Alchemy recipes: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/alchemy_recipes.json|alchemy_recipes.json]]
 
 {{tag> mr items bone_shard reference machine-readable}}

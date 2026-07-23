@@ -1,17 +1,17 @@
 ====== Artifact Buff ======
 
-**Artifact Buff** is a base class for artifact-related buffs in Remixed Dungeon. It extends the standard [[en:rpd_buff_mechanics|Buff]] class and adds specific behavior for artifact-sourced buffs.
+{{ rpd:images:stone_walking_buff.png|Artifact Buff }}
 
-==== Description ====
-Artifact Buffs are special buffs that originate from artifact items (typically artifact rings). Unlike regular buffs, they have additional logic to track their artifact source and automatically detach if the source artifact is removed or invalid.
+===== Description =====
+**Artifact Buff** is a base class for artifact-related buffs in Remixed Dungeon. It extends the standard [[en:rpd:buff_mechanics|Buff]] class and adds specific behavior for artifact-sourced buffs.
 
-==== Key Features ====
+===== Key Features =====
   * **Source Tracking:** Each ArtifactBuff tracks its source entity ID via `getSourceId()`
   * **Auto-Detach:** If the source ID is `EntityIdSource.INVALID_ID` (meaning non-artifact source), the buff automatically detaches
   * **Persistence:** Artifact buffs with valid source IDs don't get packed/saved with the game state (`dontPack()` returns `true`)
   * **Entity Kind:** Returns "artifactBuff" + parent entity kind for unique identification
 
-==== Code Implementation ====
+===== Code Implementation =====
 ```java
 public class ArtifactBuff extends Buff {
 
@@ -34,22 +34,22 @@ public class ArtifactBuff extends Buff {
 }
 ```
 
-==== Known Subclasses ====
-  * [[en:rpd_stone_walking_buff|Stone Walking Buff]] - Applied by [[en:rpd_ring_of_stone_blood_item|Ring of Stone Blood]]
+===== Known Subclasses =====
+  * [[en:rpd:stone_walking_buff|Stone Walking Buff]] - Applied by [[en:rpd:ring_of_stone_blood_item|Ring of Stone Blood]]
   * Other artifact ring buffs (extend ArtifactBuff)
 
-==== Code References ====
+===== Code References =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/ArtifactBuff.java|ArtifactBuff.java]]
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] (parent class)
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/EntityIdSource.java|EntityIdSource.java]] (source ID tracking)
 
-==== String Resources ====
+===== String Resources =====
 Artifact buffs use the string resources of their specific implementations. See individual buff pages for string references.
 
-==== Related Pages ====
-  * [[en:rpd_buff_mechanics|Buff Mechanics]] - Base buff system
-  * [[en:rpd_ring_of_stone_blood_item|Ring of Stone Blood]] - Example artifact ring
-  * [[en:rpd_stone_walking_buff|Stone Walking Buff]] - Example artifact buff
-  * [[en:rpd_doom_interface|Doom Interface]] - Interface for doom-type buffs
+===== Related Pages =====
+  * [[en:rpd:buff_mechanics|Buff Mechanics]] - Base buff system
+  * [[en:rpd:ring_of_stone_blood_item|Ring of Stone Blood]] - Example artifact ring
+  * [[en:rpd:stone_walking_buff|Stone Walking Buff]] - Example artifact buff
+  * [[en:rpd:doom_interface|Doom Interface]] - Interface for doom-type buffs
 
 {{tag> rpd buffs artifact mechanics }}

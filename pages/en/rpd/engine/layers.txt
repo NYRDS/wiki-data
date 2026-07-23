@@ -1,0 +1,30 @@
+====== Hero Sprite Rendering Layers ======
+
+{{ rpd:images:warrior_hero.png|Hero Layers }}
+
+Hero sprite rendering layers define the rendering order of various parts of the hero sprite in Remixed Dungeon.
+
+==== Layer Description ====
+  * **LAYER_BODY** - hero body, bottom layer, 16x16, offset 0,0
+  * **LAYER_COLLAR** - armor collar, 16x16, offset 0,0
+  * **LAYER_HEAD** - head, 16x16, offset 0,0
+  * **LAYER_HAIR** - hair, not drawn if helmet equipped, 16x16, offset 0,0
+  * **LAYER_ARMOR** - armor, 16x16, offset 0,0
+  * **LAYER_FACIAL_HAIR** - moustache and beard, not drawn if helmet equipped, 16x16, offset 0,0
+  * **LAYER_HELMET** - helmet (part of armor, hidden if hat equipped), 16x16, offset 0,0
+  * **LAYER_DEATH** - death animation, 16x16, offset 0,0
+  * **LAYER_ACCESSORY** - hat, 32x32, offset 0,0, scale 2
+
+==== Purpose ====
+These constants define the layering order of various hero sprite components for correct rendering. Layers are rendered from bottom to top, allowing composite sprites to be created from separate parts.
+
+==== Source Code ====
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/HeroSprite.java|HeroSprite.java]]
+  * Layer constants defined in HeroSprite class
+
+==== Related Pages ====
+  * [[en:rpd:hero_class|Hero]] - Main hero class
+  * [[en:rpd:warrior_class|Warrior]] - Example hero class
+  * [[ru:rpd:engine:layers|Русский]]
+
+{{tag> rpd engine sprites}}
