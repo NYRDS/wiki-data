@@ -2,6 +2,126 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/necropolis/BlackSkull.java|BlackSkull.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndResurrect.java|WndResurrect.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndChooseWay.java|WndChooseWay.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/Lich.java|Lich.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndSadGhostNecro.java|WndSadGhostNecro.java]]
+
+===== Java Class: BlackSkull.java =====
+<code java>
+package com.nyrds.pixeldungeon.items.necropolis;
+
+import com.nyrds.Packable;
+import com.nyrds.pixeldungeon.mechanics.NamedEntityKind;
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.items.rings.Artifact;
+import com.watabou.pixeldungeon.utils.GLog;
+
+import java.util.Collection;
+
+public class BlackSkull extends Artifact {
+
+    private static final int ACTIVATED_IMAGE = 20;
+    private static final int BASIC_IMAGE = 19;
+
+    private static final int RESURRECTION_COST = 10;
+    private static final int MAXIMUM_CHARGE = 10;
+
+    @Packable
+    public boolean activated = false;
+
+    @Packable
+    public int charge = 0;
+
+    public BlackSkull() {
+        imageFile = "items/artifacts.png";
+        identify();
+        image = BASIC_IMAGE;
+    }
+
+    @Override
+    public void charDied(Char mob, NamedEntityKind cause) {
+        Char hero = getOwner();
+
+        Collection<Integer> pets = hero.getPets();
+
+        if (pets.contains(mob.getId())) {
+            return;
+        }
+
+        if (mob.canBePet()) {
+            if (activated) {
+                mob.resurrect(hero);
+                GLog.w(StringsManager.getVar(R.string.BlackSkull_Ressurrect));
+                charge = charge - RESURRECTION_COST;
+                if (charge <= 0) {
+                    GLog.w(StringsManager.getVar(R.string.BlackSkull_Deactivated));
+                    activated = false;
+                }
+            } else {
+                charge++;
+                if (charge >= MAXIMUM_CHARGE) {
+                    GLog.w(StringsManager.getVar(R.string.BlackSkull_Activated));
+                    activated = true;
+                }
+            }
+        }
+    }
+
+    @Override
+    public int image() {
+        if (activated) {
+            return ACTIVATED_IMAGE;
+        } else {
+            return BASIC_IMAGE;
+        }
+    }
+
+    @Override
+    public String info() {
+        if (activated) {
+            return StringsManager.getVar(R.string.BlackSkull_Info_Awakened);
+        } else {
+            return StringsManager.getVar(R.string.BlackSkull_Info);
+        }
+    }
+
+    @Override
+    public String name() {
+        if (activated) {
+            return StringsManager.getVar(R.string.BlackSkull_Name_Awakened);
+        } else {
+            return StringsManager.getVar(R.string.BlackSkull_Name);
+        }
+    }
+}
+</code>
+
+===== Java Usage Context =====
+==== WndResurrect.java ====
+  * Line 22: new BlackSkull() - Creates BlackSkull when hero dies and chooses to resurrect
+  * Line 22: new BlackSkull() - Creates BlackSkull instance for resurrection
+
+==== WndChooseWay.java ====
+  * Line 114: new BlackSkull() - Creates BlackSkull when player chooses to keep humanity
+  * Line 114: new BlackSkull() - Instantiates BlackSkull item
+
+==== ItemFactory.java ====
+  * Line 39: import com.nyrds.pixeldungeon.items.necropolis.BlackSkull;
+  * Line 394: registerItemClass(BlackSkull.class); - Registers BlackSkull as a valid item class
+
+==== Lich.java ====
+  * Line 7: import com.nyrds.pixeldungeon.items.necropolis.BlackSkull;
+  * Line 91: collect(new BlackSkull()); - Lich drops BlackSkull when killed (if hero is not Necromancer)
+  * Line 91: collect(new BlackSkull()); - Drops Black Skull on death
+
+==== WndSadGhostNecro.java ====
+  * Line 3: import com.nyrds.pixeldungeon.items.necropolis.BlackSkull;
+  * Line 28: new ItemSprite( new BlackSkull()) - Uses BlackSkull sprite in UI
+  * Line 28: new BlackSkull() - Creates BlackSkull for sprite display
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -9,13 +129,22 @@ This entity is implemented in Java, no JSON configuration exists
 ===== String Resources =====
 <code xml>
 <string name="BlackSkull_Name">Black Skull</string>
-<string name="BlackSkull_Info">A small obsidian skull. It was a source of Necropolis power, but after the Lich's defeat it seems to have lost all of its power. However, when you hold it in your hands a foreign thought crosses your mind: \"It hungers\".</string>
+<string name="BlackSkull_Info">A small obsidian skull. It was a source of Necropolis power, but after the Lich's defeat it seems to have lost all of its power. However, when you hold it in your hands a foreign thought crosses your mind: "It hungers".</string>
 <string name="BlackSkull_Name_Awakened">Awakened Black Skull</string>
-<string name="BlackSkull_Info_Awakened">The skull pulses with power, you can see it flowing from its empty eye sockets. And holding it in your hands you hear a terrifying voice: \"Behold the march of death\".</string>
+<string name="BlackSkull_Info_Awakened">The skull pulses with power, you can see it flowing from its empty eye sockets. And holding it in your hands you hear a terrifying voice: "Behold the march of death".</string>
 <string name="BlackSkull_Activated">Black Skull has awakened!</string>
 <string name="BlackSkull_Deactivated">Black Skull rests once again...</string>
 <string name="BlackSkull_Ressurrect">Black Skull has resurrected the dead monster to serve you!</string>
 </code>
+
+Additional string resources referenced:
+  * BlackSkullOfMastery_Name
+  * BlackSkullOfMastery_Info
+  * BlackSkullOfMastery_Lich
+  * BlackSkullOfMastery_Necromancer
+  * BlackSkullOfMastery_Title
+  * BlackSkullOfMastery_RemainHumanDesc
+  * BlackSkullOfMastery_BecomeLichDesc
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
@@ -23,4 +152,4 @@ This entity is implemented in Java, no Lua script exists
 ===== Related mr Entities =====
   * [[mr:lich_mob|Lich Mob]]
   * [[mr:lich_subclass|Lich Subclass]]
-  * [[mr:black_skullofmastery_item|Black Skull Of Mastery Item]]
+  * [[mr:black_skull_of_mastery_item|Black Skull Of Mastery Item]]
