@@ -1,52 +1,39 @@
 ====== Demo Npc2 Mob - Code References ======
 
 ===== Entity Overview =====
-DemoNpc2 is a demo/test NPC used for testing purposes in Remixed Dungeon. It appears in quest demo configurations.
+DemoNpc2 is a demo/test NPC referenced in entity lists but does not appear to be used in any current level configuration files.
 
 ===== Java Classes =====
-This entity is spawned through JSON configuration, not as a Java class. The mob is created through the mob factory system.
-  * Mob spawning: RemixedDungeon/src/main/assets/levelsDesc/QuestDemo1.json
+This entity would be spawned through JSON configuration, not as a Java class. The mob would be created through the mob factory system using the "DemoNpc2" kind identifier.
+  * No current usage found in level configuration files
 
 ===== JSON Configuration =====
-This entity is defined in quest demo configuration files:
-  * RemixedDungeon/src/main/assets/levelsDesc/QuestDemo1.json - Contains DemoNpc2 spawn configuration
-
-Example configuration from QuestDemo1.json:
-<code json>
-{
-  "kind": "DemoNpc2",
-  "x": 10,
-  "y": 15,
-  "aiState": "Passive"
-}
-</code>
+**Not currently used in any level configuration files.**
+  * Previously referenced as being in QuestDemo1.json, but verification shows only DemoNpc1 is present in that file
+  * No QuestDemo2.json or similar files found in RemixedDungeon/src/main/assets/levelsDesc/
 
 ===== String Resources =====
-String resources for DemoNpc2 (if they exist) would be in:
-<code xml>
-<string name="Demo2_Name">[Name]</string>
-<string name="Demo2_Info">[Description]</string>
-</code>
-
-Note: This is a demo entity and may not have actual string resources in the game.
+No string resources found for DemoNpc2 in the game's string files.
+  * This is a demo entity and does not have localized name/description strings
 
 ===== Lua Scripts =====
-This entity is not implemented in Lua. It is spawned through JSON configuration.
+This entity is not implemented in Lua.
 
 ===== Sprite Reference =====
-  * Sprite file: wiki-data/media/rpd/images/demo_npc2_mob.png
-  * Original sprite: RemixedDungeon/src/main/assets/sprites/mob_DemoNpc2.png
+  * **Wiki Image:** wiki-data/media/rpd/images/demo_npc2_mob.png
+  * **Game Sprite:** No dedicated sprite file found in RemixedDungeon/src/main/assets/sprites/
+  * **Note:** May use a default/generic NPC sprite at runtime if spawned
 
 ===== Usage in Code =====
-  * Found in: QuestDemo1.json as a test NPC
-  * AI State: Passive (does not attack player)
-  * Purpose: Testing/demo purposes only
+  * **Entity List:** Listed in entities/mobs.txt as a known entity kind
+  * **No Active Usage:** Not currently spawned in any level configuration
+  * **Purpose:** Reserved for testing/demo purposes
 
 ===== Related Entities =====
-  * [[mr:demo_npc1_mob|Demo Npc1 Mob]] - Another demo NPC
-  * [[mr:quest_demo1_config|Quest Demo1 Configuration]] - Quest demo configuration
+  * [[mr:demo_npc1_mob|Demo Npc1 Mob]] - Demo NPC that IS used in QuestDemo1.json
+  * [[mr:quest_demo1_config|Quest Demo1 Configuration]] - Quest demo level configuration
 
 ===== Notes =====
-This is a test/demo entity used for development and testing purposes. It is not part of the main game content and may be used for testing mob behaviors, quest mechanics, or other game systems.
+This entity is defined in the entity registry (entities/mobs.txt) but is not currently used in any level configuration. It may be reserved for future demo/testing purposes or was used in a previous version. DemoNpc1 is the only demo NPC currently active in QuestDemo1.json.
 
-{{tag> mr mobs demo test npc}}
+{{tag> mr mobs demo test npc unused}}

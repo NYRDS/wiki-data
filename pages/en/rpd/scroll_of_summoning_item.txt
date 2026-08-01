@@ -1,4 +1,4 @@
-====== Scroll Of Summoning Item ======
+====== Scroll of Summoning ======
 
 {{ rpd:images:scroll_of_summoning_item.png|Scroll of Summoning }}
 
@@ -8,6 +8,30 @@ The **Scroll of Summoning** is a magic scroll in Remixed Dungeon that allows the
   * **Summoning:** When read aloud, the scroll will summon one of the monsters from the current dungeon level
   * **Ally Creation:** If the monster's will is weak enough, it will become your servant and fight alongside you
   * **Summoning Location:** The monster appears in an empty cell next to the reader
+  * **Pet Conversion:** Uses `Mob.makePet()` to convert the summoned mob to a pet if `mob.canBePet()` returns true
+
+==== Restrictions ====
+  * Cannot be used in boss levels (`level.isBossLevel()` check)
+  * Requires a valid empty cell next to the reader (`level.getEmptyCellNextTo()`)
+  * If no valid cell is available, the scroll fails with "No Valid Cell" message
+  * Shows "Using Failed Because Magic" message when used on boss levels or invalid cells
+
+==== Code References ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfSummoning.java|ScrollOfSummoning.java]]
+  * **Package:** com.watabou.pixeldungeon.items.scrolls
+  * **Extends:** Scroll
+  * **Key Method:** doRead(Char reader) - handles summoning logic
+  * **Dependencies:** Bestiary.mob(), WandOfBlink.appear(), SpellSprite.SUMMON
+
+==== String Resources ====
+  * **English (values/strings_all.xml):**
+    * ScrollOfSummoning_Name (line 1922): "Scroll of Summoning"
+    * ScrollOfSummoning_Info (line 1920): "When read aloud, this scroll will summon one of the monsters from the current dungeon level. And if the monster's will is weak enough, it will become your servant."
+    * ScrollOfSummoning_Info_2 (line 1921): "The monster answered your summons!"
+  * **Russian (values-ru/strings_all.xml):**
+    * ScrollOfSummoning_Name (line 1936): "Свиток Призыва"
+    * ScrollOfSummoning_Info (line 1934): "При прочтении данный свиток призовёт одного из монстров с текущего уровня. Если воля этого монстра достаточно слаба, он станет служить призывателю."
+    * ScrollOfSummoning_Info_2 (line 1935): "Монстр отозвался на твой зов!"
 
 ==== Strategy ====
   * Useful for creating temporary allies in difficult fights
@@ -15,20 +39,12 @@ The **Scroll of Summoning** is a magic scroll in Remixed Dungeon that allows the
   * Particularly effective when facing challenging bosses
   * The summoned creature has a chance of becoming a pet if it can be tamed
   * Be careful about the type of monster summoned, as not all can be tamed
-
-==== Restrictions ====
-  * Cannot be used in boss levels
-  * Requires a valid empty space next to the reader for the monster to appear
-  * If no valid cell is available, the scroll will fail to work
-
-==== Code Reference ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfSummoning.java|ScrollOfSummoning.java]]
-  * String Resources (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1189-L1191|ScrollOfSummoning strings (line 1189-1191)]]
-  * String Resources (Russian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1175-L1177|ScrollOfSummoning strings (line 1175-1177)]]
+  * Cannot be used in boss levels (checks `level.isBossLevel()`)
 
 ==== Related Items ====
   * [[en:rpd_scrolls|Scrolls]] - General information about scrolls
   * [[en:rpd_scroll_of_identify_item|Scroll of Identify]] - Other useful scrolls
   * [[en:rpd_scroll_of_teleportation_item|Scroll of Teleportation]] - Teleportation magic
+  * [[en:rpd_bestiary|Bestiary]] - Monster spawning system
 
-{{tag> rpd items equipment scrolls summoning}}
+{{tag> rpd items scrolls summoning }}

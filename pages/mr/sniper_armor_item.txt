@@ -1,20 +1,58 @@
 ====== Sniper Armor Item - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+  * **Primary Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/SniperArmor.java|SniperArmor.java]]
+  * **Package:** com.watabou.pixeldungeon.items.armor
+  * **Extends:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/HuntressArmor.java|HuntressArmor]] (which extends Armor)
+  * **Key Methods:**
+    * Constructor: Sets imageFile = "items/food.png", image = 15, hasHelmet = true, name from StringsManager.getVar(R.string.HuntressArmor_Name)
+    * doEquip(Char hero): Checks if hero.getSubClass() == HeroSubClass.SNIPER, allows equip only for Sniper subclass, shows warning message for other classes
+
+===== Hero Subclass Integration =====
+  * **HeroSubClass.java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L48|HeroSubClass.java#L48]]
+  * **SNIPER Subclass:** Defined with SniperArmor as its class armor
+  * **ItemFactory.java:** Registers SniperArmor.class at line 364
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/sniper_armor.json
+  * No dedicated JSON configuration file (created via Armor Kit + Sniper subclass)
+  * Base armor configuration in spritesDesc/armor.json (uses HuntressArmor sprites)
 
 ===== String Resources =====
-<code xml>
-<string name="SniperArmor_Name">[Name]</string>
-<string name="SniperArmor_Info">[Description]</string>
-</code>
+  * **English (values/strings_all.xml):**
+    * HuntressArmor_Name (line 1075): "huntress cloak"
+    * HuntressArmor_Desc (line 1074): "A huntress in such cloak can create a fan of spectral blades..."
+    * HuntressArmor_NotHuntress (line 1077): "Only huntresses can use this armor!"
+    * HuntressArmor_ACSpecial (line 1073): "SPECTRAL BLADES"
+    * HuntressArmor_NoEnemies (line 1076): "No enemies in sight"
+  * **Russian (values-ru/strings_all.xml):**
+    * HuntressArmor_Name (line 1074): "охотничий плащ"
+    * HuntressArmor_Desc (line 1073): "Подобный плащ позволяет охотнице выпускать веер призрачных клинков..."
+    * HuntressArmor_NotHuntress (line 1076): "Этот доспех доступен лишь охотнице!"
+    * HuntressArmor_ACSpecial (line 1072): "ПРИЗРАЧНЫЕ КЛИНКИ"
+    * HuntressArmor_NoEnemies (line 1075): "Нет видимых целей"
+  * **Note:** SniperArmor uses HuntressArmor string resources (inherited from parent class)
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * No dedicated Lua script (implemented entirely in Java)
+
+===== Sprite Reference =====
+  * **Wiki Image:** wiki-data/media/rpd/images/sniper_armor_item.png
+  * **Game Sprite:** RemixedDungeon/src/main/assets/sprites/armor.png (index 15, shared with HuntressArmor)
+  * **Note:** Uses HuntressArmor sprite sheet
+
+===== Usage in Code =====
+  * **Acquisition:** Created by using Armor Kit on any armor while playing as Sniper subclass
+  * **Restriction:** Can only be equipped by hero with SNIPER subclass
+  * **Sprite:** Uses HuntressArmor visual appearance (image index 15, hasHelmet = true)
+  * **Special Ability:** Inherits HuntressArmor's spectral blades ability (triggered on hit)
+
+===== Related Entities =====
+  * [[mr:sniper_subclass|Sniper Subclass]] - Required subclass to create and use this armor
+  * [[mr:huntress_armor_item|Huntress Armor]] - Parent armor class
+  * [[mr:armor_kit_item|Armor Kit]] - Item required to create class armors
+  * [[mr:hero_subclass|Hero Subclass]] - General subclass system
+
+===== Notes =====
+SniperArmor is a class-specific armor for the Sniper subclass (a Huntress subclass). It is not found as loot but created by applying an Armor Kit to any armor while playing as Sniper. The armor uses the same visual appearance and string resources as HuntressArmor but restricts equipping to the Sniper subclass only.
+
+{{tag> mr items armor class_armor }}
