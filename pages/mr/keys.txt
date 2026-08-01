@@ -1,0 +1,77 @@
+====== Keys - Code References ======
+
+Machine-readable reference page for Key items in Remixed Dungeon.
+
+===== Entity Information =====
+  * **Category**: Key Items
+  * **Entity Kinds**: IronKey, SkeletonKey, IceKey
+  * **Item Type**: Special items for unlocking
+  * **Stackable**: Yes (except Skeleton Key)
+  * **Consumable**: Yes (except Skeleton Key)
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/Key.java|Key.java]] - Base key class (Line 13)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/IronKey.java|IronKey.java]] - Standard key implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/SkeletonKey.java|SkeletonKey.java]] - Reusable key implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration (Lines 70, 360)
+
+===== Base Key Class =====
+<code java>
+public class Key extends Item {
+    // Base class for all key types
+    // Handles unlocking logic
+}
+</code>
+
+===== Key Types =====
+  * **IronKey**: Standard key, consumed on use
+  * **SkeletonKey**: Special key, not consumed on use, opens most locks
+  * **IceKey**: Special key for ice caves (specific implementation)
+
+===== Item Registration =====
+<code java>
+// ItemFactory.java
+import com.watabou.pixeldungeon.items.keys.IronKey;
+import com.watabou.pixeldungeon.items.keys.SkeletonKey;
+
+registerItemClass(IronKey.class);
+registerItemClass(SkeletonKey.class);
+</code>
+
+===== JSON Configuration =====
+No specific JSON configuration. Keys are implemented entirely in Java.
+
+===== String Resources =====
+<code xml>
+<!-- English (values/strings_all.xml) -->
+<string name="IronKey_Name">iron key</string>
+<string name="IronKey_Info">The notches on this ancient iron key are well worn; its leather lanyard is battered by age. What door might it open?</string>
+<string name="SkeletonKey_Name">skeleton key</string>
+<string name="SkeletonKey_Info">This key looks serious: its head is shaped like a skull. Probably it can open some serious door.</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="IronKey_Name">железный ключ</string>
+<string name="IronKey_Info">Засечки на этом древнем ключе износились; продетый в него кожаный ремень давно потрескался. Какую дверь им можно открыть?</string>
+<string name="SkeletonKey_Name">ключ-скелет</string>
+<string name="SkeletonKey_Info">Весьма внушительный ключ: с головкой в форме черепа. Пожалуй он смог бы открыть некую внушительную дверь.</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists.
+
+===== Related Entities =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/IronKey.java|IronKey]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/SkeletonKey.java|SkeletonKey]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/IceKey.java|IceKey]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java|Level]] - Door unlocking logic
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Room.java|Room]] - Chest unlocking logic
+
+===== Wiki Pages =====
+  * [[en:rpd:keys|Keys (English)]] - English wiki page
+  * [[en:rpd:skeleton_key_item|Skeleton Key]] - Individual key page
+  * [[en:rpd:ice_key_item|Ice Key]] - Individual key page
+  * [[en:rpd:chests_mechanic|Chests Mechanic]] - What keys unlock
+  * [[en:rpd:shops|Shops]] - Where to buy keys
+  * [[en:rpd:dungeon|Dungeon]] - Areas with locked doors
+
+{{tag> mr items keys reference}}

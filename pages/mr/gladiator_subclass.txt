@@ -1,0 +1,63 @@
+====== Gladiator Subclass - Code References ======
+
+Machine-readable reference page for the Gladiator hero subclass in Remixed Dungeon.
+
+===== Entity Information =====
+  * **Entity Kind**: HeroSubClass.GLADIATOR
+  * **Hero Class**: Warrior
+  * **Subclass Type**: Mastery (Combat-focused)
+  * **Required Achievement**: Defeat Tengu + Tome of Mastery
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Enum definition (Line 43: GLADIATOR)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/GladiatorArmor.java|GladiatorArmor.java]] - Class-specific armor
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/TomeOfMastery.java|TomeOfMastery.java]] - Unlock mechanism (Line 75)
+
+===== Enum Implementation =====
+<code java>
+public enum HeroSubClass {
+    GLADIATOR(R.string.HeroSubClass_NameGlad, R.string.HeroSubClass_DescGlad, "GladiatorArmor"),
+    // ...
+}
+</code>
+
+===== Key Methods =====
+  * **desc()**: Returns localized description string (R.string.HeroSubClass_DescGlad)
+  * **name()**: Returns localized name string (R.string.HeroSubClass_NameGlad)
+  * **armorClass()**: Returns "GladiatorArmor" class name for class-specific armor
+
+===== Class-Specific Armor =====
+  * **GladiatorArmor** extends WarriorArmor
+  * Provides "Heroic Leap" ability (Line 21 in GladiatorArmor.java)
+  * Only usable by GLADIATOR subclass (checks hero.getSubClass() == HeroSubClass.GLADIATOR)
+
+===== JSON Configuration =====
+No specific JSON configuration. Subclass defined in HeroSubClass.java enum.
+
+===== String Resources =====
+<code xml>
+<!-- English (values/strings_all.xml) -->
+<string name="HeroSubClass_NameGlad">gladiator</string>
+<string name="HeroSubClass_DescGlad">A successful attack with a melee weapon allows the _Gladiator_ to start a combo, in which every next successful hit inflicts more damage.</string>
+
+<!-- Russian (values-ru/strings_all.xml) -->
+<string name="HeroSubClass_NameGlad">гладиатор</string>
+<string name="HeroSubClass_DescGlad">Успешная атака ближнего боя позволяет, _Гладиатору_ начать серию комбо-ударов, в течение которой каждое последующее попадание наносит больше урона.</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists.
+
+===== Related Entities =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.BERSERKER]] - Alternative Warrior subclass
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/BerserkerArmor.java|BerserkerArmor]] - Alternative class armor
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/TomeOfMastery.java|TomeOfMastery]] - Unlock item for both subclasses
+
+===== Wiki Pages =====
+  * [[en:rpd:gladiator_subclass|Gladiator Subclass (English)]] - English wiki page
+  * [[ru:rpd:gladiator_subclass|Гладиатор (Russian)]] - Russian wiki page
+  * [[en:rpd:warrior_class|Warrior Class]] - Parent hero class
+  * [[en:rpd:mastery_mechanic|Mastery]] - Subclass unlock mechanic
+  * [[en:rpd:gladiator_armor_item|Gladiator Armor]] - Class-specific armor
+
+{{tag> mr subclasses warrior gladiator reference}}
