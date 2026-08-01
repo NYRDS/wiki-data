@@ -4,6 +4,16 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java|Invisibility.java]] - Main implementation of the invisibility buff
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] - Base class for Invisibility
 
+===== Java Classes Using Invisibility =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java|HighGrass.java]] - Applies invisibility to Scout subclass (line 53)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfInvisibility.java|PotionOfInvisibility.java]] - Potion that applies invisibility buff (line 24)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/FrozenCarpaccio.java|FrozenCarpaccio.java]] - Food that can randomly grant invisibility (line 40)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - Zapping dispels invisibility (line 340)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfRemoveCurse.java|ScrollOfRemoveCurse.java]] - Reading dispels invisibility (line 28)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfSummoning.java|ScrollOfSummoning.java]] - Reading dispels invisibility (line 50)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfTerror.java|ScrollOfTerror.java]] - Reading dispels invisibility (line 27)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfRecharging.java|ScrollOfRecharging.java]] - Reading dispels invisibility
+
 ===== JSON Configuration =====
 No specific JSON configuration file for this buff
 
@@ -28,16 +38,19 @@ No specific JSON configuration file for this buff
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L343|Char_StaInvisible]] - Status text (English)
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Assassin.lua|Assassin.lua]] - Mob that gets permanent invisibility buff in init() (line 17)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Buffer.lua|Buffer.lua]] - Mob that includes invisibility in its buff list (line 13, 17)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - Binds Invisibility Java class to RPD.Buffs.Invisibility (line 33)
 
 ===== Key Code References =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L14|DURATION constant]] - Invisibility duration (15f time units)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L17-L24|attachTo/detach methods]] - Logic for applying/removing the buff
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L32-L36|dispel method]] - Method to explicitly dispel invisibility
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L38-L42|dispel static method]] - Dispel logic (only if target has visible enemies)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L44-L47|attachVisual method]] - Shows "Invisible" status on character
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L10|DURATION constant]] - Invisibility duration (15f time units)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L12-L20|attachTo method]] - Increases target.invisible counter when buff attaches
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L22-L26|detach method]] - Decreases target.invisible counter when buff detaches
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L36-L42|dispel static method]] - Dispels invisibility only if target has visible enemies nearby; also detaches "Cloak" buff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L44-L47|attachVisual method]] - Shows "Invisible" status message on character
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L49-L51|charSpriteStatus method]] - Returns CharSprite.State.INVISIBLE
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L26-L30|icon method]] - Returns BuffIndicator.INVISIBLE for UI display
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L28-L30|icon method]] - Returns BuffIndicator.INVISIBLE for UI display
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Invisibility.java#L32-L34|spellCasted method]] - Dispels invisibility when character casts a spell
 
 ===== Key Code Details =====
   * **Duration:** 15 time units (default)
