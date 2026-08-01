@@ -2,13 +2,14 @@
 
 {{ rpd:images:terror_buff.png|Terror Status Effect }}
 
-**Terror** is a status effect in Remixed Dungeon that causes affected characters to become frightened and flee from combat.
+**Terror** (displayed in-game as **"Terrified"**) is a status effect in Remixed Dungeon that causes affected characters to become frightened and flee from combat. The Java class is named `Terror`, but the localized display name comes from the string resource `TerrorBuff_Name` ("Terrified" in English, "Ужас" in Russian).
 
 ==== Effects ====
   * **Frightened:** Affected characters become overwhelmed with fear and will attempt to run away from enemies
   * **Movement:** Affected characters will actively move away from enemies in sight
   * **Duration:** The effect lasts 10 seconds by default (Terror.DURATION = 10f)
   * **Behavior:** Affected characters avoid engaging in combat while terrorized
+  * **Status Message:** Shows "frightened" (Char_StaFrightened) on the character's sprite
 
 ==== Causes ====
 Terror can be inflicted by:
@@ -33,8 +34,10 @@ When the Terror buff is applied:
   * AI Handler: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Horrified.java|Horrified.java]] - Handles terrorized mob behavior
   * String Resources (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L338|Char_StaFrightened]] - "frightened" string
   * String Resources (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L625|TerrorBuff_Info]] - "It looks like someone was very frightened."
+  * String Resources (English): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L624|TerrorBuff_Name]] - "Terrified" (display name)
   * String Resources (Russian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L463|Char_StaFrightened]] - "испуган" string
   * String Resources (Russian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2219|TerrorBuff_Info]] - "Похоже, кто-то очень сильно напуган."
+  * String Resources (Russian): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2218|TerrorBuff_Name]] - "Ужас" (display name)
 
 ==== See Also ====
   * [[en:rpd:status_effects|Status Effects]]

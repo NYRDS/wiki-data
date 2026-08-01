@@ -1,7 +1,10 @@
 ====== Tome Of Mastery Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/TomeOfMastery.java|TomeOfMastery.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/TomeOfMastery.java|TomeOfMastery.java]] - Main implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Gives TomeOfMastery to hero on start if mastery badge unlocked
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java|Tengu.java]] - Drops TomeOfMastery for non-Necromancer/Gnoll/Doctor classes
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registers TomeOfMastery class
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -10,9 +13,18 @@ This entity is implemented in Java, no JSON configuration exists
 <code xml>
 <string name="TomeOfMastery_Name">Tome of Mastery</string>
 <string name="TomeOfMastery_Info">This worn leather book is not that thick, but you feel somehow, that you can gather a lot from it. Remember though that reading this tome may require some time.</string>
+<string name="TomeOfMastery_ACRead">READ</string>
+<string name="TomeOfMastery_Blinded">You can\'t read while blinded</string>
+<string name="TomeOfMastery_Choose">You have chosen the way of the %s!</string>
+<string name="TomeOfMastery_WayAlreadyChosen">You cannot change your way!</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
 ===== Related mr Entities =====
+  * [[mr:gladiator_subclass]] - Gladiator subclass (Warrior mastery)
+  * [[mr:berserker_subclass]] - Berserker subclass (Warrior mastery)
+  * [[mr:freerunner_subclass]] - Freerunner subclass (Rogue mastery)
+  * [[mr:assassin_subclass]] - Assassin subclass (Rogue mastery)
+  * [[mr:scout_subclass]] - Scout subclass (Elf mastery)

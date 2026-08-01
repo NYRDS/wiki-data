@@ -1,14 +1,21 @@
 ====== Earthroot Plant ======
 
-{{ rpd:images:earthroot_seed_item.png|Earthroot Plant }}
+{{ rpd:images:earthroot_level_object.png|Earthroot Plant }}
 
 ==== Description ====
-The **Earthroot** is a plant that can grow from [[en:rpd_earthroot_seed_item|Earthroot Seeds]]. When stepped on or touched, it provides the [[en:rpd_barkskin_buff|Barkskin]] buff to the creature that touches it, giving temporary armor equal to the character's strength.
+The **Earthroot** is a plant that can grow from [[en:rpd:earthroot_seed_item|Earthroot Seeds]]. When stepped on or touched, it applies multiple buffs to the creature that touches it:
+  * **Herbal Armor** (EarthrootBuff): Provides armor equivalent to the character's strength/4 for a limited time
+  * **Barkskin**: Additional armor buff that stacks with Herbal Armor
+  * **Rooted**: Prevents movement (unless flying)
+
+The plant is destroyed after being touched.
 
 ==== Mechanics ====
-  * When a creature touches the plant, it receives the [[en:rpd_barkskin_buff|Barkskin]] buff
+  * When a creature touches the plant, it receives the **Herbal Armor** buff (armor = STR/4)
+  * Also applies **Barkskin** buff (additional armor)
+  * Also applies **Rooted** debuff (prevents movement, unless flying)
   * The plant is destroyed after being touched
-  * The Barkskin buff provides armor equivalent to the character's strength for a limited time
+  * Flying creatures are immune to the Rooted effect
 
 ==== Usage ====
   * **Strategic Placement:** Plant Earthroot seeds in locations where you plan to stay defensively
@@ -18,11 +25,20 @@ The **Earthroot** is a plant that can grow from [[en:rpd_earthroot_seed_item|Ear
 ==== Code Reference ====
   * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java|Earthroot.java]]
   * Plant Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L16-L27|Earthroot.effect method]]
-  * Barkskin Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L58-L94|Earthroot.Armor class]]
+  * Herbal Armor Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L71-L94|Earthroot.Armor class]]
+  * Barkskin Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Barkskin.java|Barkskin.java]]
+  * Roots Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]]
+
+==== String Resources ====
+  * Earthroot Name: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1327|Earthroot_Name]]
+  * Earthroot Description: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1329|Earthroot_Desc]]
+  * Herbal Armor Name: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1330|EarthrootBuff_Name]]
+  * Herbal Armor Info: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1331|EarthrootBuff_Info]]
 
 ==== Related ====
-  * [[en:rpd_earthroot_seed_item|Earthroot Seed]] - The seed used to grow the plant
-  * [[en:rpd_barkskin_buff|Barkskin]] - The buff provided by touching the plant
-  * [[en:rpd_seeds_mechanic|Other Seeds]] - Other plant seeds in the game
+  * [[en:rpd:earthroot_seed_item|Earthroot Seed]] - The seed used to grow the plant
+  * [[en:rpd:barkskin_buff|Barkskin]] - Additional armor buff applied by the plant
+  * [[en:rpd:roots_buff|Rooted]] - Movement prevention debuff applied by the plant
+  * [[en:rpd:seeds_mechanic|Other Seeds]] - Other plant seeds in the game
 
 {{tag> rpd plants}}
