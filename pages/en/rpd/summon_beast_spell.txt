@@ -1,13 +1,13 @@
 ====== Summon Beast Spell ======
 
-{{ rpd:images:summon_beast_spell_icon.png|Summon Beast Spell Icon }}
+{{ rpd:images:summon_beast_spell.png|Summon Beast Spell }}
 
 **Summon Beast** is a Huntress-affinity spell in Remixed Pixel Dungeon that attempts to summon a horde of mighty beasts to your command.
 
-==== Description ====
+===== Description =====
 Attempt to summon a horde of mighty beasts to your command. Actual results may vary. The spell summons creatures around the caster based on their skill level, with different types of beasts appearing depending on the caster's level.
 
-==== Stats ====
+===== Stats =====
   * **Magic Affinity:** Huntress
   * **Targeting:** self (summons around the caster)
   * **Level:** 4
@@ -15,7 +15,7 @@ Attempt to summon a horde of mighty beasts to your command. Actual results may v
   * **Cast Time:** 1 turn
   * **Special Effects:** summons allied creatures
 
-==== Mechanics ====
+===== Mechanics =====
 The spell functions by:
   * Checking all adjacent cells around the caster (including diagonals)
   * For each empty and passable cell, there's a chance to spawn a creature
@@ -25,18 +25,18 @@ The spell functions by:
   * Summoned beasts become pets under the caster's command
   * Creatures summoned: Snail, Rat, Crab, Swarm, Bat, Spinner, Scorpio, Worm (in order of strength)
 
-==== Usage ====
+===== Usage =====
 The Beast Call spell can be used for:
   * **Primary effect:** Creating allied creatures to fight alongside the player
   * **Strategic applications:** Distracting enemies or absorbing damage
   * **Utility purposes:** Providing additional offensive capability in difficult situations
 
-==== Classes ====
+===== Classes =====
 Classes that can use this spell include:
   * Classes with Huntress affinity (e.g., [[en:rpd:huntress_class|Huntress class]])
   * Other classes that gain access through special means
 
-==== Strategy ====
+===== Strategy =====
 How to effectively use the Beast Call spell:
   * **Best situations:** Use when surrounded by enemies to create distractions or when additional DPS is needed
   * **Synergies:** Works well with crowd control abilities to protect summoned creatures
@@ -44,29 +44,29 @@ How to effectively use the Beast Call spell:
   * **Skill level impact:** Higher skill level increases both the chance to summon and the power level of creatures
   * **Environmental awareness:** Position yourself where there are clear spaces for creatures to spawn
 
-==== Technical Details ====
+===== Technical Details =====
   * **Implementation:** Lua script located at ''scripts/spells/SummonBeast.lua''
   * **Summoning Logic:** ''math.random() > 1/skillLevel'' determines spawn chance
   * **Creature Selection:** ''beasts[math.min(1, math.max(math.random(skillLevel/2, skillLevel+1), #beasts))]'' - **BUG: always returns 1 (Snail) due to math.min(1, ...)**
   * **Beast Types:** Snail, Rat, Crab, Swarm, Bat, Spinner, Scorpio, Worm (in order of increasing strength)
   * **Allied Status:** Summoned creatures use ''makePet(caster)'' to become player allies
 
-==== Data Validation ====
+===== Data Validation =====
 This information is extracted directly from the game code and validated against the source implementation. The details are accurate as of the referenced source files and provide reliable information about the spell mechanics.
 
-==== Content Verification ====
+===== Content Verification =====
   * Information source: Lua Script in Remixed Dungeon codebase
   * Stats verified: Yes, extracted directly from spell class properties
   * Effect descriptions: Generated from code analysis and string resources
   * Known issues: Creature selection formula in SummonBeast.lua contains a bug (math.min(1, ...) always returns 1, causing only Snails to spawn)
   * Last updated: 2025-12-16 based on SummonBeast.lua
 
-==== Source Code ====
+===== Source Code =====
 This page content is based on the Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/SummonBeast.lua|SummonBeast.lua]]
 
 and related Java spell system: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.lua|Spell.java]]
 
-==== See Also ====
+===== See Also =====
   * [[en:rpd:spells_overview|Spells]]
   * [[en:rpd:mechanics_mechanic|Game Mechanics]]
   * [[en:rpd:huntress_class|Huntress Affinity]]
