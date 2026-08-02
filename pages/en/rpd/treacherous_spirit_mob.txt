@@ -10,11 +10,23 @@ The **Treacherous Spirit** is a special boss mob that appears as part of the Azu
   * **Quest**: Defeat this monster and bring its heart back to the Stranger (AzuterronNPC)
   * **Reward**: Completing this quest rewards the player with a Potion of Might
 
+==== Stats ====
+  * **HP**: 200
+  * **Defense Skill**: 35
+  * **Attack Skill**: 35
+  * **Damage**: 30-45
+  * **Damage Reduction (DR)**: 25
+  * **Experience for Kill**: 45
+  * **Maximum Level**: 30
+  * **AI State**: Wandering
+
 ==== Mechanics ====
   * The Treacherous Spirit is spawned in a valid random location on the current level when the AzuterronNPC quest is initiated
   * The spirit is part of the Guts level area content in the Remixed Dungeon game
-  * As a boss creature, it likely has special abilities and higher stats than regular monsters
+  * As a boss creature, it has special abilities:
+    * **Summon Spirit of Pain**: On each attack, there is a 25% chance (1 in 4) to summon a Spirit of Pain at an adjacent empty cell
   * Must be defeated to obtain the Heart of Darkness quest item
+  * Cannot be pet (canBePet() returns false)
 
 ==== Quest Context ====
   * The Treacherous Spirit appears as part of a special quest given by the AzuterronNPC (Stranger)
@@ -24,6 +36,9 @@ The **Treacherous Spirit** is a special boss mob that appears as part of the Azu
 ==== Content Verification ====
   * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/TreacherousSpirit.java|TreacherousSpirit.java]]
   * Quest mechanics implemented in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]]
+  * String resources: TreacherousSpirit_Name, TreacherousSpirit_Desc, TreacherousSpirit_Gender, TreacherousSpirit_Name_Objective
+  * Entity kind: treacherousspirit (via getEntityKind() returning simple class name)
+  * Machine-readable data: [[mr:treacherous_spirit_mob|mr:treacherous_spirit_mob]]
   * Last updated: Based on Remixed Dungeon source code analysis
 
 ==== See Also ====

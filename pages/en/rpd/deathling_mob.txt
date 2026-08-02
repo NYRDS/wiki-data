@@ -2,49 +2,73 @@
 
 {{ rpd:images:deathling_mob.png|Deathling }}
 
-**Deathling** is an undead mob in Remixed Pixel Dungeon that serves as a summoned creature for the [[en:rpd_necromancer_class|Necromancer]] class.
+**Deathling** is an undead mob in Remixed Pixel Dungeon that serves as a summoned creature for the [[en:rpd:necromancer_class|Necromancer]] class.
 
 ==== Description ====
-The **Deathling** is an undead minion summoned by the [[en:rpd_necromancer_class|Necromancer]] using the [[en:rpd_necromancy_spell|Necromancy Spell]]. It fights alongside the Necromancer against dungeon enemies.
+The **Deathling** is an undead minion summoned by the [[en:rpd:necromancer_class|Necromancer]] using the [[en:rpd:necromancy_spell|Necromancy Spell]]. It fights alongside the Necromancer against dungeon enemies.
 
 ==== Stats ====
-  * **Type**: Undead 
+  * **Type**: Undead
+  * **Base HP**: 4 (scales with summoner)
   * **Alignment**: Pet/Ally to the summoner
   * **Behavior**: Aggressive toward enemies, follows the summoner
-  * **Strength**: Scales with summoner's level
+  * **Flying**: true
+  * **Carcass Chance**: 0 (no corpse)
+  * **Experience for Kill**: 0
+  * **Maximum Level**: 32
+  * **Available Equipment Slots**: Artifact, Left Artifact
+  * **Undead**: true
+
+==== Stat Scaling ====
+The Deathling's stats scale with the summoner's level and skill:
+  * **Modifier**: hero level + (skill level)²
+  * **Base Speed**: 1.1
+  * **Base Defense Skill**: 1 + modifier
+  * **Base Attack Skill**: 4 + modifier
+  * **Damage**: 1 to (4 + modifier)
+  * **Damage Reduction**: modifier
+  * **Max HP**: 4 + modifier (heals to full on first act)
 
 ==== Summoning ====
-  * Summoned using the [[en:rpd_necromancy_spell|Necromancy Spell]] at a cost of souls (typically 5 souls)
-  * Strength and durability increase with the hero's level
+  * Summoned using the [[en:rpd:necromancy_spell|Necromancy Spell]] (SummonDeathling class)
+  * Costs souls (typically 5 souls)
+  * Strength and durability increase with the hero's level and necromancy skill
   * Summoning may be limited by pet/ally caps in the game
 
 ==== Mechanics ====
   * Functions as an allied combatant that fights alongside the summoner
   * Remains active until defeated or dispelled
-  * Serves as a bodyguard and additional damage source for the [[en:rpd_necromancer_class|Necromancer]]
-  * May have special resistances or properties of undead creatures
+  * Serves as a bodyguard and additional damage source for the [[en:rpd:necromancer_class|Necromancer]]
+  * Has special resistances/properties of undead creatures
+  * Stats automatically adjust on each act to match summoner's current level/skill
+  * Can equip artifacts in both artifact slots
 
 ==== Classes ====
-  * [[en:rpd_necromancer_class|Necromancer]] - Primary summoner class
-  * [[en:rpd_lich_subclass|Lich]] - Enhanced summoning abilities
+  * [[en:rpd:necromancer_class|Necromancer]] - Primary summoner class
+  * [[en:rpd:lich_subclass|Lich]] - Enhanced summoning abilities
 
 ==== Strategy ====
-  * Provides additional combat power for the [[en:rpd_necromancer_class|Necromancer]]
+  * Provides additional combat power for the [[en:rpd:necromancer_class|Necromancer]]
   * Can be used to tank damage while the player attacks from range or safety
   * Managing soul resources is key to maintaining Deathling allies
   * Effective when combined with other necromantic abilities
+  * Flying ability allows it to traverse chasms and avoid ground traps
 
-==== Code References ====
+==== Content Verification ====
   * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Deathling.java|Deathling.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L749-L752|Deathling_Name, Deathling_Gender, Deathling_Name_Objective, Deathling_Desc]]
   * Summon Spell: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]]
+  * Mob Registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L257|MobFactory.java:257]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L749-L752|Deathling_Name, Deathling_Gender, Deathling_Name_Objective, Deathling_Desc]]
+  * Entity kind: deathling (via getEntityKind() returning simple class name)
+  * Machine-readable data: [[mr:deathling_mob|mr:deathling_mob]]
+  * Last updated: Based on Remixed Dungeon source code analysis
 
 ==== See Also ====
-  * [[en:rpd_necromancer_class|Necromancer Class]]
-  * [[en:rpd_lich_subclass|Lich Subclass]]
-  * [[en:rpd_necromancy_spell|Necromancy Spell]]
-  * [[en:rpd_souls|Souls Resource]]
-  * [[en:rpd_soul_shard_item|Soul Shard]]
-  * [[en:rpd_mobs|Mobs]]
+  * [[en:rpd:necromancer_class|Necromancer Class]]
+  * [[en:rpd:lich_subclass|Lich Subclass]]
+  * [[en:rpd:necromancy_spell|Necromancy Spell]]
+  * [[en:rpd:souls|Souls Resource]]
+  * [[en:rpd:soul_shard_item|Soul Shard]]
+  * [[en:rpd:mobs|Mobs]]
 
 {{tag> rpd mobs necromancer undead pet }}
