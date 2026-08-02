@@ -2,22 +2,41 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Dart.java|Dart.java]] - Main dart implementation extending MissileWeapon
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CurareDart.java|CurareDart.java]] - Curare dart variant
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/AmokDart.java|AmokDart.java]] - Amok dart variant
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthDart.java|HealthDart.java]] - Health dart variant
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/IncendiaryDart.java|IncendiaryDart.java]] - Incendiary dart variant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CurareDart.java|CurareDart.java]] - Curare dart variant (applies Paralysis)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/AmokDart.java|AmokDart.java]] - Amok dart variant (applies Speed/Amok)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthDart.java|HealthDart.java]] - Health dart variant (heals on hit)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/IncendiaryDart.java|IncendiaryDart.java]] - Incendiary dart variant (applies Burning)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] - Parent class for all missile weapons
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registers Dart and variants
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/TownShopLevel.java|TownShopLevel.java]] - Sells Darts in town shops
 
-===== JSON Configuration =====
-This item does not have specific JSON configuration, as it is implemented in Java extending MissileWeapon.
+===== Implementation Details =====
+  * **Class Hierarchy**: `Dart extends MissileWeapon extends Weapon extends Item`
+  * **Image**: `image = 1`, `imageFile = "items/ammo.png"`
+  * **Damage**: MIN = 1, MAX = 4 (both min and max damage)
+  * **Quantity**: Random 5-15 when generated (`Random.Int(5, 15)`)
+  * **Price**: 2 gold per dart (`quantity() * 2`)
+  * **Stackable**: Yes, extends `MissileWeapon` which handles stacking
+  * **Usable By**: Huntress, Rogue, Gnoll classes (defined in MissileWeapon.java)
 
 ===== String Resources =====
 <code xml>
 <string name="Dart_Name">Dart</string>
 <string name="Dart_Info">These weighted darts have a sharp tip for maximum effectiveness</string>
+<string name="Dart_Gender">0</string>
 </code>
 
+===== JSON Configuration =====
+This item does not have specific JSON configuration, as it is implemented in Java extending MissileWeapon.
+
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented in Java, no Lua script exists.
+
+===== Usage in Code =====
+  * Registered in ItemFactory.java (line 344): `registerItemClass(Dart.class)`
+  * Sold in TownShopLevel.java (line 79): `new Dart(5).identify()` - sells 5 darts per shop slot
+  * Base class for 4 variants: CurareDart, AmokDart, HealthDart, IncendiaryDart
+  * No Strength requirement (MissileWeapon characteristic)
 
 ===== Related mr Entities =====
   * [[mr:missile_weapon|Missile Weapon]]
@@ -26,3 +45,11 @@ This entity is implemented in Java, no Lua script exists
   * [[mr:health_dart_item|Health Dart]]
   * [[mr:incendiary_dart_item|Incendiary Dart]]
   * [[mr:ranged_weapon_item|Ranged Weapon]]
+  * [[mr:throwing_weapons|Throwing Weapons]]
+
+===== Wiki Pages =====
+  * English: [[en:rpd:dart_item|Dart]]
+  * Russian: (page does not exist - only curare_dart_item.txt exists)
+  * Machine-readable namespace: `mr:dart_item`
+
+{{tag> mr items weapons missile dart throwing reference}}
