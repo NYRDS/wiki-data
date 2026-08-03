@@ -6,7 +6,7 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ResultDescriptions.java|ResultDescriptions.java]] - Death reason BLEEDING
 
 ===== Java Usage =====
-  * **Hero.java** - Handles bleeding status display and death message
+  * **Hero.java** - Handles bleeding status display and death message (showStatus with Hero_StaBleeding)
   * **Char.java** - Immunity management (addImmunity/removeImmunity for Bleeding.class)
   * **BuffFactory.java** - Registers Bleeding class for buff system
   * **Elementals (Earth, Air, Water, Fire)** - Add immunity to bleeding
@@ -16,6 +16,11 @@
   * **FrozenCarpaccio** - Removes bleeding effect
   * **GrippingTrap** - Applies bleeding effect
 
+===== Lua Scripts =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/BoneSaw.lua|BoneSaw.lua]] - Applies bleeding on attack (RPD.affectBuff(defender,"Bleeding",3))
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/HookedDagger.lua|HookedDagger.lua]] - Applies bleeding on attack (RPD.affectBuff(defender,"Bleeding",3))
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ChaosShieldLeft.lua|ChaosShieldLeft.lua]] - Lists bleeding among buffs it can protect against
+
 ===== String Resources =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|bleeding_buff_name]] - Display name
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|bleeding_buff_desc]] - Description
@@ -23,9 +28,6 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Char_StaBleeding]] - Character status
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Bleeding_Death]] - Death message
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|ResultDescriptions_Bleeding]] - Death reason description
-
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
 
 ===== JSON Configuration =====
 No dedicated JSON configuration file exists for this buff (configured via BuffFactory)
