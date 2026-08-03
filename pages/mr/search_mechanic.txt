@@ -1,0 +1,56 @@
+====== Search Mechanic - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - search() method (lines 666-710)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/scenes/GameScene.java|GameScene.java]] - Calls hero.search(true) for intentional search (line 707)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/Toolbar.java|Toolbar.java]] - Search button handler (line 67)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfDetection.java|RingOfDetection.java]] - Triggers search on equip (line 16)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] - RING_OF_DETECTION constant (line 100)
+
+===== Key Mechanics =====
+  * **Intentional Search**: Player-initiated search (toolbar button) - uses full awareness formula
+  * **Passive Search**: Automatic search each turn - uses reduced awareness formula
+  * **Ring of Detection**: Increases search distance by buff level when equipped
+
+===== Search Algorithm =====
+```
+search(boolean intentional):
+  distance = 1 + buffLevel(RING_OF_DETECTION)
+  
+  if intentional:
+    searchLevel = 2 * awareness - awareness^2
+  else:
+    searchLevel = awareness
+  
+  if distance <= 0:
+    searchLevel /= 2 - distance
+    distance = 1
+  
+  For each cell in radius 'distance':
+    if cell is visible:
+      if intentional: add CheckedCell visual effect
+      if intentional OR Random.Float() < searchLevel:
+        if cell has secret (trap/secret door):
+          reveal secret
+          return true
+```
+
+===== Awareness Calculation =====
+  * Base awareness depends on hero class and level
+  * Awareness increases with hero level
+  * Ring of Detection buff level adds to search distance
+
+===== String Resources =====
+<code xml>
+<string name="Search_Button">Search</string>
+<string name="Search_Desc">Look around carefully for hidden traps and secret doors</string>
+</code>
+
+===== Related mr Entities =====
+  * [[mr:ring_of_detection_item|Ring of Detection Item]]
+  * [[mr:ring_buff|Ring Buff]]
+  * [[mr:trap_mechanic|Trap Mechanic]]
+  * [[mr:secret_door_mechanic|Secret Door Mechanic]]
+  * [[mr:hero_class|Hero Class]]
+
+{{tag> mr code references mechanics search traps secrets}}

@@ -1,0 +1,48 @@
+====== Ring Buff - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java|Ring.java]] - Contains RingBuff inner class (extends ArtifactBuff)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/ArtifactBuff.java|ArtifactBuff.java]] - Base class for ring buffs
+  * Parent class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
+
+===== String Resources =====
+<code xml>
+<string name="Ring_BuffKnown">You have learned the true nature of your %s!</string>
+<string name="Ring_Identify">Your %s turns out to be %s.</string>
+<string name="Ring_Info">This %s looks like a plain ring with a %s gem.</string>
+<string name="Ring_Info3a">%s %s%s</string>
+<string name="Ring_Info3b"> (cursed)</string>
+<string name="Ring_Info4">%s This %s is cursed!</string>
+<string name="Ring_Name">Ring of %s</string>
+<string-array name="Ring_Gems">
+    <item>Diamond</item>
+    <item>Opal</item>
+    <item>Garnet</item>
+    <item>Ruby</item>
+    <item>Amethyst</item>
+    <item>Topaz</item>
+    <item>Onyx</item>
+    <item>Tourmaline</item>
+    <item>Emerald</item>
+    <item>Sapphire</item>
+    <item>Quartz</item>
+    <item>Agate</item>
+</string-array>
+</code>
+
+===== Key Properties =====
+  * **Entity Kind**: `artifactBuff` + buff class simple name (e.g., `artifactBuffDetection` for RingOfDetection)
+  * **Auto-identification**: After 200 ticks (ticksToKnow), unidentified rings auto-identify
+  * **Rogue Class**: Rogues identify rings immediately upon equipping
+  * **Source Tracking**: ArtifactBuff detaches if source ID is invalid (non-artifact source)
+
+===== Related mr Entities =====
+  * [[mr:artifact_buff|Artifact Buff]]
+  * [[mr:ring_of_detection_item|Ring of Detection Item]]
+  * [[mr:ring_of_evasion_item|Ring of Evasion Item]]
+  * [[mr:ring_of_accuracy_item|Ring of Accuracy Item]]
+  * [[mr:ring_of_stone_walking_item|Ring of Stone Walking Item]]
+  * [[mr:ring_of_power_item|Ring of Power Item]]
+  * [[mr:ring_of_elements_item|Ring of Elements Item]]
+
+{{tag> mr code references buffs rings artifacts}}
