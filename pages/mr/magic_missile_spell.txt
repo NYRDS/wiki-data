@@ -1,19 +1,22 @@
 ====== Magic Missile - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/MagicMissile.java|MagicMissile.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|MagicMissile.java]] - visual effect class only (a recycled ''Emitter'' that draws a magic bolt animation between two cells)
+
+**Note:** There is no castable spell named "Magic Missile" in Remixed Dungeon. The related game entities are:
+  * The **[[mr:magic_arrow_spell|Magic Arrow]]** spell (Lua: ''scripts/spells/MagicArrow.lua'') — an Elf-affinity damage spell that fires a magic arrow effect and deals 1..casterMaxHP/2 damage. See [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/MagicArrow.lua|MagicArrow.lua]]
+  * The **Wand of Magic Missile** item, which uses the MagicMissile visual effect. See [[mr:wand_of_magic_missile_item|Wand of Magic Missile]]
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
+No "MagicMissile_*" string resources exist. Related strings:
 <code xml>
-<string name="MagicMissile_Name">Magic Missile</string>
-<string name="MagicMissile_Info">This spell creates a bolt of pure magical energy that will seek a nearby enemy. The bolt pierces through enemies, hitting multiple targets when possible.</string>
-<string name="MagicMissile_Aliases">Missile, Bolt</string>
-<string name="MagicMissile_Desc">This spell creates a bolt of pure magical energy that will seek a nearby enemy. The bolt pierces through enemies, hitting multiple targets when possible.</string>
-<string name="MagicMissile_Nothing">There is nothing to shoot at.</string>
+<string name="MagicArrow_Name">Magic Arrow</string>
+<string name="MagicArrow_Info">Good old magic arrow, the right choice when you run out of ammo.</string>
+<string name="WandOfMagicMissile_Name">Wand of Magic Missile</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] binds the class for Lua use: ''MagicMissile = luajava.bindClass("com.watabou.pixeldungeon.effects.MagicMissile")''
