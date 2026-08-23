@@ -18,7 +18,7 @@ When worn and activated, the ring triggers the following effects when an enemy a
   * **Slow Effect:** Applies Slow effect for (Slow.duration(enemy) / 5 + ring level) turns
   * **Frost Chance:** Has (10% + ring level)% chance to apply Frost effect for (Frost.duration(enemy) / 5 + ring level) turns
   * **Damage:** Deals (ring level / 2) damage to the attacking enemy
-  * **Range:** Only works when enemy is within 1 tile distance of wearer
+  * **Range:** Only works when enemy is within 1 tile distance of wearer (code checks `enemy.distance(defender) < 2`, i.e. adjacent)
 
 ==== Acquisition ====
   * Found in various chests throughout dungeon levels
@@ -36,12 +36,12 @@ The Ring of Frost is highly beneficial for characters who engage enemies directl
 
 ==== Code References ====
   * Item implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java|RingOfFrost.java]]
-  * Item factory registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L424|ItemFactory.java#L424]]
+  * Item factory registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L425|ItemFactory.java#L425]]
   * Buff factory registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L164|BuffFactory.java#L164]]
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1474-L1475|strings_all.xml#L1474-L1475]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1790-L1791|strings_all.xml#L1790-L1791]]
   * Buff implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]] and [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
-  * Machine-readable data: [[mr:ring_of_frost_item|Ring of Frost - Code References]]
-  * Game constants: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java#L23|Slow.DURATION]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java#L20|Frost.DURATION]]
+  * Machine-readable data: [[mr:ring_of_frost_item|Ring of Frost - Code References]] (located at mr namespace root, not mr:rpd)
+  * Game constants: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java#L16|Slow.DURATION = 10]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java#L20|Frost.DURATION = 5]]
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L26-L44|FrostAura.defenceProc() method]] - Core implementation of the ring's effect when attacked
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L32|distance check]] - Only affects enemies within 2 tiles (adjacent)
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L35|Slow application]] - Applying slow effect
@@ -59,7 +59,5 @@ The Ring of Frost is highly beneficial for characters who engage enemies directl
   * [[es:rpd_ring_of_frost_item|Español]]
   * [[pt:rpd_ring_of_frost_item|Português]]
   * [[ru:rpd_ring_of_frost_item|Русский]]
-  * [[zh:rpd_ring_of_frost_item|中文]]
-  * [[cn:rpd_ring_of_frost_item|简体中文]]
 
 {{tag> rpd items ring frost artifact}}

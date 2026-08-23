@@ -1,20 +1,25 @@
-====== Black Cat N P C Mob - Code References ======
+====== Black Cat NPC - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/*.java
+This entity is data-driven (JSON + Lua), no dedicated Java class exists.
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/black_cat_n_p_c.json
+  * Mob definition: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BlackCatNPC.json|BlackCatNPC.json]]
+    * HP: 10 (ht), Defense Skill: 3, Attack Skill: 8, Damage: 1-4, DR: 1, EXP: 2, maxLvl: 4
+    * AI state: Passive, fraction NEUTRAL, friendly and immortal
+  * Sprite configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/BlackCat.json|BlackCat.json]]
 
 ===== String Resources =====
 <code xml>
-<string name="BlackCatNPC_Name">[Name]</string>
-<string name="BlackCatNPC_Info">[Description]</string>
+<string name="BlackCat_Name">Black cat</string>
+<string name="BlackCat_Desc">This is a black cat</string>
+<string name="BlackCat_AiStatus">This cat is doing ordinary cat things</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/BlackCat.lua|BlackCat.lua]]
+    * Interacting with the cat makes it say a random phrase from BlackCat_Phrases and play its "sleep" animation
+    * Killing the cat curses the hero: permanently loses 1 STR (minimum 1) with a cursed sound effect
+
+===== Related mr Entities =====
+  * [[mr:black_cat_mob|Black Cat (Mob)]]
