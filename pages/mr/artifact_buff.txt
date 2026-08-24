@@ -19,11 +19,11 @@ The **Artifact Buff** is a base class for all buffs that are applied by artifact
 // In ArtifactBuff.java
 public class ArtifactBuff extends Buff {
     @Override
-    public boolean act() {
+    public void act() {
         if(getSourceId()==EntityIdSource.INVALID_ID) { // non-artifact source
             detach();
         }
-        return super.act();
+        super.act();
     }
 
     public String getEntityKind() {

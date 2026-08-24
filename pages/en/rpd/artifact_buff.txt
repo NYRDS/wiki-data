@@ -12,15 +12,15 @@
   * **Entity Kind:** Returns "artifactBuff" + parent entity kind for unique identification
 
 ===== Code Implementation =====
-```java
+<code java>
 public class ArtifactBuff extends Buff {
 
     @Override
-    public boolean act() {
+    public void act() {
         if(getSourceId()==EntityIdSource.INVALID_ID) { // non-artifact source
             detach();
         }
-        return super.act();
+        super.act();
     }
 
     public String getEntityKind() {
@@ -31,8 +31,7 @@ public class ArtifactBuff extends Buff {
     public boolean dontPack() {
         return getSourceId()!= EntityIdSource.INVALID_ID;
     }
-}
-```
+}</code>
 
 ===== Known Subclasses =====
   * [[en:rpd:stone_walking_buff|Stone Walking Buff]] - Applied by [[en:rpd:ring_of_stone_blood_item|Ring of Stone Blood]]
