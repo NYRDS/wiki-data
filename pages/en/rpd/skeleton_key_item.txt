@@ -2,27 +2,29 @@
 
 {{ rpd:images:skeleton_key_item.png|Skeleton Key }}
 
-**Skeleton Key** is a special key item that unlocks the Demon Halls area of the dungeon, allowing access to higher-level content.
+**Skeleton Key** is a special key item that unlocks locked depth exits (the stairs down behind a boss), allowing access to the next dungeon tier.
 
 ==== Function ====
-  * **Area Unlock**: Specifically unlocks access to the [[en:rpd_halls|Demon Halls]]
-  * **One-time Use**: Opens the door to the Halls and is consumed in the process
-  * **Progression Item**: Essential for accessing late-game content
+  * **Area Unlock**: Opens locked depth exits, such as the locked exit of the Prison boss level leading toward the [[en:rpd:halls|Demon Halls]]
+  * **One-time Use**: Consumed when it unlocks an exit (see Unlock.java)
+  * **Depth-bound**: Each key is bound to the depth where its owner was defeated
+  * **Progression Item**: Essential for progressing past boss levels
 
 ==== Acquisition ====
-  * **[[en:rpd_tengu_mob|Tengu]]**: Dropped by Tengu as part of normal drop table
-  * **Boss Reward**: Tengu is one of the sources of this important key
+Every boss carries a Skeleton Key and drops it on death:
+  * **[[en:rpd:tengu_mob|Tengu]]**: Dropped after defeating Tengu in the Prison; grants access toward the [[en:rpd:halls|Demon Halls]]
+  * **Other bosses**: [[en:rpd:goo_mob|Goo]], [[en:rpd:dm300_mob|DM-300]], Gnoll King, Spider Queen, Lich, Yog's Eye and others also drop it
 
 ==== Usage ====
-  * **Unlocking Halls**: Used on the special door that blocks access to the Demon Halls
-  * **Consumed on Use**: Once used to unlock the Halls, the key is consumed
-  * **Access Gateway**: Required to progress to the deepest parts of the dungeon
+  * **Unlocking Exits**: Used on a locked depth exit (the stairs behind a boss) to open the way down
+  * **Consumed on Use**: The key is removed from the inventory when it unlocks an exit
+  * **Access Gateway**: Required to progress deeper into the dungeon
 
 ==== Strategy ====
-  * **Essential Progression**: Without this key, the Halls remain inaccessible
-  * **Timing**: Can be saved until ready for the challenging Halls content
+  * **Essential Progression**: Without this key, the next dungeon tier remains inaccessible
+  * **Timing**: Can be saved until ready for the challenging content ahead
   * **Backup**: It's a single-use key, so there's no backup if lost
-  * **Priority**: Should be preserved for when you're ready for the Halls challenge
+  * **Priority**: Should be preserved for when you're ready to descend
 
 ==== Technical Details ====
   * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/SkeletonKey.java|SkeletonKey.java]]
@@ -35,10 +37,9 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2075-L2076|SkeletonKey strings]]
 
 ==== See Also ====
-  * [[en:rpd_tengu_mob|Tengu]] (source of the key)
-  * [[en:rpd_halls|Demon Halls]]
-  * [[en:rpd_keys|Keys]]
-  * [[en:rpd_prison_boss_level|Prison Boss Level]]
-  * [[en:rpd_items|Items]]
+  * [[en:rpd:tengu_mob|Tengu]] (source of the key)
+  * [[en:rpd:halls|Demon Halls]]
+  * [[en:rpd:keys|Keys]]
+  * [[en:rpd:items|Items]]
 
 {{tag> rpd items keys progression }}
