@@ -82,28 +82,27 @@ public int defenseSkill(Char enemy) {
 
 ==== Combat Calculation ====
   * **Hit Chance**: The attacker's attack skill is compared against the defender's defense skill
-  * **Calculation**: ''Random.Float(attacker.attackSkill(defender)) > Random.Float(defender.defenseSkill(attacker))''
+  * **Calculation**: ''Random.Float(attacker.attackSkill(defender)) >= Random.Float(defender.defenseSkill(attacker))'' (see CharUtils.hit)
   * **Result**: If true, the attack hits; if false, the attack misses
+  * **Invisibility**: An invisible attacker always hits
+  * **Magic attacks**: The accuracy roll is doubled for magic damage
 
 ==== Hero Defense Skill Enhancement ====
-The Hero class has a special defense skill calculation:
+The Hero class applies an easy-difficulty bonus to defense skill (Hero.java):
 
 <code java>
-// In Hero.java
 public int defenseSkill(Char enemy) {
     float skillFactor = 1;
-    
-    if (getSubClass() == HeroSubClass.BRIGAND) {
-        skillFactor *= 1.2;
+    if (getDifficulty() == 0) {
+        skillFactor *= 1.2f;
     }
-    
     return (int) (super.defenseSkill(enemy) * skillFactor);
 }
 </code>
 
 ==== Defense in Combat ====
   * **Evasion**: The primary means of avoiding damage is through the defense skill system
-  * **Hit Calculation**: ''Random.Float(attacker.attackSkill(defender)) > Random.Float(defender.defenseSkill(attacker))''
+  * **Hit Calculation**: ''Random.Float(attacker.attackSkill(defender)) >= Random.Float(defender.defenseSkill(attacker))''
   * **Result**: If the attacker's roll is higher, the hit succeeds; otherwise, the defender evades
 
 ==== Related String Resource ====
@@ -121,18 +120,18 @@ public int defenseSkill(Char enemy) {
   * Encumbrance Reduction Factor: ''Math.pow(1.5, aEnc)'' when armor requires more STR than available
   * Paralysis Effect: ''evasion /= 2'' when character is paralyzed
   * Freerunner Bonus: ''evasion *= 2'' when not starving and moving
-  * Combat Hit Calculation: ''Random.Float(attacker.attackSkill(defender)) > Random.Float(defender.defenseSkill(attacker))''
+  * Combat Hit Calculation: ''Random.Float(attacker.attackSkill(defender)) >= Random.Float(defender.defenseSkill(attacker))''
   * String Resources: ''Char_StaDodged'' array in strings_all.xml provides dodge text messages
 
 ==== Related ====
-  * [[en:rpd_attack_skill_mechanic|Attack Skill Mechanic]]
-  * [[en:rpd_evasion_mechanic|Evasion Mechanic]]
-  * [[en:rpd_combat_mechanic|Combat Mechanic]]
-  * [[en:rpd_accuracy_mechanic|Accuracy Mechanic]]
-  * [[en:rpd_armor_item|Armor Item]]
-  * [[en:rpd_strength|Strength]] - How strength affects armor requirements
-  * [[en:rpd_buffs|Buffs]] - How buffs affect defense skill
-  * [[en:rpd_paralysis_buff|Paralysis]] - Effect on defense when paralyzed
-  * [[en:rpd_freerunner_subclass|Freerunner]] - Class with special defense mechanics
+  * [[en:rpd:attack_skill_mechanic|Attack Skill Mechanic]]
+  * [[en:rpd:evasion_mechanic|Evasion Mechanic]]
+  * [[en:rpd:combat_mechanic|Combat Mechanic]]
+  * [[en:rpd:accuracy_mechanic|Accuracy Mechanic]]
+  * [[en:rpd:armor_item|Armor Item]]
+  * [[en:rpd:strength|Strength]] - How strength affects armor requirements
+  * [[en:rpd:buffs|Buffs]] - How buffs affect defense skill
+  * [[en:rpd:paralysis_buff|Paralysis]] - Effect on defense when paralyzed
+  * [[en:rpd:freerunner_subclass|Freerunner]] - Subclass with special defense mechanics
 
 {{tag> rpd mechanics combat defense skill }}
