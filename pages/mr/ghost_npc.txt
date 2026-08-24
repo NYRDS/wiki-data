@@ -1,31 +1,72 @@
-====== Ghost NPC - Code References ======
+====== mr:ghost_npc ======
 
-===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Ghost.java|Ghost.java]]
+Machine-readable reference page for the Sad Ghost (quest-giver NPC) in Remixed Dungeon.
+Note: this page previously existed as "mr:ghost_mob" and incorrectly described a nonexistent combat mob; all facts below are grounded in the actual implementation.
 
-===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Ghost.json|Ghost.json]]
+==== Java Implementation ====
 
-===== String Resources =====
-<code xml>
-<string name="Ghost_Name">sad ghost</string>
-<string name="Ghost_Desc">The ghost is barely visible. It looks like a shapeless spot of faint light with a sorrowful face.</string>
-<string name="Ghost_Rose1">Hello adventurer... Once I was like you - strong and confident... And now I'm dead... But I can't leave this place... Not until I have my _dried rose_... It's very important to me... Some monster stole it from my body...</string>
-<string name="Ghost_Rose2">Please... Help me... Find the rose...</string>
-<string name="Ghost_Rat1">Hello adventurer... Once I was like you - strong and confident... And now I'm dead... But I can't leave this place... Not until I have my revenge... Slay the _fetid rat_, that has taken my life...</string>
-<string name="Ghost_Rat2">Please... Help me... Slay the abomination...</string>
-<string name="Ghost_Defense">evaded</string>
-<string name="Journal_Ghost">Sad ghost</string>
-<string name="WndSadGhost_Rose">Yes! Yes!!! This is it! Please give it to me! And you can take one of these items, maybe they will be useful to you in your journey...</string>
-<string name="WndSadGhost_Rat">Yes! The ugly creature is slain and I can finally rest... Please take one of these items, maybe they will be useful to you in your journey...</string>
-<string name="WndSadGhost_Wepon">Ghost's weapon</string>
-<string name="WndSadGhost_Armor">Ghost's armor</string>
-<string name="WndSadGhost_Farewell">Farewell, adventurer!</string>
-<string name="WndSadGhostNecro_Text">This spirit seems to be struggling in his curse. It looks that it wants to ask me something. With the help of necromancy, I could convince him that the request was fulfilled. It will save me time. But is it worth doing so?</string>
-<string name="WndSadGhostNecro_Yes">Yes, bend it to your will.</string>
-<string name="WndSadGhostNecro_No">No, let it talk.</string>
-<string name="WndSadGhostNecro_Persuaded">The sad ghost has been dominated!</string>
-</code>
+**Class File**:
+  * File: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Ghost.java|Ghost.java]]
+  * Path: com/watabou/pixeldungeon/actors/mobs/npcs/Ghost.java
+  * Entity Kind: Ghost
+  * Type: **NPC** (extends NPC, not a combat mob)
+  * Sprite config: spritesDesc/Ghost.json
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+**Note**: There is no combat mob named Ghost in the codebase. The generated entity list (entities/mobs.txt) contains "Ghost", but the class is an NPC quest-giver spawned on SewerLevel via ''Ghost.Quest.spawn()''.
+
+==== NPC Properties ====
+
+**Basic Stats** (from the Ghost.java constructor and method overrides):
+  * HP: not damageable — ''damage()'' is overridden to a no-op
+  * defenseSkill: 1000 (''defenseSkill()'' returns a constant)
+  * Speed: 0.5 (''speed()'' returns 0.5f)
+  * Flying: true
+  * EXP: none
+  * Immunities: Paralysis, Stun, Roots (addImmunity in constructor; ''add(Buff)'' always returns false)
+
+**Lua Definition**:
+  * No Lua script - implemented in Java
+
+==== Behavior ====
+  * Wandering AI state by default
+  * Once the quest is given, 10% chance per turn to follow the hero's control target position
+  * Teleports randomly if interacted with again before the quest item is obtained
+
+==== Quest Mechanics ====
+  * Spawned on SewerLevel when depth > 1 with probability ''Random.Int(5 - depth) == 0''
+  * Two quest variants chosen at random (''Quest.alternative''):
+    * **Rose Quest**: find the Dried Rose; it drops after killing mobs (''Random.Int(left2kill) == 0'', left2kill starts at 8)
+    * **Revenge Quest**: slay the Fetid Rat spawned by ''Ghost.Quest.process()''
+  * Reward: weapon and armor via ''Treasury.bestOf(category, 4)'', identified
+  * **Necromancer Interaction**: Necromancer heroes can persuade/dominate the ghost via WndSadGhostNecro (''persuade'' flag bypasses the item requirement)
+  * Journal entry: Journal.Feature.GHOST
+
+==== Inner Class: Ghost.FetidRat ====
+  * HP: 15, defenseSkill 5, attackSkill 12, dmg 2-6, dr 2, expForKill 0
+  * Emits ParalyticGas on ''defenseProc''
+  * Carries RatSkull; immune to Paralysis
+
+==== String Resources ====
+
+**English (values/strings_all.xml)**:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Ghost_Name]] - "sad ghost"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Ghost_Desc]] - description
+  * Ghost_Rose1 / Ghost_Rose2 - rose quest dialogue
+  * Ghost_Rat1 / Ghost_Rat2 - revenge quest dialogue
+  * Ghost_Defense - "evaded"
+
+**Russian (values-ru/strings_all.xml)**:
+  * Ghost_Name / Ghost_Info - Russian name and description
+
+==== Wiki Pages ====
+
+**English**:
+  * [[en:rpd:ghost_npc|Ghost NPC]] - Main wiki page
+
+==== Code References ====
+
+  * Main implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Ghost.java|Ghost.java]]
+  * Sprite config: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Ghost.json|Ghost.json]]
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+
+{{tag> mr ghost npc reference machine-readable}}
