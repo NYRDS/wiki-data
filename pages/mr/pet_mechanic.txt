@@ -6,23 +6,25 @@
 Game Mechanic (AI/Pet System)
 
 ===== Java Classes =====
-**Pet Management**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/PetInventoryManager.java|PetInventoryManager.java]]
-  * Package: `com.nyrds.pixeldungeon.items`
+**Pet Management**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/PetInventoryManager.java|PetInventoryManager.java]]
+  * Package: `com.nyrds.pixeldungeon.mechanics`
   * Methods:
     * `hasPets(Hero hero)` - Check if hero has pets
     * `openPetInventoryFromToolbar(Hero hero)` - Open pet inventory UI
-    * `giveToPet(Hero hero, Item item)` - Transfer item to pet
-    * `takeFromPet(Pet pet, Item item)` - Take item from pet
+    * `giveItemToPet(Hero hero, Mob pet, Item item)` - Transfer item to pet's backpack
+    * `takeItemFromPet(Hero hero, Mob pet, Item item)` - Take item from pet's backpack
 
 **Pet Base Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] (pet functionality)
-  * Mobs become pets via `Mob.makePet(Hero hero)`
-  * Pet state tracked in `Mob.petMaster` field (hero ID)
+  * Mobs become pets via static `Mob.makePet(Mob pet, Char owner)` or instance `mob.makePet(Char owner)`
+  * Pet state tracked via `setOwnerId(ownerId)` on the mob; pet fraction follows the owner's fraction
 
 **Mob Pet Methods**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
-  * `makePet(Hero hero)` - Convert mob to pet
+  * `makePet(Char owner)` / `Mob.makePet(Mob, Char)` - Convert mob to pet
   * `isPet()` - Check if mob is a pet
-  * `getPets_l()` - Get list of hero's pets (Lua)
   * `canBePet()` - Check if mob species can be tamed
+
+**Hero Pet List**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+  * `getPets_l()` - Get list of hero's pets (Lua interface, defined on `Char`)
 
 **AI States**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/MobAi.java|MobAi.java]]
   * `ControlledAi` - Direct player control state
@@ -36,7 +38,7 @@ Game Mechanic (AI/Pet System)
 
 **Windows**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndPetItem.java|WndPetItem.java]]
   * Pet inventory management UI
-  * Actions: Give, Take, Equip, Unequip
+  * Related windows: `WndPetBag`, `WndPetSelect`, `WndPetQuantity`, `WndPetInventoryOptions`
 
 **Actions**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/CommonActions.java|CommonActions.java]]
   * `AC_GIVE_TO_PET` - Give item to pet
@@ -52,9 +54,8 @@ Game Mechanic (AI/Pet System)
 }
 </code>
 
-Mobs with `"canBePet": true`:
-  * Rat, Snail, Crab, Bat, Spider, etc.
-  * Boss mobs: `false`
+Mobs with `"canBePet": true` (e.g. Bee, DeepSnail, MazeShadow, ShamanElder):
+  * Boss mobs: `false` (e.g. BeeHive)
   * Hostile NPCs: `false`
 
 ===== String Resources =====
@@ -109,60 +110,44 @@ Russian (values-ru/strings_all.xml):
   * [[mr:snail_mob|Snail Mob]] - Tameable
   * [[mr:crab_mob|Crab Mob]] - Tameable
   * [[mr:bat_mob|Bat Mob]] - Tameable
-  * [[mr:spider_mob|Spider Mob]] - Tameable
-  * [[mr:posses_spell|Possess Spell]] - Temporary control
+  * [[mr:possess_spell|Possess Spell]] - Temporary control
   * [[mr:raise_dead_spell|Raise Dead Spell]] - Undead pets
   * [[mr:summon_beast_spell|Summon Beast Spell]] - Temporary summons
 
 ===== Game Mechanics =====
   * **Taming Methods**:
-    * Scroll of Taming / Wand of Taming
     * Possess Spell (temporary)
     * Summon Beast Spell (temporary)
     * Raise Dead (undead pets)
     * Exhumation (Wraith pets)
-    * Certain items/artifacts
+    * Certain items/artifacts (e.g. Carcass, HeartOfDarkness, ChaosStaff)
   * **Pet Capabilities**:
     * Follow hero automatically
     * Attack enemies in range
-    * Can equip items (weapons, armor, rings)
     * Have own inventory (accessible via toolbar)
     * Gain experience and level up
     * Can be healed with potions/spells
-  * **Pet Limits**:
-    * Max 3 active pets (configurable)
-    * Only mobs with `canBePet: true` in JSON
-    * Pets persist between levels
+  * **Pet Rules**:
+    * Only mobs with `canBePet: true` in JSON can be tamed
+    * Pets persist between levels (`followOnLevelChanged` returns true for hero-owned pets)
   * **Pet Inventory**:
     * Accessible via toolbar button (pet icon)
     * Separate from hero inventory
-    * Can hold equipment and consumables
-    * Items dropped on pet death
-  * **Pet Commands** (via Possess):
-    * Move to position
-    * Attack target
-    * Follow/Stay
-    * Use item
+    * Items are transferred to/from the pet's backpack
 
 ===== Code Fragments =====
-Taming a mob:
+Taming a mob (actual implementation in Mob.java):
 <code java>
-// In Mob.java
-public void makePet(Hero hero) {
-    this.petMaster = hero.id();
-    hero.pets.add(this);
-    setState(MobAi.getStateByClass(Hunting.class)); // Follow and fight
-}
-</code>
-
-Pet inventory access:
-<code java>
-// In PetInventoryManager.java
-public static void giveToPet(Hero hero, Item item) {
-    Pet pet = getSelectedPet(hero);
-    if (pet != null && pet.collect(item)) {
-        GLog.p("PetInventory_GaveItem", item.name());
+public static Mob makePet(@NotNull Mob pet, int ownerId) {
+    var owner = CharsList.getById(ownerId);
+    if(owner.fraction()==Fraction.HEROES) {
+        pet.expForKill = 0;
     }
+    if (pet.canBePet()) {
+        pet.setFraction(owner.fraction());
+        pet.setOwnerId(ownerId);
+    }
+    return pet;
 }
 </code>
 
@@ -170,7 +155,6 @@ Lua pet creation:
 <code lua>
 -- Possess spell
 RPD.Mob:makePet(target, caster)
-target:setState(RPD.MobAi:getStateByClass("ControlledAi"))
 
 -- Raise Dead
 local mob = RPD.MobFactory:mobByName(latestDeadMob.class)
