@@ -1,18 +1,34 @@
 ====== Sword Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Sword.java|Sword.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Sword.java|Sword.java]] - Tier-3 basic melee sword
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]] - Base class for melee weapons
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/sword.json
+The Sword is not defined through a JSON configuration file; its properties are set directly in the Java constructor:
+<code java>
+public Sword() {
+    super( 3, 1f, 1f ); // tier 3, damage factor 1.0, delay factor 1.0
+}
+</code>
 
 ===== String Resources =====
+English strings (values/strings_all.xml):
 <code xml>
-<string name="Sword_Name">[Name]</string>
-<string name="Sword_Info">[Description]</string>
+<string name="Sword_Name">sword</string>
+<string name="Sword_Info">The razor-sharp steel blade shines reassuringly.</string>
+<string name="Sword_Gender">masculine</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Key Implementation Details =====
+  * **Tier**: 3
+  * **Damage factor**: 1.0
+  * **Delay factor**: 1.0 (normal attack speed)
+  * **Image**: ItemSpriteSheet.SWORD
+  * **Animation class**: SWORD_ATTACK
+  * **Description source**: R.string.Sword_Info via StringsManager
+
+{{tag>mr items weapon code_reference}}
