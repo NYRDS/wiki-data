@@ -5,22 +5,26 @@
 
 ==== How Accuracy Works ====
 Accuracy is calculated based on:
-  * **Attacker's Attack Skill** - Derived from hero's Dexterity and weapon bonuses
-  * **Defender's Defense Skill** - Derived from enemy's stats, armor, and buffs
-  * **Weapon Accuracy** - Base accuracy of the weapon being used
-  * **Buffs/Debuffs** - Effects like Blindness, Fury, etc. that modify accuracy
+  * **Attacker's Attack Skill** - Base attack skill plus the character's level
+  * **Defender's Defense Skill** - The target's evasion value
+  * **Weapon Accuracy Factor** - Encumbrance of equipped weapons relative to the wielder's Strength
+  * **Buffs/Debuffs** - Effects like Bless, Fury, etc. that modify attack or defense skill
 
-The formula roughly follows: `Hit Chance = (Attack Skill / Defense Skill) * Weapon Accuracy * Modifiers`
+The actual hit check (see ''CharUtils.hit()'') compares two random rolls:
+<code>
+hit = Random.Float(attackSkill) >= Random.Float(defenseSkill)
+</code>
+
+The attack skill is computed in ''Char.attackSkill()'' as:
+<code>
+attackSkill = (baseAttackSkill + lvl) * 1.4 ^ buffBonus * weaponAccuracyFactor
+</code> where ''weaponAccuracyFactor'' decreases when wielding weapons too heavy for the character's Strength. Attacks with a ranged weapon at point-blank range (distance 1) are only half as accurate.
 
 ==== Factors Affecting Accuracy ====
-  * **Dexterity**: Higher Dexterity increases attack skill
-  * **Weapon Type**: Different weapons have different base accuracy
-  * **Weapon Enchantments**: Some enchantments (like Accuracy) improve hit chance
-  * **Armor Penalty**: Heavy armor without sufficient Strength reduces accuracy
-  * **Rings**: [[en:rpd:ring_of_accuracy_item|Ring of Accuracy]] increases accuracy
-  * **Buffs**: Effects like Fury, Haste can affect accuracy
-  * **Debuffs**: Blindness, Vertigo significantly reduce accuracy
-  * **Distance**: Ranged attacks may have distance penalties
+  * **Character Level**: Higher level increases attack skill
+  * **Base Attack Skill**: Class-specific base value (heroes start with a base attack skill of 10)
+  * **Weapon Encumbrance**: Weapons requiring more Strength than the character has reduce accuracy
+  * **Rings**: [[en:rpd:ring_of_accuracy_item|Ring of Accuracy]] provides an attack skill bonus through buffs
 
 ==== Accuracy vs. Evasion ====
   * **Accuracy**: Attacker's ability to hit
@@ -29,23 +33,20 @@ The formula roughly follows: `Hit Chance = (Attack Skill / Defense Skill) * Weap
   * Flying enemies may have additional evasion bonuses
 
 ==== Improving Accuracy ====
-  * Increase **Dexterity** through leveling or equipment
-  * Use **Ring of Accuracy** for direct accuracy bonus
-  * Choose weapons with higher base accuracy
-  * Avoid heavy armor unless you have sufficient Strength
-  * Use **Scrolls of Upgrade** on weapons to improve accuracy
-  * Apply **Accuracy enchantment** to weapons
-  * Remove debuffs like Blindness quickly
+  * Level up to increase attack skill
+  * Use the **[[en:rpd:ring_of_accuracy_item|Ring of Accuracy]]** for a direct attack skill bonus
+  * Keep your weapon's Strength requirement within your effective Strength to avoid encumbrance
+  * Gain buffs that provide an attack skill bonus (e.g. the Blessed buff)
 
 ==== Related Mechanics ====
-  * **Critical Hits**: Separate mechanic from accuracy
-  * **Miss**: When accuracy check fails, attack misses entirely
-  * **Glancing Blows**: Some attacks may do reduced damage instead of missing
+  * **Critical Hits**: When the attacker's accuracy roll exceeds twice the defender's evasion roll, damage is increased by 50% (see ''Char.checkCriticalHit()'')
+  * **Miss**: When the accuracy check fails, attack misses entirely
+  * **[[en:rpd:evasion_mechanic|Evasion]]**: The defensive counterpart of accuracy
 
 ==== Source Code ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Base character stats
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Hero stats including accuracy
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] - Weapon accuracy mechanics
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Base character stats, attackSkill/defenseSkill and critical hits
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]] - The hit() chance check
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] - Weapon accuracy factor (encumbrance)
 
 ==== See Also ====
   * [[en:rpd:ring_of_accuracy_item|Ring of Accuracy]]

@@ -41,10 +41,11 @@ This entity is implemented in Java, no Lua script exists
 ===== Code Fragment =====
 <code java>
 public class ManaRegeneration extends Buff {
+
     private static final float REGENERATION_DELAY = 20;
 
     @Override
-    public boolean act() {
+    public void act() {
         if (target.isAlive()) {
             if (!target.level().isSafe()) {
                 target.accumulateSkillPoints(1);
@@ -60,9 +61,13 @@ public class ManaRegeneration extends Buff {
 
             spend((float) (REGENERATION_DELAY / Math.pow(1.2, bonus[0])));
         } else {
-            deactivate();
+            deactivateActor();
         }
-        return true;
+    }
+
+	@Override
+	public boolean attachTo(@NotNull Char target ) {
+        return target.buffLevel(getEntityKind()) > 0 || super.attachTo(target);
     }
 }
 </code>
