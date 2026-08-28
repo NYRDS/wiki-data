@@ -1,20 +1,24 @@
 ====== Spell System - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Base spell implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java|SpellFactory.java]] - Spell factory for creating spell instances
-  * This entity is implemented in Java/Lua, no AbstractSpell.java exists separately
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Base spell implementation. Defines `level`, `spellCost`, `castTime`, `cooldown`, `targetingType`, `magicAffinity`, `imageFile`, and the `cast(@NotNull Char, int)` / `cast(@NotNull Char, @NotNull Char)` / `canCast(@NotNull Char, boolean)` interfaces used by every spell.
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java|SpellFactory.java]] - Factory that instantiates Spell subclasses (used to register the spell catalog and to look up the magic affinity / class restrictions for a hero).
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/|All Spell Scripts]] - Individual spell implementations in Lua
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/|All Spell Scripts]] - Individual spell implementations in Lua (each script returns the `desc` table consumed by the Lua spell library).
 
 ===== JSON Configuration =====
-This entity is implemented in Java/Lua, no JSON configuration exists
+This system is implemented in Java/Lua, no JSON configuration exists.
 
 ===== String Resources =====
 <code xml>
-<string name="spell_system_name">Spell System</string>
-<string name="spell_system_info">System governing all magical abilities</string>
+<string name="Spell_SelectAChar">Select a target being.</string>
+<string name="Spells_NotEnoughSP">You do not have enough mana to cast a \&quot;%1$s\&quot; spell.</string>
+<string name="Spells_NotInOwnBody">You can\'t perform %s while your soul separated from body.</string>
+<string name="Spells_NotTooFast">%s is not ready for use yet</string>
+<string name="Spells_SummonLimitReached">%1$s: summon limit reached (Current max: %2$d)!</string>
+<string name="WndSpells_Level">Magic Level: </string>
+<string name="WndSpells_Title">Spells</string>
 </code>
 
 ===== Related mr Entities =====
