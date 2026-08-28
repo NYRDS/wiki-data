@@ -8,29 +8,29 @@
 Este hechizo lanza Kunai a enemigos visibles aleatorios extremadamente rápido. El número de Kunai lanzados depende del nivel de habilidad del lanzador, con más Kunai lanzados a niveles más altos. El hechizo es tan rápido que ni siquiera puedes seleccionar el objetivo.
 
 ==== Estadísticas ====
-  * **Afinidad Mágica:** [[es:rpd:rogue_class|Pícaro]]
-  * **Objetivo:** auto (apunta a [[es:rpd:enemies_overview|enemigos]] visibles aleatorios)
+  * **Afinidad Mágica:** [[en:rpd:rogue_class|Pícaro]]
+  * **Objetivo:** auto (apunta a enemigos visibles aleatorios)
   * **Nivel:** 2
-  * **Costo de [[es:rpd:mana_mechanic|Maná]]:** 5
+  * **Costo de Maná:** 5
   * **Tiempo de lanzamiento:** 0.01 (extremadamente rápido)
   * **Imagen de hechizo:** Usa diferentes iconos según el nivel del hechizo (1, 9 o 17 según el nivel)
 
 ==== Mecánicas ====
-  * **Número de Kunai:** min(nivelHabilidad(lanzador) - nivelHechizo + 1, 3) - máximo de 3 [[es:rpd:kunai_item|kunai]]
-  * **Daño:** Daño aleatorio entre n y (n + nivel(lanzador) * n), donde n es el número de [[es:rpd:kunai_item|kunai]] lanzados
-  * **Apuntar:** Apunta automáticamente a [[es:rpd:enemies_overview|enemigos]] aleatorios visibles para el lanzador
+  * **Número de Kunai:** min(nivelHabilidad(lanzador) - nivelHechizo + 1, 3) - máximo de 3 kunai
+  * **Daño:** Daño aleatorio entre n y (n + nivel(lanzador) * n), donde n es el número de kunai lanzados
+  * **Apuntar:** Apunta automáticamente a enemigos aleatorios visibles para el lanzador
   * **Efecto de Zapeo:** Muestra un efecto de zapeo "Kunai" desde el lanzador al objetivo
-  * **Requisito:** Requiere al menos un [[es:rpd:enemies_overview|enemigo]] visible para lanzar
+  * **Requisito:** Requiere al menos un enemigo visible para lanzar; de lo contrario el hechizo falla (`enemies == 0` → `return false`)
 
 ==== Uso ====
 El hechizo Lanzamiento de Kunai puede usarse para:
-  * Aplicaciones ofensivas contra [[es:rpd:enemies_overview|enemigos]]
-  * Daño explosivo rápido en [[es:rpd:combat|combate]]
+  * Aplicaciones ofensivas contra enemigos
+  * Daño explosivo rápido en combate
   * Sorprender a enemigos con ataques rápidos e imposibles de esquivar
 
 ==== Clases ====
 Clases que pueden usar este hechizo incluyen:
-  * Clases con afinidad de Pícaro (por ejemplo, [[es:rpd:rogue_class|clase de Pícaro]])
+  * Clases con afinidad de Pícaro (por ejemplo, [[en:rpd:rogue_class|clase de Pícaro]])
   * Otras clases que obtengan acceso a través de medios especiales
 
 ==== Estrategia ====
@@ -44,53 +44,40 @@ Cómo usar eficazmente el hechizo Lanzamiento de Kunai:
 ==== Detalles Técnicos ====
   * Implementación: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua|KunaiThrow.lua]]
   * Clase: Script Lua implementando el sistema de hechizos
-  * Disponibilidad de hechizos: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L12|CustomSpellsList.lua]] - disponible para la clase Pícaro
-  * Recursos de cadenas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2626|KunaiThrow_Name]] y [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2627|KunaiThrow_Info]]
-  * Recursos de cadenas en ruso: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2627-L2628|KunaiThrow_Name и KunaiThrow_Info]]
+  * Disponibilidad de hechizos: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L12|CustomSpellsList.lua]] — disponible para la clase Pícaro (`spells["Rogue"] = {"Cloak","Backstab","KunaiThrow","Haste"}`)
+  * Recursos de cadenas (inglés): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1217-L1218|KunaiThrow_Name y KunaiThrow_Info]]
+  * Recursos de cadenas en ruso: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1206-L1207|KunaiThrow_Name y KunaiThrow_Info]]
   * Biblioteca de sistema de hechizos: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]]
   * Biblioteca de clases comunes: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]]
-  * Parámetros de hechizo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L7-L15|level = 2, castTime = 0.01, spellCost = 5]]
-  * Cálculo de nivel: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L5-L6|math.min(caster:skillLevel() - spellLevel + 1, 3)]] - calcula número de kunai lanzados (máximo 3)
-  * Cálculo de daño: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L33|math.random( n, n + caster:lvl()*n )]] - rango de daño basado en número de kunai y nivel del lanzador
-  * Efecto de zapeo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L32|RPD.zapEffect(ownPos,tgt:getPos(),"Kunai")]] - efecto visual desde el lanzador al objetivo
-  * Selección de objetivo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L29|caster:randomEnemy()]] - selecciona aleatoriamente un enemigo visible como objetivo
-  * Verificación de enemigos visibles: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L27|caster:visibleEnemies()]] - asegura que al menos un enemigo es visible antes de lanzar
-  * Mapeo de imagen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L36-L38|lvl2img = {1,9,17} based on spell tier]] - icono diferente basado en número de kunai
-  * Afinidad Mágica: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L13|Magic Affinity: "Rogue"]] - solo disponible para clases con afinidad de Pícaro
-  * Tipo de apuntado: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L12|Targeting: "self"]] - apunta automáticamente a enemigos visibles aleatorios
-  * Biblioteca de clases comunes: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]]
-  * Inicialización de hechizo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L20-L40|return spell.init{}]] - define la estructura y comportamiento del hechizo
-  * Integración del sistema de daño: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L33|tgt:damage()]] - llama al sistema de daño del juego para aplicar daño al objetivo
-  * Cálculo de número de Kunai: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L25|local n = spellTier(caster)]] - calcula número de kunai basado en nivel de habilidad del lanzador
-  * Validación de lanzamiento de hechizo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L27-L28]] - verifica si existen enemigos visibles antes de lanzar
-  * Disponibilidad de clase: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L12|spells["Rogue"] = {"Cloak","Backstab","KunaiThrow","Haste"}]] - disponible para la clase Pícaro
-  * Tipos de efectos de zapeo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/platform/specific/Implementations.java#L34-L69|Implementations.java]] - define efectos de zapeo disponibles incluyendo efecto "Kunai"
-  * Referencia del sistema de daño: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L85-L88|Char:damage() method]] - maneja cálculo y aplicación de daño
-  * Referencia de nivel de personaje: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L12-L13|Char:lvl() method]] - nivel del lanzador afecta cálculo de daño
-  * Posición del objetivo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L10-L11|Char:getPos() method]] - obtiene posición de personaje para efecto de zapeo
-  * Selección de enemigo aleatorio: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L15-L25|CharUtils:randomEnemy() method]] - proporciona funcionalidad de selección de enemigo aleatorio
-  * Verificación de enemigos visibles: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L27-L35|CharUtils:visibleEnemies() method]] - verifica enemigos visibles en el nivel
-  * Interfaz de personaje: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - clase base para todos los personajes (jugador, monstruos, etc.)
-  * Referencia de nivel de habilidad: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/CharUtils.java#L12-L13|CharUtils:skillLevel() method]] - obtiene nivel de habilidad del personaje
-  * API RPD: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/Utils/RpdScriptUtils.java|RPDScriptUtils.java]] - proporciona interfaz Lua para funcionalidad del juego
-  * Implementación de efectos de zapeo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/ZapGlow.java|ZapGlow.java]] - renderiza efectos de zapeo
-  * Integración Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/platform/specific/LuaEngine.java|LuaEngine.java]] - integra scripts Lua con motor del juego
-  * Flujo de lanzamiento de hechizo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/spells/LuaSpell.java#L15-L25|LuaSpell:cast() method]] - maneja invocación de hechizo Lua
-  * Sistema de hechizos: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/spells/Spell.java|Spell.java]] - clase base de hechizo en Java
-  * Sprites de hechizos: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spellsIcons/rogue.png|rogue.png]] - archivo de imagen sprite que contiene iconos de hechizos
+  * Parámetros de hechizo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L20-L29|level = 2, castTime = 0.01, spellCost = 5]] (en el descriptor `desc()`)
+  * Cálculo de nivel (definición): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L13-L15|math.min(caster:skillLevel() - spellLevel + 1, 3)]] — calcula número de kunai lanzados (máximo 3)
+  * Cálculo de nivel (uso): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L33|local n = spellTier(caster)]]
+  * Verificación de enemigos visibles: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L35|caster:visibleEnemies()]] — asegura que al menos un enemigo es visible antes de lanzar
+  * Efecto de zapeo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L46|RPD.zapEffect(ownPos,tgt:getPos(),"Kunai")]] — efecto visual desde el lanzador al objetivo
+  * Selección de objetivo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L44|caster:randomEnemy()]] — selecciona aleatoriamente un enemigo visible como objetivo
+  * Cálculo de daño: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L47|tgt:damage(math.random(n, n + caster:lvl()*n), caster)]] — rango de daño basado en número de kunai y nivel del lanzador
+  * Mapeo de imagen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L53-L56|lvl2img = {1,9,17}]] — icono diferente basado en número de kunai lanzados
+  * Afinidad Mágica: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L24|Magic Affinity: "Rogue"]] — solo disponible para clases con afinidad de Pícaro
+  * Tipo de apuntado: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L25|Targeting: "self"]] — apunta automáticamente a enemigos visibles aleatorios
+  * Inicialización de hechizo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L17-L57|return spell.init{}]] — define la estructura y comportamiento del hechizo
+  * Efecto `zapEffect` (Java): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/scenes/GameScene.java|GameScene.zapEffect()]] — punto de entrada Lua para reproducir el efecto visual
+  * Render del efecto `zapEffect`: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/effects/ZapEffect.java|ZapEffect.java]] — renderiza los efectos de zapeo (incluido "Kunai")
+  * API Lua del motor: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/lua/LuaEngine.java|LuaEngine.java]] — integra scripts Lua con el motor del juego
+  * Bucle de hechizo Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] — clase base de hechizo en Java
+  * Sprites de hechizos: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spellsIcons/rogue.png|rogue.png]] — archivo de imagen sprite que contiene iconos de hechizos
   * Datos legibles por máquina: [[mr:kunai_throw_spell|mr:kunai_throw_spell]]
 
 ==== Texto Estético ====
 Del juego: "Este lanzamiento de Kunai Mortal se hará extremadamente rápido, tanto que ni siquiera podrás seleccionar un objetivo.\n\nLos verdaderos maestros son capaces de lanzar más de un Kunai a la vez."
 
 ==== Ver También ====
-  * [[es:rpd:spells_overview|Hechizos]]
-  * [[es:rpd:spell|Sistema de Hechizos]]
-  * [[es:rpd:combat|Mecánicas de Combate]]
-  * [[es:rpd:rogue_class|Afinidad de Pícaro]]
-  * [[es:rpd:kunai_item|Objeto Kunai]]
-  * [[es:rpd:melee_weapons|Armas de Cuerpo a Cuerpo]]
-  * [[es:rpd:ranged_weapons|Armas a Distancia]]
-  * [[mr:kunai_throw_spell|mr:kunai_throw_spell]] - Datos legibles por máquina
+  * [[en:rpd:spells_overview|Hechizos]]
+  * [[en:rpd:spell|Sistema de Hechizos]]
+  * [[en:rpd:combat|Mecánicas de Combate]]
+  * [[en:rpd:rogue_class|Afinidad de Pícaro]]
+  * [[en:rpd:kunai_item|Objeto Kunai]]
+  * [[en:rpd:melee_weapons|Armas de Cuerpo a Cuerpo]]
+  * [[en:rpd:ranged_weapons|Armas a Distancia]]
+  * [[mr:kunai_throw_spell|mr:kunai_throw_spell]] — Datos legibles por máquina
 
 {{tag> rpd spells rogue }}

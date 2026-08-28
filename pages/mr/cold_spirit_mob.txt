@@ -1,12 +1,14 @@
 ====== Cold Spirit Mob - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/ColdSpirit.java|ColdSpirit.java]] - Main implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/ColdSpirit.java|ColdSpirit.java]] — Main implementation
   * Location: `com/nyrds/pixeldungeon/mobs/icecaves/ColdSpirit.java`
-  * Extends: `Mob`
+  * Extends: `com.watabou.pixeldungeon.actors.mobs.Mob`
+  * Registered in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] (`registerMobClass(ColdSpirit.class);`)
 
 <code java>
 public class ColdSpirit extends Mob {
+
     public ColdSpirit(){
         hp(ht(50));
         baseSpeed = 1.3f;
@@ -36,41 +38,41 @@ public class ColdSpirit extends Mob {
   * **Base Speed:** 1.3
   * **Base Defense Skill:** 16
   * **Base Attack Skill:** 22
-  * **Flying:** true
+  * **Flying:** true (can pass over terrain that non-flying mobs cannot)
   * **EXP for Kill:** 8
   * **Max Level:** 20
   * **Damage Min:** 12
   * **Damage Max:** 15
-  * **Defense Rating:** 22
-  * **Loot:** 2% chance to drop Gold
+  * **Defense Rating (DR):** 22
+  * **Loot:** 2% chance to drop Gold (loot class `com.watabou.pixeldungeon.items.Gold`)
 
 ===== Abilities =====
-  * **Freezing Attack:** 25% chance on attack to apply Freezing effect to enemy position
+  * **Freezing Attack:** 25% chance on attack (1-in-4) to apply the `Freezing` blob at the enemy's position via `Freezing.affect(enemy.getPos())`
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration found.
 
+===== Sprite =====
+  * SpriteDesc: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/ColdSpirit.json|spritesDesc/ColdSpirit.json]]
+  * Texture: `mobs/cold_spirit.png` (16x16)
+  * Frames: idle [0,1,2], run [0,1,2], attack [3,2,1], die [4,5,6,7,8,9]
+  * `bloodColor: 0xFFDDDDFF` (light frost-tinted blood)
+
 ===== String Resources =====
 <code xml>
 <string name="ColdSpirit_Name">cold spirit</string>
-<string name="ColdSpirit_Gender">masculine</string>
 <string name="ColdSpirit_Name_Objective">cold spirit</string>
-<string name="ColdSpirit_Desc">The cold spirit is the embodiment of frost, in it's purest form. Being a mindless clot of magical energy, he obeys the will of the mage who called him or instead acts accordingly to basic instincts.</string>
+<string name="ColdSpirit_Gender">masculine</string>
+<string name="ColdSpirit_Desc">The cold spirit is the embodiment of frost, in it\'s purest form. Being a mindless clot of magical energy, he obeys the will of the mage who called him or instead acts accordingly to basic instincts.</string>
 </code>
+
+  * English: `RemixedDungeon/src/main/res/values/strings_all.xml`
+  * Other translations live in the corresponding `values-<locale>/strings_all.xml` files
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists.
 
 ===== Related Classes =====
-  * `com.watabou.pixeldungeon.actors.blobs.Freezing` - Freezing effect applied on attack
-  * `com.watabou.pixeldungeon.items.Gold` - Potential loot drop
-  * `com.watabou.pixeldungeon.actors.mobs.Mob` - Parent class
-
-===== Localization Files =====
-  * English: `RemixedDungeon/src/main/res/values/strings_all.xml`
-  * Russian: `RemixedDungeon/src/main/res/values-ru/strings_all.xml`
-  * German: `RemixedDungeon/src/main/res/values-de/strings_all.xml`
-  * Japanese: `RemixedDungeon/src/main/res/values-ja/strings_all.xml`
-  * Indonesian: `RemixedDungeon/src/main/res/values-in/strings_all.xml`
-  * Malay: `RemixedDungeon/src/main/res/values-ms/strings_all.xml`
-  * And other localization files
+  * `com.watabou.pixeldungeon.actors.blobs.Freezing` — Freezing blob applied on attack
+  * `com.watabou.pixeldungeon.items.Gold` — Potential loot drop
+  * `com.watabou.pixeldungeon.actors.mobs.Mob` — Parent class

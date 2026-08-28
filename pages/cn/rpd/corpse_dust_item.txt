@@ -7,37 +7,40 @@
 
 ==== 效果 ====
 当尸尘作为遗物装备时，它会施加狂怒增益：
-  * **伤害加成：** 攻击伤害翻倍（2倍正常伤害）
-  * **副作用：** 随机伤害（1-5点）会定期对玩家造成伤害（在生命值 > 最大生命值的1/5时，每回合10%概率）
-  * **诅咒：** 尸尘永久诅咒，一旦装备就无法卸下
+  * **伤害加成：** 攻击伤害翻倍（2倍正常伤害，由 `RageBuff.attackProc` 实现）
+  * **副作用：** 随机伤害（0-4点，`Math.random() * 5`）会定期对玩家造成伤害 —— 仅当 `hp > ht/5`（生命值高于最大生命值的1/5）时每回合触发，触发概率 10%
+  * **诅咒：** 尸尘永久诅咒（`setCursed(true)`），一旦装备就无法卸下
+  * **鉴定：** 始终已鉴定（`isIdentified()` 始终返回 `true`，`setCursedKnown(true)`）
 
 ==== 属性 ====
-  * **类型：** 遗物（任务物品）
+  * **类型：** 遗物（任务物品），继承自 `Artifact`
   * **重量：** 1（很轻）
   * **诅咒：** 是（永久）
   * **鉴定：** 始终已鉴定
+  * **图标：** `ItemSpriteSheet.DUST`
 
 ==== 功能 ====
   * **装备：** 必须装备在遗物槽中才能提供其效果
   * **狂怒增益：** 激活时，显著增加伤害输出，同时造成自伤
-  * **风险/回报：** 高伤害潜力，但有自毁风险
+  * **风险/回报：** 高伤害潜力，但有自毁风险（生命值低时停止自伤）
 
 ==== 获取 ====
   * 在地牢监狱层的铁匠任务中找到
   * 在提供2块金属修理他的铁砧后，由矮人铁匠给予
 
 ==== 代码参考 ====
-  * Java: ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/CorpseDust.java|CorpseDust.java]]''
+  * Java 物品类: ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/CorpseDust.java|CorpseDust.java]]''
   * 狂怒增益: ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/RageBuff.java|RageBuff.java]]''
 
 ==== 字符串资源 ====
-  * ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1376|CorpseDust_Name]]''
-  * ''[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1377|CorpseDust_Info]]''
+  * 中文: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L580-L582|values-zh-rCN/strings_all.xml]]
+  * 英文: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L583-L585|values/strings_all.xml]]
 
 ==== 相关物品 ====
   * **任务** - 任务相关内容
   * **遗物** - 其他遗物物品
   * [[cn:rpd:rage_buff|狂怒增益]] - 此物品施加的增益
   * **诅咒物品** - 其他永久诅咒物品
+  * [[mr:corpse_dust_item|mr:corpse_dust_item]] - 机器可读引用页
 
 {{tag> rpd 物品 遗物 任务 诅咒 }}

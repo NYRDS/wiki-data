@@ -1,4 +1,4 @@
-====== Wand Of Shadowbolt Item - Code References ======
+====== Wand of Shadowbolt - Code References ======
 
 ===== Entity Information =====
   * **Entity Kind**: WandOfShadowbolt
@@ -7,41 +7,47 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/WandOfShadowbolt.java|WandOfShadowbolt.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (registration)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (registration at line 428: `registerItemClass(WandOfShadowbolt.class);`)
+  * Parent: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]]
 
 ===== Configuration Files =====
   * **JSON**: This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
   * **Name**: @string/WandOfShadowbolt_Name ("wand of shadowbolt")
-  * **Description**: @string/WandOfShadowbolt_Info ("This wand emits dark, malicious energy.")
-  * **English**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1659-L1660|strings_all.xml]]
-  * **Russian**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2362-L2363|strings_all.xml]]
+  * **Description**: @string/WandOfShadowbolt_Info ("This wand emits  dark, malicious energy.")
+  * **English**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2393-L2394|strings_all.xml]]
+  * **Russian**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2402-L2403|strings_all.xml]]
+
+<code xml>
+<string name="WandOfShadowbolt_Name">wand of shadowbolt</string>
+<string name="WandOfShadowbolt_Info">This wand emits  dark, malicious energy.</string>
+</code>
 
 ===== Lua Scripts =====
   * This entity is implemented in Java, no Lua script exists
 
 ===== Implementation Details =====
-  * **Parent Class**: Wand
+  * **Parent Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand]]
   * **Image File**: items/wands.png
   * **Image Index**: 13
-  * **Known on Identify**: Yes (isKnown() returns true)
+  * **Always Identified**: Yes — `isKnown()` returns `true`, so the wand never appears as an unknown wand
   * **Sound Effect**: Assets.SND_ZAP
   * **Particle Effect**: PurpleParticle.FACTORY (0x551A8B color)
   * **Particle Interval**: 0.1f
 
 ===== Game Mechanics =====
-  * **Damage Formula**: Random.Int(4 + level*2, 3 + level*3)
-  * **Visual Effect**: ch.getSprite().burst(0x551A8B, level / 2 + 3)
+  * **Damage Formula**: `Random.Int(4 + level*2, 3 + level*3)` — i.e. the minimum is `4 + 2*level` and the maximum is `3 + 3*level`
+  * **Visual Effect on Hit**: `ch.getSprite().burst(0x551A8B, level / 2 + 3)` — purple particle burst whose count scales with wand level
   * **Projectile Type**: MagicMissile.shadow()
   * **Target**: Single enemy (Char)
-  * **Damage Type**: Magic damage from wand
+  * **Damage Type**: Magic damage (no physical mitigation; subject to magical resistances)
 
 ===== Code References =====
-  * **Constructor**: Sets imageFile to "items/wands.png" and image to 13
-  * **onZap()**: Deals damage and creates purple particle burst effect
-  * **fx()**: Creates shadow missile projectile and plays zap sound
-  * **isKnown()**: Returns true (wand is always identified)
-  * **emitter()**: Returns PurpleParticle.FACTORY for visual effect
-  * **emitterInterval()**: Returns 0.1f for particle emission rate
-  * **desc()**: Returns string from R.string.WandOfShadowbolt_Info
+  * **Constructor**: Sets `imageFile = "items/wands.png"` and `image = 13`
+  * **onZap(int cell, Char ch)**: Deals damage and creates purple particle burst effect at the target cell
+  * **fx(int cell, Callback callback)**: Creates shadow missile projectile and plays zap sound
+  * **isKnown()**: Returns `true` (wand is always identified)
+  * **emitter()**: Returns `PurpleParticle.FACTORY` for visual effect
+  * **emitterInterval()**: Returns `0.1f` for particle emission rate
+  * **desc()**: Returns string from `R.string.WandOfShadowbolt_Info`
