@@ -1,24 +1,38 @@
 ====== Doctor Armor ======
 
-The **Doctor Armor** is the class-specific armor for the [[en:rpd:doctor_class|Doctor]] class in Remixed Pixel Dungeon. It functions as a standard armor piece without any special abilities.
+The **Doctor Armor** is the class-specific armor for the [[en:rpd:doctor_class|Doctor]] class in Remixed Pixel Dungeon. It grants the Doctor a powerful area-of-effect ability: the **Miasma Cloud**.
 
 ==== Description ====
-The Doctor Armor is the designated class armor for the Doctor class. Unlike other class armors, it does not have any special active abilities or unique mechanics beyond standard armor properties.
+The Doctor Armor is the designated class armor for the Doctor class. When activated, its special ability releases a cloud of noxious miasma that damages and disables enemies caught in it. The Doctor, protected by the mask, is immune to the gas they create.
 
-==== Special Ability ====
-The Doctor Armor does not have any special active abilities or effects. It functions as a regular armor piece with standard defensive properties.
+==== Special Ability: Miasma Cloud ====
+The Doctor Armor's active special ability is **Miasma Cloud** (trigger key: `DoctorSpecial`):
+
+  * **Effect:** Spawns a 100-volume cloud of Miasma Gas centered on the Doctor (see `MiasmaGas.evolve()`)
+  * **Applies to enemies caught in the cloud:**
+    * [[en:rpd:poison_buff|Poison]] (damage over time, 3× base duration)
+    * [[en:rpd:weakness_buff|Weakness]] (reduced damage)
+    * [[en:rpd:vertigo_buff|Vertigo]] (disorientation)
+  * **Visual:** Bursts 10 Miasma specks at the Doctor's position
+  * **Cost:** Consumes one turn (`Actor.TICK`)
+  * **Self-immunity:** The Doctor is unaffected by the gas (Miasma Gas checks `ToxicGas` / `GasesImmunity` immunities, which the Doctor's mask provides)
 
 ==== Class Restriction ====
-This armor can only be effectively used by the Doctor class. If worn by other classes, it may not function properly or could have negative effects.
+This armor can only be equipped by the [[en:rpd:doctor_class|Doctor]] class. Attempting to equip it on any other class triggers a warning: "Only plague doctors can use this armor!" (`DoctorArmor_NotDoctor`).
 
-==== Content Verification ====
-  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/DoctorArmor.java|DoctorArmor.java]]
-  * Code verification: DoctorArmor extends ClassArmor but has empty implementations for special() and doSpecial() methods
+==== Visual Appearance ====
+Despite the internal name `DoctorArmor`, the in-game sprite visual name is **PlagueDoctorArmor** (see `DoctorArmor.getVisualName()`). The armor is rendered with a helmet, collar, and full hair/facial-hair coverage (`hasHelmet`, `hasCollar`, `coverHair`, `coverFacialHair`).
 
 ==== See Also ====
   * [[en:rpd:doctor_class|Doctor Class]]
   * [[en:rpd:class_armor_item|Class Armor Abilities]]
   * [[en:rpd:items|Items]]
   * [[en:rpd:mechanics|Game Mechanics]]
+
+==== Content Verification ====
+  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/DoctorArmor.java|DoctorArmor.java]]
+  * Cloud behavior: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/MiasmaGas.java|MiasmaGas.java]]
+  * String resources: `DoctorArmor_Name` ("Doctor's Garb"), `DoctorArmor_Info`, `DoctorArmor_NotDoctor` in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+  * Code verification: DoctorArmor extends ClassArmor; `doSpecial()` seeds a MiasmaGas blob of volume 100; the class restriction is enforced in `doEquip()`
 
 {{tag> rpd armor class_armor doctor}}

@@ -6,29 +6,29 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/Nightmare.java|Nightmare.java]]
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Nightmare.json|Nightmare.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Nightmare.json|Nightmare.json]] - Sprite animation configuration
 
 ===== String Resources =====
-<code xml>
+''<code xml>
 <string name="Nightmare_Name">nightmare</string>
 <string name="Nightmare_Gender">masculine</string>
 <string name="Nightmare_Name_Objective">nightmare</string>
 <string name="Nightmare_Desc">A grotesque creature that looks like a bunch of flesh-made tentacles. Nightmares are the incarnation of the Old God's sinister thoughts.</string>
-</code>
+</code>''
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
 ===== Code Implementation Details =====
 This mob has the following properties based on the Java implementation:
-  * **HP**: 80
-  * **Defense Skill**: 24
-  * **Attack Skill**: 26
-  * **Damage Range**: 20-25
-  * **Damage Reduction**: 10
+  * **HP**: 80 (`ht(80)`)
+  * **Defense Skill**: 24 (`baseDefenseSkill`)
+  * **Attack Skill**: 26 (`baseAttackSkill`)
+  * **Damage Range**: 20-25 (`dmgMin`/`dmgMax`)
+  * **Damage Reduction**: 10 (`dr`)
   * **Special Abilities**:
-    * Flying (can move over terrain obstacles)
-    * Roots proc: 10% chance to root target on attack
-    * Paralysis proc: 10% chance to paralyze target on attack
-  * **Behavior**: Always in hunting state (aggressive)
-  * **Exp**: 0 (no experience gained from killing)
+    * Flying (`flying = true`, can move over terrain obstacles)
+    * Roots proc: 10% chance to root target on attack (`Buff.affect(enemy, Roots.class)`)
+    * Paralysis proc: 10% chance to stun/paralyse target on attack (`Buff.affect(enemy, Stun.class)`; `Stun.attachTo` calls `target.paralyse(true)`)
+  * **Behavior**: Always in hunting state (aggressive) - `act()` calls `setState(MobAi.getStateByClass(Hunting.class))` after `super.act()`
+  * **Exp**: 0 (`expForKill = 0`, no experience gained from killing)
