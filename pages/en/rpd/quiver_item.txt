@@ -12,7 +12,7 @@ The **Quiver** is a special bag in Remixed Dungeon designed to store arrows. It 
   * **Material**: Leather
 
 ==== Description ====
-A leather quiver suitable to hold any amount of arrows. Unlike what some sources might suggest, the quiver does not specifically protect arrows from burning - it simply provides unlimited storage for arrows.
+A leather quiver suitable to hold any amount of arrows. Because the Quiver extends `Bag` and the Burning buff's `applyToCarriedItems()` only iterates the backpack (skipping `Bag` instances), arrows stored in the Quiver are protected from the Burning effect; arrows left loose in the backpack can still be burned.
 
 ==== Acquisition ====
   * Sold by the shopkeeper in the Town level for 50 gold
@@ -22,7 +22,7 @@ A leather quiver suitable to hold any amount of arrows. Unlike what some sources
   * Essential for archer builds and Elf class characters who rely on bows
   * Eliminates inventory management concerns for arrows
   * Cost-effective at 50 gold considering unlimited capacity
-  * Does not protect arrows from fire/burning effects
+  * Protects stored arrows from the Burning buff (backpack arrows are not protected)
 
 ==== Code References ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/bags/Quiver.java|Quiver.java]]
