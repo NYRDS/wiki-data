@@ -5,7 +5,7 @@
 **液火药水**是Remixed Pixel Dungeon中的一种可投掷药水，当投掷时会生成火焰。
 
 ==== 描述 ====
-一个装满奇异液体的玻璃瓶，暴露在空气中时会点燃。当投向一个位置时，会产生一片燃烧的火焰，可以对敌人造成伤害并蔓延到易燃地形。根据字符串资源："这个瓶子里装着一种不稳定的化合物，一旦暴露在空气中就会猛烈地燃烧起来。"
+一个装满奇异液体的玻璃瓶，暴露在空气中时会点燃。当投向一个位置时，会产生一片燃烧的火焰，可以对敌人造成伤害并蔓延到易燃地形。根据字符串资源："这个瓶子里装着一种不稳定的化合物，一旦暴露在空气中就会猛烈地燃烧起来。"（英文原文："This flask contains an unstable compound which will burst violently into flame upon exposure to open air."）
 
 ==== 属性 ====
   * **类型:** 可投掷药水
@@ -61,7 +61,7 @@
 ==== 效果 ====
 在地面上破碎时，液火药水创建一片燃烧的火焰区域，对区域内所有生物造成几个回合的伤害。
 
-根据游戏的字符串资源："这实际上是一个非常巧妙的炼金制备，暴露在空气中时会点燃。"
+根据游戏的字符串资源（`PotionOfLiquidFlame_Info`），药水描述为："这个瓶子里装着一种不稳定的化合物，一旦暴露在空气中就会猛烈地燃烧起来。"
 
 ==== 代码引用 ====
   * **Java 实现:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java|PotionOfLiquidFlame.java]]
@@ -75,13 +75,12 @@
   * **声音效果:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L25|SND_SHATTER]] - 瓶子破碎时的声音
   * **湿润支持:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L32-L38|moistenArrow method]] - 启用创造火焰箭
   * **基础价格:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L30|basePrice method]] - 40 金币价值
-  * **字符串资源:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2197-L2198|PotionOfLiquidFlame_Name, PotionOfLiquidFlame_Info]] - 显示 "这个瓶子里装着一种不稳定的化合物，一旦暴露在空气中就会猛烈地燃烧起来。"
+  * **字符串资源:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1652-L1653|PotionOfLiquidFlame_Name, PotionOfLiquidFlame_Info]] - 在 `strings_all.xml` 中定义药水名称与描述
   * **物品标签索引:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L11|labelIndex = 1]] - 在 UI 中识别药水类型
   * **火焰箭创建:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L32-L38|moistenArrow method]] - 从普通箭矢创建火焰箭物品
   * **游戏场景集成:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L27|GameScene.add(fire)]] - 将创建的火焰添加到当前游戏场景
   * **治疗药水基类:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|UpgradablePotion]] - 提供升级机制
-  * **精灵图像:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/items/potions.png#L33-L45|items/potions.png]] - 资源文件中的精灵位置
-  * **精灵索引:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemsSlices.txt#L33-L45|ItemsSlices.txt]] - 定义此药水精灵在精灵文件中的位置
+  * **精灵图像:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/items/potions.png|items/potions.png]] - 资源文件中的精灵位置
   * **物品状态处理:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ItemStatusHandler.java|ItemStatusHandler 类]] - 处理此物品的识别系统
   * **溅射颜色:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L233-L240|splashColors array]] - 从药水精灵提取颜色用于溅射效果
   * **物品堆叠性:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L39|stackable = true]] - 药水可以堆叠
