@@ -9,25 +9,31 @@
 
 ==== Свойства ====
   * **Тип**: Метательное оружие
-  * **Урон**: 1-4 (увеличивается с уровнем)
+  * **Урон**: 1-4 (увеличивается с уровнем, +1/+2 за улучшение)
+  * **Требуемая сила**: 10
   * **Скорость**: Быстрое
   * **Дальность**: Дальняя
-  * **Улучшаемый**: Да
+  * **Улучшаемый**: Да (`isUpgradable() == true`)
+  * **Стакается**: Нет (`stackable = false`)
+  * **Цена**: 100 золота
 
 ==== Получение ====
   * **Стартовое оружие**: Охотница начинает с бумерангом
-  * **Можно улучшить**: Да, как обычное оружие
+  * **Можно улучшить**: Да, неограниченно (нет ограничения на максимальный уровень)
+  * **Цена в магазине**: 100 золота
 
 ==== Механика ====
-  * Бумеранг возвращается к владельцу после броска
-  * Нельзя улучшить до +5 как обычные метательные предметы
-  * При использовании с оружием ближнего боя не блокирует атаку
+  * Бумеранг возвращается к владельцу после броска или промаха
+  * После возврата возвращается в исходный слот инвентаря или в слот быстрого доступа, если был там ранее
+  * Нельзя складывать в стопку (в отличие от большинства метательных предметов)
+  * Каждое улучшение увеличивает MIN на 1 и MAX на 2 (урон растёт быстрее, чем у обычного оружия)
+  * Зачарования типа Piercing и Swing автоматически заменяются на случайные, так как бумеранг несовместим с ними
 
 ==== Ссылка на код ====
   * Источник информации: Java-класс [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Boomerang.java|Boomerang.java]]
-  * Реализация: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Boomerang.java
+  * Базовый класс метательного оружия: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]]
   * Строковые ресурсы:
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1138-L1139|Boomerang_Name, Boomerang_Info по-русски]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L314-L316|Boomerang_Gender, Boomerang_Info, Boomerang_Name по-русски]]
 
 ==== См. также ====
   * [[ru:rpd:huntress_class|Класс Охотница]]

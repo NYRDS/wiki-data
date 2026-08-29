@@ -2,47 +2,50 @@
 
 {{ rpd:images:scroll_of_weapon_upgrade_item.png|Weapon Upgrade/Enhancement }}
 
-Weapon augmentation is an advanced enhancement system that allows players to customize and improve their weapons with special properties in Remixed Dungeon.
+Weapon augmentation in Remixed Dungeon refers to the **Reforging** mechanic offered by the [[en:rpd:blacksmith_npc|Troll Blacksmith]] quest NPC. There is no "augmentation" subsystem that adds properties such as Precise, Swift, Heavy, or Light; the only in-game weapon modification beyond upgrading is the reforging service provided by the Blacksmith.
 
-==== Augmentation Mechanics ====
-Weapons can be augmented to add special properties:
+==== Reforging Mechanic ====
+The Blacksmith's reforge combines two items of the same type (same `entityKind`) into a single item whose level is one higher than the higher-level of the two inputs.
 
-  * **Damage Augmentation** - Increases minimum or maximum damage
-  * **Speed Augmentation** - Adjusts attack speed of the weapon
-  * **Special Effects** - Adds specific combat properties to weapons
-  * **Trade-offs** - Augmentations typically improve one aspect while reducing another
+  * **Item kind:** Both items must share an entity kind (e.g. two Short Swords, two Leather Armors).
+  * **Identification:** Both items must be identified.
+  * **Cursed state:** Neither item may be cursed.
+  * **Negative levels:** Neither item may have a negative upgrade level (`level() < 0`).
+  * **Upgradability:** Both items must be upgradable (`isUpgradable() == true`).
 
-==== Types of Augmentation ====
-**Speed Augmentations:**
-  * **Precise** - Increases accuracy, decreases attack speed
-  * **Swift** - Increases attack speed, decreases accuracy
+When the reforge is performed:
+  * The higher-level of the two items is upgraded by 1.
+  * The other item is consumed.
+  * The hero spends 2 turns (`Dungeon.hero.spendAndNext(2f)`).
+  * The `SND_EVOKE` sound is played.
+  * The `Badges.validateItemLevelAcquired` badge check is run.
 
-**Damage Augmentations:**
-  * **Heavy** - Increases minimum damage, decreases maximum damage 
-  * **Light** - Decreases minimum damage, increases maximum damage
+==== Differences from Upgrading ====
+  * A regular upgrade (via [[en:rpd:scroll_of_upgrade_item|Scroll of Upgrade]] or [[en:rpd:scroll_of_weapon_upgrade_item|Scroll of Weapon Upgrade]]) raises the level of a single item by 1.
+  * The Blacksmith's reforge consumes the second item while raising the first item by 1 — the net effect on a single item is identical to one upgrade, but the second item is destroyed.
+  * For weapons, the Scroll of Weapon Upgrade is the upgrade path that may add or preserve an enchantment; the Blacksmith's reforge does not change enchantments on the surviving item.
 
-==== Acquisition ====
-  * **Smith NPC** - Can augment weapons in special rooms at higher dungeon levels
-  * **Special Items** - Rare items that can augment weapons
-  * **Upgraded Items** - Some already augmented weapons may appear in the dungeon
-  * **Challenges** - Some challenge modes may affect augmentation chances
+==== Acquiring the Blacksmith Service ====
+The Troll Blacksmith spawns on dungeon levels deeper than 11 (controlled by `Dungeon.depth > 11` in the spawn code). The quest has two alternative paths:
 
-==== Strategy ====
-  * Consider your character's build when selecting augmentations
-  * Balance damage and speed based on your playstyle
-  * Some weapons work better with specific types of augmentation
-  * Think about how augmentations interact with enchantments and other upgrades
+  * **Gold path:** Retrieve 15 pieces of dark gold ore and bring them together with the pickaxe the Blacksmith provides.
+  * **Blood path:** Use the pickaxe the Blacksmith provides to kill a bat, then return the blood-stained pickaxe.
+
+After the quest is completed, the Blacksmith will open the reforge window. Once a reforge has been performed, the Blacksmith will only say "I'm busy. Get lost!" until the dungeon is reset.
 
 ==== Source Code ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] - Base weapon implementation with augmentation
-  * Augmentation System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java#L200-L220|Augmentation methods]]
-  * Smith NPC: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npc/Blacksmith.java|Blacksmith.java]]
+  * NPC Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Blacksmith.java|Blacksmith.java]] — Quest state and reforge logic
+  * Reforge Window: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndBlacksmith.java|WndBlacksmith.java]] — Item selection UI
+  * Item Upgrade Base: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] — `level()`, `upgrade()`, `isUpgradable()`
+  * Scroll of Weapon Upgrade: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfWeaponUpgrade.java|ScrollOfWeaponUpgrade.java]] — Enchantment-preserving upgrade path
+  * Sprite: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Blacksmith.json|Blacksmith.json]] — Sprite definition
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] — `Blacksmith_*` and `WndBlacksmith_*` entries
 
 ==== See Also ====
-  * [[en:rpd:weapon_upgrades_mechanic|Weapon Upgrades]]
-  * [[en:rpd:enchantments|Enchantments]]
-  * [[en:rpd:smith_npc|Smith NPC]]
-  * [[en:rpd:weapons|Weapons]]
-  * [[en:rpd:items|Items]]
+  * [[en:rpd:blacksmith_npc|Troll Blacksmith]] — The NPC that performs the reforge
+  * [[en:rpd:weapon_upgrades_mechanic|Weapon Upgrades]] — General weapon upgrade mechanics
+  * [[en:rpd:scroll_of_weapon_upgrade_item|Scroll of Weapon Upgrade]] — Single-item upgrade scroll
+  * [[en:rpd:weapons|Weapons]] — All weapons
+  * [[en:rpd:items|Items]] — All item types
 
-{{tag> rpd items weapons augmentation }}
+{{tag> rpd items weapons augmentation reforge blacksmith}}

@@ -1,0 +1,27 @@
+====== Named Entity Kind ======
+
+**NamedEntityKind** is a base Java interface in Remixed Dungeon used as a common contract for identifying and naming game entities. It is defined in `com.nyrds.pixeldungeon.mechanics`.
+
+==== Interface Definition ====
+<code java>
+package com.nyrds.pixeldungeon.mechanics;
+
+public interface NamedEntityKind {
+    String getEntityKind(); //this one for machines
+    String name(); //this one for humans
+}
+</code>
+
+==== Methods ====
+  * **``getEntityKind()``** — Returns the machine-readable entity kind identifier (e.g. used for serialization, factory lookup, JSON configuration matches).
+  * **``name()``** — Returns the human-readable name used in the UI and logs. In subclasses this is typically implemented by returning values from string resources via ``StringsManager.getVar(R.string.XXX)``.
+
+==== Source Code ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind.java]]
+  * Machine-readable reference: [[mr:named_entity_kind|NamedEntityKind (Code References)]]
+
+==== See Also ====
+  * [[mr:doom_interface|Doom Interface]] — Example interface that extends NamedEntityKind
+  * [[mr:buff|Buff]] — Base buff class that implements NamedEntityKind
+
+{{tag> rpd interface entity base_class}}

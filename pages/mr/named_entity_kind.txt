@@ -1,0 +1,46 @@
+====== Named Entity Kind - Code References ======
+
+===== Java Classes =====
+
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind.java]]
+
+<code java>
+// In NamedEntityKind.java
+package com.nyrds.pixeldungeon.mechanics;
+
+public interface NamedEntityKind {
+    String getEntityKind(); //this one for machines
+    String name(); //this one for humans
+}
+</code>
+
+**Interface Definition:**
+  * Package: `com.nyrds.pixeldungeon.mechanics`
+  * Methods:
+    * `getEntityKind()` — returns the machine-readable entity kind identifier (e.g. used for serialization, factory lookup, JSON configuration matches)
+    * `name()` — returns the human-readable name used in UI and logs
+
+===== JSON Configuration =====
+
+The `NamedEntityKind` interface does not have JSON configuration. It is:
+  * A Java interface implemented by base game entity classes (mobs, items, buffs, spells, etc.)
+  * Used as a common contract for identifying and naming entities
+
+===== String Resources =====
+
+The `NamedEntityKind` interface does not reference string resources directly. The `name()` method is typically implemented in subclasses to return values from string resources via `StringsManager.getVar(R.string.XXX)`.
+
+===== Lua Scripts =====
+
+The `NamedEntityKind` interface is implemented entirely in Java. No Lua scripts use it directly.
+
+===== Related mr Entities =====
+
+**Interfaces extending NamedEntityKind:**
+  * [[mr:doom_interface|Doom Interface]] — Interface for doom-type buffs (extends NamedEntityKind)
+
+**Entities implementing NamedEntityKind (selected):**
+  * [[mr:artifact_buff|Artifact Buff]] — Base class for artifact buffs
+  * [[mr:buff|Buff]] — Base buff system
+
+{{tag> rpd mr code reference interface entity}}

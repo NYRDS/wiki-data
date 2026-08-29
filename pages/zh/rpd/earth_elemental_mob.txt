@@ -1,0 +1,54 @@
+====== 土元素 ======
+
+{{ rpd:images:earth_elemental_mob.png|土元素 }}
+
+==== 描述 ====
+土元素是由濃縮自然力量驅動的土塊。它們出現在長草區域，並擁有多種免疫。
+
+==== 數據 ====
+  * **生命值**: 深度 * 10 + 1
+  * **攻擊技能**: (深度 / 2 + 1) / 2 + 1
+  * **防禦技能**: 深度 / 2 + 1
+  * **傷害**: hp/5 到 hp/5
+  * **傷害減免**: expForKill (深度 + 1)
+  * **擊殺經驗**: 深度 + 1
+  * **最高等級**: 深度 + 2
+  * **速度**: 正常，但在液體地形上減半
+
+==== 特殊能力 ====
+  * **攻擊**: 攻擊時有 50% 機率在目標位置的合適地形上引起再生
+  * **再生**: 以 max(expForKill,10) 的強度影響 15 格範圍
+
+==== 抗性與免疫 ====
+  * 免疫 [[zh:rpd:roots_buff|根纏]]
+  * 免疫 [[zh:rpd:paralysis_buff|麻痹]]
+  * 免疫 [[zh:rpd:stun_buff|暈眩]]
+  * 免疫 [[zh:rpd:toxic_gas_buff|劇毒氣體]]
+  * 免疫 [[zh:rpd:burning_buff|燃燒]]
+  * 免疫 [[zh:rpd:bleeding_buff|流血]]
+
+==== 掉落 ====
+  * [[zh:rpd:earthroot_seed_item|大地之根種子]] (10% 機率)
+
+==== 生成信息 ====
+  * 根據 Bestiary.json 中的感覺部分在長草區域生成
+  * 生成率: 1 在 GRASS 區域
+
+==== 策略 ====
+  * 土元素可以創建再生區域，可能生成植物或治療效果
+  * 它們在液體地形中移動較慢
+  * 它們的高傷害減免使其難以擊敗
+  * 小心再生效果可能創造額外的挑戰或好處
+
+==== 源代碼參考 ====
+  * 核心實現: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java|EarthElemental.java]]
+  * 生成配置: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L95|Bestiary.json#L95]] (Feelings 部分, GRASS)
+  * 地形檢測: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java#L54|EarthElemental.java#L54]] (attackProc 方法的地形檢查)
+  * 速度修改: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java#L47|EarthElemental.java#L47]] (speed 方法)
+
+==== 字符串資源 ====
+  * 土元素名稱: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L728|EarthElemental_Name]]
+  * 土元素描述: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L726|EarthElemental_Desc]]
+  * 俄文字符串: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L726|values-ru/strings_all.xml 第 726-729 行]]
+
+{{tag> rpd mobs elementals earth }}

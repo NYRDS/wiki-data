@@ -1,0 +1,54 @@
+====== Elemental de Tierra ======
+
+{{ rpd:images:earth_elemental_mob.png|Elemental de Tierra }}
+
+==== Descripción ====
+Los elementales de tierra son masas de tierra impulsadas por fuerzas concentradas de la naturaleza. Aparecen en áreas con hierba y tienen varias inmunidades.
+
+==== Estadísticas ====
+  * **PS:** profundidad * 10 + 1
+  * **Habilidad de Ataque:** (profundidad / 2 + 1) / 2 + 1
+  * **Habilidad de Defensa:** profundidad / 2 + 1
+  * **Daño:** hp/5 a hp/5
+  * **Reducción de Daño:** expForKill (profundidad + 1)
+  * **Experiencia por Matar:** profundidad + 1
+  * **Nivel Máximo:** profundidad + 2
+  * **Velocidad:** Normal, pero se reduce a la mitad en terreno líquido
+
+==== Habilidades Especiales ====
+  * **Ataque:** Al atacar, tiene un 50% de probabilidad de causar regeneración en terreno adecuado en la ubicación del objetivo
+  * **Regeneración:** Afecta un área de 15 celdas con fuerza max(expForKill,10)
+
+==== Resistencias e Inmunidades ====
+  * Inmune a [[es:rpd:roots_buff|Raíces]]
+  * Inmune a [[es:rpd:paralysis_buff|Parálisis]]
+  * Inmune a [[es:rpd:stun_buff|Aturdimiento]]
+  * Inmune a [[es:rpd:toxic_gas_buff|Gas Tóxico]]
+  * Inmune a [[es:rpd:burning_buff|Quemadura]]
+  * Inmune a [[es:rpd:bleeding_buff|Sangrado]]
+
+==== Botín ====
+  * [[es:rpd:earthroot_seed_item|Semilla de Raíz de Tierra]] (10% de probabilidad)
+
+==== Información de Aparición ====
+  * Aparece en áreas con hierba según la sección de Sentimientos en Bestiary.json
+  * Tasa de aparición: 1 en áreas GRASS
+
+==== Estrategia ====
+  * Los elementales de tierra pueden crear zonas de regeneración que pueden generar plantas o efectos de curación
+  * Se mueven más lentamente en terreno líquido
+  * Su alta reducción de daño los hace difíciles de derrotar
+  * Ten cuidado con el efecto de regeneración que puede crear desafíos o beneficios adicionales
+
+==== Referencias de Código Fuente ====
+  * Implementación Principal: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java|EarthElemental.java]]
+  * Configuración de Aparición: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L95|Bestiary.json#L95]] (sección Feelings, GRASS)
+  * Detección de Terreno: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java#L54|EarthElemental.java#L54]] (método attackProc para comprobaciones de terreno)
+  * Modificación de Velocidad: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java#L47|EarthElemental.java#L47]] (método speed)
+
+==== Recursos de Cadenas de Texto ====
+  * Nombre del Elemental de Tierra: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L728|EarthElemental_Name]]
+  * Descripción del Elemental de Tierra: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L726|EarthElemental_Desc]]
+  * Cadenas en ruso: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L726|líneas 726-729]] en values-ru/strings_all.xml
+
+{{tag> rpd mobs elementals earth }}
