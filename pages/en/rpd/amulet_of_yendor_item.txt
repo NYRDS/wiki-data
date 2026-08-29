@@ -3,22 +3,23 @@
 {{ rpd:images:amulet_item.png|Amulet of Yendor }}
 
 ==== Description ====
-The Amulet of Yendor is the most coveted artifact in the dungeon. It is said that the amulet alone holds the power to rule the dungeon - or to destroy it. Obtaining this legendary artifact is the primary objective of every adventurer who enters the dungeon.
+The Amulet of Yendor is the most powerful known artifact of unknown origin. It is said that the amulet is able to fulfill any wish if its owner's will-power is strong enough to "persuade" it to do it. Obtaining this legendary artifact is the primary objective of every adventurer who enters the dungeon.
 
 ==== Properties ====
   * **Item Type**: Artifact
   * **Rarity**: Unique
-  * **Location**: Found at the bottom of the dungeon
+  * **Location**: Found at the bottom of the dungeon (pedestal on the final level)
   * **Objective**: Primary game win condition
   * **Upgradable**: No
-  * **Identify**: Not required
+  * **Identify**: Not required (always identified)
 
 ==== Mechanics ====
 The Amulet of Yendor serves as the ultimate goal of the dungeon:
-  * It can only be found at the bottom of the dungeon after defeating all the bosses
-  * Obtaining it completes the main objective and wins the game
-  * Once obtained, the player receives a victory message: "You finally hold it in your hands, the Amulet of Yendor. Using its power you can finally destroy the dungeon or rule it. Either way, your path to victory is now clear."
-  * The amulet cannot be dropped or discarded once picked up
+  * It can only be found at the bottom of the dungeon on a pedestal
+  * Picking it up triggers the amulet scene and ends the game via the WIN_AMULET ranking
+  * Once obtained, the player receives a victory message: "You finally hold it in your hands, the Amulet of Yendor. Using its power you can take over the world or bring peace and prosperity to people or whatever. Anyway, your life will change forever and this game will end here. Or you can stay a mere mortal a little longer."
+  * The amulet cannot be thrown or dropped (the `AC_THROW` and `AC_DROP` actions are removed; only `AC_END` and the default actions remain)
+  * Cannot be upgraded and is always considered identified
 
 ==== Strategy ====
   * Focus on survival and progression to reach the final boss
@@ -26,12 +27,14 @@ The Amulet of Yendor serves as the ultimate goal of the dungeon:
   * Plan your escape route after obtaining it
 
 ==== Code References ====
-  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Amulet.java|Amulet.java]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2120-L2127|strings_all.xml]]
-  * Item Registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Amulet.java|Amulet.java]] (removes `AC_THROW` and `AC_DROP`, adds `AC_END`; always identified; not upgradable)
+  * Amulet Scene (victory text): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/scenes/AmuletScene.java|AmuletScene.java]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L61-L66|strings_all.xml]] (Amulet_Name, Amulet_Info, Amulet_ACEnd, AmuletScene_Txt)
+  * Item Registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L243|ItemFactory.java]]
 
 ==== See Also ====
   * [[en:rpd:dungeon|Dungeon]]
   * [[en:rpd:bosses|Bosses]]
+  * [[mr:amulet_item|mr:amulet_item]] - Machine-readable code references
 
 {{tag> rpd items artifact quest}}

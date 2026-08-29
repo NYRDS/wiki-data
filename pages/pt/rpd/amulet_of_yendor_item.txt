@@ -3,31 +3,38 @@
 {{ rpd:images:amulet_item.png|Amuleto de Yendor }}
 
 ==== Descrição ====
-O Amuleto de Yendor é o artefato mais cobiçado na masmorra. Diz-se que o amuleto por si só detém o poder de governar a masmorra - ou destruí-la. Obter este artefato lendário é o objetivo principal de cada aventureiro que entra na masmorra.
+O Amuleto de Yendor é o mais poderoso artefato conhecido de origem desconhecida. Diz-se que o amuleto é capaz de cumprir qualquer desejo se a força de vontade do seu dono é forte o suficiente para "convencer" a fazê-lo. Obter este artefato lendário é o objetivo principal de cada aventureiro que entra na masmorra.
 
 ==== Propriedades ====
   * **Tipo de Item**: Artefato
   * **Raridade**: Único
-  * **Localização**: Encontrado no fundo da masmorra
+  * **Localização**: Encontrado no fundo da masmorra (em um pedestal no último nível)
   * **Objetivo**: Condição principal de vitória do jogo
+  * **Atualizável**: Não
+  * **Identificação**: Não requerida (sempre identificado)
 
 ==== Mecânicas ====
 O Amuleto de Yendor serve como o objetivo final da masmorra:
-  * Só pode ser encontrado no fundo da masmorra após derrotar todos os chefes
-  * Obtê-lo completa o objetivo principal e vence o jogo
-  * Ao obtê-lo, o jogador recebe uma mensagem de vitória: "Você finalmente o segura em suas mãos, o Amuleto de Yendor. Com seu poder você pode finalmente destruir a masmorra ou governá-la. De qualquer forma, seu caminho para a vitória agora está claro."
+  * Só pode ser encontrado no fundo da masmorra, sobre um pedestal
+  * Ao pegá-lo, dispara a cena do amuleto e encerra o jogo com a classificação WIN_AMULET
+  * Ao obtê-lo, o jogador recebe uma mensagem de vitória: "Você finalmente segurou em suas mãos o Amuleto de Yendor. Usando o seu poder, você pode dominar o mundo ou trazer paz e prosperidade para as pessoas ou o que quiser. De qualquer forma, sua vida vai mudar para sempre e este jogo vai terminar aqui. Ou você pode continuar um mero mortal um pouco mais."
+  * O amuleto não pode ser arremessado nem solto (as ações `AC_THROW` e `AC_DROP` são removidas; restam apenas `AC_END` e as ações padrão)
+  * Não pode ser melhorado e é sempre considerado identificado
 
 ==== Significância ====
 O Amuleto de Yendor representa o clímax da experiência de exploração da masmorra. É o prêmio supremo que os aventureiros buscam, e sua aquisição marca a conclusão bem-sucedida da masmorra. O amuleto simboliza poder sobre todo o ambiente da masmorra.
 
 ==== Referências de Código ====
-  * Implementação Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Amulet.java|Amulet.java]]
-  * Recursos de String: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2120-L2127|strings_all.xml]]
+  * Implementação Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Amulet.java|Amulet.java]] (remove `AC_THROW` e `AC_DROP`, adiciona `AC_END`; sempre identificado; não atualizável)
+  * Cena do amuleto (texto de vitória): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/scenes/AmuletScene.java|AmuletScene.java]]
+  * Recursos de String: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L61-L66|strings_all.xml]] (Amulet_Name, Amulet_Info, Amulet_ACEnd, AmuletScene_Txt)
+  * Registro do item: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L243|ItemFactory.java]]
 
 ==== Veja Também ====
   * [[pt:rpd:food_item|Comida]] - Item de consumo
   * [[pt:rpd:gold_item|Ouro]] - Moeda da masmorra
   * [[pt:rpd:pickaxe_item|Picareta]] - Item de quest
   * [[en:rpd:amulet_of_yendor_item|Amulet of Yendor (English)]] - Versão em inglês
+  * [[mr:amulet_item|mr:amulet_item]] - Referências de código legíveis por máquina
 
 {{tag> rpd items artifact quest}}

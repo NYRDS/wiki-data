@@ -1,7 +1,9 @@
 ====== Amulet of Yendor - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Amulet.java|Amulet.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Amulet.java|Amulet.java]] - Main item class; removes `AC_THROW`/`AC_DROP`, adds `AC_END`, always identified, not upgradable
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/scenes/AmuletScene.java|AmuletScene.java]] - Victory scene shown on pickup; displays `AmuletScene_Txt` text and the WIN button (`AmuletScene_Exit` / `AmuletScene_Stay`)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L243|ItemFactory.java]] - Registers `Amulet.class` in the item map
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -9,14 +11,15 @@ This entity is implemented in Java, no JSON configuration exists
 ===== String Resources =====
 <code xml>
 <string name="Amulet_Name">Amulet of Yendor</string>
-<string name="Amulet_Info">The Amulet of Yendor is the most coveted artifact in the dungeon. It is said that the amulet alone holds the power to rule the dungeon - or to destroy it.</string>
-<string name="Amulet_Aliases">Amulet, Yendor</string>
-<string name="Amulet_Desc">The Amulet of Yendor is the most coveted artifact in the dungeon. It is said that the amulet alone holds the power to rule the dungeon - or to destroy it.</string>
-<string name="Amulet_Win">You finally hold it in your hands, the Amulet of Yendor. Using its power you can finally destroy the dungeon or rule it. Either way, your path to victory is now clear.</string>
-<string name="Amulet_Win2">You finally hold it in your hands, the Amulet of Yendor. Using its power you can finally destroy the dungeon or rule it. Either way, your path to victory is now clear.</string>
-<string name="Amulet_Win3">You finally hold it in your hands, the Amulet of Yendor. Using its power you can finally destroy the dungeon or rule it. Either way, your path to victory is now clear.</string>
-<string name="Amulet_Win4">You finally hold it in your hands, the Amulet of Yendor. Using its power you can finally destroy the dungeon or rule it. Either way, your path to victory is now clear.</string>
+<string name="Amulet_Info">The Amulet of Yendor is the most powerful known artifact of unknown origin. It is said that the amulet is able to fulfill any wish if its owner\'s will-power is strong enough to \&quot;persuade\&quot; it to do it.</string>
+<string name="Amulet_ACEnd">END THE GAME</string>
+<string name="AmuletScene_Txt">You finally hold it in your hands, the Amulet of Yendor. Using its power you can take over the world or bring peace and prosperity to people or whatever. Anyway, your life will change forever and this game will end here. Or you can stay a mere mortal a little longer.</string>
+<string name="AmuletScene_Exit">Let\'s call it a day</string>
+<string name="AmuletScene_Stay">I\'m not done yet</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:scroll_of_magic_mapping_item|Scroll of Magic Mapping (Item)]] - Other basic items in the same code area

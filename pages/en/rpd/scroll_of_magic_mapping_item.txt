@@ -2,32 +2,37 @@
 
 {{ rpd:images:scroll_of_magic_mapping_item.png|Scroll of Magic Mapping }}
 
-The Scroll of Magic Mapping is a magical item that reveals the layout of the current dungeon floor, showing all hidden doors and traps. It also disarms all visible traps on the current floor.
+The Scroll of Magic Mapping is a magical item that, when read, reveals the layout of the current dungeon floor and all hidden doors and secret passages. It also reveals any secret level objects (such as hidden traps on level objects) on the current floor.
 
 ==== Description ====
-When read, the Scroll of Magic Mapping reveals the entire layout of the current floor, showing all rooms, corridors, doors, and secret passages that were previously hidden. It also disarms all visible traps on the floor.
+When read, the Scroll of Magic Mapping reveals the entire layout of the current floor (all discoverable cells are marked as mapped), discovers any terrain flagged as SECRET (hidden doors, secret passages) and any level objects that have `secret() == true`. The locations of items and creatures remain unknown.
 
 ==== Effects ====
-  * **Full Map Reveal**: Reveals the entire current floor layout
-  * **Hidden Doors**: Reveals all hidden doors and secret passages
-  * **Trap Disarmament**: Disarms all visible traps on the current floor
-  * **No Effect on Enemies**: Does not affect enemy positions or behavior
+  * **Full Map Reveal**: Reveals the entire current floor layout (all discoverable cells are marked as mapped via the `mapped[]` array)
+  * **Hidden Doors**: Discovers any terrain with the `TerrainFlags.SECRET` flag (e.g. hidden doors, secret passages)
+  * **Secret Level Objects**: Discovers any level object that reports `secret() == true` (e.g. secret traps on level objects)
+  * **No Effect on Enemies**: Does not affect enemy positions or behavior; enemy and item locations remain hidden
+  * **No Trap Disarmament**: Does **not** disarm visible traps - it only marks trap cells as mapped/visible. Traps on level objects are only discovered when those objects report `secret() == true`
 
 ==== Strategy ====
   * **Exploration**: Essential for mapping out unknown areas
-  * **Safety**: Helps avoid dangerous areas and traps
+  * **Safety**: Helps avoid dangerous areas and revealed traps
   * **Planning**: Enables planning of safe routes and escape paths
   * **Resource Management**: Best saved for important moments when mapping is needed
 
 ==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfMagicMapping.java|ScrollOfMagicMapping.java]] - Main implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]] - Base scroll class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfMagicMapping.java|ScrollOfMagicMapping.java]] - Main implementation (doRead reveals mapped[] cells, SECRET terrain, and secret level objects)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]] - Base scroll class (lists ScrollOfMagicMapping.class in `scrolls[]` and `inscribableScrolls[]`)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L716|Hero.java]] - Reuses `ScrollOfMagicMapping.discover(p)` for secret door/object discovery (lines 716, 723)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L116|Tengu.java]] - Reuses `ScrollOfMagicMapping.discover(trapPos)` to mark Tengu-created trap positions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L267|ItemFactory.java]] - Registers ScrollOfMagicMapping class
 
 ==== String Resources ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1754-L1756|ScrollOfMagicMapping_Name, ScrollOfMagicMapping_Info, ScrollOfMagicMapping_Layout]] - Scroll of Magic Mapping display and description strings
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1913-L1915|ScrollOfMagicMapping_Name, ScrollOfMagicMapping_Info, ScrollOfMagicMapping_Layout]] - Scroll of Magic Mapping display and description strings
 
 ==== Related Items ====
   * [[en:rpd:scrolls|Scrolls]] - List of all scrolls
-  * [[en:rpd:map|Dungeon Map]] - General information about dungeon mapping
+  * [[en:rpd:scroll_of_identify_item|Scroll of Identify]] - Another basic scroll
+  * [[mr:scroll_of_magic_mapping_item|mr:scroll_of_magic_mapping_item]] - Machine-readable code references
 
 {{tag> rpd items scrolls mapping}}
