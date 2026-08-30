@@ -2,31 +2,29 @@
 
 {{ rpd:images:wand_of_regrowth_item.png|Wand of Regrowth }}
 
-The Wand of Regrowth is a magical wand in Remixed Dungeon that causes vegetation to grow and can have healing properties.
+The Wand of Regrowth is a wand that grows vegetation along the zap path and roots creatures on the targeted cell via a [[en:rpd:regrowth_mechanic|Regrowth]] blob.
 
 ==== Effect ====
-When used in an area, the Wand of Regrowth:
-  * **Vegetation Growth:** Causes grass to grow in the targeted area
-  * **Terrain Transformation:** Converts empty tiles to grass tiles
-  * **Immobilization:** Temporarily roots creatures in place (applies [[en:rpd:roots_buff|Roots]] effect)
-  * **Healing Properties:** May have healing effects for nature-themed characters (depending on implementation)
+When zapped, the Wand of Regrowth:
+  * **Vegetation Growth:** Converts EMPTY, EMBERS, and EMPTY_DECO tiles along the zap path to GRASS
+  * **Blob Effect:** Plants a [[en:rpd:regrowth_mechanic|Regrowth]] blob on the targeted cell, which converts remaining open tiles to GRASS/HIGH_GRASS over time and applies the [[en:rpd:roots_buff|Roots]] effect to creatures inside it
+  * **Terrain Failure:** Zapping any non-vegetable terrain produces a "nothing happened" message
 
 ==== Properties ====
   * **Type:** Wand
-  * **Special Effect:** Creates vegetation and roots creatures
-  * **Targeting:** Area-of-effect targeting
+  * **Special Effect:** Grows vegetation and roots creatures
+  * **Targeting:** Ballistic path to a chosen cell
   * **Charges:** Recharges over time like other wands
 
 ==== Mechanics ====
-  * When zapped at a location, creates regrowth effect in the area
-  * Converts EMPTY, EMBERS, and EMPTY_DECO terrain to GRASS
-  * Converts existing GRASS terrain to HIGH_GRASS if the effect is strong enough
-  * Any creatures in affected tiles are rooted (immobilized) temporarily
-  * The effect duration and area may scale with wand level
+  * The path along the zap converts EMPTY, EMBERS, and EMPTY_DECO terrain to GRASS
+  * On the targeted cell, if the terrain is EMPTY, EMBERS, EMPTY_DECO, GRASS, or HIGH_GRASS, a Regrowth blob is planted with duration `(effectiveLevel() + 2) * 20` (so duration scales with wand level)
+  * The Regrowth blob itself, as it evolves, finishes converting open tiles to GRASS/HIGH_GRASS and applies the Roots buff to any character on those tiles for one tick each turn
+  * Zapping any other terrain prints "nothing happened" and plants no blob
 
 ==== Strategy ====
   * Use to block line of sight and movement in corridors
-  * Effective for temporarily immobilizing enemies
+  * Effective for temporarily immobilizing enemies while the Regrowth blob lingers
   * Can be used defensively to create barriers
   * Useful for nature-themed builds or characters
   * Good for controlling the battlefield by changing terrain
@@ -34,7 +32,7 @@ When used in an area, the Wand of Regrowth:
 ==== Content Verification ====
   * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfRegrowth.java|WandOfRegrowth.java]]
   * Source Code Location: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfRegrowth.java
-  * String Resource: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|WandOfRegrowth strings]]
+  * String Resource: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#WandOfRegrowth_Info|WandOfRegrowth strings]] (Info, Info1, Name)
   * Blob Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Regrowth.java|Regrowth.java]]
   * Root Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]]
   * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|registerItemClass(WandOfRegrowth.class)]]
