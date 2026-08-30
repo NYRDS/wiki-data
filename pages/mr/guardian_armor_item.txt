@@ -1,25 +1,45 @@
 ====== Guardian Armor Item - Code References ======
 
+===== Entity Information =====
+  * **Entity Kind:** GuardianArmor
+  * **Entity Type:** Armor (class-specific)
+  * **Namespace:** mr: (machine-readable reference)
+  * **Parent Class:** GnollArmor (extends com.watabou.pixeldungeon.items.armor.GnollArmor)
+  * **Inherited By:** None (leaf class)
+  * **Used By:** Guardian subclass (of Gnoll class)
+
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GuardianArmor.java|GuardianArmor.java]] - Main implementation of the Guardian armor, extends GnollArmor
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L445|ItemFactory.java]] - Registers the GuardianArmor class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L55|HeroSubClass.java]] - References GuardianArmor in GUARDIAN subclass
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GnollArmor.java|GnollArmor.java]] - Parent class providing base behavior
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L446|ItemFactory.java]] - Registers the GuardianArmor class at line 446
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L55|HeroSubClass.java]] - References "GuardianArmor" string at line 55 (GUARDIAN enum entry, subclass of Gnoll)
 
 ===== JSON Configuration =====
 No specific JSON configuration file found for this item.
 
 ===== String Resources =====
 <code xml>
-<string name="GuardianArmor_Name">guardian armor</string>
-<string name="GuardianArmor_Info">This medium armor is made of roughly-woven animal bones and equipped with a shield. It provides extra protection and enables the use of shields.</string>
-<string name="GuardianArmor_Name_Objective">guardian armor</string>
-<string name="GuardianArmor_Gender">neuter</string>
+<string name="GnollArmor_Name">gnoll-lieutenant suit</string>
+<string name="GnollArmor_Info">Owners of the Gnoll-Lieutenant suit are well known for their ability to persuade even extremely angry mobs, to be loyal servants of the Crown.</string>
+<string name="GnollArmor_ACSpecial">DOMINATE</string>
+<string name="GnollArmor_NotGnoll">Only gnolls can equip the Gnoll Armor!</string>
 </code>
+
+Note: GuardianArmor has no dedicated string resources; it reuses GnollArmor string IDs (StringsManager.getVar(R.string.GnollArmor_Name) in source).
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
+===== Sprite Reference =====
+  * Sprite file: [[https://github.com/NYRDS/remixed-dungeon/blob/master/wiki-data/media/rpd/images/guardian_armor_item.png|guardian_armor_item.png]]
+  * Wiki image reference: {{ rpd:images:guardian_armor_item.png|Guardian Armor }}
+  * Image index in sprite sheet: 26 (image = 26)
+
 ===== Additional Information =====
-  * The GuardianArmor extends GnollArmor
-  * Used by the Guardian subclass which is a subclass of the Necromancer class
-  * Provides extra protection and enables the use of shields
+  * The GuardianArmor extends GnollArmor and only the Gnoll class can equip it
+  * Used by the Guardian subclass which is a subclass of the Gnoll class
+  * The source contains a commented-out branch that would also allow the GUARDIAN subclass to equip it; the current active branch checks `hero.getHeroClass() == HeroClass.GNOLL`
+  * Provides the hasHelmet and coverHair flags
+  * Cannot be equipped by non-Gnoll heroes — shows GnollArmor_NotGnoll message
+
+{{tag> mr armor class_armor code_reference gnoll guardian}}

@@ -5,51 +5,56 @@
 **Стрела паралича** - это метательное оружие-снаряд в Remixed Pixel Dungeon, которое вызывает паралич у цели.
 
 ==== Характеристики ====
-  * **[[ru:rpd:weight_system|Вес]]**: 1
-  * **[[ru:rpd:item_types|Тип]]**: [[ru:rpd:arrow_item|Стрела]]
-  * **[[ru:rpd:damage_system|Урон]]**: 1-4
-  * **[[ru:rpd:durability|Прочность]]**: 1 использование
+  * **Вес**: 1
+  * **Тип**: Стрела
+  * **Урон**: 0-4
+  * **Прочность**: 1 использование
 
 ==== Эффекты ====
-  * **[[ru:rpd:paralysis_buff|Паралич]]**: Вызывает [[ru:rpd:paralysis_buff|статусный эффект паралича]], предотвращающий действия цели
-  * **[[ru:rpd:throwable_weapons|Метательное]]**: Может быть брошено во врагов на расстоянии
-  * **[[ru:rpd:one_time_use|Одноразовое использование]]**: Потребляется после использования
-  * **[[ru:rpd:missile_weapon|Снаряд]]**: Дальнобойное оружие со стандартной механикой снарядов
+  * **Оглушение**: Вызывает статусный эффект оглушения на 4 хода, предотвращающий действия цели
+  * **Метательное**: Может быть брошено во врагов на расстоянии
+  * **Одноразовое использование**: Потребляется после использования
+  * **Снаряд**: Дальнобойное оружие со стандартной механикой снарядов
 
 ==== Описание ====
-Стрелы паралича - это специальные боеприпасы, которые при использовании временно парализуют цель. Это делает их эффективными для контроля врагов и получения тактических преимуществ в боевых ситуациях.
+Стрелы паралича - это специальные боеприпасы, которые при использовании временно оглушают цель. Это делает их эффективными для контроля врагов и получения тактических преимуществ в боевых ситуациях.
 
 ==== Получение ====
-  * Создается путем использования [[ru:rpd:potion_of_paralytic_gas_item|Зелья парализующего газа]] на обычных [[ru:rpd:arrow_item|Стрелах]] через алхимию
-  * Может быть найдена время от времени в [[ru:rpd:shops|магазинах]] или [[ru:rpd:level_objects|объектах уровня]] таких как [[ru:rpd:crate_level_object|ящики]] или [[ru:rpd:heap_item|кучи]]
+  * Создается путем использования [[ru:rpd:potion_of_paralytic_gas_item|Зелья парализующего газа]] на обычных Стрелах через алхимию
+  * Может быть найдена время от времени в магазинах или объектах уровня таких как ящики или кучи
   * Часть системы алхимического создания
 
 ==== Использование ====
-  * Бросайте во врагов для применения [[ru:rpd:paralysis_buff|эффекта паралича]]
-  * Эффективно для [[ru:rpd:combat_control|контроля боя]] и создания пространства
+  * Бросайте во врагов для применения эффекта оглушения
+  * Эффективно для контроля боя и создания пространства
   * Особенно ценно против опасных врагов или групп
   * Может использоваться как тактический механизм отступления
 
 ==== Механика ====
-  * Создается через [[ru:rpd:moistening_system|систему увлажнения]] путем комбинирования [[ru:rpd:potion_of_paralytic_gas_item|Зелья парализующего газа]] с обычными [[ru:rpd:arrow_item|Стрелами]]
-  * Применяет [[ru:rpd:paralysis_buff|паралич]] статусный эффект при попадании
-  * Следует стандартной [[ru:rpd:throwing_weapons|механике метательного оружия]]
+  * Создается через систему увлажнения путем комбинирования [[ru:rpd:potion_of_paralytic_gas_item|Зелья парализующего газа]] с обычными Стрелами
+  * Применяет оглушение на 4 хода при попадании (DURATION = 4f)
+  * Следует стандартной механике метательного оружия
   * Количество определяется количеством используемого зелья и качеством стрел
 
 ==== Исходный код ====
   * Java класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|ParalysisArrow.java]]
   * Базовая стрела: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
-  * Эффект паралича: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]]
-  * Система алхимии: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L38-L44|метод moistenArrow в PotionOfParalyticGas.java]]
-  * Система урона: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L85-L88|Char:метод damage()]]
-  * Языковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L849-L850|ParalysisArrow_Name, ParalysisArrow_Info (рус.)]]
+  * Эффект оглушения: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]] (стрела применяет Stun, а не Paralysis)
+  * Система алхимии: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L43-L48|метод moistenArrow в PotionOfParalyticGas.java]]
+  * Система урона: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon - базовый класс для урона снарядов]]
+  * Языковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1519-L1521|ParalysisArrow_Name, ParalysisArrow_Info (рус.)]]
   * Машинно-читаемые данные: [[mr:paralysis_arrow_item|mr:paralysis_arrow_item]]
 
 ==== См. также ====
-  * [[ru:rpd:arrows|Стрелы]]
-  * [[ru:rpd:paralysis_buff|Паралич]]
+  * Стрелы
+  * Оглушение
   * [[ru:rpd:potion_of_paralytic_gas_item|Зелье парализующего газа]]
-  * [[ru:rpd:missile_weapons|Метательное оружие]]
-  * [[ru:rpd:alchemy|Алхимия]]
+  * Метательное оружие
+
+==== Другие языки ====
+  * [[en:rpd:paralysis_arrow_item|English]]
+  * [[es:rpd:paralysis_arrow_item|Español]]
+  * [[pt:rpd:paralysis_arrow_item|Português]]
+  * [[cn:rpd:paralysis_arrow_item|中文]]
 
 {{tag> ru:rpd ru:items ru:arrows ru:throwable ru:paralysis }}

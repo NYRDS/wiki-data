@@ -5,15 +5,15 @@
 **Paralysis Arrow** is a throwable missile weapon in Remixed Dungeon that stuns the target.
 
 ==== Stats ====
-  * **[[en:rpd:weight_system|Weight]]**: 1
+  * **Weight**: 1
   * **[[en:rpd:items|Type]]**: [[en:rpd:arrow_item|Arrow]]
   * **[[en:rpd:damage|Damage]]**: 0-4
-  * **[[en:rpd:durability|Durability]]**: 1 use
+  * **Durability**: 1 use
 
 ==== Effects ====
   * **[[en:rpd:stun_buff|Stun]]**: Causes [[en:rpd:stun_buff|stun status effect]] for 4 turns, preventing target actions
   * **[[en:rpd:throwing_weapons|Throwable]]**: Can be thrown at distant enemies
-  * **[[en:rpd:one_time_use|Single Use]]**: Consumed after use
+  * **Single Use**: Consumed after use
   * **[[en:rpd:missile_weapons|Missile]]**: Ranged weapon with standard missile mechanics
 
 ==== Description ====
@@ -21,17 +21,17 @@ Paralysis Arrows are special ammunition that, when used, will cause the target t
 
 ==== Acquisition ====
   * Created by using [[en:rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] on regular [[en:rpd:arrow_item|Arrows]] via alchemy
-  * May be found occasionally in [[en:rpd:shops|shops]] or [[en:rpd:level_objects|level objects]] such as [[en:rpd:containers|crates]] or [[en:rpd:heap|heaps]]
+  * May be found occasionally in [[en:rpd:shops|shops]] or [[en:rpd:level_objects|level objects]] such as crates or heaps
   * Part of alchemical crafting system
 
 ==== Usage ====
   * Throw at enemies to apply [[en:rpd:stun_buff|stun effect]]
-  * Effective for [[en:rpd:combat|combat control]] and creating breathing room
+  * Effective for combat control and creating breathing room
   * Particularly valuable against dangerous enemies or groups
   * Can be used as a tactical escape mechanism
 
 ==== Mechanics ====
-  * Created through the [[en:rpd:moistening|moistening system]] by combining [[en:rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] with regular [[en:rpd:arrow_item|Arrows]]
+  * Created through the moistening system by combining [[en:rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] with regular [[en:rpd:arrow_item|Arrows]]
   * Applies [[en:rpd:stun_buff|stun]] status effect for 4 turns upon hit (DURATION = 4f)
   * Follows standard [[en:rpd:throwing_weapons|throwing weapon]] mechanics
   * Quantity determined by the amount of potion used and arrow quality
@@ -39,11 +39,11 @@ Paralysis Arrows are special ammunition that, when used, will cause the target t
 ==== Source Code ====
   * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|ParalysisArrow.java]]
   * Base Arrow: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
-  * Paralysis Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]]
-  * Alchemy System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L38-L44|moistenArrow method in PotionOfParalyticGas.java]]
-  * Damage System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L85-L88|Char:damage() method]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L862-L863|ParalysisArrow_Name, ParalysisArrow_Info]]
-  * Russian String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L849-L850|ParalysisArrow_Name, ParalysisArrow_Info (русс.)]]
+  * Stun Effect (applied on hit): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]] (note: the arrow applies Stun, not Paralysis)
+  * Alchemy System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L43-L48|moistenArrow method in PotionOfParalyticGas.java]]
+  * Damage System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon]] - base class for missile damage
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1520-L1522|ParalysisArrow_Name, ParalysisArrow_Info, ParalysisArrow_Gender]]
+  * Russian String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1519-L1521|ParalysisArrow_Name, ParalysisArrow_Info (русс.)]]
   * Machine-readable data: [[mr:paralysis_arrow_item|mr:paralysis_arrow_item]]
 
 ==== See Also ====
