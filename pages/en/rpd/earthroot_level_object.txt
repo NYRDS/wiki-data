@@ -3,33 +3,48 @@
 {{ rpd:images:earthroot_level_object.png|Earthroot Level Object }}
 
 ==== Description ====
-The Earthroot level object is a passive level object that provides a protective "Barkskin" buff to any character that touches it. When a character steps on the tile containing an Earthroot level object, they gain temporary armor.
+The **Earthroot** is a plant that can grow from [[en:rpd:earthroot_seed_item|Earthroot Seeds]]. When stepped on or touched, it applies multiple buffs to the creature that touches it:
+  * **Herbal Armor** (EarthrootBuff): Provides armor equivalent to the character's strength/4 for a limited time
+  * **Barkskin**: Additional armor buff that stacks with Herbal Armor
+  * **Rooted**: Prevents movement (unless flying)
+
+The plant is destroyed after being touched.
 
 ==== Effects ====
   * Provides the [[en:rpd:barkskin_buff|Barkskin]] buff when touched
-  * The barkskin effect provides temporary armor that reduces incoming damage
+  * Also applies **Herbal Armor** buff (armor = STR/4)
+  * Also applies **Rooted** debuff (prevents movement, unless flying)
   * The effect is immediate when stepping on the level object tile
   * The level object disappears after being touched
+  * Flying creatures are immune to the Rooted effect
 
 ==== Mechanics ====
   * Earthroot level objects are typically found growing in the dungeon
   * They can also be grown by planting [[en:rpd:earthroot_seed_item|Earthroot Seeds]]
+  * When a creature touches the plant, it receives the **Herbal Armor** buff (armor = STR/4)
+  * Also applies **Barkskin** buff (additional armor)
   * The barkskin effect from the level object is proportional to the character's max HP
 
 ==== Strategy ====
+  * **Strategic Placement:** Plant Earthroot seeds in locations where you plan to stay defensively
+  * **Emergency Protection:** Useful when facing difficult enemies if you can retreat to the plant's location
+  * **Alchemy Ingredient:** The plant itself can be harvested for crafting purposes
   * Earthroot level objects are valuable for providing defensive benefits in dangerous areas
   * Consider saving them for challenging encounters or boss fights
   * Can be especially helpful before entering dangerous rooms or areas
 
 ==== Code Reference ====
-  * Plant Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java|Earthroot.java]]
-  * Plant Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L28-L40|Earthroot.effect method]]
-  * Armor Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L57-L121|Earthroot.Armor class]]
+  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java|Earthroot.java]]
+  * Plant Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L16-L27|Earthroot.effect method]]
+  * Herbal Armor Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L71-L94|Earthroot.Armor class]]
+  * Barkskin Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Barkskin.java|Barkskin.java]]
+  * Roots Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]]
   * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Earthroot_Name, Earthroot_Desc, EarthrootBuff_Name, EarthrootBuff_Info]]
 
 ==== Related ====
   * [[en:rpd:earthroot_seed_item|Earthroot Seed]] - The seed used to grow Earthroot level objects
   * [[en:rpd:barkskin_buff|Barkskin]] - The buff provided by Earthroot level objects
+  * [[en:rpd:roots_buff|Rooted]] - Movement prevention debuff applied by the plant
   * [[en:rpd:plants|Plants]] - Other plants in the game
   * [[en:rpd:seeds_mechanic|Seeds]] - Seeds that can be planted to grow useful plants
   * [[en:rpd:level_objects|Level Objects]] - Other interactive objects in dungeon levels
