@@ -2,20 +2,23 @@
 
 {{ rpd:images:brute_mob.png|Громила }}
 
-**Громила** (оригинальное название в коде: Brute) - это тип монстра в Remixed Dungeon, разновидность [[ru:rpd:gnoll_mob|гноллов]] с повышенной боевой эффективностью.
+**Громила** (оригинальное название в коде: Brute) - это мощный монстр в Remixed Dungeon, входящий в состав гнолльей иерархии, но являющийся отдельным классом моба (наследует Mob).
 
 ==== Описание ====
-Громила - это более сильная и выносливая версия обычного гнолла. Эти существа часто встречаются в группах с другими гноллами и представляют собой угрозу из-за высокого уровня здоровья и урона.
+Громила - это крупное, сильно закаленное существо с высоким уровнем здоровья и урона. Оно часто встречается в составе групп гноллов и выступает в роли тяжелой пехоты. Громилы агрессивны и нацелены на прямую конфронтацию.
 
 ==== Особенности ====
-  * **Класс:** [[ru:rpd:gnoll_scout_mob|Гнолл]] (подкласс силы)
-  * **Уровень появления:** [[ru:rpd:sewers|Канализация]] и [[ru:rpd:prison_level|Тюрьма]]
-  * **Здоровье:** HP 40 (базовое значение), значительно выше, чем у обычных гноллов (HP 12)
-  * **Атака:** Базовый навык атаки 15 (обычные гноллы 11)
-  * **Защита:** Базовый навык защиты 20 (обычные гноллы 4)
-  * **Урон:** 8-18 (обычные гноллы 2-5)
-  * **Иммунитеты:** Иммунен к эффекту устрашения (Terror) - [[ru:rpd:status_effects|Ужас]]
+  * **Класс:** Моб (наследует [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob]]), не является подклассом гнолла
+  * **Уровень появления:** [[ru:rpd:sewers_level|Канализация]] (глубина 9) и [[en:rpd:caves_level|Пещеры]] (глубины 11-14)
+  * **Здоровье:** HP 40 (базовое значение)
+  * **Атака:** Базовый навык атаки 15
+  * **Защита:** Базовый навык защиты 20
+  * **Урон:** 8-18
+  * **Броня:** DR 8
+  * **Иммунитеты:** Иммунен к эффекту устрашения (Terror) - [[en:rpd:terror_buff|Ужас]]
   * **Поведение:** Агрессивен и нацелен на прямую конфронтацию
+  * **Подкласс героя:** Разблокирует [[en:rpd:berserker_subclass|Берсеркера]] для Воина (getSubClass() = BERSERKER)
+  * **Вариант:** Имеет усиленную форму — [[ru:rpd:shielded_mob|Щитоносец]] (Shielded extends Brute)
 
 ==== Тактика ====
 Громилы требуют более осторожного подхода, чем обычные гноллы. Рекомендуется использовать дистанционные атаки или улучшенное оружие, чтобы компенсировать их высокую живучесть. Их агрессивное поведение может быть использовано в свою пользу - заманивание в коридор или ловушку может помочь победить их поодиночке.
@@ -28,7 +31,9 @@
 
 ==== Источники данных ====
   * Java-класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Brute.java|Brute.java]]
-  * Родительский класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Gnoll.java|Gnoll.java]]
+  * Родительский класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * Наследники: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Shielded.java|Shielded.java]] (extends Brute)
+  * Конфигурация спавна: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]
   * Строковые ресурсы (рус.): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|Brute-related strings]]
   * Строковые ресурсы (англ.): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Brute-related strings]]
   * Машинно-читаемые данные: [[mr:brute_mob|mr:brute_mob]]
@@ -36,8 +41,9 @@
 ==== См. также ====
   * [[ru:rpd:gnoll_scout_mob|Гнолл]]
   * [[ru:rpd:gnoll_shaman_mob|Гнолл-шаман]]
+  * [[ru:rpd:shielded_mob|Щитоносец]]
   * [[ru:rpd:mobs|Монстры]]
   * [[ru:rpd:sewers_level|Канализация]]
-  * [[ru:rpd:prison_level|Тюрьма]]
+  * [[en:rpd:caves_level|Пещеры]]
 
 {{tag> ru:rpd ru:mobs }}
