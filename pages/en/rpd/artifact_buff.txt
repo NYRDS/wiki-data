@@ -1,6 +1,5 @@
 ====== Artifact Buff ======
-
-{{ rpd:images:stone_walking_buff.png|Artifact Buff }}
+{{ rpd:images:ring_of_stone_blood_item.png|Artifact Buff }}
 
 ===== Description =====
 **Artifact Buff** is a base class for artifact-related buffs in Remixed Dungeon. It extends the standard [[en:rpd:buff_mechanics|Buff]] class and adds specific behavior for artifact-sourced buffs.
@@ -31,10 +30,13 @@ public class ArtifactBuff extends Buff {
     public boolean dontPack() {
         return getSourceId()!= EntityIdSource.INVALID_ID;
     }
-}</code>
+}
+</code>
 
 ===== Known Subclasses =====
   * [[en:rpd:stone_walking_buff|Stone Walking Buff]] - Applied by [[en:rpd:ring_of_stone_blood_item|Ring of Stone Blood]]
+  * [[en:rpd:ring_of_accuracy_item|Ring of Accuracy]] - Inner class Accuracy extends RingBuff
+  * [[en:rpd:ring_of_evasion_item|Ring of Evasion]] - Inner class Evasion extends RingBuff
   * Other artifact ring buffs (extend ArtifactBuff)
 
 ===== Code References =====
@@ -49,6 +51,8 @@ Artifact buffs use the string resources of their specific implementations. See i
   * [[en:rpd:buff_mechanics|Buff Mechanics]] - Base buff system
   * [[en:rpd:ring_of_stone_blood_item|Ring of Stone Blood]] - Example artifact ring
   * [[en:rpd:stone_walking_buff|Stone Walking Buff]] - Example artifact buff
+  * [[en:rpd:ring_of_accuracy_item|Ring of Accuracy]] - Another artifact ring
   * [[en:rpd:doom_interface|Doom Interface]] - Interface for doom-type buffs
+  * [[mr:artifact_buff|Artifact Buff - Code References]] - Machine-readable reference
 
 {{tag> rpd buffs artifact mechanics }}

@@ -1,10 +1,5 @@
 ====== Blank Scroll Item - Code References ======
 
-===== Entity Information =====
-  * **Entity Kind**: blank_scroll
-  * **Entity Type**: Item (Scroll)
-  * **Namespace**: mr: (machine-readable)
-
 ===== Java Classes =====
   * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/BlankScroll.java|BlankScroll.java]]
   * **Package**: com.watabou.pixeldungeon.items.scrolls
@@ -20,12 +15,24 @@ This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
-<string name="BlankScroll_Name">blank scroll</string>
-<string name="BlankScroll_ReallyBlank">You read the blank scroll... Nothing happens.</string>
+<string name="BlankScroll_Name">Blank Scroll</string>
+<string name="BlankScroll_Info">Just a blank scroll. Maybe something can write on it?</string>
+<string name="BlankScroll_ReallyBlank">This scroll is blank</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related Files =====
+  * **Item Factory Registration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L266|ItemFactory.java#L266]]
+  * **Parent Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]]
+  * **Drop Source**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/LibraryPainter.java|LibraryPainter.java]] - dropped as loot in library rooms
+
+===== Related mr Entities =====
+  * [[mr:scroll_item|Scroll (Item)]] - Parent item type
+  * [[mr:stylus_item|Arcane Stylus (Item)]] - Item used to inscribe blank scrolls
+  * [[mr:potion_of_invisibility_item|Potion of Invisibility (Item)]] - Converts other scrolls to blank scrolls
+  * [[mr:codex_item|Codex (Item)]] - Other scroll-related item dropped in libraries
 
 ===== Game Mechanics =====
   * **Arcane Stylus Conversion**: When used with an Arcane Stylus, transforms into a random scroll
@@ -33,10 +40,4 @@ This entity is implemented in Java, no Lua script exists
   * **Potion of Invisibility**: Can "moisten" up to 3 scrolls into blank scrolls
   * **Reading Behavior**: When read, nothing happens except a message (collects back to inventory)
 
-===== Related Files =====
-  * **Sprite**: item_BlankScroll.png, blank_scroll_item.png
-  * **Item Factory Registration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L265|ItemFactory.java]]
-  * **Parent Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]]
-
-===== Tags =====
 {{tag> mr item blank_scroll scroll item_code}}
