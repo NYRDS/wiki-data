@@ -1,29 +1,47 @@
-====== Paralytic Gas ======
+====== Paralytic Gas Trap ======
 
-{{ rpd:images:potionofparalyticgas_sprite.png|Paralytic Gas }}
+{{ rpd:images:paralytic_trap_level_object.png|Paralytic Gas Trap }}
 
-**Paralytic Gas** is a harmful gas effect in Remixed Dungeon that causes paralysis to creatures that breathe it.
-
-==== Description ====
-When characters are exposed to paralytic gas, they become paralyzed and unable to act for a period of time. The gas is typically created by throwing a [[en:rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]].
+**Paralytic Gas Trap** is a trap in Remixed Pixel Dungeon that creates a cloud of paralytic gas when triggered.
 
 ==== Effects ====
-  * **Paralysis**: Characters caught in the gas cloud are unable to take actions
-  * **Duration**: Affected characters remain paralyzed for several turns
-  * **Spread**: The gas spreads in a cloud around the point of origin
+  * **[[en:rpd:paralysis_buff|Paralysis]]**: Causes [[en:rpd:paralysis_buff|paralysis status effect]] to characters in the area
+  * **[[en:rpd:traps|Area Effect]]**: Affects multiple tiles in a small radius around the trap
+  * **[[en:rpd:traps|Instant Trigger]]**: Activates immediately when stepped on
+  * **[[en:rpd:paralytic_gas_buff|Gas Effect]]**: Creates a cloud similar to [[en:rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]]
 
-==== Sources ====
-  * [[en:rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]] - Thrown potion that creates gas clouds
-  * [[en:rpd:paralysis_arrow_item|Paralysis Arrows]] - Created by moistening arrows with the potion
-  * [[en:rpd:level_objects|Level Objects]] - Some level objects can produce paralytic gas
-  * Certain [[en:rpd:mobs|Mobs]] - Some creatures can emit paralytic gas
+==== Description ====
+When a character steps on this trap, it releases a cloud of paralytic gas that affects the character and potentially others in the immediate area. The gas causes paralysis, preventing affected characters from taking actions for a limited time.
+
+==== Mechanics ====
+  * Triggered when a character moves onto the trapped tile
+  * Creates a gas cloud that lingers briefly on the level
+  * Affects all characters within the cloud's area of effect
+  * Duration and potency may vary based on level depth and game mechanics
+
+==== Prevention ====
+  * Use [[en:rpd:trap_mechanic|trap detection]] mechanisms
+  * [[en:rpd:traps|Stealth]]-based characters may have special abilities to avoid triggering
+  * [[en:rpd:traps|Disarm]] the trap before stepping on it if possible
 
 ==== Counters ====
-  * [[en:rpd:potion_of_purity_item|Potion of Purity]] - Can neutralize paralytic gas clouds in an area
-  * Avoiding the gas cloud to prevent paralysis
+  * Some creatures may be naturally immune to paralysis
+  * [[en:rpd:resistances|Resistance]] effects may reduce the duration of paralysis
+  * [[en:rpd:potion_of_purity_item|Potion of Purity]] may clear the gas cloud
 
-==== Code References ====
-  * Java Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ParalyticGas.java|ParalyticGas.java]]
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1722-L1723|ParalyticGas_Name, ParalyticGas_Info]]
+==== Source Code ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ParalyticTrap.java|ParalyticTrap.java]] - Trap implementation
+  * Gas Creation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ParalyticGas.java|ParalyticGas.java]] - Handles the gas cloud effect
+  * Paralysis Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]] - The actual paralysis status effect
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1528|ParalyticGas_Info]]
+  * Russian String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1527|ParalyticGas_Info (Russian)]]
 
-{{tag> rpd level_objects blob paralysis harmful }}
+==== See Also ====
+  * [[en:rpd:traps|Traps]]
+  * [[en:rpd:paralysis_buff|Paralysis Buff]]
+  * [[en:rpd:potion_of_paralytic_gas_item|Potion of Paralytic Gas]]
+  * [[en:rpd:paralytic_gas_buff|Paralytic Gas]]
+  * [[en:rpd:status_effects|Status Effects]]
+  * [[en:rpd:trap_mechanic|Trap Mechanics]]
+
+{{tag> rpd traps gas paralysis level_objects }}

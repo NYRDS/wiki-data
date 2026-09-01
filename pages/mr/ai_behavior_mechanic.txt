@@ -2,8 +2,9 @@
 
 ===== Java Classes =====
   * **AI State Interface:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/AiState.java|AiState.java]] - Base interface for all AI states
-  * **AI State Manager:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/MobAi.java|MobAi.java]] - Manages AI state transitions
+  * **AI State Manager:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/MobAi.java|MobAi.java]] - Manages AI state transitions and state registration
   * **Mob Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Contains AI state management logic
+  * **Char Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Base character class with AI state field
 
 ===== AI State Implementations =====
   * **Wandering AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Wandering.java|Wandering.java]] - Random movement, transitions to hunting when enemy spotted
@@ -15,6 +16,10 @@
   * **Horrified AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Horrified.java|Horrified.java]] - Frightened state causing mob to flee
   * **ThiefFleeing AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/ThiefFleeing.java|ThiefFleeing.java]] - Specialized fleeing AI for thief-type mobs
   * **ControlledAI AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/ControlledAi.java|ControlledAi.java]] - AI controlled by player (summons/pets)
+  * **MoveOrder AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/MoveOrder.java|MoveOrder.java]] - AI for move commands
+  * **KillOrder AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/KillOrder.java|KillOrder.java]] - AI for kill commands
+  * **RemoteControlled AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/RemoteControlled.java|RemoteControlled.java]] - AI for remotely controlled entities
+  * **CustomMobAi:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/CustomMobAi.java|CustomMobAi.java]] - Custom AI from JSON configuration
 
 ===== JSON Configuration =====
 AI states can be specified in mob JSON descriptors with the "aiState" parameter:
@@ -31,6 +36,10 @@ AI states can be specified in mob JSON descriptors with the "aiState" parameter:
 <string name="Mob_StaPassiveStatus">%s is passive</string>
 <string name="Mob_StaFleeingStatus">%s is fleeing</string>
 <string name="Mob_StaFleeingStatus2">%s is fleeing from %s</string>
+<string name="Mob_StaAmokStatus">This %1$s is running amok</string>
+<string name="Mob_StaTerrorStatus">This %1$s is horrified</string>
+<string name="Mob_StaTerrorStatus2">This %1$s is horrified by %2$s</string>
+<string name="Mob_StaControlledStatus">This %s is under unholy possession</string>
 </code>
 
 ===== Lua Scripts =====

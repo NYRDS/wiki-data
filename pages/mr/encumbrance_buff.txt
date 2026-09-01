@@ -1,20 +1,32 @@
 ====== Encumbrance Buff - Code References ======
 
 ===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check: 
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+This entity is implemented via Lua script. No direct Java class for the buff itself.
+  * Buff base: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java
+  * Encumbrance check: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java (encumbranceCheck() method)
+  * Buff application: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java (lines 334-336)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/encumbrance.json
+This entity has no JSON configuration. It is implemented via Lua script.
 
 ===== String Resources =====
 <code xml>
-<string name="Encumbrance_Name">[Name]</string>
-<string name="Encumbrance_Info">[Description]</string>
+<string name="EncumbranceBuff_CharAct_1">I\'m not strong enough to wield %s properly.</string>
+<string name="EncumbranceBuff_CharAct_2">This %s is too heavy for me to use effectively.</string>
+<string name="EncumbranceBuff_CharAct_3">I need to work on my strength before I can use %s.</string>
+<string name="EncumbranceBuff_CharAct_4">I lack the strength to use %s to its full potential.\"</string>
+<string name="EncumbranceBuff_CharAct_5">%s is too much for me to handle right now.</string>
+<string name="EncumbranceBuff_Info">Not enough strength to use %s effectively.</string>
+<string name="EncumbranceBuff_Name">Burden</string>
 </code>
 
 ===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Encumbrance.lua|Encumbrance.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Encumbrance.lua|Encumbrance.lua]] - Main implementation
+  * Uses: "scripts/lib/buff" library
+  * Icon index: 50
+  * Triggers on charAct when difficulty < 2 (5% chance to yell)
+  * Attaches to character when encumbrance check is valid
+  * References Belongings.encumbranceCheck() for item name
+
+===== Related mr Entities =====
+  * [[mr:unsuitable_item_buff|Unsuitable Item Buff]] - Related buff using same string resources
