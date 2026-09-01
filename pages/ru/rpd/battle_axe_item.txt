@@ -2,13 +2,53 @@
 
 {{ rpd:images:battle_axe_item.png|Боевой топор }}
 
-В каждом взмахе этого грозного оружия чувствуется вес огромного стального лезвия.
-  * Оружие ближнего боя 4-го порядка
-  * Средний урон: 11 единиц за удар
-  * Требует 16 силы для использования
-  * Довольно меткое оружие
+**Боевой топор** (Battle Axe) — это тяжелое оружие ближнего боя 4-го порядка в Remixed Dungeon. В каждом взмахе этого грозного оружия чувствуется вес огромного стального лезвия.
 
 ==== Описание ====
-Боевой топор является мощным оружием ближнего боя, предназначенным для нанесения значительного урона врагам. Его массивное лезвие обеспечивает высокую эффективность в ближнем бою, но требует значительной силы для управления.
+Боевой топор является мощным оружием ближнего боя, предназначенным для нанесения значительного урона врагам. Его массивное лезвие обеспечивает высокую эффективность в ближнем бою, но требует значительной силы для управления. Из-за своего размера и веса он занимает слот основного оружия и слот левой руки, не позволяя использовать два оружия одновременно.
 
-{{tag> ru:rpd предметы оружие топор }}
+==== Свойства ====
+  * **Порядок:** 4
+  * **Урон:** 4-15 (MIN=4, MAX=15)
+  * **Скорость:** 1.2x медленнее стандартного оружия (анимация тяжелой атаки)
+  * **Точность:** 1.0x (стандартная точность)
+  * **Требуемая сила:** 15
+  * **Прочность:** Нормальная
+  * **Вес:** 5
+  * **Цена:** 60 золота (при продаже магазинам — цена рассчитывается как урон * 4)
+
+==== Особенности ====
+  * **Двуручное:** Не может использоваться с вторым оружием в левой руке (блокирует слот левой руки)
+  * **Тяжелая атака:** Использует анимацию тяжелой атаки при вооружении
+  * **Потенциал улучшения:** Может быть улучшен с помощью [[ru:rpd:scroll_of_upgrade_item|Свитков улучшения]]
+  * **Зачарования:** Совместим с [[ru:rpd:weapon_enchantments|зачарованиями оружия]]
+
+==== Стратегия ====
+  * Лучше всего подходит для игроков с достаточной силой (15+) для эффективного использования
+  * Отлично подходит для добивания ослабленных врагов благодаря высокому урону
+  * Более низкая скорость атаки требует осторожного позиционирования и тайминга
+  * Из-за блокировки слота левой руки несовместим со щитами или двойным вооружением
+  * Эффективен против врагов с низкими значениями брони, где высокий урон может проявить себя
+  * Улучшение увеличивает как урон, так и требуемую силу (на 2 за каждый уровень улучшения)
+
+==== Класс в коде ====
+  * **Java класс:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/BattleAxe.java|BattleAxe.java]]
+  * **Наследуется от:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]]
+
+==== Ссылки на код ====
+  * **Реализация на Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/BattleAxe.java|BattleAxe.java]]
+  * **Спрайт:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L42|ItemSpriteSheet.BATTLE_AXE]]
+  * **Строковые ресурсы:**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L221-L223|BattleAxe_Name, BattleAxe_Info, BattleAxe_Gender]] (Русская локализация)
+  * **Механика:**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|Базовая реализация MeleeWeapon]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java#L15-L16|Блокировка слотов оружия и левой руки]]
+
+==== Связанные страницы ====
+  * [[ru:rpd:melee_weapon_item|Оружие ближнего боя]] — Все типы оружия ближнего боя
+  * [[ru:rpd:enchantments|Зачарования]] — Специальные свойства для оружия
+  * [[ru:rpd:scroll_of_weapon_upgrade_item|Свиток Улучшения Оружия]] — Для улучшения оружия
+  * [[ru:rpd:hand_axe_item|Топорик]] — Топор меньшего порядка
+  * [[ru:rpd:war_hammer_item|Боевой молот]] — Другая опция тяжелого оружия
+
+{{tag> ru:rpd ru:items ru:weapons ru:melee ru:battleaxe ru:tier4 ru:heavy ru:two-handed}}

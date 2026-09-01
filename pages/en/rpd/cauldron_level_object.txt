@@ -1,0 +1,68 @@
+====== Cauldron (Alchemy Pot) ======
+
+{{ rpd:images:pot_level_object.png|Alchemy Pot }}
+
+**Alchemy Pot** (also referred to as a Cauldron in game descriptions) is an interactive level object in Remixed Dungeon that allows players to cook potions by throwing seeds into it.
+
+==== Description ====
+The Alchemy Pot is a bubbling cauldron found in certain dungeon levels. Players can interact with it by selecting a seed from their inventory to throw into the pot, which will then brew a potion based on alchemy recipes. The pot appears as a decorative object with a bubbling visual effect.
+
+==== Mechanics ====
+  * **Interaction:** Approach the pot and select "Interact" to open the seed selection menu
+  * **Input:** Requires a seed item to be thrown into the pot
+  * **Output:** Produces a potion based on the seed used and current alchemy recipes
+  * **Visual Effect:** Displays a cauldron bubbling effect when active
+  * **Location:** Found in various dungeon levels, particularly alchemy-themed areas
+
+==== Cooking Process ====
+1. Find an **Alchemy Pot** in the dungeon
+2. Approach and interact with it
+3. Select a seed from your inventory to throw in
+4. The pot will brew and produce a potion based on the recipe
+
+==== Common Recipes ====
+  * **Sungrass Seed** → Potion of Healing
+  * **Firebloom Seed** → Potion of Liquid Flame
+  * **Icecap Seed** → Potion of Frost
+  * **Sorrowmoss Seed** → Potion of Toxic Gas
+  * **Dreamweed Seed** → Potion of Invisibility
+  * **Earthroot Seed** → Potion of Strength (at depth 5+)
+
+*Note: Recipes can be extended via Lua scripts in `scripts/alchemy_recipes.lua`*
+
+==== Code References ====
+  * **Object Configuration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelObjects/pot.json|pot.json]]
+  * **Object Script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/objects/pot.lua|pot.lua]]
+  * **Java Feature:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/AlchemyPot.java|AlchemyPot.java]]
+  * **Alchemy Recipes:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/alchemy_recipes.lua|alchemy_recipes.lua]]
+  * **String Resources:**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1254|Level_TileAlchemy]] (English: "Alchemy pot")
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1260|Level_TileDescAlchemy]] (English: "Drop some seeds here to cook a potion.")
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L42|AlchemyPot_SelectSeed]] (English: "Select a seed to throw")
+
+==== String Resources (Russian) ====
+  * **Name:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1245|Level_TileAlchemy]] (Русский: "Котел для алхимии")
+  * **Description:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1251|Level_TileDescAlchemy]] (Русский: "Бросьте сюда семена, чтобы сварить зелье.")
+  * **Prompt:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L42|AlchemyPot_SelectSeed]] (Русский: "Выберите семя для броска")
+
+==== Strategy ====
+  * **Resource Management:** Save seeds for potions you need most
+  * **Recipe Knowledge:** Learn common recipes to avoid wasting seeds
+  * **Depth Consideration:** Some recipes (like Potion of Strength) only unlock at deeper levels
+  * **Emergency Healing:** Sungrass seeds are valuable for creating healing potions
+
+==== Related Pages ====
+  * [[en:rpd:cooking|Cooking]] - General cooking mechanics
+  * [[en:rpd:alchemy_mechanic|Alchemy]] - Alchemy system and recipes
+  * [[en:rpd:mystery_meat_item|Mystery Meat]] - Can be cooked at a cauldron (via alchemy)
+  * [[en:rpd:chargrilled_meat_item|Chargrilled Meat]] - Product of cooking mystery meat
+  * [[en:rpd:level_objects|Level Objects]] - Other interactive objects in levels
+  * [[en:rpd:seeds|Seeds]] - Items used as alchemy ingredients
+
+==== Content Verified ====
+  * Information source: Java Class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/AlchemyPot.java|AlchemyPot.java]]
+  * Implementation: Lua script [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/objects/pot.lua|pot.lua]]
+  * Configuration: JSON [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelObjects/pot.json|pot.json]]
+  * String resources verified against English and Russian localization files
+
+{{tag> rpd level_objects alchemy cooking potion_brewing }}
