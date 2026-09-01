@@ -1,30 +1,46 @@
 ====== 蛛网 ======
 
+**蛛网**是Remixed Dungeon中的一种Blob效果，它会将角色定在原地，阻止移动，直到蛛网消散。通常由Spinner怪物和蜘蛛护甲创建。
+
 ==== 描述 ====
-蛛网是地牢中各处都可能出现的地形效果，可以束缚角色。当角色踏上蛛网地形时，会被困住并无法移动，直到挣脱束缚或蛛网被移除。
+当角色踩到蛛网上：
+  * **定身：** 角色被定在原地，无法移动
+  * **持续时间：** 效果持续到蛛网消散
+  * **移动阻止：** 被定身的角色无法移动，但仍可执行其他动作
 
 ==== 属性 ====
-  * **类型**: 地形效果 (Blob)
-  * **效果**: 束缚角色
-  * **持续时间**: 直至被破坏或移除
-  * **互动**: 可用某些物品或能力清除
+  * **类型**：Blob/环境效果
+  * **效果**：定身并使角色无法移动（施加[[zh:rpd:roots_buff|定身]]增益）
+  * **持续时间**：直到逐渐消散
+  * **互动**：可用基于火焰的攻击清除
 
 ==== 机制 ====
-  * 踏上蛛网地形的角色会被束缚
-  * 某些护甲，如[[zh:rpd:spider_armor_item|蜘蛛护甲]]，允许在蛛网地形上自由移动
-  * 可用基于火焰的攻击或其他方法清除
-  * 在某些条件下会蔓延
+  * **创建：** 由[[zh:rpd:spinner_mob|Spinner]]怪物在逃跑时生成
+  * **蜘蛛护甲：** [[zh:rpd:spider_armor_item|蜘蛛护甲]]在穿戴者受到伤害时创建蛛网区域
+  * **持久性：** 蛛网在消散前会持续几个回合
+  * **免疫：** 穿戴[[zh:rpd:spider_armor_item|蜘蛛护甲]]的角色对蛛网效果免疫
+  * **消散：** 蛛网随时间逐渐消失
 
 ==== 策略 ====
-  * 在有蛛网的区域移动时要小心
-  * 考虑携带基于火焰的物品来清除蛛网
-  * 蜘蛛护甲允许在蛛网区域安全移动
+  * **避免：** 与Spinner战斗时要小心，因为它们会试图将你定在原地
+  * **蜘蛛护甲：** 提供免疫，在对抗蜘蛛类敌人时很有用
+  * **耐心：** 如果陷入蛛网，要么等待它消散，要么尽可能移动到不同的格子
+  * **Spinner战斗：** 在开阔区域与Spinner战斗，这样被定身的劣势较小
 
 ==== 代码参考 ====
   * Java实现: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Web.java|Web.java]]
+  * 基类: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java|Blob.java]]
+  * 创建者: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Spinner.java|Spinner.java]]
+  * 免疫: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/SpiderArmor.java|SpiderArmor.java]]
+  * 字符串资源 (中文): ''RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml'' — Web_Info
 
 ==== 参见 ====
-  * [[zh:rpd:spider_armor_item|蜘蛛护甲]]
-  * [[zh:rpd:spiders|蜘蛛生物]]
+  * [[zh:rpd:spinner_mob|Spinner]] - 创建蛛网区域的怪物
+  * [[zh:rpd:spider_armor_item|蜘蛛护甲]] - 创建蛛网并提供免疫的物品
+  * [[zh:rpd:roots_buff|定身]] - 蛛网施加的增益（使角色无法移动）
+  * [[zh:rpd:blobs|Blobs]] - 游戏中的其他Blob效果
+  * [[zh:rpd:freezing_buff|冻结]] - 另一种环境Blob效果
+  * [[zh:rpd:toxic_gas_buff|毒气]] - 另一种环境Blob效果
+  * [[en:rpd:web_trap|Web (English)]]
 
-{{tag> rpd terrain web blob}}
+{{tag> rpd mechanics blobs web roots}}

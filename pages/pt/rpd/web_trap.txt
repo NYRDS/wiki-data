@@ -1,30 +1,42 @@
 ====== Teia ======
 
+**Teia** é um efeito de tipo blob em Remixed Dungeon que enraíza personagens no lugar, impedindo o movimento até que a teia se dissipe. É comumente criada por mobs Spinner e pela Armadura de Aranha.
+
 ==== Descrição ====
-A Teia é uma armadilha encontrada por toda a masmorra que pode imobilizar personagens. Quando um personagem pisa em terreno com teia, ele se torna preso e incapaz de se mover até se libertar ou até que a teia seja removida.
+Quando personagens pisam na teia:
+  * **Enraizamento:** Personagens ficam enraizados no lugar, incapazes de se mover
+  * **Duração:** O efeito dura até que a teia se dissipe
+  * **Prevenção de Movimento:** Personagens enraizados não podem se mover mas ainda podem realizar outras ações
 
 ==== Propriedades ====
-  * **Tipo**: Armadilha/Terreno
-  * **Efeito**: Imobiliza personagem
-  * **Duração**: Até ser quebrada ou removida
-  * **Interação**: Pode ser limpa com certos itens ou habilidades
+  * **Tipo**: Blob/Efeito ambiental
+  * **Efeito**: Enraíza e imobiliza o personagem
+  * **Duração**: Até se dissipar gradualmente
+  * **Interação**: Pode ser limpa com ataques baseados em fogo
 
 ==== Mecânicas ====
-  * Personagens pisando em terreno com teia ficam imobilizados
-  * Algumas armaduras, como a [[pt:rpd:spider_armor_item|Armadura de Aranha]], permitem movimento livre sobre terreno com teia
-  * Pode ser limpa usando ataques baseados em fogo ou outros métodos
-  * Se espalha em certas condições
+  * **Criação:** Gerada por mobs Spinner quando fogem
+  * **Armadura de Aranha:** [[pt:rpd:spider_armor_item|Armadura de Aranha]] cria campos de teia quando o usuário recebe dano
+  * **Persistência:** A teia permanece por vários turnos antes de se dissipar
+  * **Imunidade:** Personagens usando [[pt:rpd:spider_armor_item|Armadura de Aranha]] são imunes aos efeitos de teia
+  * **Dissipação:** Teias desaparecem gradualmente com o tempo
 
 ==== Estratégia ====
-  * Tenha cuidado ao se mover por áreas com teias
-  * Considere trazer itens baseados em fogo para limpar teias
-  * A Armadura de Aranha permite movimento seguro por áreas com teia
+  * **Evitamento:** Tenha cuidado ao enfrentar spinners, pois eles tentarão enraizá-lo no lugar
+  * **Armadura de Aranha:** Proporciona imunidade e pode ser útil ao lutar contra inimigos aranha
+  * **Paciência:** Se pego na teia, espere ela se dissipar ou mova-se para outro ladrilho se possível
+  * **Combate com Spinners:** Lute contra spinners em áreas abertas onde ficar enraizado é menos desvantajoso
 
 ==== Referências de Código ====
   * Implementação Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Web.java|Web.java]]
+  * Classe Base: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java|Blob.java]]
+  * Criador (Spinner): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Spinner.java|Spinner.java]]
+  * Imunidade (Armadura): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/SpiderArmor.java|SpiderArmor.java]]
+  * Recursos de String (português): ''RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml'' — Web_Info
 
 ==== Veja Também ====
-  * [[pt:rpd:spider_armor_item|Armadura de Aranha]]
-  * [[pt:rpd:spiders|Aranhas]]
+  * [[pt:rpd:spider_armor_item|Armadura de Aranha]] - Item que cria teias e fornece imunidade
+  * [[pt:rpd:spiders|Aranhas]] - Informações sobre criaturas aranha
+  * [[en:rpd:web_trap|Web (English)]]
 
-{{tag> rpd traps terrain web}}
+{{tag> rpd mechanics blobs web roots}}
