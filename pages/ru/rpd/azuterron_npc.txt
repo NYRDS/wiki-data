@@ -1,0 +1,60 @@
+====== Незнакомец (Азутеррон) ======
+
+{{ rpd:images:azuterronnpc_sprite.png|Незнакомец }}
+
+**Незнакомец** (в коде: AzuterronNPC) — таинственный NPC, встречающийся в магах по всей глубине подземелья. Он выглядит как завуалированный чёрным туманом чужак и предлагает игрокам уникальный квест.
+
+==== Описание ====
+Загадочная фигура, сокрытая чёрным туманом, появляющаяся в уровнях с магами. Азутеррон, видимо, является изгоем среди тёмных существ подземелья и предлагает помощь герою в обмен на решение личной проблемы.
+
+==== Механика квеста ====
+  * **Начало квеста:** При первом взаимодействии Азутеррон просит помощи в поиске и убийстве [[ru:rpd:treacherous_spirit_mob|Предательского Духа]] на текущем уровне
+  * **Появление Духа:** После принятия квеста на уровне где-то появляется [[ru:rpd:treacherous_spirit_mob|Предательский Дух]]
+  * **Необходимый предмет:** Необходимо победить Предательского Духа и получить его [[ru:rpd:heart_of_darkness_item|Сердце тьмы]]
+  * **Награда за квест:** Верните Сердце тьмы Азутеррону, чтобы получить [[ru:rpd:potion_of_might_item|Зелье Силы]]
+  * **Доступ к магазину:** После выполнения квеста Азутеррон работает как обычный [[ru:rpd:shopkeeper_npc|Торговец]]
+
+==== Характеристики ====
+  * **Иммунитеты:** Иммунитет к Параличу, Оглушению и Корням (не может быть обездвижен)
+  * **Защита:** Не может получить урон обычными способами (defenseSkill возвращает 1000)
+  * **Скорость:** Двигается со скоростью в два раза медленнее обычной (speed = 0.5f)
+  * **Мобильность:** Не может сдвинуться с места (movable = false)
+
+==== Поведение ====
+  * Не сдвигается с позиции (стационарный торговец)
+  * Не вступает в бой как обычные враги
+  * Даёт квестовый диалог при взаимодействии
+  * Предоставляет обычные услуги магазина после завершения квеста
+
+==== Технические детали ====
+  * **Класс:** ''com.nyrds.pixeldungeon.mobs.npc.AzuterronNPC''
+  * **Родительский класс:** Наследуется от класса ''Shopkeeper''
+  * **Конфигурация спрайта:** Использует внешнее JSON-описание в ''spritesDesc/AzuterronNPC.json''
+  * **Система квестов:** Реализует статический класс ''Quest'' для управления состоянием квеста между сохранениями
+  * **Запись в журнале:** Добавляется в журнал при начале квеста (Feature.AZUTERRON)
+
+==== Связанные страницы ====
+  * [[ru:rpd:shopkeeper_npc|Торговец]] — Обычный NPC-торговец, которым становится Азутеррон после выполнения квеста
+  * [[ru:rpd:treacherous_spirit_mob|Предательский Дух]] — Монстр, которого нужно победить для квеста
+  * [[ru:rpd:heart_of_darkness_item|Сердце тьмы]] — Предмет, необходимый для завершения квеста
+  * [[ru:rpd:potion_of_might_item|Зелье Силы]] — Награда за выполнение квеста
+  * [[ru:rpd:spirit_of_pain_mob|Дух Боли]] — Прислужник, которого Предательский Дух может призвать в бою
+
+==== Исходный код ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/TreacherousSpirit.java|TreacherousSpirit.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/ShopPainter.java|ShopPainter.java]] — Где AzuterronNPC создается в уровнях с магами
+
+==== Конфигурационные файлы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L694-L700|strings_all.xml]] — Английские строковые ресурсы для имени, описания и диалогов квеста Азутеррона
+
+==== Строковые ресурсы (Русский) ====
+  * ''AzuterronNPC_Name'' — «Незнакомец» (R.string.AzuterronNPC_Name)
+  * ''AzuterronNPC_Desc'' — Описание NPC «Загадочная фигура сокрытая чёрным туманом.» (R.string.AzuterronNPC_Desc)
+  * ''AzuterronNPC_Quest_Start'' — Диалог начала квеста (R.string.AzuterronNPC_Quest_Start)
+  * ''AzuterronNPC_Quest_Reminder'' — Напоминание о квесте (R.string.AzuterronNPC_Quest_Reminder)
+  * ''AzuterronNPC_Quest_End'' — Диалог завершения квеста (R.string.AzuterronNPC_Quest_End)
+  * ''AzuterronNPC_Gender'' — «masculine» (R.string.AzuterronNPC_Gender)
+  * ''Journal_Azuterron» — «Незнакомец» (R.string.Journal_Azuterron)
+
+{{tag> rpd npc quest}}

@@ -1,0 +1,52 @@
+====== Торговец ======
+
+{{ rpd:images:shopkeeper_mob.png|Торговец }}
+
+**Торговец** — это [[ru:rpd:npc|NPC]] в Remixed Dungeon, который управляет [[ru:rpd:shops|магазинами]] на различных уровнях подземелья.
+
+==== Роль ====
+  * Управляет [[ru:rpd:shops|магазинами]], встречающимися по всему подземелью
+  * Покупает [[ru:rpd:items|предметы]] у игрока за справедливую цену
+  * Продаёт различные полезные предметы, экипировку и [[ru:rpd:consumables|расходники]]
+
+==== Особые способности ====
+  * **Торговля:** Покупает и продаёт [[ru:rpd:items|предметы]] в магазине
+  * **Раззаклинание сумок:** Может раззаклиновать предметы из сумок за золото в зависимости от их типа
+  * **Идентификация предметов:** Автоматически идентифицирует [[ru:rpd:items|предметы]] в магазине для игрока
+
+==== Взаимодействия ====
+  * Встречается в [[ru:rpd:shops|зонах магазинов]] на различных уровнях подземелья
+  * Не атакует и не оказывает боевую помощь
+  * Обеспечивает необходимую для игры экономическую систему
+
+==== Проверка содержания ====
+  * Источник информации: Java класс [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Shopkeeper.java|Shopkeeper.java]]
+  * Машиночитаемые данные: [[mr:shopkeeper_npc|mr:shopkeeper_npc]]
+
+==== Дополнительные ссылки на код ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Shopkeeper.java|Shopkeeper.java]] — Основная реализация
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/ImpShopkeeper.java|ImpShopkeeper.java]] — Вариант NPC-торговца
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndShopOptions.java|WndShopOptions.java]] — Реализация окна интерфейса магазина
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/bags/Bag.java|Bag.java]] — Обработка сумок для торговых сделок
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/Treasury.java|Treasury.java]] — Механика генерации предметов для магазинов
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/OverpricedRation.java|OverpricedRation.java]] — Специальный предмет еды, продаваемый торговцем
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] — Базовый класс персонажа, обрабатывающий взаимодействие
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java#L120-L122|метод collect]] — Как торговец принимает предметы в инвентарь
+  * Строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L386-L389|Строки, связанные с Торговцем]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Shopkeeper.java#L72-L94|метод interact]] — Как торговец взаимодействует с игроком
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Shopkeeper.java#L62-L69|метод collect]] — Реализация приема предметов
+
+==== Конфигурация спрайта ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Shopkeeper.json|Shopkeeper.json]] — Конфигурация спрайта торговца
+
+==== Строковые ресурсы (Русский) ====
+  * ''Shopkeeper_Name'' — «торговец» (R.string.Shopkeeper_Name)
+  * ''Shopkeeper_Desc'' — «Этот тучный индивидуум больше подходит для торговли в городском квартале, нежели в подземелье. Хотя, судя по ценам, здесь ему тоже неплохо.» (R.string.Shopkeeper_Desc)
+  * ''Shopkeeper_Buy'' — «Выбери предмет, чтобы купить» (R.string.Shopkeeper_Buy)
+  * ''Shopkeeper_Sell'' — «Выбери предмет для продажи» (R.string.Shopkeeper_Sell)
+  * ''Shopkeeper_BuyPrompt'' — «Дай взглянуть на твои товары» (R.string.Shopkeeper_BuyPrompt)
+  * ''Shopkeeper_SellPrompt'' — «У меня есть что продать» (R.string.Shopkeeper_SellPrompt)
+  * ''Shopkeeper_text'' — «Добро Пожаловать в местный Pixel-Mart.\nКак я могу помочь вам?» (R.string.Shopkeeper_text)
+  * ''Shopkeeper_title'' — «Магазин» (R.string.Shopkeeper_title)
+
+{{tag> rpd npcs shop trading}}
