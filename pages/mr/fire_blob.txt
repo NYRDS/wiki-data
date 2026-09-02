@@ -1,0 +1,28 @@
+====== Fire Blob - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]] - Main fire blob implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java|Blob.java]] - Base blob class
+
+===== Implementation Details =====
+  * **Class:** `com.watabou.pixeldungeon.actors.blobs.Fire`
+  * **Extends:** `Blob`
+  * **Lua Interface:** `@LuaInterface` annotation present
+  * **Key Methods:**
+    - `evolve()` - Handles fire spread and burning of flammable terrain
+    - `burn(int pos)` - Static method that applies burning to characters, burns items, and converts flammable terrain to embers
+    - `use(BlobEmitter)` - Emits flame particles
+    - `tileDesc()` - Returns fire info string from resources
+
+===== String Resources =====
+<code xml>
+<string name="Fire_Info">Fire. Hot. Dangerous.</string>
+</code>
+
+===== Related mr Entities =====
+  * [[mr:liquid_flame_blob|Liquid Flame Blob]]
+  * [[mr:fire_elemental_mob|Fire Elemental (Mob)]]
+  * [[mr:fire_trap|Fire Trap (Trap)]]
+  * [[mr:potion_of_liquid_flame_item|Potion of Liquid Flame (Item)]]
+  * [[mr:wand_of_firebolt_item|Wand of Firebolt (Item)]]
+  * [[mr:burning_buff|Burning (Buff)]]

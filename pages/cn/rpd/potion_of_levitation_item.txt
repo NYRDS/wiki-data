@@ -1,0 +1,73 @@
+====== 悬浮药水 ======
+{{ rpd:images:potion_of_levitation_item.png|悬浮药水 }}
+
+**悬浮药水**是 Remixed Dungeon 中常见的 [[cn:rpd:potion_item|药水]]，饮用后可让饮用者悬浮在陷阱和某些地形危害上方。
+
+==== 物品概览 ====
+  * **类型:** [[cn:rpd:potion_item|药水]]
+  * **稀有度:** 常见
+  * **特殊效果:** 悬浮效果持续 20 回合，免疫基于重量的危害
+  * **用法:** 单次使用物品（饮用后消耗）
+  * **价格:** 35 [[cn:rpd:gold|金币]]（已识别时）
+  * **[[cn:rpd:identification|识别]]:** 饮用、破碎或在识别后查看背包时被识别
+  * **浸润:** 可用于浸润 [[cn:rpd:arrows|箭矢]]、[[cn:rpd:scrolls|卷轴]] 和 [[cn:rpd:rotten_food_item|腐烂食物]]
+
+==== 特殊机制 ====
+  * **悬浮效果:** 允许悬浮越过裂谷、火焰陷阱和其他基于重量的危害 20 回合（DURATION 常量）
+  * **火焰和气体免疫:** **不** 保护免受气体或火焰伤害（那些填充空气仍会影响悬浮角色）
+  * **移除缠绕:** 施加时移除任何现有的缠绕效果（Levitation.java 中的 Roots.detach 调用）
+  * **地形交互:** 效果结束时，触发 level.press()，可触发角色位置的任何地板效果
+  * **动作消息:** "You float into the air!"（来自字符串资源）
+  * **叠加:** 可携带多瓶并根据需要使用
+
+==== 策略 ====
+  * 导航带有危险陷阱或裂谷的区域必不可少
+  * 在穿越带有压力板或基于重量陷阱的危险地形时最好使用
+  * 无法用于避开气体或火焰危害，因为它们填充空气
+  * 悬浮效果默认仅持续 20 回合
+  * 尝试困难跳跃或越过裂谷前考虑使用
+  * 逃离敌人时避免触发机械陷阱很有用
+  * 应为关键导航情况保留
+  * 如果受到非基于重量危害的伤害，效果立即结束
+
+==== 获取 ====
+  * 在地牢 [[cn:rpd:levels|关卡]] 中发现
+  * [[cn:rpd:shops_mechanic|商店]] 以适中价格出售（已识别时 35 [[cn:rpd:gold|金币]]）
+  * 由各种 [[cn:rpd:mobs|敌人]] 掉落
+  * 在 [[cn:rpd:chests_mechanic|容器]] 和特殊房间中发现
+  * 炼金术制作（当前代码库中未指定配方）
+
+==== 效果 ====
+饮用后，悬浮药水授予 [[cn:rpd:levitation_buff|悬浮]] 状态效果 20 回合，允许角色悬浮越过裂谷和陷阱等基于重量的危害并免疫其效果。然而，气体和火焰仍会影响角色，因为它们填充空气。
+
+根据游戏的字符串资源："饮用这种奇特的液体将使你悬浮在空中，能毫不费力地飘过陷阱。然而火焰和气体填充空气，无法在空中绕过。"
+
+==== 代码引用 ====
+  * **Java 实现:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java|PotionOfLevitation.java]]
+  * **药水基类:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]]
+  * **悬浮增益实现:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java|Levitation.java]] - Duration constant = 20f
+  * **持续时间常量:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java#L8|Levitation.DURATION]] - 设为 20f
+  * **移除缠绕:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java#L14|Levitation.java#L14]] - 附着时调用 Roots.detach()
+  * **关卡按压:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java#L19-L22|Levitation.java#L19-L22]] - 效果结束时调用 level.press()
+  * **施加消息:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java#L15|PotionOfLevitation.java#L15]] - 使用字符串资源显示 "You float into the air!" 消息
+  * **价格配置:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java#L24-L26|PotionOfLevitation.java#L24-L26]] - 基础价格 35 金币
+  * **浸润实现:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java#L28-L48|PotionOfLevitation.java#L28-L48]] - 可浸润箭矢、卷轴和腐烂食物
+  * **宝库配置:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L140|Treasury.json#L140]] - 药水生成概率
+  * **英文字符串资源:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2194-L2196|PotionOfLevitation_Name, PotionOfLevitation_Info, PotionOfLevitation_Apply]] (PotionOfLevitation_Name, PotionOfLevitation_Info, and PotionOfLevitation_Apply)
+  * **俄文字符串资源:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2194-L2196|PotionOfLevitation strings]] (俄语本地化)
+  * **中文字符串资源:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L2194-L2196|PotionOfLevitation strings]] (中文本地化)
+  * **属性验证:** 直接从 PotionOfLevitation.java 和 Levitation.java 类方法提取
+  * **效果描述:** 基于代码分析和字符串资源
+  * **mr: 命名空间:** 查看 [[mr:potion_of_levitation_item]] 以获取机器可读数据
+
+==== 相关物品 ====
+  * [[cn:rpd:potion_mechanic|药水]] - 药水的一般信息
+  * [[cn:rpd:levitation_buff|悬浮增益]] - 此药水施加的状态效果
+  * [[cn:rpd:potion_item|药水]] - 基础药水类
+  * [[cn:rpd:mechanics|游戏机制]] - 一般游戏机制
+  * [[cn:rpd:hero|英雄]] - 主要可玩角色
+  * [[cn:rpd:items|物品]] - 游戏中的所有物品
+  * [[cn:rpd:consumables|消耗品]] - 消耗品物品
+  * [[cn:rpd:traps|陷阱]] - 此药水帮助避免的陷阱信息
+
+{{tag> rpd items potions levitation traps }}
