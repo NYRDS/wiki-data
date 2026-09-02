@@ -3,13 +3,13 @@
 {{ rpd:images:rage_buff.png|Rage Buff }}
 
 ==== Description ====
-The Rage buff is a status effect that doubles attack damage but causes periodic self-damage. It is applied by the [[en:rpd:corpse_dust_item|Corpse Dust]] artifact.
+The Rage buff is a status effect that doubles attack damage but causes periodic self-damage. It is applied by the [[en:rpd:corpse_dust_item|Corpse Dust]] artifact and the [[en:rpd:amok_arrow_item|Amok Arrow]] weapon.
 
 ==== Mechanics ====
   * **Damage Bonus:** Attack damage is doubled (2x normal damage) via the `attackProc` method
-  * **Self-Damage:** Random damage (1-5 points) dealt to the player every turn with 10% probability when HP is above 1/5 of maximum via the `act()` method
+  * **Self-Damage:** Random damage (0-4 points) dealt to the player every turn with 10% probability when HP is above 1/5 of maximum via the `act()` method
   * **Visual Effect:** Bloodlust icon indicator (BuffIndicator.BLOODLUST)
-  * **Duration:** Lasts as long as the Corpse Dust artifact remains equipped
+  * **Duration:** Lasts as long as the Corpse Dust artifact remains equipped (or from Amok Arrow hit)
 
 ==== Effect ====
 When under the influence of Rage:
@@ -20,11 +20,12 @@ When under the influence of Rage:
 ==== Stats ====
   * **Damage Multiplier:** 200% of normal attack damage
   * **Self-Damage Chance:** 10% per turn when HP > 20% of maximum
-  * **Self-Damage Range:** 1-5 damage points per instance
+  * **Self-Damage Range:** 0-4 damage points per instance
   * **Icon:** Bloodlust symbol (BuffIndicator.BLOODLUST)
 
 ==== Obtaining ====
   * Applied automatically when [[en:rpd:corpse_dust_item|Corpse Dust]] artifact is equipped
+  * Applied by [[en:rpd:amok_arrow_item|Amok Arrow]] on successful hit
   * Cannot be removed separately from the corpse dust item
 
 ==== Code References ====

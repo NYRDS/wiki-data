@@ -1,8 +1,8 @@
-====== Potion of Purity ======
+====== Potion of Purification ======
 
-{{ rpd:images:potion_of_purity_item.png|Potion of Purity }}
+{{ rpd:images:potion_of_purity_item.png|Potion of Purification }}
 
-The **Potion of Purity** is a rare potion in Remixed Dungeon that neutralizes harmful gases and cures negative status effects.
+The **Potion of Purification** is a rare potion in Remixed Dungeon that neutralizes harmful gases and cures negative status effects.
 
 ==== Item Overview ====
   * **Type:** Potion
@@ -10,11 +10,12 @@ The **Potion of Purity** is a rare potion in Remixed Dungeon that neutralizes ha
   * **Special Effect:** Cures harmful status effects and neutralizes gases
   * **Usage:** Single use item (consumed upon drinking)
   * **Base Price:** 50 gold (when identified)
+  * **Sprite Index:** 4 (labelIndex)
 
 ==== Special Mechanics ====
-  * **Status Effect Cure:** When consumed, cures all harmful status effects (poison, paralysis, blindness, etc.)
-  * **Gas Neutralization:** When shattered, neutralizes all harmful gases in the area
-  * **Area Effect:** Gas neutralization affects a 3x3 area around the point of impact
+  * **Status Effect Cure:** When consumed, cures all harmful status effects (poison, paralysis, blindness, etc.) and grants temporary gas immunity
+  * **Gas Neutralization:** When shattered, neutralizes all harmful gases in the area (toxic, paralytic, confusion)
+  * **Area Effect:** Gas neutralization affects a distance of 2 tiles around the point of impact (quality factor applied)
   * **Identification:** Becomes identified when consumed, shattered, or when seen in inventory after being identified
 
 ==== Strategy ====
@@ -32,26 +33,26 @@ The **Potion of Purity** is a rare potion in Remixed Dungeon that neutralizes ha
   * Can be created through alchemy in some versions
 
 ==== Effect ====
-When consumed, the Potion of Purity cures all harmful status effects. When shattered, it neutralizes all harmful gases in a 3x3 area.
+When consumed, the Potion of Purification cures all harmful status effects and grants temporary immunity to harmful gases. When shattered, it neutralizes toxic gas, paralytic gas, and confusion gas in a radius of 2 tiles around the point of impact.
 
-According to the game's string resources: "The fluid in this bottle is used by priests to bless their weapons with holy energy. You can drink it as a potent healing agent."
+According to the game's string resources: "This reagent will quickly neutralize all harmful gases in the area of effect. Drinking it will give you a temporary immunity to such gases."
 
 ==== Data Sources ====
   * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfPurity.java|com.watabou.pixeldungeon.items.potions.PotionOfPurity]]
   * **Potion System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|UpgradablePotion base class]]
-  * **Sprite Index**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L43|labelIndex = 14]]
-  * **Base Price**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfPurity.java#L30|basePrice() method in PotionOfPurity.java]]
+  * **Sprite Index**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - labelIndex = 4
+  * **Base Price**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfPurity.java#L110|basePrice() method in PotionOfPurity.java]]
 
 ==== String Resources ====
-  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2183-L2185|PotionOfPurity strings]] - Name and description
-  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2183-L2185|PotionOfPurity strings]] - Russian localization
+  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1666-L1669|PotionOfPurity strings]] - Name and description
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|PotionOfPurity strings]] - Russian localization
   * All languages: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/res/values-*/strings_all.xml|Localized strings]]
 
 <code xml>
-<string name="PotionOfPurity_Name">Potion of Purity</string>
-<string name="PotionOfPurity_Info">The fluid in this bottle is used by priests to bless their weapons with holy energy. You can drink it as a potent healing agent.</string>
-<string name="PotionOfPurity_Apply">The world is clean again!</string>
-<string name="PotionOfPurity_Desc">The liquid in this bottle will quickly neutralize all harmful gases in your vicinity. You can also drink it to cure the effects of harmful gases and status effects.</string>
+<string name="PotionOfPurity_Name">Potion of Purification</string>
+<string name="PotionOfPurity_Info">This reagent will quickly neutralize all harmful gases in the area of effect. Drinking it will give you a temporary immunity to such gases.</string>
+<string name="PotionOfPurity_Freshness">You feel uncommon freshness in the air.</string>
+<string name="PotionOfPurity_NoSmell">You've stopped sensing any smells!</string>
 </code>
 
 ==== Related Items ====

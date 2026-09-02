@@ -10,9 +10,10 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/CustomMob.java|CustomMob.java]] - Base class for JSON-defined mobs like Black Cat
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Base mob class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Base character class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - References BlackCat for infinite wand use
 
 ===== JSON Configuration =====
-Black Cat is defined in JSON configuration at `RemixedDungeon/src/main/assets/mobsDesc/BlackCat.json`:
+Black Cat is defined in JSON configuration at `RemixedDungeon/src/main/assets/mobsDesc/BlackCat.json` and `RemixedDungeon/src/main/assets/mobsDesc/BlackCatNPC.json`:
 
 <code json>
 {
@@ -37,10 +38,11 @@ Black Cat is defined in JSON configuration at `RemixedDungeon/src/main/assets/mo
 
 **Configuration Notes**:
   * `friendly: true` - Cannot be targeted by player attacks
-  * `immortal: true` - Cannot be killed
+  * `immortal: true` - Cannot take damage (damage() returns early)
   * `aiState: "Passive"` - Passive AI behavior, wanders randomly
   * `fraction: "NEUTRAL"` - Neutral faction, doesn't attack other mobs
   * `ht: 10` - Has 10 hit points (but cannot die due to immortal flag)
+  * `scriptFile: "scripts/npc/BlackCat"` - Uses NPC script, not AI script
 
 **Level Spawns**: Black Cat appears in fortune-related levels:
   * `levelsDesc/Fortune_2021_03.json`
@@ -76,13 +78,13 @@ Black Cat is defined in JSON configuration at `RemixedDungeon/src/main/assets/mo
 
 ===== Lua Scripts =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/BlackCat.lua|BlackCat.lua]] - NPC behavior script
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/ai/BlackCat.lua|BlackCat AI]] - Behavior patterns and food seeking
 
 **Script Behavior**: The Black Cat Lua script implements:
   * Passive wandering behavior
   * Random meowing phrases
   * Food-seeking behavior (attracted to food items)
   * Special interaction when player offers food
+  * **Death callback**: If killed (via script), reduces hero STR by 1 and shows curse effect
 
 ===== Related mr Entities =====
   * [[mr:npc|NPC (Base Class)]] - NPC behavior base

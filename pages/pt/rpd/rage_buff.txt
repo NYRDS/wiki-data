@@ -3,13 +3,13 @@
 {{ rpd:images:rage_buff.png|Buff de Raiva }}
 
 ==== Descrição ====
-O buff de Raiva é um efeito de status que dobra o dano de ataque, mas causa dano periódico ao personagem. É aplicado pelo artefato [[pt:rpd:corpse_dust_item|Pó de Cadáver]].
+O buff de Raiva é um efeito de status que dobra o dano de ataque, mas causa dano periódico ao personagem. É aplicado pelo artefato [[pt:rpd:corpse_dust_item|Pó de Cadáver]] e pela arma [[en:rpd:amok_arrow_item|Amok Arrow]].
 
 ==== Mecânicas ====
   * **Bônus de Dano:** O dano de ataque é dobrado (2x o dano normal) via método `attackProc`
-  * **Dano a Si Próprio:** Dano aleatório (1-5 pontos) causado ao jogador a cada turno com 10% de probabilidade quando os pontos de vida estão acima de 1/5 do máximo via método `act()`
+  * **Dano a Si Próprio:** Dano aleatório (0-4 pontos) causado ao jogador a cada turno com 10% de probabilidade quando os pontos de vida estão acima de 1/5 do máximo via método `act()`
   * **Efeito Visual:** Indicador de ícone de sede de sangue (BuffIndicator.BLOODLUST)
-  * **Duração:** Dura enquanto o artefato Pó de Cadáver permanecer equipado
+  * **Duração:** Dura enquanto o artefato Pó de Cadáver permanecer equipado (ou do acerto da Amok Arrow)
 
 ==== Efeito ====
 Quando sob a influência da Raiva:
@@ -20,11 +20,12 @@ Quando sob a influência da Raiva:
 ==== Estatísticas ====
   * **Multiplicador de Dano:** 200% do dano de ataque normal
   * **Chance de Dano a Si Próprio:** 10% por turno quando pontos de vida > 20% do máximo
-  * **Intervalo de Dano a Si Próprio:** 1-5 pontos de dano por instância
+  * **Intervalo de Dano a Si Próprio:** 0-4 pontos de dano por instância
   * **Ícone:** Símbolo de sede de sangue (BuffIndicator.BLOODLUST)
 
 ==== Obtenção ====
   * Aplicado automaticamente quando o artefato [[pt:rpd:corpse_dust_item|Pó de Cadáver]] está equipado
+  * Aplicado pela [[en:rpd:amok_arrow_item|Amok Arrow]] em acerto bem-sucedido
   * Não pode ser removido separadamente do item pó de cadáver
 
 ==== Referências de Código ====
