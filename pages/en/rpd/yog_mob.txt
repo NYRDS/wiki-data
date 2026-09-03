@@ -1,36 +1,36 @@
-====== Yog ======
+====== Yog-Dzewa ======
 
-{{ rpd:images:yog_mob.png|Yog }}
+{{ rpd:images:yog_mob.png|Yog-Dzewa }}
 
-Yog is the final boss of the dungeon, found in the Demon Halls. He is an ancient god of rage and bloodshed who is bound to the Demon Halls by ancient magic.
+Yog-Dzewa is the final boss of the dungeon, found in the Demon Halls. He is an ancient god of rage and bloodshed who is bound to the Demon Halls by ancient magic.
 
 ==== Basic Stats ====
-  * **[[en:rpd:health_mechanic|HP]]:** 300
-  * **[[en:rpd:combat_mechanic|Attack Skill]]:** 25
-  * **[[en:rpd:combat_mechanic|Defense Skill]]:** 25
-  * **[[en:rpd:damage|Damage]]:** 18-30
-  * **[[en:rpd:armor_mechanic|Defense Rate (DR)]]:** 12
+  * **[[en:rpd:health_mechanic|HP]]:** 1000
+  * **[[en:rpd:combat_mechanic|Attack Skill]]:** 30
+  * **[[en:rpd:combat_mechanic|Defense Skill]]:** 30
+  * **[[en:rpd:damage|Damage]]:** 20-30
+  * **[[en:rpd:armor|Defense Rate (DR)]]:** 0
   * **[[en:rpd:experience_system|EXP for Kill]]:** 50
 
 ==== Special Abilities ====
-  * **Spawn Minions:** Regularly summons Rotting Fist and Burning Fist minions during combat
-  * **Blessed Buff:** Periodically applies the [[en:rpd:blessed_buff|Blessed Buff]] to himself, making him immune to debuffs
-  * **Dispel Magic:** Casts magic dispel that removes all hero buffs
-  * **Mind Blast:** Uses mind blast attack that deals damage based on the hero's current MP
-  * **High Resistance:** Significantly resistant to most status effects and magical attacks
-  * **Multi-phase Combat:** Battle progresses through multiple phases with changing mechanics
+  * **Organ Summoning:** When damaged, summons other boss organs (Rotting Fist, Burning Fist, Yog's Brain, Yog's Heart, Yog's Teeth) to its position
+  * **Larva Spawning:** When damaged, spawns Larvae on adjacent cells
+  * **Damage Reduction:** Damage taken is bit-shifted right for each summoned organ (effectively halving per organ)
+  * **Death Ray Attack:** Fires a death ray in a straight line hitting all characters in its path
+  * **High Resistances:** Immune to Death, Terror, Amok, Charm, Sleep, Burning, Toxic Gas, and Psionic Blast
+  * **Multi-phase Combat:** Battle progresses through multiple phases with changing mechanics as organs are summoned
 
 ==== Combat Mechanics ====
-  * **Minion Management:** Must deal with summoned fists while fighting Yog
-  * **Buff Clearing:** Dispel magic will remove all hero buffs
-  * **MP-based Damage:** Mind blast damage is based on hero's MP, making high-mana builds risky
-  * **Phase Changes:** Combat mechanics change as Yog's health decreases
-  * **Regeneration:** Yog has limited self-healing abilities
-  * **Area Attacks:** Uses attacks that affect multiple tiles
+  * **Organ Management:** Must deal with summoned organs and larvae while fighting Yog
+  * **Damage Mitigation:** Damage to Yog decreases exponentially with each summoned organ
+  * **Line-of-Sight Attacks:** Death ray affects all tiles in a straight line
+  * **Regeneration:** Yog has limited self-healing capabilities through organ summoning
+  * **Phase Changes:** Combat mechanics change as Yog's health decreases and more organs are summoned
 
 ==== Drops ====
   * [[en:rpd:amulet_of_yendor_item|Amulet of Yendor]]: The ultimate artifact, needed to win the game
   * [[en:rpd:gold_item|Gold]]: Large amount of gold
+  * **Skeleton Key**: Guaranteed drop on kill (if hero doesn't have one)
   * **Rare Items:** May drop unique items from all previous floors
 
 ==== Location ====
@@ -43,43 +43,46 @@ Yog, the Lord of the Dead, is the final challenge for heroes brave enough to fac
   * **Equipment:** High-level weapons and armor are essential
   * **Consumables:** Bring many healing items, potions, and scrolls
   * **Strategy:** Plan for a long, complex battle against multiple enemies
-  * **MP Management:** Be cautious of high MP builds due to mind blast
-  * **Buff Strategy:** Plan for frequent buff recreation due to dispel magic
+  * **Positioning Management:** Avoid standing in straight lines with Yog due to death ray attack
+  * **Buff Strategy:** Plan for frequent buff recreation due to organ summoning mechanics
 
 ==== Tactics ====
-  * Focus on eliminating summoned minions to prevent being overwhelmed
-  * Maintain distance when possible to avoid physical attacks
-  * Time buff consumption strategically around dispel magic
+  * Focus on eliminating summoned organs and larvae to prevent being overwhelmed
+  * Maintain distance and avoid direct lines of fire when possible
   * Be prepared to change tactics as the fight progresses through phases
   * Bring [[en:rpd:ranged_weapons|ranged options]] to attack from safety
   * Expect the fight to take many turns with complex mechanics
 
 ==== Quotes ====
-  * Yog does not have specific quotes but uses various spell effects during combat
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2827|Yog_Info1]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2828|Yog_Info2]]
 
 ==== Content Verification ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Yog.java|Yog.java]]
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java|YogsEye.java]]
   * Entity Kind: Yog (returns simple class name via getEntityKind())
-  * Stats verification: Extracted directly from Yog.java constructor and implementation
-  * Effect descriptions: Based on code analysis of Yog.java and associated minion classes
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1928-L1929|Yog_Name, Yog_Desc]]
-  * Russian string resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1909-L1910|Yog_Name (русс.), Yog_Desc (русс.)]]
-  * Sprite configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Yog.json|Yog.json]] - sprite dimensions and animation frames
-  * Minion classes: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/YogFist.java|YogFist.java]] base class for Rotting and Burning fists
-  * Rotting Fist: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/RottingFist.java|RottingFist.java]]
-  * Burning Fist: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/BurningFist.java|BurningFist.java]]
-  * Mind blast implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Yog.java#L44-L52|mindBlast() method]]
-  * Dispel magic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Yog.java#L54-L67|dispel() method]]
-  * Minion spawning: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Yog.java#L69-L90|spawnFist() method]]
-  * Buff mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Blessed.java|Blessed.java]] for blessed buff
-  * Level generation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/HallsLevel.java|HallsLevel.java]] where Yog appears
-  * Amulet drop logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Yog.java#L92-L94|die() method]] handles Amulet of Yendor drop
-  * Badge validation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Yog.java#L33|Boss_Slain_5 badge]]
-  * Battle music: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Yog.json#L8|Yog.json]] specifies "ost_boss_3_fight" as battle music
-  * AI behavior: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob base class]] extended by Yog
-  * Health formula: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Yog.java#L28|hp(300) in constructor]]
-  * Attack formulas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Yog.java#L29-L31|attack/defense/damage values]]
-  * Last updated: January 2, 2026
+  * Stats verification: Extracted directly from YogsEye.java constructor (hp(ht(1000)), baseAttackSkill=30, baseDefenseSkill=30, dmgMin=20, dmgMax=30, dr=0, expForKill=50)
+  * Effect descriptions: Based on code analysis of YogsEye.java and associated organ classes
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2827-L2833|Yog_Name, Yog_Desc, Yog_Gender, Yog_Info1, Yog_Info2, Yog_Name_Objective]]
+  * Sprite configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/YogsEye.json|YogsEye.json]] - sprite dimensions and animation frames
+  * Organ classes: 
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L72|YogsEye.spawnOrgans()]] - organ summoning
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/RottingFist.java|RottingFist.java]] (Rotting Fist)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/BurningFist.java|BurningFist.java]] (Burning Fist)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsBrain.java|YogsBrain.java]] (Yog's Brain)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsHeart.java|YogsHeart.java]] (Yog's Heart)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsTeeth.java|YogsTeeth.java]] (Yog's Teeth)
+  * Death ray implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L130-L153|zapProc() method]]
+  * Larva spawning: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L106|CharUtils.spawnOnNextCell(this, "Larva", ...)]]
+  * Damage mitigation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L94-L108|damage() method]] - bitwise shift per organ
+  * Buff mechanics: Base Boss class provides immunity to Death, Terror, Amok, Charm, Sleep, Burning, ToxicGas, ScrollOfPsionicBlast
+  * Level generation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/HallsBossLevel.java|HallsBossLevel.java]] where Yog appears
+  * Amulet/Key drop logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java#L59-L87|Boss.die() and restoreFromBundle()]] handle Amulet of Yendor and Skeleton Key drops
+  * Badge validation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java#L186|YOG_SLAIN badge]]
+  * Battle music: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/YogsEye.json|YogsEye.json]] specifies "ost_boss_6_fight" / "ost_boss_fight" as battle music
+  * AI behavior: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob base class]] extended by YogsEye
+  * Health formula: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L47|hp(ht(1000)) in constructor]]
+  * Attack formulas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L51-L55|attack/defense/damage/DR values]]
+  * Last updated: Verified against current codebase
 
 ==== See Also ====
   * [[en:rpd:bosses|Boss Enemies]] - Other major dungeon challenges
@@ -87,9 +90,11 @@ Yog, the Lord of the Dead, is the final challenge for heroes brave enough to fac
   * [[en:rpd:mobs|Mobs]] - Other creatures in the dungeon
   * [[en:rpd:combat_mechanic|Combat]] - General combat mechanics
   * [[en:rpd:amulet_of_yendor_item|Amulet of Yendor]] - The ultimate goal of the game
-  * [[en:rpd:blessed_buff|Blessed Buff]] - Buff applied by Yog
-  * [[en:rpd:rotting_fist_mob|Rotting Fist]] - One of Yog's summoned minions
-  * [[en:rpd:burning_fist_mob|Burning Fist]] - One of Yog's summoned minions
+  * [[en:rpd:rotting_fist_mob|Rotting Fist]] - One of Yog's summoned organs
+  * [[en:rpd:burning_fist_mob|Burning Fist]] - One of Yog's summoned organs
+  * [[en:rpd:yogs_brain_mob|Yog's Brain]] - One of Yog's summoned organs
+  * [[en:rpd:yogs_heart_mob|Yog's Heart]] - One of Yog's summoned organs
+  * [[en:rpd:yogs_teeth_mob|Yog's Teeth]] - One of Yog's summoned organs
   * [[en:rpd:badges_mechanic|Badges]] - Achievement system including boss kills
 
 {{tag> rpd mobs boss final_boss demon_halls }}
