@@ -1,25 +1,82 @@
 ====== Hero Level ======
+{{ rpd:images:hero_WARRIOR.png|Hero Level }}
 
-**Hero Level** refers to the experience level of the player character in Remixed Dungeon. The hero level affects various game mechanics and character capabilities.
+**Hero Level** refers to the experience level of the player character in Remixed Dungeon. The hero level affects various game mechanics, character capabilities, and progression.
 
-==== Mechanics ====
-  * Increases after gaining sufficient experience
-  * Higher levels grant more HP and mana
-  * Some spells and abilities scale with hero level
-  * Affects damage calculations for certain abilities
+==== Experience and Leveling ====
 
-==== Experience Gain ====
-  * Experience is gained from defeating enemies
-  * Some other actions may grant experience
-  * Experience required for the next level increases with each level
+Experience is gained primarily from defeating enemies. The amount of experience required to reach the next level depends on the game difficulty:
 
-==== Scaling Effects ====
-  * The Kunai Throw spell scales with caster level
-  * Some damage calculations depend on hero level
-  * Some enemy stats scale relative to hero level
+  * **Normal/High Difficulty (difficulty > 0)**: 5 + (current level × 5) experience per level
+  * **Easy Difficulty (difficulty = 0)**: 5 + (current level × 4) experience per level
+
+This means on normal difficulty:
+  * Level 1 → 2: 10 EXP
+  * Level 2 → 3: 15 EXP
+  * Level 3 → 4: 20 EXP
+  * Level 10 → 11: 55 EXP
+  * Level 20 → 21: 105 EXP
+
+On easy difficulty, requirements are slightly lower (4 EXP per level instead of 5).
+
+==== Level-Up Benefits ====
+
+Upon leveling up, the hero gains:
+  * **+5 maximum HP** (ht increases by 5)
+  * **Immediate heal of 5 HP**
+  * **Increased awareness** (chance to detect hidden traps/doors) up to level 10
+  * **+1 skill point** (every level if max skill points > 0)
+  * **Skill point accumulation** (max skill points / 3 added to current skill points)
+
+==== Class-Specific Level-Up Effects ====
+
+  * **Gnoll**: Gains a skill level every 5 levels (levels 5, 10, 15, etc.)
+  * **Warlock**: On level-up, heals min(max HP - current HP, 1 + (depth - 1) / 5) and satisfies 10 hunger
+  * **Lich**: If at max skill points when dying, can resurrect once (consumes all skill points)
+
+==== Mechanics Affected by Hero Level ====
+
+  * **HP**: Base HP increases by 5 per level (modified by class starting HP)
+  * **Awareness**: Increases with level up to level 10, formula: `1 - (0.85 for Rogue / 0.90 for others)^((1 + min(level, 9)) * 0.5)`
+  * **Spell scaling**: Some spells scale with caster's skill level (which is separate from hero level but related)
+  * **Kunai Throw**: Damage scales with caster level
+  * **Enemy scaling**: Some enemy stats scale relative to dungeon depth/hero level
+  * **Death statistics**: Hero level is recorded in death events for analytics
+
+==== Skill Points and Magic Level ====
+
+  * **Skill Points (SP)**: Used for learning skills/talents, max SP increases by 1 per level (if > 0)
+  * **Magic Level (skillLevel)**: Separate from hero level; increases via specific items (Tome of Mastery, etc.) or class mechanics
+  * **SP accumulation**: On level-up, current SP increases by maxSP / 3 (rounded down)
 
 ==== Code References ====
-  * Hero level mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
-  * Level-up implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L200-L230|Hero.java level-up]]
 
-{{tag> rpd mechanics progression}}
+  * Hero class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
+  * Level-up implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L459-L515|Hero.java earnExp/expToLevel]]
+  * Awareness calculation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L517-L519|Hero.java updateAwareness]]
+  * Class-specific effects: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L494-L505|Hero.java class-specific level-up]]
+
+==== String Resources ====
+
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - Hero_NewLevel, Hero_LevelUp, Hero_YouNowHave, Hero_StaBlindness, etc.
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (Russian)]] - Russian localization
+
+==== Content Verification ====
+
+  * **Source**: Java class `Hero.java` in `com.watabou.pixeldungeon.actors.hero`
+  * **EXP formula verified**: `expToLevel()` returns 5 + lvl() * 5 (difficulty > 0) or 5 + lvl() * 4 (difficulty = 0)
+  * **Level-up benefits verified**: +5 max HP, heal 5, awareness update, skill points
+  * **Class specifics verified**: Gnoll skill level every 5 levels, Warlock heal/hunger, Lich resurrection
+  * **Awareness formula**: `1 - (class_factor)^((1 + min(lvl, 9)) * 0.5)` where class_factor = 0.85 for Rogue, 0.90 for others
+  * **Last updated**: Based on code analysis
+
+==== See Also ====
+
+  * [[en:rpd:hero_class|Hero Classes]]
+  * [[en:rpd:hero_subclass|Hero Subclasses]]
+  * [[en:rpd:skills_talents|Skills and Talents]]
+  * [[en:rpd:experience_system|Experience System]]
+  * [[en:rpd:difficulty|Difficulty]]
+  * [[mr:hero_level|mr:hero_level]] - Machine-readable reference
+
+{{tag> rpd mechanics progression leveling}}

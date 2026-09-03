@@ -40,6 +40,17 @@ Blindness can be inflicted by:
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L559-L560|English strings]] - Name and info text
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L559-L560|Russian strings]] - Russian localization
   * Immunities: IceGuardian, RunicSkull, Lich, and some other mobs have immunity to Blindness
+  * Lua scripts: ShootInEye.lua applies Blindness; commonClasses.lua binds Blindness class; autoTestAi.lua checks for Blindness buff
+
+==== Content Verification ====
+  * **Source**: Java class `Blindness.java` in `com.watabou.pixeldungeon.actors.buffs` (extends FlavourBuff)
+  * **Mechanics verified**: On attach/detach calls target.observe() to refresh field of view; icon is BuffIndicator.BLINDNESS
+  * **Duration**: Determined by source applying the buff (no fixed duration in class)
+  * **Sources verified**: EnslavedSoul, Bandit (5-12 turns), ShootInEye spell (skill level duration), ScrollOfPsionicBlast, WandOfLightning (some cases), ScrollOfCurse, various mob abilities
+  * **String resources**: BlindnessBuff_Name ("Blinded"), BlindnessBuff_Info ("Completely blinded, only sounds can be heard"), Hero_StaBlindness ("You have been blinded!")
+  * **Russian strings**: BlindnessBuff_Name ("Ослеплён"), BlindnessBuff_Info ("Полностью ослеплен, разве что слышны звуки вокруг"), Hero_StaBlindness ("Тебя ослепили!")
+  * **Immunities**: IceGuardian, RunicSkull, Lich, EnslavedSoul have resistance/immunity
+  * **Last updated**: Based on code analysis
 
 ==== See Also ====
   * [[en:rpd:status_effects|Status Effects]]
@@ -47,5 +58,6 @@ Blindness can be inflicted by:
   * [[en:rpd:accuracy_mechanic|Accuracy]]
   * [[en:rpd:buffs|Buffs and Debuffs]]
   * [[en:rpd:resistances|Resistances]]
+  * [[mr:blindness_buff|mr:blindness_buff]] - Machine-readable reference
 
 {{tag> rpd status_effects buffs }}

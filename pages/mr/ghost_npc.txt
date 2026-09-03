@@ -3,6 +3,8 @@
 Machine-readable reference page for the Sad Ghost (quest-giver NPC) in Remixed Dungeon.
 Note: this page previously existed as "mr:ghost_mob" and incorrectly described a nonexistent combat mob; all facts below are grounded in the actual implementation.
 
+{{ rpd:images:ghost_sprite.png|Ghost NPC }}
+
 ==== Java Implementation ====
 
 **Class File**:
@@ -63,10 +65,22 @@ Note: this page previously existed as "mr:ghost_mob" and incorrectly described a
 **English**:
   * [[en:rpd:ghost_npc|Ghost NPC]] - Main wiki page
 
+**Machine-readable**:
+  * [[mr:ghost_npc|mr:ghost_npc]] - This page
+
 ==== Code References ====
 
   * Main implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Ghost.java|Ghost.java]]
   * Sprite config: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Ghost.json|Ghost.json]]
   * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+
+==== Content Verification ====
+  * **Source**: Java class `Ghost.java` in `com.watabou.pixeldungeon.actors.mobs.npcs` (extends NPC, not Mob)
+  * **Stats verified from code**: defenseSkill 1000 (invulnerable), speed 0.5, flying=true, immune to Paralysis/Stun/Roots, no damage taken (damage() is no-op)
+  * **Quest mechanics verified**: Spawns on SewerLevel depth>1 with probability Random.Int(5-depth)==0; two variants (Rose/Revenge); reward from Treasury.bestOf(category,4) identified
+  * **Necromancer interaction**: WndSadGhostNecro window with persuade flag bypasses item requirement
+  * **Inner class FetidRat**: HP 15, defenseSkill 5, attackSkill 12, damage 2-6, DR 2, exp 0, emits ParalyticGas on defenseProc, carries RatSkull, immune to Paralysis
+  * **String resources**: Ghost_Name, Ghost_Desc, Ghost_Rose1/2, Ghost_Rat1/2, Ghost_Defense in values/strings_all.xml and values-ru/strings_all.xml
+  * **Last updated**: Based on code analysis
 
 {{tag> mr ghost npc reference machine-readable}}
