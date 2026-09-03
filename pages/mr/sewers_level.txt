@@ -8,33 +8,32 @@ Level/Dungeon Branch
 ===== Java Classes =====
 **Level Generation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/SewerLevel.java|SewerLevel.java]]
   * Package: `com.watabou.pixeldungeon.levels`
-  * Extends: `Level`
+  * Extends: `RegularLevel` (which extends `Level`)
   * Features: Water pools, grass, rat/snail spawns, hidden doors
 
 **Level Transition**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]]
-  * Line 308: `switchLevel()` - Level transitions
+  * Line 322: `switchLevel()` - Level transitions
   * Depths 1-5: Sewers
   * Depth 5: Boss level (Goo)
-
-**Level Generator**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/LevelGenerator.java|LevelGenerator.java]]
-  * Sewer-specific room templates
-  * Water placement algorithm
-  * Secret door generation
 
 **Boss Level**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/SewerBossLevel.java|SewerBossLevel.java]]
   * Depth 5
   * Goo boss arena
   * Special layout
 
+**Level Factory**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]]
+  * `newLevel()` method creates level by depth
+  * Depth 1-5: SewerLevel, depth 5: SewerBossLevel
+
 ===== JSON Configuration =====
 **Bestiary Spawns**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]
 <code json>
 "levels": {
-  "1": { "mobs": [{"Rat": 1}, {"Snail": 1}] },
-  "2": { "mobs": [{"Rat": 1}, {"Snail": 1}, {"DeepSnail": 0.03}] },
-  "3": { "mobs": [{"Rat": 1}, {"Snail": 0.5}, {"Crab": 0.3}, {"DeepSnail": 0.1}] },
-  "4": { "mobs": [{"Rat": 0.8}, {"Crab": 0.5}, {"DeepSnail": 0.2}, {"Gnoll": 0.05}] },
-  "5": { "mobs": [{"Goo": 1}] } // Boss level
+  "1": { "mobs": {"Snail": 1} },
+  "2": { "mobs": {"Snail": 1, "Rat": 1, "DeepSnail": 0.03} },
+  "3": { "mobs": {"Rat": 1, "Gnoll": 1, "Crab": 0.5, "Albino": 0.03, "Swarm": 0.02} },
+  "4": { "mobs": {"Rat": 1, "Gnoll": 2, "Crab": 1, "DeepSnail": 0.1, "Thief": 0.01} },
+  "5": { "mobs": {"Goo": 1} } // Boss level
 }
 </code>
 
@@ -43,23 +42,25 @@ Level/Dungeon Branch
 ===== String Resources =====
 English (values/strings_all.xml):
 <code xml>
-<string name="Sewers_Title">Sewers</string>
-<string name="Sewers_Desc">The ancient sewers beneath the city. Damp, dark, and inhabited by vermin.</string>
-<string name="SewerLevel_Water">water</string>
-<string name="SewerLevel_Grass">grass</string>
-<string name="SewerLevel_SecretDoor">secret door</string>
+<string name="Sewer_TileWater">Murky water</string>
+<string name="Sewer_TileDescDeco">Wet yellowish moss covers the floor.</string>
+<string name="Sewer_TileDescBookshelf">The bookshelf is packed with cheap useless books. Might it burn?</string>
+<string name="WndStory_Sewers">The dungeon is located exactly under the city, the upper levels are effectively the city sewers. Being conditionally part of the city, these levels are not so dangerous. Of course they can't be called safe either, but at least here you don't have to worry about dark magic.</string>
 </code>
 
 Russian (values-ru/strings_all.xml):
 <code xml>
-<string name="Sewers_Title">Канализация</string>
-<string name="Sewers_Desc">Древняя канализация под городом. Влажная, темная и населенная грызунами.</string>
+<string name="Sewer_TileWater">Мутная вода</string>
+<string name="Sewer_TileDescDeco">Влажный желтоватый мох растянулся по полу.</string>
+<string name="Sewer_TileDescBookshelf">Полки заставлены дешёвыми бесполезными книгами. Интересно, загорится?</string>
+<string name="WndStory_Sewers">Подземелье расположено точно под городом, верхние уровни фактически являются канализацией города. Будучи условно частью города, эти уровни не столь опасны. Конечно безопасными их тоже не назовёшь, но, по крайней мере, здесь не приходится волноваться о зловещей магии.</string>
 </code>
 
 ===== Lua Scripts =====
-  * **Sewer Level Events**: `scripts/levels/Sewers.lua` - Special events, rat king quest
-  * **Rat King Quest**: `scripts/npc/RatKing.lua` - Optional boss encounter
-  * **Hidden Rooms**: `scripts/objects/Pedestal.lua` - Pedestal puzzles
+  * **Level Objects**: `scripts/objects/pedestal.lua` - Pedestal puzzles
+  * **Level Objects**: `scripts/objects/well.lua` - Well interaction
+  * **Level Objects**: `scripts/objects/statue.lua` - Statue interaction
+  * **NPC**: `scripts/npc/Innkeeper.lua` - Innkeeper NPC (in town, accessible from sewers)
 
 ===== Related mr Entities =====
   * [[mr:rat_mob|Rat Mob]] - Primary enemy
@@ -69,33 +70,24 @@ Russian (values-ru/strings_all.xml):
   * [[mr:goo_mob|Goo Mob]] - Boss (depth 5)
   * [[mr:rat_king_mob|Rat King Mob]] - Optional boss
   * [[mr:pet_mechanic|Pet Mechanic]] - First pets available here
-  * [[mr:secrets_mechanic|Secrets Mechanic]] - Hidden doors/rooms
+  * [[mr:sewers_level|Sewers Level]] - This level
 
 ===== Game Mechanics =====
   * **Depth Range**: 1-5 (5 is boss level)
   * **Theme**: Damp stone, water pools, grass patches
   * **Hazards**: Water (slows movement), hidden traps, gas traps
   * **Special Features**:
-    * Rat King quest (depth 3-4)
     * Hidden rooms behind secret doors
     * Pedestal puzzles for rewards
     * Wells for health restoration
   * **Progression**: 
-    * Depths 1-2: Rats, Snails (easy)
-    * Depths 3-4: Crabs, Deep Snails, Gnolls (medium)
+    * Depth 1: Snails (easy)
+    * Depth 2: Snails, Rats, Deep Snails
+    * Depth 3-4: Crabs, Deep Snails, Gnolls, Albino rats, Swarms
     * Depth 5: Goo Boss (required to proceed)
   * **Shortcuts**: 
     * Sewer shortcut to Prison (unlocked after Goo)
     * Backtracking for missed items
-
-===== Mob Spawn Weights (from Bestiary.json) =====
-| Depth | Rat | Snail | Deep Snail | Crab | Gnoll | Goo |
-|-------|-----|-------|------------|------|-------|-----|
-| 1     | 1.0 | 1.0   | -          | -    | -     | -   |
-| 2     | 1.0 | 1.0   | 0.03       | -    | -     | -   |
-| 3     | 1.0 | 0.5   | 0.1        | 0.3  | -     | -   |
-| 4     | 0.8 | -     | 0.2        | 0.5  | 0.05  | -   |
-| 5     | -   | -     | -          | -    | -     | 1.0 |
 
 ===== Level Objects =====
   * **Water Pools** - Terrain feature, slows movement
@@ -110,7 +102,7 @@ Russian (values-ru/strings_all.xml):
 SewerLevel generation:
 <code java>
 // SewerLevel.java
-public class SewerLevel extends Level {
+public class SewerLevel extends RegularLevel {
     @Override
     protected void createMap() {
         // Water pool generation
@@ -127,9 +119,14 @@ public class SewerLevel extends Level {
 
 Boss level check:
 <code java>
-// Dungeon.java
-public static boolean isBossLevel() {
-    return Dungeon.depth % 5 == 0; // 5, 10, 15, 20, 25
+// Level.java
+public boolean isBossLevel() {
+    return false;
+}
+
+// Overridden in SewerBossLevel.java (which extends SewerLevel)
+public boolean isBossLevel() {
+    return true;
 }
 </code>
 
