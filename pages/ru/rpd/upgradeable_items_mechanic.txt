@@ -1,0 +1,54 @@
+{{ rpd:images:scroll_of_upgrade_item.png|Свиток Улучшения }}
+
+====== Улучшаемые предметы ======
+
+**Улучшаемые предметы** — это предметы в Remixed Dungeon, которые можно улучшить с помощью свитков или специальных способностей, чтобы повысить их характеристики и эффективность.
+
+==== Типы улучшаемых предметов ====
+  * **Оружие** — Можно улучшить для увеличения урона и специальных эффектов
+  * **Броня** — Можно улучшить для увеличения защиты, сопротивления или специальных эффектов
+  * **Кольца** — Можно улучшить для усиления их специальных свойств
+  * **Зелья** — Некоторые специальные зелья можно улучшить для усиления эффектов (например, [[ru:rpd:potion_of_might_item|Зелье Могущества]] из [[ru:rpd:potion_of_strength_item|Зелья Силы]])
+  * **Артефакты** — Некоторые артефакты могут иметь механику улучшения, хотя они часто сложнее простого повышения уровня
+
+==== Механики улучшения ====
+  * **Свиток Улучшения** — Добавляет один уровень улучшения любому улучшаемому предмету
+    * Также снимает проклятия с предмета
+    * Не добавляет специальных свойств вроде зачарований или начертаний
+  * **Свиток Улучшения Оружия** — Специально для улучшения оружия
+    * Также добавляет случайное зачарование к оружию при улучшении
+  * **Набор для брони** — Специальный предмет, улучшающий броню до классовой брони
+    * Превращает обычную броню в классовую (например, Кираса Воина, Одеяние Мага)
+    * Выпадает у босса [[ru:rpd:king_mob|Король]]
+  * **Специальные способности** — Некоторые классы героев и подклассы имеют способности улучшать предметы
+  * **Услуги НПС** — Некоторые НПС могут предоставлять услуги улучшения предметов
+
+==== Эффекты улучшения ====
+  * **Оружие** — Увеличение диапазона урона (мин/макс), потенциальное добавление зачарования (со Свитком Улучшения Оружия)
+  * **Броня** — Увеличение силы защиты (DR = уровень_слоя * 2 + уровень * уровень_слоя), потенциальное добавление глифа (со Свитком Улучшения, может потерять существующий глиф)
+  * **Кольца** — Увеличение мощности специального свойства кольца
+  * **Проклятия** — Улучшение снимает проклятия с предметов
+
+==== Особенности ====
+  * Некоторые предметы могут иметь особое поведение при улучшении
+  * Проклятые предметы становятся непроклятыми при улучшении
+  * Улучшение не влияет на свойства предмета, кроме базовых характеристик (для базовых улучшений)
+  * Некоторые предметы имеют специальные механики, взаимодействующие с уровнями улучшения
+
+==== Исходный код ====
+  * Система улучшения предметов: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java#L338-L370|Методы Item.upgrade() и Item.degrade()]]
+  * Система улучшения оружия: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java#L184-L196|Метод Weapon.upgrade()]]
+  * Система улучшения брони: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L70-L82|Методы Armor.upgrade()]]
+  * Набор для брони (Классовая броня): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java|ArmorKit.java]] и [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.upgrade()]]
+  * Свиток Улучшения: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfUpgrade.java|ScrollOfUpgrade.java]]
+  * Свиток Улучшения Оружия: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfWeaponUpgrade.java|ScrollOfWeaponUpgrade.java]]
+
+==== См. также ====
+  * [[ru:rpd:scroll_of_upgrade_item|Свиток Улучшения]]
+  * [[ru:rpd:weapon_upgrades_mechanic|Улучшения Оружия]]
+  * [[ru:rpd:armor_upgrades_mechanic|Улучшения Брони]]
+  * [[ru:rpd:ring_upgrades_mechanic|Улучшения Колец]]
+  * [[ru:rpd:enchantments|Зачарования]]
+  * [[ru:rpd:glyphs|Глифы]]
+
+{{tag> ru:rpd ru:items ru:upgrades }}

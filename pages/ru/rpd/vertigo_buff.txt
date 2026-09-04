@@ -1,0 +1,54 @@
+====== Завихрение ======
+
+{{ rpd:images:vertigo_buff.png|Эффект Завихрения }}
+
+**Завихрение** (также называется Головокружение или Спутанность) — это негативный статусный эффект в Remixed Dungeon, вызывающий дезориентацию у пострадавшего персонажа.
+
+==== Эффекты ====
+  * **Дезориентация:** Пострадавшие персонажи испытывают головокружение и путаницу
+  * **Движение:** Движение персонажа становится случайным и непредсказуемым
+  * **Базовая длительность:** 10 ходов (константа DURATION в Vertigo.java)
+  * **Уменьшение длительности:** Длительность умножается на фактор сопротивления (от колец элементов и т.д.)
+  * **Направление:** Персонаж может двигаться в случайных направлениях вместо намеченного пути
+
+==== Источники ====
+Завихрение может быть наложено:
+  * **Газ спутанности** — Создается при употреблении или броске [[ru:rpd:rotten_food_item|тухлой еды]] (25% шанс). Газ длится 150 + 10 × глубина подземелья ходов и накладывает Завихрение на всех существ в своей области, обновляя длительность каждый ход.
+  * **Зачарование Ужаса** — Когда используется против героя игрока
+  * **Специальные способности** некоторых мобов
+  * **Магические эффекты** или предметы, вызывающие дезориентацию
+  * **Эффекты окружения**
+
+==== Противодействие ====
+  * [[ru:rpd:resistances|Сопротивление]] (от колец элементов) уменьшает длительность через durationFactor()
+  * Зелья и предметы, лечащие статусные эффекты, могут убрать Завихрение
+  * Некоторые существа могут быть иммунны к эффектам дезориентации
+  * Ожидание естественного окончания эффекта
+
+==== Ссылки на код ====
+  * **Реализация баффа Завихрения:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]]
+  * **Константа длительности:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java#L14|DURATION = 10f]]
+  * **Расчет длительности:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java#L21|метод duration() с фактором сопротивления]]
+  * **Визуальный эффект:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java#L27|attachVisual() показывает статус «Головокружение»]]
+  * **Ссылка на иконку:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java#L19|BuffIndicator.VERTIGO]]
+  * **Газ Спутанности:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ConfusionGas.java|ConfusionGas.java]] — Накладывает Завихрение на существ в газе
+  * **Тухая еда:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java#L30|RottenFood.java]] — Создает ConfusionGas с длительностью 150 + 10 × глубина
+
+==== Строковые ресурсы ====
+  * **Бафф Завихрения:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L626-L627|Англ.]]: Name="Vertigo", Info="The lightheaded feeling makes it harder to walk straight!"
+  * **Газ Спутанности:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L543|Англ.]]: "A cloud of confusion gas is swirling here."
+  * **Текст статуса:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L994|Char_StaVertigo]]: "Everything is spinning around you!"
+  * **Русский Завихрение:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2313-L2314|РУС]]: Name="Завихрение", Info="Ощущение головокружения значительно затрудняет дальнейшее движение!"
+  * **Русский Газ Спутанности:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L574|РУС]]: "Здесь витает облако дурманящего газа."
+  * **Русский Статус:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1045|Char_StaVertigo]]: "У тебя кружится голова!"
+
+==== См. также ====
+  * [[ru:rpd:status_effects|Статусные эффекты]]
+  * [[ru:rpd:buffs|Баффы и Дебаффы]]
+  * [[ru:rpd:horror_enchantment|Зачарование Ужаса]]
+  * [[ru:rpd:rotten_food_item|Тухая еда]]
+  * [[ru:rpd:confusion_gas_buff|Газ спутанности]]
+  * [[ru:rpd:toxic_gas_buff|Токсичный газ]]
+  * [[ru:rpd:paralytic_gas_buff|Парализующий газ]]
+
+{{tag> ru:rpd ru:status_effects ru:buffs ru:vertigo ru:confusion ru:control ru:dizzy }}
