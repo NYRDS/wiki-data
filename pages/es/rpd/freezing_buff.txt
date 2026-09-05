@@ -1,0 +1,58 @@
+====== Congelación ======
+{{ rpd:images:frost_buff.png|Congelación }}
+
+**Congelación** es un efecto blob en Remixed Dungeon que aplica el estado congelado a las criaturas que entran en contacto con él. La congelación se crea cuando se rompe una Poción de Escarcha.
+
+==== Descripción ====
+La congelación es un efecto blob en Remixed Dungeon que aplica el estado congelado a las criaturas que entran en contacto con él. La congelación se crea cuando se rompe una Poción de Escarcha.
+
+==== Efecto ====
+Cuando las criaturas entran en contacto con el blob de congelación:
+  * **Efecto de Congelación:** Las criaturas se congelan en su lugar, incapaces de moverse o actuar
+  * **Duración:** Las criaturas permanecen congeladas hasta que el efecto desaparece o se elimina
+  * **Área de Efecto:** Afecta a todas las criaturas que entren en el área congelada
+
+==== Mecánicas ====
+  * **Activación:** La congelación se crea cuando una [[es:rpd:potion_of_frost_item|Poción de Escarcha]] se rompe
+  * **Radio:** El efecto de congelación cubre un radio de 2 casillas alrededor del punto de impacto
+  * **Persistencia:** El blob de congelación permanece por un corto tiempo, continuando congelando criaturas
+  * **Duración:** El blob se disipa después de unos pocos turnos
+
+==== Interacción ====
+  * **Movimiento:** Las criaturas congeladas no pueden moverse ni actuar
+  * **Daño:** Algunos ataques basados en fuego pueden eliminar los efectos de congelación
+  * **Duración:** El efecto de congelación desaparece naturalmente después de un tiempo
+  * **Inmunidades:** Algunas criaturas son naturalmente inmunes al efecto de congelación
+
+==== Estrategia ====
+  * Úsalo en combate para deshabilitar temporalmente enemigos peligrosos
+  * Efectivo para control de multitudes cuando te enfrentas a múltiples enemigos
+  * Ten cuidado de no congelarte a ti mismo o a aliados importantes
+  * Funciona bien en corredores estrechos donde los enemigos son forzados a moverse a través del área
+
+==== Referencias de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] - Implementación del efecto blob de congelación
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]] - Buff de escarcha que se aplica a las criaturas
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]] - Blob de fuego que puede ser eliminado por congelación
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame.java]] - Blob de llama líquida que puede ser eliminado por congelación
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java|PotionOfFrost.java]] - Crea el efecto de congelación al romperse
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java|Icecap.java]] - Planta que puede crear efecto de congelación
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/ColdSpirit.java|ColdSpirit.java]] - Mob que puede aplicar congelación
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/WaterElemental.java|WaterElemental.java]] - Mob que puede aplicar congelación
+  * Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - Congelación vinculada como PseudoBlob para scripting Lua
+  * Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/actors/Freeze.lua|Freeze.lua]] - Script de actor que coloca pseudo-blob de congelación
+
+==== Recursos de Cadenas ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L572-L574|FrostBuff_Name, FrostBuff_Info, Frost_Shatter]] - Cadenas de visualización y efecto del buff de escarcha
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L2186-L2187|PotionOfFrost_Name, PotionOfFrost_Info]] - Cadenas de descripción de la Poción de Escarcha
+
+==== Páginas Relacionadas ====
+  * [[mr:freezing_buff|Detalles Técnicos]] - Referencia legible por máquina para esta entidad
+  * [[es:rpd:potion_of_frost_item|Poción de Escarcha]] - El objeto que crea la congelación
+  * [[es:rpd:ice_trap_level_object|Trampa de Hielo]] - Otra fuente de efecto de congelación
+  * [[es:rpd:burning_buff|Quemadura]] - Efecto opuesto con fuego en lugar de hielo
+  * [[es:rpd:frost_buff|Escarcha]] - El buff aplicado por la congelación
+  * [[es:rpd:liquid_flame_blob|Blob de Llama Líquida]] - Otro efecto blob que la congelación puede eliminar
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire Blob (Code)]] - Efecto blob que la congelación puede eliminar
+
+{{tag> rpd buffs status_effects freezing }}

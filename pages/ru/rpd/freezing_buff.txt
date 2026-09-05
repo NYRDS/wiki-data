@@ -1,0 +1,57 @@
+====== Эффект Заморозки ======
+{{ rpd:images:frost_buff.png|Эффект Заморозки }}
+
+**Эффект Заморозки** — это эффект блоба в Remixed Dungeon, который накладывает статус заморозки на существ, соприкасающиеся с ним. Заморозка создается, когда разбивается Зелье Льда.
+
+==== Описание ====
+Эффект Заморозки — это эффект блоба в Remixed Dungeon, который накладывает статус заморозки на существ, соприкасающиеся с ним. Заморозка создается, когда разбивается Зелье Льда.
+
+==== Эффект ====
+Когда существа соприкасаются с блобом замораживания:
+  * **Эффект Заморозки:** Существа замораживаются на месте, не могут двигаться или действовать
+  * **Длительность:** Существа остаются замороженными, пока эффект не пройдет или не будет снят
+  * **Область действия:** Воздействует на всех существ, входящих в зону замораживания
+
+==== Механика ====
+  * **Активация:** Заморозка создается, когда разбивается [[ru:rpd:potion_of_frost_item|Зелье Льда]]
+  * **Радиус:** Эффект замораживания покрывает радиус в 2 тайла вокруг точки попадания
+  * **Устойчивость:** Блоб замораживания остается на короткое время, продолжая замораживать существ
+  * **Длительность:** Блоб рассеивается через несколько ходов
+
+==== Взаимодействие ====
+  * **Движение:** Замороженные существа не могут двигаться или совершать действия
+  * **Урон:** Некоторые огненные атаки могут снять эффект замораживания
+  * **Длительность:** Эффект заморозки естественным образом проходит через некоторое время
+  * **Иммунитеты:** Некоторые существа естественным образом иммунны к эффекту замораживания
+
+==== Стратегия ====
+  * Используйте в бою для временного отключения опасных врагов
+  * Эффективно для контроля толпы при столкновении с множеством врагов
+  * Будьте осторожны, не заморозьте себя или важных союзников
+  * Хорошо работает в узких коридорах, где враги вынуждены двигаться через зону
+
+==== Ссылки на код ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] — Реализация эффекта блоба замораживания
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]] — Бафф Мороз, применяемый к существам
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]] — Блоб огня, который может быть очищен замораживанием
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame.java]] — Блоб Жидкого Пламени, который может быть очищен замораживанием
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java|PotionOfFrost.java]] — Создает эффект замораживания при разбивании
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java|Icecap.java]] — Растение, которое может создать эффект замораживания
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/ColdSpirit.java|ColdSpirit.java]] — Моб, который может применить замораживание
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/WaterElemental.java|WaterElemental.java]] — Моб, который может применить замораживание
+  * Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] — Заморозка привязана как PseudoBlob для Lua-скриптинга
+  * Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/actors/Freeze.lua|Freeze.lua]] — Скрипт актора, размещающий псевдо-блоб Заморозки
+
+==== Строковые ресурсы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L572-L574|FrostBuff_Name, FrostBuff_Info, Frost_Shatter]] — Строки отображения и эффекта баффа Мороз
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2186-L2187|PotionOfFrost_Name, PotionOfFrost_Info]] — Строки описания Зелья Льда
+
+==== Связанные страницы ====
+  * [[mr:freezing_buff|Технические детали]] — Машиночитаемая справка для этой сущности
+  * [[ru:rpd:potion_of_frost_item|Зелье Льда]] — Предмет, создающий замораживание
+  * [[ru:rpd:ice_trap_level_object|Ледяная ловушка]] — Другой источник эффекта замораживания
+  * [[ru:rpd:burning_buff|Горение]] — Противоположный эффект с огнем вместо льда
+  * [[ru:rpd:frost_buff|Мороз]] — Бафф, применяемый замораживанием
+  * [[ru:rpd:liquid_flame_blob|Блоб Жидкого Пламени]] — Еще один эффект блоба, который может быть очищен замораживанием
+
+{{tag> rpd buffs status_effects freezing }}

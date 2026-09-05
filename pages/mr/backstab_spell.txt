@@ -1,31 +1,116 @@
 ====== Backstab Spell - Code References ======
 
-**Status:** This entity does not exist in the current codebase. This page is kept for historical reference.
+This page contains raw code references and configuration excerpts for the Backstab spell entity.
 
-===== Java Classes =====
-  * No dedicated Java class found
-  * No references to "backstab" or "Backstab" found in Java source files
-  * Searched: `RemixedDungeon/src/main/java/`
+==== Entity Kind ====
+  * **Spell Type:** Rogue Affinity Spell (Lua implementation)
+  * **Targeting:** self (targets nearest enemy within 1 tile)
 
-===== JSON Configuration =====
-  * No JSON configuration file found for this entity
-  * Searched: `RemixedDungeon/src/main/assets/`
+==== Java Implementation ====
+  * No dedicated Java class for this spell
+  * Spell is implemented entirely in Lua
 
-===== String Resources =====
-  * No string resources found for "Backstab" in:
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] (English)
-    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml]] (Russian)
-    * Other localization files
+==== Lua Script ====
+  * **Script location:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Backstab.lua|Backstab.lua]]
+  * **Spell library:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]]
 
-===== Lua Scripts =====
-  * No Lua script found for this spell
-  * Searched: `RemixedDungeon/src/main/assets/scripts/`
+==== Lua Script Content ====
+<code lua>
+local RPD                 = require "scripts/lib/commonClasses"
+local spell               = require "scripts/lib/spell"
 
-===== Notes =====
-  * This page was created as part of the mr: namespace (machine-readable) documentation system
-  * The entity may have been removed from the game or never implemented
-  * If you have information about this entity from older versions, please update this page with accurate references
+local distracted          = {}
+distracted["PASSIVE"]     = true
+distracted["SLEEPING"]    = true
+distracted["FLEEING"]     = true
+distracted["HORRIFIED"]   = true
+distracted["RUNNINGAMOK"] = true
 
-===== Related mr Entities =====
-  * [[mr:rogue_class|Rogue (Class)]] - Class that might have had access to this spell
-  * [[mr:assassin_subclass|Assassin (Subclass)]] - Subclass that might have had enhanced backstab capabilities
+return spell.init{
+    desc  = function ()
+        return {
+            image         = 2,
+            imageFile     = "spellsIcons/rogue.png",
+            name          = "Backstab_Name",
+            info          = "Backstab_Info",
+            magicAffinity = "Rogue",
+            targetingType = "self",
+            level         = 2,
+            castTime      = 1,
+            spellCost     = 2
+        }
+    end,
+
+    cast = function(self, spell, caster)
+
+        local level = caster:level()
+        local ownPos = caster:getPos()
+
+        local victim = caster:getNearestEnemy()
+
+        if victim == nil or level:distance(ownPos, victim:getPos()) > 1 then
+            RPD.glogn("Backstab_TooFar")
+            return false
+        end
+
+        if not distracted[victim:getState():getTag()] and not victim:isParalysed() then
+            RPD.glogn("Backstab_Aware")
+            return false
+        end
+
+        victim:showStatus(0xff2030,"backstab")
+
+        local weapon = caster:getBelongings().weapon
+        local secondaryWeapon = caster:getBelongings().leftHand
+        local damage = math.sqrt(caster:skillLevel()) * (weapon:damageRoll(caster) + secondaryWeapon:damageRoll(caster))
+
+        victim:damage(damage, caster)
+        RPD.Sfx.Wound:hit(victim)
+
+        return true
+    end
+}
+</code>
+
+==== Key Properties from Code ====
+  * **Magic Affinity:** Rogue
+  * **Targeting:** self (auto-targets nearest enemy within 1 tile)
+  * **Level:** 2
+  * **Mana Cost:** 2
+  * **Cast Time:** 1 turn
+  * **Damage Formula:** sqrt(caster's skill level) * (main weapon damage roll + secondary weapon damage roll)
+  * **Conditions:** Only works on distracted enemies (PASSIVE, SLEEPING, FLEEING, HORRIFIED, RUNNINGAMOK) or paralyzed targets
+  * **Range:** 1 tile distance from caster
+
+==== String Resources ====
+<code xml>
+<string name="Backstab_Name">Backstab</string>
+<string name="Backstab_Info">Silent hit in the back. Dishonest, but extremely effective, backstab damage will grow with performer skill level.\n\nSuccessful backstab will completely ignore victim armor or special defense abilities.</string>
+<string name="Backstab_TooFar">Victim too far for successful hit.</string>
+<string name="Backstab_Aware">Victim shouldn't be aware of you for a good backstab.</string>
+</code>
+
+==== JSON Configuration ====
+This entity does not use JSON configuration.
+
+==== Code Behavior ====
+  * Implemented as Lua spell using the spell library
+  * Checks if nearest enemy is within 1 tile distance
+  * Requires target to be distracted (PASSIVE, SLEEPING, FLEEING, HORRIFIED, RUNNINGAMOK) or paralyzed
+  * Calculates damage using both main hand and off-hand weapon damage rolls
+  * Damage scales with square root of caster's skill level
+  * Ignores victim's armor completely when successful
+  * Shows visual status effect (0xff2030 "backstab") on victim
+  * Plays Wound sound effect after attack
+
+==== Spell Registration ====
+  * Registered in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]] under "Rogue" affinity
+  * Part of Rogue class spell set
+
+==== Related Entities ====
+  * **Rogue Class:** [[mr:rogue_class|rogue_class]] - Class that has access to this spell
+  * **Assassin Subclass:** [[mr:assassin_subclass|assassin_subclass]] - Subclass that might have enhanced backstab capabilities
+  * **English Page:** [[en:rpd:backstab_spell|backstab_spell]]
+  * **Russian Page:** [[ru:rpd:backstab_spell|backstab_spell]] (if exists)
+
+{{tag> mr rpd spells rogue lua_defined}}

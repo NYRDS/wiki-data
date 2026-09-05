@@ -1,0 +1,60 @@
+====== 冰元素 ======
+{{ rpd:images:ice_elemental_mob.png|冰元素 }}
+
+==== 描述 ====
+冰元素是栖息在冰洞中的魔法生物。由于它们冰冷的存在能够减缓敌人，它们是地牢中最危险的元素之一。虽然从原始属性来看它们几乎不能算作强大，但确实可以被称为最危险的之一。从它们身体散发出的寒冰光环可以减缓任何敌人。
+
+==== 數據 ====
+  * **生命值/最大生命值:** 深度 * 10 + 1
+  * **防禦技能:** 深度 * 2 + 1
+  * **擊殺經驗:** 深度 + 1
+  * **最高等級:** 深度 + 2
+  * **傷害抗性:** 擊殺經驗值
+  * **攻擊技能:** (防禦/3) + 1
+  * **傷害:** 生命值/6 到 生命值/6 (最小值和最大值相同)
+  * **屍體掉落機率:** 0 (不掉落骨頭)
+
+==== 特殊能力 ====
+  * **緩慢攻擊:** 攻擊時，有 33% 機率 (Random.Int(3) == 1) 對目標施加 [[zh:rpd:slow_buff|緩慢]] 狀態效果，持續 3 回合
+  * **免疫:** 免疫 [[zh:rpd:roots_buff|纏繞]]、[[zh:rpd:paralysis_buff|麻痺]]、[[zh:rpd:stun_buff|暈眩]] 和 [[zh:rpd:toxic_gas_buff|劇毒瓦斯]]
+  * **深度縮放:** 所有屬性根據當前地牢深度縮放
+
+==== 棲息地 ====
+冰元素可以在 [[zh:rpd:ice_caves_level|冰洞]] 關卡 (ice1-ice4) 中找到。
+
+==== 掉落 ====
+  * [[zh:rpd:frozen_carpaccio_item|凍結生魚片]] 有 10% 機率 (0.1f)
+
+==== 策略 ====
+  * 做好準備應對可能阻礙你移動和攻擊速度的緩慢效果
+  * 由於它們傷害輸出較低，通常在戰鬥中是可控的
+  * 面對多個敵人時，緩慢效果可能特別危險
+  * 考慮使用遠程武器避免在近身攻擊時觸發緩慢機率
+  * 冰元素因其緩慢能力而危險
+  * 它們在地牢更深層會變得更強
+  * 它們的緩慢效果會使逃跑變得困難
+  * 如果可能，從遠處攻擊以避免緩慢效果
+
+==== 相關 ====
+  * [[zh:rpd:elementals_mob|元素生物]] - 其他元素生物
+  * [[zh:rpd:ice_caves_level|冰洞]] - 它們出現的位置
+  * [[zh:rpd:slow_buff|緩慢]] - 它們可以施加的狀態效果
+  * [[zh:rpd:fire_elemental_mob|火元素]] - 相反的元素類型
+  * [[zh:rpd:water_elemental_mob|水元素]] - 其他元素類型
+  * [[zh:rpd:earth_elemental_mob|土元素]] - 其他元素類型
+  * [[zh:rpd:air_elemental_mob|風元素]] - 其他元素類型
+  * [[zh:rpd:frozen_carpaccio_item|凍結生魚片]] - 它們可掉落的物品
+
+==== 技術細節 ====
+  * **Java 類:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/IceElemental.java|com.nyrds.pixeldungeon.mobs.elementals.IceElemental]]
+  * **實現:** 實現 IDepthAdjustable 接口，根據地牢深度縮放
+  * **緩慢機率:** 33% 機率 (Random.Int(3) == 1) 攻擊時施加緩慢
+  * **深度縮放:** 所有屬性根據當前地牢深度縮放
+
+==== 內容驗證 ====
+  * 信息來源: Java 類 com.nyrds.pixeldungeon.mobs.elementals.IceElemental
+  * 數據驗證: 直接從 adjustStats() 方法提取
+  * 效果描述: 基於 attackProc() 方法分析
+  * 源代碼: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/IceElemental.java|IceElemental.java]]
+
+{{tag> rpd mobs elemental ice }}

@@ -1,0 +1,60 @@
+====== Elemental de Hielo ======
+{{ rpd:images:ice_elemental_mob.png|Elemental de Hielo }}
+
+==== Descripción ====
+Los Elementales de Hielo son criaturas mágicas que habitan las Cuevas de Hielo. Se encuentran entre los elementales más peligrosos del calabozo debido a su capacidad para ralentizar a los enemigos con su presencia helada. Aunque apenas pueden considerarse poderosos en términos de estadísticas brutas, verdaderamente pueden ser llamados uno de los más peligrosos. El aura de escarcha que emana de sus cuerpos puede ralentizar a cualquier enemigo.
+
+==== Estadísticas ====
+  * **PS:** Profundidad * 10 + 1
+  * **Defensa:** Profundidad * 2 + 1
+  * **EXP por Muerte:** Profundidad + 1
+  * **Nivel Máximo:** Profundidad + 2
+  * **Resistencia al Daño:** Valor de EXP por Muerte
+  * **Habilidad de Ataque:** (Defensa/3) + 1
+  * **Daño:** PS/6 a PS/6 (mismo mínimo y máximo)
+  * **Probabilidad de Cadáver:** 0 (no deja huesos)
+
+==== Habilidades Especiales ====
+  * **Ataque Ralentizador:** Al atacar, tiene un 33% de probabilidad (Random.Int(3) == 1) de aplicar el efecto de estado [[es:rpd:slow_buff|Ralentizado]] al objetivo durante 3 turnos
+  * **Inmunidades:** Inmune a [[es:rpd:roots_buff|Raíces]], [[es:rpd:paralysis_buff|Parálisis]], [[es:rpd:stun_buff|Aturdimiento]] y [[es:rpd:toxic_gas_buff|Gas Tóxico]]
+  * **Escalado de Profundidad:** Todas las estadísticas escalan basándose en la profundidad actual del calabozo
+
+==== Hábitat ====
+Los Elementales de Hielo se pueden encontrar en los niveles de [[es:rpd:ice_caves_level|Cuevas de Hielo]] (ice1-ice4).
+
+==== Botín ====
+  * [[es:rpd:frozen_carpaccio_item|Carpaccio Congelado]] con un 10% de probabilidad (0.1f)
+
+==== Estrategia ====
+  * Prepárate para posibles efectos de ralentización que pueden obstaculizar tu movimiento y velocidad de ataque
+  * Como tienen una salida de daño baja, generalmente son manejables en combate
+  * El efecto de ralentización puede ser particularmente peligroso cuando luchas contra múltiples enemigos
+  * Considera usar armas a distancia para evitar activar la probabilidad de ralentización en ataques adyacentes
+  * Los Elementales de Hielo pueden ser peligrosos debido a su capacidad para ralentizarte
+  * Se vuelven más fuertes en niveles más profundos del calabozo
+  * Su efecto de ralentización puede dificultar la huida
+  * Ataca desde la distancia si es posible para evitar el efecto de ralentización
+
+==== Relacionado ====
+  * [[es:rpd:elementals|Elementales]] - Otras criaturas elementales
+  * [[es:rpd:ice_caves_level|Cuevas de Hielo]] - Dónde se encuentran
+  * [[es:rpd:slow_buff|Ralentizado]] - Efecto de estado que pueden aplicar
+  * [[es:rpd:fire_elemental_mob|Elemental de Fuego]] - Tipo elemental opuesto
+  * [[es:rpd:water_elemental_mob|Elemental de Agua]] - Otro tipo elemental
+  * [[es:rpd:earth_elemental_mob|Elemental de Tierra]] - Otro tipo elemental
+  * [[es:rpd:air_elemental_mob|Elemental de Aire]] - Otro tipo elemental
+  * [[es:rpd:frozen_carpaccio_item|Carpaccio Congelado]] - Objeto que pueden soltar
+
+==== Detalles Técnicos ====
+  * **Clase Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/IceElemental.java|com.nyrds.pixeldungeon.mobs.elementals.IceElemental]]
+  * **Implementación:** Implementa la interfaz IDepthAdjustable para escalar basándose en la profundidad del calabozo
+  * **Probabilidad de Ralentización:** 33% de probabilidad (Random.Int(3) == 1) de aplicar Ralentizado al atacar
+  * **Escalado de Profundidad:** Todas las estadísticas escalan basándose en la profundidad actual del calabozo
+
+==== Verificación de Contenido ====
+  * Fuente de información: Clase Java com.nyrds.pixeldungeon.mobs.elementals.IceElemental
+  * Verificación de estadísticas: Extraída directamente del método adjustStats()
+  * Descripciones de efectos: Basadas en el análisis del método attackProc()
+  * Código fuente: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/IceElemental.java|IceElemental.java]]
+
+{{tag> rpd mobs elemental ice }}

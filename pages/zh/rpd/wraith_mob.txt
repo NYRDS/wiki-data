@@ -1,0 +1,83 @@
+====== 幽灵 ======
+{{ rpd:images:wraith_mob.png|幽灵 }}
+
+==== 描述 ====
+**幽灵**是非实体的不死生物，在战斗中更难被击中。它们是地牢中更危险的不死敌人之一。幽灵是由暴力死亡或有未了之事的人的灵魂形成的危险不死生物。幽灵是具有半透明外观的幽灵不死生物。它们在战斗中特别难以击中，并且可以通过阻挡其他生物的某些障碍物。
+
+==== 特殊能力 ====
+  * **飞行:** 始终飞行，可以越过障碍物并穿过墙壁 (walkingType = WalkingType.ABSOLUTE)
+  * **高闪避:** 由于高防御技能，非常难以击中
+  * **免疫:** 免疫死亡效果和恐惧
+  * **高闪避:** 攻击技能非常高，防御是攻击技能的 5 倍，使它们难以击中
+  * **非实体:** 由于飞行能力可以穿过墙壁 (walkingType = ABSOLUTE)
+  * **不死特性:** 免疫中毒、流血和其他针对生物的效果
+  * **深度缩放:** 通过 IDepthAdjustable 接口根据地牢深度调整属性
+
+==== 數據 ====
+  * **生命值:** 1 HP (固定，不随地牢等级缩放) (hp(ht(1)))
+  * **攻擊技能:** 10 + 地牢深度 (baseAttackSkill = 10 + Dungeon.depth)
+  * **防禦技能:** 攻击技能的 5 倍 (比大多数生物高得多)
+  * **傷害:** 1-3 + 地牢深度
+  * **速度:** 快
+  * **擊殺經驗:** 0 (无经验获取)
+  * **屍體掉落機率:** 0 (carcassChance = 0)
+  * **最高等級:** 26
+
+==== 特征 ====
+  * **非实体:** 具有飞行能力，允许穿过墙壁移动 (walkingType = ABSOLUTE)
+  * **难以击中:** 防御比大多数生物高得多
+  * **不死特征:** 免疫中毒、流血和其他针对生物的效果
+  * **低生命缩放:** 生命值随地牢深度缩放但起始仅为 1 HP
+
+==== 戰鬥 ====
+  * **闪避:** 由于高防御技能，非常难以击中
+  * **免疫:** 免疫死亡效果和恐惧
+  * **飞行:** 始终飞行，可以越过障碍物并穿过墙壁 (walkingType = ABSOLUTE)
+  * **生成:** 在更深的地牢关卡中以不断增加的频率生成
+
+==== 位置 ====
+幽灵可以在以下位置找到：
+  * 更深的地牢关卡，更强的不死生物栖息地
+  * [[zh:rpd:halls|大厅]]
+  * [[zh:rpd:caves|洞穴]] 关卡
+  * 具有其他强大不死生物的区域
+
+==== 战术 ====
+  * 使用范围攻击增加命中率
+  * 降低闪避的物品或能力可能有帮助
+  * 远程攻击可能比近战更有效
+  * 火焰或神圣伤害通常对不死生物有效
+  * 考虑使用降低准确性或致盲敌人的减益效果
+  * 注意：击杀它们不提供经验值
+
+==== 內容驗證 ====
+  * 信息来源: Java 类 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Wraith.java|Wraith.java]]
+  * 特殊机制: 从 Wraith.java 和 WalkingType.java 实现中提取
+  * 最后更新: 2025 年 12 月, 来源: Remixed Dungeon 1.9.3
+
+==== 实现类 ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Wraith.java|Wraith.java]]
+  * 行走机制: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/WalkingType.java|WalkingType.java]]
+
+==== 字符串资源 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1327|Wraith_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1329|Wraith_Name_Objective]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1330|Wraith_Desc]]
+
+==== 相关 ====
+  * [[zh:rpd:undead_mob|不死生物]] 类别的一部分
+  * 比基础 [[zh:rpd:skeleton_mob|骷髅]] 更强
+  * 可能在有其他不死生物的区域找到
+
+==== 源代码 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Wraith.java|Wraith.java]]
+
+==== 注释 ====
+幽灵是特别危险的敌人，因为它们能够穿过墙壁和高闪避，使它们难以击中或逃脱。
+
+==== 另请参阅 ====
+  * [[zh:rpd:mobs|敌人]] - 其他敌对生物
+  * [[zh:rpd:undead_mob|不死生物]] - 不死实体类别
+  * [[zh:rpd:enemies_overview|敌人]] - 敌人类型的一般信息
+
+{{tag> rpd mobs undead incorporeal wraith}}

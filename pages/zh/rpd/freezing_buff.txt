@@ -1,0 +1,58 @@
+====== 凍結增益 ======
+{{ rpd:images:frost_buff.png|凍結增益 }}
+
+**凍結** 是 Remixed Dungeon 中的一種 Blob 效果，會將凍結狀態套用到接觸它的生物身上。凍結效果在冰霜藥水破碎時產生。
+
+==== 描述 ====
+凍結是 Remixed Dungeon 中的一種 Blob 效果，會將凍結狀態套用到接觸它的生物身上。凍結效果在冰霜藥水破碎時產生。
+
+==== 效果 ====
+當生物接觸到凍結 Blob 時：
+  * **凍結效果:** 生物會被凍結在原地，無法移動或行動
+  * **持續時間:** 生物會保持凍結狀態，直到效果消失或被清除
+  * **影響範圍:** 影響所有進入凍結區域的生物
+
+==== 機制 ====
+  * **啟動:** 當 [[zh:rpd:potion_of_frost_item|冰霜藥水]] 破碎時產生凍結效果
+  * **半徑:** 凍結效果覆蓋撞擊點周圍 2 格半徑
+  * **持續性:** 凍結 Blob 會停留一小段時間，持續凍結生物
+  * **持續時間:** Blob 會在幾個回合後消散
+
+==== 互動 ====
+  * **移動:** 凍結的生物無法移動或採取行動
+  * **傷害:** 某些火焰攻擊可以清除凍結效果
+  * **持續時間:** 凍結效果會在一段時間後自然消失
+  * **免疫:** 某些生物天生免疫凍結效果
+
+==== 策略 ====
+  * 在戰鬥中使用以暫時禁用危險敵人
+  * 面對多個敵人時對群體控制有效
+  * 小心不要凍結自己或重要盟友
+  * 在敵人被迫通過該區域的狹窄走廊中效果很好
+
+==== 代碼參考 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] - 凍結 Blob 效果的實現
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]] - 套用到生物身上的凍結增益
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]] - 可被凍結清除的火焰 Blob
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame.java]] - 可被凍結清除的液態火焰 Blob
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java|PotionOfFrost.java]] - 破碎時產生凍結效果
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java|Icecap.java]] - 可產生凍結效果的植物
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/ColdSpirit.java|ColdSpirit.java]] - 可施加凍結的怪物
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/WaterElemental.java|WaterElemental.java]] - 可施加凍結的怪物
+  * Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - 凍結作為 PseudoBlob 綁定供 Lua 腳本使用
+  * Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/actors/Freeze.lua|Freeze.lua]] - 放置凍結偽 Blob 的 Actor 腳本
+
+==== 字串資源 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L572-L574|FrostBuff_Name, FrostBuff_Info, Frost_Shatter]] - 凍結增益顯示和效果字串
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2186-L2187|PotionOfFrost_Name, PotionOfFrost_Info]] - 冰霜藥水描述字串
+
+==== 相關頁面 ====
+  * [[mr:freezing_buff|技術細節]] - 此實體的機器可讀參考
+  * [[zh:rpd:potion_of_frost_item|冰霜藥水]] - 產生凍結的物品
+  * [[zh:rpd:ice_trap_level_object|冰霜陷阱]] - 凍結效果的另一來源
+  * [[zh:rpd:burning_buff|燃燒]] - 相反效果，火焰而非冰霜
+  * [[zh:rpd:frost_buff|霜凍]] - 凍結施加的增益
+  * [[zh:rpd:liquid_flame_blob|液態火焰 Blob]] - 可被凍結清除的另一種 Blob 效果
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire Blob (Code)]] - 可被凍結清除的 Blob 效果
+
+{{tag> rpd buffs status_effects freezing }}
