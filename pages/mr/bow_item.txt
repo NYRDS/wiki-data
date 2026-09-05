@@ -1,0 +1,54 @@
+====== Bow Item - Machine Reference ======
+
+This page contains machine-readable reference information about the base Bow class and its mechanics for automated tools and AI assistants.
+
+==== Entity Information ====
+  * **Entity Type:** Weapon (Ranged)
+  * **Base Class:** Bow (abstract)
+  * **Parent Class:** KindOfBow
+  * **Animation Class:** BOW_ATTACK
+  * **Package:** com.nyrds.pixeldungeon.items.guts.weapon.ranged
+
+==== Java Implementation ====
+  * **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Bow.java|Bow.java]]
+  * **Extends:** KindOfBow
+  * **Constructor:** Bow(int tier, float accuracy, float delay)
+  * **Abstract:** Cannot be instantiated directly
+
+==== Bow Mechanics ====
+  * **Requires Arrows:** Must have arrows in inventory to attack
+  * **Ammo Consumption:** Uses 1 arrow per attack
+  * **Accuracy Calculation:** Base accuracy + level * 0.1
+  * **Damage Calculation:** Base damage * (1 + level * 0.25)
+  * **Attack Delay:** Base delay (typically 1.5f for bows)
+
+==== Known Bow Implementations ====
+  * [[mr:wooden_bow_item|Wooden Bow]] - Tier 1, accuracy 0.8f, delay 1.5f
+  * [[mr:compound_bow_item|Compound Bow]] - Tier 3, accuracy 0.8f, delay 1.5f
+  * [[mr:ruby_bow_item|Ruby Bow]] - Tier 5, accuracy 0.8f, delay 1.5f
+  * [[mr:chaos_bow_item|Chaos Bow]] - Tier 3, accuracy 1.0f, delay 1.0f (special mechanics)
+  * [[mr:elven_bow_item|Elven Bow]] - Tier 4, accuracy 0.8f, delay 1.5f
+  * [[mr:composite_crossbow_item|Composite Crossbow]] - Tier 4 (crossbow type)
+  * [[mr:ruby_crossbow_item|Ruby Crossbow]] - Tier 6 (crossbow type)
+
+==== String Resources ====
+  * **Base name pattern:** [BowName]_Name (e.g., WoodenBow_Name, ChaosBow_Name)
+  * **Base info pattern:** [BowName]_Info (e.g., WoodenBow_Info, ChaosBow_Info)
+  * **English:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+  * **Russian:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (ru)]]
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Bow.java|Bow.java]] - Base bow class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/KindOfBow.java|KindOfBow.java]] - Parent class for all bows
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json|Treasury.json]] - Drop rates
+
+==== Related Pages ====
+  * [[en:rpd:bow_item|Bow]] - English wiki page
+  * [[mr:arrow_item|Arrow Item]] - Ammunition reference
+  * [[mr:kind_of_bow_item|KindOfBow Item]] - Parent class reference
+  * [[mr:wooden_bow_item|Wooden Bow Item]] - Basic bow reference
+  * [[mr:compound_bow_item|Compound Bow Item]] - Upgraded bow reference
+  * [[mr:chaos_bow_item|Chaos Bow Item]] - Special chaos bow reference
+
+{{tag> mr bow weapon ranged reference}}

@@ -1,0 +1,99 @@
+====== Shields Library - Machine Reference ======
+
+This page contains machine-readable reference information about the Lua shields library for automated tools and AI assistants.
+
+==== Entity Information ====
+  * **Entity Type:** Lua Library
+  * **File Path:** scripts/lib/shields.lua
+  * **Purpose:** Factory functions for creating shield items with consistent mechanics
+  * **Language:** Lua
+
+==== Library Functions ====
+
+===== shields.makeShield(shieldLevel, shieldDesc, shieldBuff) =====
+  * **Description:** Creates a complete shield item configuration table
+  * **Parameters:**
+    * `shieldLevel` (number): Shield level/tier (1-4 typically)
+    * `shieldDesc` (string): String resource ID for shield description (e.g., "ToughShield_desc")
+    * `shieldBuff` (string, optional): Buff class name to apply (default: "ShieldLeft")
+  * **Returns:** Shield configuration table with activate, info, typicalSTR, requiredSTR, slot, accuracyFactor, damageRoll, attackDelayFactor, attackProc, goodForMelee functions
+
+===== shields.blockDamage(shieldLevel, itemLevel) =====
+  * **Description:** Calculates damage blocked by shield
+  * **Formula:** blockForLevel[shieldLevel] * (1.3 ^ itemLevel)
+  * **Parameters:**
+    * `shieldLevel` (number): Shield tier level
+    * `itemLevel` (number): Item upgrade level
+
+===== shields.blockChance(shieldLevel, str) =====
+  * **Description:** Calculates block chance percentage
+  * **Formula:** chanceForLevel[shieldLevel] * (1 - weightPenalty * 0.1)
+  * **Weight Penalty:** max(strForLevel[shieldLevel] - str, 0)
+
+===== shields.rechargeTime(shieldLevel, str) =====
+  * **Description:** Calculates recharge time between blocks
+  * **Formula:** 5 + weightPenalty
+  * **Weight Penalty:** max(strForLevel[shieldLevel] - str, 0)
+
+===== shields.waitAfterBlockTime(shieldLevel, str) =====
+  * **Description:** Additional wait time after blocking
+  * **Formula:** max(str - strForLevel[shieldLevel], 0)
+
+===== shields.info(baseDesc, str, shieldLevel, itemLevel) =====
+  * **Description:** Generates info text for shield in off-hand slot
+  * **Template:** ShieldInfoTemplate + ShieldStrTemplate from string resources
+
+===== shields.infoWeapon(baseDesc, str, shieldLevel, itemLevel) =====
+  * **Description:** Generates info text for shield used as weapon (two-handed)
+  * **Template:** ShieldWeaponInfo from string resources
+
+==== Stat Tables ====
+  * **strForLevel:** Minimum STR required per shield level {11, 13, 15, 17, 19...}
+  * **chanceForLevel:** Base block chance per level {0.15, 0.20, 0.25, 0.30, 0.35...}
+  * **blockForLevel:** Base block amount per level {2, 3, 4, 5, 6...}
+
+==== Usage Pattern ====
+```lua
+local shields = require "scripts/lib/shields"
+local shieldLevel = 2
+local shieldDesc = "ToughShield_desc"
+local baseDesc = shields.makeShield(shieldLevel, shieldDesc)
+baseDesc.desc = function(self, item)
+    return {
+        image = 1,
+        imageFile = "items/shields.png",
+        name = "ToughShield_name",
+        info = shieldDesc,
+        price = 40 * shieldLevel,
+        equipable = "left_hand",
+        upgradable = true
+    }
+end
+return item.init(baseDesc)
+```
+
+==== Related Items Using This Library ====
+  * [[mr:wooden_shield_item|Wooden Shield]] - Level 1
+  * [[mr:tough_shield_item|Tough Shield]] - Level 2
+  * [[mr:strong_shield_item|Strong Shield]] - Level 3
+  * [[mr:royal_shield_item|Royal Shield]] - Level 4
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/shields.lua|shields.lua]] - Library source
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/stats/shields.lua|shields.lua (stats)]] - Stat tables
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/ToughShield.lua|ToughShield.lua]] - Example usage
+
+==== String Resources Used ====
+  * ShieldInfoTemplate
+  * ShieldStrTemplate
+  * ShieldWeaponInfo
+  * [ShieldName]_Name (per shield)
+  * [ShieldName]_Desc (per shield)
+
+==== Related Pages ====
+  * [[mr:shield_class|Shield Class]] - Java base class reference
+  * [[en:rpd:shields|Shields]] - English wiki page
+  * [[mr:wooden_shield_item|Wooden Shield Item]] - Basic shield reference
+  * [[mr:tough_shield_item|Tough Shield Item]] - Level 2 shield reference
+
+{{tag> mr lua_library shields reference}}

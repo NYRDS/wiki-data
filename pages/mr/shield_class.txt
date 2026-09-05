@@ -1,0 +1,68 @@
+====== Shield Class - Machine Reference ======
+
+This page contains machine-readable reference information about the Shield base class and mechanics for automated tools and AI assistants.
+
+==== Entity Information ====
+  * **Entity Type:** Armor (Off-hand/Left Hand)
+  * **Base Class:** Shield (abstract)
+  * **Parent Class:** Armor
+  * **Equip Slot:** left_hand (Belongings.Slot.LEFT_HAND)
+  * **Package:** com.watabou.pixeldungeon.items.armor.shields
+
+==== Java Implementation ====
+  * **Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/shields/Shield.java|Shield.java]]
+  * **Extends:** Armor
+  * **Implements:** Packable (via Armor inheritance)
+  * **Slot:** Belongings.Slot.LEFT_HAND
+
+==== Shield Mechanics ====
+  * **Block Chance:** Based on shield level and hero's STR
+  * **Block Amount:** Based on shield level and item level
+  * **Recharge Time:** Time between blocks, affected by STR penalty
+  * **Wait After Block:** Additional delay after blocking
+  * **Upgradeable:** Can be upgraded with Upgrade Scrolls
+  * **Tier/Level:** Shield level determines base stats (1-4+)
+
+==== Known Shield Implementations ====
+  * [[mr:wooden_shield_item|Wooden Shield]] - Level 1
+  * [[mr:tough_shield_item|Tough Shield]] - Level 2 (Lua implementation)
+  * [[mr:strong_shield_item|Strong Shield]] - Level 3
+  * [[mr:royal_shield_item|Royal Shield]] - Level 4
+  * [[mr:chaos_shield_item|Chaos Shield]] - Special chaos mechanics (Level 3+)
+
+==== Shield Buff System ====
+  * When equipped in left_hand, applies ShieldLeft buff
+  * When equipped as weapon (two-handed), applies ShieldRight buff
+  * Buff level matches shield level
+  * Buff source is the shield item
+
+==== Lua Implementation Pattern ====
+Most shields are implemented in Lua using the shields library:
+  * Library: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/shields.lua|shields.lua]]
+  * makeShield(shieldLevel, shieldDesc, shieldBuff) - Creates shield configuration
+  * Typical shieldLevel: 1-4 (Wooden=1, Tough=2, Strong=3, Royal=4)
+  * Price formula: 40 * shieldLevel
+
+==== Drop Configuration ====
+  * **Treasury.json:** SHIELD category with weights (WoodenShield=1, ToughShield=0.5, StrongShield=0.25, RoyalShield=0.125)
+  * **SpidersTreasury.json:** Same shield drop rates
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/shields/Shield.java|Shield.java]] - Base shield class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/shields.lua|shields.lua]] - Lua shield library
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json|Treasury.json]] - Drop configuration
+
+==== String Resources ====
+  * **Name pattern:** [ShieldName]_Name (e.g., WoodenShield_Name, ToughShield_Name)
+  * **Description pattern:** [ShieldName]_Desc (e.g., WoodenShield_Desc, ToughShield_Desc)
+  * **English:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+  * **Russian:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (ru)]]
+
+==== Related Pages ====
+  * [[en:rpd:shields|Shields]] - English wiki page
+  * [[mr:shields_lib|Shields Library]] - Lua library reference
+  * [[mr:wooden_shield_item|Wooden Shield Item]] - Basic shield reference
+  * [[mr:tough_shield_item|Tough Shield Item]] - Level 2 shield reference
+
+{{tag> mr shield armor reference}}

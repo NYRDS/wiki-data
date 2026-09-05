@@ -1,0 +1,52 @@
+====== Chaos Set Item - Machine Reference ======
+
+This page contains machine-readable reference information about the Chaos Set items for automated tools and AI assistants.
+
+==== Entity Information ====
+  * **Entity Type:** Item Set (Armor/Weapon)
+  * **Theme:** Chaos mechanics with self-upgrading/degrading
+  * **Tier Range:** 3-5
+  * **Special Property:** Charge-based level system
+
+==== Java Implementation ====
+  * **Package:** com.nyrds.pixeldungeon.items.chaos
+  * **Base Interfaces:** Packable (for charge persistence)
+  * **Fusion:** ChaosCrystal can fuse bows/melee weapons into Chaos items
+
+==== Set Components ====
+  * **Weapon:** [[mr:chaos_sword_item|Chaos Sword]], [[mr:chaos_bow_item|Chaos Bow]], [[mr:chaos_staff_item|Chaos Staff]]
+  * **Armor:** [[mr:chaos_armor_item|Chaos Armor]]
+  * **Catalyst:** [[mr:chaos_crystal_item|Chaos Crystal]]
+
+==== Chaos Mechanics ====
+  * **Charge System:** Items accumulate charge on damage dealt, lose charge on damage taken
+  * **Self-Upgrade:** When charge > threshold (5 * level^1.5), item level increases
+  * **Self-Degrade:** At level 6+, if charge reaches 0, item loses enchantment
+  * **Chaos Mark:** On miss (weapons) or hit (armor), creates chaotic effect at position
+  * **Visual States:** 5 image variants based on level (level/3, capped at 4)
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCommon.java|ChaosCommon.java]] - Shared chaos mechanics
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosCrystal.java|ChaosCrystal.java]] - Fusion catalyst
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosSword.java|ChaosSword.java]] - Sword implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosBow.java|ChaosBow.java]] - Bow implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosStaff.java|ChaosStaff.java]] - Staff implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/chaos/ChaosArmor.java|ChaosArmor.java]] - Armor implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registration
+
+==== String Resources ====
+  * **Chaos Crystal Name:** ChaosCrystal_Name
+  * **Chaos Crystal Info:** ChaosCrystal_Info
+  * **Fusion Messages:** ChaosCrystal_SwordFused, ChaosCrystal_BowFused, ChaosCrystal_StaffFused, ChaosCrystal_ShieldFused, ChaosCrystal_ScrollFused
+  * **English:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+  * **Russian:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (ru)]]
+
+==== Related Pages ====
+  * [[en:rpd:chaos_set_item|Chaos Set]] - English wiki page
+  * [[mr:chaos_sword_item|Chaos Sword Item]] - Weapon reference
+  * [[mr:chaos_bow_item|Chaos Bow Item]] - Weapon reference
+  * [[mr:chaos_staff_item|Chaos Staff Item]] - Weapon reference
+  * [[mr:chaos_armor_item|Chaos Armor Item]] - Armor reference
+  * [[mr:chaos_crystal_item|Chaos Crystal Item]] - Catalyst reference
+
+{{tag> mr chaos_set item reference}}
