@@ -1,24 +1,23 @@
 ====== Berserker Subclass - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass definition
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass enum definition
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Fury.java|Fury.java]] - Fury buff class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/BerserkArmor.java|BerserkArmor.java]] - Special subclass armor
 
-===== Full Java Class Content =====
-
-**HeroSubClass.java - BERSERKER Definition:**
+===== Enum Definition =====
+From HeroSubClass.java (line 41):
 <code java>
-// Enum definition (line 44)
-BERSERKER(R.string.HeroSubClass_NameBers, R.string.HeroSubClass_DescBers, "BerserkArmor")
+BERSERKER(R.string.HeroSubClass_NameBers, R.string.HeroSubClass_DescBers, "BerserkArmor"),
 </code>
 
-**Fury Buff Activation (from HeroSubClass.java):**
+===== Fury Activation Logic =====
+From HeroSubClass.java (lines 198-212):
 <code java>
 @Override
 public int charGotDamage(int damage, NamedEntityKind src, Char target) {
     switch (this) {
         case BERSERKER:
-            // Activate Fury when HP drops to 40% or below (Fury.LEVEL = 0.4f)
             if (0 < target.hp() && target.hp() <= target.ht() * Fury.LEVEL) {
                 if (!target.hasBuff(BuffFactory.FURY)) {
                     Buff.affect(target, BuffFactory.FURY);
@@ -30,27 +29,46 @@ public int charGotDamage(int damage, NamedEntityKind src, Char target) {
 }
 </code>
 
-**Fury.java - Buff Implementation:**
+===== Fury Buff Class =====
+From Fury.java:
 <code java>
 package com.watabou.pixeldungeon.actors.buffs;
 
+import com.nyrds.LuaInterface;
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.CharUtils;
+import com.watabou.pixeldungeon.sprites.CharSprite;
+import com.watabou.pixeldungeon.ui.BuffIndicator;
+import com.watabou.pixeldungeon.utils.GLog;
+import org.jetbrains.annotations.NotNull;
+
+@LuaInterface
 public class Fury extends Buff {
-    // Fury activates when HP is at or below 40% of max HP
+
     public static final float LEVEL = 0.4f;
 
     @Override
-    public boolean act() {
-        // Detach Fury when HP rises above 40%
+    public void act() {
         if (target.hp() > target.ht() * LEVEL) {
             detach();
         }
-        spend(TICK * 10);
-        return true;
+
+        spend( TICK * 10 );
+    }
+
+    @Override
+    public boolean attachTo(@NotNull Char target) {
+        if (CharUtils.isVisible(target)) {
+            GLog.w(StringsManager.getVar(R.string.Brute_Enraged), target.getName() );
+            target.showStatus( CharSprite.NEGATIVE, StringsManager.getVar(R.string.Brute_StaEnraged));
+        }
+        return super.attachTo(target);
     }
 
     @Override
     public int attackProc(Char attacker, Char defender, int damage) {
-        // Double damage while in Fury state
         return damage * 2;
     }
 
@@ -61,7 +79,7 @@ public class Fury extends Buff {
 }
 </code>
 
-**Stats from code:**
+===== Stats from code =====
   * Fury Activation Threshold: 40% of max HP (Fury.LEVEL = 0.4f)
   * Fury Damage Bonus: 2x (damage * 2)
   * Fury Duration: Persistent while HP <= 40%
@@ -71,20 +89,20 @@ public class Fury extends Buff {
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
-English (values/strings_all.xml):
+From values/strings_all.xml:
 <code xml>
-<string name="BERSERKER_SubclassName">Berserker</string>
-<string name="BERSERKER_SubclassDesc">When severely wounded, the Berserker enters a state of wild Fury, significantly increasing his damage output.</string>
-<string name="Brute_Enraged">%s is enraged!</string>
-<string name="Brute_StaEnraged">ENRAGED</string>
+<string name="HeroSubClass_NameBers">berserker</string>
+<string name="HeroSubClass_DescBers">When severely wounded, the _Berserker_ enters a state of wild fury significantly increasing his damage output.</string>
+<string name="Brute_Enraged">%s becomes enraged!</string>
+<string name="Brute_StaEnraged">enraged</string>
 </code>
 
-Russian (values-ru/strings_all.xml):
+From values-ru/strings_all.xml:
 <code xml>
-<string name="BERSERKER_SubclassName">Берсерк</string>
-<string name="BERSERKER_SubclassDesc">Когда берсерк тяжело ранен, он впадает в состояние неистовства, значительно увеличивая свой урон.</string>
-<string name="Brute_Enraged">%s в ярости!</string>
-<string name="Brute_StaEnraged">ЯРОСТЬ</string>
+<string name="HeroSubClass_NameBers">берсерк</string>
+<string name="HeroSubClass_DescBers">Будучи сильно раненым, _Берсерк_ впадает в состояние дикой ярости, значительно повышая свой показатель урона.</string>
+<string name="Brute_Enraged">%s впал в неистовство!</string>
+<string name="Brute_StaEnraged">неистовый</string>
 </code>
 
 ===== Lua Scripts =====
@@ -93,5 +111,5 @@ This entity is implemented in Java, no Lua script exists
 ===== Related mr Entities =====
   * [[mr:warrior_class|Warrior (Class)]] - Parent class
   * [[mr:fury_buff|Fury (Buff)]] - Buff that powers Berserker
-  * [[mr:berserker_armor_item|Berserker Armor (Item)]] - Special armor for Berserker
+  * [[mr:berserk_armor_item|Berserker Armor (Item)]] - Special subclass armor
   * [[mr:gladiator_subclass|Gladiator (Subclass)]] - Alternative Warrior subclass

@@ -1,23 +1,41 @@
 ====== Магический щит ======
 
+{{ rpd:images:mana_shield_buff.png|Магический щит }}
+
 ==== Описание ====
-**Магический щит** (Mana Shield) - это [[ru:rpd:buffs|бафф]] в Remixed Dungeon, который полностью защищает персонажа от получаемого урона. Бафф активно использует [[ru:rpd:mana|ману]] для поглощения урона.
+**Магический щит** (Magic Shield / Mana Shield) - это [[ru:rpd:buffs|бафф]] в Remixed Dungeon, который полностью поглощает следующую входящую атаку, после чего расходуется.
 
 ==== Механика ====
-  * Полностью поглощает получаемый урон за счёт маны
-  * При отсутствии маны бафф исчезает
-  * Некоторые [[ru:rpd:hero_subclasses|подклассы]] могут создавать магический щит при определённых условиях
+  * Полностью поглощает (отменяет) следующую входящую атаку
+  * После срабатывания бафф исчезает (расходуется за одно применение)
+  * Не использует ману для поглощения урона — название «Mana Shield» относится к магической природе щита, а не к расходу маны
+  * При активации проигрывает эффект и звуковое сопровождение
+  * Некоторые подклассы героев могут создавать магический щит при определённых условиях
 
 ==== Получение ====
-  * [[ru:rpd:witchdoctor_subclass|Знахарь]] - создаёт магический щит при использовании заклинаний
-  * Может быть усилен [[ru:rpd:spells|заклинаниями]] или [[ru:rpd:items|предметами]]
+  * [[ru:rpd:witchdoctor_subclass|Знахарь]] (Witch Doctor) — подкласс Гнолла, создаёт магический щит при использовании заклинаний (см. `Buff.affect(caster, "ManaShield", caster.skillLevel())` в `HeroSubClass.java`)
+  * Применяется как способность некоторыми врагами (например, Spider Mind и Shaman Elder)
+  * Является одним из случайных полезных эффектов у Chaos Shield (Left)
+
+==== Визуальный эффект ====
+  * Реализован в виде [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ManaShield.java|ManaShield.java]] — наследник класса Halo, реализует ISpriteEffect
+  * Lua-скрипт эффекта: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ManaShield.lua|ManaShield.lua]]
+
+==== Исходный код ====
+  * Lua-реализация (`ManaShield.lua`):
+    * `defenceProc` отменяет получаемый урон (возвращает 0), проигрывает эффект `mana_shield_effect` и звук `body_armor`, после чего вызывает `buff:detach()`
+
+==== Проверка содержимого ====
+  * Строковые ресурсы (рус.): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1340-L1341|ManaShieldBuff_Name, ManaShieldBuff_Info]]
+  * Строковые ресурсы (англ.): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1356-L1357|ManaShieldBuff_Name, ManaShieldBuff_Info]]
+  * Машинно-читаемые данные: [[mr:mana_shield_buff|mr:mana_shield_buff]]
 
 ==== См. также ====
   * [[ru:rpd:buffs|Баффы]]
-  * [[ru:rpd:shields|Щиты]]
-  * [[ru:rpd:mana|Мана]]
-  * [[ru:rpd:protection|Защита]]
   * [[ru:rpd:witchdoctor_subclass|Знахарь]]
-  * [[ru:rpd:spellcasting|Колдовство]]
+  * [[ru:rpd:levitation_buff|Левитация]] — другой одноразовый защитный эффект
+
+==== Другие языки ====
+  * [[en:rpd:mana_shield_buff|English]]
 
 {{tag> rpd buffs protection magic}}

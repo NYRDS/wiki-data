@@ -2,25 +2,27 @@
 
 {{ rpd:images:potion_of_levitation_item.png|Зелье Левитации }}
 
-**Зелье Левитации** - это необычное [[ru:rpd:potion_item|зелье]] в Remixed Dungeon, которое при употреблении позволяет персонажу парить над землей, игнорируя ловушки и некоторые эффекты.
+**Зелье Левитации** - это необычное [[ru:rpd:potion_item|зелье]] в Remixed Dungeon, которое при употреблении позволяет персонажу парить над землей, игнорируя наземные ловушки и препятствия.
 
 ==== Описание ====
-При употреблении зелья персонаж на определённое время парит над землёй, не активируя наземные ловушки и не взаимодействуя с некоторыми эффектами на поверхности.
+При употреблении зелья персонаж на определённое время (20 ходов) парит над землёй, не активируя наземные ловушки и взаимодействуя с некоторыми эффектами на поверхности.
 
 ==== Эффект ====
-  * **[[ru:rpd:levitation_buff|Левитация]]** - эффект парения над землёй
-  * **Игнорирование ловушек** - не активирует наземные ловушки
-  * **Свободное передвижение** - возможность пролететь над некоторыми препятствиями
+  * **[[ru:rpd:levitation_buff|Левитация]]** - эффект парения над землёй длительностью 20 ходов (константа Levitation.DURATION)
+  * **Игнорирование ловушек** - не активирует наземные ловушки и позволяет безопасно проходить над пропастями
+  * **Игнорирование огня и газов** - невозможно: огонь и газы заполняют объём воздуха и продолжают воздействовать на персонажа
+  * **Снятие эффекта Корней** - при применении снимает эффект [[ru:rpd:roots_buff|Корней]] (Roots.detach в Levitation.java)
 
 ==== Стратегия ====
   * **Избегание ловушек** - особенно полезно при исследовании неизвестных областей
   * **Быстрое передвижение** - позволяет быстрее перемещаться по безопасным зонам
-  * **Смазывание** - при смазывании стрел заставляет их "улететь" (обычно в процессе превращения в воздух)
+  * **Смазывание** - при смазывании стрел и свитков заставляет их "улететь" (Potion_ItemFliesAway)
 
 ==== Получение ====
   * Можно найти на различных этажах подземелья
   * Иногда продаётся в магазинах
   * Может выпасть из некоторых врагов
+  * Базовая цена в магазине: 35 золотых
 
 ==== Связанные страницы ====
   * [[ru:rpd:potion_item|Зелья]] - Общая информация о зельях
@@ -31,5 +33,12 @@
 ==== Ссылки на код ====
   * **Java класс**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java|PotionOfLevitation.java]]
   * **Эффект левитации**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java|Levitation.java]]
+  * **Длительность эффекта**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java#L14|Levitation.DURATION = 20f]]
+  * **Снятие эффекта Корней**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Levitation.java#L19|Levitation.java#L19]]
+  * **Строковые ресурсы (рус.)**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1648-L1650|PotionOfLevitation_Name, PotionOfLevitation_Info, PotionOfLevitation_Apply]]
+  * **Строковые ресурсы (англ.)**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1649-L1651|PotionOfLevitation strings]]
+
+==== Другие языки ====
+  * [[en:rpd:potion_of_levitation_item|English]]
 
 {{tag> ru:rpd items potions alchemy levitation}}
