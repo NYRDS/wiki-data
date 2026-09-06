@@ -1,0 +1,52 @@
+====== Земляной Корень (Объект Уровня) ======
+
+{{ rpd:images:earthroot_level_object.png|Земляной Корень }}
+
+**Земляной Корень** — это растение, которое может вырасти из [[ru:rpd:earthroot_seed_item|Семен Земляного Корня]]. Когда на него наступают или касаются, оно накладывает несколько баффов на существо, каснувшееся его:
+  * **Растительная Броня** (EarthrootBuff): Дает броню, эквивалентную силе персонажа/4 на ограниченное время
+  * **Короед**: Дополнительный бафф брони, который складывается с Растительной Бронёй
+  * **Корни**: Предотвращает движение (если не летаешь)
+
+Растение уничтожается после касания.
+
+==== Эффекты ====
+  * Дает бафф [[ru:rpd:barkskin_buff|Короед]] при касании
+  * Также накладывает бафф **Растительная Броня** (броня = СИЛА/4)
+  * Также накладывает дебафф **Корни** (предотвращает движение, если не летаешь)
+  * Эффект срабатывает мгновенно при наступлении на клетку объекта
+  * Объект уровня исчезает после касания
+  * Летающие существа невосприимчивы к эффекту Корней
+
+==== Механика ====
+  * Объекты Земляного Корня обычно встречаются растущими в подземелье
+  * Их также можно вырастить, посадив [[ru:rpd:earthroot_seed_item|Семена Земляного Корня]]
+  * Когда существо касается растения, оно получает бафф **Растительная Броня** (броня = СИЛА/4)
+  * Также накладывается бафф **Короед** (дополнительная броня)
+  * Эффект короеда от объекта уровня пропорционален максимальному HP персонажа
+
+==== Стратегия ====
+  * **Стратегическая Посадка:** Сажайте семена Земляного Корня в местах, где планируете оставаться в обороне
+  * **Экстренная Защита:** Полезны при встрече с трудными врагами, если можете отступить к месту растения
+  * **Ингредиент Алхимии:** Само растение можно собрать для крафта
+  * Объекты Земляного Корня ценны для предоставления защитных преимуществ в опасных зонах
+  * Рассмотрите сохранение их для сложных сражений или босов
+  * Можно использовать перед входом в опасные комнаты или зоны
+
+==== Ссылки на код ====
+  * Реализация: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java|Earthroot.java]]
+  * Эффект растения: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L16-L27|Earthroot.effect метод]]
+  * Бафф Растительной Брони: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L71-L94|Earthroot.Armor класс]]
+  * Бафф Короеда: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Barkskin.java|Barkskin.java]]
+  * Дебафф Корней: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]]
+  * Английские строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Earthroot_Name, Earthroot_Desc, EarthrootBuff_Name, EarthrootBuff_Info]]
+  * Русские строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|Строки на русском]]
+
+==== Связанное ====
+  * [[ru:rpd:earthroot_seed_item|Семена Земляного Корня]] — Семена, используемые для выращивания объектов Земляного Корня
+  * [[ru:rpd:barkskin_buff|Короед]] — Бафф, даваемый объектами Земляного Корня
+  * [[ru:rpd:roots_buff|Корни]] — Дебафф предотвращения движения, применяемый растением
+  * [[ru:rpd:plants|Растения]] — Другие растения в игре
+  * [[ru:rpd:seeds_mechanic|Семена]] — Семена, которые можно сажать для выращивания полезных растений
+  * [[ru:rpd:level_objects|Объекты Уровня]] — Другие интерактивные объекты в уровнях подземелья
+
+{{tag> rpd растения предметы объекты_уровня}}
