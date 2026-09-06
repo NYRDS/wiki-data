@@ -1,0 +1,52 @@
+====== Wnd Priest Window - Code References ======
+
+{{ rpd:images:healer_npc_mob.png|Priest Window }}
+
+==== Entity Information ====
+  * **Entity Kind:** WndPriest
+  * **Type:** window
+  * **Namespace:** rpd
+  * **Related NPC:** HealerNPC
+
+==== Java Classes ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndPriest.java|WndPriest.java]] - Main window implementation
+  * **Related NPC:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/HealerNPC.java|HealerNPC.java]]
+
+==== Code Implementation ====
+<code java>
+// File: RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/windows/WndPriest.java
+public class WndPriest extends WndBag {
+    
+    public WndPriest(HealerNPC priest, Hero hero) {
+        super(priest);
+        // Setup healing services interface
+    }
+    
+    // Provides healing services:
+    // - Heal HP
+    // - Cure debuffs (poison, burning, etc.)
+    // - Remove hunger
+    // - Identify items
+}
+
+==== Services Provided ====
+  * **HP Healing:** Restores hero's health
+  * **Debuff Removal:** Cures poison, burning, bleeding, and other negative effects
+  * **Hunger Relief:** Satisfies hunger
+  * **Item Identification:** Identifies unknown items (for a fee)
+
+==== Usage in Code ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/HealerNPC.java|HealerNPC.java]] - Opens WndPriest when interacted with
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L239|MobFactory.java]] - Registers HealerNPC class
+
+==== String Resources ====
+  * **Window Title**: R.string.WndPriest_Title
+  * **Service Options**: Various strings for healing, curing, identifying
+  * **English**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+  * **Russian**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml]] (source of truth)
+
+==== Related mr Entities ====
+  * [[mr:healer_npc|Healer NPC (Code Reference)]]
+  * [[mr:immortal_npc|Immortal NPC (Code Reference)]]
+
+{{tag> rpd windows machine_readable npc priest healing}}
