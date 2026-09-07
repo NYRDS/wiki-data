@@ -1,0 +1,55 @@
+====== Flecha de Fogo ======
+
+{{ rpd:images:fire_arrow_item.png|Flecha de Fogo }}
+
+**Flecha de Fogo** é uma flecha especial de longo alcance em Remixed Dungeon que aplica o efeito de status Queimadura ao acertar.
+
+==== Descrição ====
+Flecha de madeira com ponta imersa em material inflamável. Quando esta flecha atinge um inimigo, incendeia o alvo. Segundo os recursos de string: "Esta flecha parece exatamente igual a uma normal, exceto por uma luz vermelha quente irradiando de sua ponta."
+
+==== Estatísticas ====
+  * **Dano**: 1-6
+  * **Atraso**: 0,75 (baseDly: 0,75)
+  * **Força Mínima Necessária**: 9
+  * **Preço**: 5 de ouro por flecha
+  * **Peso**: 1
+
+==== Habilidades Especiais ====
+  * **Efeito de Queimadura**: Quando a flecha acerta um alvo, aplica o efeito de status Queimadura com 25% de chance quando disparada de uma arma de longo alcance
+  * **Mecanismo**: Usa ''Buff.affect(defender, Burning.class).reignite(defender)'' quando ativada — ocorre em todo acerto bem-sucedido com 25% de probabilidade quando disparada de um arco/arma; sempre ativa quando usada por inimigos
+  * **Melhoria de Arco**: Valores de dano são modificados pelo fator de dano do arco equipado (dmgFactor()) quando disparada de um arco
+  * **Dano Bônus**: Se a força efetiva exceder a força requerida em mais de 2 pontos, adiciona dano extra: MAX += (MIN + (forçaEfetiva - forçaRequerida - 2))
+  * **Bônus da Classe Elfo**: Quando usada por um Elfo, a precisão aumenta em 10% e o atraso é reduzido em 10%
+
+==== Propriedades ====
+  * **Tipo:** Arma de Projétil/Munição (Especial)
+  * **Uso:** Para uso com armas de longo alcance como arcos
+  * **Consumível:** Cada flecha é consumida após ser disparada
+  * **Empilhável:** Pode ser empilhada em quantidades muito altas
+
+==== Criação ====
+Flechas de Fogo podem ser criadas usando uma Poção de Chama Líquida em [[pt:rpd:common_arrow_item|Flechas Comuns]] regulares. Este processo é chamado de "umectação" e transforma a flecha básica em uma com propriedades especiais.
+
+==== Aquisição ====
+  * Pode ser encontrada em vários locais de tesouro pelo calabouço
+  * Quantidade geralmente varia de 15-30 quando gerada aleatoriamente (definido no método random() de Arrow.java)
+  * Encontrada em Treasury.json e SpidersTreasury.json com probabilidade de 2
+  * **Criação:** Pode ser criada por [[pt:rpd:moisten_mechanic|alquimia]] umectando flechas comuns com Poção de Chama Líquida
+
+==== Mecânicas ====
+  * Ao acertar um inimigo, aplica o efeito de status Queimadura
+
+==== Validação de Conteúdo ====
+  * **Fonte de informação**: Classe Java [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FireArrow.java|FireArrow.java]]
+  * **Verificação de statistics**: Extraído diretamente do construtor de FireArrow e da classe base Arrow
+  * **Descrições de efeitos**: Baseadas na implementação do método attackProc no código
+  * **Recursos de string**: Verificado contra values/strings_all.xml
+
+==== Código Fonte ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FireArrow.java|FireArrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] - Classe base
+
+==== Outros Idiomas ====
+  * [[en:rpd:fire_arrow_item|English]]
+
+{{tag> rpd items arrows missiles fire burning}}

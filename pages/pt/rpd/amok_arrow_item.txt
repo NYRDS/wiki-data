@@ -1,0 +1,52 @@
+====== Flecha Amok ======
+
+{{ rpd:images:amok_arrow_item.png|Flecha Amok }}
+
+**Flecha Amok** é uma flecha especial de longo alcance em Remixed Dungeon que faz com que os inimigos fiquem enfurecidos e ataquem outros inimigos ao serem atingidos.
+
+==== Descrição ====
+Flecha encantada que causa um efeito de fúria quando atinge um inimigo. O alvo afetado ataca outros inimigos em vez do jogador, criando caos no grupo adversário.
+
+==== Estatísticas ====
+  * **Dano**: 0 (dano base é 0)
+  * **Atraso**: 1,0 (baseDly: 1,0)
+  * **Força Mínima Necessária**: 9 (setSTR: 9)
+  * **Preço**: 5 de ouro por flecha
+
+==== Habilidades Especiais ====
+  * **Efeito Amok**: Quando a flecha acerta um alvo, aplica Amok, Velocidade e Fúria por 20 turnos
+  * **Mecanismo**: Aplica ''Amok.class'' (por 20 turnos), ''Speed.class'' (por 20 turnos) e cria uma nova instância de ''RageBuff'' no defensor
+  * **Comportamento**: Inimigos afetados atacarão outros inimigos em vez do jogador
+
+==== Aquisição ====
+  * Pode ser encontrada em vários locais de tesouro pelo calabouço
+  * Quantidade geralmente varia de 15-30 quando gerada aleatoriamente
+  * Pode ser criada usando uma Poção de Força em [[pt:rpd:common_arrow_item|Flechas Comuns]] (processo de umectação)
+  * Preço: 5 de ouro por flecha
+
+==== Estratégia ====
+  * Útil para virar inimigos uns contra os outros
+  * Particularmente eficaz em grupos de inimigos
+  * Pode ser usada para reduzir o número de inimigos sem combate direto
+  * O efeito amok só ocorre em um acerto bem-sucedido com 25% de chance (método activateSpecial)
+  * Cuidado para não tornar acidentalmente os inimigos muito poderosos com o efeito de fúria
+
+==== Mecânicas ====
+  * Aplica Amok, Velocidade e Fúria por 20 turnos
+  * Faz com que o alvo atacado ataque outros inimigos
+  * 25% de chance de ativação em acertos bem-sucedidos
+
+==== Validação de Conteúdo ====
+  * **Fonte de informação**: Classe Java [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/AmokArrow.java|AmokArrow.java]]
+  * **Verificação de estatísticas**: Extraído diretamente do construtor de AmokArrow e da classe base Arrow
+  * **Descrições de efeitos**: Baseadas na implementação do método attackProc no código
+  * **Recursos de string**: Verificado contra values/strings_all.xml
+
+==== Código Fonte ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/AmokArrow.java|AmokArrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (classe base)
+
+==== Outros Idiomas ====
+  * [[en:rpd:amok_arrow_item|English]]
+
+{{tag> rpd items arrows missiles amok}}

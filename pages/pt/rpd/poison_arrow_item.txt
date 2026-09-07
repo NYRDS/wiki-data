@@ -1,0 +1,55 @@
+====== Flecha de Veneno ======
+
+{{ rpd:images:poison_arrow_item.png|Flecha de Veneno }}
+
+**Flecha de Veneno** é uma flecha especial de longo alcance em Remixed Dungeon que aplica veneno ao acertar.
+
+==== Descrição ====
+Flecha de madeira com ponta imersa em veneno. Quando esta flecha atinge um inimigo, aplica um efeito de status de veneno, causando dano contínuo ao longo do tempo. É criada ao umectar uma Flecha Comum com uma Poção de Gás Tóxico.
+
+==== Estatísticas ====
+  * **Dano**: 3-4 pontos (base, aumenta quando disparada de um arco)
+  * **Atraso**: 0,75x (relativo à velocidade de disparo da arma)
+  * **Precisão**: 1x (relativa à precisão da arma)
+  * **Força Necessária**: 9
+  * **Durabilidade**: Uso único (consumida no impacto)
+  * **Preço**: 5 de ouro por flecha
+  * **Peso**: 1
+
+==== Propriedades ====
+  * **Tipo:** Arremessável/Munição (Especial)
+  * **Uso:** Para uso com armas de longo alcance como arcos
+  * **Consumível:** Cada flecha é consumida após ser disparada
+  * **Empilhável:** Pode ser empilhada em quantidades muito altas
+  * **Efeito Especial:** Envenena o alvo ao acertar, causando dano ao longo do tempo
+  * **Atualizável quando disparada:** Dano aumenta com o nível do arco
+
+==== Criação ====
+Flechas de Veneno podem ser criadas usando uma Poção de Gás Tóxico em [[pt:rpd:common_arrow_item|Flechas Comuns]] regulares. Este processo é chamado de "umectação" e transforma a flecha básica em uma com propriedades especiais.
+
+==== Mecânicas ====
+  * Ao acertar um inimigo, aplica o efeito de status [[pt:rpd:poison_buff|Veneno]]
+  * Duração base do veneno é 5f (definida como ''PoisonArrow.DURATION = 5f''), aumentada em 1 turno por nível do arco do qual foi disparada (se disparada de um arco)
+  * O veneno causa 1 dano por turno até passar ou o inimigo morrer
+  * O efeito de veneno acumula com veneno existente, atualizando a duração
+  * Não acumula com outros efeitos de status como Paralisia ou Queimadura
+
+==== Detalhes de Implementação ====
+  * **Classe**: ''com.watabou.pixeldungeon.items.weapon.missiles.PoisonArrow''
+  * **Classe Pai**: Estende a classe ''Arrow''
+  * **Sprite**: item_PoisonArrow.png
+
+==== Validação de Conteúdo ====
+  * **Fonte de informação**: Classe Java [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/PoisonArrow.java|PoisonArrow.java]]
+  * **Verificação de estatísticas**: Extraído diretamente do construtor de PoisonArrow e da classe base Arrow
+  * **Descrições de efeitos**: Baseadas na implementação do método attackProc no código
+  * **Recursos de string**: Verificado contra values/strings_all.xml
+
+==== Código Fonte ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/PoisonArrow.java|PoisonArrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] - Classe base
+
+==== Outros Idiomas ====
+  * [[en:rpd:poison_arrow_item|English]]
+
+{{tag> rpd items arrows missiles poison}}

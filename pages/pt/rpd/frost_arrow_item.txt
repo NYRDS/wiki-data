@@ -1,0 +1,49 @@
+====== Flecha de Gelo ======
+
+{{ rpd:images:frost_arrow_item.png|Flecha de Gelo }}
+
+**Flecha de Gelo** é uma flecha especial de longo alcance em Remixed Dungeon que aplica o efeito de status Lentidão ao acertar.
+
+==== Descrição ====
+Flecha de madeira com ponta imersa em líquido congelante. Quando esta flecha atinge um inimigo, aplica o efeito de Lentidão, reduzindo a velocidade de movimento do alvo. É criada ao umectar uma Flecha Comum com uma Poção de Gelo.
+
+==== Estatísticas ====
+  * **Dano**: 0-6
+  * **Atraso**: 0,75x
+  * **Força Mínima**: 9
+  * **Preço**: 5 de ouro por flecha
+  * **Peso**: 1
+  * **Quantidade Aleatória**: 15-30 flechas
+
+==== Habilidade Especial ====
+  * **Efeito de Lentidão**: Ao acertar, aplica o efeito de status Lentidão por 5 turnos com 25% de chance
+  * **Mecanismo**: Usa ''Buff.prolong(defender, Slow.class, DURATION)'' onde DURATION = 5f
+  * **Arcos**: Quando disparada de um arco, o dano, a precisão e o atraso são afetados pelas propriedades do arco
+
+==== Aquisição ====
+  * Pode ser criada usando uma Poção de Gelo em [[pt:rpd:common_arrow_item|Flechas Comuns]] (processo de umectação)
+  * Não pode ser encontrada naturalmente como item autônomo no chão do calabouço
+  * Preço: 5 de ouro por flecha
+
+==== Estratégia ====
+  * Eficaz contra inimigos rápidos para reduzir sua mobilidade
+  * Particularmente útil contra atacantes corpo-a-corpo perigosos
+  * Pode ser usada para ganhar tempo em encontros difíceis
+  * O efeito de lentidão só ocorre em um acerto bem-sucedido com 25% de chance
+  * Mais eficaz contra inimigos baseados em fogo
+  * Funciona sinergicamente com equipamento de arco que aumenta dano e precisão
+
+==== Validação de Conteúdo ====
+  * **Fonte de informação**: Classe Java [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java|FrostArrow.java]]
+  * **Verificação de estatísticas**: Extraído diretamente do construtor de FrostArrow e da classe base Arrow
+  * **Descrições de efeitos**: Baseadas na implementação do método attackProc no código
+  * **Recursos de string**: Verificado contra values/strings_all.xml
+
+==== Código Fonte ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java|FrostArrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] - Classe base
+
+==== Outros Idiomas ====
+  * [[en:rpd:frost_arrow_item|English]]
+
+{{tag> rpd items arrows missiles frost slow}}
