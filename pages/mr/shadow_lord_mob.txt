@@ -1,76 +1,101 @@
 ====== Shadow Lord Mob - Code References ======
 
 ===== Java Classes =====
-  * **Main Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/ShadowLord.java|ShadowLord.java]]
-    - Package: com.nyrds.pixeldungeon.mobs.common
-    - Extends: Boss
-    - Implements: IZapper
-    - Author: DeadDie (created 13.02.2016)
-  * **Related Classes:**
-    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java|Boss.java]] (base class)
-    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/ShadowLordLevel.java|ShadowLordLevel.java]] (dedicated level)
-    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Crystal.java|Crystal.java]] (spawns crystals)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/ShadowLord.java|ShadowLord.java]] - Main mob implementation
+    * Package: ''com.nyrds.pixeldungeon.mobs.common''
+    * Extends: ''Boss''
+    * Implements: ''IZapper''
+    * Author: DeadDie (created 13.02.2016)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java|Boss.java]] - Base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/ShadowLordLevel.java|ShadowLordLevel.java]] - Dedicated arena level
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Crystal.java|Crystal.java]] - Spawns crystals via ''Crystal.makeShadowLordCrystal()''
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Mob registration: ''registerMobClass(ShadowLord.class)''
 
 ===== JSON Configuration =====
-  * **Sprite Config:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/ShadowLord.json|ShadowLord.json]]
-  * **Bestiary:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] (spawn configuration)
-  * **Dungeon Config:** Referenced in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Dungeon.json|Dungeon.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/ShadowLord.json|spritesDesc/ShadowLord.json]] - Sprite animation configuration (idle, run, attack, zap, die)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/ShadowLord.json|mobsDesc/ShadowLord.json]] - Battle music configuration
+
+<code json>
+{
+  "battleMusic": "ost_boss_5_fight",
+  "battleMusicFallback": "ost_boss_fight"
+}
+</code>
+
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|levelsDesc/Bestiary.json]] - Spawn configuration: ''"ShadowLordLevel":{"any":{"ShadowLord":1}}''
 
 ===== String Resources =====
 <code xml>
-<string name="ShadowLord_Name">Shadow Lord</string>
-<string name="ShadowLord_Intro">Intro dialogue when spawning minions</string>
-<string name="ShadowLord_Death">Death dialogue</string>
+<string name="ShadowLord_Name">shadow lord</string>
+<string name="ShadowLord_Name_Objective">Shadow Lord</string>
+<string name="ShadowLord_Gender">masculine</string>
+<string name="ShadowLord_Intro">Prepare yourself!</string>
+<string name="ShadowLord_Death">Nooooo...</string>
+<string name="ShadowLord_Desc">This creature is made of pure evil and impenetrable darkness. Many believe that he is the Old God himself, considering how powerful he is. While others assumes that he is but a guardian of the Old God\'s chambers.</string>
 </code>
 
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
-===== Key Implementation Details =====
-  * **HP/HT:** 260 (set in constructor: hp(ht(260)))
-  * **Base Defense Skill:** 40
-  * **Base Attack Skill:** 30
-  * **Damage Range:** 30-40
-  * **Damage Reduction:** 40
-  * **EXP for Kill:** 60
-  * **Drops:** Scroll of Weapon Upgrade (guaranteed)
-  * **Walking Type:** ABSOLUTE
+===== Implementation Details =====
+  * **HP/HT**: 260 (set in constructor: ''hp(ht(260))'')
+  * **Base Defense Skill**: 40
+  * **Base Attack Skill**: 30
+  * **Damage Range**: 30-40 (''dmgMin = 30'', ''dmgMax = 40'')
+  * **Damage Reduction (DR)**: 40 (''dr = 40'')
+  * **STR**: 15 (''STR(15)'')
+  * **EXP for Kill**: 60 (''expForKill = 60'')
+  * **Drops**: ''ScrollOfWeaponUpgrade'' (guaranteed, ''collect(new ScrollOfWeaponUpgrade())'')
+  * **Walking Type**: ''WalkingType.ABSOLUTE''
+  * **isHumanoid**: ''true''
 
 ===== Special Abilities =====
-  * **spawnShadow():** Spawns a Shadow mob next to the Shadow Lord using WandOfBlink.appear()
-  * **spawnWraith():** Spawns 4 Wraiths at empty cells next to the Shadow Lord
-  * **twistLevel():** Transforms the level by:
-    - Creating an empty level with LevelTools.makeEmptyLevel()
-    - Building a maze with LevelTools.buildShadowLordMaze() (6 iterations)
-    - Spawning a Crystal at a pedestal location
-    - Filling area with Darkness blob (5x5 area)
-  * **canAttack():** Can attack targets within distance < 4 with clear Ballistica path
-  * **fx():** Uses purpleLight magic missile with zap sound effect
-  * **damage():** When damaged:
-    - Enters Fleeing state
-    - Blinks away from attacker using CharUtils.blinkAway()
-    - Calls twistLevel() to transform the arena
-    - Sets cooldown to 10 turns
-  * **act():** Per-turn behavior:
-    - Decrements cooldown
-    - When fleeing and cooldown < 0: returns to Wandering state, spawns minions (70% Wraith, 30% Shadow)
-    - Heals from Darkness blobs at current position
-    - Takes 1 damage from Foliage blobs (with bone particle effect)
-  * **die():** On death:
-    - Plays death dialogue
-    - Resets level with LevelTools.makeEmptyLevel()
-    - Unseals the level
-    - Validates SHADOW_LORD_SLAIN badge
+  * **spawnShadow()**: Spawns a ''Shadow'' mob next to the Shadow Lord via ''WandOfBlink.appear()''
+  * **spawnWraith()**: Spawns 4 ''Wraith'' mobs at empty cells next to the Shadow Lord (''Wraith.spawnAt(cell)'')
+  * **twistLevel()**: Transforms the level:
+    * Calls ''LevelTools.makeEmptyLevel(level, false)'' once per encounter
+    * Builds a maze with ''LevelTools.buildShadowLordMaze(level, 6)''
+    * Carves a 3x3 area around hero and boss to avoid soft-lock
+    * Spawns a ''Crystal'' at a random pedestal (''Crystal.makeShadowLordCrystal()'')
+    * Fills 5x5 area around the crystal with ''Darkness'' blob via ''level.fillAreaWith(Darkness.class, x - 2, y - 2, 5, 5, 1)''
+  * **canAttack()**: Can attack when ''level().distance(getPos(), enemy.getPos()) < 4'' and ''Ballistica.cast(...)'' reaches target
+  * **fx()**: Uses ''MagicMissile.purpleLight(...)'' with ''Assets.SND_ZAP'' and hides sprite
+  * **damage()**: When damaged by an external source and ''cooldown < 0'':
+    * Switches state to ''Fleeing''
+    * Blinks away via ''CharUtils.blinkAway(...)'' to a cell at distance > 3 from attacker
+    * Calls ''twistLevel()''
+    * Sets ''cooldown = 10''
+  * **act()**: Per-turn behavior:
+    * Decrements ''cooldown''
+    * When Fleeing and ''cooldown < 0'': returns to ''Wandering'', then with 70% chance spawns a Wraith, otherwise a Shadow; yells ''ShadowLord_Intro'' string
+    * Heals ''((ht() - hp()) / 4)'' HP when standing on ''Darkness'' blob (only when ''hp() < ht()'')
+    * Takes 1 damage when standing on ''Foliage'' blob (with ''Speck.BONE'' particle burst)
+  * **die()**: On death:
+    * Yells ''ShadowLord_Death'' string
+    * Calls ''LevelTools.makeEmptyLevel(level(), false)'' to reset the arena
+    * Unseals the level (''level().unseal()'')
+    * Validates ''Badges.Badge.SHADOW_LORD_SLAIN'' via ''Badges.validateBossSlain(...)''
 
 ===== Immunities and Resistances =====
-  * Inherits from Boss class
-  * Special interaction with Darkness (healing) and Foliage (damage) blobs
+  * Inherits from ''Boss'' class
+  * Special interaction with ''Darkness'' blob (healing source) and ''Foliage'' blob (damage source)
+  * No additional immunities declared beyond the ''Boss'' base class
 
 ===== Code References =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Fleeing.java|Fleeing.java]] (AI state)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Wandering.java|Wandering.java]] (AI state)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/LevelTools.java|LevelTools.java]] (level manipulation)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]] (blink mechanics)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Darkness.java|Darkness.java]] (healing source)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Foliage.java|Foliage.java]] (damage source)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] (badge validation)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Fleeing.java|Fleeing.java]] - AI state entered on damage
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Wandering.java|Wandering.java]] - Default AI state after cooldown expires
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/LevelTools.java|LevelTools.java]] - Level manipulation (''makeEmptyLevel'', ''buildShadowLordMaze'')
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]] - ''blinkAway()'' mechanics
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Darkness.java|Darkness.java]] - Healing source blob
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Foliage.java|Foliage.java]] - Damage source blob
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] - ''SHADOW_LORD_SLAIN'' badge validation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfWeaponUpgrade.java|ScrollOfWeaponUpgrade.java]] - Guaranteed drop item
+
+===== Related mr Entities =====
+  * [[mr:boss_mob|Boss]] - Parent mob class
+  * [[mr:crystal_mob|Crystal]] - Spawned via ''Crystal.makeShadowLordCrystal()''
+  * [[mr:shadow_mob|Shadow]] - Summoned minion (''new Shadow()'')
+  * [[mr:wraith_mob|Wraith]] - Summoned minion (''Wraith.spawnAt(cell)'')
+  * [[mr:scroll_of_weapon_upgrade_item|Scroll of Weapon Upgrade]] - Guaranteed drop
+
+{{tag> mr mob shadow_lord boss reference}}
