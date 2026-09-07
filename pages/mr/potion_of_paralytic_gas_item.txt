@@ -2,6 +2,12 @@
 
 ===== Java Classes =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java|PotionOfParalyticGas.java]]
+    * Extends ''UpgradablePotion'' class
+    * ''labelIndex = 8'' (sets color slot in potion labels)
+    * ''shatter()'' seeds ''ParalyticGas'' blob at the cell (1000 * qualityFactor strength)
+    * ''basePrice()'' returns 40 gold
+    * ''moistenArrow()'' converts arrows into ''ParalysisArrow''
+    * Registered in ''Potion.potions[]'' array (Potion.java)
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
@@ -12,6 +18,9 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="PotionOfParalyticGas_Info">Upon exposure to open air, the liquid in this flask will vaporize into a numbing yellow haze. Anyone who inhales the cloud will be paralyzed instantly, unable to move for some time after the cloud dissipates. This item can be thrown at distant enemies to catch them within the effect of the gas.</string>
 </code>
 
+  * Source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1664-L1665|values/strings_all.xml#L1664-L1665]]
+  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1664-L1665|values-ru/strings_all.xml#L1664-L1665]]
+
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
 
@@ -19,3 +28,5 @@ This entity is implemented in Java, no Lua script exists
   * [[mr:paralytic_gas|Paralytic Gas (Blob)]]
   * [[mr:potion_item|Potion (Base Class)]]
   * [[mr:paralysis_arrow_item|Paralysis Arrow (Item)]]
+
+{{tag> mr items potions}}
