@@ -1,0 +1,50 @@
+====== Plague Doctor Mask Item ======
+
+{{ rpd:images:plague_doctor_mask_item.png|Plague Doctor Mask }}
+
+The **Plague Doctor Mask** is an [[en:rpd:accessories|accessory]] item in Remixed Dungeon that grants permanent immunity to toxic and paralytic gases when equipped. It is the starting ring accessory for the [[en:rpd:doctor_class|Doctor]] class and is also obtained by completing the [[en:rpd:plague_doctor_npc|Plague Doctor]] NPC quest.
+
+==== Description ====
+A carved ebony mask shaped like a ravenous skull, fitted with amethyst gemstones in the eye sockets and lined with herbs and spices. Wearing it filters the air you breathe through a labyrinth of tubes and filters, masking the stench of decay that clings to you like a shroud.
+
+==== Item Overview ====
+  * **Type:** [[en:rpd:accessories|Accessory]] (artifact slot)
+  * **Covers Facial Hair:** true
+  * **Covers Hair:** false
+  * **In-App Purchase:** No (`nonIap() == true`)
+  * **Obtainability:** Unlocked when [[en:rpd:badges|Badge.DOCTOR_QUEST_COMPLETED]] is earned
+  * **Equipment Slot:** Artifact (via `RPD.Slots.artifact`)
+  * **Price:** 20 gold
+  * **Sprite:** Index 26 in `items/artifacts.png` (also Java `image = 23` in artifacts sheet)
+
+==== Special Properties ====
+  * **Gases Immunity:** When activated, permanently applies the Gases Immunity buff to the wearer
+  * **Buff Removed on Unequip:** When deactivated, the Gases Immunity buff is removed
+  * **Cosmetic:** Covers facial hair and visually equips on the hero sprite layer (via `Accessory.getLayerFile()`)
+
+==== Acquisition ====
+  * **Starting Accessory for Doctor:** Provided as the `ring1` slot in `initHeroes.json` for the `DOCTOR` class
+  * **Quest Reward:** Obtained by completing the [[en:rpd:plague_doctor_npc|Plague Doctor]] NPC quest line, which unlocks [[en:rpd:badges|Badge.DOCTOR_QUEST_COMPLETED]]
+  * **Ownability Gate:** `haveIt()` requires [[en:rpd:badges|Badge.DOCTOR_QUEST_COMPLETED]] to be unlocked (or donation level 4 from the base Accessory class)
+
+==== Source Code References ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/accessories/PlagueDoctorMask.java|PlagueDoctorMask.java]]
+  * **Parent Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/accessories/Accessory.java|Accessory.java]]
+  * **Hood Variant:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/accessories/PlagueDoctorMaskHood.java|PlagueDoctorMaskHood.java]]
+  * **Lua Script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/PlagueDoctorMask.lua|PlagueDoctorMask.lua]] — handles activate/deactivate and the GasesImmunity buff
+  * **NPC Source:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/PlagueDoctorNPC.java|PlagueDoctorNPC.java]]
+  * **Hero Definition:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] — `ring1.kind = "PlagueDoctorMask"`
+  * **Badge:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] — `Badge.DOCTOR_QUEST_COMPLETED`
+  * **English String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|PlagueDoctorMask_Name, PlagueDoctorMask_Info]] in `values/strings_all.xml`
+  * **Russian String Resources:** `PlagueDoctorMask_Name, PlagueDoctorMask_Info` in `RemixedDungeon/src/main/res/values-ru/strings_all.xml`
+  * **Other Localizations:** Available in de, fr, uk, ko, el, and other supported languages
+  * **mr: namespace:** [[mr:plague_doctor_mask_item|plague_doctor_mask_item]] for machine-readable references
+
+==== Related Items ====
+  * [[en:rpd:doctor_class|Doctor Class]] — only class that starts with this accessory
+  * [[en:rpd:plague_doctor_npc|Plague Doctor NPC]] — quest provider
+  * [[en:rpd:medicine_mask_item|Medicine Mask]] — earlier quest reward (cosmetic)
+  * [[en:rpd:bone_saw_item|Bone Saw]] — Doctor starting weapon
+  * [[en:rpd:artifacts|Artifacts]] — general artifact documentation
+
+{{tag> rpd items accessories quest_reward doctor}}

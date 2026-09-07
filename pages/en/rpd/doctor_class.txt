@@ -5,10 +5,10 @@
 The Doctor is a playable hero class in Remixed Dungeon specializing in toxic effects, disease mechanics, and potion knowledge. The Doctor class focuses on utilizing various chemical and biological agents with enhanced potion effectiveness.
 
 ==== Starting Equipment ====
-  * [[en:rpd:bonesaw_item|Bone Saw]] - Basic melee weapon (identified)
-  * [[en:rpd:cloth_armor_item|Cloth Armor]] - Basic armor (identified)
-  * [[en:rpd:plague_doctor_mask_item|Plague Doctor Mask]] - Starting accessory
-  * [[en:rpd:gold_item|Gold]] - 100 gold coins
+  * [[en:rpd:bone_saw_item|Bone Saw]] - Basic melee weapon (identified)
+  * No armor (the Doctor starts with `NoItem` armor to allow easier equipping of the [[en:rpd:plague_doctor_mask_item|Plague Doctor Mask]])
+  * [[en:rpd:plague_doctor_mask_item|Plague Doctor Mask]] - Starting accessory (artifact slot)
+  * 100 gold coins
 
 ==== Known Items ====
 The Doctor starts with knowledge of the following items:
@@ -22,6 +22,7 @@ The Doctor class has unique mechanics that differentiate it from other classes:
   * **Toxic Knowledge:** Starts with knowledge of gas-based potions
   * **Medical Expertise:** Enhanced effectiveness with healing and toxic potions
   * **Disease Mechanics:** Ability to spread and utilize diseases through the Plague Doctor NPC quest
+  * **Bone Saw Synergy:** While wielding the [[en:rpd:bone_saw_item|Bone Saw]] in either hand, the Doctor suffers no attack skill penalty. When wielding any other weapon, `attackSkillBonus()` returns -5 (with a 5% chance to yell an accuracy warning per attack)
 
 ==== Advantages ====
   * **Potion Knowledge:** Starts knowing key potions for crowd control
@@ -30,9 +31,9 @@ The Doctor class has unique mechanics that differentiate it from other classes:
   * **Quest Access:** Can complete the Plague Doctor NPC quest for rewards
 
 ==== Disadvantages ====
-  * **Lower Base Stats:** Starts with standard 10 Strength requirement
+  * **Bone Saw Lock-In:** -5 attack skill penalty when wielding any weapon other than the [[en:rpd:bone_saw_item|Bone Saw]]
   * **Specialized Playstyle:** Requires understanding of potion mechanics
-  * **Weapon Limitation:** Bone Saw is a low-tier weapon requiring upgrades
+  * **No Starting Armor:** Starts with `NoItem` armor, leaving the body slot exposed
 
 ==== Gameplay Style ====
 The Doctor plays differently from other classes by:
@@ -54,11 +55,12 @@ The Doctor class does not have predefined subclasses in the standard game. Subcl
 ==== Mechanics ====
   * [[en:rpd:potions|Potions]] - Heavy reliance on potion usage
   * [[en:rpd:toxic_gas_buff|Toxic Gas]] - Core mechanic
-  * [[en:rpd:paralytic_gas|Paralytic Gas]] - Core mechanic
+  * [[en:rpd:paralytic_gas_buff|Paralytic Gas]] - Core mechanic
   * [[en:rpd:plague_doctor_npc|Plague Doctor NPC]] - Related quest NPC
 
 ==== Data Sources ====
   * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] (DOCTOR enum)
+  * **Bone Saw Accuracy Check**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L412-L432|HeroClass.attackSkillBonus()]] — applies -5 attack skill when not wielding Bone Saw
   * **Starting Items**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] (DOCTOR configuration)
   * **String Resources**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] (HeroClass_Doctor)
 
@@ -68,6 +70,6 @@ The Doctor class does not have predefined subclasses in the standard game. Subcl
   * [[en:rpd:potions|Potions]] - Important item type for the Doctor
   * [[en:rpd:hero|Hero]] - General hero information
   * [[en:rpd:plague_doctor_mask_item|Plague Doctor Mask]] - Starting accessory
-  * [[en:rpd:bonesaw_item|Bone Saw]] - Starting weapon
+  * [[en:rpd:bone_saw_item|Bone Saw]] - Starting weapon
 
 {{tag> rpd hero classes doctor alchemy toxic gas plague}}
