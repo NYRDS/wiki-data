@@ -1,0 +1,82 @@
+====== Шаман ======
+{{ rpd:images:elf_shaman_hero.png|Шаман }}
+
+**Шаман** — это подкласс Эльфа в Remixed Dungeon.
+
+===== Описание =====
+Эльфийские //Шаманы// могут использовать жезлы как оружие ближнего боя. Успешные удары имеют шанс активировать силу жезла на цели без расхода заряда.
+
+===== Разблокировка =====
+Подкласс Шаман можно разблокировать, используя [[ru:rpd:tome_of_mastery_item|Том Мастерства]] после победы над вторым боссом (Тенгу).
+
+===== Специальные механики =====
+  * Эльфийские _Шаманы_ могут использовать [[ru:rpd:wands|жезлы]] как [[ru:rpd:melee_weapons|оружие ближнего боя]]
+  * При атаке с жезлом, экипированным как основное оружие, есть 25% шанс (реализовано как Random.Int(4) == 0) зажечь цель силой жезла без расхода заряда
+  * Эта способность реализована в методе ''attackProc'' класса ''HeroSubClass.java'' (строки 144-153)
+  * Жезл должен быть экипирован как основное оружие (активное оружие) для работы этой механики
+  * Жезл должен иметь доступные заряды и метод ''affectTarget()'' должен вернуть true
+  * +1 бонус к росе для усиленного [[ru:rpd:mana_mechanic|восстановления маны]]
+  * **mr: namespace:** См. [[mr:shaman_subclass]] для машиночитаемых данных
+
+===== Технические детали =====
+  * **Реализация:** Специальные механики Шамана реализованы в методе ''attackProc'' класса ''HeroSubClass.java'' (строки 144-153)
+  * **Активация жезла:** Когда Шаман атакует с жезлом, экипированным как активное оружие, есть 25% шанс зажечь врага эффектом жезла без расхода заряда
+  * **Ссылка на код:** Конкретная реализация проверяет, является ли основное оружие жезлом, и если ''affectTarget()'' возвращает true и ''Random.Int(4) == 0'', то вызывается ''zapCell()'' для зажигания врага без расхода заряда
+
+===== Специальная броня =====
+Использование [[ru:rpd:armor_kit_item|Набора для брони]] на любой броне превратит её в [[ru:rpd:shaman_armor_item|Броню Шамана]], специально разработанную для этого подкласса.
+
+===== Преимущества =====
+  * Может использовать [[ru:rpd:wands|жезлы]] как [[ru:rpd:melee_weapons|оружие ближнего боя]]
+  * 25% шанс активировать силы жезла без расхода зарядов
+  * Универсальные варианты оружия, сочетающие [[ru:rpd:ranged_weapons|дальнее]] и [[ru:rpd:melee_combat|ближнее]]
+  * Сохраняет заряды жезлов при активации силы
+  * Хорошо работает со всеми [[ru:rpd:wands|типами жезлов]]
+  * +1 бонус к росе для усиленного [[ru:rpd:mana_mechanic|восстановления маны]]
+
+===== Недостатки =====
+  * Шанс активации не гарантирован (25% шанс)
+  * Урон жезла как [[ru:rpd:melee_mechanic|оружия ближнего боя]] может быть ниже, чем у специализированного оружия
+
+===== Проверка данных =====
+  * Источник информации: Java Enum ''com.watabou.pixeldungeon.actors.hero.HeroSubClass.SHAMAN''
+  * Проверка механик: Бонус атаки реализован в методе ''attackProc'' класса ''HeroSubClass.java'', с 25% шансом зажечь врага
+  * Описание эффектов: Основано на строковых ресурсах из values/strings_all.xml (\"HeroSubClass_DescShaman\")
+  * Проверка имени: Подтверждена из строковых ресурсов (\"HeroSubClass_NameShaman\")
+  * Дополнительные механики: Бонус к росе проверен в методе ''dewBonus'' класса ''HeroSubClass.java''
+
+===== Ссылки на код =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] — Определение подкласса и механики
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L144-L153|HeroSubClass.java#L144-L153]] — Точная реализация механики зажигания жезлом (25% шанс при владении жезлом)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L257-L261|HeroSubClass.java#L257-L261]] — Реализация бонуса к росе (+1 для Шамана)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L19-L21|HeroSubClass.java#L19-L21]] — Определение enum с классом брони (\"ShamanArmor\")
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] — Реализация жезла, позволяющая механику
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L92-L96|Wand.java#L92-L96]] — Метод AffectTarget(), проверяющий, может ли жезл зажечь
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L164-L174|Wand.java#L164-L174]] — Метод zapCell(), выполняющий зажигание без расхода заряда
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1010-L1011|Строковые ресурсы Шамана (английский)]] — Имя и описание
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L996-L997|Строковые ресурсы Шамана (русский)]] — Русская локализация
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] — Определения отношений класс/подкласс
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L295|ItemFactory.java#L295]] — Регистрация брони Шамана
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L996-L997|HeroSubClass_NameShaman, HeroSubClass_DescShaman]] — Русские строковые ресурсы (имя и описание)
+  * **mr: namespace:** См. [[mr:shaman_subclass]] для машиночитаемых данных
+
+===== Файлы конфигурации =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] — Определения отношений класс/подкласс
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L295|ItemFactory.java#L295]] — Регистрация брони Шамана
+
+===== Строковые ресурсы =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1010|HeroSubClass_NameShaman]] — \"Shaman\" (английский)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1011|HeroSubClass_DescShaman]] — \"Elven Shamans can use wands as melee weapons. Successful hits have a chance to activate the wand's power on a target without using a charge.\" (английский)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L996|HeroSubClass_NameShaman]] — \"Шаман\" (русский)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L997|HeroSubClass_DescShaman]] — \"Эльфийские шаманы могут использовать жезлы как оружие ближнего боя. Успешные атаки имеют шанс активировать силу жезла на цели без расхода заряда.\" (русский)
+
+===== См. также =====
+  * [[ru:rpd:elf_class|Класс Эльфа]]
+  * [[ru:rpd:wands|Жезлы]]
+  * [[playable_class_mechanic|Играбельные классы]]
+  * [[ru:rpd:subclasses|Подклассы]]
+  * [[ru:rpd:shaman_armor_item|Броня Шамана]]
+  * [[ru:rpd:hero|Герой]]
+  * [[ru:rpd:mechanics_mechanic|Игровые механики]]
+
+{{tag> rpd subclasses shaman elf wand melee}}

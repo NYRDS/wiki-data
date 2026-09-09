@@ -1,0 +1,47 @@
+====== Спринтер ======
+{{ rpd:images:rogue_freerunner_hero.png|Спринтер }}
+
+**Спринтер** — это подкласс героя для класса [[ru:rpd:rogue_class|Разбойник]] в Remixed Dungeon.
+
+==== Описание ====
+_Спринтер_ может двигаться почти в два раза быстрее большинства монстров. Когда он бежит, Спринтер становится гораздо труднее попасть. Для этого Спринтер не должен быть перегружен и не должен голодать.
+
+==== Разблокировка ====
+Подкласс Спринтер можно разблокировать, используя [[ru:rpd:tome_of_mastery_item|Том Мастерства]] после победы над вторым боссом (Тенгу). Этот предмет также можно использовать с [[ru:rpd:tengu_liver_item|Печенью Тенгу]], если используется класс, который обычно не может использовать Том Мастерства.
+
+==== Особенности ====
+У Спринтера есть следующие специальные механики, реализованные в игровом коде:
+  * **Преимущество в скорости:** Получает 1.6x скорость движения, когда не голодает (реализовано в Hero.java)
+  * **Бонус уклонения:** Получает 2x уклонение, когда не голодает и в движении (защитный навык удваивается при движении)
+  * **Требования:** Не должен голодать для поддержания специальных механик
+  * **Бонусы движения:** Бонусы скорости и уклонения применяются, когда персонаж движется и не голодает
+
+==== Специальная броня ====
+Использование [[ru:rpd:armor_kit_item|Набора для брони]] на любой броне превратит её в [[ru:rpd:freerunner_armor|Броню Спринтера]], специально разработанную для этого подкласса.
+
+==== Преимущества ====
+  * Значительно более высокая скорость движения при выполнении условий
+  * Труднее попасть, когда бежит
+  * Отлично подходит для побега и позиционирования
+  * Хорош для тактик «удар и беги»
+
+==== Недостатки ====
+  * Требует отсутствия перегрузки (не перегружен)
+  * Не должен голодать
+  * Преимущество в скорости теряется при сильной загрузке
+  * Требует тщательного управления едой
+
+==== Ссылки на исходный код ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L48|HeroSubClass.java — Определение Спринтера]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L278|Hero.java — Реализация скорости Спринтера]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L574-L577|Char.java — Реализация уклонения Спринтера]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java#L121-L123|Hunger.java — Условие голодания]]
+  * Строковые определения: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1003|HeroSubClass_DescFreR в strings_all.xml]]
+
+==== См. также ====
+  * [[ru:rpd:hero_subclasses|Подклассы героя]] — Все подклассы
+  * [[ru:rpd:rogue_class|Разбойник]] — Базовый класс
+  * [[ru:rpd:tome_of_mastery_item|Том Мастерства]] — Предмет для разблокировки
+  * [[ru:rpd:freerunner_armor|Броня Спринтера]] — Специальная броня
+
+{{tag> rpd subclasses freerunner rogue}}
