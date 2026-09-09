@@ -1,12 +1,14 @@
 ====== AI Behavior Mechanic - Code References ======
 
-===== Java Classes =====
+{{ rpd:images:magic_mechanic.png|AI Behavior Mechanic }}
+
+==== Java Classes ====
   * **AI State Interface:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/AiState.java|AiState.java]] - Base interface for all AI states
   * **AI State Manager:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/MobAi.java|MobAi.java]] - Manages AI state transitions and state registration
   * **Mob Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Contains AI state management logic
   * **Char Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - Base character class with AI state field
 
-===== AI State Implementations =====
+==== AI State Implementations ====
   * **Wandering AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Wandering.java|Wandering.java]] - Random movement, transitions to hunting when enemy spotted
   * **Hunting AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Hunting.java|Hunting.java]] - Actively pursues enemies
   * **Sleeping AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Sleeping.java|Sleeping.java]] - Dormant until woken by damage or enemy in FOV
@@ -21,12 +23,12 @@
   * **RemoteControlled AI:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/RemoteControlled.java|RemoteControlled.java]] - AI for remotely controlled entities
   * **CustomMobAi:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/CustomMobAi.java|CustomMobAi.java]] - Custom AI from JSON configuration
 
-===== JSON Configuration =====
+==== JSON Configuration ====
 AI states can be specified in mob JSON descriptors with the "aiState" parameter:
   * **Mob Descriptors:** Located in ''RemixedDungeon/src/main/assets/mobsDesc/'' directory
   * **Example:** <code json>{"aiState": "Sleeping"}</code>
 
-===== String Resources =====
+==== String Resources ====
 <code xml>
 <!-- AI Status Strings -->
 <string name="Mob_StaWanderingStatus">%s is wandering</string>
@@ -42,18 +44,18 @@ AI states can be specified in mob JSON descriptors with the "aiState" parameter:
 <string name="Mob_StaControlledStatus">This %s is under unholy possession</string>
 </code>
 
-===== Lua Scripts =====
+==== Lua Scripts ====
 AI states can be manipulated via Lua scripts for custom mob behaviors:
   * **Script Location:** ''RemixedDungeon/src/main/assets/scripts/mobs/''
   * **AI Control:** Lua scripts can call Mob.setState() to change AI behavior
 
-===== AI State Transitions =====
+==== AI State Transitions ====
   * **Damage Trigger:** When mob takes damage → typically transitions to Hunting AI
   * **Sight Trigger:** When mob sees enemy while Sleeping/Wandering → transitions to Hunting AI
   * **Health Trigger:** When mob's health is low → may transition to Fleeing AI
   * **Scripted Trigger:** Lua scripts can force AI state changes
 
-===== AiState Interface Methods =====
+==== AiState Interface Methods ====
 <code java>
 public interface AiState {
     void act(@NotNull Char me);                    // Called each turn to execute AI behavior
@@ -64,7 +66,9 @@ public interface AiState {
 }
 </code>
 
-===== Entity Kind =====
+==== Entity Kind ====
   * **Interface:** ''com.nyrds.pixeldungeon.ai.AiState''
   * **Package:** ''com.nyrds.pixeldungeon.ai''
   * **Pattern:** State Pattern for AI behavior management
+
+{{tag> rpd mechanics ai machine_readable behavior states}}
