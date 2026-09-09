@@ -1,0 +1,59 @@
+====== Мана ======
+
+{{ rpd:images:potion_of_mana_item.png|Зелье Маны }}
+
+В Remixed Dungeon ресурс, отображаемый как «Мана» в интерфейсе, на самом деле является системой **Очков Навыков (Skill Points)**. Это используется для каста заклинаний и использования способностей классов, хотя в интерфейсе подписано как «Мана».
+
+**Мана** (также известная как Очки Навыков) — это система ресурсов в Remixed Dungeon, которая питает заклинания и магические способности для определенных классов и билдов персонажей.
+
+==== Обзор ====
+Мана представляет магическую энергию, необходимую для каста заклинаний и использования магических способностей. Это ограниченный, но возобновляемый ресурс, которым игроки должны управлять стратегически. В коде игры мана называется «skill points» и отслеживается как система SP (Skill Points).
+
+==== Механика ====
+  * **Регенерация:** Мана регенерируется через бафф ManaRegeneration, который дает 1 очко навыка через регулярные интервалы
+  * **Скорость регенерации:** Регенерирует 1 очко навыка каждые 20/(1.2^бонус) ходов, где бонус включает различные факторы
+  * **Емкость:** Максимальная мана определяется максимумом очков навыков, который увеличивается с уровнем
+  * **Потребление:** Заклинания и специальные способности потребляют определенное количество очков навыков
+  * **Область регенерации:** Мана регенерируется только вне безопасных зон (магазины, алтари); внутри безопасных зон бафф ManaRegeneration не накапливает очки навыков
+  * **Бонусная регенерация:** Некоторые баффы и подклассы могут давать бонусы к регенерации маны (например, подкласс Шаман)
+
+==== Использование ====
+  * **Каст заклинаний:** Большинство заклинаний требуют определенное количество очков навыков для каста
+  * **Специальные способности:** Классовые брони и другие специальные способности потребляют очки навыков
+  * **Управление ресурсами:** Игроки должны балансировать использование очков навыков с другими ресурсами
+  * **Классовые брони:** Способности брони воина, силы посоха мага и другие классовые способности требуют очки навыков
+
+==== Классы и Аффинити ====
+  * **Класс Разбойник:** Использует ману для заклинаний броска вроде [[ru:rpd:kunai_throw_spell|Бросок Кунай]]
+  * **Подкласс Шаман:** Дает бонус регенерации маны через HeroSubClass.manaRegenerationBonus()
+  * **Класс Маг:** Имеет прямой доступ к механике жезлов и заклинаний
+  * **Другие Классы:** Могут получить доступ к мана-зависимым способностям особыми средствами
+
+==== Технические Детали ====
+  * **Java Класс:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] — Содержит реализацию системы SP (очков навыков)
+  * **Класс Регенерации:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/ManaRegeneration.java|ManaRegeneration.java]] — Обрабатывает автоматическую регенерацию маны
+  * **Методы:**
+    * **getSkillPoints():** Возвращает текущее значение маны
+    * **getSkillPointsMax():** Возвращает максимальную емкость маны
+    * **spendSkillPoints():** Уменьшает очки навыков на указанное количество
+    * **accumulateSkillPoints():** Добавляет очки навыков к текущему значению
+  * **Формула Регенерации:** 1 очко навыка каждые 20/(1.2^бонус) ходов с учетом различных бонусов
+
+==== Ссылки на код ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] — Основная реализация очков навыков
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/ManaRegeneration.java|ManaRegeneration.java]] — Система автоматической регенерации маны
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] — Бонусы маны подклассов (shaman.manaRegenerationBonus)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] — Классовые бонусы маны
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L18|KunaiThrow.lua]] — Пример заклинания использующего ману
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] — Начальные значения маны для разных классов
+
+==== См. также ====
+  * [[ru:rpd:spells_overview|Заклинания]]
+  * [[ru:rpd:magic|Система Магии]]
+  * [[ru:rpd:kunai_throw_spell|Заклинание Бросок Кунай]]
+  * [[ru:rpd:mechanics_mechanic|Игровые Механики]]
+  * [[ru:rpd:shaman_subclass|Шаман]] — Подкласс с бонусом регенерации маны
+  * [[ru:rpd:warrior_armor_item|Броня Воина]] — Классовая броня использующая ману
+  * [[ru:rpd:class_armor_item|Классовая Броня]] — Все классовые брони используют ману
+
+{{tag> rpd mechanics magic resources}}
