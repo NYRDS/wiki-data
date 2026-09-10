@@ -1,0 +1,57 @@
+====== Крысиная шкурка ======
+
+{{ rpd:images:rat_hide_item.png|Крысиная шкурка }}
+
+**Крысиная шкурка** (англ. Rat Hide) — распространённый предмет в Remixed Pixel Dungeon, служащий базовым материалом для крафта.
+
+==== Обзор предмета ====
+  * **Тип:** Материал для крафта
+  * **Редкость:** Обычный
+  * **Спец. эффект:** Используется в различных рецептах крафта и алхимии
+  * **Применение:** Крафт, предмет для квеста, ингредиент алхимии
+
+==== Описание ====
+Малая, грязная лоскутина плоти и шерсти от крысы. На первый взгляд кажется бесполезной, но может пригодиться тому, у кого есть нужные знания. Предмет стакается и всегда идентифицирован с самого начала.
+
+==== Механика ====
+  * **Стакается:** Да (макс. размер стака: 20)
+  * **Идентифицирован:** Всегда идентифицирован (isIdentified() возвращает true)
+  * **Улучшается:** Нет (isUpgradable() возвращает false)
+  * **Спрайт:** ItemSpriteSheet.RAT_HIDE (items/artifacts.png, индекс 23)
+
+==== Использование ====
+  * **Рецепты алхимии:**
+    * 1 Семена Мейлорота + 1 Крысиная шкурка = Зелье Невидимости
+    * 1 Горька + 1 Крысиная шкурка = Зелье Токсичного Газа (через alchemy_recipes.lua)
+  * **Крафт/Трансмутация:**
+    * Используется в ловушке DemoTransmute (Крысиная шкурка + Тканёвая броня = Крысиная броня)
+    * Используется НПС Чумным Доктором в различных взаимодействиях
+  * **Лут ловушек/спавнеров:** Может появляться в спавнерах как лут
+
+==== Получение ====
+  * **Основной источник:** Выпадает с крысиных врагов (Крыса, Чёрная Крыса, Зловонная Крыса и др.)
+  * **Вторичные источники:** Контейнеры, специальные комнаты, спавнеры
+  * **Магазины:** Доступен для покупки (всегда идентифицирован)
+
+==== Технические детали ====
+  * **Java класс:** com.nyrds.pixeldungeon.items.common.RatHide
+  * **Entity Kind:** RatHide
+  * **Строковые ресурсы:** RatHide_Name (\"крысиная шкурка\"), RatHide_Info (\"Малая, грязная лоскутина плоти и шерсти. Может ли это на самом деле быть полезно кому-то?\")
+  * **Lua скрипты:** alchemy_recipes.lua (Зелье Невидимости, Зелье Токсичного Газа), traps/DemoTransmute.lua, traps/Spawner.lua
+
+==== Связанные предметы ====
+  * [[ru:rpd:rat_mob|Крысы]] — враги, сбрасывающие крысиные шкурки
+  * [[ru:rpd:black_rat_mob|Чёрная Крыса]] — вариант крысы, сбрасывающий шкурки
+  * [[ru:rpd:plague_doctor_npc|Чумной Доктор]] — НПС, использующий крысиные шкурки
+  * [[ru:rpd:potion_of_invisibility_item|Зелье Невидимости]] — создаётся с использованием Крысиной шкурки
+  * [[ru:rpd:potion_of_toxic_gas_item|Зелье Токсичного Газа]] — создаётся с использованием Крысиной шкурки
+  * [[ru:rpd:rat_armor_item|Крысиная Броня]] — создаётся с использованием Крысиной шкурки (через DemoTransmute)
+
+==== Ссылки на код ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/RatHide.java|RatHide.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/PlagueDoctorNPC.java|PlagueDoctorNPC.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/alchemy_recipes.lua|alchemy_recipes.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/traps/DemoTransmute.lua|DemoTransmute.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/traps/Spawner.lua|Spawner.lua]]
+
+{{tag> rpd items crafting materials alchemy }}

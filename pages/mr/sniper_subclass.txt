@@ -1,0 +1,39 @@
+====== Sniper Subclass - Code References ======
+
+{{ rpd:images:huntress_sniper_hero.png|Sniper Hero Sprite }}
+
+===== Java Classes =====
+  * **Main Enum:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - SNIPER enum value (line 46)
+  * **Armor Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/SniperArmor.java|SniperArmor.java]] - Sniper-specific armor
+  * **Hero Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - ignoreDr() override for armor ignoring (line ~)
+
+===== Java Implementation Details =====
+  * **Enum Name:** SNIPER
+  * **Title ID:** R.string.HeroSubClass_NameSnip
+  * **Description ID:** R.string.HeroSubClass_DescSnip
+  * **Armor Class:** SniperArmor
+  * **Sniper's Mark:** Applied on ranged hits via Buff.prolong(defender, SnipersMark.class, attacker.attackDelay() * 1.1f) (HeroSubClass.java line 172)
+  * **Armor Ignoring:** Overrides ignoreDr() to return true when using ranged weapon (Hero.java)
+  * **Badge:** BOSS_SLAIN_3_SNIPER (Badges.java)
+
+===== Lua Scripts =====
+This subclass is implemented in Java, no Lua script exists
+
+===== String Resources =====
+  * **English:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - HeroSubClass_NameSnip, HeroSubClass_DescSnip
+  * **Russian:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (Russian)]]
+  * **All 20 Languages:** Available in all supported localization files
+
+===== Related Entities =====
+  * **Huntress Class:** Parent class for Sniper subclass
+  * **SniperArmor:** Subclass-specific armor
+  * **SnipersMark:** Debuff applied by subclass ability
+  * **Warden:** Fellow Huntress subclass
+  * **Scout:** Fellow Huntress subclass
+
+===== Game Integration =====
+  * **TomeOfMastery.java:** Sniper offered as mastery option
+  * **Badges.java:** BOSS_SLAIN_3_SNIPER badge tracking
+  * **ItemFactory.java:** SniperArmor registration
+
+{{tag> mr subclasses huntress ranged snipers_mark }}

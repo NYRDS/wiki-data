@@ -1,0 +1,45 @@
+====== Warden Subclass - Code References ======
+
+{{ rpd:images:huntress_warden_hero.png|Warden Hero Sprite }}
+
+===== Java Classes =====
+  * **Main Enum:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - WARDEN enum value (line 47)
+  * **Armor Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WardenArmor.java|WardenArmor.java]] - Warden-specific armor
+  * **HighGrass Feature:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java|HighGrass.java]] - Barkskin on grass trampling (lines 46-49)
+  * **Plant Interaction:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java|Plant.java]] - Seed/dewdrop collection (lines 47-56)
+
+===== Java Implementation Details =====
+  * **Enum Name:** WARDEN
+  * **Title ID:** R.string.HeroSubClass_NameWard
+  * **Description ID:** R.string.HeroSubClass_DescWard
+  * **Armor Class:** WardenArmor
+  * **Dew Bonus:** +1 (HeroSubClass.java line 239-241)
+  * **Barkskin from Grass:** Level = HT/3, triggered on trampling HighGrass (HighGrass.java line 47)
+  * **Plant Interaction:** Barkskin (HT/3), 20% seed, 20% dewdrop chance (Plant.java lines 47-56)
+  * **Badge:** BOSS_SLAIN_3_WARDEN (Badges.java)
+
+===== Lua Scripts =====
+This subclass is implemented in Java, no Lua script exists
+
+===== String Resources =====
+  * **English:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - HeroSubClass_NameWard, HeroSubClass_DescWard
+  * **Russian:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (Russian)]]
+  * **All 20 Languages:** Available in all supported localization files
+
+===== Related Entities =====
+  * **Huntress Class:** Parent class for Warden subclass
+  * **WardenArmor:** Subclass-specific armor
+  * **Barkskin:** Buff granted by subclass abilities
+  * **HighGrass:** Level feature that triggers Barkskin
+  * **Plant:** Level objects that grant seeds/dewdrops
+  * **Dewdrop:** Resource collected by Wardens
+  * **Sniper:** Fellow Huntress subclass
+  * **Scout:** Fellow Huntress subclass
+
+===== Game Integration =====
+  * **TomeOfMastery.java:** Warden offered as mastery option
+  * **Badges.java:** BOSS_SLAIN_3_WARDEN badge tracking
+  * **SacrificialSword.java:** Special interaction with Warden subclass
+  * **ItemFactory.java:** WardenArmor registration
+
+{{tag> mr subclasses huntress nature barkskin }}
