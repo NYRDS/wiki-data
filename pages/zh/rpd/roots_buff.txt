@@ -1,0 +1,52 @@
+====== 缠绕增益 ======
+
+{{ rpd:images:roots_buff.png|缠绕增益 }}
+
+==== 描述 ====
+**缠绕**是Remixed Dungeon中的一种负面状态效果，会使受影响的角色无法移动。
+
+==== 效果说明 ====
+  * **类型：** 负面状态效果（减益）
+  * **效果：** 在生效期间阻止移动
+  * **持续时间：** 根据来源不同而变化
+  * **来源：** 主要来自敌人攻击或特殊能力
+  * **飞行免疫：** 飞行角色对缠绕免疫（如果目标正在飞行，attachTo 会返回 false）
+
+==== 获得方式 ====
+  * 来自某些施加缠绕效果的敌人攻击
+  * 来自地下城特定区域的环境效果
+  * 来自一些限制移动的敌人能力
+
+==== 机制 ====
+  * 效果生效期间阻止所有移动
+  * 角色仍可执行其他动作（攻击、使用物品等）
+  * 可被[[zh:rpd:levitation_buff|飘浮]]状态效果解除（这也是飘浮提到它的原因）
+  * 飞行角色自然免疫缠绕（attachTo() 对飞行目标失败）
+  * 除移动外不阻止其他动作
+  * 持续时间通常随更高的魔法防御而降低
+
+==== 策略 ====
+  * 进入有植物类敌人的区域时要小心，它们可能会施加缠绕
+  * 如果即将被缠绕，尝试在效果结束前将自己定位到有利位置
+  * 如果经常遇到使用缠绕的敌人，可携带飘浮药水
+  * 在靠近其他敌人或危险时被缠绕可能很危险
+  * 在有限情况下，当你想停留在原地进行远程攻击时很有用
+
+==== 对策 ====
+  * [[zh:rpd:levitation_buff|飘浮]] — 完全移除缠绕
+  * 具有良好魔法防御的高等级[[zh:rpd:armor_item|护甲]]可能抵抗该效果
+  * 某些装备或职业能力可缩短持续时间
+  * 飞行角色自然免疫
+
+==== 代码参考 ====
+  * Java 类: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]]
+
+==== 字符串资源 ====
+  * 中文: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L55|Char_StaRooted]] ("缠绕")
+
+==== 参见 ====
+  * [[zh:rpd:status_effects|状态效果]] - 其他状态变化
+  * [[zh:rpd:levitation_buff|飘浮]] - 对抗缠绕的效果
+  * [[zh:rpd:mechanics_mechanic|游戏机制]] - 其他核心系统
+
+{{tag> rpd mechanics status_effects debuffs roots}}
