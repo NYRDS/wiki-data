@@ -1,0 +1,73 @@
+====== Luchtelementaal ======
+
+{{ rpd:images:air_elemental_mob.png|Luchtelementaal }}
+
+Luchtelementalen zijn vliegende magische wezens gemaakt van levende lucht. Ze verschijnen in de [[nl:rpd:chasm_level|Chasm level feeling]], en zijn immuun voor [[nl:rpd:bleeding_buff|Bleeding]]. Ze gebruiken de [[nl:rpd:wind_gust_spell|Wind Gust spell]] om vijanden aan te vallen. Hoewel ze zwak zijn in dichtbijgevechten, maakt hun verre windadem ze een gevaarlijke vijand.
+
+==== Stats ====
+  * **HP**: Depth * 3 + 1 (berekend in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L41|adjustStats method]])
+  * **Attack Skill**: Base defense skill * 2 + 1 (berekend in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L42|adjustStats method]])
+  * **Defense Skill**: Depth * 2 + 1 (berekend in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L43|adjustStats method]])
+  * **Min Damage**: 0 (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L47|adjustStats method]])
+  * **Max Damage**: ht() / 4 (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L47|adjustStats method]])
+  * **Exp for Kill**: Depth + 1 (berekend in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L45|adjustStats method]])
+  * **Max Level**: Depth + 2 (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L46|adjustStats method]])
+  * **Damage Reduction**: expForKill / 5 (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L46|adjustStats method]])
+  * **Carcass Chance**: 0% (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L19|constructor]])
+  * **Flying**: Yes (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L22|constructor]])
+
+==== Abilities ====
+  * **Flight**: Luchtelementalen zijn vliegende wezens en kunnen over elk terrein bewegen
+  * **Wind Gust**: Bij het aanvallen van vijanden op afstand, zal de luchtelementaal Wind Gust casten, wat het doel wegduwt
+  * **Distance Preference**: In jachtstaat, als de afstand kleiner is dan skillLevel() - 1, zal het wegbewegen
+  * **Range Attack**: Gebruikt Wind Gust op verre vijanden, wat de speler kan laten vallen van bruggen of andere verhoogde gebieden
+  * **Immunities**: Volledig immuun voor [[nl:rpd:bleeding_buff|Bleeding]]
+
+==== Behavior ====
+  * Luchtelementalen hebben een uniek bewegingspatroon - als ze te dicht bij het doel komen (afstand < skillLevel - 1), bewegen ze weg in plaats van dichterbij te komen
+  * Ze kunnen op afstand aanvallen (tot skillLevel bereik) maar vallen geen aangrenzende vijanden aan
+  * Bij het aanvallen casten ze Wind Gust, wat winddeeltjes en explosie-effecten op het doel creëert
+  * Ze verschijnen alleen in de [[nl:rpd:chasm_level|Chasm level feeling]], met een kans van 20% om te verschijnen
+
+==== Drops ====
+  * [[nl:rpd:potion_of_levitation_item|Potion of Levitation]] (10% kans)
+
+==== Strategy ====
+  * Luchtelementalen gebruiken verre [[nl:rpd:wind_gust_spell|Wind Gust]] aanvallen die je van richels kunnen duwen, dus wees voorzichtig in de buurt van [[nl:rpd:chasm_level|chasms]]
+  * Ze houden liever afstand en bewegen weg als je te dichtbij komt
+  * Hun schade is relatief laag (0 tot ht() / 4), waardoor ze minder bedreigend zijn in dichtbijgevechten
+  * Door hun vlucht kunnen ze elk terrein doorkruisen en niet worden geblokkeerd door fysieke obstakels
+  * Ze zijn immuun voor effecten die fysiek contact of grondaanwezigheid vereisen
+  * Ze kunnen uitdagend zijn in smalle gangen door hun duw-effecten
+  * Ze bewegen onregelmatig door hun unieke bewegingspatroon
+
+==== Source Code References ====
+  * Java-implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]]
+  * Wind Gust spell: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]]
+  * Spawn rates: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L93|Bestiary.json]]
+  * Immunities implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L34|Bleeding immunity]]
+  * Stats berekening: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L41|adjustStats method]]
+
+==== String Resources ====
+  * Air Elemental naam: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1661|AirElemental_Name]] (lijn 1661 in Engelse strings)
+  * Nederlandse strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-nl/strings_all.xml#L28|AirElemental_Name in Nederlands]]
+
+==== JSON Configuration Files ====
+  * Spawn rates: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L93|Bestiary.json]] (CHASM feeling sectie)
+
+==== Machine-Readable Data ====
+  * [[mr:air_elemental_mob|mr:air_elemental_mob]] - Machine-leesbare referentiepagina met technische details
+
+==== See Also ====
+  * [[nl:rpd:wind_gust_spell|Wind Gust Spell]]
+  * [[nl:rpd:water_elemental_mob|Water Elemental]]
+  * [[nl:rpd:earth_elemental_mob|Earth Elemental]]
+  * [[nl:rpd:fire_elemental_mob|Fire Elemental]]
+  * [[nl:rpd:elemental_mob|Elementals]]
+  * [[nl:rpd:chasm_level|Chasm Level]]
+  * [[nl:rpd:elementals_mob|Elemental Mobs]]
+  * [[nl:rpd:mobs|Mobs]]
+  * [[nl:rpd:resistances|Resistances]]
+  * [[nl:rpd:immunities|Immunities]]
+
+{{tag> nl:rpd mobs elementals air }}
