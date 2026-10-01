@@ -1,0 +1,43 @@
+====== 生命箭矢 ======
+
+{{ rpd:images:health_arrow_item.png|生命箭矢 }}
+
+==== 描述 ====
+生命箭矢是一种特殊的飞行武器，击中目标时会治疗目标，而不是造成大量伤害。虽然基础伤害为 1-1，但其主要目的是治疗目标而非伤害它们。
+
+==== 属性 ====
+  * **伤害**：1-1（baseMin：1，baseMax：1）
+  * **延迟**：1.0（baseDly：1.0）
+  * **最低力量需求**：9（setSTR：9）
+
+==== 特殊能力 ====
+  * **治疗效果**：箭矢击中目标时，治疗目标最大生命值的 15%
+  * **机制**：使用 PotionOfHealing.heal(defender, 0.15f)
+
+==== 获取方式 ====
+  * 可在地牢的各种宝藏地点找到
+  * 随机生成时数量通常为 15-30（来源：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java#L103-L104|Arrow.java#L103-L104]]）
+  * 价格：每支箭 10 金币 —— 最昂贵的箭矢类型（来源：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthArrow.java#L17-L19|HealthArrow.java#L17-L19]]）
+
+==== 策略 ====
+  * 适用于在战斗中治疗盟友或宠物
+  * 可在与友好生物战斗时用来治疗自己
+  * 在使用宠物或召唤生物时特别有价值
+  * 治疗效果在箭矢击中目标时有 25% 机会触发
+
+==== 代码参考 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthArrow.java|HealthArrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]（基类）
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]]（治疗机制）
+
+==== 字符串资源 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L934|HealthArrow_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L935|HealthArrow_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L936|HealthArrow_Gender]]
+
+==== 相关内容 ====
+  * [[cn:rpd:potion_of_healing_item|治疗药水]] - 基础治疗机制
+  * [[cn:rpd:arrows_item|箭矢]] - 其他箭矢类型
+  * [[cn:rpd:missile_weapons|远程武器]] - 其他投掷武器
+
+{{tag> rpd items arrows missiles healing}}
