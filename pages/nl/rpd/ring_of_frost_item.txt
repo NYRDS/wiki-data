@@ -1,0 +1,52 @@
+====== Ring of Frost ======
+
+{{ rpd:images:ring_of_frost_item.png|Ring of Frost }}
+
+**Ring of Frost** is een magisch artefact in Remixed Dungeon. Wanneer gedragen, biedt het een beschermende ijsaura die vijanden vertraagt en beschadigt die de drager aanvallen.
+
+==== Beschrijving ====
+Deze ring is gesneden uit magisch ijs. De drager wordt beschermd door een ijsaura, die aanvallende vijanden vertraagt en beschadigt. Wanneer een vijand binnen 1 tegel afstand de drager aanvalt, is er een kans dat ze worden getroffen door vorst en vertraagd.
+
+==== Statistieken ====
+  * **Type:** Ring (Artefact)
+  * **Slot:** Ring (vereist Keyring om meerdere ringen te dragen)
+  * **Upgradebaar:** Ja
+  * **Upgrade Kosten:** Neemt toe met niveau
+
+==== Effecten ====
+Wanneer gedragen en geactiveerd, activeert de ring de volgende effecten wanneer een vijand je aanvalt:
+  * **Vertraag Effect:** Past Slow effect toe voor (Slow.duration(enemy) / 5 + ring niveau) beurten
+  * **Vorst Kans:** Heeft (10% + ring niveau)% kans om Frost effect toe te passen voor (Frost.duration(enemy) / 5 + ring niveau) beurten
+  * **Schade:** Deelt (ring niveau / 2) schade toe aan de aanvallende vijand
+  * **Bereik:** Werkt alleen wanneer de vijand binnen 1 tegel afstand van de drager is (code controleert `enemy.distance(defender) < 2`, d.w.z. aangrenzend)
+
+==== Verkrijging ====
+  * Gevonden in verschillende kisten door de hele kerker
+  * Gedaald door bepaalde uitdagende monsters
+  * Beschikbaar voor aankoop bij de [[en:rpd:shopkeeper_npc|Shopkeeper]] op diepere niveaus
+
+==== Gebruikstips ====
+  * Bijzonder effectief tegen melee-vijanden die je direct aanvallen
+  * Werkt goed in smalle gangen waar vijanden dichtbij moeten komen
+  * Combineert goed met andere defensieve uitrusting om overlevingskans te maximaliseren
+  * Ringen van hoger niveau bieden aanzienlijk betere effecten
+
+==== Strategie ====
+De Ring of Frost is zeer voordelig voor personages die direct met vijanden vechten. Het biedt een passieve verdediging die de agressie van de vijand tegen hem keert, wat het vooral waardevol maakt in het midden en late spel wanneer vijanden sterker en gevaarlijker zijn.
+
+==== Code Referenties ====
+  * Item implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java|RingOfFrost.java]]
+  * Buff implementaties: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]] en [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
+
+==== Zie Ook ====
+  * [[en:rpd:keyring_item|Keyring]] - Vereist om meerdere ringen te dragen
+  * [[en:rpd:artifacts|Artifacts]] - Andere speciale items
+  * [[en:rpd:rings|Rings]] - Andere ringen in het spel
+  * [[en:rpd:slow_buff|Slow]] - Gerelateerde status effect
+  * [[en:rpd:frost_buff|Frost]] - Gerelateerde status effect
+
+==== Andere Talen ====
+  * [[en:rpd:ring_of_frost_item|English]]
+  * [[ru:rpd:ring_of_frost_item|Русский]]
+
+{{tag> rpd items ring frost artifact }}
