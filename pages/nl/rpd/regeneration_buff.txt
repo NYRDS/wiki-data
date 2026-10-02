@@ -1,0 +1,61 @@
+====== Natuurlijke Regeneratie ======
+
+{{ rpd:images:regeneration_buff.png|Natuurlijke Regeneratie }}
+
+**Natuurlijke Regeneratie** is een gunstig statuseffect in Remixed Dungeon dat geleidelijk gezondheid herstelt over tijd.
+
+==== Effect Beschrijving ====
+  * **Type:** Gunstig Statuseffect (Buff)
+  * **Effect:** Herstelt geleidelijk HP over tijd op basis van heldstatistieken en uitrusting
+  * **Duur:** Beperkte tijdsperiode (blijft actief tot handmatig verwijderd of held sterft)
+  * **Stapeling:** Stapelt niet met andere genezingseffecten in de meeste gevallen
+  * **Snelheid:** Beïnvloed door Regeneratie Vertraging (REGENERATION_DELAY = 10) en diverse bonussen
+
+==== Hoe te Verkrijgen ====
+  * Van bepaalde drankjes (bijv. [[en:rpd:potion_of_healing_item|Drankje van Genezing]])
+  * Van specifieke uitrusting met genezende eigenschappen (bijv. Ring van Herstel)
+  * Van heldenklassen en subklassen (bijv. HeroSubClass.regenerationBonus)
+  * Van omgevingskenmerken op bepaalde niveaus (niet in veilige zones)
+  * Via spelfacilitaties (FAST_REGENERATION)
+
+==== Mechanieken ====
+  * Herstelt een kleine hoeveelheid HP elke beurt op basis van heldstatistieken en uitrusting
+  * Effect wordt periodiek toegepast met REGENERATION_DELAY = 10 (uit broncode)
+  * Snelheid wordt aangepast door held's regenerationBonus (van uitrusting, subklassen, enz.)
+  * Werkt niet in veilige zones/niveaus (zoals stad of stad-gebieden) - gecontroleerd via level().isSafe()
+  * Werkt niet als het personage uitgehongerd is (gecontroleerd via isStarving())
+  * Effectiever in combinatie met andere genezingsmethoden (synergetisch effect)
+
+==== Code Referenties ====
+  * **Java Klasse:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Regeneration.java|Regeneration.java]]
+  * **Broncode Locatie:** RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Regeneration.java
+  * **Regeneratie Vertraging Constante:** REGENERATION_DELAY = 10 (zie regel 13 in bron)
+  * **Facilitaties:** FAST_REGENERATION constante gedefinieerd in Facilitations.java
+  * **Held Interactie:** Hero klasse past Regeneratie automatisch toe in Hero.java (regel 236)
+  * **Immuniteiten:** Sommige mobs zoals Shopkeeper hebben immuniteiten tegen Regeneratie (zie Shopkeeper.java)
+  * **CharModifier Interface:** Regeneratiesnelheid kan worden aangepast via CharModifier.regenerationBonus() methode
+
+==== String Bronnen ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L600|RegenerationBuff_Name]] - "Natural Regeneration"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-nl/strings_all.xml#L1163|RegenerationBuff_Info]] - "De functie voor natuurlijke regeneratie is in een buff-vorm om het makkelijker te maken."
+
+==== Strategie ====
+  * Gebruik tijdens niet-veilige kerkergebieden om gezondheid te herstellen zonder drankjes te gebruiken
+  * Vooral waardevol tijdens lange kerkerexpedities wanneer genezingsbronnen schaars zijn
+  * Werkt niet bij rusten in veilige gebieden zoals stad of stad (door ontwerp)
+  * Geef prioriteit tijdens gevecht om gezondheid te behouden in gevaarlijke gebieden
+  * Combineer met uitrusting zoals Ring van Herstel voor snellere regeneratie
+
+==== Tegenmaatregelen ====
+  * Schade over tijd effecten (Vergif, Bloeden) kunnen effectiviteit verminderen
+  * Dispel effecten kunnen regeneratie verwijderen
+  * Uithongering voorkomt dat regeneratie functioneert
+  * Veilige zones voorkomen dat regeneratie functioneert
+
+==== Zie Ook ====
+  * [[en:rpd:status_effects|Status Effecten]] - Andere statusveranderingen
+  * [[en:rpd:potion_of_healing_item|Drankje van Genezing]] - Bron van regeneratie
+  * [[en:rpd:equipment|Uitrusting]] - Andere kernsystemen
+  * [[en:rpd:mana_regeneration_buff|Mana Regeneratie]] - Vergelijkbaar effect voor mana
+
+{{tag> rpd mechanics status_effects buffs}}
