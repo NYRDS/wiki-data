@@ -1,0 +1,57 @@
+====== Genezing ======
+
+{{ rpd:images:heal_spell.png|Genezing Spreuk }}
+
+**Genezing** is een spreuk in Remixed Pixel Dungeon met Hekserij Affiniteit (ook beschikbaar voor Priester en Plague Doctor affiniteiten).
+
+==== Beschrijving ====
+De Genezing spreuk herstelt onmiddellijk een deel van de gezondheid van het doelwit, wat waardevol is voor noodsituaties. De genezingshoeveelheid wordt berekend als 20% van de maximale HP van het doelwit vermenigvuldigd met het vaardigheidsniveau van de tovenaar (met een minimum van 1 HP genezen).
+
+==== Statistieken ====
+  * **Magische Affiniteit:** [[nl:rpd:witchcraft_affinity|Hekserij]] (ook beschikbaar in [[nl:rpd:priest_class|Priester]] en [[nl:rpd:plague_doctor_affinity|Plague Doctor]] affiniteiten)
+  * **Doelwit:** Karakter (kan elk karakter op de kaart als doelwit hebben)
+  * **Niveau:** 2
+  * **Mana Kosten:** 5
+  * **Cast Tijd:** 1 beurt
+  * **Cooldown:** 3 beurten
+  * **Genezing formule:** heal = doelwit:ht() / 5 × tovenaar:skillLevel() (minimum 1 HP)
+
+==== Mechanieken ====
+De spreuk geneest het doelwit karakter voor (Max HP / 5 * Vaardigheidsniveau van de tovenaar) hit points, met een minimum van 1 punt genezen, volgens de Lua implementatie.
+
+De exacte formule uit de Lua code is: heal = target:ht() / 5. * caster:skillLevel()
+
+Dit betekent dat voor een doelwit met volle gezondheid:
+  * Op vaardigheidsniveau 1: geneest 20% van de maximale HP van het doelwit (minimum 1)
+  * Op vaardigheidsniveau 2: geneest 40% van de maximale HP (minimum 1)
+  * Op vaardigheidsniveau 3: geneest 60% van de maximale HP (minimum 1)
+  * Enzovoorts...
+
+==== Gebruik ====
+De Genezing spreuk kan gebruikt worden voor:
+  * Noodherstel van gezondheid tijdens gevaarlijke ontmoetingen
+  * Het genezen van jezelf in gevechtssituaties
+  * Het genezen van bondgenoten of huisdieren
+  * Het ondersteunen van huisdieren tijdens uitdagende gevechten
+
+==== Strategie ====
+  * Best gebruikt wanneer gezondheid kritisch laag is
+  * Kan bondgenoten en huisdieren genezen, maar ook jezelf
+  * Goed voor het ondersteunen van huisdieren tijdens uitdagende gevechten
+  * De genezing schaalt met je vaardigheidsniveau
+  * Wees bewust van de 3-beurt [[nl:rpd:cooldown_mechanic|cooldown]] bij het plannen van genezing
+
+==== Affiniteiten ====
+Affiniteiten die deze spreuk kunnen gebruiken:
+  * [[nl:rpd:witchcraft_affinity|Hekserij]] affiniteit gebruikers
+  * [[nl:rpd:priest_class|Priester]] affiniteit gebruikers
+  * [[nl:rpd:plague_doctor_affinity|Plague Doctor]] affiniteit gebruikers
+
+==== Code Referenties ====
+  * **Lua Implementatie:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Heal.lua|Heal.lua]]
+  * **Spreuk Beschikbaarheid (Gemeenschappelijk):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L9|CustomSpellsList.lua#L9]]
+  * **Spreuk Beschikbaarheid (Hekserij):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L13|CustomSpellsList.lua#L13]]
+  * **Spreuk Beschikbaarheid (Priester):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L16|CustomSpellsList.lua#L16]]
+  * **Spreuk Beschikbaarheid (PlagueDoctor):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L17|CustomSpellsList.lua#L17]]
+
+{{tag> rpd spells witchcraft priest plague_doctor }}
