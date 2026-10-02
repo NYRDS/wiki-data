@@ -1,0 +1,78 @@
+====== Shaman Subclass ======
+
+{{ rpd:images:elf_shaman_hero.png|Shaman }}
+
+De Shaman is het subclass van de Elf in Remixed Dungeon.
+
+===== Beschrijving =====
+Elven *Shaman* kunnen staven gebruiken als bijwapens. Geslaagde treffers hebben kans om de kracht van de staf te activeren op een doel zonder een lading te verbruiken.
+
+===== Ontgrendelen =====
+De Shaman-subclass kan ontgrendeld worden door een [[en:rpd:tome_of_mastery_item|Toeval van Meesters]] te gebruiken na het verslaan van de tweede baas (Tengu).
+
+===== Speciale Mechanica =====
+  * Elven *Shaman* kunnen [[en:rpd:wands|staven]] gebruiken als [[en:rpd:melee_weapons|bijwapens]]
+  * Bij het aanvallen met een wand als primaire wapen, is er een kans van 25% (geïmplementeerd als Random.Int(4) == 0) om het doel te zappen met de kracht van de staf zonder een lading te verbruiken
+  * Deze vaardigheid is geïmplementeerd in de ''attackProc'' methode van ''HeroSubClass.java'' (regels 144-153)
+  * De wand moet uitgerust zijn als het primaire wapen (actief wapen) voor deze mechanica om te werken
+  * De wand moet beschikbare ladingen hebben en de ''affectTarget()'' methode moet true teruggeven
+  * +1 dew bonus voor verbeterde [[en:rpd:mana_mechanic|mana herstel]]
+
+===== Technische Details =====
+  * **Implementatie:** De speciale mechanica van de Shaman wordt geïmplementeerd in de ''attackProc'' methode van ''HeroSubClass.java'' (regels 144-153)
+  * **Staf Activering:** Wanneer een Shaman aanvult met een wand uitgerust als actief wapen, is er een 25% kans om de vijand te zappen met het effect van de staf zonder ladingen te verbruiken
+  * **Code Referentie:** De specifieke implementatie controleert of het primaire wapen een staf is, en als ''affectTarget()'' waar ''true'' retourneert en ''Random.Int(4) == 0'', dan wordt ''zapCell()'' geroepen om de vijand te zappen zonder ladingen te verbruiken
+
+===== Speciale Riem =====
+Gebruik een [[en:rpd:armor_kit_item|Armor Kit]] op enig riem en zal deze transformeren naar het [[en:rpd:shaman_armor_item|Shaman Riem]], specifiek ontworpen voor deze subclass.
+
+===== Voordelen =====
+  * Kan [[en:rpd:wands|staven]] gebruiken als [[en:rpd:melee_weapons|bijwapens]]
+  * 25% kans om staf-machtigheden activeren zonder ladingen te verbruiken
+  * Veelzijdige wapenopties combinering [[en:rpd:ranged_weapons|afstand]] en [[en:rpd:melee_combat|bijvecht]]
+  * Behoudt staf-ladingen wanneer machtiging activeert
+  * Synergiseert goed met alle [[en:rpd:wands|staf typen]]
+  * +1 dew bonus voor verbeterde [[en:rpd:mana_mechanic|mana herstel]]
+
+===== Nadelen =====
+  * Kans op activering is niet gegarandeerd (25% kans)
+  * Staf schade als [[en:rpd:melee_mechanic|bijwapens]] kan lager zijn dan gewijd wapens
+
+===== Gegevens Validatie =====
+  * Informatie bron: Java Enum ''com.watabou.pixeldungeon.actors.hero.HeroSubClass.SHAMAN''
+  * Mechanica verificatie: Aanval bonus geïmplementeerd in ''attackProc'' methode van ''HeroSubClass.java'', met 25% kans om vijand te zappen
+  * Effect beschrijvingen: Op basis van string resources van values/strings_all.xml ("HeroSubClass_DescShaman")
+  * Naam verificatie: Bevestigd van string resources ("HeroSubClass_NameShaman")
+  * Aanvullende mechanica: Dew bonus geïmplementeerd in ''dewBonus'' methode van ''HeroSubClass.java''
+
+===== Code Referenties =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass definitie en mechanica
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L172-L181|HeroSubClass.java#L172-L181]] - Exact implementatie van wand-zap mechanica (25% kans wanneer wielding wand)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L234-L242|HeroSubClass.java#L234-L242]] - Dew bonus implementatie (+1 voor Shaman)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L46|HeroSubClass.java#L46]] - Enum definitie met riem klasse ("ShamanArmor")
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - Staf implementatie die de mechanica mogelijk maakt
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L382-L384|Wand.java#L382-L384]] - AffectTarget() methode die controleert of staf kan zappen
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L140-L143|Wand.java#L140-L143]] - zapCell() methode die de zapping uitvoert zonder ladingen te verbruiken
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1013-L1027|Shaman string resources (English)]] - Naam en beschrijving
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1012-L1026|Shaman string resources (Russisch)]] - Russische lokalisatie
+
+===== Configuratie Bestanden =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Class/subclass relationship definitions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L376|ItemFactory.java#L376]] - Registratie van Shaman riem
+
+===== String Resources =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1027|HeroSubClass_NameShaman]] - "shaman" (English)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1013|HeroSubClass_DescShaman]] - "Elven _Shamans_ can use wands as melee weapons. Successful hits have a chance to activate the wand\'s power on a target without using a charge." (English)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1026|HeroSubClass_NameShaman]] - "шаман" (Russisch)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1012|HeroSubClass_DescShaman]] - "_Шаманы_ эльфов могут использовать посохи как оружие ближнего боя. При попадании в цель волшебство палочки может использоваться без потери заряда." (Russisch)
+
+===== Zie ook =====
+  * [[en:rpd:elf_class|Elf Class]]
+  * [[en:rpd:wands|Wands]]
+  * [[playable_class_mechanic|Speelbare Klasses]]
+  * [[en:rpd:subclasses|Subklassen]]
+  * [[en:rpd:shaman_armor_item|Shaman Riem]]
+  * [[en:rpd:hero|Held]]
+  * [[en:rpd:mechanics_mechanic|Game Mechanica]]
+
+{{tag> rpd subklassen shaman elf staf melee}}

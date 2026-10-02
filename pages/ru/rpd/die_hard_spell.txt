@@ -5,25 +5,41 @@
 ==== Описание ====
 **Крепкий Орешек** — это боевое заклинание, доступное воинам. Временно повышает регенерацию здоровья, делая героя настоящим «Крепким Орешком».
 
+Описание в игре: «Временно повышает регенерацию, делая тебя настоящим Крепким Орешком.» (''DieHardSpell_Info'', strings_all.xml#L665)
+
+==== Характеристики ====
+  * **Магическая аффинность:** Боевая (''magicAffinity = "Combat"'')
+  * **Тип наведения:** На себя (''targetingType = "self"'')
+  * **Уровень:** 2
+  * **Стоимость маны:** 5
+  * **Время применения:** 0,5 хода
+  * **Перезарядка:** 50 ходов
+  * **Иконка:** ''spellsIcons/warrior.png''
+
 ==== Механика ====
-  * **Эффект:** Временно увеличивает скорость регенерации здоровья
-  * **Длительность:** Временный бафф
-  * **Визуальный эффект:** Бафф «Крепкий Орешек»
+  * **Эффект:** Увеличивает скорость регенерации здоровья на величину, равную уровню баффа
+  * **Уровень баффа:** `min(3, skillLevel заклинателя - 2) + 2`, то есть от 2 до 5
+  * **Длительность:** `уровень баффа x 20 + 20` ходов (40 при баффе 2-го уровня, 120 при 5-м)
+  * **Расход:** Заклинание списывает 20 очков действия при каждом срабатывании баффа
+  * **Снятие:** При получении урона бафф снимается с вероятностью `1 / уровень навыка цели`
+  * **Визуальный эффект:** Бафф «Крепкий Орешек» (иконка 44)
 
 ==== Получение ====
-  * Доступно воинам через магическую предрасположенность «Боевую»
+  * Доступно воинам через магическую предрасположенность «Боевую» (входит в список заклинаний аффинности Combat)
   * Можно получить из [[ru:rpd:tome_of_mastery_item|Фолианта Мастерства]] при выборе подкласса
 
 ==== Код ====
   * Lua скрипт заклинания: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/DieHard.lua|DieHard.lua]]
-  * Lua скрипт баффа: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/DieHard.lua|DieHard.lua]]
-  * Список заклинаний: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]]
-  * Русские строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L655-L658|DieHardBuff_Name, DieHardBuff_Info, DieHardSpell_Name, DieHardSpell_Info]]
+  * Lua скрипт баффа: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/DieHard.lua|buffs/DieHard.lua]]
+  * Список заклинаний: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L11|CustomSpellsList.lua#L11]] — `spells["Combat"] = {"DieHard","Dash","BodyArmor","Smash"}`
+  * Русские строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L663-L666|DieHardBuff_Name, DieHardBuff_Info, DieHardSpell_Name, DieHardSpell_Info]]
+  * Английские строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L663-L666|DieHardBuff_Name, DieHardBuff_Info, DieHardSpell_Name, DieHardSpell_Info]]
+  * **mr: namespace:** [[mr:die_hard_spell|Крепкий Орешек — ссылки на код]]
 
 ==== См. также ====
   * [[ru:rpd:body_armor_spell|Тело-щит]]
   * [[ru:rpd:smash_spell|Сокрушительный Удар]]
   * [[ru:rpd:warrior_class|Класс Воина]]
-  * [[ru:rpd:spellcasting|Заклинания]]
+  * [[ru:rpd:spellcasting_mechanic|Заклинания]]
 
 {{tag> rpd spells warrior combat }}

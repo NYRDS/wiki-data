@@ -3,45 +3,50 @@
 {{ rpd:images:icecap_plant.png|Icecap Plant }}
 
 ==== Description ====
-**Icecap** is one of the magical [[en:rpd:plants|plants]] in Remixed Dungeon that can be grown from its seed. When activated, it releases a cloud of frost that freezes nearby enemies and terrain.
+**Icecap** is one of the magical [[en:rpd:plants|plants]] in Remixed Dungeon that can be grown from its seed ([[en:rpd:icecap_seed_item|Icecap Seed]]). When activated, it releases a cloud of pollen that freezes nearby creatures.
+
+In-game description: "Upon touching an Icecap excretes a pollen, which freezes everything in its vicinity." (''Icecap_Desc'', strings_all.xml#L1103)
 
 ==== Stats ====
-  * **Seed Name:** [[en:rpd:icecap_plant|Icecap Plant]]
-  * **Appearance:** Small blue flower
-  * **Effect Range:** 1 tile radius around the plant
-  * **Primary Effect:** [[en:rpd:frost_buff|Freeze]] effect on all creatures in range
+  * **Seed:** [[en:rpd:icecap_seed_item|Icecap Seed]] (item kind `Icecap.Seed`)
+  * **Appearance:** Small blue flower (sprite frame index 1, per `plantsDesc/Icecap.json`)
+  * **Effect Range:** The plant cell plus all 8 adjacent cells
+  * **Primary Effect:** [[en:rpd:frost_buff|Freeze]] on every non-LOS-blocking cell in range
+  * **Alchemy Class:** Potion of Frost (''IcecapSeed.java'' sets `alchemyClass = PotionOfFrost.class`)
 
 ==== Effects ====
-  * Releases freezing effect when touched or trampled
-  * Freezes all creatures within 1 tile radius
-  * The effect is similar to [[en:rpd:potion_of_frost_item|Potion of Frost]]
-  * Can be eaten for healing and extended frost buff
+  * Releases the freezing effect when any character steps on it
+  * Affects the source cell and all eight neighbours; cells blocked by line of sight are skipped
+  * The effect is identical to [[en:rpd:potion_of_frost_item|Potion of Frost]]
+  * When eaten: heals and applies a doubled [[en:rpd:frost_buff|Frost]] buff (duration `5 x durationFactor x 2`)
 
 ==== Mechanics ====
-  * Found growing naturally in the dungeon
-  * Can be grown from [[en:rpd:icecap_plant|Icecap Plants]]
+  * Found growing naturally in the dungeon, including in the Treasury and Spiders Treasury levels
+  * Grown by planting [[en:rpd:icecap_seed_item|Icecap Seeds]]
   * Activates when any character (hero or enemy) steps on it
-  * Effect area: 1 tile radius (immediate adjacent tiles)
-  * When eaten: Provides healing (0-10% max HP) and 2x duration Frost buff
+  * Effect area: 1 tile radius (immediate adjacent tiles, excluding LOS-blocked cells)
+  * When eaten: heals `Random.Int(0, max((maxHP - currentHP) / 4, 10))` and applies a 2x duration Frost buff
 
 ==== Strategy ====
   * Excellent for freezing groups of enemies in tight spaces
   * Useful against fast-moving enemies that are difficult to hit
-  * Can be eaten for emergency healing and frost immunity
+  * Can be eaten for emergency healing and a long Frost buff
   * Consider planting in corridors to freeze enemies before combat
-  * Valuable in boss fights where freezing can provide breathing room
+  * LOS-blocking terrain (walls, boulders) shields adjacent cells from the freeze
 
 ==== Code References ====
-  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java|Icecap.java]]
-  * Seed Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java#L41-L51|Icecap.Seed]]
-  * Effect Code: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java#L28-L36|Icecap effect method]]
-  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2047-L2048|Icecap strings]]
+  * Behavior (Lua): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/plants/Icecap.lua|Icecap.lua]] - replaced the former `plants/Icecap.java` during the Lua migration
+  * Sprite/Sprite Frame Config: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/plantsDesc/Icecap.json|Icecap.json]]
+  * Seed Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/IcecapSeed.java|IcecapSeed.java]]
+  * Registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObjectsFactory.java#L84|LevelObjectsFactory.java#L84]] - `registerObjectClassByName("Icecap", Plant.class)`
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1103-L1104|Icecap_Name, Icecap_Desc]]
 
 ==== Related ====
-  * [[en:rpd:icecap_plant|Icecap Plant]] - The Icecap seed grows into this plant
+  * [[en:rpd:icecap_seed_item|Icecap Seed]] - The seed that grows into this plant
   * [[en:rpd:plants|Plants]] - Other plants in the game
   * [[en:rpd:seeds_mechanic|Seeds]] - Seeds that can be planted to grow useful plants
   * [[en:rpd:frost_buff|Frost]] - Status effect applied by Icecap
   * [[en:rpd:freezing_buff|Freezing]] - Freezing mechanics and effects
+  * [[mr:icecap_plant|Icecap Plant - Code References]]
 
 {{tag> rpd plants items icecap frost }}

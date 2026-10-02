@@ -2,40 +2,44 @@
 
 {{ rpd:images:icecap_plant.png|Ледовик }}
 
-**Ледовик** — одно из волшебных [[ru:rpd:plants|растений]] в Remixed Dungeon, которое можно вырастить из своего семени. При активации оно выпускает облако мороза, замораживающее близлежащих врагов и территорию.
+**Ледовик** — одно из волшебных [[ru:rpd:plants|растений]] в Remixed Dungeon, которое можно вырастить из своего семени ([[ru:rpd:icecap_seed_item|Семя Ледовика]]). При активации оно выпускает облако пыльцы, замораживающее находящихся рядом существ.
+
+Описание в игре: «При касании Ледовик испускает пыльцу, которая замораживает всё на своём пути.» (''Icecap_Desc'', strings_all.xml#L1102)
 
 ==== Статы ====
-  * **Название семени:** [[ru:rpd:icecap_plant|Ледовик]]
-  * **Внешний вид:** Маленький синий цветок
-  * **Радиус действия:** 1 клетка вокруг растения
-  * **Основной эффект:** Эффект [[ru:rpd:frost_buff|Заморозки]] на всех существах в радиусе
+  * **Семя:** [[ru:rpd:icecap_seed_item|Семя Ледовика]] (вид предмета `Icecap.Seed`)
+  * **Внешний вид:** Маленький синий цветок (кадр спрайта 1, согласно `plantsDesc/Icecap.json`)
+  * **Радиус действия:** Клетка растения и все 8 соседних клеток
+  * **Основной эффект:** [[ru:rpd:frost_buff|Заморозка]] на всех клетках в радиусе, не перекрытых линией видимости
+  * **Класс алхимии:** Зелье Мороза (в `IcecapSeed.java` задано `alchemyClass = PotionOfFrost.class`)
 
 ==== Эффекты ====
-  * Выпускает эффект замораживания при касании или топтании
-  * Замораживает всех существ в радиусе 1 клетку
-  * Эффект аналогичен [[ru:rpd:potion_of_frost_item|Зелью Мороза]]
-  * Можно съесть для лечения и удлиненного баффа Мороза
+  * Выпускает эффект замораживания, когда любой персонаж наступает на него
+  * Затрагивает исходную клетку и все восемь соседних; клетки, перекрытые линией видимости, пропускаются
+  * Эффект аналогичен действию [[ru:rpd:potion_of_frost_item|Зелья Мороза]]
+  * При поедании: лечение и усиленный вдвое бафф [[ru:rpd:frost_buff|Мороза]] (длительность `5 x durationFactor x 2`)
 
 ==== Механика ====
-  * Встречается растущими естественным образом в подземелье
-  * Можно вырастить из [[ru:rpd:icecap_seed_item|Семен Ледовика]]
+  * Встречается растущими естественным образом в подземелье, в том числе на уровнях Сокровищница и Сокровищница Пауков
+  * Можно вырастить из [[ru:rpd:icecap_seed_item|Семян Ледовика]]
   * Активируется, когда любой персонаж (герой или враг) наступает на него
-  * Зона действия: 1 клетка (непосредственно смежные клетки)
-  * При поедании: Дает лечение (0-10% макс. HP) и бафф Мороза двойной длительности
+  * Зона действия: 1 клетка (непосредственно смежные клетки, кроме перекрытых линией видимости)
+  * При поедании: лечение `Random.Int(0, max((макс. HP - текущие HP) / 4, 10))` и бафф Мороза двойной длительности
 
 ==== Стратегия ====
   * Отлично для замораживания групп врагов в тесных пространствах
-  * Полезен против быстрых врагов, в которых трудно попасть
-  * Можно съесть для экстренного лечения и иммунитета к морозу
-  * Рассмотрите посадку в коридорах для замораживания врагов до боя
-  * Ценен в босах, где замораживание может дать передышку
+  * Полезен против быстрых врагов, по которым трудно попасть
+  * Можно съесть для экстренного лечения и длительного баффа Мороза
+  * Стоит сажать в коридорах, чтобы замораживать врагов до боя
+  * Ландшафт, перекрывающий линию видимости (стены, валуны), защищает соседние клетки от заморозки
 
 ==== Ссылки на код ====
-  * Реализация: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java|Icecap.java]]
-  * Реализация семян: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java#L41-L51|Icecap.Seed]]
-  * Код эффекта: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java#L28-L36|Icecap effect метод]]
-  * Английские строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2047-L2048|Icecap строки]]
-  * Русские строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2047-L2048|Строки на русском]]
+  * Поведение (Lua): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/plants/Icecap.lua|Icecap.lua]] — заменил прежний `plants/Icecap.java` при миграции на Lua
+  * Конфигурация спрайта: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/plantsDesc/Icecap.json|Icecap.json]]
+  * Реализация семени: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/IcecapSeed.java|IcecapSeed.java]]
+  * Регистрация: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObjectsFactory.java#L84|LevelObjectsFactory.java#L84]] — `registerObjectClassByName("Icecap", Plant.class)`
+  * Английские строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1103-L1104|Icecap_Name, Icecap_Desc]]
+  * Русские строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1102-L1103|Icecap_Name, Icecap_Desc]]
 
 ==== Связанное ====
   * [[ru:rpd:icecap_seed_item|Семена Ледовика]] — Семена, вырастающие в это растение
@@ -43,5 +47,6 @@
   * [[ru:rpd:seeds_mechanic|Семена]] — Семена, которые можно сажать для выращивания полезных растений
   * [[ru:rpd:frost_buff|Мороз]] — Статус-эффект, применяемый Ледовиком
   * [[ru:rpd:freezing_buff|Заморозка]] — Механики замораживания и эффекты
+  * [[mr:icecap_plant|Ледовик — ссылки на код]]
 
 {{tag> rpd растения предметы ледовик мороз}}
