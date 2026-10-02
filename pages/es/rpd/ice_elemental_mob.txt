@@ -5,19 +5,20 @@
 Los Elementales de Hielo son criaturas mágicas que habitan las Cuevas de Hielo. Se encuentran entre los elementales más peligrosos del calabozo debido a su capacidad para ralentizar a los enemigos con su presencia helada. Aunque apenas pueden considerarse poderosos en términos de estadísticas brutas, verdaderamente pueden ser llamados uno de los más peligrosos. El aura de escarcha que emana de sus cuerpos puede ralentizar a cualquier enemigo.
 
 ==== Estadísticas ====
-  * **PS:** Profundidad * 10 + 1
-  * **Defensa:** Profundidad * 2 + 1
-  * **EXP por Muerte:** Profundidad + 1
-  * **Nivel Máximo:** Profundidad + 2
-  * **Resistencia al Daño:** Valor de EXP por Muerte
-  * **Habilidad de Ataque:** (Defensa/3) + 1
-  * **Daño:** PS/6 a PS/6 (mismo mínimo y máximo)
+  * **Nivel Máximo:** 19
+  * **PS:** 171
+  * **Defensa:** 35
+  * **EXP por Muerte:** 18
+  * **Resistencia al Daño (DR):** 18
+  * **Habilidad de Ataque:** 18
+  * **Daño:** 34 a 34
   * **Probabilidad de Cadáver:** 0 (no deja huesos)
+  * **Velocidad:** 1
+  * **Inmunidades:** Raíces, Parálisis, Aturdimiento, Gas Tóxico
 
 ==== Habilidades Especiales ====
-  * **Ataque Ralentizador:** Al atacar, tiene un 33% de probabilidad (Random.Int(3) == 1) de aplicar el efecto de estado [[es:rpd:slow_buff|Ralentizado]] al objetivo durante 3 turnos
-  * **Inmunidades:** Inmune a [[es:rpd:roots_buff|Raíces]], [[es:rpd:paralysis_buff|Parálisis]], [[es:rpd:stun_buff|Aturdimiento]] y [[es:rpd:toxic_gas_buff|Gas Tóxico]]
-  * **Escalado de Profundidad:** Todas las estadísticas escalan basándose en la profundidad actual del calabozo
+  * **Ataque Ralentizador:** Al atacar, tiene un 33% de probabilidad (Random.Int(3) == 1) de aplicar el efecto de estado [[es:rpd:slow_buff|Ralentizado]] al objetivo durante 3 turnos (implementado en `scripts/mobs/IceElemental.lua`)
+  * **Inmunidades:** Inmune a [[es:rpd:roots_buff|Raíces]], [[es:rpd:paralysis_buff|Parálisis]], [[es:rpd:stun_buff|Aturdimiento]] y [[es:rpd:toxic_gas_buff|Gas Tóxico]] (definido en `mobsDesc/IceElemental.json`)
 
 ==== Hábitat ====
 Los Elementales de Hielo se pueden encontrar en los niveles de [[es:rpd:ice_caves_level|Cuevas de Hielo]] (ice1-ice4).
@@ -46,15 +47,15 @@ Los Elementales de Hielo se pueden encontrar en los niveles de [[es:rpd:ice_cave
   * [[es:rpd:frozen_carpaccio_item|Carpaccio Congelado]] - Objeto que pueden soltar
 
 ==== Detalles Técnicos ====
-  * **Clase Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/IceElemental.java|com.nyrds.pixeldungeon.mobs.elementals.IceElemental]]
-  * **Implementación:** Implementa la interfaz IDepthAdjustable para escalar basándose en la profundidad del calabozo
-  * **Probabilidad de Ralentización:** 33% de probabilidad (Random.Int(3) == 1) de aplicar Ralentizado al atacar
-  * **Escalado de Profundidad:** Todas las estadísticas escalan basándose en la profundidad actual del calabozo
+  * **Configuración JSON:** `mobsDesc/IceElemental.json` (estadísticas fijas: ataque 18, defensa 35, daño 34, PS 171, EXP 18, maxLvl 19, DR 18, velocidad 1)
+  * **Script Lua:** `scripts/mobs/IceElemental.lua` (probabilidad 1/3 de aplicar `Slow` durante 3 turnos)
+  * **Botín:** `loot`: `{"kind":"FrozenCarpaccio"}` con `lootChance`: 0.1
+  * **Inmunidades:** `["Roots","Paralysis","Stun","ToxicGas"]`
+  * **Nota:** Entidad migrada de Java (`IceElemental.java`) a JSON + Lua
 
 ==== Verificación de Contenido ====
-  * Fuente de información: Clase Java com.nyrds.pixeldungeon.mobs.elementals.IceElemental
-  * Verificación de estadísticas: Extraída directamente del método adjustStats()
-  * Descripciones de efectos: Basadas en el análisis del método attackProc()
-  * Código fuente: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/IceElemental.java|IceElemental.java]]
+  * Fuente de información: `mobsDesc/IceElemental.json` + `scripts/mobs/IceElemental.lua`
+  * Verificación de estadísticas: Extraída directamente del archivo JSON
+  * Descripciones de efectos: Basadas en el análisis del script Lua (`attackProc`)
 
 {{tag> rpd mobs elemental ice }}
