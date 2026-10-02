@@ -1,0 +1,26 @@
+====== Poison Enchantment ======
+
+{{ rpd:images:poison_buff.png|Giftige betovering }}
+
+===== Beschrijving =====
+**Giftig** is een wapenbetovering in Remixed Dungeon die een kans heeft om vijanden te vergiftigen bij een treffer met het betoverde wapen. Vergiftigde vijanden lijden schade over tijd.
+
+===== Mechanica =====
+  * **Proc Kans**: De kans op vergiftiging neemt toe met wapenlevel
+    * Level 0: 33% kans (1 op 3)
+    * Level 1: 50% kans (1 op 2)
+    * Level 2: 60% kans (3 op 5)
+    * Formule: Random.Int(level + 3) >= 2
+  * **Vergiftigingsduur**: De toegepaste duur wordt geschaald door (wapenlevel + 1) keer de vergiftigingsduur-factor van het doelwit
+  * **Schade**: Vergiftigingsschade wordt toegebracht aan het begin van de beurt van het vergiftigde wezen
+  * Bijzonder effectief tegen vijanden met veel HP
+
+===== Broncode =====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Poison.java|Poison.java]]
+
+===== Zie ook =====
+  * [[nl:rpd:poison_buff|Vergiftiging]] - Status-effect veroorzaakt door deze betovering
+  * [[nl:rpd:enchantments|Betoveringen]] - Lijst van alle wapenbetoveringen
+  * [[nl:rpd:weapons|Wapens]] - Uitrusting die betoverd kan worden
+
+{{tag> nl rpd items enchantments poison}}
