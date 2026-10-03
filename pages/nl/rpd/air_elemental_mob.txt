@@ -5,16 +5,16 @@
 Luchtelementalen zijn vliegende magische wezens gemaakt van levende lucht. Ze verschijnen in de [[nl:rpd:chasm_level|Chasm level feeling]], en zijn immuun voor [[nl:rpd:bleeding_buff|Bleeding]]. Ze gebruiken de [[nl:rpd:wind_gust_spell|Wind Gust spell]] om vijanden aan te vallen. Hoewel ze zwak zijn in dichtbijgevechten, maakt hun verre windadem ze een gevaarlijke vijand.
 
 ==== Stats ====
-  * **HP**: Depth * 3 + 1 (berekend in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L41|adjustStats method]])
-  * **Attack Skill**: Base defense skill * 2 + 1 (berekend in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L42|adjustStats method]])
-  * **Defense Skill**: Depth * 2 + 1 (berekend in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L43|adjustStats method]])
-  * **Min Damage**: 0 (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L47|adjustStats method]])
-  * **Max Damage**: ht() / 4 (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L47|adjustStats method]])
-  * **Exp for Kill**: Depth + 1 (berekend in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L45|adjustStats method]])
-  * **Max Level**: Depth + 2 (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L46|adjustStats method]])
-  * **Damage Reduction**: expForKill / 5 (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L46|adjustStats method]])
-  * **Carcass Chance**: 0% (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L19|constructor]])
-  * **Flying**: Yes (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L22|constructor]])
+  * **HP**: Depth * 3 + 1 (berekend in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/AirElemental.lua#L15|stats method]])
+  * **Attack Skill**: Base defense skill * 2 + 1 (berekend in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/AirElemental.lua#L19|stats method]])
+  * **Defense Skill**: Depth * 2 + 1 (berekend in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/AirElemental.lua#L18|stats method]])
+  * **Min Damage**: 0 (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/AirElemental.lua#L24|stats method]])
+  * **Max Damage**: ht() / 4 (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/AirElemental.lua#L24|stats method]])
+  * **Exp for Kill**: Depth + 1 (berekend in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/AirElemental.lua#L21|stats method]])
+  * **Max Level**: Depth + 2 (ingesteld in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/AirElemental.lua#L22|stats method]])
+  * **Damage Reduction**: expForKill / 5 (berekend in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/AirElemental.lua#L23|stats method]])
+  * **Carcass Chance**: 0% (JSON mobsDesc/AirElemental.json: carcassChance 0)
+  * **Flying**: Yes (JSON mobsDesc/AirElemental.json: flying true)
 
 ==== Abilities ====
   * **Flight**: Luchtelementalen zijn vliegende wezens en kunnen over elk terrein bewegen
@@ -42,11 +42,11 @@ Luchtelementalen zijn vliegende magische wezens gemaakt van levende lucht. Ze ve
   * Ze bewegen onregelmatig door hun unieke bewegingspatroon
 
 ==== Source Code References ====
-  * Java-implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java|AirElemental.java]]
-  * Wind Gust spell: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/WindGust.java|WindGust.java]]
+  * JSON + Lua implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/AirElemental.json|AirElemental.json]] en [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/AirElemental.lua|AirElemental.lua]]
+  * Wind Gust spell: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/WindGust.lua|WindGust.lua]]
   * Spawn rates: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json#L93|Bestiary.json]]
-  * Immunities implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L34|Bleeding immunity]]
-  * Stats berekening: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/AirElemental.java#L41|adjustStats method]]
+  * Immunities implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/AirElemental.json#L26|AirElemental.json (immunities: Bleeding)]]
+  * Stats berekening: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/AirElemental.lua#L12-L26|stats method AirElemental.lua]]
 
 ==== String Resources ====
   * Air Elemental naam: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1661|AirElemental_Name]] (lijn 1661 in Engelse strings)

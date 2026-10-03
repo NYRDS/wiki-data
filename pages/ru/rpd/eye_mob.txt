@@ -43,17 +43,17 @@
   * **Дистанционный бой**: Атакуйте Око издалека, чтобы избежать ответного удара
 
 ==== Ссылки на код ====
-  * **Java реализация**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Eye.java|Eye.java]] - Полная реализация моба Око
-  * **Проверка статистики**: Извлечено из Eye.java конструктора: HP=100, EXP=13, Defense=20, Attack=30, Damage=14-20, maxLvl=25
-  * **Иммунитеты**: Eye.java показывает иммунитет к Terror
-  * **Сопротивления**: Eye.java показывает сопротивление к жезлу дезинтеграции, зачарованию смерти и вампиризма
-  * **Атака взглядом**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Eye.java#L47-L71|doAttack() метод]] - Атакует по прямой линии, поражая всех на пути
-  * **Увеличенное зрение**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Eye.java#L35-L37|viewDistance метод]] - Возвращает дальность обзора уровня + 1
-  * **Дроп**: Eye.java показывает 50% шанс дропа росинки
+  * **JSON + Lua реализация**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Eye.json|Eye.json]] и [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Eye.lua|Eye.lua]] — Полная реализация моба Око
+  * **Проверка статистики**: Извлечено из Eye.json: HP=100, EXP=13, Defense=20, Attack=30, Damage=14-20, maxLvl=25
+  * **Иммунитеты**: Eye.json (immunities: ["Terror"]) и Eye.lua (zapProc beamStrike)
+  * **Сопротивления**: Eye.json (resistances: ["WandOfDisintegration", "Death", "Leech"])
+  * **Атака взглядом**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Eye.lua#L25-L28|zapProc метод Eye.lua]] — beamStrike по прямой линии
+  * **Увеличенное зрение**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Eye.lua#L30-L32|spawn метод Eye.lua]] — viewDistance = уровень + 1
+  * **Дроп**: Eye.json (lootChance 0.5, loot: Dewdrop) — 50% шанс дропа росинки
   * **Строковые ресурсы (Русский)**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L769-L773|values-ru/strings_all.xml#L769-L773]]
   * **Строковые ресурсы (Английский)**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L772-L773|values/strings_all.xml#L772-L773]]
-  * **JSON конфигурация**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Eye.json|Eye.json]] - Конфигурация спрайта и анимаций
-  * **RingOfElements**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]] - Показывает сопротивление Ока к различным эффектам
+  * **JSON конфигурация моба**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Eye.json|Eye.json]] — Характеристики, сопротивления, дроп, спрайт
+  * **JSON спрайта**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Eye.json|spritesDesc/Eye.json]] — Конфигурация спрайта и анимаций
 
 ==== См. также ====
   * [[ru:rpd:halls_level|Удел]]
