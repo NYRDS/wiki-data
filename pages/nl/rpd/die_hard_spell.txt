@@ -1,0 +1,57 @@
+====== Die Hard Spell ======
+
+{{ rpd:images:die_hard_spell_icon.png|Die Hard Spell Icoon }}
+
+**Die Hard** is een spreuk in Remixed Pixel Dungeon (Combat Affinity).
+
+==== Beschrijving ====
+Verhoogt tijdelijk je regeneratie, waardoor je een echte Die Hard wordt.
+
+==== Stats ====
+  * **Magie Affiniteit:** Combat
+  * **Targeting:** zelf
+  * **Level:** 2 (spreukniveau, beïnvloedt vereisten)
+  * **Mana Kost:** 5
+  * **Cast Tijd:** 0.5 beurten
+  * **Cooldown:** 50 beurten
+
+==== Mechanica ====
+Wanneer de spreuk wordt gebruikt, past deze de Die Hard buff toe op de caster met de volgende duur en niveau:
+  * **Buff Duur**: `math.min(3, caster.skillLevel - 2) + 2` * 20 + 20 beurten
+  * **Regeneratie Bonus**: Gelijk aan het buff niveau (hoeveelheid leven hersteld per beurt)
+  * **Kans op Verwijdering**: Wanneer beschadigd, is er een 1 / caster's skill level kans dat de buff vroegtijdig eindigt
+
+==== Buff Details ====
+De Die Hard buff:
+  * Biedt een regeneratie bonus van +1 HP per beurt per buff niveau
+  * Duurt voor een duur berekend op basis van de caster's skill niveau
+  * Kan worden verwijderd wanneer de speler schade oploopt
+
+==== Gebruik ====
+De Die Hard spreuk kan worden gebruikt voor:
+  * **Defensieve toepassingen**: Genezing tijdens of na gevechten
+  * **Strategische toepassingen**: Volhouden in gevaarlijke gebieden
+  * **Noodgenezing**: Herstel van schade wanneer weinig gezondheid
+
+==== Klassen ====
+Klassen die deze spreuk kunnen gebruiken omvatten:
+  * Klassen met Combat affiniteit (bijv. [[en:rpd:warrior_class|Warrior]])
+  * Andere klassen die toegang krijgen via speciale middelen
+
+==== Strategie ====
+Hoe de Die Hard spreuk effectief te gebruiken:
+  * **Beste situaties**: Gebruik na zware gevechten of voor het betreden van gevaarlijke gebieden
+  * **Timing overwegingen**: Houd rekening met de 50-beurt cooldown bij het plannen van gebruik
+  * **Risicobeheer**: Wees bewust dat de buff vroegtijdig kan eindigen als je schade oploopt
+
+==== Data Validatie ====
+Deze informatie is direct uit de spelcode gehaald en gevalideerd tegen de bronimplementatie.
+
+==== Bron Code ====
+Deze pagina-inhoud is gebaseerd op de Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/DieHard.lua|DieHard.lua]]
+
+==== Zie Ook ====
+  * [[en:rpd:regeneration_buff|Regeneration Buff]]
+  * [[en:rpd:buffs|Buffs]]
+
+{{tag> rpd spells combat }}
