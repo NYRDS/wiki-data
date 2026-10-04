@@ -1,0 +1,49 @@
+====== 冷気のリング ======
+
+{{ rpd:images:ring_of_frost_item.png|冷気のリング }}
+
+**冷気のリング** は Remixed Dungeon の魔法アーティファクトです。装着時、霜のオーラによって装着者を保護し、攻撃してくる敵を減速しダメージを与えます。
+
+==== 説明 ====
+この指輪は魔法の氷から彫られています。装着者は霜のオーラに守られ、攻撃する敵を減速させダメージを与えます。距離1マス以内の敵が装着者を攻撃した際、霜と減速効果が発生する可能性があります。
+
+==== 属性 ====
+  * **タイプ：** 指輪（アーティファクト）
+  * **装備位置：** 指輪（複数持つには鍵束が必要）
+  * **アップグレード可能：** はい
+  * **アップグレード費用：** レベルに応じて増加
+
+==== 効果 ====
+装着・有効化後、敵が攻撃すると以下の効果が発動します：
+  * **減速効果：** (Slow.duration(enemy) / 5 + 指輪レベル) ターンの減速を適用
+  * **霜発生率：** (10% + 指輪レベル)% の確率で (Frost.duration(enemy) / 5 + 指輪レベル) ターンの霜効果
+  * **ダメージ：** (指輪レベル / 2) のダメージを攻撃者に与える
+  * **範囲：** 敵が装着者から1マス以内（コード上は `enemy.distance(defender) < 2`、つまり隣接）のみ有効
+
+==== 入手方法 ====
+  * ダンジョン各階の様々な箱から発見
+  * 特定の強力なモンスターからドロップ
+  * 深層の [[ja:rpd:shopkeeper_npc|店主]] から購入可能
+
+==== 使用のヒント ====
+  * 直接攻撃してくる近接敵に特に効果的
+  * 敵が必ず近づく狭い通路で効果が高い
+  * 他の防御装備と組み合わせると生存率が最大化
+  * 高レベルの指輪は効果が大幅に向上
+
+==== 戦略 ====
+冷気のリングは敵と直接交戦するキャラクターにとって非常に有益です。敵の攻撃を反撃に変える受動的防御を提供し、敵が強力になる中盤～後半で特に価値があります。
+
+==== コード参照 ====
+  * アイテム実装： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java|RingOfFrost.java]]
+  * 文字列リソース： [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml#L1799-L1800|strings_all.xml#L1799-L1800]]
+
+==== 関連項目 ====
+  * [[ja:rpd:keyring_item|鍵束]] - 複数の指輪を持つのに必要
+  * [[ja:rpd:artifacts|アーティファクト]] - 他の特別アイテム
+  * [[ja:rpd:rings|指輪]] - ゲーム内の他の指輪
+
+==== 他言語 ====
+  * [[en:rpd:ring_of_frost_item|English]]
+
+{{tag> rpd items ring frost artifact}}
