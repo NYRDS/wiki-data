@@ -1,0 +1,50 @@
+====== آلية الإجراءات المحظورة ======
+
+تسمح آليات اللعبة لبعض فئات الأبطال بمنع إجراءات معينة. لا يمكن لبعض الفئات تنفيذ إجراءات محددة في اللعبة.
+
+==== قائمة الإجراءات التي يمكن حظرها ====
+  * ''CommonActions.AC_READ'' (''Scroll_ACRead'') - قراءة اللفائف
+  * ''Bag.AC_OPEN'' (''Bag_ACOpen'') - فتح الحقائب
+  * ''CommonActions.AC_DRINK'' (''Potion_ACDrink'') - شرب الجرعات
+  * ''DewVial'' (''CommonActions.AC_DRINK'') - الشرب من قنينة الندى
+  * ''CommonActions.AC_EQUIP'' (''EquipableItem_ACEquip'') - تجهيز العناصر
+  * ''CommonActions.AC_UNEQUIP'' (''EquipableItem_ACUnequip'') - إزالة تجهيز العناصر
+  * ''Item.AC_DROP'' (''Item_ACDrop'') - إسقاط العناصر
+  * ''Item.AC_THROW'' (''Item_ACThrow'') - رمي العناصر
+  * ''TomeOfMastery.AC_READ'' (''TomeOfMastery_ACRead'') - قراءة كتاب الإتقان
+  * ''Torch.AC_LIGHT'' (''Torch_ACLight'') - إشعال المشاعل
+  * ''Weightstone.AC_APPLY'' (''Weightstone_ACApply'') - تطبيق أحجار الوزن
+  * ''Amulet.AC_END'' (''Amulet_ACEnd'') - إنهاء اللعبة بتميمة يندور
+  * ''ArmorKit.AC_APPLY'' (''ArmorKit_ACAplly'') - تطبيق مجموعة الدروع (ملاحظة: خطأ إملائي في الكود: ACAplly)
+  * ''Pickaxe.AC_MINE'' (''Pickaxe_ACMine'') - التعدين بالمعول
+  * ''Plant.AC_PLANT'' - زراعة البذور (إجراء البذور)
+  * ''Potion.AC_MOISTEN'' (''Potion_ACMoisten'') - ترطيب العناصر بالجرعات
+  * ''ShortSword.AC_REFORGE'' (''ShortSword_ACReforge'') - إعادة تشكيل السيف القصير
+  * ''Wand.AC_ZAP'' (''Wand_ACZap'') - إطلاق العصي
+  * ''WandOfMagicMissile.AC_DISENCHANT'' (''WandOfMagicMissile_ACDisenchant'') - إزالة السحر بعصا القذيفة السحرية
+  * ''Stylus.AC_INSCRIBE'' (''Stylus_ACInscribe'') - النقش بالقلم العتيق
+
+==== الاستخدام ====
+يمكن تقييد هذه الإجراءات في ملف إعدادات ''initHeroes.json'' لفئات أبطال معينة باستخدام مصفوفة ''forbiddenActions''.
+
+==== مثال: فئة جنول ====
+فئة جنول تحظر قراءة اللفائف، وقراءة كتاب الإتقان، والنقش بالقلم العتيق:
+
+<code json>
+"forbiddenActions": [
+  "Scroll_ACRead",
+  "TomeOfMastery_ACRead",
+  "Stylus_ACInscribe"
+]
+</code>
+
+==== التنفيذ ====
+تتحقق طريقة ''HeroClass.forbidden(String action)'' في [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] ما إذا كان الإجراء في مجموعة ''forbiddenActions'' للفئة. تُعرَّف ثوابت الإجراءات في فئات العناصر المختلفة و[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/CommonActions.java|CommonActions.java]].
+
+==== التحقق من المحتوى ====
+  * **مصدر المعلومات:** الإعداد في ''RemixedDungeon/src/main/assets/hero/initHeroes.json''
+  * **التحقق من الآلية:** طريقة ''HeroClass.forbidden()'' في ''HeroClass.java''
+  * **ثوابت الإجراءات:** مُعرَّفة في فئات العناصر و''CommonActions.java''
+  * **آخر تحديث:** يونيو 2026
+
+{{tag> rpd mechanics ar}}
