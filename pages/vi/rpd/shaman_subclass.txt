@@ -1,0 +1,52 @@
+====== Pháp Sư (Shaman) ======
+
+{{ rpd:images:elf_shaman_hero.png|Pháp Sư }}
+
+**Shaman** là một phân lớp của yêu tinh trong Remixed Dungeon.
+
+===== Mô tả =====
+Yêu tinh _Shaman_ có thể sử dụng đũa phép như vũ khí cận chiến. Các đòn đánh thành công có khả năng kích hoạt sức mạnh của đũa trên mục tiêu mà không tiêu tốn một lần sạc.
+
+===== Mở khóa =====
+Phân lớp Shaman có thể được mở khóa bằng cách sử dụng [[vi:rpd:tome_of_mastery_item|Sách Chuyên Môn]] sau khi đánh bại trùm thứ hai (Tengu).
+
+===== Cơ chế đặc biệt =====
+  * Yêu tinh _Shaman_ có thể sử dụng [[vi:rpd:wands|đũa phép]] như [[vi:rpd:melee_weapons|vũ khí cận chiến]]
+  * Khi tấn công với đũa phép được trang bị làm vũ khí chính, có 25% khả năng (thực hiện là Random.Int(4) == 0) để kích hoạt đũa trên mục tiêu mà không tiêu tốn sạc
+  * Khả năng này được thực hiện trong phương thức ''attackProc'' của ''HeroSubClass.java'' (dòng 172-181)
+  * Đũa phải được trang bị như vũ khí chính (vũ khí đang hoạt động) để cơ chế này hoạt động
+  * Đũa cần có sạc khả dụng và phương thức ''affectTarget()'' phải trả về true
+  * +1 phần thưởng sương để tăng [[vi:rpd:mana_mechanic|hồi mana]]
+
+===== Chi tiết kỹ thuật =====
+  * **Thực hiện:** Cơ chế đặc biệt của Shaman được thực hiện trong phương thức ''attackProc'' của ''HeroSubClass.java'' (dòng 172-181)
+  * **Kích hoạt đũa:** Khi Shaman tấn công với đũa được trang bị, có 25% khả năng kích hoạt đũa mà không tiêu sạc
+
+===== Giáp đặc biệt =====
+Sử dụng [[vi:rpd:armor_kit_item|Bộ Nâng Cấp Giáp]] trên bất kỳ giáp nào sẽ biến nó thành [[vi:rpd:shaman_armor_item|Giáp Shaman]], được thiết kế dành riêng cho phân lớp này.
+
+===== Ưu điểm =====
+  * Có thể sử dụng đũa như vũ khí cận chiến
+  * 25% khả năng kích hoạt đũa mà không tiêu sạc
+  * Kết hợp linh hoạt giữa vũ khí tầm xa và cận chiến
+  * Giữ sạc đũa khi kích hoạt
+  * +1 phần thưởng sương cho hồi mana
+
+===== Nhược điểm =====
+  * Khả năng kích hoạt không đảm bảo (25% khả năng)
+  * Sát thương đũa như vũ khí cận chiến có thể thấp hơn vũ khí chuyên dụng
+
+===== Xác thực dữ liệu =====
+  * Nguồn thông tin: Enum Java ''com.watabou.pixeldungeon.actors.hero.HeroSubClass.SHAMAN''
+  * Xác minh cơ chế: Được thực hiện trong phương thức ''attackProc'' của HeroSubClass.java
+
+===== Tham khảo mã =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
+
+===== Xem thêm =====
+  * [[vi:rpd:elf_class|Lớp Yêu Tinh]]
+  * [[vi:rpd:wands|Đũa Phép]]
+  * [[vi:rpd:subclasses|Phân Lớp]]
+  * [[vi:rpd:shaman_armor_item|Giáp Shaman]]
+
+{{tag> rpd subklassen shaman elf staf melee}}
