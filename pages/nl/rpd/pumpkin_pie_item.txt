@@ -1,0 +1,44 @@
+====== Pompoentaart ======
+
+{{ rpd:images:pumpkin_pie_item.png|Pompoentaart }}
+
+==== Beschrijving ====
+Een heerlijke pompoentaart, precies zoals je moeder die vroeger bakte. Dit [[en:rpd:food_item|voedselitem]] is een seizoensgebonden traktatie die je honger volledig herstelt.
+
+==== Stats ====
+  * **Voedingswaarde**: Herstelt honger volledig (Hunger.STARVING = 400 eenheden)
+  * **Energie**: Hunger.STARVING (verzadigt honger tot maximaal niveau)
+  * **Prijs**: 30 goud per taart (30 * quantity())
+  * **Afbeelding**: Index 9 in food.png spriteblad
+  * **Spritebestand**: items/food.png (gedefinieerd in imageFile variabele)
+  * **Type**: Voedselitem (erft van Food klasse)
+
+==== Mechanica ====
+  * **Verzadigt Honger**: Herstelt de hongerbalk volledig wanneer geconsumeerd (equivalent aan Hunger.STARVING eenheden)
+  * **Bederf**: Kan bederven en veranderen in Bedorven Pompoentaart na verloop van tijd (standaard voedselbederfmechanica)
+  * **Transformatie**: Wanneer vergiftigd, verandert in Bedorven Pompoentaart via poison() methode
+  * **Prijsberekening**: Prijs wordt berekend als 30 * quantity() in de price() methode
+
+==== Code Referenties ====
+  * **Java Klasse:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/PumpkinPie.java|PumpkinPie.java]]
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-nl/strings_all.xml#L1162|PumpkinPie_Info]] - "Een heerlijke pompoentaart, precies zoals je moeder die vroeger bakte."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-nl/strings_all.xml#L1163|PumpkinPie_Name]] - "pompoentaart"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-nl/strings_all.xml#L1258|RottenPumpkinPie_Info]] - "Hoewel het vers wel heerlijk was, is er geen manier dat het nog eetbaar is."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-nl/strings_all.xml#L1259|RottenPumpkinPie_Name]] - "bedorven pompoentaart"
+
+==== Strategie ====
+  * Nuttig voor het volledig herstellen van honger bij lage niveaus
+  * Duurder dan gewoon voedsel maar zorgt voor volledige verzadiging
+  * Beter te consumeren voordat het bederft
+  * Goed voor noodsituaties wanneer je snel honger moet stillen
+
+==== Gerelateerde Items ====
+  * [[en:rpd:rotten_pumpkin_pie_item|Bedorven Pompoentaart]] - Wat het wordt wanneer bedorven
+  * [[en:rpd:ration_item|Rantsoen]] - Standaard voedselitem
+
+==== Andere Talen ====
+  * [[en:rpd:pumpkin_pie_item|English]]
+
+{{tag> rpd items food }}
