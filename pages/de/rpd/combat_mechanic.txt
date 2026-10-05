@@ -1,0 +1,89 @@
+====== Kampf ======
+
+{{ rpd:images:skeleton_mob.png|Kampf }}
+
+**Kampf** in Remixed Dungeon umfasst Interaktionen zwischen dem Spieler und verschiedenen Dungeonkreaturen. Dieses System bestimmt, wie Angriffe, Schaden und Verteidigungsaktionen im Spiel funktionieren.
+
+==== Grundlegende Kampfmechanik ====
+  * **Angriffsfertigkeit:** Bestimmt die Chance, einen Gegner zu treffen (siehe [[de:rpd:accuracy_mechanic|Genauigkeit]])
+  * **Verteidigungsfertigkeit:** Bestimmt die Chance, einem Angriff auszuweichen (siehe [[de:rpd:evasion_mechanic|Ausweichen]])
+  * **Schaden:** Die Schadensmenge bei einem erfolgreichen Treffer
+  * **Rüstung:** Reduziert eingehenden physischen Schaden basierend auf Rüstungsstufe und [[de:rpd:armor_glyphs|Glyphen]]
+
+==== Angriffssystem ====
+Im Kampf wird die Trefferchance berechnet als:
+  * Trefferchance = Angriffsfertigkeit / (Angriffsfertigkeit + Verteidigungsfertigkeit)
+  * Mindesttrefferchance ist 5% (immer möglich zu treffen)
+  * Maximale Trefferchance ist 95% (immer möglich zu verfehlen)
+
+==== Schadensberechnung ====
+  * **Waffenschaden:** Basisschadensbereich der ausgerüsteten [[de:rpd:weapons|Waffe]]
+  * **Heldenstärke:** Zusätzlicher Schaden basierend auf der [[de:rpd:strength_attribute|Stärke]] des Helden
+  * **Waffenverbesserungen:** Jede Verbesserungsstufe fügt +1 zum Schadensbereich hinzu (siehe [[de:rpd:upgrading|Aufwerten]])
+  * Endschaden = Zufallswert im Schadensbereich der Waffe + Stärkebonus
+
+==== Verteidigungsaktionen ====
+  * **Ausweichen:** Basierend auf Verteidigungsfertigkeit kann allen Schaden eines Angriffs vermeiden
+  * **Blocken:** [[de:rpd:armor_item|Rüstung]] reduziert eingehenden Schaden um einen Prozentsatz
+  * **Evasion:** Spezielle Fertigkeiten und Gegenstände können die Ausweichchance erhöhen (siehe [[de:rpd:evasion_mechanic|Ausweichen]])
+  * **Resistenzen:** Bestimmte [[de:rpd:buffs|Buffs]] und Ausrüstung bieten Widerstand gegen bestimmte Schadensarten (siehe [[de:rpd:resistances|Resistenzen]])
+
+==== Kampftypen ====
+  * **Nahkampf:** Nahkampfangriffe mit [[de:rpd:swords|Schwertern]], [[de:rpd:axes_item|Äxten]] und [[de:rpd:mace_item|Streitkolben]] (siehe [[de:rpd:melee_combat|Nahkampf]])
+  * **Fernkampf:** Angriffe aus der Distanz mit [[de:rpd:ranged_weapons|Fernkampfwaffen]], [[de:rpd:wands|Zauberstäben]] oder [[de:rpd:spells_overview|Zaubern]] (siehe [[de:rpd:ranged_combat|Fernkampf]])
+  * **Magischer Kampf:** Offensivzauber und Fähigkeiten, die physische Rüstung umgehen
+
+==== Kampfstrategien ====
+  * **Positionierung:** Nutze enge Korridore, um [[de:rpd:mobs|Gegner]] einzeln zu bekämpfen
+  * **Taktischer Rückzug:** Nutze Türen, um Gegner zu trennen und einzeln zu bekämpfen
+  * **Status-Effekte:** Nutze [[de:rpd:blindness_buff|Blindheit]], [[de:rpd:paralysis_buff|Lähmung]] oder andere [[de:rpd:debuffs_mechanic|Debuffs]] für Vorteile
+  * **Umweltbewusstsein:** Nutze [[de:rpd:trap_mechanic|Fallen]], Abgründe und andere Umgebungsmerkmale zu deinem Vorteil
+
+==== Spezielle Kampfmechaniken ====
+  * **Überraschungsangriff:** Rückstich von [[de:rpd:mobs|Gegnern]] von hinten für Bonusschaden (siehe [[de:rpd:assassin_subclass|Assassin]]-Unterklasse)
+  * **Kritische Treffer:** Zufällige Chance, maximalen möglichen Schaden zu verursachen
+  * **Elementarschaden:** Bestimmte [[de:rpd:weapons|Waffen]] und [[de:rpd:spells_overview|Zauber]] ignorieren [[de:rpd:armor_item|Rüstung]] vollständig
+  * **Status-Effekte:** Verschiedene Effekte wie [[de:rpd:burning_buff|Brennen]], [[de:rpd:poison_buff|Vergiftung]] oder [[de:rpd:paralysis_buff|Lähmung]] können die Kampfdynamik verändern
+
+==== Fernkampf-Spezifika ====
+  * Verwendet [[de:rpd:ballistica_mechanic|Ballistik]] für Sichtlinienberechnung
+  * Fernkampfwaffen haben begrenzte Munition
+  * Einige Fernkampfwaffen haben Spezialeffekte wie Durchschlag oder Flächenschaden
+  * Zauberstäbe und Zauber bieten magische Fernkampfoptionen
+
+==== Ausrüstungseinfluss ====
+  * **Waffen:** Beeinflussen Schadensausgabe und Spezialeffekte (siehe [[de:rpd:weapons|Waffen]])
+  * **Rüstung:** Reduziert eingehenden physischen Schaden (siehe [[de:rpd:armor_item|Rüstung]])
+  * **Ringe:** Bieten verschiedene Kampfboni (Schaden, [[de:rpd:accuracy_mechanic|Genauigkeit]], [[de:rpd:evasion_mechanic|Ausweichen]] usw.) (siehe [[de:rpd:ring_item|Ringe]])
+  * **Artefakte:** Spezialgegenstände mit einzigartigen Kampffähigkeiten (siehe [[de:rpd:artifacts|Artefakte]])
+
+==== Kampfbezogene Buffs ====
+  * **Wut:** Erhöht Schadensausgabe vorübergehend (siehe [[de:rpd:fury_buff|Wut]])
+  * **Unsichtbarkeit:** Ermöglicht Angriffe ohne Vergeltung (siehe [[de:rpd:invisibility_buff|Unsichtbarkeit]])
+  * **Lähmung:** Deaktiviert Gegneraktionen (siehe [[de:rpd:paralysis_buff|Lähmung]])
+  * **Terror:** Zwingt Gegner zur Flucht (siehe [[de:rpd:terror_buff|Terror]])
+
+==== Technische Details ====
+  * Kernkampf-Logik: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]]
+  * Angriffmechanik: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java#L125-L180|Attack-Implementierung]]
+  * Schadensberechnung: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L150-L175|Schadensberechnung]]
+  * Ballistiksystem (Fernkampf): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]]
+  * Trefferchancen-Berechnung: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L240-L250|Char.java#Trefferchance]]
+  * Verteidigungsberechnung: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L230-L235|Char.java#Verteidigung]]
+  * Kampfschadenssystem: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L90-L120|Char.java#Schadensverarbeitung]]
+  * Kritische Treffer-Implementierung: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Mace.java#L45-L50|Kritischer Treffer-Beispiel]]
+  * Ausweichen-Mechanik: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L260-L270|Char.java#Ausweichen]]
+  * Rüstungsschadensreduzierung: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L100-L110|Armor.java#Schadensreduzierung]]
+  * Kamp-KI-Entscheidungsfindung: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java#L100-L150|Mob.java#Kampf-KI]]
+  * Überraschungsangriff-Mechanik: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L35-L40|HeroSubClass.java#Rückstich]]
+  * Kampfbezogene String-Ressourcen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2394-L2400|Treffer-Strings]] (Char_Hit_0, Char_Hit_1, Char_Hit_2), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L326-L327|Fehl-Strings]] (Char_YouMissed, Char_SmbMissed), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1219|Verteidigungs-Strings]] (verschiedene Mob-Verteidigungs-Strings wie Bat_Defense, Crab_Defense usw.), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2263|Angriffsfertigkeit-String]] (WndHero_AttackSkill), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1089-L1090|Schadens-Strings]] (MeleeWeapon_Info2a, MeleeWeapon_Info2b), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1973-L1976|Rüstungs-Strings]] (Armor_Info1-Armor_Info4)
+
+==== Siehe auch ====
+  * [[de:rpd:melee_combat|Nahkampf]] - Details zum Nahkampf
+  * [[de:rpd:ranged_combat|Fernkampf]] - Details zum Distanzkampf
+  * [[de:rpd:mobs|Gegner]] - Informationen über Dungeonkreaturen
+  * [[de:rpd:buffs|Buffs und Debuffs]] - Status-Effekte im Kampf
+  * [[de:rpd:enchantments|Waffenverzauberungen]] - Spezielle Waffeneffekte
+  * [[de:rpd:armor_glyphs|Rüstungsglyphen]] - Spezielle Rüstungseffekte
+
+{{tag> rpd kampf mechanik }}
