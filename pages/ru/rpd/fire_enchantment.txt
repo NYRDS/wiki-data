@@ -1,0 +1,48 @@
+====== Огненное зачарование ======
+
+**Огненное зачарование** — это [[ru:rpd:enchantments|зачарование]] оружия в Remixed Dungeon, которое имеет шанс поджечь врага при ударе.
+
+==== Описание ====
+Огненное зачарование имеет шанс поджечь врага при ударе оружием. Это наносит дополнительный урон с течением времени от эффекта [[ru:rpd:burning_buff|Горение]].
+
+==== Механика ====
+  * Шанс поджечь врага: **Random.Int(уровень_оружия + 3) >= 2**
+    * Уровень 0: 33% шанс
+    * Уровень 1: 50% шанс
+    * Уровень 2: 60% шанс
+    * Выше уровни: увеличивающийся шанс
+  * При срабатывании накладывает [[ru:rpd:burning_buff|Горение]] на несколько ходов
+  * Наносит дополнительный огненный урон: случайное значение от 1 до (уровень оружия + 2)
+  * Испускает частицы пламени: уровень + 1 частица
+  * Урон от огня суммируется с существующим бонусом огненного урона оружия
+  * Визуально светится оранжевым (цвет: 0xFF4400)
+
+==== Технические детали ====
+  * **Java-класс:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Fire.java|com.watabou.pixeldungeon.items.weapon.enchantments.Fire]]
+  * **Цвет свечения:** Оранжевый (0xFF4400)
+  * **Частицы:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/particles/FlameParticle.java|FlameParticle.FACTORY]]
+
+==== Код ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Fire.java|Fire.java]] — основная реализация
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]] — эффект статуса Горение
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] — базовый класс для обработки атаки
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] — базовый класс оружия с системой зачарований
+
+==== Стратегия ====
+  * Эффективно против врагов, уязвимых к огню
+  * Хорошо работает с быстрым оружием для частых срабатываний
+  * Дополнительный урон с течением времени помогает в длительных боях
+
+==== См. также ====
+  - [[ru:rpd:burning_buff|Горение]] — статусный эффект, вызываемый этим зачарованием
+  - [[ru:rpd:enchantments|Зачарования]] — список всех зачарований оружия
+  - [[ru:rpd:weapons|Оружие]] — снаряжение, которое может иметь зачарования
+  - [[ru:rpd:fire_trap|Огненная ловушка]] — ловушка на основе огня
+  - [[ru:rpd:fire_arrow_item|Огненная стрела]] — огненный снаряд
+  - [[ru:rpd:wand_of_firebolt_item|Палочка огненной стрелы]] — огненная палочка
+  - [[ru:rpd:fire_elemental_mob|Огненный элементаль]] — огненное существо
+
+==== Другие языки ====
+  - [[en:rpd:fire_enchantment|English]]
+
+{{tag> ru:rpd items enchantments fire}}
