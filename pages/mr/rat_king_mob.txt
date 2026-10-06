@@ -3,7 +3,8 @@
 ====== rat_king_mob - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/RatKing.java|RatKing.java]] - Main Rat King implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/RatKing.json|RatKing.json]] - JSON configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/RatKing.json|RatKing sprite config]]
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/NPC.java|NPC.java]] - Parent NPC class
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/RatKingPainter.java|RatKingPainter.java]] - Paints the level where Rat King appears
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Registered in factory
@@ -38,7 +39,7 @@ The RatKing class extends NPC and implements unique behavior:
   * Cannot be damaged by hero while friendly (anger set to 2 instead)
 
 ===== JSON Configuration =====
-This entity does not have separate JSON configuration as it's implemented in Java.
+This entity is configured in JSON (mobsDesc/RatKing.json) with optional Lua behavior; no standalone Java class remains.
 
 ===== String Resources =====
 <code xml>
@@ -60,12 +61,11 @@ This entity does not have separate JSON configuration as it's implemented in Jav
 This entity is implemented in Java, no Lua script exists
 
 ===== Drops =====
-  * [[mr:rat_king_crown_item|RatKingCrown]] - Item dropped on death
+  * [[mr:rat_king_crown_item|Rat King Crown (Item)]] - Item dropped on death
 
 ===== Related mr: Entities =====
   * [[mr:rat_king_crown_item|Rat King Crown (Item)]]
-  * [[mr:rats_crown_buff|Rats Crown (Buff)]]
-  * [[mr:npc|NPC (Base Entity)]]
-  * [[mr:mob|Mob (Base Entity)]]
+  * [[mr:rat_king_crown_item|Rat King Crown (Buff reference via item)]]
+  * Related base references: Mob type (see mobsDesc/RatKing.json), NPC behavior (see scripts/npc/ or factory)
 
 {{tag> rpd mobs npc boss }}
