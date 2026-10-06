@@ -16,7 +16,7 @@ Spell (Java implementation)
       * `level = 2` - Spell level requirement
       * `image = 2` - Sprite index
       * `spellCost = 2` - SP cost to cast
-    * Cast method applies `Roots` buff for 10 ticks
+    * Cast method applies `BuffFactory.ROOTS` buff for 10 ticks
     * Visual effects: EarthParticle emitter burst (5 particles) + light blue burst (3 particles)
     * Sound effect: `Assets.SND_PUFF`
     * Used in: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java|SpellFactory.java]] (Line 122)
@@ -92,7 +92,7 @@ public boolean cast(@NotNull Char chr, @NotNull Char target){
     if(target.valid()) {
         target.getSprite().emitter().burst( EarthParticle.FACTORY, 5 );
         target.getSprite().burst( 0xFF99FFFF, 3 );
-        Buff.prolong( target, Roots.class, 10 );
+        Buff.prolong( target, BuffFactory.ROOTS, 10 );
         Sample.INSTANCE.play( Assets.SND_PUFF );
         castCallback(chr);
         return true;
