@@ -1,36 +1,28 @@
-====== Liquid Flame Effect ======
+====== Liquid Flame ======
 
-{{ rpd:images:potion_of_liquid_flame_item.png|Liquid Flame Effect }}
+{{ rpd:images:potion_of_liquid_flame_item.png|Liquid Flame effect }}
 
-**Liquid Flame** is a harmful environmental effect in Remixed Pixel Dungeon that causes fire damage to characters standing in its area. This effect is primarily created when a Potion of Liquid Flame is shattered.
+**Liquid Flame** is a harmful environmental effect in Remixed Pixel Dungeon that deals damage to characters standing on it.
 
 ==== Description ====
-Liquid Flame creates a fire hazard on the dungeon floor as a spreading pool of fire that deals ongoing damage to any character that remains in it. The effect spreads to flammable terrain and persists for several turns before dissipating. Players should avoid standing in these areas to prevent taking continuous damage.
+Liquid Flame is a blob effect that creates a fire hazard on the dungeon floor, dealing continuous fire damage to any character on the affected tile. It spreads to adjacent flammable terrain and can be created by various sources, including the Potion of Liquid Flame.
 
 ==== Mechanics ====
-  * **Damage:** Deals fire damage each turn to any character in the affected cell
-  * **Spread:** Can spread to adjacent flammable terrain
-  * **Duration:** Persists for several turns before dissipating
+  * **Damage:** Deals fire damage each turn to all creatures in the affected cell
+  * **Spread:** Can spread to adjacent flammable terrain tiles
+  * **Duration:** Persists for several turns before fading
   * **Resistance:** Characters with fire resistance take reduced damage
 
 ==== Sources ====
-  * [[en:rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] - When shattered, creates liquid flame in a 3x3 area
-  * [[en:rpd:fire_trap|Fire Traps]] - Environmental hazards that create liquid flame
-  * [[en:rpd:wand_of_firebolt_item|Wand of Firebolt]] - Can ignite areas with liquid flame
-  * [[en:rpd:fire_elemental_mob|Fire Elementals]] - May create pools of liquid flame
-  * Other fire-based items and abilities
+  * [[en:rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] - Creates a 3x3 liquid flame area when shattered
+  * [[en:rpd:fire_trap|Fire Trap]] - Environmental hazard that creates liquid flame
+  * [[en:rpd:wand_of_firebolt_item|Wand of Firebolt]] - Can ignite liquid flame areas
+  * Other fire items and abilities
 
 ==== Counters ====
   * [[en:rpd:potion_of_frost_item|Potion of Frost]] - Can extinguish liquid flame
-  * [[en:rpd:wand_of_frost_item|Wand of Frost]] - Frost-based attacks can neutralize fire
-  * Fire-resistant equipment and buffs can reduce damage taken
-  * Strategic positioning to avoid standing in affected areas
-
-==== Gameplay Tips ====
-  * Move quickly through areas with liquid flame to minimize damage
-  * Use liquid flame strategically against enemies when safe
-  * Be cautious when throwing potions near flammable surfaces
-  * Remember that some enemies are immune to fire damage
+  * [[en:rpd:wand_of_frost_item|Wand of Frost]] - Frost attacks can neutralize fire
+  * Equipment and buffs with fire resistance reduce damage taken
 
 ==== Technical Details ====
   * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame.java]]
@@ -38,14 +30,12 @@ Liquid Flame creates a fire hazard on the dungeon floor as a spreading pool of f
   * Fire damage mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java#L20-L30|spread method]]
   * Duration mechanics: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java#L35-L45|fading over time]]
   * Fire resistance integration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L154-L159|Char.resist() method]]
-  * Machine-readable data: [[mr:liquid_flame_effect|mr:liquid_flame_effect]]
+  * Machine-readable data: [[mr:liquid_flame_blob|mr:liquid_flame_blob]]
 
 ==== Related Effects ====
   * [[en:rpd:burning_buff|Burning]] - Status effect applied by liquid flame
-  * [[en:rpd:potion_of_liquid_flame_item|Potion of Liquid Flame]] - Item that creates the effect
-  * [[en:rpd:fire_trap|Fire Trap]] - Environmental hazard that creates the effect
-  * [[en:rpd:fire_mechanic|Fire]] - General fire mechanics
-  * [[en:rpd:toxic_gas_buff|Toxic Gas]] - Another hazardous environmental effect
-  * [[en:rpd:paralytic_gas_buff|Paralytic Gas]] - Another hazardous environmental effect
+  * [[en:rpd:fire|Fire]] - General fire mechanics
+  * [[en:rpd:toxic_gas_buff|Toxic Gas]] - Another blob effect
+  * [[en:rpd:paralytic_gas_buff|Paralytic Gas]] - Another blob effect
 
-{{tag> rpd mechanics env_effects fire damage }}
+{{tag> rpd mechanics blobs fire damage }}
