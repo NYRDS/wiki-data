@@ -1,0 +1,46 @@
+====== 冻结增益 ======
+
+{{ rpd:images:frost_buff.png|冻结增益 }}
+
+**冻结** 是 Remixed Dungeon 中的一种环境效果（blob），当生物接触到冻结区域时会被施加冻结状态。冻结由霜冻药水破碎时产生。
+
+==== 描述 ====
+冻结是一种环境效果，当生物接触到冻结区域时会被施加冻结状态。冻结由霜冻药水破碎时产生。
+
+==== 效果 ====
+当生物接触到冻结区域时：
+  * **冻结效果：** 生物被固定在原地，无法移动或行动
+  * **持续时间：** 生物保持冻结状态，直到效果消退或被清除
+  * **影响范围：** 影响进入冻结区域的所有生物
+
+==== 机制 ====
+  * **激活：** 当 [[cn:rpd:potion_of_frost_item|霜冻药水]] 破碎时产生冻结
+  * **半径：** 冻结效果覆盖冲击点周围 2 格半径
+  * **持续：** 冻结区域会持续一小段时间，不断冻结进入的生物
+  * **持续时间：** 几回合后区域消散
+
+==== 互动 ====
+  * **移动：** 被冻结的生物无法移动或行动
+  * **伤害：** 某些基于火焰的攻击可以清除冻结效果
+  * **持续时间：** 冻结效果会自然消退
+  * **免疫：** 某些生物对冻结效果具有天然免疫
+
+==== 策略 ====
+  * 在战斗中用于暂时使危险敌人失去行动能力
+  * 对多名敌人时有效的群体控制手段
+  * 注意不要冻结自己或重要盟友
+  * 在狭窄走廊中使用效果良好，敌人被迫通过该区域
+
+==== 代码参考 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] - 冻结效果实现
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]] - 应用于生物的霜冻增益
+  * Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - 冻结作为伪 Blob 绑定用于 Lua 脚本
+  * Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/actors/Freeze.lua|Freeze.lua]] - 放置冻结伪 Blob 的角色脚本
+
+==== 相关页面 ====
+  * [[mr:freezing_buff|技术细节]] - 此实体的机器可读参考
+  * [[cn:rpd:potion_of_frost_item|霜冻药水]] - 产生冻结的物品
+  * [[cn:rpd:burning_buff|燃烧]] - 相反的火焰效果
+  * [[cn:rpd:frost_buff|霜冻]] - 冻结施加的增益
+
+{{tag> rpd 增益 状态效果 冻结 }}
