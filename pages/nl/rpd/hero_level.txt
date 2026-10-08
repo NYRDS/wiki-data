@@ -1,0 +1,81 @@
+====== Hero Level ======
+{{ rpd:images:warrior_hero.png|Hero Level }}
+
+**Hero Level** verwijst naar het ervaringsniveau van het spelerkarakter in Remixed Dungeon. Het hero-niveau beïnvloedt verschillende spelmechanieken, karakterkenmerken en voortgang.
+
+==== Ervaring en Leveling ====
+
+Ervaring wordt voornamelijk verkregen door vijanden te verslaan. De hoeveelheid ervaring die nodig is voor het volgende niveau hangt af van de spelmoeilijkheid:
+
+  * **Normale/Hoge Moeilijkheid (difficulty > 0)**: 5 + (huidig niveau × 5) ervaring per niveau
+  * **Gemakkelijke Moeilijkheid (difficulty = 0)**: 5 + (huidig niveau × 4) ervaring per niveau
+
+Op normale moeilijkheid:
+  * Niveau 1 → 2: 10 EXP
+  * Niveau 2 → 3: 15 EXP
+  * Niveau 3 → 4: 20 EXP
+  * Niveau 10 → 11: 55 EXP
+  * Niveau 20 → 21: 105 EXP
+
+Op gemakkelijke moeilijkheid zijn de vereisten iets lager (4 EXP per niveau in plaats van 5).
+
+==== Level-Up Voordelen ====
+
+Bij het stijgen in niveau krijgt de held:
+  * **+5 maximale HP** (ht neemt toe met 5)
+  * **Directe genezing van 5 HP**
+  * **Verhoogd bewustzijn** (kans om verborgen vallen/deuren te detecteren) tot niveau 10
+  * **+1 vaardigheidspunt** (elk niveau als max vaardigheidspunten > 0)
+  * **Vaardigheidspunt-accumulatie** (maxSP / 3 toegevoegd aan huidige vaardigheidspunten)
+
+==== Klasse-Specifieke Level-Up Effecten ====
+
+  * **Gnoll**: Krijgt een vaardigheidsniveau elke 5 niveaus (niveaus 5, 10, 15, enz.)
+  * **Warlock**: Geneest bij level-up min(max HP - huidige HP, 1 + (diepte - 1) / 5) en verzadigt 10 honger
+  * **Lich**: Als op max vaardigheidspunten bij sterven, kan één keer herrijzen (verbruikt alle vaardigheidspunten)
+
+==== Mechanieken Beïnvloed door Hero Level ====
+
+  * **HP**: Basis HP neemt toe met 5 per niveau (gewijzigd door start-HP van klasse)
+  * **Bewustzijn**: Neemt toe bij level-up tot niveau 10, formule: `1 - (0.85 voor Rogue / 0.90 voor anderen)^((1 + min(niveau, 9)) * 0.5)`
+  * **Spreukschaal**: Sommige spreuken schalen met vaardigheidsniveau van de caster (apart van hero-niveau maar gerelateerd)
+  * **Kunai Throw**: Schade schaalt met caster niveau
+  * **Vijand-schaal**: Sommige vijandstatistieken schalen relatief aan kerkerdiepte/hero-niveau
+  * **Sterfstatisieken**: Hero-niveau wordt vastgelegd in sterfgebeurtenissen voor analyse
+
+==== Vaardigheidspunten en Magisch Niveau ====
+
+  * **Vaardigheidspunten (SP)**: Gebruikt voor het leren van vaardigheden/talenten, max SP neemt toe met 1 per niveau (als > 0)
+  * **Magisch Niveau (skillLevel)**: Apart van hero-niveau; neemt toe via specifieke voorwerpen (Tome of Mastery, enz.) of klassemechanieken
+  * **SP-accumulatie**: Bij level-up neemt huidige SP toe met maxSP / 3 (afgerond naar beneden)
+
+==== Code Referenties ====
+
+  * Hero klasse: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]]
+  * Level-up implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L459-L515|Hero.java earnExp/expToLevel]]
+  * Bewustzijn berekening: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L517-L519|Hero.java updateAwareness]]
+  * Klasse-specifieke effecten: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L494-L505|Hero.java klasse-specifiek level-up]]
+
+==== String Resources ====
+
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - Hero_NewLevel, Hero_LevelUp, Hero_YouNowHave, Hero_StaBlindness, enz.
+
+==== Inhoud Verificatie ====
+
+  * **Bron**: Java klasse `Hero.java` in `com.watabou.pixeldungeon.actors.hero`
+  * **EXP-formule geverifieerd**: `expToLevel()` geeft 5 + lvl() * 5 (difficulty > 0) of 5 + lvl() * 4 (difficulty = 0)
+  * **Level-up voordelen geverifieerd**: +5 max HP, genezing 5, bewustzijn update, vaardigheidspunten
+  * **Klasse-specifiek geverifieerd**: Gnoll vaardigheidsniveau elke 5 niveaus, Warlock genezing/honger, Lich herrijzen
+  * **Bewustzijn-formule**: `1 - (klasse_factor)^((1 + min(niveau, 9)) * 0.5)` waarbij klasse_factor = 0.85 voor Rogue, 0.90 voor anderen
+  * **Laatst bijgewerkt**: Gebaseerd op code-analyse
+
+==== Zie Ook ====
+
+  * [[nl:rpd:hero_class|Hero Klassen]]
+  * [[nl:rpd:hero_subclass|Hero Subklassen]]
+  * [[nl:rpd:skills_talents|Vaardigheden en Talenten]]
+  * [[nl:rpd:experience_system|Ervaringssysteem]]
+  * [[nl:rpd:difficulty|Moeilijkheid]]
+  * [[mr:hero_level|mr:hero_level]] - Machine-leesbare referentie
+
+{{tag> rpd mechanics progression leveling}}
