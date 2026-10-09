@@ -1,0 +1,56 @@
+====== Drunkard NPC ======
+
+{{ rpd:images:drunkard_npc.png|Drunkard NPC }}
+
+==== Overzicht ====
+
+De Drunkard is een NPC gevonden in het [[en:rpd:inn|Inn]] niveau van Remixed Dungeon. De NPC is een vaste klant bij de herberg, permanent in een staat van dronkenschap.
+
+==== Beschrijving ====
+
+  * **Naam**: Drunkard
+  * **Geslacht**: Mannelijk
+  * **Beschrijving**: Vaste klant van de herberg in natuurlijke staat
+  * **Faction**: Neutraal
+  * **Status**: Onsterfelijk en passief - neemt niet deel aan gevechten
+  * **Mobiliteit**: Onverplaatsbaar (stationair)
+  * **AI Staat**: Passief
+  * **Basis Snelheid**: 0 (onbeweeglijk)
+  * **Sprite**: town_townsfolk_drunkard.png (16x16 pixels)
+
+==== Gedrag ====
+
+Wanneer ermee wordt omgegaan, zegt de Drunkard willekeurig een van de vier mogelijke zinnen uit de stringbronnen:
+
+  * `Drunkard_Phrase_1` - "MAI\' CEVEJA PO\' FAVÔ\'!"
+  * `Drunkard_Phrase_2` - "Quem precisa de água quando ocê tem cerveja?"
+  * `Drunkard_Phrase_3` - "Essa cerveja tem gosto de terra"
+  * `Drunkard_Phrase_4` - "Zzzzzz..."
+
+De NPC gaat automatisch in een slaaptoestand wanneer actief.
+
+==== Locatie ====
+
+  * Gevonden in het [[en:rpd:inn|Inn]] niveau (Inn_2021_03.json)
+  * Ook genoemd in Tiled-kaart (Inn.tmx)
+
+==== Implementatie ====
+
+  * **Lua Script**: Drunkard NPC gedrag wordt gecontroleerd door `scripts/npc/Drunkard.lua`
+  * **Configuratie**: Mob eigenschappen gedefinieerd in `mobsDesc/DrunkardNPC.json`
+  * **Sprite**: Geanimeerd met 9 frames voor inactieve staat, met 5 FPS animatiesnelheid
+  * **Sprite Configuratie**: `spritesDesc/DrunkardNPC.json`
+
+==== Code Referenties ====
+
+  * Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/Drunkard.lua|Drunkard.lua]]
+  * JSON Config: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/DrunkardNPC.json|DrunkardNPC.json]]
+  * Sprite Config: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/DrunkardNPC.json|DrunkardNPC.json (sprite)]]
+
+==== Notities ====
+
+  * De Drunkard NPC is uniek omdat deze geen gevechtsfunctie heeft en puur voor sfeer is
+  * Andere NPC's, zoals de Inn Servant, kunnen commentaar geven over de Drunkard met de zin: "Deze dronkaard maakt me gek!"
+  * De NPC kan niet worden verplaatst of verwijderd uit het spel eenmaal geplaatst
+
+{{tag> rpd npcs inn neutral }}
