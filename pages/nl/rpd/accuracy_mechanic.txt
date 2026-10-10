@@ -1,0 +1,80 @@
+====== Nauwkeurigheidsmechanisme ======
+
+Nauwkeurigheid is een gevechtsmechanisme in Remixed Pixel Dungeon dat de kans bepaalt om een doelwit te raken met aanvallen. Hogere nauwkeurigheid vergroot de kans om vijanden te raken.
+
+==== Nauwkeurigheidsformule ====
+In de spelcode wordt nauwkeurigheid berekend in het ''Char.java''-bestand als onderdeel van de ''attackSkill''-methode:
+
+<code java>
+public int attackSkill(Char target) {
+    int[] bf = {0};
+    forEachBuff(b -> bf[0] += b.attackSkillBonus(this));
+
+    int bonus = bf[0];
+
+    float accuracy = (float) Math.pow(1.4, bonus);
+
+    if (target == null) { // Voornamelijk om een fout in Remixed RPG te maskeren
+        target = CharsList.DUMMY;
+    }
+
+    if (rangedWeapon.valid() && level().distance(getPos(), target.getPos()) == 1) {
+        accuracy *= 0.5f;
+    }
+
+    float mainAccuracyFactor = getActiveWeapon().accuracyFactor(this);
+    float secondaryAccuracyFactor = getSecondaryWeapon().accuracyFactor(this);
+
+    float skillFactor = Utils.min(20f, mainAccuracyFactor, secondaryAccuracyFactor);
+
+    int aSkill = (int) ((baseAttackSkill + lvl()) * accuracy * skillFactor);
+
+    GLog.debug("%s valt %s aan met factor %2.2f, resulterende vaardigheid %d", getEntityKind(), target.getEntityKind(), skillFactor, aSkill);
+
+    return aSkill;
+}
+</code>
+
+==== Belangrijke factoren voor nauwkeurigheid ====
+  * **Aanvalsvaardigheid**: De belangrijkste factor die de trefkans bepaalt
+  * **Buff-bonussen**: Elk bonuspunt verhoogt de nauwkeurigheid exponentieel met de formule ''Math.pow(1.4, bonus)'' (bijvoorbeeld van ''RingOfAccuracy'' of soortgelijke voorwerpen)
+  * **Wapennauwkeurigheidsfactor**: Verschillende wapens hebben verschillende ''accuracyFactor''-waarden (bijvoorbeeld ''RingOfAccuracy'' geeft een bonus)
+  * **Afstandsboogboogstraf**: Bij gebruik van een afstandswapen op melee-afstand (afstand = 1) wordt de nauwkeurigheid gehalveerd (0,5x vermenigvuldiger)
+  * **Wapenbetoveringen**: Sommige betoveringen beïnvloeden de nauwkeurigheid
+  * **Status-effecten**: Negatieve effecten zoals blindheid kunnen de nauwkeurigheid verlagen
+
+==== Uitrusting met nauwkeurigheidsvoordelen ====
+  * **[[nl:rpd:ring_of_accuracy_item|Ring van Nauwkeurigheid]]**: Verhoogt de aanvalsvaardigheidsbonus gelijk aan het niveau van de ring (verbetering van de nauwkeurigheid)
+  * **Gewichtsteen**: Kan worden gebruikt om wapens te doordrenken met nauwkeurigheid ten koste van snelheid (zie [[nl:rpd:items|Voorwerpen]] voor meer informatie)
+  * **Wapen doordrenken NAUWKEURIGHEID**: Het gebruik van een gewichtsteen met de optie "Voor nauwkeurigheid" doordrenkt een wapen met nauwkeurigheid (+1,5x vermenigvuldiger)
+  * **[[nl:rpd:compound_bow_item|Samengestelde Boog]]**: Heeft verbeterde nauwkeurigheid ten opzichte van een houten boog, ten koste van enige snelheid
+
+==== Gerelateerde strings ====
+  * ''RingOfAccuracy_Name'': "Ring van Nauwkeurigheid"
+  * ''RingOfAccuracy_Info'': "Deze ring vergroot je kans om de vijand te raken."
+  * ''Weightstone_WndAccuracy'': "Voor nauwkeurigheid"
+  * ''CompoundBow_Info'': "Pijlen afgeschoten met deze samengestelde boog brengen veel schade toe en hebben een verbeterde nauwkeurigheid ten opzichte van een houten boog, ten koste van enige snelheid."
+
+==== Klasse-overwegingen ====
+  * **Krijger**: Profiteert van hoge nauwkeurigheid voor consistente treffers
+  * **Magiër**: Belangrijk om te zorgen dat toverspreuken verbinden
+  * **Schurk**: Hoge nauwkeurigheid helpt bij sluipaanvallen
+  * **Jageres**: Essentieel voor de effectiviteit van afstandswapens
+  * **Plaagarts**: Lijdt aan nauwkeurigheidsstraffen zonder de Botzaag uitgerust (string: ''HeroClass_PlagueDoctorPerks_4'')
+
+==== Codeverwijzingen ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfAccuracy.java|RingOfAccuracy.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Weightstone.java|Weightstone.java]]
+
+==== Gerelateerd ====
+  * [[nl:rpd:combat_mechanic|Gevecht]]
+  * [[nl:rpd:melee_combat_mechanic|Melee-gevecht]]
+  * [[nl:rpd:ranged_combat|Afstandsgevecht]]
+  * [[nl:rpd:attack_skill_mechanic|Aanvalsvaardigheid]]
+  * [[nl:rpd:defense_mechanic|Verdediging]]
+  * [[nl:rpd:evasion_mechanic|Ontwijking]]
+  * [[nl:rpd:weapon_enchantments|Wapenbetoveringen]]
+  * [[nl:rpd:ring_of_accuracy_item|Ring van Nauwkeurigheid]]
+
+{{tag> rpd mechanica nauwkeurigheid aanval gevecht}}
