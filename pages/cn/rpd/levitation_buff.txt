@@ -1,0 +1,54 @@
+====== 悬浮增益 ======
+
+{{ rpd:images:levitation_buff.png|悬浮增益 }}
+
+**悬浮** 是 Remixed Dungeon 中的一种有益状态效果，允许受影响的角色浮在地面上方。
+
+==== 效果描述 ====
+  * **类型:** 有益状态效果（增益）
+  * **效果:** 允许浮在地面上方
+  * **持续时间:** 20 回合（Levitation.DURATION = 20f）
+  * **来源:** 主要来自饮用 [[cn:rpd:potion_of_levitation_item|悬浮药水]]
+
+==== 获取方式 ====
+  * 饮用 [[cn:rpd:potion_of_levitation_item|悬浮药水]]
+  * 通过某些法术或职业能力
+  * 通过特殊物品或环境效果
+
+==== 机制 ====
+  * 允许在陷阱上移动而不触发它们
+  * 允许通过通常会阻碍移动的特殊地形
+  * 防止某些基于地面的效果影响角色
+  * 阻止缠绕状态效果（解除当前影响角色的任何缠绕）
+  * 效果结束时，游戏调用 Dungeon.level.press()，可能在角色位置触发地板效果
+  * 角色精灵显示为 CharSprite.State.LEVITATING
+  * 使用 BuffIndicator.LEVITATION 作为界面图标
+
+==== 策略 ====
+  * 非常适合安全穿越充满陷阱的区域
+  * 允许绕过某些障碍或困难地形
+  * 有助于避免基于地面的有害效果
+  * 适合在危险地板上导航
+  * 效果结束的时机很重要，以避免降落在危险区域
+
+==== 代码参考 ====
+  * Lua 脚本: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Levitation.lua|Levitation.lua]]
+  * Lua 中的持续时间常数: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Levitation.lua#L7|Levitation.DURATION = 20f]]
+  * 相关类: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]]（悬浮开始时解除缠绕）
+  * 扩展: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]]
+  * 界面指示器: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java#L22|BuffIndicator.LEVITATION]]
+  * 精灵状态: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java#L59|CharSprite.State.LEVITATING]]
+
+==== 字符串资源 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1304|LevitationBuff_Info]] - 增益描述
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1305|LevitationBuff_Name]] - 增益名称
+
+==== 另见 ====
+  * [[cn:rpd:status_effects|状态效果]] - 其他状态变化
+  * [[cn:rpd:potion_of_levitation_item|悬浮药水]] - 悬浮的主要来源
+  * [[cn:rpd:roots_buff|缠绕]] - 悬浮可对抗的效果
+  * [[cn:rpd:gameplay_mechanic|游戏机制]] - 其他核心系统
+  * [[cn:rpd:traps|陷阱]] - 可通过悬浮避开的陷阱
+  * [[cn:rpd:buffs|增益]] - 其他有用的状态效果
+
+{{tag> rpd mechanics status_effects buffs levitation}}
