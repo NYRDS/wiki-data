@@ -9,11 +9,14 @@
   * **Parent Class**: com.watabou.pixeldungeon.actors.mobs.Thief
 
 ===== Code References =====
-  * **Java**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Bandit.java|Bandit.java]]
-  * **Parent Java**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Thief.java|Thief.java]]
+  * **JSON Config**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Bandit.json|Bandit.json]]
+  * **Lua Script**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Bandit.lua|Bandit.lua]]
+  * **Mob Factory**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]]
+  * **Parent Class (Thief)**: Implemented via parent Thief mechanics in JSON/Lua
 
 ===== Configuration Files =====
-  * **JSON**: This entity is implemented in Java, no JSON configuration exists
+  * **JSON Config**: mobsDesc/Bandit.json (stats, loot, sprite)
+  * **Lua Script**: scripts/mobs/Bandit.lua (behavior, steal/blind, flee, defenceProc)
 
 ===== String Resources =====
   * **Name**: @string/Bandit_Name
@@ -21,14 +24,14 @@
   * **Gender**: @string/Bandit_Gender
 
 ===== Implementation Details =====
-  * **HP**: 20 (from parent Thief class)
-  * **Defense Skill**: 12 (from parent Thief class)
-  * **Attack Skill**: 12 (from parent Thief class)
-  * **Damage**: 1-7 (from parent Thief class)
-  * **DR (Damage Reduction)**: 3 (from parent Thief class)
-  * **Exp for Kill**: 5 (from parent Thief class)
-  * **Max Level**: 10 (from parent Thief class)
-  * **Attack Delay**: 0.5f (from parent Thief class)
+  * **HP**: 20 (mobsDesc/Bandit.json)
+  * **Defense Skill**: 12 (JSON)
+  * **Attack Skill**: 12 (JSON)
+  * **Damage**: 1-7 (JSON)
+  * **DR (Damage Reduction)**: 3 (JSON)
+  * **Exp for Kill**: 5 (JSON)
+  * **Max Level**: 10 (JSON)
+  * **Attack Delay**: 0.5 (JSON)
 
 ===== Special Abilities =====
   * **Steal Effect**: When attacking, if successfully steal() is triggered, the Bandit flees and inflicts Blindness for 5-12 turns
