@@ -1,0 +1,52 @@
+====== Scroll van Psionische Ontploffing ======
+
+{{ rpd:images:scroll_of_psionic_blast_item.png|Scroll van Psionische Ontploffing }}
+
+==== Beschrijving ====
+De Scroll van Psionische Ontploffing is een scroll in Remixed Dungeon die een krachtige mentale ontploffing veroorzaakt die alle zichtbare wezens treft.
+
+==== Effect ====
+Wanneer deze scroll wordt gelezen, ontstaat een psionische ontploffing die alle wezens binnen het gezichtsveld treft:
+  * **Schade:** Deelt schade tussen 1 en 2/3 van de maximale HP van het doel (Random.IntRange(1, mob.ht() * 2 / 3))
+  * **Verblinding:** Veroorzaakt verblinding voor 3-6 beurten (Random.Int(3, 6)) voor alle getroffen wezens, inclusief de speler
+  * **Effectgebied:** Treft alle wezens in het gezichtsveld (fieldOfView controle)
+  * **Zelfschade:** Brengt ook schade toe aan de speler die de scroll leest
+  * **Visueel effect:** Scherm flitst wit (0xFFFFFF) via GameScene.flash()
+  * **Geluid:** Speelt Assets.SND_BLAST geluidseffect af
+
+==== Eigenschappen ====
+  * **Gewicht:** 5
+  * **Prijs:** 80 goud wanneer geïdentificeerd, basisprijs wanneer niet geïdentificeerd (price() methode)
+  * **Identificatie:** Eén gebruik om te identificeren (lezen leert effect, zet known status)
+
+==== Functie ====
+  * **Lezen:** Wanneer hardop gelezen, flitst het scherm wit en speelt een ontploffingsgeluid
+  * **Onzichtbaarheid verwijderen:** Verwijdert onzichtbaarheid van de lezer via Invisibility.dispel()
+  * **Verblindingseffect:** Veroorzaakt tijdelijke verblinding voor alle wezens in het gezichtsveld (inclusief lezer)
+  * **Hoge risico/hoge beloning:** Kan meerdere vijanden uitschakelen maar met aanzienlijk risico voor de speler
+  * **Mob iteratie:** Herhaalt door alle mobs op het niveau met Dungeon.level.getCopyOfMobsArray()
+
+==== Verkrijgen ====
+  * Gevonden als willekeurige drops in kerkerniveaus
+  * Beschikbaar in winkels
+  * Soms gevonden in kisten
+  * Vaker gevonden op diepere kerkerniveaus
+
+==== Strategie ====
+  * Meest effectief wanneer er meerdere vijanden in zicht zijn
+  * Kan worden gebruikt tegen gevaarlijke wezens die je toch al moet verblinden
+  * Overweeg deuren te sluiten om de ontploffing te beperken tot specifieke gebieden
+  * Timing is cruciaal omdat je zelf ook 3-6 beurten verblind wordt
+  * Vooral effectief tegen groepen krachtige vijanden
+  * Schade is tussen 1 en 2/3 van de maximale HP van het doel (niet gebaseerd op huidige HP)
+
+==== Code Referenties ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]] (basis klasse) — geïmplementeerd via JSON/config; geen aparte ScrollOfPsionicBlast.java klasse bestaat
+
+==== String Bronnen ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-nl/strings_all.xml#L1391|ScrollOfPsionicBlast_Info]] — "Deze scroll bevat vernietigende energie..."
+
+==== Gerelateerde Items ====
+  * Scrolls (zie Engelse versie) - Andere scrolls in het spel
+
+{{tag> rpd items scrolls utility }}
