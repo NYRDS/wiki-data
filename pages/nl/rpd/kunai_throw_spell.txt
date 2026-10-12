@@ -1,0 +1,84 @@
+====== Kunai-worp ======
+
+{{ rpd:images:kunai_throw_spell.png|Kunai-worp Spreuk }}
+
+**Kunai-worp** is een spreuk in Remixed Pixel Dungeon (Rogue Affiniteit).
+
+==== Beschrijving ====
+Deze spreuk werpt kunai naar willekeurige zichtbare vijanden extreem snel. Het aantal geworpen kunai hangt af van het vaardigheidsniveau van de werper, met meer kunai op hogere niveaus. De spreuk is zo snel dat je geen doelwit kunt kiezen.
+
+==== Stats ====
+  * **Magische Affiniteit:** [[nl:rpd:rogue_class|Rogue]]
+  * **Doelwit:** zelf (richt op willekeurige zichtbare [[nl:rpd:enemies_overview|vijanden]])
+  * **Niveau:** 2
+  * **[[nl:rpd:mana_mechanic|Mana]] Kosten:** 5
+  * **Werp Tijd:** 0.01 (extreem snel)
+  * **Spreuk Afbeelding:** Gebruikt verschillende iconen op basis van spreukniveau (1, 9, of 17 afhankelijk van niveau)
+
+==== Mechanismen ====
+  * **Aantal Kunai:** min(werper:skillLevel() - spreukNiveau + 1, 3) - maximaal 3 [[nl:rpd:kunai_item|kunai]]
+  * **Schade:** Willekeurige schade tussen n en (n + werper:lvl() * n), waarbij n het aantal geworpen [[nl:rpd:kunai_item|kunai]] is
+  * **Doelwit:** Richt automatisch op willekeurige [[nl:rpd:enemies_overview|vijanden]] die zichtbaar zijn voor de werper
+  * **Zap Effect:** Toont een "Kunai" [[nl:rpd:zap_effects|zap-effect]] van werper naar doelwit
+  * **Vereiste:** Vereist minimaal één zichtbare [[nl:rpd:enemies_overview|vijand]] om te kunnen werpen
+
+==== Gebruik ====
+De Kunai-worp spreuk kan worden gebruikt voor:
+  * Aanvallende toepassingen tegen [[nl:rpd:enemies_overview|vijanden]]
+  * Snelle uitbarstschade in [[nl:rpd:combat_mechanic|gevecht]]
+  * Verrassen van vijanden met snelle, onvermijdbare aanvallen
+
+==== Klassen ====
+Klassen die deze spreuk kunnen gebruiken zijn onder andere:
+  * Klassen met Rogue affiniteit (bijvoorbeeld [[nl:rpd:rogue_class|Rogue klasse]])
+  * Andere klassen die toegang krijgen via speciale middelen
+
+==== Strategie ====
+Hoe de Kunai-worp effectief te gebruiken:
+  * Het beste gebruikt wanneer meerdere vijanden zichtbaar zijn, zodat mogelijk meerdere doelen geraakt worden
+  * Effectiever op hogere vaardigheidsniveaus wanneer meer kunai kunnen worden geworpen
+  * De snelle werptijd maakt het nuttig in krappe situaties
+  * Werkt goed wanneer vijanden gegroepeerd zijn
+  * Omdat het willekeurige vijanden als doel neemt, is het nuttig wanneer je geen specifiek doelwit hoeft te kiezen
+
+==== Technische Details ====
+  * Implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/spells/KunaiThrow.lua|KunaiThrow.lua]]
+  * Klasse: Lua-script dat het spreuksysteem implementeert
+  * Spreuk beschikbaarheid: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L12|CustomSpellsList.lua]] - beschikbaar voor Rogue klasse
+  * Tekenbronnen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2626|KunaiThrow_Name]] en [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2627|KunaiThrow_Info]]
+  * Nederlandse tekenbronnen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-nl/strings_all.xml#L880-L881|KunaiThrow_Name en KunaiThrow_Info]]
+  * Spreuksysteembibliotheek: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]]
+  * Algemene klassenbibliotheek: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]]
+  * Spreukparameters: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L7-L15|level = 2, castTime = 0.01, spellCost = 5]]
+  * Niveau berekening: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L5-L6|math.min(caster:skillLevel() - spellLevel + 1, 3)]] - berekent aantal geworpen kunai (max 3)
+  * Schadeberekening: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L33|math.random( n, n + caster:lvl()*n )]] - schadebereik op basis van aantal kunai en werperniveau
+  * Zap-effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L32|RPD.zapEffect(ownPos,tgt:getPos(),"Kunai")]] - visueel effect van werper naar doelwit
+  * Doelwitselectie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L29|caster:randomEnemy()]] - selecteert willekeurig zichtbaar doelwit
+  * Zichtbare vijanden controle: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L27|caster:visibleEnemies()]] - controleert of minimaal één vijand zichtbaar is
+  * Afbeeldingsmapping: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L36-L38|lvl2img = {1,9,17} op basis van spreukniveau]] - verschillende iconen afhankelijk van aantal kunai
+  * Magische affiniteit: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L13|Magic Affinity: "Rogue"]] - alleen beschikbaar voor Rogue-affiniteit klassen
+  * Doelwittype: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L12|Targeting: "self"]] - richt automatisch op willekeurige zichtbare vijanden
+  * Spreukinitialisatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L20-L40|return spell.init{}]] - definieert spreukstructuur en gedrag
+  * Schadesysteemintegratie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L33|tgt:damage()]] - roept het schadesysteem van het spel aan
+  * Aantal kunai berekening: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L25|local n = spellTier(caster)]] - berekent aantal kunai op basis van vaardigheidsniveau
+  * Spreuk werp validatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L27-L28]] - controleert of er zichtbare vijanden bestaan
+  * Klasse beschikbaarheid: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L12|spells["Rogue"] = {"Cloak","Backstab","KunaiThrow","Haste"}]] - beschikbaar voor Rogue klasse
+  * Zap-effect referentie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/effects/ZapGlow.java|ZapGlow.java]] - rendert zap-effecten
+  * Lua-integratie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/platform/specific/LuaEngine.java|LuaEngine.java]] - integreert Lua-scripts met de game-engine
+  * Spreuk werp proces: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/spells/LuaSpell.java#L15-L25|LuaSpell:cast() method]] - behandelt aanroep van Lua-spreuken
+  * Spreuksysteem: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/spells/Spell.java|Spell.java]] - basis spreukklasse in Java
+  * Spreuk sprites: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spellsIcons/rogue.png|rogue.png]] - sprite-afbeelding met spreukiconen
+  * Machine-leesbare gegevens: [[mr:kunai_throw_spell|mr:kunai_throw_spell]]
+
+==== Smaaktekst ====
+Uit het spel: "Deze dodelijke kunai-worp wordt extreem snel uitgevoerd, zo snel dat je niet eens een doelwit kunt kiezen.\n\nWare meesters kunnen meer dan één kunai tegelijk werpen."
+
+==== Zie Ook ====
+  * [[nl:rpd:spells_overview|Spreuken]]
+  * [[nl:rpd:spell|Spreuksysteem]]
+  * [[nl:rpd:rogue_class|Rogue Affiniteit]]
+  * [[nl:rpd:kunai_item|Kunai Item]]
+  * [[nl:rpd:melee_weapons|Nabijgevecht Wapens]]
+  * [[nl:rpd:ranged_weapons|Afstands Wapens]]
+
+{{tag> rpd spells rogue }}
