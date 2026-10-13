@@ -1,59 +1,64 @@
 ====== Dread Knight Mob - Code References ======
 
-===== Java Classes =====
-The entity is implemented in Java in the following file:
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DreadKnight.java|RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DreadKnight.java]] - Main implementation class
+===== Implementation Sources =====
+This entity is defined via JSON with Lua behavior:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/DreadKnight.json|DreadKnight.json]] - Main JSON configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/DreadKnight.lua|DreadKnight.lua]] - Custom behavior script
 
-===== Java Class Content =====
-<code java>
-package com.nyrds.pixeldungeon.mobs.necropolis;
-
-import com.nyrds.pixeldungeon.effects.DeathStroke;
-import com.watabou.pixeldungeon.actors.Char;
-import com.watabou.pixeldungeon.actors.buffs.Buff;
-import com.watabou.pixeldungeon.actors.buffs.Stun;
-import com.watabou.pixeldungeon.actors.mobs.Mob;
-import com.watabou.pixeldungeon.items.Gold;
-import com.watabou.utils.Random;
-
-import org.jetbrains.annotations.NotNull;
-
-public class DreadKnight extends Mob {
-    {
-        hp(ht(40));
-        baseDefenseSkill = 15;
-        baseAttackSkill  = 17;
-
-        dmgMin = 8;
-        dmgMax = 16;
-        dr = 12;
-
-        expForKill = 8;
-        maxLvl = 15;
-        setUndead(true);
-
-        loot(Gold.class, 0.02f);
-    }
-
-    @Override
-    public int attackProc(@NotNull Char enemy, int damage ) {
-        //Double damage proc
-        if (Random.Int(4) == 1){
-            if (enemy !=null){
-                DeathStroke.hit(enemy);
-            }
-            return damage * 2;
-        }
-        //Paralysis proc
-        if (Random.Int(10) == 1){
-            Buff.affect(enemy, Stun.class);
-        }
-        return damage;
-    }
+===== JSON Configuration =====
+<code json>
+{
+   "name"          : "DreadKnight_Name",
+   "name_objective": "DreadKnight_Name_Objective",
+   "description"   : "DreadKnight_Desc",
+   "gender"        : "DreadKnight_Gender",
+   "attackSkill"   : 17,
+   "defenseSkill"  : 15,
+   "dmgMin"        : 8,
+   "dmgMax"        : 16,
+   "dr"            : 12,
+   "str"           : 17,
+   "ht"            : 40,
+   "exp"           : 8,
+   "maxLvl"        : 15,
+   "baseSpeed"     : 1,
+   "attackDelay"   : 1,
+   "viewDistance"  : 8,
+   "walkingType"   : "NORMAL",
+   "spriteDesc"    : "spritesDesc/DreadKnight.json",
+   "scriptFile"    : "scripts/mobs/DreadKnight",
+   "lootChance"    : 0.02,
+   "loot"          : { "kind": "Gold" },
+   "undead"        : true,
+   "isHumanoid"    : true,
+   "canBePet"      : true,
+   "friendly"      : false,
+   "fraction"      : "DUNGEON"
 }
 </code>
 
-===== Mob Stats (from Java Code) =====
+===== Lua Script =====
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local mob = require "scripts/lib/mob"
+
+return mob.init{
+    attackProc = function(self, enemy, dmg)
+        -- 1/4 chance: death stroke + double damage
+        if enemy ~= nil and math.random(4) == 1 then
+            RPD.Sfx.DeathStroke:hit(enemy)
+            return dmg * 2
+        end
+        -- 1/10 chance to stun
+        if enemy ~= nil and math.random(10) == 1 then
+            RPD.affectBuff(enemy, "Stun", RPD.CharUtils:durationFactor(enemy) * 10)
+        end
+        return dmg
+    end
+}
+</code>
+
+===== Mob Stats (from JSON and Lua) =====
   * **HP**: 40
   * **Base Defense Skill**: 15
   * **Base Attack Skill**: 17
@@ -64,7 +69,7 @@ public class DreadKnight extends Mob {
   * **Type**: Undead
   * **Loot**: Gold (2% chance)
 
-===== Special Abilities (from Java Code) =====
+===== Special Abilities (from JSON/Lua) =====
   * **Double Damage**: 25% chance (Random.Int(4) == 1) to deal double damage with DeathStroke effect
   * **Stun**: 10% chance (Random.Int(10) == 1) to apply Stun buff on attack
 
