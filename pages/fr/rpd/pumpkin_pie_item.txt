@@ -1,0 +1,46 @@
+====== Tarte au potiron ======
+
+{{ rpd:images:pumpkin_pie_item.png|Tarte au potiron }}
+
+==== Description ====
+Une délicieuse tarte au potiron, parfaite pour les occasions spéciales. Cet [[fr:rpd:food_item|article alimentaire]] est une friandise saisonnière qui restaure complètement votre faim.
+
+==== Statistiques ====
+  * **Valeur nutritionnelle** : Restaure complètement la faim (quantité Hunger.STARVING = 400 unités)
+  * **Énergie** : Hunger.STARVING (sature complètement la barre de faim au niveau maximum)
+  * **Prix** : 30 or par tarte (30 * quantité())
+  * **Image** : Index 9 dans la feuille de sprites food.png
+  * **Fichier de sprite** : items/food.png (défini dans la variable imageFile)
+  * **Type** : Article alimentaire (hérite de la classe Food)
+
+==== Mécaniques ====
+  * **Sature la faim** : Restaure complètement la barre de faim lorsqu'il est consommé (équivalent aux unités Hunger.STARVING)
+  * **Altération** : Peut s'altérer et se transformer en Tarte au potiron pourrie avec le temps (mécanique standard d'altération des aliments)
+  * **Transformation** : Quand il est empoisonné, se transforme en Tarte au potiron pourrie en utilisant la méthode poison()
+  * **Tarification** : Le prix est calculé comme 30 * quantité() dans la méthode price()
+
+==== Références de code ====
+  * **Classe Java :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/PumpkinPie.java|PumpkinPie.java]]
+  * **Implémentation du constructeur :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/PumpkinPie.java#L9-L13|PumpkinPie.java#L9-L13]] - Définit l'image, l'énergie et les propriétés du sprite
+  * **Méthode Poison :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/PumpkinPie.java#L20-L23|PumpkinPie.java#L20-L23]] - poison() se transforme en RottenPumpkinPie
+  * **Classe de base :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]] - Mécaniques générales de la nourriture
+  * **Mécaniques de la faim :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]] - Implémentation du système de faim
+  * **Calcul du prix :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/food/PumpkinPie.java#L15-L18|PumpkinPie.java#L15-L18]] - Implémentation de la méthode price
+
+==== Ressources de chaînes ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L1723|PumpkinPie_Info]] - "Une délicieuse tarte au potiron, comme votre mère en préparait de si bonnes."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L1724|PumpkinPie_Name]] - "Tarte au potiron"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml#L1867-L1868|RottenPumpkinPie]] - "Tarte au potiron pourrie"
+
+==== Stratégie ====
+  * Utile pour restaurer complètement la faim à bas niveau
+  * Plus cher que la nourriture standard mais fournit une satiété complète
+  * Mieux vaut le consommer avant qu'il ne s'altère
+  * Bon pour les situations d'urgence lorsqu'il faut satisfaire rapidement la faim
+
+==== Articles liés ====
+  * [[fr:rpd:rotten_pumpkin_pie_item|Tarte au potiron pourrie]] - Ce qu'il devient lorsqu'il est altéré
+  * [[fr:rpd:ration_item|Ration]] - Article alimentaire standard
+  * [[fr:rpd:food_item|Nourriture]] - Classe parent et informations générales sur les articles alimentaires
+
+{{tag> rpd items food }}
