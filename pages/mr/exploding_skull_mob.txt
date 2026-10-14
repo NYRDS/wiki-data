@@ -2,54 +2,44 @@
 
 {{ rpd:images:exploding_skull_mob.png|Exploding Skull }}
 
-===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/ExplodingSkull.java|ExplodingSkull.java]]
-
-===== Full Java Class Content =====
-<code java>
-package com.nyrds.pixeldungeon.mobs.necropolis;
-
-import com.watabou.pixeldungeon.actors.Char;
-import com.watabou.pixeldungeon.actors.mobs.Mob;
-import com.watabou.pixeldungeon.items.Gold;
-
-import org.jetbrains.annotations.NotNull;
-
-public class ExplodingSkull extends Mob {
-    {
-        carcassChance = 0;
-        hp(ht(10));
-        baseDefenseSkill = 1;
-        baseAttackSkill  = 125;
-
-        dmgMin = 25;
-        dmgMax = 45;
-        dr = 1;
-
-        baseSpeed = 1.5f;
-
-        expForKill = 1;
-        maxLvl = 1;
-
-        setUndead(true);
-        loot(Gold.class, 0.02f);
-    }
-
-    @Override
-    public boolean attack(@NotNull Char enemy) {
-        if(super.attack(enemy)) {
-            die(this);
-            return true;
-        }
-        return false;
-    }
+===== JSON Configuration =====
+<code json>
+{
+   "name": "ExplodingSkull_Name",
+   "name_objective": "ExplodingSkull_Name_Objective",
+   "description": "ExplodingSkull_Desc",
+   "gender": "ExplodingSkull_Gender",
+   "attackSkill": 125,
+   "defenseSkill": 1,
+   "dmgMin": 25,
+   "dmgMax": 45,
+   "dr": 1,
+   "str": 17,
+   "ht": 10,
+   "exp": 1,
+   "maxLvl": 1,
+   "baseSpeed": 1.5,
+   "attackDelay": 1,
+   "viewDistance": 8,
+   "walkingType": "NORMAL",
+   "flying": true,
+   "spriteDesc": "spritesDesc/ExplodingSkull.json",
+   "scriptFile": "scripts/mobs/ExplodingSkull",
+   "lootChance": 0.02,
+   "loot": { "kind": "Gold" },
+   "undead": true,
+   "carcassChance": 0,
+   "canBePet": true,
+   "friendly": false,
+   "fraction": "DUNGEON",
+   "hasBodyParts": false
 }
 </code>
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check:
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/exploding_skull.json
+===== Java Classes =====
+This entity is implemented via JSON + Lua; no dedicated Java class exists. See `CustomMob.java` for the base loader.
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/CustomMob.java|CustomMob.java]] - Base JSON mob loader
+
 
 ===== String Resources =====
 <code xml>
@@ -60,15 +50,14 @@ This entity may have JSON configuration, but no matching config was found. Check
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/ExplodingSkull.lua|ExplodingSkull.lua]] - Custom behavior script (if present)
 
 ===== Entity Usage Analysis =====
 Using find_entity_usage.py:
-  * Java file: ./RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/ExplodingSkull.java - Main class implementation
-  * Java file: ./RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java - Mob registration (line 222)
+  * JSON config: RemixedDungeon/src/main/assets/mobsDesc/ExplodingSkull.json
+  * Lua script reference: scripts/mobs/ExplodingSkull
   * String resources: ExplodingSkull_Name, ExplodingSkull_Gender, ExplodingSkull_Name_Objective, ExplodingSkull_Desc
-  * No Lua file usage (Java-based mob)
-  * No JSON configuration (Java-based mob)
+  * Bestiary references: RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json
 
 ===== Related mr Entities =====
   * [[mr:undead_mob|Undead (Mob)]] - Mob type classification
