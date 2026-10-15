@@ -11,18 +11,18 @@
   * **Related Entity**: `com.watabou.pixeldungeon.items.rings.MimicAmulet` (Item/Ring - different entity)
 
 ==== Core Properties ====
-  * **Base Speed**: 1.25 (faster than normal)
-  * **Flying**: true (always levitates)
-  * **Carcass Chance**: 0 (no corpse)
-  * **Level Scaling**: Uses current dungeon depth as level
-  * **EXP for Kill**: 2 + 2 * (level - 1) / 5
+  * **Base Speed**: 1.25 (faster than normal, from JSON `baseSpeed`)
+  * **Flying**: true (always levitates, from JSON `flying`)
+  * **Carcass Chance**: 0 (no corpse, from JSON `carcassChance`)
+  * **Level Scaling**: Uses current dungeon depth (`str`: 15)
+  * **EXP for Kill**: 5 (from JSON `exp`)
 
-==== Stats (Level-Dependent) ====
-  * **HP**: `(3 + level) * 5`
-  * **Attack Skill**: `9 + level`
-  * **Defense Skill**: `2 * attackSkill + 1`
-  * **Damage**: `HP/10` to `HP/4` (based on current HP)
-  * **Defense Rating (DR)**: 0
+==== Stats (Current JSON) ====
+  * **Attack Skill**: 19 (from JSON `attackSkill`)
+  * **Defense Skill**: 1 (from JSON `defenseSkill`)
+  * **HP**: 65 (from JSON `ht`, `str`: 15)
+  * **Damage**: 6-16 (from JSON `dmgMin`/`dmgMax`)
+  * **DR**: 0 (from JSON `dr`)
 
 ==== Immunities & Resistances ====
   * **Immune to**: ToxicGas, Paralysis, Stun
