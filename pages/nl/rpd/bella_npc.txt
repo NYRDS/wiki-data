@@ -1,0 +1,36 @@
+====== Bella ======
+
+{{ rpd:images:bellanpc_sprite.png|Bella }}
+
+**Bella** is een NPC die aan het einde van het spel wordt aangetroffen in Remixed Pixel Dungeon en dient als een van de mogelijke eindes.
+
+==== Beschrijving ====
+Bella is een heel posh uitziend meisje. Haar hele uiterlijk zegt je: "Ik ben te goed voor iedereen." Ze wordt aangetroffen aan het einde van het spel en dient als een van de mogelijke eindes.
+
+==== Interacties ====
+  * Wanneer je Bella tegenkomt, zal ze je vertellen dat ze geen interesse heeft in plebejers zoals jij
+  * **Opmerking**: De huidige implementatie bevat geen speciale interactielogica voor wanneer de speler het Amulet van Yendor heeft, ondanks dat de stringbronnen aangeven dat deze interactie bedoeld was. Wanneer de speler het Amulet van Yendor heeft, zou Bella theoretisch de optie moeten bieden om samen een wandeling te maken en hun gezamenlijke toekomst te bespreken, maar deze functionaliteit is momenteel niet geïmplementeerd in de code.
+
+==== Implementatiedetails ====
+  * BellaNPC breidt de ImmortalNPC-klasse uit, wat voorkomt dat ze kan worden gedood
+  * De interactie wordt afgehandeld door de ''interact''-methode in de BellaNPC.java-klasse
+  * Het basisbericht wordt opgehaald uit de stringbronnen: ''BellaNPC_Message''
+  * Aanvullende berichten met betrekking tot het Amulet van Yendor bestaan in de stringbronnen maar zijn niet geïmplementeerd in de code:
+    * ''BellaNPC_Amulet_M'' - Bericht voor mannelijke held met Amulet
+    * ''BellaNPC_Amulet_F'' - Bericht voor vrouwelijke held met Amulet
+    * ''BellaNPC_Yes_End_Game'' - Positieve antwoordoptie om het spel te beëindigen
+    * ''BellaNPC_No'' - Negatieve antwoordoptie
+    * ''BellaNPC_Angry'' - Boos antwoordbericht
+
+==== Codeverwijzingen ====
+  * BellaNPC-implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/BellaNPC.java|BellaNPC.java]]
+  * Basisklasse (ImmortalNPC): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+  * Interactie-afhandelaar: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/BellaNPC.java#L18|interact-methode]]
+  * Stringbronnen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1624-L1633|Alle BellaNPC-strings]]
+  * Mobfabriekregistratie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L244|BellaNPC-registratie]]
+
+==== Zie ook ====
+  * [[nl:rpd:npcs|NPC's]] - Andere niet-speelbare personages
+  * [[nl:rpd:amulet_of_yendor_item|Amulet van Yendor]] - Sleutel-item voor het eindspel
+
+{{tag> rpd npcs endgame}}
