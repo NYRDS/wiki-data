@@ -1,0 +1,87 @@
+====== Schaduwheer ======
+
+{{ rpd:images:shadow_lord_mob.png|Schaduwheer }}
+
+**Schaduwheer** is een krachtige eindbaas-vijand te vinden in het Halls-gebied van de kerker. Hij vertegenwoordigt een van de meest uitdagende ontmoetingen voor de uiteindelijke baas, Yog-Dzewa.
+
+==== Beschrijving ====
+De Schaduwheer is een krachtig wezen gemaakt van puur kwaad en ondoordringbare duisternis. Velen geloven dat hij de Oude God zelf is, gezien hoe krachtig hij is. Anderen veronderstellen dat hij slechts een bewaker is van de kamers van de Oude God. Dit wezen combineert fysieke en magische aanvallen met schaduw-gebaseerde vaardigheden die hem bijzonder gevaarlijk maken.
+
+==== Statistieken ====
+  * **HP:** 260
+  * **Aanvalsvaardigheid:** 30
+  * **Verdedigingsvaardigheid:** 40
+  * **Schade:** 30-40
+  * **Verdediging:** 40
+  * **Ervaring bij doden:** 60
+  * **Bewegingstype:** Absoluut (beweegt door muren/hindernissen)
+
+==== Gevecht ====
+  * **Gezondheid:** 260 HP
+  * **Aanvalspatroon:** Kan vijanden aanvallen binnen 4 tegels afstand als er zichtlijn bestaat
+  * **Vaardigheden:**
+    * Krijgt schade als hij op Vegetatie staat (schade over tijd)
+    * Geneest in Duisternis (herstelt (ht() - hp()) / 4 bij staan in duisternis)
+    * Heeft een cooldown-vaardigheid die activeert na het ontvangen van schade van een andere bron dan zichzelf
+    * Wordt Vluchtend bij schade, teleporteert weg en verandert het niveau-indeling
+
+==== Speciale vaardigheden ====
+  * **Niveau-vervorming:** Na het ontvangen van schade vlucht de Schaduwheer en herbouwt het niveau volledig tot een doolhof
+  * **Oproepen:** Na het vluchten, spawnt ofwel 4 Wraiths (70% kans) of een Shadow (30% kans)
+  * **Kristal-spawn:** Na het vluchten, creëert een kristal op een voetstuk dat extra vijanden spawnt
+  * **Duisternis-genezing:** Regenereert gezondheid bij staan in Duisternis-blobben
+  * **Vegetatie-zwakte:** Krijgt schade bij staan op Vegetatie
+
+==== Speciale mechanica ====
+  * **Niveau-transformatie:** De Schaduwheer kan het niveau-ontwerp volledig reconstrueren, waarbij een doolhof-indeling met 6x6 kamerstappen wordt gemaakt
+  * **Duisternis-immuniteit:** Krijgt genezende effecten bij omgeven door duisternis
+  * **Vluchten-AI:** Bij schade schakelt over naar Vluchtend-toestand, teleporteert naar veiligheid, wordt dan Zwervend
+  * **Cooldown-systeem:** Heeft een 10-beurten cooldown tussen niveau-vervormende vaardigheden
+
+==== Locatie ====
+  * Te vinden op het Schaduwheer-niveau (Halls-gebied)
+  * Verschijnt na het betreden van het arena-gedeelte van het niveau
+  * Het niveau heeft een speciale indeling met voetstukken voor kristal-spawn
+
+==== Voorbereiding ====
+  * **Uitrusting:** Afstandswaapens om melee-gevecht te vermijden wanneer Schaduwheer vlucht
+  * **Verbruiksartikelen:** Genezende voorwerpen om door het langdurige gevecht te komen
+  * **Strategie:** Plan voor omgevingsveranderingen en opgeroepen vijanden
+  * **Lichtbronnen:** Voorwerpen die duisternis kunnen verwijderen om genezing te verminderen
+
+==== Tactieken ====
+  * Behandel opgeroepen minions terwijl je op de baas focust
+  * Val snel aan wanneer mogelijk om de niveau-transformatievaarigheid te voorkomen
+  * Gebruik gebiedsaanvallen voor meerdere opgeroepen wezens
+  * Vermijd het forceren van Schaduwheer in Duisternis voor genezing
+  * Exploiteer Vegetatie-mechanieken indien mogelijk om Schaduwheer te beschadigen
+  * Wees voorbereid op plotselinge niveau-indelingsveranderingen
+
+==== Beloningen ====
+  * Badge: ''SHADOW_LORD_SLAIN''
+  * Laat vallen: [[nl:rpd:scroll_of_weapon_upgrade_item|Rol van Wapenverbetering]]
+  * Toegang tot diepere gebieden van de kerker
+
+==== Technische details ====
+  * **Klasse:** ''com.nyrds.pixeldungeon.mobs.common.ShadowLord'' (migratie: Java verwijderd, nu in JSON+Lua; zie scripts/mobs/ShadowLord.lua)
+  * **Basis:** Uitgebreid vanuit ''Boss'' en implementeert ''IZapper''
+  * **Speciaal gedrag:** Gebruikt ''Fleeing'' AI-toestand na schade, teleporteert weg via ''CharUtils.blinkAway''
+  * **Niveau-mechanica:** Bouwt niveau opnieuw met ''LevelTools.makeEmptyLevel'' en ''buildShadowLordMaze''
+  * **Kristal-systeem:** Spawnt speciale kristallen die extra vijanden en duisternis creëren
+
+==== Gerelateerd ====
+  * [[nl:rpd:bosses|Eindbazen]] - Andere grote kerkeruitdagingen
+  * [[nl:rpd:halls|Halls]] - Het gebied waar Schaduwheer te vinden is
+  * [[nl:rpd:combat|Gevecht]] - Algemene gevechtsmechanica
+  * [[nl:rpd:shadow_mob|Schaduw]] - Wezens opgeroepen door Schaduwheer
+  * [[nl:rpd:wraith_mob|Wraith]] - Wezens opgeroepen door Schaduwheer
+  * [[nl:rpd:crystal_mob|Kristal]] - Kristal opgeroepen door Schaduwheer
+
+==== Bronnen ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/ShadowLord.lua|ShadowLord.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/ShadowLord.json|ShadowLord.json]]
+
+==== Notities ====
+De Schaduwheer is een extreem krachtige eindbaas, mogelijk de Oude God of een van zijn bewakers. Hij vormt een van de grootste uitdagingen in de kerker. De baas heeft unieke mechanica met arena-herstructurering en omgevingsmanipulatie.
+
+{{tag> rpd mobs halls shadow_lord boss}}
