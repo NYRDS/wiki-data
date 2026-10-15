@@ -1,0 +1,53 @@
+====== Nourriture ======
+
+{{ rpd:images:ration_item.png|Nourriture }}
+
+**Nourriture** est une catégorie d'objets qui rassasie la faim du héros et restaure la santé.
+
+==== Description ====
+La nourriture est nécessaire à la survie dans le donjon. Sans nourriture, le héros va mourir de faim. Lorsque la faim atteint des niveaux critiques, le héros commence à perdre de la santé et subit le [[fr:rpd:hunger_buff|Faim]].
+
+==== Types de Nourriture ====
+  * [[fr:rpd:ration_item|Ration]] - nourriture standard qui satisfait complètement la faim
+  * [[fr:rpd:overpriced_ration_item|Ration hors de prix]] - nourriture plus chère mais aussi nutritive, vendue dans les boutiques
+  * [[fr:rpd:mystery_meat_item|Viande mystérieuse]] - viande crue provenant de monstres vaincus qui peut provoquer des effets négatifs comme [[fr:rpd:nausea_buff|Nausée]] ou [[fr:rpd:poison_buff|Poison]]
+  * [[fr:rpd:chargrilled_meat_item|Viande grillée]] - nourriture cuite sûre, préparée en cuisant la viande mystérieuse sur un [[fr:rpd:fire_trap|Piège de feu]]
+  * [[fr:rpd:rotten_ration_item|Ration avariée]] - nourriture gâtée nuisible à la santé et provoquant la [[fr:rpd:nausea_buff|Nausée]]
+  * [[fr:rpd:christmas_turkey_item|Dinde de Noël]] - nourriture saisonnière spéciale qui ne se gâte pas
+  * [[fr:rpd:pumpkin_pie_item|Tarte à la citrouille]] - nourriture saisonnière disponible en automne
+
+==== Effets ====
+  * Rassasie la faim du héros, évitant la famine
+  * Certains types de nourriture peuvent offrir des bonus temporaires (ex. Dinde de Noël)
+  * Certains types peuvent causer des effets négatifs (ex. Viande mystérieuse, Ration avariée)
+  * Certains aliments ne se gâtent pas au contact du gaz toxique (ex. Ration, Ration hors de prix)
+  * Les aliments ont un mécanisme de détérioration — ils peuvent devenir [[fr:rpd:rotten_ration_item|Ration avariée]] avec le temps ou au contact du [[fr:rpd:toxic_gas_level_object|Gaz toxique]]
+
+==== Mécanique de la Faim ====
+Le système de faim fonctionne ainsi :
+  * Le héros possède un indicateur de faim qui diminue avec le temps
+  * Lorsque la faim est critique, le héros reçoit un message d'avertissement
+  * Une famine prolongée cause des dégâts de santé et éventuellement la mort
+  * Manger restaure l'indicateur de faim à des degrés variables selon le type d'aliment
+
+==== Stratégie ====
+  * Emportez toujours au moins un aliment lors de l'exploration de nouveaux niveaux
+  * Faites cuire la [[fr:rpd:mystery_meat_item|Viande mystérieuse]] sur des [[fr:rpd:fire_trap|Pièges de feu]] pour la rendre sûre
+  * Les rations sont plus fiables que la viande mystérieuse pour une exploration prolongée
+  * Méfiez-vous de la ration avariée — il vaut mieux la jeter que risquer les effets négatifs
+  * Les aliments saisonniers (Dinde de Noël, Tarte à la citrouille) sont précieux car ils ne se gâtent pas
+
+==== Références de Code ====
+  * Classe de base : [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]] (classe abstraite définissant la mécanique de la nourriture)
+  * Objets spécifiques : [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Ration.java|Ration.java]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Pasty.java|Pasty.java]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/MysteryMeat.java|MysteryMeat.java]], etc.
+  * Mécanique de la faim : [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]]
+  * Définitions des sprites : [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]]
+
+==== Voir Aussi ====
+  * [[fr:rpd:energy_system|Système d'énergie]]
+  * [[fr:rpd:cooking|Cuisine]]
+  * [[fr:rpd:hunger_buff|Faim]]
+  * [[fr:rpd:nausea_buff|Nausée]]
+  * [[fr:rpd:fire_trap|Piège de feu]]
+
+{{tag> fr:rpd items food consumables }}
