@@ -5,11 +5,11 @@
 Земляной элементаль встречается только на уровнях, заросших травой. Данный элементаль имеет хорошую защиту, низкий шан на уклонение и может опутать игрока при атаке. При опутывании вокруг игрока вырастет высокая трава. Не может опутать игрока, если тот стоит на воде или летает. Земляной элементаль имеет иммунитет к опутыванию. На воде его скорость в два раза ниже, нежели у игрока. Из него выпадают различные семена.
 
 ==== Код реализации ====
-  * **Java-класс:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java|EarthElemental.java]]
-  * **Способности:** См. [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java#L35-L51|EarthElemental.attackProc()]] метод для механики опутывания
-  * **Иммунитеты:** См. [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java#L23-L29|EarthElemental.adjustStats()]] метод для списка иммунитетов
-  * **Скорость в воде:** См. [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java#L31-L33|EarthElemental.speed()]] метод для изменения скорости в воде
-  * **Выпадение семян:** См. [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/EarthElemental.java#L18|EarthElemental constructor]] для настройки добычи
+  * **Java-класс:** `MobFactory.java` (регистрирует `EARTH_ELEMENTAL`); реализация через Lua: `scripts/mobs/EarthElemental.lua`
+  * **Способности:** См. `scripts/mobs/EarthElemental.lua` (механика опутывания, скорость в воде, иммунитеты)
+  * **Иммунитеты:** См. `EarthElemental.lua` для списка иммунитетов (опутывание)
+  * **Скорость в воде:** См. `EarthElemental.lua`
+  * **Выпадение семян:** См. `scripts/mobs/EarthElemental.lua` (настройка добычи)
   * **Строковые ресурсы:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2959-L2960|EarthElemental_Name, EarthElemental_Info в strings_all.xml]]
 
 ==== См. также ====
