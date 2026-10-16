@@ -1,0 +1,71 @@
+====== Спрятаться в Траве ======
+
+{{ rpd:images:hide_in_grass_spell.png|Заклинание Спрятаться в Траве }}
+
+**Спрятаться в Траве** — это заклинание в Remixed Dungeon, связанное с [[ru:rpd:elf_class|классом Эльф]], которое даёт временную невидимость, когда заклинатель находится на травяной местности.
+
+==== Обзор предмета ====
+  * **Тип:** [[ru:rpd:spell|Заклинание]]
+  * **Магическая близость:** [[ru:rpd:elf_class|Эльф]]
+  * **Цель:** Себя
+  * **Уровень:** 2
+  * **[[ru:rpd:mana_mechanic|Стоимость маны]]:** 5 (spellCost)
+  * **Перезарядка:** 10 ходов
+  * **Время применения:** 0.1 хода
+  * **Длительность:** Уровень навыка заклинателя * 5 ходов
+
+==== Особые механики ====
+  * **Эффект невидимости:** Применяет [[ru:rpd:cloak_buff|Баф Скрытности]] (Cloak Buff), делая персонажа невидимым (тот же бафф, что и в [[ru:rpd:cloak_spell|заклинании Плащ]])
+  * **Требование местности:** Можно использовать только стоя на траве (GRASS) или высокой траве (HIGH_GRASS)
+  * **Бонус скрытности:** Уровень навыка заклинателя + уровень заклинателя / 4
+  * **Статус невидимости:** Персонаж становится невидимым с соответствующим визуальным эффектом
+  * **Проверка местности:** Если не на траве, заклинание не срабатывает с сообщением «Даже я не могу спрятаться на пустом месте.» (из строковых ресурсов)
+  * **Длительность эффекта:** Рассчитывается как уровень навыка заклинателя * 5 ходов
+  * **Визуальный эффект:** При успешном применении запускает эффект «hide_in_grass»
+
+==== Стратегия ====
+  * Расположитесь рядом с травяной местностью до использования заклинания
+  * Используйте для побега от врагов, прячась в траве при преследовании
+  * У этого заклинания короче перезарядка, чем у [[ru:rpd:cloak_spell|заклинания Плащ]], что делает его более доступным
+  * Сочетается с природной способностью Эльфа проходить через траву без срабатывания ловушек
+  * Используйте во время сражений с боссами, находясь рядом с травой для временной невидимости
+  * Обязательно для освоения подклассами Эльфа
+  * Лучше использовать для тактических отступлений, чем для нападения
+  * Учитывайте длительность при планировании стратегий с невидимостью
+  * Эффективно для избегания обнаружения во время исследования
+
+==== Получение ====
+  * Обычно доступно игрокам [[ru:rpd:elf_class|класса Эльф]] с близостью [[ru:rpd:elf_affinity|Эльф]]
+  * Получается через системы прогрессии класса
+  * Часть системы заклинаний [[ru:rpd:elf_affinity|Эльф]]
+
+==== Эффект ====
+При успешном применении на траве или высокой траве заклинание «Спрятаться в Траве» накладывает бафф Плащ (Cloak) на длительность (уровень навыка заклинателя * 5) ходов, делая персонажа невидимым. Если местность не травяная, заклинание не срабатывает с сообщением «Даже я не могу спрятаться на пустом месте.». Эффект невидимости даёт бонус скрытности и не позволяет врагам нацеливаться на персонажа, пока активен.
+
+==== Ссылки на код ====
+  * **Lua реализация:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/HideInGrass.lua|HideInGrass.lua]]
+  * **Lua реализация баффа Плащ:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Cloak.lua|Cloak.lua]]
+  * **Базовый класс заклинания:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]]
+  * **Константы местности:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Terrain.java|Terrain.java]] — константы GRASS и HIGH_GRASS
+  * **Визуальный эффект:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/HideInGrass.lua#L23|HideInGrass.lua#L23]] — RPD.topEffect(caster:getPos(),"hide_in_grass")
+  * **Применение баффа:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/HideInGrass.lua#L24|HideInGrass.lua#L24]] — RPD.affectBuff(caster,"Cloak", duration)
+  * **Проверка местности:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/HideInGrass.lua#L20-L22|HideInGrass.lua#L20-L22]] — проверка травяной местности
+  * **Сообщение об ошибке:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/HideInGrass.lua#L27|HideInGrass.lua#L27]] — строковый ресурс «HideInGrassSpell_NeedGrassToHide»
+  * **Расчёт длительности:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/HideInGrass.lua#L15|HideInGrass.lua#L15]] — Duration = caster:skillLevel() * 5
+  * **Бонус скрытности:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Cloak.lua#L16-L18|Cloak.lua#L16-L18]] — функция stealthBonus в Cloak.lua
+  * **Английские строковые ресурсы:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2689-L2691|HideInGrassSpell_Name, HideInGrassSpell_Info, HideInGrassSpell_NeedGrassToHide]]
+  * **Русские строковые ресурсы:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2691-L2693|Строки HideInGrassSpell]]
+  * **mr: пространство имён:** [[mr:hide_in_grass_spell|Страница машинного чтения]]
+
+==== Связанное ====
+  * [[ru:rpd:spells_overview|Заклинания]] — Общая информация о заклинаниях
+  * [[ru:rpd:cloak_spell|Заклинание Плащ]] — Связанное заклинание невидимости
+  * [[ru:rpd:cloak_buff|Баф Плащ]] — Эффект невидимости
+  * [[ru:rpd:invisibility_buff|Невидимость]] — Общая механика невидимости
+  * [[ru:rpd:elf_class|Класс Эльф]] — Класс, использующий это заклинание
+  * [[ru:rpd:elf_affinity|Близость Эльф]] — Близость этого заклинания
+  * [[ru:rpd:mechanics_mechanic|Механики игры]] — Общие механики
+  * [[ru:rpd:grass_terrain|Местность Трава]] — Требуемая местность
+  * [[ru:rpd:high_grass|Высокая Трава]] — Альтернативная местность
+
+{{tag> rpd заклинания эльф скрытность невидимость }}
