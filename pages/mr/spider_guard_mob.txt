@@ -4,7 +4,28 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderGuard.java|SpiderGuard.java]]
 
 ===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+Note: SpiderGuard migrated from Java (`SpiderGuard.java`) to JSON data (`mobsDesc/SpiderGuard.json`) + Lua (`scripts/mobs/SpiderGuard.lua`).
+<code json>
+{
+   "name"          : "SpiderGuard_Name",
+   "entityKind"    : "SpiderGuard",
+   "attackSkill"   : 17,
+   "defenseSkill"  : 15,
+   "dmgMin"        : 8,
+   "dmgMax"        : 14,
+   "dr"            : 7,
+   "str"           : 12,
+   "ht"            : 35,
+   "exp"           : 4,
+   "maxLvl"        : 10,
+   "baseSpeed"     : 1.2,
+   "attackDelay"   : 1,
+   "lootChance"    : 0.067,
+   "loot"          : { "kind": "MysteryMeat" },
+   "scriptFile"    : "scripts/mobs/SpiderGuard",
+   "canBePet"      : true
+}
+</code>
 
 ===== String Resources =====
 <code xml>
@@ -14,8 +35,31 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="SpiderGuard_Desc">Much like soldiers, spider guards are sworn to protect their kingdom. The guard's venom is used to immobilize their target, causing paralysis and making them an easy prey.</string>
 </code>
 
+===== JSON Configuration =====
+<code json>
+{
+   "name"          : "SpiderGuard_Name",
+   "entityKind"    : "SpiderGuard",
+   "attackSkill"   : 17,
+   "defenseSkill"  : 15,
+   "dmgMin"        : 8,
+   "dmgMax"        : 14,
+   "dr"            : 7,
+   "str"           : 12,
+   "ht"            : 35,
+   "exp"           : 4,
+   "maxLvl"        : 10,
+   "baseSpeed"     : 1.2,
+   "attackDelay"   : 1,
+   "lootChance"    : 0.067,
+   "loot"          : { "kind": "MysteryMeat" },
+   "scriptFile"    : "scripts/mobs/SpiderGuard",
+   "canBePet"      : true
+}
+</code>
+
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * `scripts/mobs/SpiderGuard.lua` — stun proc (10% chance for 3 turns)
 
 ===== Related mr Entities =====
   * [[mr:spider_soldier_mob|Spider Soldier (Mob)]]
