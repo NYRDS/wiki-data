@@ -1,16 +1,24 @@
 ====== LichEssence Buff - Code References ======
 
+
+
 ===== Java Classes =====
-  * Reference: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
+This buff is granted by the Lich artifact/subclass mechanism. It has no standalone Java class file; it is referenced in:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] — base buff class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] — Lich subclass definition
 
 ===== JSON Configuration =====
-Artifact-granted buff; no standalone JSON file.
+No standalone JSON file exists for this buff. It is tied to the Lich artifact/subclass and is configured through hero/subclass initialization (`hero/initHeroes.json`) and subclass logic (`HeroSubClass.java`).
 
 ===== String Resources =====
-Refer to strings_all.xml entries for Lich artifact descriptions.
+Refer to `strings_all.xml` for Lich-related descriptions (`Lich_Name`, `Lich_Desc`) in `values/` and language variants (`values-ru/`, `values-nl/`, etc.).
+
+===== Lua Scripts =====
+This buff is implemented through Java subclass mechanics; no dedicated Lua script exists.
 
 ===== Related mr Entities =====
   * [[mr:lich_subclass|Lich Subclass]]
   * [[mr:stone_blood_buff|StoneBlood Buff]]
+  * [[mr:cursed_king_buff|Cursed King Buff]]
 
-{{tag> mr rpd buffs artifact doom lich }}
+{{tag> mr rpd buffs artifact lich essence }}
