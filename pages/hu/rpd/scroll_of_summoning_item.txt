@@ -1,0 +1,38 @@
+====== Megidézés tekercse ======
+
+{{ rpd:images:scroll_of_summoning_item.png|Megidézés tekercse }}
+
+A **Megidézés tekercse** egy varázstekercs a Remixed Dungeon játékban, amely lehetővé teszi a játékosnak, hogy egy szörnyet idézzen meg a jelenlegi kazamata szintről szövetségesként.
+
+==== Hatás ====
+  * **Megidézés:** Hangosan felolvasva ez a tekercs egy szörnyet hív elő a katakomba aktuális szintjéről
+  * **Szövetséges létrehozása:** Ha a szörny akarata gyenge, a szolgáddá válik és melletted harcol
+  * **Megjelenési hely:** A szörny egy üres cellában jelenik meg az olvasó mellett
+  * **Háziállat átalakítás:** `Mob.makePet()` használatával átalakítja a megidézett szörnyet háziállattá, ha `mob.canBePet()` igazat ad vissza
+
+==== Korlátozások ====
+  * Nem használható főnök szinteken (`level.isBossLevel()` ellenőrzés)
+  * Érvényes üres cella szükséges az olvasó mellett (`level.getEmptyCellNextTo()`)
+  * Ha nincs érvényes cella, a tekercs sikertelen lesz "Nincs érvényes cella" üzenettel
+  * "A mágia miatt a használat sikertelen" üzenet jelenik meg főnök szinteken vagy érvénytelen celláknál
+
+==== Kód hivatkozások ====
+  * **Java osztály:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfSummoning.java|ScrollOfSummoning.java]]
+
+==== Karakterláncok ====
+  * **Magyar (values-hu/strings_all.xml):**
+    * ScrollOfSummoning_Name: "Megidézés tekercse"
+    * ScrollOfSummoning_Info: "Hangosan felolvasva ez a tekercs egy szörnyet hív elő a katakomba aktuális szintjéről. És ha a szörny akarata gyenge, a szolgáddá válik."
+    * ScrollOfSummoning_Info_2: "A szörny megjelent a hívásodra!"
+
+==== Stratégia ====
+  * Hasznos ideiglenes szövetségesek létrehozására nehéz harcokban
+  * A megidézett szörny segít az ellenségeid ellen harcolni
+  * Különösen hatékony kihívást jelentő főnökök ellen
+
+==== Kapcsolódó tárgyak ====
+  * [[hu:rpd:scrolls|Tekercsek]] — Általános információ a tekercsekről
+  * [[hu:rpd:scroll_of_identify_item|Azonosítás tekercse]] — Más hasznos tekercsek
+  * [[hu:rpd:scroll_of_teleportation_item|Teleportáció tekercse]]
+
+{{tag> rpd items scrolls summoning}}
