@@ -1,0 +1,55 @@
+====== 霜凍增益 ======
+
+{{ rpd:images:frost_buff.png|霜凍增益 }}
+
+**霜凍** 是 Remixed Dungeon 中的一種狀態效果，會暫時將角色凍結在原地，阻止移動或行動。
+
+==== 效果 ====
+  * **固定:** 受影響的角色無法移動或執行行動
+  * **持續時間:** 凍結持續特定回合（基礎為 5 回合，受抗性修改）
+  * **解除:** 效果會隨時間消退，可被火焰傷害清除，或透過特定方式解除
+  * **疊加:** 通常不與其他阻礙移動的效果疊加
+
+==== 應用 ====
+霜凍效果可透過多種來源應用：
+  * [[zh:rpd:potion_of_frost_item|冰霜藥水]] - 破碎時產生冰霜雲
+  * [[zh:rpd:wand_of_frost_item|冰霜魔杖]] - 直接傷害與凍結效果
+  * [[zh:rpd:ice_elemental_mob|冰元素]] - 透過攻擊施加霜凍
+  * [[zh:rpd:ice_trap_level_object|冰霜陷阱]] - 觸發時可能施加霜凍
+  * [[zh:rpd:freeze_globe_spell|冰凍球法術]] - 創造冰霜效果的法術
+
+==== 免疫與抗性 ====
+  * 部分敵人對凍結效果免疫
+  * 某些護甲或物品可提供抗性
+  * 對火焰抗性高的角色可能縮短持續時間
+
+==== 策略考量 ====
+  * **優勢:** 可在危險遭遇中暫時禁用敵人
+  * **風險:** 同時影響敵人與盟友，團隊情境中需謹慎使用
+  * **時機:** 對單一強大敵人最有效
+  * **反制:** 被凍結的角色在凍結期間更易被鎖定
+
+==== 機制 ====
+  * 透過 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] Blob 效果應用
+  * 角色保持原地直到持續時間結束
+  * 不會中斷已開始的行動
+  * 霜凍效果造成癱瘓，完全阻止行動
+  * 施加霜凍時會移除燃燒效果
+  * 受影響角色受到傷害時霜凍效果會被解除
+
+==== 內容驗證 ====
+  * 核心實現: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]]
+  * 增益類別: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
+  * 字串資源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L572-L574|Frost strings]]
+  * 機器可讀數據: [[mr:frost_buff|mr:frost_buff]]
+
+==== 相關效果 ====
+  * [[zh:rpd:freeze_globe_spell|冰凍球法術]] - 創造霜凍效果的法術
+  * [[zh:rpd:potion_of_frost_item|冰霜藥水]] - 創造冰霜雲的物品
+  * [[zh:rpd:wand_of_frost_item|冰霜魔杖]] - 施加霜凍的魔杖
+  * [[zh:rpd:chill_buff|寒冷]] - 霜凍的減弱版本
+  * [[zh:rpd:freezing_buff|凍結]] - 創造霜凍的 Blob 效果
+  * [[zh:rpd:paralysis_buff|癱瘓]] - 另一種阻礙移動的效果
+  * [[zh:rpd:slow_buff|減速]] - 降低速度的效果
+
+{{tag> rpd status_effects frost buffs debuffs freezing }}
