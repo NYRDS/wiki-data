@@ -32,10 +32,10 @@ This item inherits from Arrow class. It has the following key properties:
   * **baseDly**: 0.75 (base delay)
   * **image**: FIRE_ARROW_IMAGE (arrow sprite)
   * **price()**: quantity() * 5 (costs 5 gold per arrow)
-  * **attackProc()**: Applies Burning effect with "reignite" method when hitting an enemy
+  * **attackProc()**: Applies Burning effect via `CharUtils.ignite(defender)` when hitting an enemy
 
 ===== Burning Effect Mechanics =====
 When a Fire Arrow hits an enemy:
-  * Buff.affect(defender, Burning.class).reignite(defender)
+  * Applies the Burning status effect to the target via `CharUtils.ignite()`
   * This applies the Burning status effect to the target
   * Burning causes damage over time to the affected character
