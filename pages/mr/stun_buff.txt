@@ -3,7 +3,8 @@
 {{ rpd:images:stun_buff.png|Stun Buff }}
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]] - Main stun buff implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Stun.lua|Stun.lua]] - Main stun buff implementation
+  * Implements via Lua: `scripts/lib/buff` library
   * Extends: `FlavourBuff`
   * Key methods:
     * `attachTo(Char target)` - Paralyzes the target when attached
@@ -14,15 +15,17 @@
   * Default duration: 10 seconds (modified by `RingOfElements.Resistance`)
 
 ===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+This entity is implemented in Lua, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
 <string name="Char_StaStunned">stunned</string>
+<string name="StunBuff_Info">Stunned!</string>
+<string name="StunBuff_Name">Stunned</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Stun.lua|Stun.lua]] - Main implementation
 
 ===== Related mr Entities =====
   * [[mr:nightmare_mob|Nightmare (Mob)]] - Can inflict stun
