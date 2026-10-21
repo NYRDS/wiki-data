@@ -1,0 +1,46 @@
+====== Schrikkelaar NPC ======
+
+{{ rpd:images:scarecrow_npc.png|Schrikkelaar NPC }}
+
+De Schrikelaar NPC is een speciaal quest-gevend personage dat te vinden is in de vroege verdiepingen van de kerker. Het geeft een quest waarbij de speler snoepjes moet verzamelen om een beloning te ontvangen.
+
+==== Quest Mechanieken ====
+  * **Quest Start**: Praat met de Schrikelaar om met de quest te beginnen
+  * **Snoepjes Verzamelen**: Na het praten met de NPC, dood vijanden om een kans te krijgen snoepjes te genereren
+  * **Snoepjes Vereist**: Verzamel 5 snoepjes om de quest te voltooien
+  * **Beloning**: Na het inleveren van 5 snoepjes, ontvang 5 Pompoentaarten
+  * **Quest Voltooiing**: De NPC verdwijnt nadat de quest is voltooid
+
+==== Interactie ====
+  * **Eerste Ontmoeting**: De Schrikelaar zal een quest geven om snoepjes te verzamelen
+  * **Herinnering**: Als je snoepjes hebt maar minder dan 5, zal het praten met de Schrikelaar je herinneren aan de quest
+  * **Voltooiing**: Wanneer je 5 snoepjes hebt en met de Schrikelaar praat, neemt het de snoepjes en geeft je de beloning
+  * **Geslacht-specifieke Dialogen**: De Schrikelaar gebruikt verschillende dialogen afhankelijk van het geslacht van de held
+
+==== Speciaal Gedrag ====
+  * De Schrikelaar verplaatst zich naar een nieuwe positie na elke herinnering als de quest niet is voltooid
+  * Snoepjes worden gegenereerd terwijl je vijanden doodt tijdens de quest (na het starten van de quest met de schrikkelaar)
+  * De quest wordt automatisch bijgehouden in het Dagboek totdat het voltooid is
+
+==== Technische Details ====
+  * **Java Klasse:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ScarecrowNPC.java|com.nyrds.pixeldungeon.mobs.npc.ScarecrowNPC]]
+  * **Implementatie:** Breidt ImmortalNPC basisklasse uit
+  * **Quest Mechanieken:** Geïmplementeerd in inner Quest klasse
+  * **Snoepjes Generatie:** 1 snoepje per 5 doden (na quest initiatie), tot 25 doden totaal om quest te voltooien
+  * **Beloning Aantal:** 5 Pompoentaarten per quest voltooiing
+  * **Quest Opslag:** Opgeslagen in bundle met sleutel "scarecrow"
+  * **Dagboek Functie:** Toegevoegd aan dagboek als "SCARECROW"
+
+==== Content Verificatie ====
+  * Informatiebron: Java Klasse com.nyrds.pixeldungeon.mobs.npc.ScarecrowNPC
+  * Quest mechanieken geverifieerd uit broncode analyse
+  * Snoepjes generatie bevestigd als 1 per 5 doden (Quest.process() methode) met stop na 25 totaal doden
+  * Implementatie details uit ScarecrowNPC.java bron
+  * String bronnen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1575-L1583|ScarecrowNPC_Name, ScarecrowNPC_Desc, ScarecrowNPC_Quest_Start_Male, ScarecrowNPC_Quest_Start_Female, ScarecrowNPC_Quest_Reminder, ScarecrowNPC_Quest_End, Journal_ScarecrowNPC]]
+
+==== Gerelateerde Pagina's ====
+  * [[nl:rpd:candy_item|Snoepje]] - Het quest item dat nodig is voor de quest van de Schrikelaar
+  * [[nl:rpd:pumpkin_pie_item|Pompoentaart]] - De beloning ontvangen van de Schrikelaar
+  * [[nl:rpd:journal_mechanic|Dagboek]] - Waar de quest wordt bijgehouden
+
+{{tag> rpd npcs quest}}
