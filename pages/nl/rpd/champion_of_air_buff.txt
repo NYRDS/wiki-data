@@ -1,0 +1,45 @@
+====== Kampioen van de Lucht ======
+
+{{ rpd:images:champion_of_air_buff.png|Kampioen van de Lucht }}
+
+**Kampioen van de Lucht** is een buff in Remixed Dungeon die wordt toegepast op bepaalde mobs om elite varianten te creëren met verbeterde snelheid en behendigheid.
+
+==== Beschrijving ====
+De Kampioen van de Lucht schenkt wezens de essentie van de winden, wat hun behendigheid en strijdvaardigheid versterkt. Mobs met deze eigenschap worden geduchte tegenstanders, in staat om snelle en verwoestende aanvallen te ontketenen die het verloop van de strijd snel kunnen veranderen.
+
+==== Effecten ====
+  * **Haast**: Biedt haastniveau gelijk aan het level van de mob, wat de bewegings- en aanvalssnelheid aanzienlijk verhoogt
+  * **Visueel Effect**: Zet de gloedkleur van het doel op lichtblauw (0xAAAABB) met intensiteit 1
+  * **Geen Icoon**: De buff toont geen icoon in de buff-balk (icoon: -1)
+
+==== Implementatie ====
+  * **Type**: Smaak Buff (Lua-script implementatie)
+  * **Script Locatie**: `scripts/buffs/ChampionOfAir.lua`
+  * **String Resource Sleutels**: `ChampionOfAirBuff_Name`, `ChampionOfAirBuff_Info`
+
+==== Kampioen Systeem ====
+Kampioen-buffs maken deel uit van een systeem dat sterkere mob-varianten creëert. Andere kampioen-buffs zijn:
+  * [[nl:rpd:champion_of_earth_buff|Kampioen van de Aarde]]
+  * [[nl:rpd:champion_of_fire_buff|Kampioen van het Vuur]]
+  * [[nl:rpd:champion_of_water_buff|Kampioen van het Water]]
+
+==== String Resources ====
+<code xml>
+<!-- Nederlands (values-nl/strings_all.xml) -->
+<string name="ChampionOfAirBuff_Name">Kampioen van de Lucht</string>
+<string name="ChampionOfAirBuff_Info">Deze eigenschap schenkt het wezen de essentie van de winden, wat zijn beweeglijkheid en strijdvaardigheid versterkt. De Kampioen van de Lucht wordt een vijandige tegenstander, in staat om snelle en verwoestende aanvallen los te laten die het verloop van de strijd snel kunnen veranderen.</string>
+</code>
+
+==== Broncode Referenties ====
+  * Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ChampionOfAir.lua|ChampionOfAir.lua]]
+  * Buff Factory Registratie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] (regel 37)
+  * Mob Kampioen Logica: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+
+==== Gerelateerde Buffs ====
+  * [[nl:rpd:champion_of_earth_buff|Kampioen van de Aarde]]
+  * [[nl:rpd:champion_of_fire_buff|Kampioen van het Vuur]]
+  * [[nl:rpd:champion_of_water_buff|Kampioen van het Water]]
+  * [[nl:rpd:anesthesia_buff|Anesthesie]]
+  * [[nl:rpd:gases_immunity_buff|Gassen Immuniteit]]
+
+{{tag> rpd buffs champions}}
