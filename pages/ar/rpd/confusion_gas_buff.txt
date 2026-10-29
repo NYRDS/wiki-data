@@ -1,0 +1,46 @@
+====== غاز الارتباك ======
+
+{{ rpd:images:vertigo_buff.png|غاز الارتباك }}
+
+**غاز الارتباك** هو سحابة غاز (blob) يمكن إنشاؤها بواسطة [[ar:rpd:rotten_food_item|الطعام الفاسد]] عند تناوله أو رميه.
+
+==== التأثيرات ====
+  * يطبق تأثير [[ar:rpd:vertigo_buff|الدوار]] على جميع الكائنات في منطقة التأثير
+  * القوة: 150 + 10 × عمق الزنزانة
+  * تعتمد مدة الدوار على عمق الزنزانة الحالي ومقاومة الهدف
+
+==== الحصول ====
+  * احتمال 25% عند تناول أو رمي [[ar:rpd:rotten_food_item|الطعام الفاسد]]
+  * ينتج أيضاً بواسطة نباتات Dreamweed (قوة 300 + 20 × عمق الزنزانة)
+
+==== الآلية ====
+  * يتشكل الغاز عندما يفسد الطعام الفاسد (انظر RottenFood.java)
+  * عند كل دورة تطور للغاز، يطبق الدوار على جميع الشخصيات في المنطقة
+  * تعتمد مدة الدوار على عمق الزنزانة ومقاومة الهدف
+  * يستخدم Speck.CONFUSION للجزيئات المرئية (جزيئات بنفسجية)
+
+==== الاستراتيجية ====
+  * تجنب تناول الطعام الفاسد لمنع توليد الغاز
+  * عند رمي الطعام الفاسد، ضع في الاعتبار احتمال توليد الغاز
+  * استخدم الغاز عمداً للتأثير على الأعداء
+  * يحصل الأبطال الذين يمتلكون خاتم العناصر (مقاومة الدوار) على مدة مخففة
+
+==== الصفحات ذات الصلة ====
+  * [[ar:rpd:rotten_food_item|الطعام الفاسد]] - مصدر الغاز
+  * [[ar:rpd:vertigo_buff|الدوار]] - التأثير الذي يطبقه الغاز
+  * [[ar:rpd:paralytic_gas_buff|الغاز الشللي]] - نوع غاز آخر من الطعام الفاسد
+  * [[ar:rpd:toxic_gas_buff|الغاز السام]] - نوع غاز آخر من الطعام الفاسد
+  * [[en:rpd:confusion_gas_buff|Confusion Gas]] - النسخة الإنجليزية
+
+==== مراجع الكود ====
+  * **التنفيذ:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ConfusionGas.java|ConfusionGas.java]]
+  * **التأثير المطبق:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]]
+  * **المصدر:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]]
+
+==== موارد السلاسل ====
+  * **الإنجليزية:** ConfusionGas_Info — "A cloud of confusion gas is swirling here."
+  * **الروسية:** ConfusionGas_Info — "Здесь витает облако дурманящего газа."
+  * **الإسبانية:** ConfusionGas_Info — "Una nube de gas de confusión flota en el aire."
+  * **البرتغالية:** ConfusionGas_Info — "Uma nuvem de gás de confusão flutua no ar."
+
+{{tag> rpd الغاز التأثيرات }}
