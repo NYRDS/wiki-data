@@ -1,0 +1,96 @@
+====== Drankje van Vloeibare Vlam ======
+
+{{ rpd:images:potion_of_liquid_flame_item.png|Drankje van Vloeibare Vlam }}
+
+Het **Drankje van Vloeibare Vlam** is een werpbaar drankje in Remixed Dungeon dat vuur creëert bij impact.
+
+==== Beschrijving ====
+Een glazen fles gevuld met een vreemde vloeistof die ontbrandt bij blootstelling aan lucht. Wanneer het op de grond wordt gegooid, ontstaat een gebied van brandende vlammen dat vijanden beschadigt en zich kan verspreiden naar brandbaar terrein. Volgens de stringbronnen: "Deze fles bevat een onstabiel mengsel dat heftig in vlammen opgaat bij contact met de open lucht."
+
+==== Statistieken ====
+  * **Type:** Werpbaar Drankje
+  * **Gewicht:** 1
+  * **Prijs:** Niet te koop in winkels; gevonden als buit
+  * **Effectgebied:** 3x3 rond impactpunt
+  * **Duur:** Vuur blijft enkele beurten branden
+  * **Zeldzaamheid:** Speciaal
+  * **Speciale effect:** Creëert een gebied met vuurschade bij breken
+  * **Gebruik:** Breken op grond om gebiedsschade te veroorzaken (verbruikt bij breken)
+
+==== Gebruik ====
+  * **Offensief:** Beschadig groepen vijanden
+  * **Gebiedsafsluiting:** Blokkeer doorgangen of voorkom nadering
+  * **Omgevingsinteractie:** Ontsteek brandbaar terrein voor tactisch voordeel
+  * **Alchemie:** Nodig voor het maken van Vuurpijlen via bevochtigen
+
+==== Strategie ====
+  * Uitstekend voor het opruimen van groepen vijanden in gangen of kleine kamers
+  * Effectief tegen grote groepen zwakke vijanden
+  * Handig voor het maken van vuurbarrières om vijandelijke beweging te blokkeren
+  * Goed te gebruiken bij omsingeling
+  * Kan brandbaar terrein ontsteken voor voortdurende gebiedsafsluiting
+  * Overweeg gebruik voor baasgevechten voor initiële schade
+  * Onmisbaar voor het maken van Vuurpijlen via bevochtigen
+  * Pas op dat je jezelf niet in vuur opsluit
+  * Nuttig tegen groepen die de speler hebben ingesloten
+
+==== Verkrijgen ====
+  * Gemaakt via alchemie met Vuurplantzaden
+  * Gevonden in speciale containers en geheime gebieden
+  * Af en toe gedropt door vuurgebaseerde vijanden
+  * Onderdeel van speciale recepten en alchemiecombinaties
+
+==== Effect ====
+Wanneer het op de grond breekt, creëert het Drankje van Vloeibare Vlam een brandend gebied dat alle wezens in het gebied meerdere beurten lang beschadigt.
+
+Volgens de spelstringbronnen is de beschrijving: "Deze fles bevat een onstabiel mengsel dat heftig in vlammen opgaat bij contact met de open lucht."
+
+==== Codeverwijzingen ====
+  * **Java Implementatie:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java|PotionOfLiquidFlame.java]]
+  * **Drankje Basisklasse:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]]
+  * **Breekmechaniek:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L20-L28|breekmethode]] - creëert 10 eenheden vloeibare vlam bij impact
+  * **Vloeibare Vlam Effect:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame class]] - behandelt voortdurende vuurschade
+  * **Kwaliteitsfactor:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L25|qualityFactor()]] - beïnvloedt volume vloeibare vlam
+  * **Spat-effect:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L24|spatmethode]] - visueel effect bij breken
+  * **Drankje Identificatie:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L23|setKnown methode]] - markeert als geïdentificeerd bij breken
+  * **Geluidseffect:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L25|SND_SHATTER]] - geluid bij breken
+  * **Bevochtigingsondersteuning:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L32-L38|moistenArrow methode]] - maakt Vuurpijlen mogelijk
+  * **Basisprijs:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L30|basePrice methode]] - waarde 40 goud
+  * **Stringbronnen:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1652-L1653|PotionOfLiquidFlame_Name, PotionOfLiquidFlame_Info]]
+  * **Item Label Index:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L11|labelIndex = 1]]
+  * **Vuurpijl Creatie:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L32-L38|moistenArrow methode]] - maakt Vuurpijl-items van gewone pijlen
+  * **Spelscène Integratie:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L27|GameScene.add(vuur)]] - voegt vuurblob toe aan huidige scene
+  * **Drankje Upgradable Basisklasse:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|UpgradablePotion]] - biedt upgrade-mechanieken
+  * **Sprite Afbeelding:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/items/potions.png|items/potions.png]] - drankjesprite-atlas
+  * **Item Status Handler:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ItemStatusHandler.java|ItemStatusHandler class]] - identificatiesysteem
+  * **Spatkleur:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L233-L240|splashColors array]] - kleuren voor spat-effect
+  * **Item Stapelbaar:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L39|stackable = true]] - drankjes stapelbaar
+  * **Item Standaardactie:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L81-L87|knownHarmful() methode]] - schadelijke drankjes standaard werpactie
+  * **Acties:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L71-L77|actions() methode]] - voegt drink- en bevochtigingsacties toe
+  * **Drankjesgordel Integratie:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L253-L255|bag() methode]] - op te bergen in Drankjesgordel
+  * **Badge Tracking:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L145|Badges.validateAllPotionsIdentified]] - volgt identificatie
+  * **Vuurschade Mechaniek:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame class]] - vuurschade over tijd
+  * **Vuurverspreiding Mechaniek:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java#L35-L49|spread methode]] - verspreiding naar aangrenzende cellen
+  * **Vuurbestendigheid:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L154-L159|Char.resist() methode]] - weerstand tegen vuurschade
+  * **Schatkamer Configuratie:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L133|Treasury.json]] - spawnrate in schatkamers
+  * **Spinnen Schatkamer Configuratie:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L130|SpidersTreasury.json]] - spawnrate bij spinnen
+  * **Machine-leesbare data:** [[mr:potion_of_liquid_flame_item|mr:potion_of_liquid_flame_item]]
+
+==== Gerelateerde Items ====
+  * [[nl:rpd:potion_item|Drankjes]] - Algemene informatie over drankjes
+  * [[nl:rpd:potion_of_frost_item|Drankje van Vorst]] - Tegengesteld element-effect
+  * [[nl:rpd:liquid_flame_blob|Vloeibare Vlam]] - Gemaakt omgevings-effect
+  * [[nl:rpd:burning_buff|Vuur/Brandend]] - Algemene vuurschade en status-effect
+  * [[nl:rpd:moisten_mechanic|Bevochtigen]] - Proces voor Vuurpijlen
+  * [[nl:rpd:fire_arrow_item|Vuurpijl]] - Munitie gemaakt met dit drankje
+  * [[nl:rpd:burning_buff|Brandende Status Effect]] - Effecten van in brand staan
+  * [[nl:rpd:alchemy_mechanic|Alchemie]] - Informatie over drankjes brouwen
+  * [[nl:rpd:fire_trap|Vuurval]] - Vergelijkbare vuurschade-mechaniek
+  * [[nl:rpd:wand_of_firebolt_item|Staf van Vuurbol]] - Vuurgebaseerd stafalternatief
+  * [[nl:rpd:hero_class|Held]] - Speelbaar hoofdpersonage
+
+==== Andere Talen ====
+  * [[en:rpd:potion_of_liquid_flame_item|English]]
+  * [[ru:rpd:potion_of_liquid_flame_item|Русский]]
+
+{{tag> rpd items potions liquid_flame fire burning throwable alchemy }}
