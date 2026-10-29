@@ -1,0 +1,57 @@
+====== Kobold Icemancer ======
+
+{{ rpd:images:kobold_icemancer_mob.png|Kobold Icemancer }}
+
+De **Kobold Icemancer** is een magisch monster dat te vinden is in het niveau Ijsgrotten. Het is een verbeterde variant van de gewone Kobold die ijs-aanvallen gebruikt.
+
+==== Beschrijving ====
+Kobold Icemancers waren de elite van de samenleving. Opmerkelijke krijgers, tovenaars en vooral wetenschappers. Oude ijsmeesters beheersten de kunst van ijsbeheersing en versterkten complexe mechanismen met speciale spreuken.
+
+==== Stats ====
+  * **HP/HT**: 70
+  * **Verdedigingsvaardigheid**: 18
+  * **Aanvalsvaardigheid**: 25
+  * **Schade**: 15-17
+  * **DR (Schadevermindering)**: 11
+  * **Ervaring (EXP)**: 11
+  * **Max Niveau**: 21
+
+==== Vaardigheden ====
+  * **Afstandsaanval**: Kan vijanden op afstand aanvallen met zappende mechanieken en [[en:rpd:ballistica_mechanic|Ballistica]] zichtlijnberekening
+  * **Vertragingseffect**: 50% kans om [[en:rpd:slow_buff|Vertraging]] status op te leggen voor 1 beurt bij treffer met afstandsaanval
+  * **Weerstand tegen Dood**: Immuun voor [[en:rpd:death_enchantment|Dood]] betovering en directe dood
+  * **Doodmelding**: Volgt wanneer de Kobold Icemancer een vijand doodt met een aangepaste boodschap
+
+==== Gevechtsmechanieken ====
+  * **Zappend Aanval**: Gebruikt afstandsaanvallen berekend via [[en:rpd:ballistica_mechanic|Ballistica.cast]] methode
+  * **Treffer Detectie**: Bij treffer heeft 50% kans (Random.Int(2) == 0) om Vertraging toe te passen
+  * **Duur Vertraging**: Doelwit wordt precies 1 beurt vertraagd
+  * **Doodbericht**: Gebruikt stringbron 'KoboldIcemancer_Killed' bij doden van personage
+
+==== Buit ====
+  * **Drankcategorie**: 83% kans om een willekeurige drank uit de drankcategorie te laten vallen
+
+==== Locatie ====
+Te vinden in [[en:rpd:ice_caves_level|Ijsgrotten]] niveau (vloeren ice2-ice4) op basis van Bestiary.json configuratie:
+  * **ice2**: 1 spawn (tegenover 2 gewone Kobolds)
+  * **ice3**: 1 spawn (tegenover 2 gewone Kobolds, 1 [[en:rpd:cold_spirit_mob|Cold Spirit]])
+  * **ice4**: 1 spawn (tegenover 2 gewone Kobolds, 1 [[en:rpd:cold_spirit_mob|Cold Spirit]], 0.6 [[en:rpd:ice_elemental_mob|Ice Elemental]])
+
+==== Codeverwijzingen ====
+  * Java/Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/KoboldIcemancer.lua|KoboldIcemancer.lua]] - Kernimplementatie
+  * Entiteitssoort: getEntityKind() geeft "KoboldIcemancer"
+  * Basis Klasse: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Algemeen monster gedrag
+  * JSON Config: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/KoboldIcemancer.json|KoboldIcemancer.json]]
+
+==== Zie Ook ====
+  * [[en:rpd:gnoll_mob|Gnoll]] - Verwante monsterfamilie (Kobolds zijn elite gnolls)
+  * [[en:rpd:ice_caves_level|Ijsgrotten Niveau]] - Waar dit monster spawnt
+  * [[en:rpd:mobs|Monsters]] - Andere wezens in de kerker
+  * [[en:rpd:slow_buff|Vertraging]] - Status effect toegepast door dit monster
+  * [[en:rpd:ballistica_mechanic|Ballistica]] - Zichtlijn berekeningssysteem
+  * [[en:rpd:death_enchantment|Dood Betovering]] - Waar dit monster tegen beschermd is
+  * [[en:rpd:ice_elemental_mob|Ice Elemental]] - Ander ijs-thema monster
+  * [[en:rpd:cold_spirit_mob|Cold Spirit]] - Ander ijs-thema monster
+  * [[en:rpd:ice_guardian_core_mob|Ice Guardian Core]] - Baas van Ijsgrotten
+
+{{tag> nl:rpd mobs magic ijs ijsgrotten }}
