@@ -32,22 +32,15 @@ The **Rotting Fist** is one of the guardians of Yog, the God of Death. It is enc
 ==== Location ====
   * Found in the [[en:rpd:guts_level|Goo Depths]] (last level) as one of Yog's guardians
 
-==== Content Verification ====
-  * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/RottingFist.java|RottingFist.java]]
-  * Stats verification: Extracted from RottingFist.java constructor and class fields
-  * Effect descriptions: Based on string resources and in-game mechanics
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1358|RottingFist_Name]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1361|RottingFist_Desc]]
-  * Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/RottingFist.json|RottingFist.json]]
-  * Machine-readable data: [[mr:rotting_fist_mob|mr:rotting_fist_mob]]
-  * Last updated: December 21, 2025
+==== Implementation (JSON + Lua) ====
+  * **JSON Config:** `mobsDesc/RottingFist.json` (stats: HP 500, ATK 36, DEF 25, DMG 34-46, DR 15)
+  * **Lua Script:** `scripts/mobs/RottingFist.lua` (attackProc: Ooze 1/3; damage: summons all nearby mobs; act: heals 10 in water)
+  * **Note:** Java class deleted (batch 17d-2); entity is data-only.
+  * **String resources:** Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1358|RottingFist_Name]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1361|RottingFist_Desc]]
 
 ==== Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/RottingFist.java|RottingFist.java]] - Main implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/RottingFist.java#L21-L37|Constructor]] - Stats and properties initialization
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/RottingFist.java#L45-L49|attackProc method]] - Implementation of Ooze attack (33% chance)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/RottingFist.java#L51-L56|damage method]] - Implementation that summons nearby mobs when hit
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/RottingFist.java#L58-L64|act method]] - Implementation of regeneration in water
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/RottingFist.java#L66-L69|Description method]] - Text description source
+  * `mobsDesc/RottingFist.json` - Stats and spriteDesc
+  * `scripts/mobs/RottingFist.lua` - Behavior scripts (attackProc, act, damage)
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1358|RottingFist_Name]] - Russian string resource
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1361|RottingFist_Desc]] - Russian description string
 

@@ -7,15 +7,16 @@ Golden Statue is a rare variant of the [[en:rpd:statue_mob|Revived Statue]] foun
 ==== Description ====
 According to the in-game description: "It's truly hard to believe that, this magnificent statue isn't just another decoration, but a malicious creature waiting for an unsuspecting adventurer. At first glance you could've sworn that it's _%s_ was just part of it's arm."
 
-==== Item Class ====
-  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/GoldenStatue.java|GoldenStatue.java]]
-  * **Inherits From:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Statue.java|Statue.java]]
+==== Implementation (JSON + Lua) ====
+  * **JSON Config:** `mobsDesc/GoldenStatue.json` (stats, immunities, scriptFile)
+  * **Lua Script:** `scripts/mobs/GoldenStatue.lua` (behavior: depth-scaled stats, Golden Sword +4 gear)
+  * **Note:** Java class `GoldenStatue.java` deleted (batch 14); entity is data-only.
 
-==== Stats ====
-  * **HP:** 15 + (5 × dungeon depth)
-  * **Defense Skill:** 4 + dungeon depth
-  * **Attack Skill:** 4 + dungeon depth (same as defense)
-  * **Damage:** dungeon depth / 4 + 1 to dungeon depth
+==== Stats (from mobsDesc/GoldenStatue.json + GoldenStatue.lua) ====
+  * **HP:** 15 + (5 × depth) (depth-scaled in Lua)
+  * **Defense Skill:** 4 + depth (Lua depthScaled)
+  * **Attack Skill:** 4 + depth
+  * **Damage:** depth / 4 + 1 to depth (Lua depthScaled)
   * **EXP for Kill:** 0
   * **Carcass Chance:** 0
 
