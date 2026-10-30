@@ -12,13 +12,13 @@
   * **High Evasion:** Attack skill is very high and defense is 5x attack skill, making them hard to hit
   * **Incorporeal:** Has flight ability, allowing movement through walls (walkingType = NORMAL, flying = true)
   * **Undead Nature:** Immune to poison, bleeding, and other living-targeted effects
-  * **Depth Scaling:** No depth scaling (stats are fixed per JSON: Wraith.json)
+  * **Depth Scaling:** Stats scale with dungeon depth (baseAttackSkill = 10 + d, defense = 5*(10+d), dmgMax = 3 + d)
 
 ==== Stats ====
-  * **Health:** 1 HP (fixed, does not scale with dungeon level) (hp(ht(1)))
-  * **Attack Skill:** 11 (baseAttackSkill = 11, fixed)
-  * **Defense Skill:** 55 (= 5 * 11, fixed, does not scale with depth)
-  * **Damage:** 1-4 (dmgMin = 1, dmgMax = 4, fixed, does not scale with depth)
+  * **Health:** Not directly set in Lua (scales with depth via mob framework)
+  * **Attack Skill:** 10 + dungeon depth (baseAttackSkill)
+  * **Defense Skill:** 5 × (10 + dungeon depth) (extremely high evasion)
+  * **Damage:** 1-4 at low depth, scales to 3 + d (dmgMin/dmgMax derived from depth)
   * **Speed:** Fast
   * **Exp for Kill:** 0 (no experience gain)
   * **Carcass Chance:** 0 (carcassChance = 0)
@@ -28,7 +28,7 @@
   * **Incorporeal:** Has flight ability, allowing movement through walls (walkingType = ABSOLUTE)
   * **Hard to Hit:** Significantly higher defense than most creatures
   * **Undead Traits:** Immune to poison, bleeding, and other living-targeted effects
-  * **Low Health Scaling:** HP scales with dungeon depth but starts at just 1 HP
+  * **Depth Scaling:** Stats grow with depth: higher defense, attack, and damage at deeper levels
 
 ==== Combat ====
   * **Evasion:** Very difficult to hit due to high defense skill
@@ -52,13 +52,13 @@ Wraiths can be found in:
   * Note: Killing them provides no experience points
 
 ==== Content Verification ====
-  * Information source: Java class [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Wraith.java|Wraith.java]]
-  * Special mechanics: Extracted from Wraith.java and WalkingType.java implementation
-  * Last updated: December 2025, source: Remixed Dungeon 1.9.3
+  * Information source: Lua script [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Wraith.lua|Wraith.lua]] (Java Wraith.java deleted in batch 7 migration)
+  * Stats scale with dungeon depth (d): dmgMax = 3 + d, baseAttackSkill = 10 + d, defense = 5 × (10 + d)
+  * Flight and incorporeal behavior defined in Wraith.lua
+  * Last updated: October 2026
 
 ==== Implementation Class ====
-  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Wraith.java|Wraith.java]]
-  * Walking Mechanic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/WalkingType.java|WalkingType.java]]
+  * Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Wraith.lua|Wraith.lua]] (replaced deleted Java Wraith.java in batch 7)
 
 ==== String Resources ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1327|Wraith_Name]]
