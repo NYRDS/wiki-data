@@ -1,0 +1,45 @@
+====== Leech Verbetovering ======
+
+{{ rpd:images:enchantment.png|Leech Verbetovering }}
+
+De **Leech** verbetovering is een wapenverbetovering die de drager geneest voor een deel van de schade die wordt toegebracht bij het raken van een vijand. Dit creëert een mechanisme voor langdurige gevechten, waardoor spelers gezondheid kunnen herstellen tijdens het aanvallen.
+
+==== Beschrijving ====
+De Leech verbetovering biedt levensstelen, waarbij een percentage van de toegebrachte schade wordt omgezet in genezing voor de aanvaller. De verbetovering gloeit met een donkere rode kleur wanneer actief.
+
+==== Mechanica ====
+  * **Proc Kans**: Gebaseerd op wapenlevel en toegebrachte schade
+  * **Genezing Formule**: De genezingshoeveelheid wordt als volgt berekend:
+    * Maximale genezing: schade * (level + 2) / (level + 6)
+    * Werkelijke genezing: Willekeurige waarde tussen 0 en max, beperkt door ontbrekende HP
+    * Geneest alleen als de aanvaller ontbrekende HP heeft
+  * **Level Schaling**:
+    * Level 0: ~33% van schade (max)
+    * Level 1: ~43% van schade (max)
+    * Level 2: ~50% van schade (max)
+    * Hogere levels blijven de verhouding verbeteren
+  * **Visueel Effect**: Toont genezingshoeveelheid als groene getallen boven het personage
+  * **Gloei Kleur**: Donker rood (RGB: 0x660022)
+
+==== Strategie ====
+  * Meest effectief op snel-slaande wapens die consistente schade toebrengen
+  * Biedt uithoudingsvermogen in langdurige gevechten en vermindert afhankelijkheid van genezingsdrankjes
+  * Minder effectief bij volle gezondheid (geen genezing)
+  * Werkt goed met wapens die veel schade doen voor grotere genezingsstoten
+  * Kan het verschil maken tussen leven en dood in moeilijke ontmoetingen
+
+==== Broncode ====
+  * Java Implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Leech.java|Leech.java]]
+  * Het effect wordt toegepast in de proc() methode
+  * Genezingshoeveelheid schaalt met wapenlevel via de formule: schade * (level + 2) / (level + 6)
+  * Geneest alleen als aanvaller ontbrekende HP heeft (attacker.ht() - attacker.hp() > 0)
+  * Gebruikt Random.IntRange() voor variabiliteit in genezingshoeveelheid
+
+==== Zie Ook ====
+  * [[nl:rpd:enchantments_mechanic|Verbetoveringen]] - Lijst van alle wapenverbetoveringen
+  * [[nl:rpd:weapons|Wapens]] - Uitrusting die verbetoverd kan worden
+  * [[nl:rpd:heal_spell|Genees Spreuk]] - Algemene informatie over genezing in het spel
+  * [[nl:rpd:combat_mechanic|Gevechtsmechanica]] - Hoe gevecht en schade werken
+  * [[nl:rpd:healing|Genezing]] - Alle genezingsmethoden in het spel
+
+{{tag> rpd items enchantments healing life_steal}}
