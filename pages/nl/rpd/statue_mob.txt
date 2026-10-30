@@ -1,0 +1,66 @@
+====== Herleefde Standbeeld ======
+{{ rpd:images:statue_mob.png|Herleefde Standbeeld }}
+
+==== Beschrijving ====
+Je zou denken dat het slechts een andere lelijke standbeeld in deze kerker is, maar de rode gloedende ogen geven het weg. Terwijl het standbeeld zelf van steen is gemaakt, ziet het wapen dat het draagt er echt uit. Volgens de beschrijving in het spel: "Je zou denken dat het slechts een andere lelijke standbeeld in deze kerker is, maar de rode gloedende ogen geven het weg. Terwijl het standbeeld zelf van steen is gemaakt, ziet de _%s_ die het draagt er echt uit."
+
+==== Item Klasse ====
+  * **Java Klasse:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Statue.java|Statue.java]]
+  * **Sprite:** Dynamisch gegenereerd op basis van het wapen dat het draagt
+
+==== Stats ====
+  * **HP:** 15 + (5 × kerker diepte)
+  * **HT:** 15 + (5 × kerker diepte)
+  * **Verdediging:** 4 + kerker diepte
+  * **Aanval:** 4 + kerker diepte
+  * **Schade:** (kerker diepte / 4 + 1) tot kerker diepte
+  * **EXP voor Dood:** 0
+  * **Karkas Kans:** 0
+
+==== Gedrag ====
+  * **Passieve Natuur:** Het standbeeld is normaal passief en valt niet als eerste aan
+  * **Aggro Trigger:** Wordt vijandig wanneer aangevallen, wanneer gebiedseffect items zoals [[nl:rpd:corpse_dust_item|Lijkstof]] in de buurt worden gebruikt, of wanneer andere vijandige acties worden ondernomen
+  * **Immuniteiten:** Immuun voor [[nl:rpd:toxic_gas_buff|Toxic Gas]], [[nl:rpd:poison_buff|Vergif]], [[nl:rpd:bleeding_buff|Bloedingen]], en [[nl:rpd:leech_enchantment|Leech]] status effecten
+  * **Weerstanden:** Weerstandig tegen [[nl:rpd:death_enchantment|Dood betovering]] en [[nl:rpd:scroll_of_psionic_blast_item|Scroll of Psionic Blast]]
+  * **Beweging:** Volgt de speler niet door de kerker (niet achtervolgen)
+
+==== Uitrusting ====
+  * **Wapen:** Draagt een willekeurig wapen uit de schatpool van het huidige kerker niveau
+  * **Wapen Eigenschappen:** Wapen zal niveau 0 of hoger zijn, melee type, geïdentificeerd, en betoverd met een willekeurige betovering
+  * **Kracht Vereiste:** De kracht van het standbeeld is aangepast aan de benodigde kracht van het wapen dat het draagt
+  * **Wapen Drop:** Gegarandeerd het wapen laten vallen bij de dood (100% drop kans)
+
+==== Habitat ====
+  * Gevonden in vergrendelde of gebarricadeerde kamers door de hele kerker
+  * Vaak tegengekomen in "standbeeld kamers" die speciale kamertypes zijn
+  * Waarschijnlijker op diepere kerker niveaus door schaalbare stats
+
+==== Strategie ====
+  * Omdat het standbeeld passief is, kun je gevecht vaak vermijden door het niet aan te vallen of boosheid-uitlokkende voorwerpen in de buurt te gebruiken
+  * Als je wel gevecht aangaat, wees je ervan bewust dat de schade schaalt met kerker diepte
+  * De gegarandeerde wapen drop maakt het waardevol voor loot, vooral als het een hoog niveau wapen met goede betoveringen draagt
+  * Magie schade en afstands aanvallen kunnen effectief zijn aangezien het standbeeld geen speciale magie weerstand heeft naast de bovengenoemde weerstanden
+  * Wees voorzichtig met Scroll of Rage aangezien het het passieve gedrag van het standbeeld breekt
+
+==== Varianten ====
+  * **Gepantserd Standbeeld** - Een variant die pantser draagt in plaats van een wapen
+  * [[nl:rpd:gold_statue_mob|Gouden Standbeeld]] - Een zeldzame variant die altijd een Gouden Zwaard +4 draagt
+
+==== Code Referenties ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Statue.java|Statue.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] (basisklasse)
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1317|Statue_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1320|Statue_Desc]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1319|Statue_Name_Objective]]
+
+==== Configuratie Bestanden ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/StatuePainter.java|StatuePainter.java]] (kamergeneratie)
+
+==== Gerelateerde Pagina's ====
+  * [[nl:rpd:statues_mechanic|Standbeeld Mechanic]] - Informatie over standbeeld-gerelateerde spelmechanieken
+  * [[nl:rpd:enemies_overview|Vijanden]] - Alle vijand types in het spel
+  * [[nl:rpd:weapons|Wapens]] - Informatie over wapenmechanieken
+
+{{tag> rpd mobs }}
