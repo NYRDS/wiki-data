@@ -1,0 +1,48 @@
+====== Sociologist ======
+
+{{ rpd:images:sociologist_npc_mob.png|Sociologist }}
+
+==== Beschrijving ====
+De **Sociologist** is een NPC in Remixed Dungeon die de speler vraagt of ze willen deelnemen aan een enquête. Dit personage is onderdeel van een gameplayfunctie waarmee spelers toegang krijgen tot enquête-inhoud.
+
+==== Locatie ====
+  * Wordt willekeurig gevonden in de kerkers
+
+==== Interacties ====
+  * De NPC toont een dialoog met de vraag of de speler aan een enquête wil deelnemen
+  * Als de speler instemt, wordt internettoestemming gevraagd om enquête-inhoud te downloaden
+  * Als de speler weigert, laat de NPC de speler met rust
+
+==== Java-klasse ====
+  * **Java-klasse:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/SociologistNPC.java|SociologistNPC.java]]
+  * **Basisklasse:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+
+==== Gedrag ====
+  * Wanneer benaderd, toont een dialoog met "Ja" en "Nee" opties (WndOptions venster)
+  * Als de speler "Ja" kiest, wordt internettoestemming gevraagd en wordt geprobeerd survey.json te downloaden van een externe bron
+  * Als toestemming wordt verleend, wordt enquête-inhoud gedownload van een GitHub-repository (https://github.com/NYRDS/pixel-dungeon-remix-survey/raw/master/survey.json)
+  * Als de speler "Nee" kiest, zegt de NPC een bericht dat internet vereist is voor enquêtes
+  * De NPC implementeert DownloadStateListener.IDownloadComplete en InterstitialPoint interfaces om het downloadproces te beheren
+
+==== Implementatiedetails ====
+De NPC is geïmplementeerd als een ImmortalNPC die DownloadStateListener.IDownloadComplete en InterstitialPoint interfaces implementeert, waardoor het het downloadproces kan beheren en de UI tijdens het downloaden kan regelen.
+
+==== Codeverwijzingen ====
+  * **Hoofdimplementatie:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/SociologistNPC.java|SociologistNPC.java]]
+  * **ImmortalNPC-basis:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+  * **Enquêtebestand:** Gedownloade survey.json wordt lokaal opgeslagen (SURVEY_JSON constante)
+  * **Downloadtaak:** Gebruikt DownloadTask om te downloaden van GitHub-repository
+  * **UI-vensters:** WndOptions voor initiële dialoog, WndSurvey voor enquêteweergave, DownloadProgressWindow voor voortgang
+  * **Interactiemethode:** interact() methode behandelt de initiële interactie met de speler
+
+==== String-resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2842|SociologistNPC_Hi]] - "Hi! Do you want to participate in our survey?"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2843|SociologistNPC_DownloadError]] - Foutmelding voor downloadfouten
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2844|SociologistNPC_InternetRequired]] - "Internet is required for surveys"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2684-L2685|Wnd_Button_Yes and Wnd_Button_No]] - Ja/Nee knoptekst
+
+==== Gerelateerd ====
+  * [[en:rpd:immortal_npc|Onsterfelijke NPC]] - Basisklasse voor NPC's die niet normaal sterven
+  * [[en:rpd:npcs|NPC's]] - Andere niet-spelerpersonages in het spel
+
+{{tag> rpd npcs sociologist enquête }}
