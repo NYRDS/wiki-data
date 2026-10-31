@@ -1,0 +1,39 @@
+====== Hunger Mechanic - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java|Hunger.java]] - Main hunger buff implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]] - Base food class with energy values
+
+===== Constants =====
+<code java>
+public static final float HUNGRY   = 280f;
+public static final float STARVING = 400f;
+</code>
+
+===== String Resources =====
+<code xml>
+<string name="Hunger_Name">hunger</string>
+<string name="Hunger_Desc">You are hungry and need to eat.</string>
+<string name="Starving_Name">starving</string>
+<string name="Starving_Desc">You are starving and losing health!</string>
+</code>
+
+===== Mechanics =====
+  * **Hunger levels**: 0 (full) to 400 (starving)
+  * **Hungry threshold**: 280 - hero gets hungry debuff
+  * **Starving threshold**: 400 - hero takes damage over time
+  * **Food energy**: Restores hunger level (reduces hunger value)
+  * **Mystery Meat energy**: STARVING - HUNGRY = 120 units
+  * **Ration energy**: HUNGRY = 280 units
+  * **Chargrilled Meat/Frozen Carpaccio energy**: STARVING - HUNGRY = 120 units
+
+===== Related mr Entities =====
+  * [[mr:hunger_buff|Hunger Buff]]
+  * [[mr:starving_buff|Starving Buff]]
+  * [[mr:food_item|Food (Item)]]
+  * [[mr:mystery_meat_item|Mystery Meat (Item)]]
+  * [[mr:ration_item|Ration (Item)]]
+  * [[mr:chargrilled_meat_item|Chargrilled Meat (Item)]]
+  * [[mr:frozen_carpaccio_item|Frozen Carpaccio (Item)]]
+
+{{tag> mr rpd mechanic hunger}}
