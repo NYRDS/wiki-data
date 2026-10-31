@@ -1,0 +1,71 @@
+====== Палочка Замедления ======
+
+{{ rpd:images:wand_of_slowness_item.png|Палочка Замедления }}
+
+Палочка Замедления — это магическая палочка в Remixed Dungeon, снижающая скорость врагов. При использовании на цель накладывает эффект замедления, заставляя существо двигаться и атаковать вдвое медленнее обычного.
+
+==== Эффект ====
+При использовании на цель палочка накладывает [[ru:rpd:slow_buff|Замедление]]:
+  * **Снижение скорости:** Поражённое существо движется и атакует вдвое медленнее
+  * **Длительность:** Эффект длится (10 / 3 + effectiveLevel()) ходов, где 10 — базовая длительность эффекта замедления
+  * **Область действия:** Только одна цель
+  * **Дальность:** Стандартная дальность палочки
+  * **Визуальный эффект:** Вызывает характерную анимацию замедления
+
+==== Характеристики ====
+  * **Тип:** Палочка
+  * **Особый эффект:** Накладывает эффект замедления на цель
+  * **Нацеливание:** Прямое наведение на одну цель
+  * **Заряды:** Восстанавливаются со временем, как у других палочек
+  * **Изображение:** Индекс ''items.png'' (определяется базовым классом SimpleWand)
+
+==== Механика ====
+  * При использовании на цель накладывает эффект замедления на (Slow.duration(char) / 3 + effectiveLevel()) ходов
+  * Базовая длительность эффекта замедления — 10f, модифицируемая эффектами сопротивления
+  * С ростом уровня палочки длительность эффекта замедления увеличивается (на 1 ход за уровень)
+  * Эффект замедления снижает скорость действий примерно на 7,27254 уровня ускорения (отрицательное значение)
+  * Формула длительности эффекта: 10 / 3 + эффективный уровень палочки (после модификаций сопротивления)
+  * Если палочка используется в пустую клетку, отображается сообщение «ничего не произошло»
+
+==== Стратегия ====
+  * Используйте для замедления мощных врагов, чтобы получить преимущество в бою
+  * Особенно эффективно против быстрых врагов, которых иначе трудно поразить
+  * Хорошо для замедления групп врагов по одному
+  * Можно использовать защитно для замедления приближающихся врагов
+  * Хорошо работает в сочетании с другими эффектами статуса
+  * Очень эффективно против чувствительных ко времени монстров, таких как Тенгу
+  * Полезно в битвах с боссами для создания передышки
+  * Синергирует с другими эффектами контроля, такими как паралич или головокружение
+
+==== Проверка содержимого ====
+  * **Источник информации**: Java-класс [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfSlowness.java|WandOfSlowness.java]]
+  * **Проверка характеристик**: Извлечено непосредственно из реализации метода onZap в коде
+  * **Описание эффектов**: Основано на фактическом применении эффекта замедления в исходном коде
+  * **Строковые ресурсы**: Проверено по values/strings_all.xml
+  * **Последнее обновление**: Декабрь 2025
+  * **Исходный файл**: WandOfSlowness.java
+
+==== Ссылки на код ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfSlowness.java|WandOfSlowness.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/SimpleWand.java|SimpleWand.java]] (базовый класс)
+
+==== Строковые ресурсы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L235|WandOfSlowness_Name]]: Wand of Slowness
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L236|WandOfSlowness_Info]]: This wand will cause a creature to move and attack at half its ordinary speed until the effect ends
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L237|WandOfSlowness_Info1]]: nothing happened
+
+==== Файлы конфигурации ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (регистрация: registerItemClass(WandOfSlowness.class))
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json]] (частота выпадения)
+
+==== См. также ====
+  * [[ru:rpd:slow_buff|Замедление]] — эффект статуса, накладываемый этой палочкой
+  * [[ru:rpd:wands|Палочки]] — другие палочки в игре
+  * [[ru:rpd:wand_of_firebolt_item|Палочка Огненной Стрелы]] — другая палочка урона
+  * [[ru:rpd:wand_of_lightning_item|Палочка Молнии]] — другая палочка прямого урона
+  * [[ru:rpd:slow_enchantment|Медленное зачарование]] — похожий эффект замедления на оружии
+  * [[ru:rpd:paralysis_buff|Паралич]] — другой эффект ограничения движения
+  * [[ru:rpd:wandmaker_npc|Создатель палочек]] — может идентифицировать палочки
+
+{{tag> rpd items wands utility }}
