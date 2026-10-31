@@ -22,14 +22,16 @@ The **Dread Knight** is a rare variant of the Death Knight, found in the Necropo
   * Additionally has a 1 in 10 chance to apply Stun effect to the target on attack
 
 ==== Implementation Details ====
-  * **Class**: <code>com.nyrds.pixeldungeon.mobs.necropolis.DreadKnight</code>
-  * **Parent Class**: Extends <code>Mob</code> class
-  * **Undead Status**: Marked as undead with <code>setUndead(true)</code>
-  * **Loot**: Has a 2% chance to drop Gold on death
-  * **Note**: Described as rare variant of the Death Knight in source code
+  * **Configuration**: JSON `mobsDesc/DreadKnight.json` (HP 40, DR 12, dmg 8-16, exp 8, maxLvl 15, undead true)
+  * **Script**: `scripts/mobs/DreadKnight.lua`
+  * **Parent**: Custom mob via `CustomMob` (extends base mob)
+  * **Undead Status**: `undead: true` in JSON
+  * **Loot**: 2% Gold (`lootChance: 0.02`, `loot: {"kind":"Gold"}`)
+  * **Note**: Rare variant of Death Knight configured via JSON/Lua
 
 ==== Source Code References ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/DreadKnight.java|DreadKnight.java - Implementation]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/DreadKnight.json|DreadKnight.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/DreadKnight.lua|DreadKnight.lua]]
 
 ==== Strategy ====
   * Much more dangerous than regular Death Knights due to higher stats

@@ -1,0 +1,49 @@
+====== Dread Knight Mob ======
+
+{{ rpd:images:dread_knight_mob.png|Dread Knight }}
+
+De **Dread Knight** is een zeldzame variant van de Death Knight, gevonden in het Necropolis-gebied van Remixed Dungeon. Het heeft verbeterde statistieken en extra vaardigheden in vergelijking met de gewone Death Knight.
+
+==== Mechanica ====
+  * **HP**: 40
+  * **Verdediging**: 15
+  * **Aanval**: 17
+  * **Schade**: 8-16
+  * **Pantser**: 12 (DR - Schadeweerstand)
+  * **Ervaring**: 8
+  * **Max Niveau**: 15
+  * **Type**: Undead
+  * **Special 1**: 1 op 4 kans op dubbele schade bij aanval
+  * **Special 2**: 1 op 10 kans op stun bij aanval
+
+==== Gedrag ====
+  * Dread Knight heeft een 1 op 4 kans om dubbele schade te doen bij aanval
+  * Wanneer de dubbele schade-proc activeert, wordt ook een visueel effect toegepast via <code>DeathStroke.hit(enemy)</code>
+  * Daarnaast heeft het een 1 op 10 kans om Stun-effect toe te passen op het doelwit
+
+==== Implementatiedetails ====
+  * **Configuratie**: JSON `mobsDesc/DreadKnight.json` (HP 40, DR 12, schade 8-16, exp 8, maxLvl 15, undead true)
+  * **Script**: `scripts/mobs/DreadKnight.lua`
+  * **Ouder**: Aangepaste mob via `CustomMob` (verlengd basis-mob)
+  * **Undead Status**: `undead: true` in JSON
+  * **Buit**: 2% Goud (`lootChance: 0.02`, `loot: {"kind":"Gold"}`)
+  * **Opmerking**: Zeldzame variant van Death Knight geconfigureerd via JSON/Lua
+
+==== Bronverwijzingen ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/DreadKnight.json|DreadKnight.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/DreadKnight.lua|DreadKnight.lua]]
+
+==== Strategie ====
+  * Veel gevaarlijker dan gewone Death Knights door hogere statistieken
+  * Kan vaker dubbele schade doen (25% vs ~14%)
+  * Heeft kans op stun, wat bijzonder problematisch kan zijn tijdens gevechten
+  * Overweeg om ze snel uit te schakelen om gevaarlijke procs te vermijden
+
+==== Zie Ook ====
+  * [[nl:rpd:death_knight_mob|Death Knight]] - De basis-mob waarvan Dread Knight een zeldzame variant is
+  * [[nl:rpd:necropolis_level|Necropolis]] - Gebied waar deze mob verschijnt
+  * [[nl:rpd:undead_mobs|Undead Mobs]] - Andere ondode wezens in het spel
+  * [[nl:rpd:mobs|Mobs]] - Andere monsters in het spel
+  * [[nl:rpd:stun_buff|Stun]] - Status-effect dat Dread Knight kan toepassen
+
+{{tag> rpd mobs necropolis undead dread_knight rare }}
