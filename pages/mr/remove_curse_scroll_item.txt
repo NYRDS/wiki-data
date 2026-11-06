@@ -1,0 +1,39 @@
+====== Scroll Of Remove Curse (Item) - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfRemoveCurse.java|ScrollOfRemoveCurse.java]] - Main scroll implementation with uncurse logic
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Scroll.java|Scroll.java]] - Base scroll class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] - Registers buff constants including WEAKNESS dispel
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Base buff class for WEAKNESS dispel
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists
+
+===== String Resources =====
+<code xml>
+<string name="ScrollOfRemoveCurse_Name">Scroll of Remove Curse</string>
+<string name="ScrollOfRemoveCurse_Info">The eldritch words written on this scroll will instantly clear the accursed effect from all equipped items and known cursed items in the inventory.</string>
+<string name="ScrollOfRemoveCurse_Proced">Your equipment feels lighter.</string>
+<string name="ScrollOfRemoveCurse_NoProced">You feel a faint tingle.</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:curse_item_spell|Curse Item (Spell)]]
+  * [[mr:curse_mechanic|Curse Mechanic]]
+  * [[mr:item_cursed|Item Cursed State]]
+
+===== Additional Information =====
+  * Scroll class: ScrollOfRemoveCurse extends Scroll
+  * Price when identified: 30 gold per quantity
+  * Removes curses from all equipped items
+  * Removes curses from known cursed items in inventory
+  * Dispels WEAKNESS buff from reader
+  * Visual effect: Flare(6, 32) + ShadowParticle.UP emitter
+  * Sound: SND_READ
+  * Time to read: TIME_TO_READ constant
+  * Static uncurse methods available for programmatic use (uncurse(Belongings), uncurse(Char, Item...))
+  * Image: scroll_of_remove_curse_item.png (index in scroll sheet)
+  * Starting known scroll for Priest class (initHeroes.json)
