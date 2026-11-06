@@ -3,48 +3,40 @@
 {{ rpd:images:earthroot_level_object.png|Earthroot Level Object }}
 
 ==== Description ====
-The **Earthroot** is a plant that can grow from [[en:rpd:earthroot_seed_item|Earthroot Seeds]]. When stepped on or touched, it applies multiple buffs to the creature that touches it:
-  * **Herbal Armor** (EarthrootBuff): Provides armor equivalent to the character's strength/4 for a limited time
-  * **Barkskin**: Additional armor buff that stacks with Herbal Armor
-  * **Rooted**: Prevents movement (unless flying)
-
-The plant is destroyed after being touched.
+The **Earthroot** is a plant level object that can grow from [[en:rpd:earthroot_seed_item|Earthroot Seeds]]. When a creature steps on or bumps into it, it applies an **Earthroot Armor** buff that absorbs damage equal to the creature's max HP while the creature remains on the same cell. The plant withers and disappears after being triggered.
 
 ==== Effects ====
-  * Provides the [[en:rpd:barkskin_buff|Barkskin]] buff when touched
-  * Also applies **Herbal Armor** buff (armor = STR/4)
-  * Also applies **Rooted** debuff (prevents movement, unless flying)
-  * The effect is immediate when stepping on the level object tile
-  * The level object disappears after being touched
-  * Flying creatures are immune to the Rooted effect
+  * Applies the **Earthroot Armor** buff when triggered (absorbs damage up to target's max HP)
+  * Buff lasts only while the target stays on the same cell - moving removes it
+  * Visual effect: earth particles and camera shake when triggered
+  * The level object is destroyed after being touched
 
 ==== Mechanics ====
-  * Earthroot level objects are typically found growing in the dungeon
+  * Earthroot level objects can be found naturally in the dungeon
   * They can also be grown by planting [[en:rpd:earthroot_seed_item|Earthroot Seeds]]
-  * When a creature touches the plant, it receives the **Herbal Armor** buff (armor = STR/4)
-  * Also applies **Barkskin** buff (additional armor)
-  * The barkskin effect from the level object is proportional to the character's max HP
+  * Implemented as a data-driven `Plant` class with Lua script behavior (`scripts/plants/Earthroot.lua`)
+  * The armor buff is defined in `scripts/buffs/Armor.lua` and uses the target's max HP as the absorption pool
+  * **Warden Subclass Bonus**: Heroes with the Warden subclass receive an enhanced Barkskin buff when interacting with any plant (level = max HP / 3), plus a chance to receive a random seed or dewdrop
+  * Flying creatures are not immune to the armor effect, but the buff detaches if they move
 
 ==== Strategy ====
   * **Strategic Placement:** Plant Earthroot seeds in locations where you plan to stay defensively
-  * **Emergency Protection:** Useful when facing difficult enemies if you can retreat to the plant's location
-  * **Alchemy Ingredient:** The plant itself can be harvested for crafting purposes
-  * Earthroot level objects are valuable for providing defensive benefits in dangerous areas
-  * Consider saving them for challenging encounters or boss fights
-  * Can be especially helpful before entering dangerous rooms or areas
+  * **Emergency Protection:** Useful when facing difficult enemies if you can hold your position on the plant's cell
+  * **Warden Synergy:** Warden subclass gains additional Barkskin armor and resource drops from plants
+  * The armor pool equals your max HP, making it very effective for high-HP builds
+  * Consider saving seeds for challenging encounters or boss fights where you can hold a position
 
 ==== Code Reference ====
-  * Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java|Earthroot.java]]
-  * Plant Effect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L16-L27|Earthroot.effect method]]
-  * Herbal Armor Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L71-L94|Earthroot.Armor class]]
-  * Barkskin Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Barkskin.java|Barkskin.java]]
-  * Roots Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]]
+  * Plant Factory Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java|Plant.java]] - Data-driven plant implementation
+  * Earthroot Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/plants/Earthroot.lua|Earthroot.lua]] - Effect logic (applies Armor buff with level = target's max HP)
+  * Armor Buff Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Armor.lua|Armor.lua]] - Absorbs damage up to buff level, detaches on movement
+  * Earthroot Seed: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/EarthrootSeed.java|EarthrootSeed.java]] - Seed item that grows Earthroot plants
   * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Earthroot_Name, Earthroot_Desc, EarthrootBuff_Name, EarthrootBuff_Info]]
 
 ==== Related ====
   * [[en:rpd:earthroot_seed_item|Earthroot Seed]] - The seed used to grow Earthroot level objects
-  * [[en:rpd:barkskin_buff|Barkskin]] - The buff provided by Earthroot level objects
-  * [[en:rpd:roots_buff|Rooted]] - Movement prevention debuff applied by the plant
+  * [[mr:armor_buff|Armor Buff]] - The damage-absorbing buff provided by Earthroot
+  * [[en:rpd:barkskin_buff|Barkskin]] - Additional armor buff for Warden subclass from plants
   * [[en:rpd:plants|Plants]] - Other plants in the game
   * [[en:rpd:seeds_mechanic|Seeds]] - Seeds that can be planted to grow useful plants
   * [[en:rpd:level_objects|Level Objects]] - Other interactive objects in dungeon levels
