@@ -1,0 +1,54 @@
+====== Buff de Gelo ======
+{{ rpd:images:frost_buff.png|Buff de Gelo }}
+
+Gelo é um efeito de status no Remixed Dungeon que congela temporariamente um personagem no lugar, impedindo que ele se mova ou aja.
+
+==== Efeito ====
+  * **Imobilização**: Personagens afetados não podem se mover ou realizar ações
+  * **Duração**: O congelamento dura por uma duração específica (duração base é 5 turnos, modificada por Resistência)
+  * **Remoção**: O efeito desaparece com o tempo, pode ser removido por dano de fogo, ou por certos meios
+  * **Acúmulo**: Normalmente não acumula com outros efeitos que impedem movimento
+
+==== Aplicação ====
+O efeito de Gelo pode ser aplicado através de várias fontes:
+  * [[pt:rpd:potion_of_frost_item|Poção de Gelo]] - Quando quebrada, cria uma nuvem congelante
+  * [[pt:rpd:wand_of_frost_item|Varinha de Gelo]] - Dano direto e efeito de congelamento
+  * [[pt:rpd:ice_elemental_mob|Elementais de Gelo]] - Podem aplicar gelo através de ataques
+  * [[pt:rpd:ice_trap_level_object|Armadilhas de Gelo]] - Podem aplicar gelo quando ativadas
+  * [[pt:rpd:freeze_globe_spell|Feitiça de Esfera Congelante]] - Feitiço que cria efeitos de congelamento
+
+==== Imunidades e Resistências ====
+  * Alguns inimigos são imunes a efeitos de congelamento
+  * Certas armaduras ou itens podem fornecer resistência
+  * Personagens resistentes a fogo podem ter duração reduzida
+
+==== Considerações Estratégicas ====
+  * **Benefícios**: Pode ser usado para desabilitar temporariamente inimigos durante encontros perigosos
+  * **Riscos**: Afeta tanto inimigos quanto aliados, então use com cautela em situações de grupo
+  * **Tempo**: Mais eficaz quando usado em inimigos poderosos individuais
+  * **Contra-medidas**: Personagens afetados podem ser alvejados mais facilmente enquanto congelados
+
+==== Mecânicas ====
+  * Aplicado através do efeito de blob [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]]
+  * Personagem permanece no lugar até a duração expirar
+  * Não interrompe ações em andamento que já foram iniciadas
+  * Efeito de gelo causa paralisia, impedindo completamente a ação
+  * Efeito de queimadura é removido quando gelo é aplicado
+  * Efeito de gelo é removido quando o personagem afetado recebe dano
+
+==== Verificação de Conteúdo ====
+  * Implementação Principal: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]]
+  * Classe Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
+  * Recursos de Texto: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L572-L574|Strings de Gelo]]
+  * Dados legíveis por máquina: [[mr:frost_buff|mr:frost_buff]]
+
+==== Efeitos Relacionados ====
+  * [[pt:rpd:freeze_globe_spell|Feitiça de Esfera Congelante]] - Feitiço que cria efeitos de gelo
+  * [[pt:rpd:potion_of_frost_item|Poção de Gelo]] - Item que cria nuvens de gelo
+  * [[pt:rpd:wand_of_frost_item|Varinha de Gelo]] - Varinha que aplica gelo
+  * [[pt:rpd:chill_buff|Arrepio]] - Versão de efeito reduzido de gelo
+  * [[pt:rpd:freezing_buff|Congelamento]] - O efeito de blob que cria gelo
+  * [[pt:rpd:paralysis_buff|Paralisia]] - Outro efeito imobilizador
+  * [[pt:rpd:slow_buff|Lentidão]] - Efeito de redução de velocidade
+
+{{tag> rpd efeitos_de_status gelo buffs debuffs congelamento }}
