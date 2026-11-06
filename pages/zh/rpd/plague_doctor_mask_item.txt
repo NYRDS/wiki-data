@@ -1,0 +1,49 @@
+====== 瘟疫医生面具 ======
+{{ rpd:images:plague_doctor_mask_item.png|瘟疫医生面具 }}
+
+**瘟疫医生面具** 是 Remixed Dungeon 中的[[zh:rpd:accessories|饰品]]物品，装备时提供永久的毒气和麻痹气体免疫。它是[[zh:rpd:doctor_class|医生]]职业的初始戒指饰品，也可通过完成[[zh:rpd:plague_doctor_npc|瘟疫医生]] NPC 任务获得。
+
+==== 说明 ====
+一雕刻的黑檀木面具，形似贪婪的骷髅，眼窝镶嵌紫水晶，内衬草药与香料。佩戴时，呼吸的空气通过迷宫般的管道和过滤器，过滤掉如裹尸布般缠身的腐朽气息。
+
+==== 物品概览 ====
+  * **类型：** [[zh:rpd:accessories|饰品]]（神器栏位）
+  * **遮盖面部毛发：** 是
+  * **遮盖头发：** 否
+  * **应用内购买：** 否（`nonIap() == true`）
+  * **获取条件：** 获得[[zh:rpd:badges|Badge.DOCTOR_QUEST_COMPLETED]]成就后解锁
+  * **装备栏位：** 神器（通过 `RPD.Slots.artifact`）
+  * **价格：** 20 金币
+  * **精灵图：** `items/artifacts.png` 中索引 26（Java 中 artifacts 精灵表 `image = 23`）
+
+==== 特殊属性 ====
+  * **气体免疫：** 激活时，永久对佩戴者施加气体免疫 buff
+  * **卸下移除 Buff：** 卸下时移除气体免疫 buff
+  * **外观：** 遮盖面部毛发，视觉上装备在英雄精灵图层（通过 `Accessory.getLayerFile()`）
+
+==== 获取方式 ====
+  * **医生初始饰品：** 在 `initHeroes.json` 中为 `DOCTOR` 职业提供作为 `ring1` 栏位
+  * **任务奖励：** 完成[[zh:rpd:plague_doctor_npc|瘟疫医生]] NPC 任务线获得，解锁[[zh:rpd:badges|Badge.DOCTOR_QUEST_COMPLETED]]
+  * **拥有条件：** `haveIt()` 需要[[zh:rpd:badges|Badge.DOCTOR_QUEST_COMPLETED]]已解锁（或基础 Accessory 类的捐赠等级 4）
+
+==== 源代码参考 ====
+  * **Java 类：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/accessories/PlagueDoctorMask.java|PlagueDoctorMask.java]]
+  * **父类：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/accessories/Accessory.java|Accessory.java]]
+  * **兜帽变体：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/accessories/PlagueDoctorMaskHood.java|PlagueDoctorMaskHood.java]]
+  * **Lua 脚本：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/PlagueDoctorMask.lua|PlagueDoctorMask.lua]] — 处理激活/卸下和气体免疫 buff
+  * **NPC 源码：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/PlagueDoctorNPC.java|PlagueDoctorNPC.java]]
+  * **英雄定义：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] — `ring1.kind = "PlagueDoctorMask"`
+  * **成就：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]] — `Badge.DOCTOR_QUEST_COMPLETED`
+  * **英语字符串资源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|PlagueDoctorMask_Name, PlagueDoctorMask_Info]] 在 `values/strings_all.xml`
+  * **俄语字符串资源：** `PlagueDoctorMask_Name, PlagueDoctorMask_Info` 在 `RemixedDungeon/src/main/res/values-ru/strings_all.xml`
+  * **其他本地化：** de, fr, uk, ko, el 等支持语言均有对应条目
+  * **mr: 命名空间：** [[mr:plague_doctor_mask_item|plague_doctor_mask_item]] 机器可读参考
+
+==== 相关物品 ====
+  * [[zh:rpd:doctor_class|医生职业]] — 唯一初始拥有此饰品的职业
+  * [[zh:rpd:plague_doctor_npc|瘟疫医生 NPC]] — 任务提供者
+  * [[zh:rpd:medicine_mask_item|药剂面具]] — 早期任务奖励（外观）
+  * [[zh:rpd:bone_saw_item|骨锯]] — 医生初始武器
+  * [[zh:rpd:artifacts|神器]] — 神器通用文档
+
+{{tag> rpd items accessories quest_reward doctor}}

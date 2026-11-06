@@ -1,0 +1,105 @@
+====== 麻痹气体药水 ======
+{{ rpd:images:potion_of_paralytic_gas_item.png|麻痹气体药水 }}
+
+麻痹气体药水是 Remixed Dungeon 中的一种可投掷药水，破碎时会释放一团麻痹气体云。
+
+==== 属性 ====
+  * **稀有度**：罕见
+  * **重量**：4
+  * **类型**：[[zh:rpd:potion_item|可投掷药水]]
+
+==== 说明 ====
+当此药水破碎时，会释放一团麻痹气体云，使吸入气体的任何生物麻痹。气体云持续一小段时间。
+
+==== 用法 ====
+  * 向敌人或敌群投掷药水
+  * 产生一团麻痹气体云，使区域内所有生物麻痹
+  * 暂时使敌人无法行动
+  * 适用于逃跑或调整位置
+
+==== 获取方式 ====
+  * 地牢各处均可发现
+  * 炼金主题区域更常见
+  * 商店可能出售
+
+==== 特别说明 ====
+  * 范围效果控制
+  * 造成麻痹状态效果
+  * 玩家附近使用危险
+  * 医生职业的初始装备之一
+  * 极适合群体控制场景
+
+投掷时，此药水会释放一团扩散至周围区域的麻痹气体，可能使范围内所有生物麻痹。麻痹生物将在一段时间内无法执行任何行动。
+
+==== 效果 ====
+  * **范围效果**：创建一团影响多个目标的麻痹气体云
+  * **[[zh:rpd:paralysis_buff|麻痹]]**：可能造成[[zh:rpd:paralysis_buff|麻痹状态效果]]，阻止敌人行动
+  * **持续时间**：受影响生物麻痹有限时间
+  * **环境效果**：气体在区域内短暂停留
+  * **战斗控制**：可暂时中和危险敌人
+  * **[[zh:rpd:ranged_combat|远程]]**：可投掷至远处目标
+  * **逃脱**：在危险局势中创造喘息空间
+  * **首领战**：对强力敌人特别有价值
+
+==== 受益职业 ====
+  * [[zh:rpd:plague_doctor_subclass|瘟疫医生]] - 对毒素专家特别有效
+  * 任何需要暂时摆脱战斗的职业
+  * 面对多个危险敌人的玩家
+
+==== 战术 ====
+  * 最适合对付强力单体敌人或危险敌群
+  * 可用于将敌人从群体中隔离
+  * 激烈战斗中创造安全区域
+  * 更换装备或治疗时使用
+  * 可用于完全绕过敌人
+
+==== 相关 ====
+  * [[zh:rpd:potion_item|药水]] - 其他消耗品
+  * [[zh:rpd:potion_of_toxic_gas_item|毒气药水]] - 类似的气体类物品
+  * [[zh:rpd:plague_doctor_subclass|瘟疫医生]] - 专精气体效果的职业
+  * [[zh:rpd:paralysis_buff|麻痹]] - 产生的状态效果
+  * [[zh:rpd:items|物品]] - 游戏中的其他物品
+
+==== 策略 ====
+  * 留作应急或困难战斗使用
+  * 对逃生选项有限的角色极具价值
+  * 中和远程或危险敌人效果极佳
+  * 考虑敌人恢复行动的时机
+  * 属于毒素与控制战斗工具箱的一部分
+
+此药水破碎时会释放麻痹气体云。陷入云中的生物将麻痹并暂时无法行动。
+
+==== 代码参考 ====
+  * **Java 实现：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java|PotionOfParalyticGas.java]]
+  * **药水基类：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]]
+  * **可升级药水类：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|UpgradablePotion.java]] - 具有升级机制的基础药水扩展
+  * **麻痹气体效果：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ParalyticGas.java|ParalyticGas.java]] - 处理气体云效果
+  * **麻痹 Buff：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]] - 实际的麻痹状态效果
+  * **破碎机制：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L24-L30|shatter 方法]] - 药水破碎时创建气体云
+  * **Blob 种子方法：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java#L35-L42|Blob.seed]] - 创建麻痹气体效果
+  * **飞溅效果：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L26|splash 方法]] - 破碎时的视觉效果
+  * **音频效果：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L27|Sample.INSTANCE.play(Assets.SND_SHATTER)]] - 药水破碎时的声音
+  * **字符串资源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2207-L2208|PotionOfParalyticGas_Name, PotionOfParalyticGas_Info]] - 显示药水详细描述
+  * **俄语字符串资源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2208-L2209|PotionOfParalyticGas_Name (Russian), PotionOfParalyticGas_Info (Russian)]] - 俄语本地化
+  * **价格参考：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L32|basePrice 方法]] - 价值 40 金币
+  * **湿润支持：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L38-L44|moistenArrow 方法]] - 可制造麻痹箭
+  * **品质因子：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L29|qualityFactor()]] - 基于药水品质影响气体持续时间
+  * **基础品质因子：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L47-L49|基类中的 qualityFactor()]] - 基于升级计算品质
+  * **Blob 生成：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java#L21-L22|Blob.seed 方法]] - 以 1000*qualityFactor() 强度创建气体 blob
+  * **气体持续时间：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java#L38|持续时间计算]] - 气体持续 1000*qualityFactor() 回合
+  * **麻痹持续时间：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L39|Paralysis.duration()]] - 受角色抗性 buff 影响的持续时间
+  * **麻痹效果：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ParalyticGas.java#L14-L17|evolve 方法]] - 对受影响格子内所有角色施加麻痹
+  * **视觉效果：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ParalyticGas.java#L20|use 方法]] - 渲染麻痹气体粒子
+  * **地砖描述：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ParalyticGas.java#L24|tileDesc 方法]] - 屏幕上有气体云时的描述
+  * **角色检测：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java#L26-L28|Actor.findChar(i)]] - 检查受影响格子内的角色
+  * **Buff 施加：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java#L15-L17|Buff.prolong 方法]] - 以持续时间施加麻痹 buff
+  * **麻痹 Buff 持续时间：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L39|Paralysis.duration 方法]] - 基于角色抗性计算麻痹持续时间
+  * **麻痹箭：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|ParalysisArrow.java]] - 制造造成麻痹的箭
+  * **箭基类：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] - 箭的基础实现
+  * **物品拾取：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java#L128-L130|collect 方法]] - 处理将物品加入背包
+  * **机器可读数据：** [[mr:potion_of_paralytic_gas_item|mr:potion_of_paralytic_gas_item]]
+
+==== 备注 ====
+麻痹气体药水是强大的战术工具，可暂时中和威胁，让玩家得以逃脱或攻击被麻痹的敌人。
+
+{{tag> rpd items potion paralytic_gas throwable control }}
