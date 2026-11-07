@@ -1,0 +1,60 @@
+====== Toxic Gas - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas.java]] - Blob implementation for toxic gas cloud, applies poison damage to characters standing in it
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/MiasmaGas.java|MiasmaGas.java]] - Related gas that applies both Poison and Weakness buffs
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists
+
+===== String Resources =====
+  * **ToxicGas_Info** - Description shown when standing in toxic gas
+  * **ToxicGas_Info1** - Additional info string
+
+<code xml>
+<string name="ToxicGas_Info">You are breathing toxic gas. It damages you over time.</string>
+<string name="ToxicGas_Info1">Toxic gas clouds deal damage based on your max HP and dungeon depth.</string>
+</code>
+
+===== Lua Scripts =====
+  * **RPD.Blobs.ToxicGas** - Lua binding for the ToxicGas blob class, accessible via `RPD.placeBlob(RPD.Blobs.ToxicGas, cell, volume)`
+  * Used in: `scripts/traps/ToxicTrap.lua`, `scripts/spells/CorpseExplosion.lua`, `scripts/mobs/RemixedFetidRat.lua`, `scripts/mobs/Lich.lua`, `scripts/mobs/DM300.lua`, `scripts/plants/Rotberry.lua`, `scripts/items/test/TestItem.lua`
+
+===== Sources & Effects =====
+**Sources that create Toxic Gas:**
+  * **Potion of Toxic Gas** (`PotionOfToxicGas.java`) - Thrown potion creates toxic gas cloud (volume: 1000 * qualityFactor())
+  * **Stench Glyph** (`Stench.java`) - Armor glyph triggers toxic gas on adjacent attacker (volume: 20, chance based on armor level)
+  * **Rotten Food** (`RottenFood.java`) - Eating has 1/3 chance to create toxic gas (volume: 100)
+  * **Toxic Trap** (`ToxicTrap.lua`) - Trap creates toxic gas (volume: 300 + 20 * depth)
+  * **Corpse Explosion Spell** (`CorpseExplosion.lua`) - Consumes corpse to create toxic gas (volume based on corpse HP and caster skill)
+  * **Remixed Fetid Rat** (`RemixedFetidRat.lua`) - Variant 3 releases toxic gas on death
+  * **Lich** (`Lich.lua`) - Green variant releases toxic gas (volume: 30 * alive_skeletons)
+  * **DM-300** (`DM300.lua`) - Boss constantly releases toxic gas (volume: 30)
+  * **Rotberry Plant** (`Rotberry.lua`) - Activating releases toxic gas (volume: 100)
+  * **Chaos Mark** (`ChaosCommon.java`) - Randomly spawns various gas blobs including ToxicGas
+
+**Mechanics:**
+  * Extends `Blob` class, implements `Doom` interface
+  * In `evolve()`: deals poison damage to characters standing in gas
+  * Damage formula: `(ch.ht() + levelDamage) / 40` where `levelDamage = 5 + Dungeon.depth * 5`, with 1/40 chance for +1 damage
+  * Also poisons items on the ground (`heap.poison()`)
+  * Interacts with ParalyticGas: when both gases overlap, the smaller volume is cancelled from both
+  * Visual effect: `Speck.TOXIC` particles
+  * Undead characters have immunity to ToxicGas (via `Char.setUndead()` adding `ToxicGas.class` to immunities)
+  * GasesImmunity buff (`GasesImmunity.lua`) grants immunity to ToxicGas, Paralysis, and Vertigo
+
+===== Related mr Entities =====
+  * [[mr:stench_glyph_item|Stench Glyph (Item)]]
+  * [[mr:potion_of_toxic_gas_item|Potion of Toxic Gas (Item)]]
+  * [[mr:poison_buff|Poison (Buff)]]
+  * [[mr:weakness_buff|Weakness (Buff)]]
+  * [[mr:paralytic_gas_buff|Paralytic Gas (Blob)]]
+  * [[mr:confusion_gas_buff|Confusion Gas (Blob)]]
+  * [[mr:miasma_gas_buff|Miasma Gas (Blob)]]
+  * [[mr:gases_immunity_buff|Gases Immunity (Buff)]]
+  * [[mr:fetid_rat_mob|Remixed Fetid Rat (Mob)]]
+  * [[mr:lich_mob|Lich (Mob)]]
+  * [[mr:dm300_mob|DM-300 (Mob)]]
+  * [[mr:rotberry_plant|Rotberry (Plant)]]
+
+{{tag> mr rpd blobs gas toxic poison}}
