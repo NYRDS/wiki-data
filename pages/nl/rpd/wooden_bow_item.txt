@@ -1,0 +1,56 @@
+====== Houten Boog ======
+
+{{ rpd:images:wooden_bow_item.png|Houten Boog }}
+
+Houten bogen zijn de meest voorkomende boogsoort die je in de dungeon kunt vinden.
+
+Deze eenvoudige houten boog kan nuttig blijken, zodra je pijlen vindt.
+
+==== Beschrijving ====
+Een basis houten boog die pijlen nodig heeft om effectief te zijn. Het is het eenvoudigste afstandswapen dat beschikbaar is in de dungeon.
+
+==== Stats ====
+  * **Tier:** 1
+  * **Nauwkeurigheidsfactor:** 0.8 (80% basiss nauwkeurigheid)
+  * **Vertragingsfactor:** 1.5 (150% van basis aanvalsvertraging)
+  * **Schade:** Schaalt met niveau (1-1 basisschade ongeüpgraded)
+
+==== Mechanica ====
+  * **Pijlkiesactie:** Heeft een "Kies Pijlen" actie wanneer uitgerust en pijlen beschikbaar zijn
+  * **Nauwkeurigheidsfactor:** Schaalt met niveau op 1 + niveau * 0.1 per niveau
+  * **Schadefactor:** Schaalt met niveau op 1 + niveau * 0.25 per niveau
+  * **Niet Geschikt voor Nauwgevecht:** Niet effectief als nauwgevechtswapen (goodForMelee geeft false terug)
+
+==== Gebruik ====
+  * Uitgerust in het wapenslot
+  * Vereist compatibele pijlen om effectief te zijn
+  * Kan selecteren welk type pijlen gebruikt wordt via de "Kies Pijlen" actie
+  * Upgraden verhoogt zowel nauwkeurigheids- als schadefactoren
+
+==== Opmerkingen ====
+  * Eenvoudigste beschikbare afstandswapen
+  * Schade en nauwkeurigheid verbeteren met upgrades
+  * Moet gekoppeld zijn aan pijlen om nuttig te zijn
+  * De interne klassenaam is WoodenBow (niet "ElvenBow" zoals oudere referenties kunnen suggereren)
+
+==== Technische Details ====
+  * **Java Klasse:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/WoodenBow.java|com.watabou.pixeldungeon.items.weapon.melee.WoodenBow]]
+  * **Basisklassen:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Bow.java|Bow.java]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/KindOfBow.java|KindOfBow.java]]
+  * **Implementatie:** Extends Bow basisklasse, die KindOfBow extends
+  * **Sprite ID:** Afbeeldingsindex 0 in items/ranged.png
+  * **Stats:** Tier 1, Nauwkeurigheid 0.8f, Vertraging 1.5f (in constructor)
+
+==== Inhoudsverificatie ====
+  * Informatiebron: Java Klasse com.watabou.pixeldungeon.items.weapon.melee.WoodenBow
+  * Stats geverifieerd vanuit constructor parameters (tier, nauwkeurigheid, vertraging)
+  * Mechanica geverifieerd vanuit method overrides (acuFactor, dmgFactor)
+  * String resources bevestigd vanuit strings_all.xml (Nederlands)
+
+==== Gerelateerd ====
+  * [[nl:rpd:bows_and_arrows_item|Bogen en Pijlen]] - Algemene informatie over bogen
+  * [[nl:rpd:ranged_weapons|Afstandwapens]] - Andere afstandwapens in het spel
+  * [[nl:rpd:common_arrow_item|Gewone Pijl]] - Compatibele munitie
+  * [[nl:rpd:elven_bow_item|Elfenboog]] - Geüpgraded versie van de houten boog
+  * [[nl:rpd:items|Items]] - Andere items in het spel
+
+{{tag> rpd items wapens afstand}}
