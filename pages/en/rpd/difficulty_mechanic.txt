@@ -1,0 +1,68 @@
+====== Difficulty ======
+
+**Difficulty** in Remixed Dungeon determines the overall challenge level of the game, affecting enemy stats, experience requirements, hero starting conditions, and various game mechanics.
+
+==== Difficulty Levels ====
+
+The game has 4 difficulty levels (0-3):
+
+  * **Easy (0)**: Reduced enemy stats, lower EXP requirements, more generous starting conditions
+  * **Normal (1)**: Standard difficulty
+  * **Hard (2)**: Increased enemy stats and spawn rates
+  * **Expert (3)**: Maximum challenge, additional restrictions
+
+==== Effects of Difficulty ====
+
+=== Experience Requirements ===
+  * **Easy (0)**: 5 + (current level × 4) EXP per level
+  * **Normal/Hard/Expert (>0)**: 5 + (current level × 5) EXP per level
+
+=== Hero Starting Stats ===
+  * **Easy/Normal**: 30 base HP
+  * **Hard/Expert**: 20 base HP
+
+=== Enemy Scaling ===
+  * Mob HP, damage, and accuracy scale with difficulty
+  * Boss mechanics change (e.g., Lich spawns 2/3/4 Runic Skulls on Easy/Normal/Hard+)
+  * Yog spawns 2 mini-bosses on Easy/Normal, 3 on Expert
+
+=== Economy ===
+  * Shop prices and service costs scale with difficulty factor
+  * Healing services at NPCs cost more on higher difficulties
+  * Identification costs increase with difficulty
+
+=== Special Mechanics ===
+  * **Hunger**: Hero does not suffer hunger debuffs on difficulties allowing save states while on safe levels
+  * **Save States**: Easy/Normal allow save/load; Expert may restrict this
+  * **Badges**: Some badges require winning on specific difficulties
+  * **Challenges**: Additional challenge modifiers can be enabled on top of base difficulty
+
+==== Difficulty Factor ====
+
+The game uses a difficulty factor (via `GameLoop.getDifficultyFactor()`) that multiplies various costs and scales enemy stats. This factor is:
+  * Easy: ~0.75x
+  * Normal: 1.0x
+  * Hard: ~1.25x
+  * Expert: ~1.5x
+
+==== Code References ====
+
+  * **Hero.java**: Starting HP, EXP formula (`expToLevel()`), difficulty-specific mechanics
+  * **GameLoop.java**: `getDifficulty()`, `getDifficultyFactor()` methods
+  * **Dungeon.java**: Hero creation with difficulty parameter
+  * **Level.java**: Mob spawning and scaling via Bestiary
+  * **Bestiary.json**: Mob spawn weights per level (difficulty affects final spawn rates)
+
+==== String Resources ====
+
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - Difficulty-related strings
+
+==== See Also ====
+
+  * [[en:rpd:hero_level|Hero Level]]
+  * [[en:rpd:hero_class|Hero Classes]]
+  * [[en:rpd:challenges|Challenges]]
+  * [[en:rpd:badges_mechanic|Badges]]
+  * [[en:rpd:health_mechanic|Health]]
+
+{{tag> rpd mechanics difficulty progression}}

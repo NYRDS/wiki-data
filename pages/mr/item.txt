@@ -1,0 +1,44 @@
+====== Item - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - Base item class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/EquipableItem.java|EquipableItem.java]] - Equipable items (weapons, armor, rings)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Weapon.java|Weapon.java]] - Weapon base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Armor.java|Armor.java]] - Armor base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Ring.java|Ring.java]] - Ring base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Potion.java|Potion.java]] - Potion base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Scroll.java|Scroll.java]] - Scroll base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wand/Wand.java|Wand.java]] - Wand base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Artifact.java|Artifact.java]] - Artifact base class
+
+===== JSON Configuration =====
+This entity type is implemented in Java, no shared JSON configuration exists. Individual items may have JSON configs in `mobsDesc/` or `levelObjects/` for specific purposes.
+
+===== String Resources =====
+<code xml>
+<string name="Item_Name">Item</string>
+<string name="Item_Info">A generic item.</string>
+</code>
+
+===== Lua Scripts =====
+Items requiring custom behavior use Lua scripts in `scripts/items/` directory extending the item library via `require "scripts/lib/item"`.
+
+===== Related mr Entities =====
+  * [[mr:weapon_item|Weapon (Item)]]
+  * [[mr:armor_item|Armor (Item)]]
+  * [[mr:ring_item|Ring (Item)]]
+  * [[mr:potion_item|Potion (Item)]]
+  * [[mr:scroll_item|Scroll (Item)]]
+  * [[mr:wand_item|Wand (Item)]]
+  * [[mr:artifact_item|Artifact (Item)]]
+  * [[mr:food_item|Food (Item)]]
+  * [[mr:seed_item|Seed (Item)]]
+
+===== Code Details =====
+  * **Base class**: `com.watabou.pixeldungeon.items.Item`
+  * **Key methods**: `collect()`, `detach()`, `price()`, `isKnown()`, `doPickUp()`, `doDrop()`, `execute()`
+  * **Properties**: `image` (sprite index), `labelIndex` (potion/scroll identification), `defaultAction`, `cursed`, `cursedKnown`
+  * **Identification system**: Items start unidentified; identified via Scroll of Identify or other means
+  * **Cursed items**: Cannot be unequipped until uncursed
+  * **Upgrade system**: Weapons and armor can be upgraded with Scroll of Upgrade (+1 to +10+, with risks)
+  * **Glyphs/Enchantments**: Weapons and armor can be enchanted with glyphs for special effects

@@ -1,0 +1,79 @@
+====== فئة الشامان الفرعية ======
+
+{{ rpd:images:elf_shaman_hero.png|شامان }}
+
+الشامان هي الفئة الفرعية لل elves في Remixed Dungeon.
+
+===== الوصف =====
+يمكن لـ //ال shamans// الإلف استخدام العصي كأسلحة قتال قريب. الضربات الناجحة لديها فرصة لتفعيل قوة العصا على الهدف دون استهلاك شحنة.
+
+===== الفتح =====
+يمكن فتح فئة الشامان الفرعية باستخدام [[ar:rpd:tome_of_mastery_item|كتاب الإتقان]] بعد هزيمة الزعيم الثاني (تينجو).
+
+===== الميكانيكيات الخاصة =====
+  * يمكن لـ _ال shamans_ الإلف استخدام [[ar:rpd:wands|العصي]] كأسلحة [[ar:rpd:melee_weapons|قتال قريب]]
+  * عند الهجوم بعصا مجهزة كسلاح أساسي، هناك فرصة 25% (مطبقة كـ Random.Int(4) == 0) لضرب الهدف بقوة العصا دون استهلاك شحنة
+  * هذه القدرة مطبقة في طريقة ''attackProc'' في ''HeroSubClass.java'' (الأسطر 172-181)
+  * يجب أن تكون العصا مجهزة كسلاح أساسي (السلاح النشط) لكي تعمل هذه الميكانيكية
+  * يجب أن تكون للعصا شحنات متاحة وأن تُرجع طريقة ''affectTarget()'' القيمة true
+  * +1 مكافأة ندى لـ [[ar:rpd:mana_mechanic|استعادة المانا]] المحسنة
+
+===== التفاصيل التقنية =====
+  * **التنفيذ:** ميكانيكيات الشامان الخاصة مطبقة في طريقة ''attackProc'' في ''HeroSubClass.java'' (الأسطر 172-181)
+  * **تفعيل العصا:** عندما يهاجم شامان بعصا مجهزة كسلاح نشط، هناك فرصة 25% لضرب العدو بتأثير العصا دون استهلاك شحنة
+  * **مرجع الكود:** التنفيذ المحدد يتحقق مما إذا كان السلاح الأساسي عصا، وإذا كانت ''affectTarget()'' تُرجع true و ''Random.Int(4) == 0''، ثم يتم استدعاء ''zapCell()'' لضرب العدو دون استهلاك الشحنات
+
+===== درع خاص =====
+استخدام [[ar:rpd:armor_kit_item|طقم درع]] على أي درع سيحوله إلى [[ar:rpd:shaman_armor_item|درع الشامان]]، المصمم خصيصاً لهذه الفئة الفرعية.
+
+===== المميزات =====
+  * يمكن استخدام [[ar:rpd:wands|العصي]] كأسلحة [[ar:rpd:melee_weapons|قتال قريب]]
+  * فرصة 25% لتفعيل قوى العصي دون استهلاك الشحنات
+  * خيارات أسلحة متعددة تجمع بين [[ar:rpd:ranged_weapons|المدى]] و [[ar:rpd:melee_combat|القتال القريب]]
+  * الحفاظ على شحنات العصا عند تفعيل القوة
+  * تآزر جيد مع جميع [[ar:rpd:wands|أنواع العصي]]
+  * +1 مكافأة ندى لـ [[ar:rpd:mana_mechanic|استعادة المانا]] المحسنة
+
+===== العيوب =====
+  * فرصة التفعيل غير مضمونة (فرصة 25%)
+  * ضرر العصا كسلاح [[ar:rpd:melee_mechanic|قتال قريب]] قد يكون أقل من الأسلحة المخصصة
+
+===== التحقق من البيانات =====
+  * مصدر المعلومة: Java Enum ''com.watabou.pixeldungeon.actors.hero.HeroSubClass.SHAMAN''
+  * التحقق من الميكانيكيات: مكافأة الهجوم مطبقة في طريقة ''attackProc'' في ''HeroSubClass.java''، مع فرصة 25% لضرب العدو
+  * وصف التأثيرات: مبني على موارد السلاسل من values/strings_all.xml (\"HeroSubClass_DescShaman\")
+  * التحقق من الاسم: مؤكد من موارد السلاسل (\"HeroSubClass_NameShaman\")
+  * ميكانيكيات إضافية: مكافأة الندى محققة في طريقة ''dewBonus'' في ''HeroSubClass.java''
+
+===== مراجع الكود =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - تعريف الفئة الفرعية والميكانيكيات
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L172-L181|HeroSubClass.java#L172-L181]] - تنفيذ ميكانيكية عصا-ضرب الدقيقة (فرصة 25% عند حمل عصا)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L234-L242|HeroSubClass.java#L234-L242]] - تنفيذ مكافأة الندى (+1 للشامان)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L46|HeroSubClass.java#L46]] - تعريف Enum مع فئة الدرع (\"ShamanArmor\")
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - تنفيذ العصا الذي يمكّن الميكانيكية
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L382-L384|Wand.java#L382-L384]] - طريقة AffectTarget() التي تتحقق مما إذا كانت العصا يمكن أن تضرب
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L140-L143|Wand.java#L140-L143]] - طريقة zapCell() التي تؤدي الضربة دون استهلاك شحنة
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - تعريفات علاقة الفئة/الفئة الفرعية
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L376|ItemFactory.java#L376]] - تسجيل درع الشامان
+
+===== ملفات التكوين =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - تعريفات علاقة الفئة/الفئة الفرعية
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L376|ItemFactory.java#L376]] - تسجيل درع الشامان
+
+===== موارد السلاسل =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1065|HeroSubClass_NameShaman]] - \"shaman\" (الإنجليزية)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1051|HeroSubClass_DescShaman]] - \"Elven _Shamans_ can use wands as melee weapons. Successful hits have a chance to activate the wand's power on a target without using a charge.\" (الإنجليزية)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1064|HeroSubClass_NameShaman]] - \"шаман\" (الروسية)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1050|HeroSubClass_DescShaman]] - \"_Шаманы_ эльфов могут использовать посохи как оружие ближнего боя. При попадании في цель волшебство палочки может использоваться без потери заряда.\" (الروسية)
+
+===== انظر أيضاً =====
+  * [[ar:rpd:elf_class|فئة الإلف]]
+  * [[ar:rpd:wands|العصي]]
+  * [[ar:rpd:playable_class_mechanic|الفئات القابلة للعب]]
+  * [[ar:rpd:subclasses|الفئات الفرعية]]
+  * [[ar:rpd:shaman_armor_item|درع الشامان]]
+  * [[ar:rpd:hero|البطل]]
+  * [[ar:rpd:mechanics_mechanic|ميكانيكيات اللعبة]]
+  * [[en:rpd:shaman_subclass|Shaman Subclass (English)]]
+
+{{tag> rpd subclasses shaman elf wand melee}}
