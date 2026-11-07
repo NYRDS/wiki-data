@@ -1,0 +1,60 @@
+====== Порабощённая душа ======
+
+{{ rpd:images:enslaved_soul_mob.png|Порабощённая душа }}
+
+**Порабощённая душа** — это спектральный враг-нежить, встречающийся в Некрополе в Remixed Dungeon.
+
+==== Характеристики ====
+  * **Уровень**: Некрополь (уровни necro1–necro4)
+  * **HP**: 25 (ht(25))
+  * **Атака**: Умеренная — базовый навык атаки 10
+  * **Защита**: Умеренная — базовый навык защиты 11, сопротивление урону (DR) 10
+  * **Урон**: 5–8
+  * **Опыт**: 5 очков за убийство
+  * **Макс. уровень**: 15
+  * **Скорость**: 1.1x (быстрее обычной)
+  * **Тип**: Нежить, Летающая
+
+==== Описание ====
+Порабощённые души — это мучимые духи искателей приключений, погибших в Некрополе. Они связаны волей тёмной магии этого места и атакуют незваных гостей.
+
+==== Поведение ====
+  * Летает (может проходить сквозь стены и препятствия)
+  * Наследует Некрополь (уровни necro1–necro4)
+  * Использует спектральные атаки, накладывающие случайные дебаффы
+  * Является нежитью со специальными свойствами
+
+==== Особенности ====
+  * **Атака с дебаффом**: При успешном попадании с 20% шансом накладывает случайный дебафф:
+    * [[ru:rpd:blindness_buff|Слепота]]
+    * [[ru:rpd:charm_spell|Очарование]]
+    * [[ru:rpd:roots_buff|Корни]]
+    * [[ru:rpd:slow_buff|Замедление]]
+    * [[ru:rpd:vertigo_buff|Вертиго]]
+    * [[ru:rpd:weakness_buff|Слабость]]
+  * **Специальные выпадения**: Очень низкий шанс выпадения Золота (0.02)
+  * **Шанс трупа**: 0 (нельзя использовать для еды или других целей)
+
+==== Информация о спавне ====
+  * **Necro1**: {Zombie:1, Skeleton:1, EnslavedSoul:0.9}
+  * **Necro2**: {Zombie:1, ExplodingSkull:0.6, EnslavedSoul:0.9, DeathKnight:0.5, DreadKnight:0.015}
+  * **Necro3**: {Zombie:2, ExplodingSkull:1.2, EnslavedSoul:0.9, DeathKnight:0.5, DreadKnight:0.015}
+  * **Necro4**: {ExplodingSkull:1.3, EnslavedSoul:0.4, DeathKnight:1.5, DreadKnight:0.045}
+
+==== Верификация содержимого ====
+  * **Источник информации**: JSON конфигурация в `mobsDesc/EnslavedSoul.json` и Lua скрипт `scripts/mobs/EnslavedSoul.lua`
+  * **Проверка статов**: Извлечены прямо из JSON конфигурации (ht=25, attackSkill=10, defenseSkill=11, dr=10, dmgMin=5, dmgMax=8, exp=5, maxLvl=15, baseSpeed=1.1, flying=true, undead=true)
+  * **Описание эффектов**: Lua скрипт `attackProc` — 1/5 шанс наложить случайный дебафф из списка (Blindness, Charm, Roots, Slow, Vertigo, Weakness) на 3 хода
+  * **Ссылки на код**:
+    * JSON: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/EnslavedSoul.json|EnslavedSoul.json]]
+    * Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/EnslavedSoul.lua|EnslavedSoul.lua]]
+    * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|Russian strings]]
+
+==== См. также ====
+  * [[ru:rpd:mobs|Мобы]] — Другие монстры
+  * [[ru:rpd:necropolis_level|Некрополь]] — Область, где встречается
+  * [[ru:rpd:undead_mob|Нежить]] — Тип существа
+  * [[ru:rpd:zombie_mob|Зомби]] — Другой обитатель Некрополя
+  * [[ru:rpd:skeleton_mob|Скелет]] — Другой обитатель Некрополя
+
+{{tag> rpd mobs enslaved_soul undead necropolis}}
