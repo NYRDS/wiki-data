@@ -1,0 +1,89 @@
+====== 战斗机制 ======
+
+{{ rpd:images:skeleton_mob.png|战斗 }}
+
+**战斗** 是混合像素地牢中玩家角色与各种地牢生物之间的互动。该系统决定了攻击、伤害和防御动作在游戏中的运作方式。
+
+==== 基础战斗机制 ====
+  * **攻击技能**：决定命中敌人的几率（参见 [[zh:rpd:accuracy_mechanic|精准度]]）
+  * **防御技能**：决定躲避攻击的几率（参见 [[zh:rpd:evasion_mechanic|闪避]]）
+  * **伤害**：攻击命中时造成的伤害量
+  * **护甲**：基于护甲等级和 [[zh:rpd:armor_glyphs|雕文]] 减少受到的物理伤害
+
+==== 攻击系统 ====
+战斗中，命中几率计算如下：
+  * 命中几率 = 攻击技能 / (攻击技能 + 防御技能)
+  * 最低命中几率为 5%（总是有可能命中）
+  * 最高命中几率为 95%（总是有可能未命中）
+
+==== 伤害计算 ====
+  * **武器伤害**：装备的 [[zh:rpd:weapons|武器]] 的基础伤害范围
+  * **英雄力量**：基于英雄 [[zh:rpd:strength_attribute|力量]] 的额外伤害
+  * **武器升级**：每个升级等级为伤害范围增加 +1（参见 [[zh:rpd:upgrading|升级]]）
+  * 最终伤害 = 武器伤害范围内的随机值 + 力量加成
+
+==== 防御动作 ====
+  * **躲避**：基于防御技能，可以完全避免攻击伤害
+  * **格挡**：[[zh:rpd:armor_item|护甲]] 按百分比减少受到的伤害
+  * **闪避**：特殊技能和物品可以增加躲避几率（参见 [[zh:rpd:evasion_mechanic|闪避]]）
+  * **抗性**：某些 [[zh:rpd:buffs|增益]] 和装备提供特定伤害类型的抗性（参见 [[zh:rpd:resistances|抗性]]）
+
+==== 战斗类型 ====
+  * **近战战斗**：使用 [[zh:rpd:swords|剑]]、[[zh:rpd:axes_item|斧]] 和 [[zh:rpd:mace_item|锤]] 的近距离攻击（参见 [[zh:rpd:melee_combat|近战战斗]]）
+  * **远程战斗**：使用 [[zh:rpd:ranged_weapons|远程武器]]、[[zh:rpd:wands|法杖]] 或 [[zh:rpd:spells_overview|法术]] 的远距离攻击（参见 [[zh:rpd:ranged_combat|远程战斗]]）
+  * **魔法战斗**：绕过物理护甲的攻击性 [[zh:rpd:spells_overview|法术]] 和能力
+
+==== 战斗策略 ====
+  * **站位**：利用狭窄走廊一次只面对一个 [[zh:rpd:mobs|敌人]]
+  * **战术撤退**：利用门将敌人分隔开并逐个击破
+  * **状态效果**：使用 [[zh:rpd:blindness_buff|致盲]]、[[zh:rpd:paralysis_buff|瘫痪]] 或其他 [[zh:rpd:debuffs_mechanic|减益]] 获得优势
+  * **环境感知**：利用 [[zh:rpd:trap_mechanic|陷阱]]、深渊和其他环境特征为己所用
+
+==== 特殊战斗机制 ====
+  * **偷袭**：从背后攻击 [[zh:rpd:mobs|敌人]] 造成额外伤害（参见 [[zh:rpd:assassin_subclass|刺客]] 子职业）
+  * **暴击**：有随机几率造成最大可能伤害
+  * **元素伤害**：某些 [[zh:rpd:weapons|武器]] 和 [[zh:rpd:spells_overview|法术]] 完全无视 [[zh:rpd:armor_item|护甲]]
+  * **状态效果**：如 [[zh:rpd:burning_buff|燃烧]]、[[zh:rpd:poison_buff|中毒]] 或 [[zh:rpd:paralysis_buff|瘫痪]] 等效果可改变战斗局势
+
+==== 远程战斗细节 ====
+  * 使用 [[zh:rpd:ballistica_mechanic|弹道学]] 进行视线计算
+  * 远程武器有有限弹药
+  * 某些远程武器有穿透或范围伤害等特殊效果
+  * 法杖和法术提供魔法远程选项
+
+==== 装备影响 ====
+  * **武器**：影响伤害输出和特殊效果（参见 [[zh:rpd:weapons|武器]]）
+  * **护甲**：减少受到的物理伤害（参见 [[zh:rpd:armor_item|护甲]]）
+  * **戒指**：提供各种战斗加成（伤害、[[zh:rpd:accuracy_mechanic|精准度]]、[[zh:rpd:evasion_mechanic|闪避]] 等）（参见 [[zh:rpd:ring_item|戒指]]）
+  * **神器**：具有独特战斗能力的特殊物品（参见 [[zh:rpd:artifacts|神器]]）
+
+==== 战斗相关增益 ====
+  * **狂怒**：暂时增加伤害输出（参见 [[zh:rpd:fury_buff|狂怒]]）
+  * **隐身**：允许攻击而不遭反击（参见 [[zh:rpd:invisibility_buff|隐身]]）
+  * **瘫痪**：禁用敌人行动（参见 [[zh:rpd:paralysis_buff|瘫痪]]）
+  * **恐惧**：强制敌人逃跑（参见 [[zh:rpd:terror_buff|恐惧]]）
+
+==== 技术细节 ====
+  * 核心战斗逻辑: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]]
+  * 攻击机制: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java#L125-L180|攻击实现]]
+  * 伤害计算: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java#L150-L175|伤害计算]]
+  * 弹道学系统（远程战斗）: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]]
+  * 命中几率计算: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L240-L250|Char.java#命中几率计算]]
+  * 防御计算: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L230-L235|Char.java#防御计算]]
+  * 战斗伤害系统: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L90-L120|Char.java#伤害处理]]
+  * 暴击实现: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Mace.java#L45-L50|暴击示例]]
+  * 闪避机制: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L260-L270|Char.java#闪避实现]]
+  * 护甲伤害减免: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L100-L110|Armor.java#伤害减免]]
+  * 战斗 AI 决策: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java#L100-L150|Mob.java#战斗 AI 方法]]
+  * 偷袭机制: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L35-L40|HeroSubClass.java#背刺实现]]
+  * 战斗相关字符串资源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2394-L2400|命中字符串]] (Char_Hit_0, Char_Hit_1, Char_Hit_2), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L326-L327|未命中字符串]] (Char_YouMissed, Char_SmbMissed), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1219|防御字符串]] (各种怪物防御字符串如 Bat_Defense, Crab_Defense 等), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2263|攻击技能字符串]] (WndHero_AttackSkill), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1089-L1090|伤害字符串]] (MeleeWeapon_Info2a, MeleeWeapon_Info2b), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1973-L1976|护甲字符串]] (Armor_Info1-Armor_Info4)
+
+==== 另请参阅 ====
+  * [[zh:rpd:melee_combat|近战战斗]] - 近距离战斗详情
+  * [[zh:rpd:ranged_combat|远程战斗]] - 远距离战斗详情
+  * [[zh:rpd:mobs|敌人]] - 地牢生物信息
+  * [[zh:rpd:buffs|增益和减益]] - 战斗中的状态效果
+  * [[zh:rpd:enchantments|武器附魔]] - 特殊武器效果
+  * [[zh:rpd:armor_glyphs|护甲雕文]] - 特殊护甲效果
+
+{{tag> rpd 战斗 机制 }}
