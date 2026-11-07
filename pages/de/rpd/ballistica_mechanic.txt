@@ -1,0 +1,42 @@
+====== Ballistica-System ======
+
+Das **Ballistica-System** ist das Sichtlinien- und Pfadfindungssystem, das in Remixed Dungeon verwendet wird, um zu bestimmen, ob ein Fernangriff sein Ziel treffen kann.
+
+==== Beschreibung ====
+Das Ballistica-System wird verwendet, um die Sichtlinie zwischen zwei Punkten im Dungeon zu berechnen und gültige Pfade für Fernangriffe, Projektilen und Zaubereifähigkeiten zu bestimmen. Es ist nach dem italienischen Wort "ballistica" (Ballistik) benannt.
+
+==== Mechanik ====
+  * **Sichtlinie (LoS):** Bestimmt, ob ein unblockierter Pfad zwischen Angreifer und Ziel existiert
+  * **Pfadberechnung:** Findet einen potenziellen Pfad für direkte Fernangriffe
+  * **Reichweitenbegrenzung:** Legt die maximale effektive Reichweite von Fernfähigkeiten fest
+  * **Hindernisbehandlung:** Berücksichtigt Wände, Türen und andere Umgebungs Hindernisse
+
+==== Verwendung ====
+  * **Zauberangriffe:** Wird verwendet, um zu bestimmen, ob ein zaubernder Mob (wie Warlock) ein Ziel treffen kann
+  * **Stabnutzung:** Bestimmt gültige Ziele für Stäbe
+  * **Projektilwaffen:** Wird für die Zielführung von Fernwaffen verwendet
+  * **Fallenauslösung:** Einige Fallen verwenden Ballistica für die Aktivierungserkennung
+
+==== Technische Details ====
+  * **Pfadlänge:** Gibt die Länge des berechneten Pfades zurück
+  * **Hinderniserkennung:** Stoppt die Pfadfindung beim Auftreffen auf blockierendes Terrain
+  * **Direkter Linienpfad:** Berechnet Geradenpfade unter Berücksichtigung der Dungeon-Geometrie
+
+==== Code-Referenzen ====
+  * **Java-Implementierung:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]]
+  * **Pfadberechnung:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java#L50-L80|Ballistica Pfadberechnungsmethode]]
+  * **Verwendung in Warlock:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L70-L72|canAttack-Methode mit Ballistica]]
+  * **Verwendung in Tengu:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L58-L60|Tengu nutzt Ballistica für Distanzangriffe]]
+  * **Ballistica-Konstruktor:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java#L25-L45|Ballistica-Initialisierung]]
+  * **Terrain-Blockierung:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java#L85-L90|Wie blockierendes Terrain behandelt wird]]
+  * **Sichtfeld-Integration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java#L200-L210|Integration mit Sichtfeldsystem]]
+  * **Maschinenlesbare Daten:** [[mr:ballistica_mechanic|mr:ballistica_mechanic]]
+
+==== Siehe auch ====
+  * [[de:rpd:zapping|Zaubermechanik]]
+  * [[de:rpd:warlock_mob|Warlock]] - Nutzt Ballistica für Fernangriffe
+  * [[de:rpd:tengu_mob|Tengu]] - Nutzt Ballistica für Distanzangriffe
+  * [[de:rpd:wands|Stäbe]] - Nutzen Ballistica für Zielführung
+  * [[de:rpd:mechanics|Spielmechanik]]
+
+{{tag> rpd mechanics ballistica line_of_sight ranging pathfinding }}

@@ -1,0 +1,55 @@
+====== Nahkampf-Mechanik ======
+
+{{ rpd:images:shortsword_item.png|Nahkampfwaffe }}
+
+**Nahkampf** ist die primäre Kampfart in Remixed Dungeon, bei der der Held Feinde direkt im Nahkampf mit Waffen bekämpft, die unmittelbare Nähe erfordern.
+
+==== Beschreibung ====
+Nahkampf beinhaltet direkte physische Auseinandersetzung zwischen Charakteren. Der angreifende Charakter muss sich auf einem angrenzenden Feld zu seinem Ziel befinden, um einen Nahkampfangriff auszuführen. Diese Kampfart ist der Standard für die meisten Waffen und Charakterfähigkeiten.
+
+==== Kampfmechanik ====
+  * **Nachbarschaftsbedingung:** Angreifer und Ziel müssen auf angrenzenden Feldern stehen (inklusive diagonal)
+  * **Angriffswurf:** Angreifers Genauigkeit gegen Ziels Ausweichen bestimmt Trefferchance
+  * **Schadensberechnung:** Waffenschaden + zufällige Varianz, reduziert durch Ziels Rüstung
+  * **Angriffsgeschwindigkeit:** Bestimmt durch Waffengeschwindigkeit und Charakterboni
+  * **Kritische Treffer:** 5% Basischance für 2x Schaden (modifiziert durch verschiedene Faktoren)
+
+==== Genauigkeit und Ausweichen ====
+  * **Genauigkeit:** Beeinflusst durch Waffen-Genauigkeitsmodifikator und Charakter-Stärke
+  * **Ausweichen:** Basiert auf Charakter-Geschicklichkeit und Rüstungsklasse
+  * **Strafen:** Verschiedene Zustände können Genauigkeit und Ausweichen beeinflussen (Dunkelheit, Verwirrung, etc.)
+
+==== Schadensberechnung ====
+  * **Basisschaden:** Waffenschadensbereich (Mindest- bis Maximalwert)
+  * **Schadensreduktion:** Ziels Rüstungs-DR (Damage Reduction) mindert eingehenden Schaden
+  * **Endgültiger Schaden:** (Waffenschaden) - (Ziels Rüstungs-DR) + Zufallsfaktor
+
+==== Besondere Überlegungen ====
+  * **Belastung:** Schwere Gegenstände reduzieren Genauigkeit und Ausweichen
+  * **Überraschungsangriffe:** Angriffe auf unvorbereitete Feinde haben erhöhte Genauigkeit
+  * **Umwelteffekte:** Terrain, Licht und Statuseffekte können den Kampf beeinflussen
+  * **Waffenaufwertungen:** Höhere Aufwertungsstufen verbessern sowohl Genauigkeit als auch Schaden
+
+==== Verwandte Themen ====
+  * [[de:rpd:combat|Kampf]] - Allgemeine Kampfmechanik
+  * [[de:rpd:melee_mechanic|Nahkampf]] - Nahkampfübersicht
+  * [[de:rpd:accuracy|Genauigkeit]] - Genauigkeitsmechanik
+  * [[de:rpd:evasion|Ausweichen]] - Ausweichmechanik
+  * [[de:rpd:melee_weapons|Nahkampfwaffen]] - Spezifische Waffen für Nahkampf
+  * [[de:rpd:weapons|Waffen]] - Alle Waffentypen
+  * [[de:rpd:damage|Schaden]] - Schadensberechnungsdetails
+  * [[de:rpd:armor|Rüstung]] - Rüstungsmechanik und Schutz
+
+==== Code-Referenzen ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L609-L623|actMeleeAttack-Methode]] - Detaillierte Nahkampfangriffs-Methodenimplementierung
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L643|Angriffsverzögerungsberechnung]] - Wie Nahkampfangriffsgeschwindigkeit bestimmt wird
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Combat.java|Combat.java]] - Detaillierte Kampfmechanik inkl. Schadensberechnung
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java#L108-L115|Waffengenauigkeit und Schadensmechanik]] - Wie Waffenwerte den Nahkampf beeinflussen
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L549-L568|Helden-Angriffsmethode]] - Wie der Spielercharakter Nahkampfangriffe ausführt
+
+==== String-Referenzen ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L158-L167|Nahkampfwaffen-Strings]] - UI-Text für Nahkampfwaffen
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L170-L171|Angriffs-Strings]] - Angriffsbezogener UI-Text
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L168-L169|Treffer-Strings]] - Kampfergebnis-Text
+
+{{tag> rpd mechanics combat melee }}
