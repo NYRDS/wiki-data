@@ -1,0 +1,40 @@
+====== Деревянный арбалет ======
+
+{{ rpd:images:wooden_crossbow_item.png|Деревянный арбалет }}
+
+**Деревянный арбалет** — базовое дальнобойное оружие из Утробы. С виду типичный деревянный арбалет, но похоже, что он предназначен для стрельбы стрелами от лука.
+
+==== Характеристики ====
+  * **Тип**: Арбалет (двуручное дальнобойное оружие)
+  * **Базовый урон**: 2
+  * **Скорость атаки**: 1.2x
+  * **Дальность**: 1.6x
+  * **Точность**: Растёт с уровнем (+15% за уровень)
+  * **Урон**: Растёт с уровнем (+35% за уровень)
+  * **Спрайт**: image = 1
+  * **Горение**: Не сгорает (burn() возвращает null)
+
+==== Механика ====
+  * Наследуется от класса Crossbow
+  * Использует стрелы как боеприпасы
+  * Коэффициент точности: `1 + уровень * 0.15`
+  * Коэффициент урона: `1 + уровень * 0.35`
+  * Не может быть сожжён (возвращает null в методе burn)
+
+==== Где найти ====
+  * Выпадает в Сокровищнице (Treasury) — 4 шт.
+  * Выпадает в Сокровищнице пауков (Spiders Treasury) — 4 шт.
+  * Может встречаться в Утробе (этажи 26-30)
+
+==== Исходный код ====
+  * Класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/WoodenCrossbow.java|WoodenCrossbow.java]]
+  * Регистрация: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]]
+  * Базовый класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/ranged/Crossbow.java|Crossbow.java]]
+
+==== См. также ====
+  * [[ru:rpd:composite_crossbow_item|Композитный арбалет]] — улучшенная версия
+  * [[ru:rpd:ruby_crossbow_item|Рубиновый арбалет]] — магическая версия
+  * [[ru:rpd:arrow_item|Стрелы]] — боеприпасы
+  * [[ru:rpd:guts_level|Утроба]] — уровень, где находится это оружие
+
+{{tag> ru:rpd items weapons crossbow guts }}
