@@ -1,0 +1,87 @@
+====== Bogen en Pijlen ======
+
+In Remixed Pixel Dungeon is er een nieuw type wapens - bogen. Elke klasse kan een boog gebruiken, maar alleen een elf kan schade aanrichten door pijlen af te vuuren op korte afstand. Pijlen zijn vereist om een boog te gebruiken. Bogen kunnen ook aanslagaanvallen uitvoeren, maar ze zijn voor alle klassen behalve elf volledig ondoeltreffend in nauwgevecht.
+
+==== Hoe Bogen Werken ====
+  * Bogen zijn afstandwapens die pijlen nodig hebben om te functioneren
+  * Uitgerust met pijlen, staan bogen de speler toe om vijanden op afstand aan te vallen
+  * Alleen elfen kunnen aanzienlijke schade aanrichten bij het afvuren van pijlen op korte afstand (aangrenzende vakjes)
+  * Andere klassen richten zeer weinig schade aan bij het schieten van pijlen op korte afstand
+  * Bogen hebben specifieke nauwkeurigheids- en vertragingsfactoren die hun prestaties beïnvloeden
+  * Boogprestaties worden verbeterd door het niveau en de attributen van de boog
+
+==== Kogelhouder (Quiver) ====
+  * De [[nl:rpd:quiver_item|Kogelhouder]] is een speciale tas die elke hoeveelheid pijlen kan opslaan
+  * Wordt verkocht door de handelaar in het Stadsniveau voor 50 goud
+  * In tegenstelling tot wat sommige bronnen suggereren, beschermt de kogelhouder pijlen niet specifiek tegen verbranding
+  * Het biedt simpelweg onbeperkte opslag voor pijlen
+
+===== Bogen Lijst =====
+
+  * [[nl:rpd:wooden_bow_item|Houten Boog]] - De eenvoudigste boog. Vereist 9 kracht. Heeft een dynamische nauwkeurigheidsfactor die met 0,1 per niveau toeneemt en een dynamische schadefactor die met 0,25 per niveau toeneemt. Verbrandt in vuur (geeft null terug bij verbranding).
+  * [[nl:rpd:compound_bow_item|Samengestelde Boog]] - Een geavanceerdere boog. Vereist 11 kracht. Heeft een dynamische nauwkeurigheidsfactor die met 0,2 per niveau toeneemt en een dynamische schadefactor die met 0,5 per niveau toeneemt. Vertragingsfactor is 1,1. Verbrandt ook in vuur zoals de houten boog.
+  * [[nl:rpd:ruby_bow_item|Robijnboog]] - De krachtigste boog met de hoogste basisschade. Vereist 13 kracht om te gebruiken. Heeft standaard nauwkeurigheidsfactor. Basisschadefactor neemt met 1 per niveau toe (veel hoger dan andere bogen). Vertragingsfactor neemt met 0,2 per niveau toe. Verbrandt ook in vuur.
+
+===== Pijlen Lijst =====
+  * [[nl:rpd:common_arrow_item|Gewone Pijl]] - Reguliere pijl zonder speciaal effect. Basisschade 2-5. Basisvertraging 0,75. Basismin 2, basismas 5. Alle andere typen pijlen worden verkregen door potten op gewone pijlen te gebruiken.
+  * [[nl:rpd:fire_arrow_item|Vuurpijl]] - Ontbrandt de vijand bij raak. Basisschade 1-6. Basisvertraging 0,75. Basismin 1, basismas 6. Heeft 25% kans om brandendeffect toe te passen bij raak.
+  * [[nl:rpd:frost_arrow_item|Vorstpijl]] - Verlangzaamt de getroffen vijanden. Basisschade 0-6. Basisvertraging 0,75. Basismin 0, basismas 6. Heeft 25% kans om vertragingseffect toe te passen bij raak.
+  * [[nl:rpd:poison_arrow_item|Giftpijl]] - Vergiftigt de vijand. Basisschade 3-4. Basisvertraging 0,75. Basismin 3, basismas 4. Heeft 25% kans om gifteffect toe te passen bij raak.gifduur neemt toe met het niveau van de boog.
+  * [[nl:rpd:paralysis_arrow_item|Verlammingspijl]] - Verlamt tegenstanders. Basisschade 0-4. Basisvertraging 0,75. Basismin 0, basismas 4. Heeft 25% kans om verlammingseffect toe te passen bij raak.
+  * [[nl:rpd:health_arrow_item|Gezondheidspijl]] - Geneest de held wanneer door een held gebruikt. Basisschade niet gespecificeerd. Basisvertraging 1,0. Heeft 25% kans om genezing te geven bij raak.
+  * [[nl:rpd:amok_arrow_item|Amokpijl]] - Zorgt ervoor dat het slachtoffer willekeurige wezens aanvalt. Basisschade niet gespecificeerd. Basisvertraging 1,0. Heeft 25% kans om amokeffect te veroorzaken bij raak.
+
+==== Verkrijging van Speciale Pijlen ====
+  * Speciale pijlen (Vuur, Vorst, Gift, Verlamming, Gezondheid, Amok) worden gecreëerd door potten op gewone pijlen te gebruiken
+  * [[nl:rpd:potion_of_liquid_flame_item|Drank van Vloeibare Vlam]] op gewone pijlen creëert [[nl:rpd:fire_arrow_item|Vuurpijlen]]
+  * [[nl:rpd:potion_of_frost_item|Drank van Vorst]] op gewone pijlen creëert [[nl:rpd:frost_arrow_item|Vorstpijlen]]
+  * [[nl:rpd:potion_of_toxic_gas_item|Drank van Giftig Gas]] op gewone pijlen creëert [[nl:rpd:poison_arrow_item|Giftpijlen]]
+  * [[nl:rpd:potion_of_paralytic_gas_item|Drank van Verlammend Gas]] op gewone pijlen creëert [[nl:rpd:paralysis_arrow_item|Verlammingspijlen]]
+  * [[nl:rpd:potion_of_healing_item|Drank van Genezing]] op gewone pijlen creëert [[nl:rpd:health_arrow_item|Gezondheidspijlen]]
+  * [[nl:rpd:potion_of_strength_item|Drank van Kracht]] op gewone pijlen creëert [[nl:rpd:amok_arrow_item|Amokpijlen]]
+
+==== Code Referenties ====
+  * **Java Implementaties:**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/WoodenBow.java|WoodenBow.java]] - Houten boog implementatie
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/CompoundBow.java|CompoundBow.java]] - Samengestelde boog implementatie
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/RubyBow.java|RubyBow.java]] - Robijnboog implementatie
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Bow.java|Bow.java]] - Basisklasse boog
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/KindOfBow.java|KindOfBow.java]] - Soort boog implementatie
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] - Basisklasse pijl
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CommonArrow.java|CommonArrow.java]] - Gewone pijl implementatie
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FireArrow.java|FireArrow.java]] - Vuurpijl implementatie
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java|FrostArrow.java]] - Vorstpijl implementatie
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/PoisonArrow.java|PoisonArrow.java]] - Giftpijl implementatie
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|ParalysisArrow.java]] - Verlammingspijl implementatie
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthArrow.java|HealthArrow.java]] - Gezondheidspijl implementatie
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/AmokArrow.java|AmokArrow.java]] - Amokpijl implementatie
+  * **String Resources:**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L841-L843|WoodenBow_Name, WoodenBow_Info, WoodenBow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L844-L846|CompoundBow_Name, CompoundBow_Info, CompoundBow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L847-L849|RubyBow_Name, RubyBow_Info, RubyBow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L853-L855|CommonArrow_Name, CommonArrow_Info, CommonArrow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L856-L858|FireArrow_Name, FireArrow_Info, FireArrow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L859-L861|FrostArrow_Name, FrostArrow_Info, FrostArrow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L862-L864|PoisonArrow_Name, PoisonArrow_Info, PoisonArrow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L865-L867|ParalysisArrow_Name, ParalysisArrow_Info, ParalysisArrow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L868-L870|HealthArrow_Name, HealthArrow_Info, HealthArrow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L871-L873|AmokArrow_Name, AmokArrow_Info, AmokArrow_Gender]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L664-L666|Quiver_Name, Quiver_Info, Quiver_Gender]]
+  * **Winkel Beschikbaarheid:**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/TownShopLevel.java#L88|TownShopLevel.java#L88]] - Kogelhouder verkocht voor 50 goud
+  * **Nederlandse String Resources:**
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-nl/strings_all.xml|Nederlandse vertalingen]]
+
+==== Gerelateerd ====
+  * [[nl:rpd:quiver_item|Kogelhouder]] - Speciale tas voor het opslaan van pijlen
+  * [[nl:rpd:hero_class|Held]] - Hoofdspelbare personage
+  * [[nl:rpd:ranged_weapons|Afstandwapens]] - Andere typen afstandwapens
+  * [[nl:rpd:melee_weapons|Nabijgevechtswapens]] - Nauwgevechtswapens
+  * [[nl:rpd:hero_class|Heldklassen]] - Verschillende speelbare klassen die bogen kunnen gebruiken
+
+==== Andere Talen ====
+  * [[en:rpd:bows_and_arrows_item|Bows and Arrows (English)]]
+  * [[ru:rpd:bow_item|Луки и стрелы (Russian)]]
+  * [[es:rpd:arrows_item|Arco y Flechas (Spanish)]]
+
+{{tag> rpd items wapens afstand item}}
