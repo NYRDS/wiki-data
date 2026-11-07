@@ -1,0 +1,50 @@
+====== Bag Item - Machine Readable Reference ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/bags/Bag.java|Bag.java]] - Base bag/container class
+  * Implements: Iterable<Item>
+  * Key methods:
+    * `actions(Char hero)` - Returns actions including AC_OPEN
+    * `_execute(Char chr, String action)` - Handles AC_OPEN to show bag UI
+    * `collect(Bag container)` - Collects items from another bag
+    * `onDetach()` - Returns items to owner's inventory when detached
+    * `isUpgradable()` - Returns false (bags cannot be upgraded)
+    * `isIdentified()` - Returns true (bags are always identified)
+    * `storeInBundle(Bundle bundle)` / `restoreFromBundle(Bundle bundle)` - Serialization
+    * `contains(Item item)` - Checks if bag contains item (recursive)
+    * `grab(Item item)` - Checks if item can go in this bag type
+    * `getSize()` - Returns capacity based on owner
+    * `getEntityKind()` - Returns class simple name for item type matching
+    * `setOwner(Char owner)` - Sets owner for bag and all contained items
+  * Subclasses:
+    * ScrollHolder (scrolls)
+    * WandHolster (wands)
+    * PotionBelt (potions)
+    * Quiver (arrows)
+    * SeedPouch (seeds)
+    * Keyring (keys)
+    * Backpack (general inventory)
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists
+
+===== String Resources =====
+<code xml>
+<string name="Bag_ACOpen">Open</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:scroll_holder_item|Scroll Holder (Item)]] - Container for scrolls
+  * [[mr:wand_holster_item|Wand Holster (Item)]] - Container for wands
+  * [[mr:potion_belt_item|Potion Belt (Item)]] - Container for potions
+  * [[mr:quiver_item|Quiver (Item)]] - Container for arrows
+  * [[mr:seed_pouch_item|Seed Pouch (Item)]] - Container for seeds
+  * [[mr:keyring_item|Keyring (Item)]] - Container for keys
+  * [[mr:backpack_item|Backpack (Item)]] - Hero's main inventory
+
+===== Content Verification =====
+  * Information source: Java code (Bag.java and subclasses)
+  * Last updated: Based on Remixed Dungeon source code analysis

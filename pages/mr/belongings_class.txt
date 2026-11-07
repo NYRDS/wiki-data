@@ -1,0 +1,63 @@
+====== Belongings Class - Machine Readable Reference ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Belongings.java|Belongings.java]] - Hero's inventory and equipment management
+  * Implements: Iterable<Item>, Bundlable
+  * Key constants:
+    * `BACKPACK_SIZE = 18` - Default backpack capacity
+  * Key fields:
+    * `backpack` - Bag instance (Backpack subclass)
+    * `weapon`, `leftHand`, `armor`, `ring1`, `ring2` - Equipped items
+    * `availableSlots` - Set of available equipment slots per character
+  * Key methods:
+    * `getItemFromSlot(Slot slot)` - Returns equipped item for slot
+    * `setItemForSlot(EquipableItem item, Slot slot)` - Equips item in slot
+    * `collect(Item newItem)` - Adds item to backpack
+    * `removeItem(Item itemToRemove)` - Removes item (unequips if needed)
+    * `equip(EquipableItem item, Slot slot)` - Handles equip logic with slot conflicts
+    * `unequip(EquipableItem item)` - Unequips item
+    * `isEquipped(Item item)` - Checks if item is equipped
+    * `slotBlocked(Slot slot)` - Checks if slot is blocked
+    * `charge(boolean full)` / `discharge()` - Wand charge management
+    * `itemCount()` / `wandCount()` - Inventory statistics
+    * `setupFromJson(JSONObject desc)` - Loads equipment from JSON
+    * `storeInBundle(Bundle)` / `restoreFromBundle(Bundle)` - Serialization
+    * `getAvailableSlots()` - Returns available equipment slots
+    * `hasSlot(Slot slot)` - Checks if slot is available
+    * `encumbranceCheck()` - Checks for STR requirement violations
+    * `identify()` - Identifies all items
+    * `observe()` - Marks items as observed for badges
+    * `uncurseEquipped()` / `curseEquipped()` - Curse management on equipped items
+    * `dropAll()` - Drops all items
+  * Equipment Slots (enum):
+    * NONE, WEAPON, LEFT_HAND, ARMOR, ARTIFACT, LEFT_ARTIFACT
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists (but supports JSON serialization via setupFromJson)
+
+===== String Resources =====
+<code xml>
+<string name="Belongings_CantWearBoth">You can't wear both %1$s and %2$s</string>
+<string name="Artifact_Limit">You can't equip more than two artifacts</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists.
+Lua interface methods exposed via @LuaInterface:
+  * `slotBlocked(String slot)`
+  * `itemSlotName(Item item)`
+  * `getItem(String itemClass)`
+  * `checkItem(String itemClass)`
+  * `getItemPartialMatch(String itemClass)`
+  * `getEquipableItemPartialMatch(String itemClass)`
+  * `charge(boolean full)`
+  * `getOwner()`
+
+===== Related mr Entities =====
+  * [[mr:backpack_item|Backpack (Item)]] - Hero's main inventory bag
+  * [[mr:bag_item|Bag (Item)]] - Base container class
+  * [[mr:hero_class|Hero Class]] - Character classes with different slot availability
+
+===== Content Verification =====
+  * Information source: Java code (Belongings.java)
+  * Last updated: Based on Remixed Dungeon source code analysis

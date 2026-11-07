@@ -1,0 +1,36 @@
+====== SpellBook Artifact - Machine Readable Reference ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/artifacts/SpellBook.java|SpellBook.java]] - Main artifact class
+  * Extends: Artifact
+  * Key methods:
+    * `spell(String spellName)` - Sets the contained spell
+    * `spell()` - Returns the Spell instance
+    * `activate(Char ch)` - Sets default action to AC_READ
+    * `_execute(Char ch, String action)` - Handles AC_READ to cast the spell
+    * `desc()` - Returns identified/unidentified description
+    * `name()` - Returns name with spell name when identified
+    * `burn(int cell)` - Returns null (doesn't burn)
+    * `price()` - Returns 500 gold
+    * `bag()` - Returns ScrollHolder.class.getSimpleName() (stored in ScrollHolder)
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists
+
+===== String Resources =====
+<code xml>
+<string name="SpellBook_Name">spell book</string>
+<string name="SpellBook_Info_Identified">This spell book contains the %1$s spell. %2$s</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:scroll_holder_item|Scroll Holder (Item)]] - Container that stores spell books
+  * [[mr:spell|Spell]] - Base spell class
+  * [[mr:artifact_item|Artifact (Item)]] - Parent artifact type
+
+===== Content Verification =====
+  * Information source: Java code (SpellBook.java) and string resources
+  * Last updated: Based on Remixed Dungeon source code analysis
