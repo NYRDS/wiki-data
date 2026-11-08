@@ -1,23 +1,24 @@
-====== Terror Buff ======
+====== Terror (Buff) ======
 
 {{ rpd:images:terror_buff.png|Efeito de Estado Terror }}
 
-**Terror** é um efeito de status em Remixed Dungeon que faz com que personagens afetados fiquem amedrontados e fogem do combate.
+**Terror** (exibido no jogo como **\"Aterrorizado\"**) é um efeito de status no Remixed Dungeon que faz com que personagens afetados fiquem amedrontados e fujam do combate. A classe Java é chamada `Terror`, mas o nome de exibição localizado vem do recurso de string `TerrorBuff_Name` (\"Terrified\" em inglês, \"Aterrorizado\" em português).
 
 ==== Efeitos ====
   * **Amedrontado:** Personagens afetados ficam sobrecarregados de medo e tentarão fugir dos inimigos
   * **Movimento:** Personagens afetados se afastarão ativamente de inimigos à vista
   * **Duração:** O efeito dura 10 segundos por padrão (Terror.DURATION = 10f)
   * **Comportamento:** Personagens afetados evitam entrar em combate enquanto aterrorizados
+  * **Mensagem de Status:** Mostra \"assustado\" (Char_StaFrightened) no sprite do personagem
 
 ==== Causas ====
 Terror pode ser infligido por:
   * Habilidades especiais de certos mobs como Wraiths que usam ataques de terror
-  * Encantamentos de armas com efeitos de medo
+  * [[pt:rpd:horror_enchantment|Encantamento Horror]] em armas
   * Certos cajados com efeitos de medo
   * Alguns itens amaldiçoados ou efeitos de magia negra
 
-==== Contraefetos ====
+==== Contra-medidas ====
   * Poções e itens que curam efeitos de status podem remover o terror
   * Algumas criaturas podem ser imunes a efeitos de terror
   * Quando um mob aterrorizado é reduzido a 0 HP, o efeito de terror é removido pelo método Terror.recover()
@@ -25,21 +26,24 @@ Terror pode ser infligido por:
 ==== Implementação no Código ====
 Quando o buff Terror é aplicado:
   * Se o personagem afetado for um mob, qualquer animal de estimação que tiver é liberado
-  * O sprite do personagem mostra a mensagem de status "amedrontado"
-  * Para o inglês isso exibe "assustado", para outros idiomas a string localizada é usada (por exemplo, "испуган" em russo)
+  * O sprite do personagem mostra a mensagem de status \"assustado\"
+  * Para o português isso exibe \"assustado\", para outros idiomas a string localizada é usada (por exemplo, \"испуган\" em russo)
 
 ==== Código-fonte ====
   * Classe Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java|Terror.java]] - Implementação principal
   * Manipulador de IA: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Horrified.java|Horrified.java]] - Lida com comportamento de mobs aterrorizados
-  * Recursos de String (Inglês): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L338|Char_StaFrightened]] - string "frightened"
-  * Recursos de String (Português): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L425|Char_StaFrightened]] - string "assustado"
-  * Recursos de String (Português): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L2083|TerrorBuff_Info]] - "Parece que alguém estava muito assustado."
-  * Recursos de String (Russo): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L463|Char_StaFrightened]] - string "испуган"
+  * Recursos de String (Inglês): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L338|Char_StaFrightened]] - string \"frightened\"
+  * Recursos de String (Inglês): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L625|TerrorBuff_Info]] - \"It looks like someone was very frightened.\"
+  * Recursos de String (Inglês): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L624|TerrorBuff_Name]] - \"Terrified\" (nome de exibição)
+  * Recursos de String (Português): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L477|Char_StaFrightened]] - string \"assustado\"
+  * Recursos de String (Português): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L2264|TerrorBuff_Info]] - \"Parece que alguém estava muito assustado.\"
+  * Recursos de String (Português): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L2265|TerrorBuff_Name]] - \"Aterrorizado\" (nome de exibição)
+  * Recursos de String (Russo): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L463|Char_StaFrightened]] - string \"испуган\"
 
 ==== Ver Também ====
   * [[pt:rpd:status_effects|Efeitos de Status]]
-  * [[pt:rpd:bleeding_buff|Sangramento]]
-  * [[pt:rpd:poison_buff|Veneno]]
-  * [[pt:rpd:weakness_buff|Fraqueza]]
+  * [[pt:rpd:buffs|Buffs e Debuffs]]
+  * [[pt:rpd:control_effects|Efeitos de Controle]]
+  * [[pt:rpd:horror_enchantment|Encantamento Horror]]
 
-{{tag> rpd status_effects buffs terror control}}
+{{tag> rpd efeitos_status buffs terror controle }}

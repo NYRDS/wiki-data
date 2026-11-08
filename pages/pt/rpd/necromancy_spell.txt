@@ -1,0 +1,69 @@
+====== Necromancia (Afinidade Mágica) ======
+
+{{ rpd:images:necromancy.png|Afinidade Mágica Necromancia }}
+
+**Necromancia** é uma afinidade mágica no Remixed Pixel Dungeon que engloba uma coleção de feitiços necromânticos usados principalmente pela classe [[pt:rpd:necromancer_class|Necromante]]. Esses feitiços geralmente consomem almas como recurso e permitem invocação e manipulação de mortos-vivos.
+
+==== Descrição ====
+**Necromancia** é uma afinidade mágica que fornece acesso a várias habilidades necromânticas que utilizam almas coletadas através do combate. É um mecânica central da classe [[pt:rpd:necromancer_class|Necromante]], permitindo o lançamento de feitiços que consomem almas como recurso.
+
+==== Habilidades ====
+A afinidade mágica necromancia inclui os seguintes feitiços e habilidades principais:
+  * [[pt:rpd:summon_deathling_spell|Invocar Deathling]]: Usa almas para invocar um servo morto-vivo chamado [[pt:rpd:deathling_mob|Deathling]] que luta ao lado do jogador
+  * [[pt:rpd:raise_dead_spell|Erguer Mortos]]: Tentativa de erguer a criatura morta mais recente como um aliado temporário
+  * [[pt:rpd:exhumation_spell|Exumação]]: Cria um cadáver de um inimigo derrotado que pode ser usado depois
+  * [[pt:rpd:dark_sacrifice_spell|Sacrifício Sombrio]]: Sacrifica um aliado para ganhar almas
+  * [[pt:rpd:possess_spell|Possuir]]: Assume temporariamente o controle de um inimigo (habilidade avançada)
+  * **Reencarnação**: Uma habilidade poderosa que pode às vezes salvar o Necromante da morte ao custo de todas as almas coletadas e posses
+
+==== Mecânicas ====
+  * A afinidade necromancia opera em um sistema de recurso de **almas** específico da classe [[pt:rpd:necromancer_class|Necromante]]
+  * Diferentes habilidades requerem diferentes quantidades de almas para usar
+  * [[pt:rpd:soul_shard_item|Fragmentos de Alma]] e outros itens podem suplementar o recurso de almas
+  * A subclasse [[pt:rpd:lich_subclass|Lich]] tipicamente aumenta a capacidade de almas e o poder necromântico
+  * A maioria dos feitiços tem uma designação de afinidade mágica de "Necromancia" que pode ser vista em sua implementação
+
+==== Classes ====
+  * [[pt:rpd:necromancer_class|Necromante]] - Classe principal que usa feitiços de necromancia
+  * [[pt:rpd:lich_subclass|Lich]] - Subclasse que aprimora habilidades necromânticas
+
+==== Uso ====
+  * Essencial para a eficácia da classe [[pt:rpd:necromancer_class|Necromante]]
+  * Requer gerenciamento cuidadoso de reservas de almas
+  * Frequentemente usado para invocar [[pt:rpd:deathling_mob|Deathlings]] e outros mortos-vivos para suporte em combate
+  * Uso estratégico de almas é chave para a jogabilidade necromântica
+
+==== Estratégia ====
+Uso eficaz das habilidades de **Necromancia** requer:
+  * Manter reservas suficientes de almas para habilidades-chave
+  * Priorizar coleta de almas através do combate
+  * Balancear habilidades necromânticas ofensivas e defensivas
+  * Gerenciar servos mortos-vivos invocados efetivamente
+  * Entender quais feitiços são mais benéficos em diferentes cenários de combate
+
+==== Referências de Código ====
+  * Implementação de Afinidade Mágica: Encontrada em várias classes de feitiços como [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java#L19|SummonDeathling.java:19]] (magicAffinity = "Necromancy")
+  * Classe Relacionada: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/NecromancerArmor.java|NecromancerArmor.java]]
+  * Recursos de String: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L752-L755|Necromancy_ReincarnationName, Necromancy_ReincarnationTriggered, Necromancy_SummonDeathlingName, Necromancy_BecameALich]]
+  * Recursos de String (Título): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L757|Necromancy_Title]]
+  * Lista de Feitiços: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L8|CustomSpellsList.lua:8]] define feitiços associados com necromancia: {"RaiseDead","Exhumation", "DarkSacrifice","Possess"}
+  * Gerenciamento de Almas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L749-L750|Necromancy_NotEnoughSouls, Necromancy_SoulsCountLabel]]
+
+==== Verificação de Conteúdo ====
+  * Fonte da informação: Múltiplas implementações de feitiços em [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/|scripts/spells/]] e [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/|java/com/nyrds/pixeldungeon/mechanics/spells/]]
+  * Descrições de efeitos: Baseadas em análise de código e recursos de string de [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+  * Verificação de Afinidade Mágica: Encontrada em arquivos Lua como [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/RaiseDead.lua#L35|RaiseDead.lua:35]] onde magicAffinity = "Necromancy"
+
+==== Veja Também ====
+  * [[pt:rpd:necromancy_affinity_mechanic|Afinidade Necromancia]]
+  * [[pt:rpd:necromancer_class|Classe Necromante]]
+  * [[pt:rpd:lich_subclass|Subclasse Lich]]
+  * [[pt:rpd:souls|Recurso Almas]]
+  * [[pt:rpd:deathling_mob|Deathling]]
+  * [[pt:rpd:soul_shard_item|Fragmento de Alma]]
+  * [[pt:rpd:spells_overview|Feitiços]]
+  * [[pt:rpd:summon_deathling_spell|Invocar Deathling]]
+  * [[pt:rpd:raise_dead_spell|Erguer Mortos]]
+  * [[pt:rpd:exhumation_spell|Exumação]]
+
+{{tag> rpd feitiços necromante almas afinidade }}
