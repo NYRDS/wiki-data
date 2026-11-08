@@ -1,0 +1,46 @@
+====== Klasse Pantser ======
+
+==== Beschrijving ====
+**Klasse Pantser** verwijst naar de unieke, krachtige pantser sets beschikbaar voor elke held klasse in Remixed Dungeon. Deze pantsers bieden speciale vaardigheden en bonussen naast standaard verdedigende eigenschappen. Elke klasse heeft een uniek klasse pantser dat ontgrendeld wordt op tier 2 van die klasse's pantser boom.
+
+==== Klasse-Specifieke Pantsers ====
+  * [[en:rpd:warrior_class|Krijger]] → [[en:rpd:warrior_armor_item|Krijger Pantser]] (basis), [[en:rpd:gladiator_armor_item|Gladiator Pantser]] (Gladiator subklasse), [[en:rpd:berserker_armor_item|Berserker Pantser]] (Berserker subklasse)
+  * [[en:rpd:mage_class|Magier]] → [[en:rpd:mage_armor_item|Magier Pantser]] (basis), [[en:rpd:warlock_armor_item|Heksenaar Pantser]] (Heksenaar subklasse), [[en:rpd:battle_mage_armor_item|Strijdmagiër Pantser]] (Strijdmagiër subklasse)
+  * [[en:rpd:rogue_class|Schurk]] → [[en:rpd:rogue_armor_item|Schurk Pantser]] (basis), [[en:rpd:assassin_armor_item|Meuchelmoorder Pantser]] (Meuchelmoorder subklasse), [[en:rpd:freerunner_armor|Vrijloper Pantser]] (Vrijloper subklasse)
+  * [[en:rpd:huntress_class|Jachtvrouw]] → [[en:rpd:huntress_armor_item|Jachtvrouw Pantser]] (basis), [[en:rpd:sniper_armor_item|Sluipschutter Pantser]] (Sluipschutter subklasse), [[en:rpd:warden_armor_item|Wachter Pantser]] (Wachter subklasse)
+  * [[en:rpd:elf_class|Elf]] → [[en:rpd:elf_armor_item|Elf Pantser]] (basis), [[en:rpd:scout_armor_item|Verkener Pantser]] (Verkener subklasse), [[en:rpd:shaman_armor_item|Sjamaan Pantser]] (Sjamaan subklasse)
+  * [[en:rpd:necromancer_class|Necromancer]] → [[en:rpd:necromancer_armor_item|Necromancer Pantser]] (basis en Lich subklasse), [[en:rpd:witchdoctor_armor_item|Heksenmeester Pantser]] (Heksenmeester subklasse)
+  * [[en:rpd:doctor_class|Pestdokter]] → [[en:rpd:doctor_armor_item|Dokter Pantser (Pestdokter)]] — de Dokter klasse heeft geen subklassen; zijn pantser gebruikt de "Pestdokter" visuele voorkoming
+  * [[en:rpd:priest_class|Priester]] → [[en:rpd:priest_armor_item|Priester Pantser]] (alleen basis, nog geen speciale vaardigheid geïmplementeerd)
+  * [[en:rpd:gnoll_class|Gnoll]] → [[en:rpd:gnoll_armor_item|Gnoll Pantser]] (basis), [[en:rpd:guardian_armor_item|Bewaker Pantser]] (Bewaker subklasse), [[en:rpd:witchdoctor_armor_item|Heksenmeester Pantser]] (Heksenmeester subklasse)
+
+==== Speciale Vaardigheden ====
+Elk klasse pantser biedt unieke speciale vaardigheden:
+  * [[en:rpd:gladiator_armor_item|Gladiator Pantser]]: Wapen werpen en terug laten keren naar de held
+  * [[en:rpd:assassin_armor_item|Meuchelmoorder Pantser]]: Blink naar een doellocatie
+  * [[en:rpd:freerunner_armor_item|Vrijloper Pantser]]: Faseer door muren en krijg snelheidsboost
+  * [[en:rpd:battle_mage_armor_item|Strijdmagiër Pantser]]: Versterk de staf met magische energie
+  * [[en:rpd:shaman_armor_item|Sjamaan Pantser]]: Speciale staf-gebaseerde mechanismen
+  * [[en:rpd:witchdoctor_armor_item|Heksenmeester Pantser]]: Necromantie-gerelateerde vaardigheden
+  * [[en:rpd:plague_doctor_armor_item|Pestdokter Pantser]]: Ziekte en heling mechanismen
+  * [[en:rpd:warden_armor_item|Wachter Pantser]]: Terreinmanipulatie vaardigheden
+  * [[en:rpd:berserker_armor_item|Berserker Pantser]]: Woede en gezondheid conversie vaardigheden
+
+==== Verkrijging ====
+Klasse pantser kan op twee manieren verkregen worden:
+
+  1. **Craften:** Een [[en:rpd:armor_kit_item|Rustingset]] gebruiken op gewoon pantser van dezelfde tier
+
+  2. **Willekeurige Drops:** Gevonden als zeldzame drops van verschillende bronnen door de dungeon heen
+
+==== Opmerkingen ====
+  * Klasse pantsers kunnen niet geüpgraded worden en zijn altijd geïdentificeerd (zie `ClassArmor.isUpgradable()` / `isIdentified()`)
+  * Priester Pantser heeft momenteel geen speciale vaardigheid geïmplementeerd (`PriestArmor.special()` geeft een lege string terug)
+  * Bewaker Pantser en Heksenmeester Pantser zijn Gnoll subklasse pantsers: ondanks de subklasse mapping, checken beide momenteel `hero.getHeroClass() == HeroClass.GNOLL` wanneer gedragen
+  * De Dokter klasse (Pestdokter) heeft een enkele Dokter Pantser; de "Pestdokter" visuele naam wordt gebruikt voor zijn sprite (`DoctorArmor.getVisualName()`) — er is nog geen apart Pestdokter subklasse pantser in de code
+
+==== Inhoudsverificatie ====
+  * Informatiebron: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]]
+  * Laatst bijgewerkt: 21 december 2025
+
+{{tag> rpd items pantser }}
