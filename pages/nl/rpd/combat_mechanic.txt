@@ -1,0 +1,89 @@
+====== Gevecht ======
+
+{{ rpd:images:skeleton_mob.png|Gevecht }}
+
+**Gevecht** in Remixed Dungeon betreft interacties tussen het spelerpersonage en verschillende kerkerwezens. Dit systeem bepaalt hoe aanvallen, schade en verdedigingsacties in het spel werken.
+
+==== Basis Gevechtsmechanica ====
+  * **Aanvalsvaardigheid**: Bepaalt de kans om een vijand te raken (zie [[nl:rpd:accuracy_mechanic|Nauwkeurigheid]])
+  * **Verdedigingsvaardigheid**: Bepaalt de kans om een aanval te ontwijken (zie [[nl:rpd:evasion_mechanic|Ontwijking]])
+  * **Schade**: Het bedrag aan schade dat toegebracht wordt wanneer een aanval raakt
+  * **Pantser**: Reduceert inkomende fysieke schade gebaseerd op pantser niveau en [[nl:rpd:armor_glyphs|Glyphs]]
+
+==== Aantvalssysteem ====
+In gevecht wordt de kans om te raken als volgt berekend:
+  * Raakkans = Aanvalsvaardigheid / (Aanvalsvaardigheid + Verdedigingsvaardigheid)
+  * Minimale raakkans is 5% (altijd mogelijk om te raken)
+  * Maximale raakkans is 95% (altijd mogelijk om te missen)
+
+==== Schadeberekening ====
+  * **Wapenschade**: Basisschadebereik van uitgerust [[nl:rpd:weapons|wapen]]
+  * **Held Kracht**: Additionele schade gebaseerd op held's [[nl:rpd:strength_attribute|Kracht]]
+  * **Wapen Upgrades**: Elk upgrade niveau voegt +1 toe aan schadebereik (zie [[nl:rpd:upgrading|Upgraden]])
+  * Eindschade = Willekeurige waarde in wapens schadebereik + kracht bonus
+
+==== Verdedigingsacties ====
+  * **Ontwijken**: Gebaseerd op Verdedigingsvaardigheid en kan alle schade van een aanval voorkomen
+  * **Blokkeren**: [[nl:rpd:armor_item|Pantser]] reduceert inkomende schade met een percentage
+  * **Ontwijking**: Speciale vaardigheden en items kunnen ontwijkkans verhogen (zie [[nl:rpd:evasion_mechanic|Ontwijking]])
+  * **Weerstanden**: Bepaalde [[nl:rpd:buffs|buffs]] en uitrusting bieden weerstand tegen specifieke schadestypes (zie [[nl:rpd:resistances|Weerstanden]])
+
+==== Gevechtstypes ====
+  * **Melee Gevecht**: Nabegevechtsaanvallen gebruikend [[nl:rpd:swords|zwaarden]], [[nl:rpd:axes_item|bijlen]], en [[nl:rpd:mace_item|maces]] (zie [[nl:rpd:melee_combat|Melee Gevecht]])
+  * **Afstandsgevecht**: Aanvallen op afstand gebruikend [[nl:rpd:ranged_weapons|afstandwapens]], [[nl:rpd:wands|staven]], of [[nl:rpd:spells_overview|spreuken]] (zie [[nl:rpd:ranged_combat|Afstandsgevecht]])
+  * **Magisch Gevecht**: Offensieve [[nl:rpd:spells_overview|spreuken]] en vaardigheden die fysiek pantser negeren
+
+==== Gevechtsstrategieën ====
+  * **Positionering**: Gebruik smalle gangen om [[nl:rpd:mobs|vijanden]] één voor één te vechten
+  * **Tactische Terugtrekking**: Gebruik deuren om vijanden te scheiden en ze afzonderlijk te vechten
+  * **Status Effecten**: Gebruik [[nl:rpd:blindness_buff|blindheid]], [[nl:rpd:paralysis_buff|verlamming]], of andere [[nl:rpd:debuffs_mechanic|debuffs]] om voordelen te krijgen
+  * **Omgevingsbewustzijn**: Gebruik [[nl:rpd:trap_mechanic|vallen]], afgronden, en andere omgevingskenmerken tot je voordeel
+
+==== Speciale Gevechtsmechanica ====
+  * **Verrassingsaanval**: Achtersteken [[nl:rpd:mobs|vijanden]] van achteren voor bonusschade (zie [[nl:rpd:assassin_subclass|Assassin]] subclass)
+  * **Kritieke Treffers**: Willekeurige kans om maximaal mogelijke schade te doen
+  * **Elementaire Schade**: Sommige [[nl:rpd:weapons|wapens]] en [[nl:rpd:spells_overview|spreuken]] negeren [[nl:rpd:armor_item|pantser]] volledig
+  * **Status Effecten**: Verschillende effecten als [[nl:rpd:burning_buff|branding]], [[nl:rpd:poison_buff|vergiftiging]], of [[nl:rpd:paralysis_buff|verlamming]] kunnen gevechtdynamiek veranderen
+
+==== Afstandsgevecht Specificaties ====
+  * Gebruikt [[nl:rpd:ballistica_mechanic|Ballistica]] voor line-of-sight berekening
+  * Afstandwapens hebben beperkte munitie
+  * Sommige afstandwapens hebben speciale effecten als doorboring of gebiedsschade
+  * Staven en spreuken bieden magische afstandsopties
+
+==== Uitrusting Invloed ====
+  * **Wapens**: Beïnvloeden schade-output en speciale effecten (zie [[nl:rpd:weapons|Wapens]])
+  * **Pantser**: Reduceert inkomende fysieke schade (zie [[nl:rpd:armor_item|Pantser]])
+  * **Ringen**: Bieden verschillende gevechtsbonussen (schade, [[nl:rpd:accuracy_mechanic|nauwkeurigheid]], [[nl:rpd:evasion_mechanic|ontwijking]], etc.) (zie [[nl:rpd:ring_item|Ringen]])
+  * **Artefacten**: Speciale items met unieke gevechtscapaciteiten (zie [[nl:rpd:artifacts|Artefacten]])
+
+==== Gevechtsgerelateerde Buffs ====
+  * **Woede**: Verhoogt schade-output tijdelijk (zie [[nl:rpd:fury_buff|Woede]])
+  * **Onzichtbaarheid**: Staat toe om aan te vallen zonder tegenaanval (zie [[nl:rpd:invisibility_buff|Onzichtbaarheid]])
+  * **Verlamming**: Schakelt vijandacties uit (zie [[nl:rpd:paralysis_buff|Verlamming]])
+  * **Vrees**: Dwingt vijanden te vluchten (zie [[nl:rpd:terror_buff|Vrees]])
+
+==== Technische Details ====
+  * Kern gevechtslogica: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]]
+  * Aanvalsmechanica: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java#L125-L180|Aanval implementatie]]
+  * Schadeberekeningen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java#L150-L175|Schadeberekening]]
+  * Ballistica systeem (afstandsgevecht): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]]
+  * Raakkans berekening: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L240-L250|Char.java#hitChance berekening]]
+  * Verdediging berekening: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L230-L235|Char.java#verdediging berekening]]
+  * Gevechtsschade systeem: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L90-L120|Char.java#schade verwerking]]
+  * Kritieke treffer implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Mace.java#L45-L50|kritieke treffer voorbeeld]]
+  * Ontwijkmechanica: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L260-L270|Char.java#ontwijking implementatie]]
+  * Pantser schadereductie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L100-L110|Armor.java#schadereductie]]
+  * Gevechts AI besluitvorming: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java#L100-L150|Mob.java#gevechts AI methoden]]
+  * Verrassingsaanval mechanica: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L35-L40|HeroSubClass.java#achterstek implementatie]]
+  * Gevechtsgerelateerde string resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2394-L2400|Raak strings]] (Char_Hit_0, Char_Hit_1, Char_Hit_2), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L326-L327|Mis strings]] (Char_YouMissed, Char_SmbMissed), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1219|Verdediging strings]] (verschillende mob verdediging strings zoals Bat_Defense, Crab_Defense, etc.), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2263|AttackSkill string]] (WndHero_AttackSkill), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1089-L1090|Schade strings]] (MeleeWeapon_Info2a, MeleeWeapon_Info2b), [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1973-L1976|Pantser strings]] (Armor_Info1-Armor_Info4)
+
+==== Zie Ook ====
+  * [[nl:rpd:melee_combat|Melee Gevecht]] - Details over nabegevecht
+  * [[nl:rpd:ranged_combat|Afstandsgevecht]] - Details over afstandsgevecht
+  * [[nl:rpd:mobs|Vijanden]] - Informatie over kerkerwezens
+  * [[nl:rpd:buffs|Buffs en Debuffs]] - Status effecten in gevecht
+  * [[nl:rpd:enchantments|Wapen Betoveringen]] - Speciale wapen effecten
+  * [[nl:rpd:armor_glyphs|Pantser Glyphs]] - Speciale pantser effecten
+
+{{tag> rpd combat mechanics }}
