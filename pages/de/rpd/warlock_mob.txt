@@ -1,0 +1,72 @@
+====== Warlock ======
+
+{{ rpd:images:warlock_mob.png|Warlock Sprite }}
+
+Der **Warlock** ist ein magiebegabter Gegner in Remixed Dungeon, der typischerweise als Zwergen-Warlock mit fortgeschrittenen magischen Fähigkeiten auftritt. Als die Interessen der Zwerge von der Ingenieurskunst zu den arkanen Künsten wechselten, gelangten Warlocks an die Macht in der Stadt.
+
+==== Beschreibung ====
+Als die Interessen der Zwerge von der Ingenieurskunst zu den arkanen Künsten wechselten, gelangten Warlocks an die Macht in der Stadt. Sie begannen mit Elementarmagie, wechselten aber bald zu Dämonologie und Nekromantie. Warlocks sind furchteinflößende Zauberer, die in den tieferen Teilen des Dungeons anzutreffen sind.
+
+==== Werte ====
+  * **HP:** 70
+  * **Angriffsfertigkeit:** 25
+  * **Verteidigungsfertigkeit:** 18
+  * **Schaden:** 12-20
+  * **Verteidigungsrate (DR):** 8
+  * **EP für Tötung:** 11
+  * **Maximale Stufe:** 21
+
+==== Verhalten ====
+  * **Magiefokus:** Warlocks nutzen primär magische Angriffe statt physischem Kampf
+  * **Teleportationsverteidigung:** Wenn die Gesundheit unter bestimmte Schwellenwerte fällt (2/3 und 1/3), können Warlocks vor Angreifern wegblinken
+  * **Blink-Mechanik:**
+    * Bei 2/3 verbleibender Gesundheit teleportiert sich der Warlock weg, wenn er Schaden nimmt, der ihn unter diesen Schwellenwert bringen würde
+    * Bei 1/3 verbleibender Gesundheit blinkt der Warlock erneut weg, wenn er Schaden nimmt, der ihn unter diesen Schwellenwert bringen würde
+  * **Zapping-Angriffe:** Nutzt Schattenblitz-Angriffe gegen Feinde
+
+==== Spezielle Fähigkeiten ====
+  * **Schwächefluch:** Beim erfolgreichen Zappen eines Gegners besteht eine 50%ige Chance, das Ziel mit [[de:rpd:weakness_buff|Schwäche]] zu belegen
+  * **Todesresistenz:** Besitzt Resistenz gegen todesbezogene Effekte (Immunität gegen [[de:rpd:death_enchantment|Todes]]-Verzauberung)
+  * **Ausweichmechanik:** Nutzt Teleportation als Verteidigungsmechanismus anstelle traditionellen Ausweichens
+
+==== Beute ====
+  * [[de:rpd:potion_item|Trank]] (83% Chance) - Kategorie: Trank
+
+==== Strategien ====
+  * **Nahkampf:** Warlocks sind im Nahkampf verwundbar, wo sie nicht effektiv zappen können
+  * **Blink-Störung:** Die Teleportationsfähigkeit kann unvorhersehbar sein, daher die Positionierung sorgfältig planen
+  * **Vorsicht bei Fernkampf:** Sei vorsichtig beim Kampf aus der Distanz, da Warlocks Schattenblitze effektiv wirken können
+
+==== Code-Referenzen ====
+  * Java-Klasse: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java|Warlock.java]] - Kernimplementierung
+  * Entity Kind: getEntityKind() gibt "Warlock" im Java-Code zurück
+  * Werte-Verifikation: Direkt aus Warlock.java-Konstruktor extrahiert (hp: 70, Angriffsfertigkeit: 25, Verteidigungsfertigkeit: 18, Schaden: 12-20, Verteidigungsrate: 8, EP: 11, maxLvl: 21)
+  * Blink-Mechanik: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L46-L56|defenseProc-Methode]] handhabt Teleportation bei Gesundheitsschwellenwerten (2/3 und 1/3)
+  * Zapping-Fähigkeit: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L75-L85|zap-Methode]] mit Schwäche-Effekt
+  * Schwäche-Effekt: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L78-L79|Random.Int(2) == 0]] für 50% Chance zur Anwendung von Schwäche
+  * Todesresistenz: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L36|addResistance(Death.class)]] - Immunität gegen Todes-Verzauberung
+  * Blink-Implementierung: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/BlinkAwayFromChar.java|BlinkAwayFromChar-Klasse]] - handhabt die eigentliche Teleportation
+  * Beutesystem: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L38|loot(Treasury.Category.POTION, 0.83f)]] - 83% Chance für Tranktropfen
+  * Treasury-System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java|Treasury-Klasse]] - verwaltet zufällige Beutetropfen
+  * Ballistica-System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L70-L72|canAttack-Methode]] - handhabt Fernangriffs-Zielauswahl
+  * Zap-Effekt: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L40-L44|fx-Methode]] - visuelle und Soundeffekte für Zapping
+  * Todesmeldung: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L81-L83|checkDeathReport]] - handhabt Todesmeldungen
+  * String-Ressourcen:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1356-L1361|Englische Strings]] - Name, Geschlecht, Objektiv, Beschreibung und Getötet-Meldungen
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1341-L1346|Russische Strings]] - Russische Lokalisierung
+  * Magic Missile Effekt: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java|MagicMissile-Klasse]] - visueller Zap-Effekt
+  * Schwäche-Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Weakness.java|Weakness-Klasse]] - Implementierung des Schwäche-Effekts
+  * Heldenklassen-Geschlechtsprüfung: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L78|getHeroClass()]] - prüft Heldengeschlecht für Schwäche-Effekt
+  * Maschinenlesbare Daten: [[mr:warlock_mob|mr:warlock_mob]]
+
+==== Siehe auch ====
+  * [[de:rpd:mobs|Gegner]]
+  * [[de:rpd:weakness_buff|Schwäche-Buff]]
+  * [[de:rpd:hero_subclasses|Helden-Unterklassen]]
+  * [[de:rpd:mage_class|Magier-Klasse]]
+  * [[de:rpd:warlock_subclass|Warlock-Unterklasse]]
+  * [[de:rpd:death_enchantment|Todes-Verzauberung]]
+  * [[de:rpd:zapping|Zapping-Mechanik]]
+  * [[de:rpd:ballistica_mechanic|Ballistica-System]]
+
+{{tag> rpd gegner magie warlock zwerg zauberer nekromantie schatten}}
