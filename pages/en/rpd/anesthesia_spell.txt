@@ -1,0 +1,52 @@
+====== Anesthesia ======
+
+**Anesthesia** is a Plague Doctor class spell that plunges the target into a deep, unnatural sleep from which they cannot wake even when damaged.
+
+==== Description ====
+Anesthesia induces a deep, unnatural sleep in your target. Even the most violent attacks won't wake them from this slumber. The target feels no pain and won't wake up from attacks, but still takes damage.
+
+==== Stats ====
+  * **Magic Affinity:** PlagueDoctor
+  * **Targeting Type:** Character (not self)
+  * **Level:** 1
+  * **Mana Cost:** 6
+  * **Cast Time:** 1 turn
+  * **Cooldown:** 10 turns
+  * **Sleep Duration:** 10 × skill level turns
+  * **Anesthesia Duration:** 10 × skill level turns
+
+==== Mechanics ====
+  * Targets any character except the caster
+  * Applies two simultaneous effects:
+    * **Sleep:** Target falls asleep for 10 × skill level turns
+    * **Anesthesia:** Special buff preventing wake-up from damage for 10 × skill level turns
+  * Visual effect: ElmoParticle burst (6 particles)
+  * Sound effect: Meld sound (snd_meld)
+  * Log message: "%s falls into a deep, dreamless sleep."
+
+==== Strategy ====
+  * Ideal for incapacitating dangerous enemies before dealing damage with the Bone Saw (which deals x2 damage to paralyzed/sleeping targets)
+  * Allows safe passage past strong opponents
+  * Combines with Bone Saw for maximum damage output
+  * High mana cost (6) and cooldown (10 turns) require careful resource management
+  * Does not work on bosses immune to crowd control (check immunities)
+
+==== Related ====
+  * [[en:rpd:doctor_class|Plague Doctor]] — class that receives this spell
+  * [[en:rpd:bone_saw_item|Bone Saw]] — deals double damage to sleeping/paralyzed targets
+  * [[en:rpd:sleep_buff|Sleep]] — base sleep effect
+  * [[en:rpd:anesthesia_buff|Anesthesia (Buff)]] — effect preventing wake-up from damage
+
+==== Data Validation ====
+  * Source: Lua script `scripts/spells/Anesthesia.lua`
+  * Stats extracted from the script's `desc()` function
+  * Description based on string resources (`Anesthesia_Info`, `Anesthesia_Name`)
+  * Buff name: `AnesthesiaBuff_Name`, description: `AnesthesiaBuff_Info`
+
+==== Source Code ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Anesthesia.lua|Anesthesia.lua]] — spell implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]] — spell library
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L68-L72|English strings]] — name, description, messages
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L65-L69|Russian strings]] — localization
+
+{{tag> rpd spells plaguedoctor }}

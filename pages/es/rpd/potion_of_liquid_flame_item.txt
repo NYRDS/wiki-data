@@ -1,0 +1,93 @@
+====== Poción de Llama Líquida ======
+
+{{ rpd:images:potion_of_liquid_flame_item.png|Poción de Llama Líquida }}
+
+La **Poción de Llama Líquida** es una poción arrojadiza en Remixed Dungeon que crea fuego al ser lanzada.
+
+==== Descripción ====
+Un frasco de cristal lleno de un extraño líquido que se enciende al contacto con el aire. Cuando se lanza a una ubicación, crea una zona de fuego que quema a los enemigos y puede extenderse al terreno inflamable. Según los recursos de cadena: "Este frasco contiene un compuesto inestable que explota violentamente cuando se expone al aire libre."
+
+==== Estadísticas ====
+  * **Tipo:** Poción Arrojadiza
+  * **Peso:** 1
+  * **Precio:** No se puede comprar en tiendas; se encuentra como botín aleatorio
+  * **Radio de efecto:** Área 3x3 alrededor del punto de impacto
+  * **Duración:** El fuego persiste varios turnos antes de extinguirse
+  * **Rareza:** Especial
+  * **Efecto especial:** Crea una zona de daño por fuego al romperse en el suelo
+  * **Uso:** Rómpela en el suelo para crear daño por fuego en área (se consume al romperse)
+
+==== Uso ====
+  * **Ofensivo:** Úsala para dañar grupos de enemigos
+  * **Denegación de área:** Bloquea pasajes o impide el avance enemigo
+  * **Interacción ambiental:** Enciende terreno inflamable para ventaja táctica
+  * **Alquimia:** Requerida para crear Flechas de Fuego mediante humedecimiento
+
+==== Estrategia ====
+  * Excelente para limpiar grupos de enemigos en pasillos o habitaciones pequeñas
+  * Efectiva contra grandes grupos de enemigos débiles
+  * Útil para crear barreras de fuego que bloqueen el movimiento enemigo
+  * Buena para usar cuando estás rodeado de enemigos
+  * Puede usarse para encender terreno inflamable para denegación de área continua
+  * Considera usarla antes de combates contra jefes para infligir daño inicial
+  * Invaluable para crear Flechas de Fuego mediante el proceso de humedecimiento
+  * Ten cuidado de no atraparte tú mismo en el fuego
+  * Útil contra grupos de enemigos que te han acorralado
+
+==== Obtención ====
+  * Creada por alquimia usando semillas de Flor de Fuego
+  * Encontrada en contenedores especiales y áreas secretas
+  * Ocasionalmente soltada por enemigos basados en fuego
+  * Parte de recetas especiales y combinaciones de alquimia
+
+==== Efecto ====
+Al romperse en el suelo, la Poción de Llama Líquida crea una zona de fuego ardiente que daña a todas las criaturas en el área durante varios turnos.
+
+Según los recursos de cadena del juego, la descripción dice: "Este frasco contiene un compuesto inestable que explota violentamente cuando se expone al aire libre."
+
+==== Referencias de Código ====
+  * **Implementación Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java|PotionOfLiquidFlame.java]]
+  * **Clase Base Poción:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]]
+  * **Mecánica de Rotura:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L20-L28|método shatter]] - crea 10 unidades de llama líquida en la ubicación de impacto
+  * **Efecto Llama Líquida:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|Clase LiquidFlame]] - maneja el daño por fuego continuo
+  * **Método Seed de Blob:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java#L35-L42|Blob.seed]] - crea el efecto de llama líquida
+  * **Factor de Calidad:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L25|qualityFactor()]] - afecta el volumen de llama líquida producida
+  * **Efecto de Salpicadura:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L24|método splash]] - efecto visual al romperse
+  * **Identificación de Poción:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L23|método setKnown]] - marca la poción como identificada al romperse
+  * **Efecto de Sonido:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L25|SND_SHATTER]] - sonido al romperse la botella
+  * **Soporte de Humedecimiento:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L32-L38|método moistenArrow]] - permite la creación de Flechas de Fuego
+  * **Precio Base:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L30|método basePrice]] - valor de 40 de oro
+  * **Recursos de Cadena:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1652-L1653|PotionOfLiquidFlame_Name, PotionOfLiquidFlame_Info]] - muestra "Este frasco contiene un compuesto inestable que explota violentamente cuando se expone al aire libre."
+  * **Índice de Etiqueta:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L11|labelIndex = 1]] - identifica el tipo de poción en la UI
+  * **Creación de Flecha de Fuego:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L32-L38|método moistenArrow]] - crea objetos FireArrow de flechas regulares
+  * **Integración GameScene:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java#L27|GameScene.add(fire)]] - añade el blob de fuego creado a la escena de juego actual
+  * **Clase Base Poción Mejorable:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|UpgradablePotion]] - proporciona mecánicas de mejora
+  * **Imagen de Sprite:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/items/potions.png|items/potions.png]] - Atlas de sprites de pociones que contiene el tile de esta poción
+  * **Manejador de Estado de Objeto:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ItemStatusHandler.java|Clase ItemStatusHandler]] - Maneja el sistema de identificación para este objeto
+  * **Colores de Salpicadura:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L233-L240|array splashColors]] - Extrae el color del sprite de la poción para efectos de salpicadura
+  * **Apilabilidad:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L39|stackable = true]] - Las pociones se pueden apilar
+  * **Acción Predeterminada:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L81-L87|método knownHarmful()]] - Las pociones dañinas tienen como acción predeterminada lanzar
+  * **Acciones:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L71-L77|método actions()]] - Añade acciones de beber y humedecer
+  * **Integración Cinturón de Pociones:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L253-L255|método bag()]] - Se puede guardar en Cinturón de Pociones
+  * **Seguimiento de Logros:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java#L145|Badges.validateAllPotionsIdentified]] - Rastrea cuando todas las pociones están identificadas
+  * **Mecánica de Daño por Fuego:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|Clase LiquidFlame]] - Implementación de daño por fuego a lo largo del tiempo
+  * **Mecánica de Propagación de Fuego:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java#L35-L49|método spread]] - Cómo el fuego se propaga a celdas adyacentes
+  * **Resistencia al Fuego:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L154-L159|método Char.resist()]] - Cómo los personajes resisten el daño por fuego
+  * **Configuración Tesorería:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L133|Treasury.json]] - tasa de aparición en ubicaciones de tesoro regulares
+  * **Configuración Tesorería de Arañas:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L130|SpidersTreasury.json]] - tasa de aparición en ubicaciones de tesoro de arañas
+  * **Datos legibles por máquina:** [[mr:potion_of_liquid_flame_item|mr:potion_of_liquid_flame_item]]
+
+==== Objetos Relacionados ====
+  * [[es:rpd:potion_item|Pociones]] - Información general sobre pociones
+  * [[es:rpd:potion_of_frost_item|Poción de Escarcha]] - Efecto de elemento opuesto
+  * [[es:rpd:liquid_flame_blob|Llama Líquida]] - El efecto ambiental creado
+  * [[es:rpd:burning_buff|Fuego/Quemadura]] - Mecánicas generales de fuego y efecto de estado de quemadura
+  * [[es:rpd:moisten_mechanic|Humedecer]] - Proceso para crear Flechas de Fuego
+  * [[es:rpd:fire_arrow_item|Flecha de Fuego]] - Munición creada usando esta poción
+  * [[es:rpd:burning_buff|Efecto de Estado Quemadura]] - Efectos de estar en llamas
+  * [[es:rpd:alchemy_mechanic|Alquimia]] - Información sobre elaboración de pociones
+  * [[es:rpd:fire_trap|Trampa de Fuego]] - Mecánicas similares basadas en fuego
+  * [[es:rpd:wand_of_firebolt_item|Varita de Bola de Fuego]] - Alternativa de varita basada en fuego
+  * [[es:rpd:hero_class|Héroe]] - Personaje principal jugable
+
+{{tag> rpd items potions liquid_flame fire burning throwable alchemy }}
