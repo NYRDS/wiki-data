@@ -1,0 +1,41 @@
+====== Ring of Stone Walking - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java|RingOfStoneWalking.java]] - Main ring implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java#L27|StoneWalking buff class]] - Inner buff class implementing Doom interface
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] - Registers the StoneWalking buff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registers the RingOfStoneWalking item class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] - Sprite index RING_OF_STONE_WALKING = 133
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists.
+
+===== String Resources =====
+<code xml>
+<string name="StoneBloodBuff_Name">Stone blood</string>
+<string name="StoneBloodBuff_Info">The blood turns stone which merges with the walls nearby and makes traversing them much easier, but at what cost.</string>
+<string name="RingOfStoneWalking_ImmuredInStone">You have been immured in stone. Forever.</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists.
+
+===== Additional Information =====
+  * The RingOfStoneWalking extends Artifact (not Ring base class)
+  * When equipped, applies the StoneWalking buff (ArtifactBuff implementing Doom)
+  * StoneWalking buff:
+    - Icon: BuffIndicator.STONEBLOOD
+    - Name/desc from string resources: StoneBloodBuff_Name, StoneBloodBuff_Info
+    - On hero death: validates DeathInStone badge, fails game with "immured in stone" message
+  * Stored in keyring bag (Bag.KEYRING)
+  * Identified by default (identify() called in constructor)
+  * Image: ItemSpriteSheet.RING_OF_STONE_WALKING (index 133)
+  * The buff effect allows walking through solid walls
+  * Health cost per step in walls: max(currentHP / 2, 2)
+  * Does not function on boss levels (checked in movement logic)
+  * Death while buffed results in "immured in stone" game over
+
+===== Related mr Entities =====
+  * [[mr:stoneblood_buff|StoneBlood Buff]]
+  * [[mr:artifact_item|Artifact Item]]
+  * [[mr:badges|Badges]] (DEATH_IN_STONE)
