@@ -1,0 +1,62 @@
+====== الطعام الفاسد ======
+{{ rpd:images:rotten_ration_item.png|الطعام الفاسد }}
+
+**الطعام الفاسد** هو نوع من عناصر الطعام في Remixed Dungeon الذي فسد وأصبح ضاراً عند تناوله. يتم إنشاء هذه العناصر عندما تترك أطعمة دون تناول لفترة طويلة أو تتعرض للفساد.
+
+==== الوصف ====
+وفقاً لوصف اللعبة: \"مقزز!\"
+
+==== الصنف في الكود ====
+  * **صنف جافا:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]]
+  * **يرث من:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/Food.java|Food.java]]
+  * **صنف تجريدي:** RottenFood هو صنف تجريدي ترث منه أصناف الطعام الفاسد الأخرى
+
+==== الخصائص ====
+  * **إشباع الجوع:** (Hunger.STARVING - Hunger.HUNGRY)/2 وحدة (60 وحدة)
+  * **السعر:** 1 ذهبية لكل وحدة
+  * **النوع:** عنصر طعام
+  * **قابل للتكديس:** نعم (يرث من Food)
+  * **القيمة الغذائية:** يوفر شبعاً قليلاً لكن له تأثيرات سلبية
+
+==== التأثيرات عند التناول ====
+  * يعرض رسالة: \"مقزز!\"
+  * ينشئ عشوائياً سحب غاز خطرة في موقع اللاعب:
+    * غاز الارتباك: فرصة 25% (قوة 150 + 10 × عمق الزنزانة)
+    * غاز الشلل: فرصة 25% (قوة 500)
+    * غاز سام: فرصة 25% (قوة 500)
+    * بدون تأثير: فرصة 25%
+
+==== الأنواع الفرعية ====
+  * [[ar:rpd:rotten_meat_item|لحم متعفن]] - لحم غامض فاسد
+  * [[ar:rpd:rotten_ration_item|وجبة متعفنة]] - حصة طعام حديدية فاسدة
+  * [[ar:rpd:rotten_pumpkin_pie_item|فطيرة يقطين فاسدة]] - فطيرة يقطين فاسدة
+
+==== الميكانيكا ====
+  * عند الرمي، قد ينشئ سحب غاز في موقع الهبوط (إذا لم يكن في كائن مستوى يؤثر على العناصر)
+  * يمكن تنقيته باستخدام [[ar:rpd:potion_of_purity_item|جرعة التنقية]]
+
+==== المحتوى تم التحقق منه ====
+  * مصدر المعلومات: صنف جافا [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]]
+  * التأثيرات: مبنية على التنفيذ في RottenFood.java
+  * موارد النصوص: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ar/strings_all.xml#L869|RottenFood_Message]]
+
+==== عناصر ذات صلة ====
+  * [[ar:rpd:food_item|طعام]] - معلومات عامة عن عناصر الطعام
+  * [[ar:rpd:mystery_meat_item|لحم غامض]] - يمكن أن يصبح لحم متعفن
+  * [[ar:rpd:ration_item|وجبة طعام]] - يمكن أن تصبح وجبة متعفنة
+  * [[ar:rpd:potion_of_purity_item|جرعة التنقية]] - يمكن أن تنقي الطعام الفاسد
+  * [[ar:rpd:chargrilled_meat_item|لحم مشوي على الجمر]] - بديل آمن للحم الغامض
+
+==== صفحات ذات صلة ====
+  * [[ar:rpd:hunger_buff|جوع]] - ميكانيكا الجوع بالتفصيل
+  * [[ar:rpd:confusion_gas_buff|غاز الارتباك]] - تأثير غاز يمكن أن يسببه
+  * [[ar:rpd:paralytic_gas_buff|غاز الشلل]] - تأثير غاز يمكن أن يسببه
+  * [[ar:rpd:toxic_gas_buff|غاز سام]] - تأثير غاز يمكن أن يسببه
+
+==== لغات أخرى ====
+  * [[en:rpd:rotten_food_item|English]]
+  * [[ru:rpd:rotten_food_item|Русский]]
+  * [[es:rpd:rotten_food_item|Español]]
+  * [[pt:rpd:rotten_food_item|Português]]
+
+{{tag> rpd items food rotten }}

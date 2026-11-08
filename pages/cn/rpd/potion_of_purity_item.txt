@@ -1,28 +1,28 @@
 ====== 净化药水 ======
-
 {{ rpd:images:potion_of_purity_item.png|Potion of Purity }}
 
-**净化药水** 是 Remixed Dungeon 中的一种罕见药水，可以中和有害气体并治愈负面状态效果。
+**净化药水** 是 Remixed Dungeon 中的一种罕见药水，可以中和有害气体并提供气体免疫。
 
 ==== 物品描述 ====
   * **类型:** 药水
   * **稀有度:** 稀有
-  * **特殊效果:** 治愈负面状态效果并中和气体
-  * **用途:** 一次性使用物品（饮用后消耗）
+  * **特殊效果:** 中和有害气体并提供临时气体免疫
+  * **用途:** 一次性使用物品（饮用或投掷后消耗）
   * **基础价格:** 50 金币（识别后）
 
 ==== 特殊机制 ====
-  * **状态效果疗法:** 饮用时，治愈所有负面状态效果（中毒、麻痹、致盲等）
-  * **气体中和:** 打破时，在作用范围内中和所有有害气体
-  * **作用范围:** 气体中和效果影响爆炸点周围 3x3 的区域
+  * **气体免疫:** 饮用时，提供临时免疫有害气体的效果（持续时间 5 秒 × 品质等级）
+  * **气体中和:** 投掷打破时，在作用范围内中和所有有害气体（毒气、麻痹气体、混乱气体）
+  * **作用范围:** 气体中和效果影响爆炸点周围距离 2 的区域（5x5 区域）
+  * **净化食物:** 可净化腐烂食物，将其还原为普通食物
   * **识别:** 在饮用、打破或在物品栏查看时自动识别（如果尚未识别）
 
 ==== 策略 ====
   * 是逃离气体陷阱或有毒区域的必备物品
-  * 在遭受负面状态效果时非常有价值
-  * 进入已知存在有害气体的区域前使用
-  * 有助于保护宠物和盟友免受负面效果影响
-  * 可以防御性地清理危险区域
+  * 进入已知存在有害气体的区域前饮用可获得临时免疫
+  * 投掷打破可清理危险区域中的有害气体
+  * 可用于净化腐烂食物，避免负面效果
+  * 有助于保护宠物和盟友免受气体影响
 
 ==== 获取方式 ====
   * 在地牢各层中发现
@@ -32,25 +32,25 @@
   * 在某些版本中可通过炼金术制作
 
 ==== 效果 ====
-饮用后，净化药水会治愈所有负面状态效果。打破后，会在 3x3 区域内中和所有有害气体。
+饮用后，净化药水提供临时气体免疫。投掷打破后，会在距离 2 的范围内（5x5 区域）中和所有有害气体（毒气、麻痹气体、混乱气体）。也可用于净化腐烂食物。
 
-根据游戏文本资源："这种药水会迅速中和掉作用区域内的一切有害气体。饮用它将使你暂时免疫这些气体。"
+根据游戏文本资源：\"这种药水会迅速中和掉作用区域内的一切有害气体。饮用它将使你暂时免疫这些气体。\"
 
 ==== 源代码引用 ====
   * **Java 类**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfPurity.java|com.watabou.pixeldungeon.items.potions.PotionOfPurity]]
   * **药水系统**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|基础药水类 UpgradablePotion]]
-  * **基础价格**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfPurity.java#L30|PotionOfPurity.java 中的 basePrice() 方法]]
+  * **基础价格**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfPurity.java#L110|PotionOfPurity.java 中的 basePrice() 方法]]
 
 ==== 文本资源 ====
-  * 英语: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2183-L2185|PotionOfPurity 字符串]] - 名称和描述
-  * 中文: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L2183-L2185|PotionOfPurity 字符串]] - 中文本地化
+  * 英语: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1715-L1718|PotionOfPurity 字符串]] - 名称和描述
+  * 中文: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1715-L1718|PotionOfPurity 字符串]] - 中文本地化
   * 所有语言: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/res/values-*/strings_all.xml|本地化字符串]]
 
 <code xml>
-<string name="PotionOfPurity_Name">净化药水</string>
-<string name="PotionOfPurity_Info">这种药水会迅速中和掉作用区域内的一切有害气体。饮用它将使你暂时免疫这些气体。</string>
-<string name="PotionOfPurity_Freshness">你感受到了空气中不寻常的清新气息。</string>
-<string name="PotionOfPurity_NoSmell">你什么也闻不到了！</string>
+<string name=\"PotionOfPurity_Name\">净化药水</string>
+<string name=\"PotionOfPurity_Info\">这种药水会迅速中和掉作用区域内的一切有害气体。饮用它将使你暂时免疫这些气体。</string>
+<string name=\"PotionOfPurity_Freshness\">你感受到了空气中不寻常的清新气息。</string>
+<string name=\"PotionOfPurity_NoSmell\">你什么也闻不到了！</string>
 </code>
 
 ==== 相关条目 ====
