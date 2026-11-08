@@ -23,19 +23,20 @@
   * Задание автоматически отслеживается в Журнале до завершения
 
 ==== Технические детали ====
-  * **Java-класс:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ScarecrowNPC.java|com.nyrds.pixeldungeon.mobs.npc.ScarecrowNPC]]
-  * **Реализация:** Наследуется от базового класса ImmortalNPC
-  * **Механика задания:** Реализована во внутреннем классе Quest
+  * **JSON Config:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/ScarecrowNPC.json|mobsDesc/ScarecrowNPC.json]]
+  * **Lua Script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/ScarecrowNPC.lua|scripts/npc/ScarecrowNPC.lua]]
+  * **Базовый класс:** ImmortalNPC (мигрирован в данные)
+  * **Механика задания:** Реализована в Lua скрипте (внутренняя логика Quest)
   * **Генерация конфет:** 1 конфета на 5 убийств (после начала задания), до 25 убийств всего для завершения задания
   * **Количество награды:** 5 Тыквенных пирогов за выполнение задания
   * **Хранение задания:** Сохраняется в бандл с ключом "scarecrow"
   * **Функция Журнала:** Добавляется в журнал как "SCARECROW"
 
 ==== Проверка достоверности ====
-  * Источник информации: Java-класс com.nyrds.pixeldungeon.mobs.npc.ScarecrowNPC
-  * Механика задания подтверждена анализом исходного кода
-  * Скорость генерации конфет подтверждена как 1 за 5 убийств (метод Quest.process()) с остановкой после 25 убийств всего
-  * Детали реализации из ScarecrowNPC.java
+  * Источник информации: JSON конфиг mobsDesc/ScarecrowNPC.json + Lua скрипт scripts/npc/ScarecrowNPC.lua
+  * Механика задания подтверждена анализом Lua кода
+  * Скорость генерации конфет подтверждена как 1 за 5 убийств (onDie callback) с остановкой после 25 убийств всего
+  * Детали реализации из ScarecrowNPC.lua
   * Строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1890-L1905|ScarecrowNPC_Name, ScarecrowNPC_Desc, ScarecrowNPC_Quest_Start_Male, ScarecrowNPC_Quest_Start_Female, ScarecrowNPC_Quest_Reminder, ScarecrowNPC_Quest_End, Journal_ScarecrowNPC]]
 
 ==== Связанные страницы ====

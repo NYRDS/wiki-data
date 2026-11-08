@@ -2,28 +2,27 @@
 
 {{ rpd:images:sociologist_npc.png|社会学家 }}
 
+**⚠️ 注意：** 该NPC已从游戏中移除（根据MobFactory.java作为"死促销存根"完全删除）。Java类 `SociologistNPC.java` 不再存在。此页面仅为历史参考而保留。
+
 ==== 描述 ====
-**社会学家NPC**是《Remixed Dungeon》中的一个非玩家角色，他会询问玩家是否愿意参与调查。这个角色是游戏功能的一部分，允许玩家访问调查内容。
+**社会学家**曾是《Remixed Dungeon》中的一个NPC角色，会询问玩家是否愿意参与调查。这个角色是游戏功能的一部分，允许玩家访问调查内容。
 
 ==== 位置 ====
-  * 随机出现在地牢关卡中
+  * 过去在随机地牢关卡中遇到（移除前）
 
 ==== 互动 ====
   * 当接近时，会显示一个对话框，询问玩家是否愿意参与调查
   * 如果玩家同意，会请求互联网权限下载调查内容
   * 如果玩家拒绝，NPC会离开玩家
 
-==== Java类 ====
-  * **Java类：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/SociologistNPC.java|SociologistNPC.java]]
-  * **基类：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+==== 实现（历史） ====
+  * **以前的Java类：** SociologistNPC.java (已删除)
+  * **基类：** ImmortalNPC
+  * **行为：** 实现了DownloadStateListener.IDownloadComplete和InterstitialPoint接口，用于处理从GitHub下载调查
 
-==== 行为 ====
-  * 当接近时，显示一个包含"是"和"否"选项的对话框
-  * 如果玩家选择"是"，会请求互联网权限并尝试从外部源下载survey.json
-  * 如果获得权限，会从GitHub存储库下载调查内容
-  * 如果玩家选择"否"，NPC会说一句关于调查需要互联网的消息
+==== 字符串资源（仍然存在） ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2842|SociologistNPC_Hi]] - "Hi! Do you want to participate in our survey?"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2843|SociologistNPC_DownloadError]] - 下载失败错误消息
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2844|SociologistNPC_InternetRequired]] - "Internet is required for surveys"
 
-==== 实现细节 ====
-NPC被实现为一个ImmortalNPC，实现了DownloadStateListener.IDownloadComplete和InterstitialPoint接口，使其能够处理下载过程并在下载期间管理用户界面。
-
-{{tag> rpd npcs}}
+{{tag> rpd npcs removed}}

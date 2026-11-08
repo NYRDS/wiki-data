@@ -2,28 +2,27 @@
 
 {{ rpd:images:sociologist_npc_mob.png|Социолог }}
 
+**⚠️ Примечание:** Этот NPC был удален из игры (удален полностью как "мертвый промо-заглушка" согласно MobFactory.java). Java-класс `SociologistNPC.java` больше не существует. Эта страница сохранена только для исторической справки.
+
 ==== Описание ====
-**Социолог** - это НИП персонаж в Remixed Dungeon, который спрашивает, хочет ли игрок принять участие в опросе. Этот персонаж является частью игровой функции, позволяющей игрокам получить доступ к содержимому опроса.
+**Социолог** был NPC персонажем в Remixed Dungeon, который спрашивал, хочет ли игрок принять участие в опросе. Этот персонаж был частью игровой функции, позволяющей игрокам получить доступ к содержимому опроса.
 
 ==== Местоположение ====
-  * Встречается случайным образом на уровнях подземелья
+  * Раньше встречался случайным образом на уровнях подземелья (до удаления)
 
 ==== Взаимодействия ====
-  * При приближении предлагает диалог, в котором спрашивает игрока, хочет ли он принять участие в опросе
-  * Если игрок соглашается, запрашивает интернет-разрешение для загрузки содержимого опроса
-  * Если игрок отказывается, NPC оставляет игрока в покое
+  * При приближении предлагал диалог, в котором спрашивал игрока, хочет ли он принять участие в опросе
+  * Если игрок соглашался, запрашивал интернет-разрешение для загрузки содержимого опроса
+  * Если игрок отказывался, NPC оставлял игрока в покое
 
-==== Java класс ====
-  * **Java класс:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/SociologistNPC.java|SociologistNPC.java]]
-  * **Базовый класс:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+==== Реализация (историческая) ====
+  * **Бывший Java класс:** SociologistNPC.java (удален)
+  * **Базовый класс:** ImmortalNPC
+  * **Поведение:** Реализовывал интерфейсы DownloadStateListener.IDownloadComplete и InterstitialPoint для обработки загрузки опросов с GitHub
 
-==== Поведение ====
-  * При приближении предлагает диалог с вариантами "Да" и "Нет"
-  * Если игрок выбирает "Да", запрашивает интернет-разрешение и пытается загрузить survey.json из внешнего источника
-  * Если разрешение предоставлено, загружает содержимое опроса из репозитория GitHub
-  * Если игрок выбирает "Нет", NPC говорит сообщение о том, что для опросов требуется интернет
+==== Строковые ресурсы (все еще присутствуют) ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2842|SociologistNPC_Hi]] - "Hi! Do you want to participate in our survey?"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2843|SociologistNPC_DownloadError]] - Сообщение об ошибке загрузки
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2844|SociologistNPC_InternetRequired]] - "Internet is required for surveys"
 
-==== Детали реализации ====
-NPC реализован как ImmortalNPC, который реализует интерфейсы DownloadStateListener.IDownloadComplete и InterstitialPoint, что позволяет ему обрабатывать процесс загрузки и управлять пользовательским интерфейсом во время загрузки.
-
-{{tag> rpd npcs}}
+{{tag> rpd npcs removed}}

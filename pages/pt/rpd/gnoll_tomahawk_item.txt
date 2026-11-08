@@ -1,0 +1,83 @@
+====== Machado Gnoll ======
+
+{{ rpd:images:gnoll_tamahawk_item.png|Machado Gnoll }}
+
+O **Machado Gnoll** (//GnollTamahawk// no código) é uma arma de arremesso única especificamente associada à classe jogável [[pt:rpd:gnoll_class|Gnoll]]. É a arma inicial da classe [[pt:rpd:gnoll_class|Gnoll]] e representa seu estilo de combate distinto.
+
+==== Descrição ====
+O Machado Gnoll é um machado de arremesso especializado que representa a arma nativa do gnoll. Combina a funcionalidade de arma corpo-a-corpo e de arremesso, embora se destaque nesta última. Criado por mestres gnolls, cada clã tem seu próprio design único. Este Machado é ligeiramente mais leve que seus equivalentes. No código do jogo, este item é implementado como uma subclasse de [[pt:rpd:tomahawk_item|Machado]] com diferenças específicas.
+
+==== Estatísticas ====
+  * **Dano:** 3-17 pontos (do código: MIN=3, MAX=17)
+  * **Força Necessária:** 15 (do código: setSTR(15))
+  * **Durabilidade:** Normal (não quebra quando arremessado)
+  * **Velocidade:** 1.0x (herda velocidade base da arma)
+  * **Precisão:** 1.0x (herda precisão base)
+  * **Imagem:** Selecionada aleatoriamente entre 8 sprites diferentes (do código: Random.Int(0,8))
+
+==== Propriedades ====
+  * **Tipo:** Arma de arremesso/corpo-a-corpo (herda de [[pt:rpd:tomahawk_item|Machado]])
+  * **Classe:** [[pt:rpd:gnoll_class|Gnoll]] (arma inicial específica)
+  * **Dano Base:** Moderado a alto para início de jogo
+  * **Durabilidade:** Diferente de [[pt:rpd:tomahawk_item|Machados]] regulares, não quebra quando arremessado no alvo
+  * **Precisão:** Alta precisão quando arremessado
+  * **Melhorável:** Sim, pode ser melhorado com Pergaminhos de Melhoria (do código: isUpgradable() retorna true)
+
+==== Propriedades Especiais ====
+  * Arma inicial única para a classe [[pt:rpd:gnoll_class|Gnoll]]
+  * Arma de arremesso com bom alcance
+  * Diferente de [[pt:rpd:tomahawk_item|Machados]] regulares, não quebra quando arremessado no alvo (do código: implementação do método onThrow)
+  * Pode ser usado em combate corpo-a-corpo (do código: notUsableInMelee() retorna false)
+  * Cada cópia tem uma de 8 imagens selecionadas aleatoriamente (do código: imageIndex = Random.Int(0,8))
+
+==== Recursos Especiais ====
+  * **Funcionalidade Dual:** Pode ser usado tanto para arremesso quanto para combate corpo-a-corpo (diferente de Machados regulares que são apenas de arremesso)
+  * **Equipamento Inicial:** Exclusivo da classe [[pt:rpd:gnoll_class|Gnoll]]
+  * **Durabilidade:** Diferente de Machados regulares, não quebra quando arremessado
+  * **Capacidade Corpo-a-Corpo:** Retorna false para notUsableInMelee(), significando que pode ser usado em combate corpo-a-corpo
+
+==== Uso em Combate ====
+  * **À Distância:** Eficaz à distância quando arremessado
+  * **Corpo-a-Corpo:** Pode ser usado em combate próximo se necessário (diferente de Machados regulares)
+  * **Dano:** Bom dano para seu nível (3-17 vs 4-20 de Machado regular)
+  * **Req. Força:** Requisito de FOR menor (15 vs 17 de Machado regular)
+
+==== Implementação ====
+  * Estende a classe [[pt:rpd:tomahawk_item|Machado]] com estatísticas e comportamento modificados
+  * Sobrescreve método onThrow() para comportamento personalizado de arremesso
+  * Sobrescreve notUsableInMelee() para retornar false (permitindo uso corpo-a-corpo)
+  * Sobrescreve isUpgradable() para retornar true
+  * Seleção aleatória de imagem entre 8 sprites diferentes
+
+==== Relacionado ====
+  * [[pt:rpd:gnoll_class|Gnoll]] - A classe que começa com esta arma
+  * [[pt:rpd:throwing_weapons|Armas de Arremesso]] - Categoria geral
+  * [[pt:rpd:tomahawk_item|Machado]] - Tipo geral de arma (classe pai)
+  * [[pt:rpd:missile_weapons|Armas de Projétil]] - Categoria base de armas
+  * [[pt:rpd:playable_class_mechanic|Classes Jogáveis]] - Parte do sistema de equipamento específico de classe
+
+==== Estratégia ====
+  * Use primariamente como arma de arremesso para máxima eficácia
+  * Mantenha como arma de reserva corpo-a-corpo quando necessário
+  * Colete armas de arremesso adicionais para complementar o Machado
+  * Aproveite sua durabilidade para poupar outros itens de arremesso
+  * Melhore-o para aumentar dano e eficácia em ambos combate corpo-a-corpo e à distância
+
+==== Referências de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/GnollTamahawk.java|GnollTamahawk.java]] - Implementação do Machado Gnoll
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Tamahawk.java|Tamahawk.java]] - Implementação da classe pai
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon.java]] - Classe base para armas de projétil
+
+==== Recursos de String ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2165-L2167|GnollTamahawk_Name]] - Nome da arma
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2165-L2167|GnollTamahawk_Info]] - Descrição da arma
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L874-L876|Strings em Português]] - Localização em Português
+
+==== Arquivos de Configuração ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L435|ItemFactory.java]] - Registro da classe do item
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L164|initHeroes.json]] - Equipamento inicial para a classe herói Gnoll
+
+==== Notas ====
+O Machado Gnoll é a arma característica da classe [[pt:rpd:gnoll_class|Gnoll]], fornecendo uma opção poderosa de combate à distância para esses guerreiros semelhantes a hienas. Diferente do Machado regular, ele não quebra quando arremessado e pode ser usado em combate corpo-a-corpo, tornando-o uma arma versátil para a classe Gnoll.
+
+{{tag> rpd items weapons throwing melee gnoll }}

@@ -1,0 +1,46 @@
+====== Espantalho NPC ======
+
+{{ rpd:images:scarecrow_npc.png|Espantalho NPC }}
+
+O **Espantalho NPC** é um personagem especial que dá missões e pode ser encontrado nos níveis iniciais da masmorra. Ele dá uma missão onde o jogador deve coletar doces para receber uma recompensa.
+
+==== Mecânicas da Missão ====
+  * **Início da Missão**: Converse com o Espantalho para começar a missão
+  * **Coleta de Doces**: Após falar com o NPC, mate inimigos para ter chance de gerar doces
+  * **Requisito de Doces**: Colete 5 doces para completar a missão
+  * **Recompensa**: Após entregar 5 doces, receba 5 Tortas de Abóbora
+  * **Conclusão da Missão**: O NPC desaparece após a missão ser completada
+
+==== Interação ====
+  * **Primeiro Encontro**: O Espantalho dará uma missão para coletar doces
+  * **Lembrete**: Se você tem doces mas menos que 5, falar com o Espantalho irá lembrá-lo da missão
+  * **Conclusão**: Quando você tem 5 doces e fala com o Espantalho, ele pega os doces e dá a recompensa
+  * **Diálogos Específicos de Gênero**: O Espantalho usa diálogos diferentes dependendo do gênero do herói
+
+==== Comportamento Especial ====
+  * O Espantalho se move para uma nova posição após cada lembrete se a missão não for completada
+  * Doces são gerados conforme você mata inimigos durante a missão (após falar com o espantalho)
+  * A missão é automaticamente rastreada no Diário até ser completada
+
+==== Detalhes Técnicos ====
+  * **Classe Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ScarecrowNPC.java|com.nyrds.pixeldungeon.mobs.npc.ScarecrowNPC]]
+  * **Implementação:** Estende a classe base ImmortalNPC
+  * **Mecânicas da Missão:** Implementadas na classe interna Quest
+  * **Geração de Doces:** 1 doce por 5 mortes (após iniciação da missão), até 25 mortes totais para completar a missão
+  * **Quantidade da Recompensa:** 5 Tortas de Abóbora por conclusão de missão
+  * **Armazenamento da Missão:** Armazenado no bundle com chave "scarecrow"
+  * **Função do Diário:** Adicionado ao diário como "SCARECROW"
+
+==== Verificação de Conteúdo ====
+  * Fonte de informação: Java Class com.nyrds.pixeldungeon.mobs.npc.ScarecrowNPC
+  * Mecânicas da missão verificadas da análise do código fonte
+  * Taxa de geração de doces confirmada como 1 por 5 mortes (método Quest.process()) com parada após 25 mortes totais
+  * Detalhes de implementação do ScarecrowNPC.java
+  * Recursos de string: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1575-L1583|ScarecrowNPC_Name, ScarecrowNPC_Desc, ScarecrowNPC_Quest_Start_Male, ScarecrowNPC_Quest_Start_Female, ScarecrowNPC_Quest_Reminder, ScarecrowNPC_Quest_End, Journal_ScarecrowNPC]]
+
+==== Páginas Relacionadas ====
+  * [[pt:rpd:candy_item|Doce]] - O item de missão necessário para a missão do Espantalho
+  * [[pt:rpd:pumpkin_pie_item|Torta de Abóbora]] - O item de recompensa recebido do Espantalho
+  * [[pt:rpd:journal_mechanic|Diário]] - Onde a missão é rastreada
+
+{{tag> rpd npcs quest}}
