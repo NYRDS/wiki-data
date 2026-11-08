@@ -1,8 +1,62 @@
 ====== 力量药水 ======
 
-力量药水可临时增加力量。
+{{ rpd:images:potion_of_strength_item.png|力量药水 }}
+
+**力量药水** 是 Remixed Dungeon 中一种稀有药水，能永久增加饮用者的力量 1 点。
+
+==== 物品概览 ====
+  * **类型:** 药水
+  * **稀有度:** 非常稀有
+  * **特殊效果:** 永久增加英雄力量 1 点
+  * **用法:** 单次使用（饮用后消耗）
+  * **基础价格:** 100 金币（鉴定后）
+
+==== 特殊机制 ====
+  * **力量增加:** 饮用后，永久增加英雄力量 1 点，使其能够装备更重的护甲和武器
+  * **鉴定:** 饮用后或在背包中被鉴定后变为已鉴定状态
+  * **叠加:** 可以多次饮用力量药水来多次增加力量
+  * **浸润箭矢:** 用于浸润箭矢时，将其转化为狂暴箭
+
+==== 策略 ====
+  * 装备更高级、需要更高力量的武器和护甲时必不可少
+  * 最好在英雄拥有能从额外力量获益的装备时使用
+  * 通常应保存到后期，直到英雄有装备能从额外力量中受益
+  * 对战士和其他近战专精职业特别有价值
+
+==== 获取方式 ====
+  * 在特殊容器和特殊房间中发现
+  * 稀有敌人掉落
+  * 在部分商店以高价出售（鉴定后）
+  * 在 [[zh:rpd:sewers_level|下水道关卡]] 的一个特殊箱子中可找到一瓶
 
 ==== 效果 ====
-  * 力量提升
+饮用后，力量药水永久增加英雄力量 1 点，使其能够装备力量需求更高的物品。
 
-{{tag> rpd items potions}}
+根据游戏的字符串资源：“这种强力的液体会冲刷你的肌肉，永久性增加1点力量。”
+
+==== 数据来源 ====
+  * **Java 类**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfStrength.java|com.watabou.pixeldungeon.items.potions.PotionOfStrength]]
+  * **掉落位置**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java#L600-L601|Level.java 第 600-601 行]]
+  * **药水系统**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|药水基类]]
+  * **精灵索引**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L43|labelIndex = 6]]
+  * **基础价格**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfStrength.java#L39|PotionOfStrength.java 中的 basePrice() 方法]]
+
+==== 字符串资源 ====
+  * 中文（简体）: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L1673-L1676|力量药水字符串]] - 名称、描述和提示信息
+  * 英文: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1719-L1722|PotionOfStrength strings]] - English localization
+  * 所有语言: [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/res/values-*/strings_all.xml|本地化字符串]]
+
+<code xml>
+<string name="PotionOfStrength_Name">力量药水</string>
+<string name="PotionOfStrength_Info">这种强力的液体会冲刷你的肌肉，永久性增加1点力量。</string>
+<string name="PotionOfStrength_Apply">新生的力量从你身体中喷涌而出。</string>
+<string name="PotionOfStrength_StaApply">+1力量</string>
+</code>
+
+==== 相关物品 ====
+  * [[zh:rpd:potions|药水]] - 药水通用信息
+  * [[zh:rpd:potion_of_might_item|力量药水]] - 另一种增强力量的药水
+  * [[zh:rpd:mechanics|游戏机制]] - 装备和力量机制
+  * [[zh:rpd:hero|英雄]] - 主要可玩角色
+
+{{tag> rpd items potions strength}}
