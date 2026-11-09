@@ -1,0 +1,106 @@
+====== 徽章 ======
+
+**徽章** 是 Remixed Dungeon 中的成就系统。它们追踪玩家的成就并在游戏的徽章收藏菜单中显示。徽章是账号级的，并在所有游戏进程中持久保存。
+
+==== 说明 ====
+徽章代表游戏中的各种成就，从简单的里程碑（如击杀 100 只怪物）到复杂的挑战（如在高难度下用特定英雄职业获胜）。它们提供长期目标并追踪玩家的进度。
+
+==== 徽章分类 ====
+
+===== 怪物击杀 =====
+  * **击杀怪物 I-V** - 击败不断增加数量的怪物（100、1000、10000、100000、1000000）
+  * 追踪所有游戏进程中的总怪物击杀数
+
+===== 金币收集 =====
+  * **收集金币 I-V** - 收集不断增加数量的金币（100、500、2500、7500、35000）
+  * 追踪所有游戏进程中拾取的总金币数
+
+===== 到达深度 =====
+  * **到达层级 I-V** - 到达不断增加的地牢深度（第 6、11、16、21、26 层）
+  * 追踪任何游戏进程中到达的最深层级
+
+===== 物品鉴定 =====
+  * **鉴定所有药水** - 鉴定每种药水类型
+  * **鉴定所有卷轴** - 鉴定每种卷轴类型
+  * **鉴定所有戒指** - 鉴定每种戒指类型
+  * **鉴定所有法杖** - 鉴定每种法杖类型
+  * **无所不知：鉴定所有药水、卷轴、戒指、法杖** - 鉴定所有物品类型（需要以上全部）
+
+===== 背包购买 =====
+  * **购买种子袋** - 购买种子袋
+  * **购买卷轴盒** - 购买卷轴盒
+  * **购买法杖套** - 购买法杖套
+  * **购买药水带** - 购买药水带
+  * **购买钥匙扣** - 购买钥匙扣
+  * **购买箭袋** - 购买箭袋
+  * **全包裹购入** - 购买所有 6 种背包类型
+
+===== 死亡类型 =====
+  * **摔死** - 因坠落而死
+  * **死于烈焰** - 因燃烧而死
+  * **死于毒雾** - 因毒气/麻痹气体而死
+  * **死于刻纹** - 因雕文效果而死
+  * **死于饥饿** - 因饥饿而死
+  * **死于瘟疫** - 因死灵/腐化效果而死
+  * **死于中毒** - 因中毒而死
+  * 其他各种与死亡相关的徽章
+
+===== 职业精通 =====
+  * **精通：战士/法师/盗贼/女猎手/精灵/死灵法师/豺狼人/神父/医生** - 用每个职业获胜
+  * **胜利：战士/法师/盗贼/女猎手/精灵/死灵法师/豺狼人/神父/医生** - 在任意难度下用每个职业获胜
+  * **首领击杀** - 击败特定首领
+    * **黏咕已被击杀** - 击杀黏咕
+    * **天狗已被击杀** - 击杀天狗
+    * **DM-300已被击杀** - 击杀 DM-300
+    * **矮人之王已被击杀** - 击杀矮人之王
+
+===== 特殊成就 =====
+  * **圆满结局** - 达成真正的结局
+  * **完成挑战** - 完成挑战模式
+  * **墙镶尸首** - 因石化/墙壁效果而死
+  * **被冷酷武器杀死的怪物** - 使用特定武器击杀怪物
+  * **击杀冰霜巨人** - 击杀冰霜守护者首领
+  * **还不够：吃了 60 份食物** - 吃掉大量食物
+  * **骨灰级玩家，进行 5000 次游戏** - 进行 5000 场游戏
+  * 许多其他独特成就的特殊徽章
+
+==== 代码实现 ====
+徽章由 `Badges` 类管理，其中 `Badge` 枚举定义了所有可用徽章：
+
+```java
+public enum Badge {
+    MONSTERS_SLAIN_1(R.string.Badges_MonsterSlain1, 0),
+    MONSTERS_SLAIN_2(R.string.Badges_MonsterSlain2, 1),
+    // ... 更多徽章
+    MASTERY_PRIEST, MASTERY_DOCTOR,
+    VICTORY_PRIEST, VICTORY_DOCTOR,
+    BOSS_SLAIN_1_DOCTOR, BOSS_1_SLAIN_PRIEST;
+}
+```
+
+关键方法：
+  * `isUnlocked(Badge badge)` - 检查徽章是否已解锁
+  * `unlock(Badge badge)` - 解锁徽章
+  * `saveGlobal()` / `loadGlobal()` - 跨会话持久化徽章
+  * `getUnlockedCount()` / `getTotalCount()` - 统计信息
+
+==== 字符串资源 ====
+徽章名称和描述存储在字符串资源中：
+  * 英语：`values/strings_all.xml`（Badges_* 键）
+  * 中文：`values-zh-rCN/strings_all.xml`
+  * 俄语：`values-ru/strings_all.xml`
+  * 其他语言：对应的 `values-*/strings_all.xml`
+
+==== 代码参考 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml (英语)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml|strings_all.xml (中文)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (俄语)]]
+
+==== 相关页面 ====
+  * [[zh:rpd:hero_class|英雄职业]] - 职业特定徽章
+  * [[zh:rpd:stone_walking_buff|石行术增益]] - “墙镶尸首”徽章来源
+  * [[zh:rpd:doom_interface|厄运界面]] - 死亡时验证徽章的增益
+  * [[zh:rpd:buff_mechanics|增益机制]] - 增益系统
+
+{{tag> rpd 机制 成就 进度 }}

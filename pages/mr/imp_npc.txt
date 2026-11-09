@@ -1,0 +1,81 @@
+====== Imp (NPC) - Code References ======
+
+===== Java Classes =====
+  * No dedicated Java class (replaced by Lua implementation in migration batch 16c-2)
+  * Original Java classes: Imp.java + WndImp.java (removed)
+
+===== Lua Scripts =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/Imp.lua|Imp.lua]] - NPC implementation with quest logic
+  * Uses libraries: `scripts/lib/commonClasses`, `scripts/lib/quest`, `scripts/lib/mob`
+
+===== Quest Configuration (from Lua) =====
+  * **Quest ID:** "imp"
+  * **Quest State Storage:** lib/quest game storage under "imp" key
+  * **Quest Variants:** Two alternatives (Monk hunt or Golem hunt)
+  * **Monk Variant:** Kill 8 Monks (Monk entity kind)
+  * **Golem Variant:** Kill 6 Golems (Golem entity kind)
+  * **Kill Tracking:** Via onDie callback - drops DwarfToken from Monk/Golem deaths
+  * **Exclusions:** Palace servants and raised undead do not count
+  * **Quest State Fields:** spawned, given, completed, alternative
+
+===== Reward (from Lua) =====
+  * **Reward Item:** Random ring from level treasury (RING category)
+  * **Ring Constraints:** Never cursed initially, upgraded twice, then re-cursed
+  * **Generation:** Lazy at reward time (treasury:random("RING"))
+  * **Identification:** Auto-identified on reward
+
+===== Spawn Locations =====
+  * **Placement:** CityLevel (depth 17+)
+  * **Placement Logic:** Handled by CityLevel painter
+
+===== String Resources =====
+  * **English** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]):
+    * `Imp_Name` = "ambitious imp"
+    * `Imp_Desc` = "Imps are lesser demons. They are notable for neither their strength nor their magic talent, but they are quite smart and sociable. Many imps prefer to live among non-demons."
+    * `Imp_Hey` = "Psst, %s!"
+    * `Imp_Cya` = "See you, %s!"
+    * `Imp_Defense` = "evaded"
+    * `Imp_Golems1` = Golem hunt quest dialog (kill 6 golems)
+    * `Imp_Golems2` = "How is your golem safari going?"
+    * `Imp_Monks1` = Monk hunt quest dialog (kill 8 monks)
+    * `Imp_Monks2` = "Oh, you are still alive! I knew that your kung-fu is stronger ;) Just don't forget to grab these monks' tokens."
+    * `Journal_Imp` = "Ambitious imp"
+    * `WndImp_Message` = Reward dialog about family heirloom ring
+    * `WndImp_Reward` = "Take the ring"
+    * `ImpShopkeeper_Name` = "ambitious imp"
+    * `ImpShopkeeper_Greetings` = "Hello, friend!"
+    * `ImpShopkeeper_Desc` = "Imps are lesser demons..."
+  * **Chinese** ([[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml|strings_all.xml (zh)]]):
+    * `Imp_Name` = "野心勃勃的小恶魔"
+    * `Imp_Desc` = "小恶魔是一种低等恶魔..."
+    * `Imp_Hey` = "嘘，%s！"
+    * `Imp_Cya` = "下次见，%s！"
+    * `Imp_Defense` = "回避"
+    * `Imp_Golems1` = 魔像狩猎任务对话 (击杀 6 个魔像)
+    * `Imp_Golems2` = "你的魔像狩猎进行的怎么样了？"
+    * `Imp_Monks1` = 武僧狩猎任务对话 (击杀 8 位武僧)
+    * `Imp_Monks2` = "噢，你还活着！我就知道你的功夫比他们更强：)只是别忘了拿走他们的武僧徽记。"
+    * `Journal_Imp` = "野心勃勃的小恶魔"
+    * `WndImp_Message` = 关于传家戒指的奖励对话
+    * `WndImp_Reward` = "收下戒指"
+    * `ImpShopkeeper_Name` = "野心勃勃的小恶魔"
+    * `ImpShopkeeper_Greetings` = "你好，朋友！"
+    * `ImpShopkeeper_Desc` = "小恶魔是一种低等恶魔..."
+
+===== Related mr Entities =====
+  * [[mr:monk_mob|Monk (Mob)]] (quest target - Monk variant)
+  * [[mr:golem_mob|Golem (Mob)]] (quest target - Golem variant)
+  * [[mr:dwarf_token_item|Dwarf Token (Item)]] (quest progress item)
+  * [[mr:ring_item|Ring (Item)]] (reward item type)
+  * [[mr:imp_shopkeeper_npc|Imp Shopkeeper (NPC)]] (related shopkeeper variant)
+  * [[mr:journal_mechanic|Journal (Mechanic)]] (quest tracking)
+
+===== JSON Configuration =====
+  * No JSON configuration (behavior fully implemented in Lua)
+  * Entity kind registered in MobFactory: IMP
+
+===== Source Code References =====
+  * Lua NPC: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/Imp.lua|Imp.lua]]
+  * MobFactory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] (IMP constant)
+  * Quest Library: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/quest.lua|quest.lua]]
+  * Mob Library: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/mob.lua|mob.lua]]
