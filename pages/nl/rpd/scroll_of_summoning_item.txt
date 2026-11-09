@@ -1,0 +1,39 @@
+====== Oproeprol ======
+{{ rpd:images:scroll_of_summoning_item.png|Oproeprol }}
+
+De **Oproeprol** is een magische rol in Remixed Dungeon die de speler in staat stelt een monster van het huidige kerker-niveau te roepen als bondgenoot.
+
+==== Effect ====
+  * **Oproepen:** Bij voorlezen zal deze rol een van de monsters uit het huidige kerker-niveau oproepen
+  * **Bondgenoot creatie:** Als de wil van het monster zwak genoeg is, zal het je dienaar worden en aan je zijde vechten
+  * **Oproep locatie:** Het monster verschijnt in een lege cel naast de lezer
+  * **Huisdier conversie:** Gebruikt `Mob.makePet()` om het geroepen monster om te zetten in een huisdier als `mob.canBePet()` true retourneert
+
+==== Beperkingen ====
+  * Kan niet gebruikt worden in baas-niveaus (`level.isBossLevel()` check)
+  * Vereist een geldige lege cel naast de lezer (`level.getEmptyCellNextTo()`)
+  * Als geen geldige cel beschikbaar is, mislukt de rol met het bericht "Geen Geldige Cel"
+  * Toont "Gebruik Mislukt Vanwege Magie" bericht bij gebruik op baas-niveaus of ongeldige cellen
+
+==== Code Referenties ====
+  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfSummoning.java|ScrollOfSummoning.java]]
+  * **Package:** com.watabou.pixeldungeon.items.scrolls
+  * **Extends:** Scroll
+  * **Belangrijkste Methood:** doRead(Char reader) - handelt oproep logica
+  * **Afhankelijkheden:** Bestiary.mob(), WandOfBlink.appear(), SpellSprite.SUMMON
+
+==== String Bronnen ====
+  * **Nederlands (values-nl/strings_all.xml):**
+    * ScrollOfSummoning_Name (regel 1572): "Oproeprol"
+    * ScrollOfSummoning_Info (regel 1570): "Bij voorlezen zal deze rol een van de monsters uit het huidige kerker-niveau oproepen. En als de wil van het monster zwak genoeg is, zal het je dienaar worden."
+    * ScrollOfSummoning_Info_2 (regel 1571): "Het monster heeft je oproep beantwoord!"
+
+==== Strategie ====
+  * Nuttig voor het creëren van tijdelijke bondgenoten in moeilijke gevechten
+  * Het geroepen monster helpt je vijanden te bestrijden
+  * Bijzonder effectief tegen uitdagende bazen
+  * Het geroepen wezen heeft een kans om een huisdier te worden als het getemd kan worden
+  * Wees voorzichtig met het type monster dat geroepen wordt, niet allemaal kunnen getemd worden
+  * Kan niet gebruikt worden in baas-niveaus (checkt `level.isBossLevel()`)
+
+{{tag> rpd items scrolls summoning}}
