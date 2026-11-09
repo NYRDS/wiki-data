@@ -1,5 +1,82 @@
-====== yogs_eye_mob ======
+====== Ojo de Yog ======
 
-Parte del jefe final en Remixed Dungeon.
+{{ rpd:images:yogs_eye_mob.png|Ojo de Yog }}
 
-{{tag> rpd mobs boss }}
+==== Descripción ====
+El **Ojo de Yog** es el componente central y la verdadera forma del jefe final Yog-Dzewa en Remixed Dungeon. Es un órgano antiguo y poderoso que duerme en la sala del jefe de los Salones (Halls) hasta que el héroe entra en su arena. El Ojo ataca mediante una mirada letal que emana desde el órgano superior, golpeando a todos los personajes en su línea de visión.
+
+==== Características ====
+  * **Vida (HT):** 1000
+  * **Habilidad de Ataque:** 30
+  * **Habilidad de Defensa:** 30
+  * **Daño:** 20-30
+  * **Fuerza:** 18
+  * **Experiencia al matar:** 50
+  * **Nivel máximo:** 50
+  * **Velocidad:** Normal (1.0x)
+  * **Inmóvil:** Sí (no se mueve)
+  * **Tipo:** Jefe, Órgano de Yog
+
+==== Inmunidades y Resistencias ====
+  * **Muerte** - Inmune a efectos de muerte instantánea
+  * **Terror** - Inmune al terror
+  * **Furia (Amok)** - Inmune a la furia
+  * **Encanto (Charm)** - Inmune al encanto
+  * **Sueño** - Inmune al sueño
+  * **Quemadura (Burning)** - Inmune a la quemadura
+  * **Gas Tóxico** - Inmune al gas tóxico
+  * **Explosión Psíquica (Scroll of Psionic Blast)** - Inmune
+
+==== Habilidades Especiales ====
+  * **Mirada Letal (Gaze Attack):** El Ojo ataca mediante un rayo mágico que origina una celda por encima de su posición. Todos los personajes en la línea de visión son golpeados por el rayo "Eye_Kill" con daño 3.
+  * **Reducción de Daño por Órganos Vivos:** Cuando el Ojo recibe daño, todos los órganos de Yog supervivientes (Puño Pudriente, Puño Ardiente, Cerebro de Yog, Corazón de Yog, Dientes de Yog) son atraídos hacia él. Cada órgano vivo reduce el daño entrante a la mitad (acumulativo: 2 órganos = 1/4 daño, 3 órganos = 1/8 daño, etc.).
+  * **Invocación de Larvas:** Al recibir daño, invoca larvas (hasta 10 × factor de dificultad) en celdas adyacentes.
+  * **IA Dormida:** Permanece dormido hasta que el héroe entra en su arena.
+  * **Música de Jefe:** Reproduce "ost_boss_6_fight" durante el combate.
+
+==== Órganos de Yog Asociados ====
+El Ojo de Yog aparece junto con 2-3 órganos distintos (seleccionados aleatoriamente al iniciar el combate):
+  * [[es:rpd:rotting_fist_mob|Puño Pudriente]]
+  * [[es:rpd:burning_fist_mob|Puño Ardiente]]
+  * [[es:rpd:yogs_brain_mob|Cerebro de Yog]]
+  * [[es:rpd:yogs_heart_mob|Corazón de Yog]]
+  * [[es:rpd:yogs_teeth_mob|Dientes de Yog]]
+
+En dificultad > 2 aparecen 3 órganos, en dificultad ≤ 2 aparecen 2 órganos.
+
+==== Ubicación ====
+  * **Salones (Halls) - Nivel Jefe (HallsBossLevel):** Niveles 22-24
+  * Aparece como parte del encuentro final contra Yog-Dzewa
+  * Posición fija en la arena del jefe
+
+==== Estrategia ====
+  * **Elimina los órganos primero:** Cada órgano vivo reduce el daño al Ojo a la mitad. Prioriza matar los órganos antes de enfocarte en el Ojo.
+  * **Evita la línea de visión:** La mirada del Ojo golpea a todos en su línea de visión. Usa esquinas y obstáculos para romper la línea de visión.
+  * **Prepárate para las larvas:** Cuando dañes al Ojo, invocará larvas. Ten ataques de área o prepara control de multitudes.
+  * **Inmunidades:** No uses efectos de muerte instantánea, terror, furia, encanto, sueño, quemadura, gas tóxico ni explosión psíquica - son inútiles.
+  * **El Ojo no se mueve:** Puedes posicionarte estratégicamente sin preocuparte de que te persiga.
+
+==== Verificación de Contenido ====
+  * Fuente de información: Script Lua [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/YogsEye.lua|YogsEye.lua]] (entidad migrada de Java a Lua)
+  * Estadísticas verificadas: Extraídas del JSON de configuración [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsEye.json|YogsEye.json]]
+  * Habilidades especiales: Basadas en la implementación en YogsEye.lua
+  * Última actualización: Diciembre 2025, fuente: Remixed Dungeon 1.9.3
+
+==== Código Fuente ====
+  * Script Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/YogsEye.lua|YogsEye.lua]]
+  * Configuración JSON: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsEye.json|YogsEye.json]]
+  * Recursos de cadena: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#YogsEye_Name|YogsEye strings (Español)]]
+  * Configuración de aparición: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json (HallsBossLevel)]]
+
+==== Véase También ====
+  * [[es:rpd:yog_mob|Yog-Dzewa]] - Jefe final completo
+  * [[es:rpd:yogs_brain_mob|Cerebro de Yog]]
+  * [[es:rpd:yogs_heart_mob|Corazón de Yog]]
+  * [[es:rpd:yogs_teeth_mob|Dientes de Yog]]
+  * [[es:rpd:rotting_fist_mob|Puño Pudriente]]
+  * [[es:rpd:burning_fist_mob|Puño Ardiente]]
+  * [[es:rpd:larva_mob|Larva]]
+  * [[es:rpd:halls_level|Nivel de los Salones]]
+  * [[es:rpd:bosses|Jefes]]
+
+{{tag> rpd mobs boss yog organo }}

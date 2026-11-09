@@ -1,0 +1,100 @@
+====== Yog-Dzewa ======
+
+{{ rpd:images:yog_mob.png|Yog-Dzewa }}
+
+Yog-Dzewa es el jefe final de la mazmorra, encontrado en los Salones Demoníacos. Es un dios antiguo de ira y derramamiento de sangre que está atado a los Salones Demoníacos por magia antigua.
+
+==== Estadísticas Básicas ====
+  * **[[es:rpd:health_mechanic|Vida]]:** 1000
+  * **[[es:rpd:combat_mechanic|Habilidad de Ataque]]:** 30
+  * **[[es:rpd:combat_mechanic|Habilidad de Defensa]]:** 30
+  * **[[es:rpd:damage|Daño]]:** 20-30
+  * **[[es:rpd:armor_mechanic|Tasa de Defensa (DR)]]:** 0
+  * **[[es:rpd:experience_system|EXP por Matar]]:** 50
+
+==== Habilidades Especiales ====
+  * **Invocación de Órganos:** Cuando recibe daño, invoca otros órganos de jefe (Puño Pudriente, Puño Ardiente, Cerebro de Yog, Corazón de Yog, Dientes de Yog) a su posición
+  * **Aparición de Larvas:** Cuando recibe daño, hace aparecer Larvas en celdas adyacentes
+  * **Reducción de Daño:** El daño recibido se divide a la mitad por cada órgano invocado (efectivamente reduciendo a la mitad por órgano)
+  * **Ataque de Rayo de Muerte:** Dispara un rayo de muerte en línea recta golpeando a todos los personajes en su camino
+  * **Altas Resistencias:** Inmune a Muerte, Terror, Furia, Encanto, Sueño, Quemadura, Gas Tóxico y Explosión Psíquica
+  * **Combate Multifásico:** El combate progresa a través de múltiples fases con mecánicas cambiantes a medida que se invocan órganos
+
+==== Mecánicas de Combate ====
+  * **Gestión de Órganos:** Debe lidiar con los órganos invocados y larvas mientras lucha contra Yog
+  * **Mitigación de Daño:** El daño a Yog disminuye exponencialmente con cada órgano invocado
+  * **Ataques en Línea de Visión:** El rayo de muerte afecta todas las casillas en línea recta
+  * **Regeneración:** Yog tiene capacidades limitadas de auto-curación a través de la invocación de órganos
+  * **Cambios de Fase:** Las mecánicas de combate cambian a medida que la vida de Yog disminuye y se invocan más órganos
+
+==== Botín ====
+  * [[es:rpd:amulet_of_yendor_item|Amuleto de Yendor]]: El artefacto definitivo, necesario para ganar el juego
+  * [[es:rpd:gold_item|Oro]]: Gran cantidad de oro
+  * **Llave Esquelética**: Caída garantizada al matar (si el héroe no tiene una)
+  * **Objetos Raros:** Puede dejar caer objetos únicos de todos los pisos anteriores
+
+==== Ubicación ====
+  * Se encuentra en el área de los [[es:rpd:halls|Salones Demoníacos]], accesible solo con una [[es:rpd:skeleton_key_item|Llave Esquelética]]
+
+==== Descripción ====
+Yog, el Señor de los Muertos, es el desafío final para los héroes lo suficientemente valientes para enfrentar los niveles más profundos de la mazmorra.
+
+==== Preparación ====
+  * **Equipamiento:** Armas y armaduras de alto nivel son esenciales
+  * **Consumibles:** Trae muchos objetos de curación, pociones y pergaminos
+  * **Estrategia:** Planifica para una batalla larga y compleja contra múltiples enemigos
+  * **Gestión de Posicionamiento:** Evita pararte en líneas rectas con Yog debido al ataque de rayo de muerte
+  * **Estrategia de Mejores:** Planifica para la recreación frecuente de mejores debido a las mecánicas de invocación de órganos
+
+==== Tácticas ====
+  * Enfócate en eliminar los órganos invocados y las larvas para evitar ser abrumado
+  * Mantén la distancia y evita las líneas de fuego directas cuando sea posible
+  * Prepárate para cambiar tácticas a medida que el combate progresa a través de las fases
+  * Trae [[es:rpd:ranged_weapons|opciones a distancia]] para atacar desde la seguridad
+  * Espera que el combate tome muchos turnos con mecánicas complejas
+
+==== Citas ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2827|Yog_Info1]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2828|Yog_Info2]]
+
+==== Verificación de Contenido ====
+  * Clase Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java|YogsEye.java]]
+  * Tipo de Entidad: Yog (devuelve el nombre de clase simple via getEntityKind())
+  * Verificación de estadísticas: Extraída directamente del constructor de YogsEye.java (hp(ht(1000)), baseAttackSkill=30, baseDefenseSkill=30, dmgMin=20, dmgMax=30, dr=0, expForKill=50)
+  * Descripciones de efectos: Basadas en análisis de código de YogsEye.java y clases de órganos asociadas
+  * Recursos de strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2827-L2833|Yog_Name, Yog_Desc, Yog_Gender, Yog_Info1, Yog_Info2, Yog_Name_Objective]]
+  * Configuración de sprite: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/YogsEye.json|YogsEye.json]] - dimensiones de sprite y frames de animación
+  * Clases de órganos: 
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L72|YogsEye.spawnOrgans()]] - invocación de órganos
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/RottingFist.java|RottingFist.java]] (Puño Pudriente)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/BurningFist.java|BurningFist.java]] (Puño Ardiente)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsBrain.java|YogsBrain.java]] (Cerebro de Yog)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsHeart.java|YogsHeart.java]] (Corazón de Yog)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsTeeth.java|YogsTeeth.java]] (Dientes de Yog)
+  * Implementación de rayo de muerte: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L130-L153|método zapProc()]]
+  * Aparición de larvas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L106|CharUtils.spawnOnNextCell(this, "Larva", ...)]]
+  * Mitigación de daño: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L94-L108|método damage()]] - desplazamiento bitwise por órgano
+  * Mecánicas de mejores: La clase base Boss proporciona inmunidad a Muerte, Terror, Furia, Encanto, Sueño, Quemadura, ToxicGas, ScrollOfPsionicBlast
+  * Generación de nivel: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/HallsBossLevel.java|HallsBossLevel.java]] donde aparece Yog
+  * Lógica de caída de Amuleto/Llave: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java#L59-L87|Boss.die() y restoreFromBundle()]] manejan caídas de Amuleto de Yendor y Llave Esquelética
+  * Validación de insignia: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java#L186|insignia YOG_SLAIN]]
+  * Música de batalla: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/YogsEye.json|YogsEye.json]] especifica "ost_boss_6_fight" / "ost_boss_fight" como música de batalla
+  * Comportamiento IA: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|clase base Mob]] extendida por YogsEye
+  * Fórmula de vida: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L47|hp(ht(1000)) en constructor]]
+  * Fórmulas de ataque: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L51-L55|valores de ataque/defensa/daño/DR]]
+  * Última actualización: Verificado contra la base de código actual
+
+==== Véase También ====
+  * [[es:rpd:bosses|Jefes]] - Otros desafíos mayores de la mazmorra
+  * [[es:rpd:halls|Salones Demoníacos]] - El área donde se encuentra Yog
+  * [[es:rpd:mobs|Enemigos]] - Otras criaturas en la mazmorra
+  * [[es:rpd:combat_mechanic|Combate]] - Mecánicas generales de combate
+  * [[es:rpd:amulet_of_yendor_item|Amuleto de Yendor]] - El objetivo definitivo del juego
+  * [[es:rpd:rotting_fist_mob|Puño Pudriente]] - Uno de los órganos invocados por Yog
+  * [[es:rpd:burning_fist_mob|Puño Ardiente]] - Uno de los órganos invocados por Yog
+  * [[es:rpd:yogs_brain_mob|Cerebro de Yog]] - Uno de los órganos invocados por Yog
+  * [[es:rpd:yogs_heart_mob|Corazón de Yog]] - Uno de los órganos invocados por Yog
+  * [[es:rpd:yogs_teeth_mob|Dientes de Yog]] - Uno de los órganos invocados por Yog
+  * [[es:rpd:badges_mechanic|Insignias]] - Sistema de logros incluyendo muertes de jefes
+
+{{tag> rpd mobs boss final_boss demon_halls }}
