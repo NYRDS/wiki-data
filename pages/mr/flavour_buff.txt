@@ -1,0 +1,68 @@
+====== Flavour Buff - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] - Base class for flavour buffs
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Parent class
+
+===== Java Class Content =====
+<code java>
+package com.watabou.pixeldungeon.actors.buffs;
+
+import com.nyrds.LuaInterface;
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.util.Util;
+import com.watabou.pixeldungeon.utils.Utils;
+
+@LuaInterface
+public class FlavourBuff extends Buff {
+
+	@Override
+	public String desc() {
+		String ret = super.desc();
+		float cooldown = cooldown();
+		if (cooldown <= Util.BIG_FLOAT / 2) {
+			ret += "\n";
+			ret += Utils.format(R.string.BuffParam_Cooldown, cooldown());
+		}
+		return ret;
+	}
+
+	@Override
+	public void act() {
+		detach();
+	}
+}
+</code>
+
+===== Key Properties =====
+  * Extends: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff]]
+  * Implements: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/LuaInterface.java|LuaInterface]] (for Lua scripting support)
+  * **Behavior**: Immediately detaches when `act()` is called (single-turn duration flavour buffs)
+  * **Description**: Adds cooldown information to buff description if applicable
+
+===== JSON Configuration =====
+No dedicated JSON configuration file found. This is a base Java class.
+
+===== String Resources =====
+English (`values/strings_all.xml`):
+<code xml>
+<string name="BuffParam_Cooldown">Cooldown: %s</string>
+</code>
+
+Russian (`values-ru/strings_all.xml`):
+<code xml>
+<string name="BuffParam_Cooldown">Перезарядка: %s</string>
+</code>
+
+===== Lua Scripts =====
+This class is exposed to Lua via `@LuaInterface` annotation, allowing Lua buffs to extend it.
+
+===== Subclasses =====
+  * [[mr:levitation_buff|Levitation Buff]] - Extends FlavourBuff
+  * Other flavour buffs that have immediate detachment behavior
+
+===== Related mr Entities =====
+  * [[mr:buff|Buff (Base Class)]] - Parent class
+  * [[mr:levitation_buff|Levitation Buff]] - Known subclass
+
+{{tag> mr rpd buffs flavour_buff base_class}}

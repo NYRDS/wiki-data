@@ -3,10 +3,12 @@
 {{ rpd:images:frost_buff.png|Frost Buff }}
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]] - Main frost buff implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] - Registers "Frost" buff kind
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java|BuffIndicator.java]] - FROST icon (15)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java|CharSprite.java]] - FROZEN sprite state
 
 ===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+No dedicated JSON configuration file found. Buff kind registered in BuffFactory.
 
 ===== String Resources =====
 String resources available in multiple languages:
@@ -29,15 +31,16 @@ String resources available in multiple languages:
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ms/strings_all.xml#L551-L552|Malay strings]]
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Frost.lua|Frost.lua]] - Main frost buff implementation (migrated from Java)
 
 ===== Implementation Details =====
-  * **Package:** com.watabou.pixeldungeon.actors.buffs
-  * **Base Class:** FlavourBuff
-  * **Duration:** 5 seconds (base)
-  * **Effect:** Paralyzes target, freezes items
-  * **Icon:** BuffIndicator.FROST
+  * **Buff Kind:** "Frost" (registered in BuffFactory)
+  * **Base Class:** CustomBuff (Lua implementation)
+  * **Duration:** 5 turns (base)
+  * **Effect:** Paralyzes target, freezes carried potions
+  * **Icon:** BuffIndicator.FROST (15)
   * **Sprite State:** CharSprite.State.FROZEN
+  * **Implementation:** Lua script (scripts/buffs/Frost.lua), migrated from Java Frost.java
 
 ===== Mechanics =====
   * **Paralysis:** Target is paralyzed while frozen
@@ -45,6 +48,7 @@ This entity is implemented in Java, no Lua script exists
   * **Damage Interaction:** Buff is removed when target takes damage
   * **Resistance:** Duration affected by RingOfElements.Resistance
   * **Visual:** Target sprite shows FROZEN state
+  * **Burning Removal:** Removes Burning buff when applied
 
 ===== Related mr Entities =====
   * [[mr:burning_buff|Burning (Buff)]] - Opposite fire damage over time buff
