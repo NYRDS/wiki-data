@@ -1,0 +1,72 @@
+====== mr:weapon_item - Weapon (Item) Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.java]] - Base weapon class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]] - Melee weapon base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Polearm.java|Polearm.java]] - Polearm weapon base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/ranged/RangedWeapon.java|RangedWeapon.java]] - Ranged weapon base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/WeaponGuts.java|WeaponGuts.java]] - Enhanced weapon mechanics
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists for the base weapon class.
+Individual weapons may have JSON configuration in Treasury.json and SpidersTreasury.json for loot tables.
+
+===== String Resources =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - Contains weapon-related strings (names, descriptions, gender)
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists for the base weapon class.
+Custom weapons may use Lua scripts in scripts/items/.
+
+===== Related mr Entities =====
+  * [[mr:item|Item]]
+  * [[mr:melee_weapon_item|Melee Weapon]]
+  * [[mr:ranged_weapon_item|Ranged Weapon]]
+  * [[mr:polearm_item|Polearm]]
+  * [[mr:halberd_item|Halberd]]
+  * [[mr:glaive_item|Glaive]]
+  * [[mr:claymore_item|Claymore]]
+  * [[mr:weapon_enchantments|Weapon Enchantments]]
+  * [[mr:scroll_of_upgrade_item|Scroll of Upgrade]]
+
+===== Key Properties from Code =====
+
+**Weapon.java Base Properties:**
+  * Damage range (min/max)
+  * Speed multiplier
+  * Accuracy modifier
+  * Required strength
+  * Weight
+  * Tier
+  * Image reference from sprite sheet
+  * Upgradeable flag
+  * Enchantment compatibility
+
+**MeleeWeapon.java:**
+  * Extends Weapon
+  * Melee-specific attack logic
+  * Durability handling (if applicable)
+
+**Polearm.java:**
+  * Extends MeleeWeapon
+  * Polearm-specific mechanics (reach, etc.)
+
+**RangedWeapon.java:**
+  * Extends Weapon
+  * Projectile-based attack logic
+  * Ammo handling
+
+===== Wiki Pages =====
+
+**English:**
+  * [[en:rpd:weapon_item|Weapon]] - Main wiki page
+  * [[en:rpd:melee_weapon_item|Melee Weapons]]
+  * [[en:rpd:ranged_weapons|Ranged Weapons]]
+  * [[en:rpd:polearms|Polearms]]
+
+**Russian:**
+  * [[ru:rpd:weapon_item|Оружие]] - Russian wiki page
+  * [[ru:rpd:melee_weapon_item|Ближнее оружие]]
+  * [[ru:rpd:ranged_weapons|Дальнее оружие]]
+
+{{tag> mr items weapons melee ranged polearm reference machine-readable}}
