@@ -1,0 +1,78 @@
+====== 火箭 ======
+
+{{ rpd:images:fire_arrow_item.png|火箭 }}
+
+**火箭** 是一种特殊的 [[cn:rpd:missile_weapons|飞弹武器]]，命中目标时会施加 [[cn:rpd:burning_buff|燃烧]] 状态效果。
+
+==== 描述 ====
+浸泡了易燃材料的木箭。当这支箭击中敌人时，会点燃目标。根据字符串资源，"这支箭除了箭头发出温暖的红光之外，跟普通的箭没什么不一样。"
+
+==== 属性 ====
+  * **伤害**: 1-6
+  * **延迟**: 0.75 (baseDly: 0.75)
+  * **最小力量需求**: 9
+  * **价格**: 每支 5 金币
+  * **重量**: 1
+
+==== 特殊能力 ====
+  * **燃烧效果**: 当箭矢击中目标时，有 25% 几率施加 [[cn:rpd:burning_buff|燃烧]] 状态效果（从远程武器发射时）
+  * **机制**: 命中时使用 Buff.affect(defender, Burning.class).reignite(defender) - 从弓/武器发射时每次成功命中有 25% 概率触发；敌人使用时总是触发
+  * **弓增强**: 从弓发射时，伤害值会被装备弓的伤害因子 (dmgFactor()) 修改
+  * **额外伤害**: 如果有效力量比需求力量高出 2 点以上，增加额外伤害: MAX += (MIN + (有效STR - 需求STR - 2))
+  * **精灵职业加成**: 精灵使用时，准确率提高 10%，延迟减少 10%
+
+==== 特性 ====
+  * **类型:** [[cn:rpd:missile_weapons|飞弹武器]]/弹药 (特殊)
+  * **用途:** 与弓等远程武器配合使用
+  * **消耗品:** 每支箭射出后被消耗
+  * **可堆叠:** 可以堆叠到很高的数量
+
+==== 制作 ====
+火箭可以通过对普通 [[cn:rpd:common_arrow_item|普通箭]] 使用 [[cn:rpd:potion_of_liquid_flame_item|火焰药水]] 来制作。这个过程称为"[[cn:rpd:moisten_mechanic|药水浸润]]"，将基础箭矢转化为具有特殊属性的箭。
+
+==== 获取方式 ====
+  * 可在地牢各处的宝藏位置找到
+  * 随机生成时数量通常为 15-30 支 (Arrow.java random() 方法定义)
+  * 在 Treasury.json 和 SpidersTreasury.json 中以概率 2 出现
+  * **制作:** 可通过 [[cn:rpd:alchemy|炼金术]] 用火焰药水浸润普通箭来制作
+
+==== 机制 ====
+  * 命中敌人时施加燃烧状态效果
+  * 燃烧造成持续伤害直到熄灭或敌人死亡
+  * 射入可燃地形（如草地）时可点燃地形
+  * 燃烧的敌人受到伤害并可将相邻可燃地形点燃
+  * 不与毒药或麻痹等其他状态效果叠加
+
+==== 策略 ====
+  * 对易受火焰伤害的敌人有效
+  * 对群体特别有用，因为燃烧可蔓延至相邻格子
+  * 适合造成额外的持续伤害
+  * 从远程武器投掷时，仅在成功命中且有 25% 几率触发燃烧效果
+  * 对群体敌人造成持续伤害效果极佳
+  * 可通过点燃地形创造环境优势
+  * 在有可燃地形的区域小心使用，以免火势蔓延到自己
+  * 对不会立即杀死你的敌人有效，让火焰持续发挥作用
+  * 对亡灵和寒冷系敌人有效，通常受到额外火焰伤害
+
+==== 代码引用 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FireArrow.java|FireArrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (基类)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]] (施加的效果)
+  * [[mr:fire_arrow_item|火箭 - 代码引用]]
+
+==== 字符串资源 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L856|FireArrow_Name]]: "fire arrow"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L857|FireArrow_Info]]: "This arrow looks just like a normal one, other than a warm red light radiating from its head."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L858|FireArrow_Gender]]: "feminine"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L801-L803|中文字符串]]: "火箭", "这支箭除了箭头发出温暖的红光之外，跟普通的箭没什么不一样。", "feminine"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L843-L845|俄文字符串]]: "огненная стрела", "Эта стрела выглядит обычной, лишь наконечник испускает тёплый красноватый свет.", "feminine"
+
+==== 参见 ====
+  * [[cn:rpd:burning_buff|燃烧]] - 此箭施加的状态效果
+  * [[cn:rpd:common_arrow_item|普通箭]] - 浸润制作的基础箭
+  * [[cn:rpd:potion_of_liquid_flame_item|火焰药水]] - 制作所需
+  * [[cn:rpd:arrows_item|箭矢]] - 其他箭矢类型
+  * [[cn:rpd:missile_weapons|飞弹武器]] - 其他投掷武器
+  * [[cn:rpd:alchemy|炼金术]] - 制作特殊物品
+
+{{tag> rpd items ammunition ranged liquid_flame fire burning arrows missiles }}
