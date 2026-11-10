@@ -8,31 +8,43 @@ Armors in Remixed Dungeon are organized into five tiers, with each higher tier o
 ==== Armor Tiers ====
   * **Tier 1** - [[en:rpd:cloth_armor_item|Cloth Armor]]
     * Lightest armor with minimal protection
-    * No strength requirement
+    * **Strength Requirement**: 9 (typical)
+    * **Base DR**: 2
     * Lowest durability consumption
+    * Price: 10 gold
   * **Tier 2** - [[en:rpd:leather_armor_item|Leather Armor]]
     * Basic protection with balanced weight
-    * Minimal strength requirement
+    * **Strength Requirement**: 11 (typical)
+    * **Base DR**: 4
     * Good for early game progression
+    * Price: 20 gold
   * **Tier 3** - [[en:rpd:mail_armor_item|Mail Armor]]
     * Moderate protection and weight
-    * Moderate strength requirement
+    * **Strength Requirement**: 13 (typical)
+    * **Base DR**: 6
     * Good all-around armor for mid game
+    * Price: 40 gold
   * **Tier 4** - [[en:rpd:scale_armor_item|Scale Armor]]
     * Good protection with higher weight
-    * Higher strength requirement
+    * **Strength Requirement**: 15 (typical)
+    * **Base DR**: 8
     * Strong armor for mid to late game
+    * Price: 80 gold
   * **Tier 5** - [[en:rpd:plate_armor_item|Plate Armor]]
     * Highest protection but very heavy
-    * Highest strength requirement
+    * **Strength Requirement**: 17 (typical)
+    * **Base DR**: 10
     * Best protection for those who can handle the weight
+    * Price: 160 gold
 
 ==== Tier Characteristics ====
-  * **Protection**: Higher tiers provide more defense rating
+  * **Protection (Base DR)**: Higher tiers provide more base defense rating (2/4/6/8/10)
+  * **Effective DR**: Scales with armor level: `tier * 2 + level * tier + (glyph ? tier : 0)`
+  * **Strength Requirement**: Typical STR = `7 + tier * 2` (9/11/13/15/17)
   * **Weight**: Higher tiers are generally heavier
-  * **Strength**: Higher tiers require more strength to wear efficiently
   * **Durability**: All tiers have similar durability mechanics
   * **Enchantability**: All tiers can receive armor glyphs
+  * **Price**: Base price = `10 * 2^(tier-1)` (10/20/40/80/160 gold); glyphs increase price by 50%
 
 ==== Tier Considerations ====
   * **Strength Management**: Ensure sufficient strength for the armor tier
@@ -42,7 +54,8 @@ Armors in Remixed Dungeon are organized into five tiers, with each higher tier o
 
 ==== Code References ====
   * Armor Tiers System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] - How armor tiers are defined
-  * Tier Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L15-L30|Tier definition code]] - How each tier is specified
+  * Tier Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L172-L186|Typical STR, DR, and Price formulas]] - How each tier is specified
+  * Effective DR: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L180-L182|Armor.effectiveDr()]] - Effective defense rating calculation
   * Item System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - General item mechanics
   * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - All armor-related text
 

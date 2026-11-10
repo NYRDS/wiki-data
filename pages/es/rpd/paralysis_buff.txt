@@ -1,0 +1,60 @@
+====== Parálisis ======
+
+{{ rpd:images:paralysis_buff.png|Efecto de Estado Parálisis }}
+
+**Parálisis** es un efecto de estado en Remixed Pixel Dungeon que impide temporalmente que el personaje afectado realice cualquier acción.
+
+==== Efectos ====
+  * **Prevención de Acciones**: Los personajes afectados no pueden moverse, atacar, ni usar objetos/hechizos
+  * **Salto de Turno**: Se salta el turno del personaje afectado hasta que el efecto desaparece
+  * **Reducción de Duración**: La duración del efecto disminuye cada turno hasta que expira
+
+==== Causas ====
+La parálisis puede ser infligida por:
+  * [[en:rpd:paralysis_enchantment|Encantamiento de Parálisis]] en armas
+  * [[en:rpd:curare_dart_item|Dardo de Curare]]
+  * Ataques de [[en:rpd:piranha_mob|Piraña]]
+  * Ataques del [[en:rpd:king_mob|Rey]]
+  * [[en:rpd:paralytic_gas_trap_level_object|Trampa de Gas Paralizante]]
+  * Otras habilidades y efectos especiales
+
+==== Contramedidas ====
+  * Algunas criaturas son naturalmente inmunes a la parálisis
+  * Los efectos de [[en:rpd:resistances|Resistencia]] pueden reducir la duración
+  * Pociones y objetos que curan efectos de estado pueden eliminar la parálisis
+
+==== Código Fuente ====
+  * Clase Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]]
+  * Recursos de Cadenas (Inglés): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L595-L596|Cadenas de Parálisis (línea 595-596)]]
+  * Recursos de Cadenas (Ruso): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L595-L596|Cadenas de Parálisis (línea 595-596)]]
+  * Duración de Parálisis: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L39|Método Paralysis.duration()]] - calcula la duración basada en resistencias del personaje
+  * Método paralyse del personaje: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L20-L22|Método Char.paralyse()]] - maneja el estado de parálisis
+  * Adjuntar Parálisis: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L14-L19|Método Paralysis.attachTo()]] - adjunta parálisis y llama a Char.paralyse(true)
+  * Desadjuntar Parálisis: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L21-L24|Método Paralysis.detach()]] - llama a Char.paralyse(false) para eliminar el efecto
+  * Efecto visual de estado: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L33|Paralysis.charSpriteStatus()]] - devuelve CharSprite.State.PARALYSED
+  * Adjuntar visual: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L29-L31|Paralysis.attachVisual()]] - añade efectos visuales al sprite
+  * Probabilidad de escape por daño: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L26-L31|Paralysis.charGotDamage()]] - permite escapar de la parálisis basado en el daño recibido
+  * Cálculo de resistencia: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L39|Paralysis.duration()]] - verifica el buff Resistencia para modificar la duración
+  * Mensaje de estado: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L31|GLog.i(Char_OutParalysis)]] - muestra mensaje cuando la parálisis termina por daño
+  * Mensaje de estado (Ruso): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L328|Char_OutParalysis (ruso)]]
+  * Texto de estado del personaje: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java#L17-L19|CharSprite.NEGATIVE]] - muestra estado "Paralizado"
+  * Texto de estado del personaje (Ruso): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L958|Hero_StaParalysis (ruso)]]
+  * Estados del sprite del personaje: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java#L12-L15|CharSprite.State.PARALYSED]]
+  * Base FlavourBuff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] - clase base para efectos de estado visuales
+  * Interfaz Char: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - clase base para todos los personajes
+  * Interfaz NamedEntityKind: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind.java]] - para identificación de entidades
+  * Sistema Actor: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]] - sistema de programación de turnos del juego
+  * Indicador de buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java#L7-L10|BuffIndicator.PARALYSIS]] - icono UI para buff de parálisis
+  * Funciones utilitarias de personaje: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]] - visibilidad y otras funciones utilitarias
+  * Resistencia del Anillo de los Elementos: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java#L15-L20|RingOfElements.Resistance]] - afecta la duración de la parálisis
+  * Utilidades aleatorias: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/utils/Random.java|Random.java]] - usado para cálculo de probabilidad de escape por daño
+  * Datos legibles por máquina: [[mr:paralysis_buff|mr:paralysis_buff]]
+
+==== Ver También ====
+  * [[en:rpd:status_effects|Efectos de Estado]]
+  * [[en:rpd:paralysis_enchantment|Encantamiento de Parálisis]]
+  * [[en:rpd:buffs|Buffs y Debuffs]]
+  * [[en:rpd:paralytic_gas_trap_level_object|Trampa de Gas Paralizante]]
+  * [[en:rpd:potion_of_paralytic_gas_item|Poción de Gas Paralizante]]
+
+{{tag> es:rpd efectos_estado buffs }}

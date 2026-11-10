@@ -1,0 +1,100 @@
+====== Doctor Class - Code References ======
+
+{{ rpd:images:doctor_hero.png|Doctor Class }}
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - DOCTOR enum definition (line with DOCTOR(R.string.HeroClass_Doctor, DoctorArmor.class))
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L412-L432|HeroClass.attackSkillBonus()]] - Bone Saw accuracy penalty (-5 attack skill when not wielding Bone Saw, 5% chance to warn per attack)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Hero base class with class-specific initialization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/DoctorArmor.java|DoctorArmor.java]] - Class-specific armor
+
+===== JSON Configuration =====
+Starting configuration in initHeroes.json:
+<code json>
+"DOCTOR": {
+    "weapon": {
+      "kind": "BoneSaw",
+      "identified": true
+    },
+    "ring1": {
+      "kind": "PlagueDoctorMask"
+    },
+    "armor": {
+      "kind": "NoItem"
+    },
+    "knownItems": [
+      { "kind": "PotionOfHealing" },
+      { "kind": "PotionOfToxicGas" },
+      { "kind": "PotionOfParalyticGas" }
+    ]
+}
+</code>
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] - Starting equipment and known items
+
+===== String Resources =====
+English string resources:
+<code xml>
+<string name="HeroClass_Doctor">Plague Doctor</string>
+<string name="Accuracy_DecreasedDoctor">Accuracy decreased with %s</string>
+<string name="Accuracy_DecreasedDoctorBareHands">Accuracy decreased while barehanded</string>
+</code>
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|English (values/strings_all.xml)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|Russian (values-ru/strings_all.xml)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml|Spanish (values-es/strings_all.xml)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml|German (values-de/strings_all.xml)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-fr/strings_all.xml|French (values-fr/strings_all.xml)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml|Portuguese (values-pt-rBR/strings_all.xml)]]
+  * And other localization files
+
+===== Lua Scripts =====
+This entity is implemented in Java. No Lua script exists for the Doctor hero class.
+
+===== Key Code Fragments =====
+
+**Java Implementation (HeroClass.java - DOCTOR enum)**:
+<code java>
+DOCTOR(R.string.HeroClass_Doctor, DoctorArmor.class);
+</code>
+
+**Attack Skill Bonus (Bone Saw Requirement)**:
+<code java>
+@Override
+public int attackSkillBonus(Char chr) {
+    switch (this) {
+        case DOCTOR:
+            if(!chr.getActiveWeapon().getEntityKind().equals(BONE_SAW) 
+                && !chr.getSecondaryWeapon().getEntityKind().equals(BONE_SAW)) {
+                if(Math.random()<0.05) {
+                    Item badWeapon = chr.getActiveWeapon();
+                    if (!badWeapon.valid()) {
+                        badWeapon = chr.getSecondaryWeapon();
+                    }
+                    if(badWeapon.valid()) {
+                        chr.yell(Utils.format(R.string.Accuracy_DecreasedDoctor, badWeapon.name()));
+                    } else {
+                        chr.yell(R.string.Accuracy_DecreasedDoctorBareHands);
+                    }
+                }
+                return -5;
+            }
+    }
+    return 0;
+}
+</code>
+
+===== Related mr: Entities =====
+  * [[mr:bone_saw_item|Bone Saw (Item)]] - Starting weapon
+  * [[mr:plague_doctor_mask_item|Plague Doctor Mask (Item)]] - Starting accessory
+  * [[mr:plague_doctor_npc|Plague Doctor (NPC)]] - Related quest NPC
+  * [[mr:potion_of_healing_item|Potion of Healing (Item)]] - Known item
+  * [[mr:potion_of_toxic_gas_item|Potion of Toxic Gas (Item)]] - Known item
+  * [[mr:potion_of_paralytic_gas_item|Potion of Paralytic Gas (Item)]] - Known item
+  * [[mr:hero_class|Hero Class (Base)]] - Base class reference
+
+===== Related Wiki Pages =====
+  * [[en:rpd:doctor_class|Doctor Class]] - Human-readable page
+  * [[en:rpd:hero_class|Hero Classes]] - Overview of all classes
+  * [[en:rpd:plague_doctor_npc|Plague Doctor NPC]] - Related quest
+  * [[en:rpd:potions|Potions]] - Core mechanic for Doctor
+
+{{tag> mr hero_classes doctor plague_doctor toxic alchemy starting_equipment }}

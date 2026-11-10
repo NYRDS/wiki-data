@@ -1,0 +1,50 @@
+====== Blobs ======
+
+**Blobs** are environmental effects in Remixed Dungeon that spread across the dungeon floor, affecting characters and objects that come into contact with them. They are dynamic fields that can expand, contract, and interact with entities in various ways.
+
+==== Overview ====
+Blobs are implemented as subclasses of the `Blob` base class. Each blob type has unique properties, behaviors, and effects on characters. Blobs can be created by mobs, items, traps, or level features.
+
+==== Blob Types ====
+  * **Toxic Gas** (`[[en:rpd:toxic_gas_buff|Toxic Gas]]`) - Poisons characters standing in it
+  * **Fire** - Burns characters and destroys items
+  * **Water** - Extinguishes fire, conducts electricity
+  * **Web** (`[[en:rpd:web_trap|Web]]`) - Roots characters in place (applies [[en:rpd:roots_buff|Roots]] buff)
+  * **Liquid Flame** (`[[en:rpd:liquid_flame_blob|Liquid Flame]]`) - Burns and creates toxic gas
+  * **Freezing Vapor** (`[[en:rpd:freezing_buff|Freezing Vapor]]`) - Chills and freezes characters
+  * **Paralytic Gas** - Paralyzes characters
+  * **Confusion Gas** - Confuses characters
+  * **Scroll of Psionic Blast** - Creates damaging psychic energy fields
+
+==== Mechanics ====
+  * **Spreading**: Blobs spread to adjacent tiles each turn based on their volume
+  * **Volume**: Each blob tile has a volume value that decreases over time; when volume reaches 0, the blob disappears from that tile
+  * **Interaction**: Characters standing on blob tiles are affected each turn (or immediately upon entering)
+  * **Immunity**: Some characters/items grant immunity to specific blob effects (e.g., Spider Armor grants immunity to Web)
+  * **Clearing**: Fire-based attacks can clear Web blobs; other blobs may have specific counters
+
+==== Creation Sources ====
+  * **Mobs**: Spinners create Web when fleeing; other mobs may create various blobs
+  * **Items**: Spider Armor creates Web when wearer takes damage; Alchemist's tools can create various blobs
+  * **Traps**: Gas traps release Toxic Gas, Paralytic Gas, etc.
+  * **Level Features**: Certain rooms or level objects may generate blobs
+  * **Spells/Scrolls**: Some magical effects create temporary blob fields
+
+==== Technical Implementation ====
+  * Base Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java|Blob.java]]
+  * Web Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Web.java|Web.java]]
+  * Toxic Gas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas.java]]
+  * Fire: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]]
+  * Blob Emitter: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/BlobEmitter.java|BlobEmitter.java]] - handles visual particle effects
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - blob descriptions and names
+
+==== Related Pages ====
+  * [[en:rpd:web_trap|Web]]
+  * [[en:rpd:toxic_gas_buff|Toxic Gas]]
+  * [[en:rpd:liquid_flame_blob|Liquid Flame]]
+  * [[en:rpd:freezing_buff|Freezing Vapor]]
+  * [[en:rpd:spider_armor_item|Spider Armor]] - Grants Web immunity, creates Web on hit
+  * [[en:rpd:spinner_mob|Spinner]] - Creates Web trails when fleeing
+  * [[en:rpd:paralytic_gas_trap_level_object|Paralytic Gas Trap]]
+
+{{tag> rpd mechanics blobs environment }}
