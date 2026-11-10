@@ -6,7 +6,7 @@ An **Armor Kit** is a special item in Remixed Dungeon that allows players to upg
 
 ==== Item Overview ====
   * **Type:** Crafting/Upgrade Item
-  * **Acquisition:** Dropped by [[en:rpd:king_mob|King]] boss in the Halls level (as defined in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L66|King.java:66]])
+  * **Acquisition:** Dropped by [[en:rpd:king_mob|King]] boss in the Halls level (King.lua collects ArmorKit in belongings on spawn)
   * **Purpose:** Transform regular armor into class-specific armor
   * **Usage:** Must be used on regular armor while playing as a hero who has chosen the appropriate subclass
 
@@ -15,15 +15,32 @@ An **Armor Kit** is a special item in Remixed Dungeon that allows players to upg
   * **Stats Preservation:** The upgraded armor retains all properties of the original armor (defense value, enchantment, level)
   * **Subclass Specific:** Each class armor can only be equipped by the corresponding subclass
   * **One-time Use:** The armor kit is consumed when used
+  * **No Subclass:** If the hero has no subclass, the base class armor is created (e.g., WarriorArmor for Warrior)
+  * **With Subclass:** If the hero has a subclass, the subclass-specific armor is created (e.g., GladiatorArmor for Gladiator)
 
 ==== Class Armors Created ====
-  * **Warrior:** [[en:rpd:warrior_armor_item|Warrior Armor]] (with Leap ability) - requires [[en:rpd:gladiator_subclass|Gladiator]] subclass
-  * **Mage:** [[en:rpd:mage_armor_item|Mage Armor]] (with Mage Staff special) - requires [[en:rpd:warlock_subclass|Warlock]] subclass or [[en:rpd:battle_mage_subclass|Battle Mage]] subclass
-  * **Rogue:** [[en:rpd:rogue_armor_item|Rogue Armor]] (with Smoke Bomb ability) - requires [[en:rpd:freerunner_subclass|Freerunner]] subclass
-  * **Huntress:** [[en:rpd:huntress_armor_item|Huntress Armor]] (with Spirit Hawk ability) - requires [[en:rpd:warden_subclass|Warden]] subclass
-  * **Assassin:** [[en:rpd:assassin_armor_item|Assassin Armor]] (with Shadow Step ability) - requires [[en:rpd:assassin_subclass|Assassin]] subclass
-  * **Necromancer:** [[en:rpd:necromancer_armor_item|Necromancer Robe]] (with Raise Dead ability) - requires [[en:rpd:lich_subclass|Lich]] subclass
-  * **Gnoll:** [[en:rpd:gnoll_armor_item|Gnoll Armor]] (with Pack Hunt ability) - requires [[en:rpd:guardian_subclass|Guardian]] subclass or [[en:rpd:witchdoctor_subclass|Witch Doctor]] subclass
+  * **Warrior (no subclass):** [[en:rpd:warrior_armor_item|Warrior Armor]] (with Leap ability)
+  * **Gladiator subclass:** [[en:rpd:gladiator_armor_item|Gladiator Armor]] (with Leap ability)
+  * **Berserker subclass:** [[en:rpd:berserker_armor_item|Berserker Armor]] (with Fury ability)
+  * **Mage (no subclass):** [[en:rpd:mage_armor_item|Mage Armor]] (with Mage Staff special)
+  * **Warlock subclass:** [[en:rpd:warlock_armor_item|Warlock Armor]] (with Wand recharging)
+  * **Battle Mage subclass:** [[en:rpd:battle_mage_armor_item|Battle Mage Armor]] (with Wand recharging)
+  * **Rogue (no subclass):** [[en:rpd:rogue_armor_item|Rogue Armor]] (with Smoke Bomb ability)
+  * **Assassin subclass:** [[en:rpd:assassin_armor_item|Assassin Armor]] (with Shadow Step bonus)
+  * **Freerunner subclass:** [[en:rpd:freerunner_armor_item|Freerunner Armor]] (with Evasion bonus)
+  * **Huntress (no subclass):** [[en:rpd:huntress_armor_item|Huntress Armor]] (with Spirit Hawk ability)
+  * **Warden subclass:** [[en:rpd:warden_armor_item|Warden Armor]] (with Dewdrop gathering)
+  * **Sniper subclass:** [[en:rpd:sniper_armor_item|Sniper Armor]] (with Sniper Mark)
+  * **Elf (no subclass):** [[en:rpd:elf_armor_item|Elf Armor]] (with Magic Arrow)
+  * **Scout subclass:** [[en:rpd:scout_armor_item|Scout Armor]] (with Haste)
+  * **Shaman subclass:** [[en:rpd:shaman_armor_item|Shaman Armor]] (with Wand bonus)
+  * **Necromancer (no subclass):** [[en:rpd:necromancer_armor_item|Necromancer Robe]] (with Raise Dead)
+  * **Lich subclass:** [[en:rpd:necromancer_armor_item|Necromancer Robe]] (with Raise Dead)
+  * **Gnoll (no subclass):** [[en:rpd:gnoll_armor_item|Gnoll Armor]] (with Pack Hunt)
+  * **Guardian subclass:** [[en:rpd:guardian_armor_item|Guardian Armor]] (with Shield counter)
+  * **Witch Doctor subclass:** [[en:rpd:witchdoctor_armor_item|Witch Doctor Armor]] (with Mana Shield)
+  * **Priest (no subclass):** [[en:rpd:priest_armor_item|Priest Armor]] (with Undead/Demon damage bonus)
+  * **Doctor (no subclass):** [[en:rpd:doctor_armor_item|Doctor Armor]] (with Bone Saw bonus)
 
 ==== Strategy ====
   * Essential for maximizing subclass effectiveness
@@ -32,14 +49,17 @@ An **Armor Kit** is a special item in Remixed Dungeon that allows players to upg
   * Preserve high-level armor before upgrading to maintain benefits
 
 ==== Acquisition ====
-  * Dropped by [[en:rpd:king_mob|King]] boss in the Halls level
-  * Sometimes available in shops in higher levels of the dungeon
+  * Dropped by [[en:rpd:king_mob|King]] boss in the Halls level (carried in King's belongings, drops on death)
+  * Not available in shops
 
 ==== Code Reference ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java|ArmorKit.java]] - Implementation
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] - Base class armor implementation
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GladiatorArmor.java|GladiatorArmor.java]] - Example of a class-specific armor
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L246-L248|ArmorKit_Name, ArmorKit_Info, ArmorKit_Gender]] - String resources
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass armor mappings
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Base class armor mappings
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/King.lua|King.lua]] - King spawns with ArmorKit
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L78-L82|ArmorKit strings]] - String resources
 
 ==== Related Items ====
   * [[en:rpd:armor|Armor]] - All armor types
