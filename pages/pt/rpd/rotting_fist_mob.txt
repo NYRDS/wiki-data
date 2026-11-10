@@ -1,0 +1,47 @@
+====== Punho Apodrecendo ======
+
+{{ rpd:images:rotting_fist_mob.png|Punho Apodrecendo }}
+
+==== Descrição ====
+O **Punho Apodrecendo** é um dos guardiões de Yog, o Deus da Morte. É encontrado nas [[pt:rpd:guts_level|Profundezas do Goo]] e é um dos chefes secundários protegendo Yog junto com [[pt:rpd:burning_fist_mob|Punho Queimando]], [[pt:rpd:yogs_brain_mob|Cérebro de Yog]], [[pt:rpd:yogs_heart_mob|Coração de Yog]], e [[pt:rpd:yogs_teeth_mob|Dentes de Yog]].
+
+==== Estatísticas ====
+  * **HP**: 500
+  * **HT**: 500
+  * **Precisão de Defesa**: 25
+  * **Precisão de Ataque**: 36
+  * **Dano**: 34-46
+  * **DR (Resistência a Dano)**: 15
+  * **EXP por Morte**: 0 (Não concede experiência)
+
+==== Habilidades ====
+  * **Ataque de Lodo**: Tem 33% de chance (Random.Int(3) == 0) de infligir efeito de status [[pt:rpd:ooze_buff|Lodo]] no acerto
+  * **Invocação**: Quando danificado, invoca todos os [[pt:rpd:mobs|mobs]] próximos para sua localização
+  * **Regeneração**: Cura 10 HP quando parado em água (e HP está abaixo do máximo)
+  * **Imunidades**: Imune a [[pt:rpd:amok_buff|Amok]], [[pt:rpd:sleep_buff|Sono]], [[pt:rpd:terror_buff|Terror]], [[pt:rpd:poison_buff|Veneno]], e [[pt:rpd:burning_buff|Queimando]]
+  * **Resistência**: Resistente a [[pt:rpd:toxic_gas_level_object|Gás Tóxico]]
+  * **Sem Pet**: Não pode ser transformado em [[pt:rpd:pet_mechanic|pet]]
+
+==== Mecânicas Especiais ====
+  * O Punho Apodrecendo chamará ajuda de [[pt:rpd:mobs|mobs]] próximos ao receber dano
+  * Regenera saúde quando parado em água, tornando-o mais perigoso em certos terrenos
+
+==== Drops ====
+  * Sem drops padrão (por ser um guardião de Yog)
+
+==== Localização ====
+  * Encontrado nas [[pt:rpd:guts_level|Profundezas do Goo]] (último nível) como um dos guardiões de Yog
+
+==== Implementação (JSON + Lua) ====
+  * **Config JSON:** `mobsDesc/RottingFist.json` (estatísticas: HP 500, ATK 36, DEF 25, DMG 34-46, DR 15)
+  * **Script Lua:** `scripts/mobs/RottingFist.lua` (attackProc: Lodo 1/3; damage: invoca todos mobs próximos; act: cura 10 em água)
+  * **Nota:** Classe Java deletada (lote 17d-2); entidade é apenas dados.
+  * **Recursos de string:** Português: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L1882|RottingFist_Name]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L1885|RottingFist_Desc]]
+
+==== Referências de Código ====
+  * `mobsDesc/RottingFist.json` - Estatísticas e spriteDesc
+  * `scripts/mobs/RottingFist.lua` - Scripts de comportamento (attackProc, act, damage)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L1882|RottingFist_Name]] - Recurso de string português
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L1885|RottingFist_Desc]] - String de descrição português
+
+{{tag> rpd mobs boss guts }}
