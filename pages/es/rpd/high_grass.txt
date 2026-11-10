@@ -1,0 +1,51 @@
+====== Hierba Alta ======
+
+**Hierba Alta** es una característica del terreno que se encuentra en todo el calabozo y que proporciona propiedades e interacciones especiales. Tiene las siguientes características:
+
+==== Propiedades ====
+  * **Movimiento:** Terreno transitable por el que los personajes pueden moverse normalmente
+  * **Línea de Visión:** Bloquea la línea de visión (marca LOS_BLOCKING)
+  * **Inflamable:** Puede ser quemada por efectos basados en fuego
+  * **Pisoteo:** Al ser pisoteada, se convierte en terreno de hierba normal
+  * **Visibilidad:** Normalmente no bloquea la línea de visión del jugador
+
+==== Contenido ====
+  * **Objetos:** Al pisotearla puede soltar gotas de rocío (la probabilidad aumenta con el nivel del anillo de herbalismo)
+  * **Semillas:** Al pisotearla puede soltar semillas aleatorias (la probabilidad aumenta con el nivel del anillo de herbalismo)
+  * **Objetos Ocultos:** Algunos objetos pueden estar ocultos hasta que se pisa la hierba
+  * **Trampas:** Algunas trampas pueden estar ocultas en la hierba alta hasta que se activan
+
+==== Interacción ====
+  * Moverse sobre hierba alta la pisotea, convirtiéndola en hierba normal
+  * Pisotear genera partículas de hojas (4 partículas normalmente, 2 para Explorador, 8 para Guardabosques)
+  * Algunas subclases de héroe tienen interacciones especiales al pisotear hierba alta:
+    * **Explorador (Scout):** Gana 5 turnos de invisibilidad al pisotear hierba alta
+    * **Guardabosques (Warden):** Gana corteza (HP/3) por una duración corta al pisotear hierba alta
+  * El Anillo de Herbalismo aumenta las probabilidades de obtener gotas de rocío y semillas al pisotear
+
+==== Mecánicas ====
+  * **ID de Terreno:** 15 (constante Terrain.HIGH_GRASS)
+  * **Marcas:** PASSABLE | LOS_BLOCKING | FLAMMABLE
+  * **Efecto de Pisoteo:** Se convierte en hierba normal (Terrain.GRASS)
+  * **Objetos:** Gotas de rocío y semillas aleatorias basadas en el nivel del buff de Herbalismo
+
+==== Estrategia ====
+  * Usa la hierba alta estratégicamente para ocultación durante el combate
+  * Considera las habilidades de subclase al planificar movimiento por áreas de hierba alta
+  * Pisa con cuidado si quieres preservar el beneficio de ocultación
+  * Ten en cuenta que algunos enemigos pueden estar ocultos en la hierba alta hasta que la pises
+
+==== Páginas Relacionadas ====
+  * [[es:rpd:grass_terrain|Hierba]] - Terreno de hierba normal (en lo que se convierte la hierba alta al ser pisoteada)
+  * [[es:rpd:scout_subclass|Explorador]] - Subclase de héroe con interacción especial con hierba alta
+  * [[es:rpd:warden_subclass|Guardabosques]] - Subclase de héroe con interacción especial con hierba alta
+  * [[es:rpd:ring_of_herbalism_item|Anillo de Herbalismo]] - Objeto que afecta las caídas de hierba alta
+  * [[es:rpd:seeds_mechanic|Semillas]] - Objetos que pueden encontrarse al pisotear hierba alta
+  * [[es:rpd:dewdrop_item|Gota de Rocío]] - Objetos que pueden encontrarse al pisotear hierba alta
+
+==== Código Fuente ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Terrain.java|Terrain.java]] - Definición de constantes de terreno
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/TerrainFlags.java|TerrainFlags.java]] - Propiedades de terreno
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java|HighGrass.java]] - Mecánicas de pisoteo
+
+{{tag> rpd terrain}}
