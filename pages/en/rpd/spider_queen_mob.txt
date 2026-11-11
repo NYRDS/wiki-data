@@ -7,41 +7,38 @@
 
 ==== Stats ====
   * **HP**: 120
-  * **HT**: 120 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L25|SpiderQueen.java:L25]])
-  * **Defense Skill**: 18 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L26|SpiderQueen.java:L26]])
-  * **Attack Skill**: 21 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L27|SpiderQueen.java:L27]])
-  * **Damage**: 12-20 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L29-L30|SpiderQueen.java:L29-L30]])
-  * **DR (Damage Resistance)**: 10 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L28|SpiderQueen.java:L28]])
-  * **EXP for Kill**: 11 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L27|SpiderQueen.java:L27]])
+  * **HT**: 120 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/SpiderQueen.json#L13|mobsDesc/SpiderQueen.json:L13]])
+  * **Defense Skill**: 18 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/SpiderQueen.json#L8|mobsDesc/SpiderQueen.json:L8]])
+  * **Attack Skill**: 21 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/SpiderQueen.json#L7|mobsDesc/SpiderQueen.json:L7]])
+  * **Damage**: 12-20 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/SpiderQueen.json#L9-L10|mobsDesc/SpiderQueen.json:L9-L10]])
+  * **DR (Damage Resistance)**: 10 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/SpiderQueen.json#L11|mobsDesc/SpiderQueen.json:L11]])
+  * **EXP for Kill**: 11 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/SpiderQueen.json#L14|mobsDesc/SpiderQueen.json:L14]])
 
 ==== Abilities ====
-  * **Spider summoning**: Randomly spawns Spider Eggs during combat (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L40-L44|SpiderQueen.java:L40-L44]])
-  * **Poison attack**: Has a 50% chance to apply poison to enemies on hit (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L48-L51|SpiderQueen.java:L48-L51]])
-  * **Fire immunity**: Immune to fire-based attacks and burning effects (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L55-L56|SpiderQueen.java:L55-L56]])
-  * **Retreat behavior**: When below 50% HP, attempts to stay at range during combat (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L58-L63|SpiderQueen.java:L58-L63]])
+  * **Spider summoning**: Randomly spawns Spider Eggs during combat (approximately every 21 turns) (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/SpiderQueen.lua#L20-L24|scripts/mobs/SpiderQueen.lua:L20-L24]])
+  * **Poison attack**: Has a 50% chance to apply poison to enemies on hit (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/SpiderQueen.lua#L27-L31|scripts/mobs/SpiderQueen.lua:L27-L31]])
+  * **Fire immunity**: Immune to fire-based attacks and burning effects (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/SpiderQueen.json#L24|mobsDesc/SpiderQueen.json:L24]])
+  * **Retreat behavior**: When below 50% HP, attempts to stay at range during combat (kite behavior) (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/SpiderQueen.lua#L35-L38|scripts/mobs/SpiderQueen.lua:L35-L38]])
 
 ==== Special Mechanics ====
-  * Controls the spider nest and its inhabitants
-  * May have special mechanics related to the spider level environment
-  * Summoned creatures may provide additional challenges during the fight
+  * **Spawn Loot**: On first spawn, randomly receives a Chaos Crystal, Spider Charm, or Spider Armor (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/SpiderQueen.lua#L40-L54|scripts/mobs/SpiderQueen.lua:L40-L54]])
+  * **Boss Validation**: Validates SPIDER_QUEEN_SLAIN badge on death (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/SpiderQueen.lua#L57-L59|scripts/mobs/SpiderQueen.lua:L57-L59]])
 
 ==== Drops ====
-  * **[[en:rpd:spider_queen_carapace_item|Spider Queen Carapace]]** - A valuable armor piece (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L19-L25|SpiderQueen.java:L19-L25]])
-  * Chaos Crystal, Spider Charm, or Spider Armor (random drop) (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L19-L25|SpiderQueen.java:L19-L25]])
-  * Skeleton Key (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L25|SpiderQueen.java:L25]])
+  * **[[en:rpd:spider_queen_carapace_item|Spider Queen Carapace]]** - A valuable crafting material
+  * Chaos Crystal, Spider Charm, or Spider Armor (random drop, received on spawn)
+  * Skeleton Key (guaranteed drop on kill)
 
 ==== Location ====
   * Found in the Spider Level as the boss of that area
 
 ==== Code References ====
-  * **Java Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java|SpiderQueen.java]]
-  * **Boss Class Inheritance**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L22|SpiderQueen.java:L22]]
-  * **Special Attack Method**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L47|SpiderQueen.java:L47]]
-  * **Retreat Behavior Method**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L58|SpiderQueen.java:L58]]
-  * **Summoning Mechanism**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java#L40|SpiderQueen.java:L40]]
+  * **JSON Configuration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/SpiderQueen.json|mobsDesc/SpiderQueen.json]]
+  * **Lua Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/SpiderQueen.lua|scripts/mobs/SpiderQueen.lua]] (migrated from Java to JSON + Lua)
+  * **Sprite Configuration**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/SpiderQueen.json|spritesDesc/SpiderQueen.json]]
 
 ==== String Resources ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L725|Badges_SpiderQueen_Slain]]: "Spider Queen slain"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1404|Badges_SpiderQueen_Slain]]: "Spider Queen slain"
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1404|SpiderQueen_Name]]: "spider queen"
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1405|SpiderQueen_Gender]]: "feminine"
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1406|SpiderQueen_Name_Objective]]: "spider queen"
@@ -51,18 +48,18 @@
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2871|SpiderQueen_DieInfo]]: "Spider Queen is slain! Now I should go back to level 5 and continue my journey to the Deeps."
 
 ==== Content Verification ====
-  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java|SpiderQueen.java]]
-  * Stats verification: Extracted directly from [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java|SpiderQueen.java]]
-  * Mechanics verification: Based on implementation in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderQueen.java|SpiderQueen.java]]
+  * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/SpiderQueen.json|mobsDesc/SpiderQueen.json]] + [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/SpiderQueen.lua|scripts/mobs/SpiderQueen.lua]]
+  * Stats verification: Extracted directly from mobsDesc/SpiderQueen.json
+  * Mechanics verification: Based on implementation in scripts/mobs/SpiderQueen.lua
   * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1404-L1407|strings_all.xml:1404-1407]]
   * Machine-readable data: [[mr:spider_queen_mob|mr:spider_queen_mob]]
-  * Last updated: December 2025
+  * Last updated: Verified against current codebase
 
 ==== See Also ====
   * [[en:rpd:mobs|All Mobs]]
   * [[en:rpd:bosses|Boss Mobs]]
   * [[en:rpd:spider_queen_carapace_item|Spider Queen Carapace]]
   * [[en:rpd:spider_egg_mob|Spider Egg]]
-  * [[pt:rpd:spiders|Aranhas (Portuguese)]]
+  * [[nl:rpd:spider_queen_mob|Spinnenkoningin (Dutch)]]
 
 {{tag> rpd mobs boss spider }}

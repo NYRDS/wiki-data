@@ -24,7 +24,7 @@ Yog-Dzewa is the final boss of the dungeon, found in the Demon Halls. He is an a
   * **Organ Management:** Must deal with summoned organs and larvae while fighting Yog
   * **Damage Mitigation:** Damage to Yog decreases exponentially with each summoned organ
   * **Line-of-Sight Attacks:** Death ray affects all tiles in a straight line
-  * **Regeneration:** Yog has limited self-healing capabilities through organ summoning
+  * **Regeneration:** Yog has limited self-healing capabilities through organ summoning mechanics
   * **Phase Changes:** Combat mechanics change as Yog's health decreases and more organs are summoned
 
 ==== Drops ====
@@ -58,30 +58,31 @@ Yog, the Lord of the Dead, is the final challenge for heroes brave enough to fac
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2828|Yog_Info2]]
 
 ==== Content Verification ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java|YogsEye.java]]
-  * Entity Kind: Yog (returns simple class name via getEntityKind())
-  * Stats verification: Extracted directly from YogsEye.java constructor (hp(ht(1000)), baseAttackSkill=30, baseDefenseSkill=30, dmgMin=20, dmgMax=30, dr=0, expForKill=50)
-  * Effect descriptions: Based on code analysis of YogsEye.java and associated organ classes
+  * JSON Configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsEye.json|mobsDesc/YogsEye.json]]
+  * Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/YogsEye.lua|scripts/mobs/YogsEye.lua]] (migrated from Java to JSON + Lua)
+  * Entity Kind: YogsEye (returns simple class name via getEntityKind())
+  * Stats verification: Extracted directly from mobsDesc/YogsEye.json (ht=1000, attackSkill=30, defenseSkill=30, dmgMin=20, dmgMax=30, dr=0, exp=50)
+  * Effect descriptions: Based on code analysis of scripts/mobs/YogsEye.lua and associated organ classes
   * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2827-L2833|Yog_Name, Yog_Desc, Yog_Gender, Yog_Info1, Yog_Info2, Yog_Name_Objective]]
-  * Sprite configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/YogsEye.json|YogsEye.json]] - sprite dimensions and animation frames
-  * Organ classes: 
-    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L72|YogsEye.spawnOrgans()]] - organ summoning
-    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/RottingFist.java|RottingFist.java]] (Rotting Fist)
-    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/BurningFist.java|BurningFist.java]] (Burning Fist)
-    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsBrain.java|YogsBrain.java]] (Yog's Brain)
-    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsHeart.java|YogsHeart.java]] (Yog's Heart)
-    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsTeeth.java|YogsTeeth.java]] (Yog's Teeth)
-  * Death ray implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L130-L153|zapProc() method]]
-  * Larva spawning: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L106|CharUtils.spawnOnNextCell(this, "Larva", ...)]]
-  * Damage mitigation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L94-L108|damage() method]] - bitwise shift per organ
+  * Sprite configuration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/YogsEye.json|spritesDesc/YogsEye.json]] - sprite dimensions and animation frames
+  * Organ classes:
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/YogsEye.lua#L93-L119|spawn() in YogsEye.lua]] - organ summoning
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/RottingFist.json|mobsDesc/RottingFist.json]] (Rotting Fist)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BurningFist.json|mobsDesc/BurningFist.json]] (Burning Fist)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsBrain.json|mobsDesc/YogsBrain.json]] (Yog's Brain)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsHeart.json|mobsDesc/YogsHeart.json]] (Yog's Heart)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsTeeth.json|mobsDesc/YogsTeeth.json]] (Yog's Teeth)
+  * Death ray implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/YogsEye.lua#L40-L58|canAttack() and zapProc() in YogsEye.lua]]
+  * Larva spawning: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/YogsEye.lua#L75-L76|damage() in YogsEye.lua]]
+  * Damage mitigation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/YogsEye.lua#L60-L82|damage() method]] - bitwise shift per organ
   * Buff mechanics: Base Boss class provides immunity to Death, Terror, Amok, Charm, Sleep, Burning, ToxicGas, ScrollOfPsionicBlast
   * Level generation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/HallsBossLevel.java|HallsBossLevel.java]] where Yog appears
   * Amulet/Key drop logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java#L59-L87|Boss.die() and restoreFromBundle()]] handle Amulet of Yendor and Skeleton Key drops
   * Badge validation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java#L186|YOG_SLAIN badge]]
-  * Battle music: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/YogsEye.json|YogsEye.json]] specifies "ost_boss_6_fight" / "ost_boss_fight" as battle music
+  * Battle music: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/YogsEye.json|spritesDesc/YogsEye.json]] specifies "ost_boss_6_fight" / "ost_boss_fight" as battle music
   * AI behavior: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob base class]] extended by YogsEye
-  * Health formula: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L47|hp(ht(1000)) in constructor]]
-  * Attack formulas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java#L51-L55|attack/defense/damage/DR values]]
+  * Health formula: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsEye.json#L11|ht=1000 in mobsDesc/YogsEye.json]]
+  * Attack formulas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsEye.json#L6-L9|attack/defense/damage/DR values]]
   * Last updated: Verified against current codebase
 
 ==== See Also ====
