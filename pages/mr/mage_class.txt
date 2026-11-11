@@ -1,12 +1,98 @@
 ====== Mage Class - Code References ======
 
-Hero class: Mage.
-
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Hero class enumeration and initialization
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Main hero actor class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/MageArmor.java|MageArmor.java]] - Class-specific armor for Mage
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfMagicMissile.java|WandOfMagicMissile.java]] - Starting wand
 
 ===== JSON Configuration =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]]
+<code json>
+{
+  "MAGE": {
+    "items": [
+      {
+        "kind": "WandOfMagicMissile",
+        "identified": true
+      }
+    ],
+    "quickslot": [
+      {
+        "kind": "WandOfMagicMissile"
+      },
+      {
+        "spell": "WindGust"
+      }
+    ],
+    "knownItems": [
+      {
+        "kind": "ScrollOfIdentify"
+      }
+    ],
+    "maxSp": 15,
+    "sp": 15,
+    "isSpellUser": true,
+    "magicAffinity": "Elemental"
+  }
+}
+</code>
+(Source: RemixedDungeon/src/main/assets/hero/initHeroes.json)
 
 ===== String Resources =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] (Mage starting equipment and class strings)
+<code xml>
+<string name="HeroClass_Mag">mage</string>
+<string name="HeroClass_MagPerks_0">Mages start with a unique Wand of Magic Missile. This wand can be later "disenchanted" to upgrade another wand.</string>
+<string name="HeroClass_MagPerks_1">Mages recharge their wands faster.</string>
+<string name="HeroClass_MagPerks_2">When eaten, any piece of food restores 1 charge for all wands in the inventory.</string>
+<string name="HeroClass_MagPerks_3">Mages can use wands as a melee weapon.</string>
+<string name="HeroClass_MagPerks_4">Mages use mana to cast Elemental spells.</string>
+<string name="HeroClass_MagPerks_5">Scrolls of Identify are identified from the beginning.</string>
+</code>
+
+Other language translations:
+<code xml>
+<string name="HeroClass_Mag">маг</string>
+<string name="HeroClass_MagPerks_0">Маги начинают с уникальной Палочки магических ракет. Эта палочка может быть позже "разобрана" для улучшения другой палочки.</string>
+<string name="HeroClass_MagPerks_1">Маги быстрее восстанавливают заряды палочек.</string>
+<string name="HeroClass_MagPerks_2">При поедании любая еда восстанавливает 1 заряд для всех палочек в инвентаре.</string>
+<string name="HeroClass_MagPerks_3">Маги могут использовать палочки как оружие ближнего боя.</string>
+<string name="HeroClass_MagPerks_4">Маги используют ману для накладывания Элементальных заклинаний.</string>
+<string name="HeroClass_MagPerks_5">Свитки Идентификации идентифицированы с начала.</string>
+</code>
+(Russian - values-ru/strings_all.xml)
+
+===== Lua Scripts =====
+This entity is implemented in Java/JSON, no Lua script exists
+
+===== Entity Properties =====
+  * **Type**: Hero Class
+  * **Magic Affinity**: Elemental
+  * **Starting Spell Power**: 15 (maxSp and sp)
+  * **Is Spell User**: true
+  * **Starting Equipment**:
+    - Wand of Magic Missile (identified, in quickslot)
+    - Scroll of Identify (known from start)
+  * **Starting Spell**: Wind Gust (in quickslot)
+  * **Class Armor**: Mage Armor (Molten Earth ability)
+  * **Special Abilities**:
+    - Unique Wand of Magic Missile that can be disenchanted to upgrade other wands
+    - Faster wand recharge rate
+    - Food restores 1 charge to all wands in inventory
+    - Can use wands as melee weapons
+    - Uses mana to cast Elemental spells
+    - Scrolls of Identify pre-identified
+
+===== Class Armor Special Ability =====
+  * **Ability Name**: Molten Earth
+  * **Action String**: MageArmor_ACSpecial -> "MOLTEN EARTH"
+  * **Effect**: Sets all visible enemies on fire and roots them in place
+  * **Restriction**: Only mages can use this armor
+
+===== Related mr Entities =====
+  * [[mr:battle_mage_subclass|Battle Mage Subclass]]
+  * [[mr:warlock_subclass|Warlock Subclass]]
+  * [[mr:mage_armor_item|Mage Armor (Item)]]
+  * [[mr:wand_of_magic_missile_item|Wand of Magic Missile (Item)]]
+  * [[mr:scroll_of_identify_item|Scroll of Identify (Item)]]
+  * [[mr:wind_gust_spell|Wind Gust (Spell)]]
+  * [[mr:elemental_affinity|Elemental Affinity]]

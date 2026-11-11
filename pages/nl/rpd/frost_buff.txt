@@ -1,0 +1,55 @@
+====== Vorst Buff ======
+
+{{ rpd:images:frost_buff.png|Vorst Buff }}
+
+Vorst is een statuseffect in Remixed Dungeon dat een personage tijdelijk bevriest, waardoor het niet kan bewegen of handelen.
+
+==== Effect ====
+  * **Immobilisatie:** Getroffen personages kunnen niet bewegen of acties uitvoeren
+  * **Duur:** De bevriezing duurt een specifieke duur (basisduur is 5 beurten, gewijzigd door Weerstand)
+  * **Verwijdering:** Het effect verliest met de tijd, kan worden verwijderd door vuurschade, of door bepaalde middelen
+  * **Stapelen:** Stackt normaal niet met andere beweging-beperkende effecten
+
+==== Toepassing ====
+Het Vorst effect kan worden toegepast via verschillende bronnen:
+  * [[nl:rpd:potion_of_frost_item|Drankje van Vorst]] - Als het breekt, creëert het een bevriezende wolk
+  * [[nl:rpd:wand_of_frost_item|Staf van Koude Straal]] - Directe schade en bevriezend effect
+  * [[nl:rpd:ice_elemental_mob|IJselementalen]] - Kunnen vorst toepassen via aanvallen
+  * [[nl:rpd:ice_trap_level_object|IJs Vallen]] - Kunnen vorst toepassen wanneer getriggerd
+  * [[nl:rpd:freeze_globe_spell|Bevriezende Bal Spreuk]] - Spreuk die bevriezende effecten creëert
+
+==== Immuniteiten en Weerstanden ====
+  * Sommige vijanden zijn immuun voor bevriezende effecten
+  * Bepaalde pantser of items kunnen weerstand bieden
+  * Vlam-bestendige personages kunnen verminderde duur hebben
+
+==== Strategische Overwegingen ====
+  * **Voordelen:** Kan worden gebruikt om vijanden tijdelijk uit te schakelen tijdens gevaarlijke confrontaties
+  * **Risico's:** Beïnvloedt zowel vijanden als bondgenoten, dus gebruik voorzichtig in groepssituaties
+  * **Timing:** Meest effectief wanneer gebruikt op enkele krachtige vijanden
+  * **Tegenmaatregelen:** Getroffen personages kunnen makkelijker worden aangevallen terwijl ze bevroren zijn
+
+==== Mechanisme ====
+  * Toegepast via de [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] blob effect
+  * Personage blijft op zijn plek tot de duur verstreken is
+  * Onderbreekt geen lopende acties die al waren gestart
+  * Vorst effect veroorzaakt paralyse, wat acties volledig voorkomt
+  * Brand effect wordt verwijderd wanneer vorst wordt toegepast
+  * Vorst effect wordt verwijderd wanneer het getroffene personage schade oplooft
+
+==== Content Verificatie ====
+  * Kern Implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]]
+  * Buff Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L572-L574|Vorst strings]]
+  * Machine-leesbare data: [[mr:frost_buff|mr:frost_buff]]
+
+==== Gerelateerde Effecten ====
+  * [[nl:rpd:freeze_globe_spell|Bevriezende Bal Spreuk]] - Spreuk die vorst effecten creëert
+  * [[nl:rpd:potion_of_frost_item|Drankje van Vorst]] - Item dat vorst wolken creëert
+  * [[nl:rpd:wand_of_frost_item|Staf van Koude Straal]] - Staf die vorst toepast
+  * [[nl:rpd:chill_buff|Koorts]] - Verminderd effect van vorst
+  * [[nl:rpd:freezing_buff|Bevriezing]] - Het blob effect dat vorst creëert
+  * [[nl:rpd:paralysis_buff|Paralyse]] - Een ander immobiliserend effect
+  * [[nl:rpd:slow_buff|Vertraging]] - Snelheid-verminderend effect
+
+{{tag> rpd status_effecten vorst buffs debuffs bevriezing }}
