@@ -1,0 +1,80 @@
+====== 法師 職業 ======
+
+{{ rpd:images:mage_hero.png|法師職業圖示 }}
+
+**法師** 是 Remixed Dungeon 中的初始 [[zh:rpd:hero_class|英雄職業]] 之一。法師專精於魔法戰鬥，使用 [[zh:rpd:wand_of_magic_missile_item|魔法飛彈魔杖]] 作為初始武器，並利用各種捲軸克服敵人。
+
+==== 簡介 ====
+法師是一個專注魔法的職業，依靠魔杖和捲軸進行戰鬥。該職業圍繞魔法能量使用和施法設計，專注於實用性和遠程魔法戰鬥。法師初始擁有魔法飛彈魔杖和增加的魔法容量。
+
+==== 初始裝備 ====
+  * [[zh:rpd:wand_of_magic_missile_item|魔法飛彈魔杖]] (已鑑定)
+  * [[zh:rpd:cloth_armor_item|布甲]] (已鑑定，需求 1 力量)
+  * [[zh:rpd:ration_item|食物配給]] (難度 < 3 時)
+  * 100 [[zh:rpd:gold_item|金幣]]
+  * [[zh:rpd:scroll_of_identify_item|鑑定捲軸]] 從開始即為 **已鑑定** (百科全書中已知，不在背包中)
+  * 快捷欄 1：[[zh:rpd:wand_of_magic_missile_item|魔法飛彈魔杖]]
+  * 快捷欄 2：[[zh:rpd:wind_gust_spell|風擊]] 法術
+
+==== 數值 ====
+  * **初始力量**：10 (標準)
+  * **初始生命**：20 (標準)
+  * **初始法力**：15 (其他職業為 10)
+  * **最大法力**：15 (其他職業為 10)
+  * **魔法親和**：[[zh:rpd:elemental_spell_affinity|元素]]
+
+==== 職業優勢 (來自字串資源) ====
+  * **獨特魔杖**：初始擁有獨特的 [[zh:rpd:wand_of_magic_missile_item|魔法飛彈魔杖]]，可分解以升級其他魔杖
+  * **更快魔杖充能**：法師的魔杖充能更快 (TIME_TO_CHARGE / sqrt(1 + wand_level)) - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L416|Wand.java:416]]
+  * **進食恢復魔杖充能**：食用任何食物為背包中所有魔杖恢復 1 點充能 - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L816|Hero.java:816]]
+  * **魔杖作近戰**：魔杖可作為近戰武器使用 (射程 1)
+  * **元素法術**：使用法力點 (SP) 施放 [[zh:rpd:elemental_spell_affinity|元素法術]]，如 [[zh:rpd:ignite_spell|點燃]]、[[zh:rpd:magic_arrow_spell|魔法箭]]、[[zh:rpd:freeze_globe_spell|凍結球]] 等
+  * **已鑑定捲軸**：[[zh:rpd:scroll_of_identify_item|鑑定捲軸]] 從開始即為已鑑定
+
+==== 專精 ====
+擊敗天狗 (首領 #2) 後，法師可使用 [[zh:rpd:tome_of_mastery_item|掌握之書]] 選擇兩條精通路徑之一：
+  * [[zh:rpd:warlock_subclass|術士]]
+  * [[zh:rpd:battle_mage_subclass|戰法師]]
+
+==== 優勢 ====
+  * 獨特的魔杖進階系統 (分解以升級其他魔杖)
+  * 強大的遠程戰鬥能力 (魔杖)
+  * 各種捲軸提供良好的實用性
+  * 較高的法力點數池 (15 對 10)
+  * 可使用魔法物品
+  * 更快的魔杖充能
+  * 進食恢復魔杖充能
+
+==== 劣勢 ====
+  * 生命值低於戰士職業 (與標準相同)
+  * 魔杖充能有限，需要充能
+  * 高度依賴消耗品 (捲軸、食物恢復魔杖充能)
+  * 無適當準備時近戰脆弱
+
+==== 策略 ====
+  * 保留你的魔法飛彈魔杖，因為它隨使用變強並可升級其他魔杖
+  * 策略性進食以恢復魔杖充能
+  * 早期鑑定魔杖以決定如何有效使用
+  * 優先尋找和升級魔杖用於戰鬥
+  * 策略性使用捲軸發揮實用性
+  * 專注於法術進階發展元素魔法親和
+
+==== 內容驗證 ====
+  * **初始裝備與數值**：''RemixedDungeon/src/main/assets/hero/initHeroes.json'' (MAGE 區段)
+  * **職業實現**：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]]
+  * **更快魔杖充能**：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L416|Wand.java:416]]
+  * **進食恢復魔杖充能**：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L816|Hero.java:816]]
+  * **職業優勢**：''RemixedDungeon/src/main/res/values/strings_all.xml'' 中的字串資源 (HeroClass_MagPerks_0-5)
+  * **魔法飛彈魔杖**：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfMagicMissile.java|WandOfMagicMissile.java]]
+
+==== 參見 ====
+  * [[zh:rpd:hero_class|英雄職業]]
+  * [[zh:rpd:cloth_armor_item|布甲]]
+  * [[zh:rpd:wand_of_magic_missile_item|魔法飛彈魔杖]]
+  * [[zh:rpd:wind_gust_spell|風擊]]
+  * [[zh:rpd:warlock_subclass|術士專精]]
+  * [[zh:rpd:battle_mage_subclass|戰法師專精]]
+  * [[zh:rpd:hero_subclasses|英雄專精]]
+  * [[zh:rpd:elemental_spell_affinity|元素魔法]]
+
+{{tag> rpd classes mage hero}}

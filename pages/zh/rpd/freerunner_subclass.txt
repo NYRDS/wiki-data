@@ -1,0 +1,48 @@
+====== 疾行者 專精 ======
+
+{{ rpd:images:rogue_freerunner_hero.png|疾行者 }}
+
+**疾行者** 是 Remixed Dungeon 中 [[zh:rpd:rogue_class|盜賊]] 職業的英雄專精。
+
+==== 簡介 ====
+_疾行者_ 的移動速度幾乎是大多數怪物的兩倍。奔跑時，疾行者更難被命中。為此，疾行者必須不負重且不處於飢餓狀態。
+
+==== 解鎖方式 ====
+擊敗第二個首領 (天狗) 後，使用 [[zh:rpd:tome_of_mastery_item|掌握之書]] 即可解鎖疾行者專精。如果使用通常無法使用掌握之書的職業，也可搭配 [[zh:rpd:tengu_liver_item|天狗肝臟]] 使用。
+
+==== 特殊機制 ====
+疾行者在遊戲代碼中具有以下特殊機制：
+  * **速度優勢**：不飢餓時獲得 1.6 倍移動速度 (Hero.java 中實現)
+  * **閃避加成**：不飢餓且移動中時獲得 2 倍閃避 (移動期間防禦技能加倍)
+  * **需求條件**：必須不飢餓才能維持特殊機制
+  * **移動加成**：移動且不飢餓時生效
+
+==== 專屬護甲 ====
+使用 [[zh:rpd:armor_kit_item|護甲套裝]] 將任何護甲轉換為 [[zh:rpd:freerunner_armor|疾行者護甲]]，專為此專精設計。
+
+==== 優勢 ====
+  * 滿足條件時移動速度顯著提升
+  * 奔跑時更難被命中
+  * 適合逃跑和定位
+  * 適合打帶跑戰術
+
+==== 劣勢 ====
+  * 需要不負重 (不能超重)
+  * 必須不飢餓
+  * 負重過重時失去速度優勢
+  * 需要仔細管理食物
+
+==== 原始碼參考 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L48|HeroSubClass.java - 疾行者定義]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L278|Hero.java - 疾行者速度實現]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L574-L577|Char.java - 疾行者閃避實現]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Hunger.java#L121-L123|Hunger.java - 飢餓條件]]
+  * 字串定義：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1003|HeroSubClass_DescFreR in strings_all.xml]]
+
+==== 參見 ====
+  * [[zh:rpd:hero_subclasses|英雄專精]] - 所有專精
+  * [[zh:rpd:rogue_class|盜賊]] - 基礎職業
+  * [[zh:rpd:tome_of_mastery_item|掌握之書]] - 解鎖物品
+  * [[zh:rpd:freerunner_armor|疾行者護甲]] - 專屬護甲
+
+{{tag> rpd subclasses freerunner rogue}}

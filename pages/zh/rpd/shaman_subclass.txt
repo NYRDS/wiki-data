@@ -1,0 +1,83 @@
+====== 薩滿 專精 ======
+
+{{ rpd:images:elf_shaman_hero.png|薩滿 }}
+
+薩滿是 Remixed Dungeon 中 [[zh:rpd:elf_class|精靈]] 職業的專精。
+
+===== 簡介 =====
+精靈 //薩滿// 可以將魔杖作為近戰武器使用。成功命中時有機率在不消耗充能的情況下，對目標發動魔杖的力量。
+
+===== 解鎖方式 =====
+擊敗第二個首領 (天狗) 後，使用 [[zh:rpd:tome_of_mastery_item|掌握之書]] 即可解鎖薩滿專精。
+
+===== 特殊機制 =====
+  * 精靈 _薩滿_ 可以將 [[zh:rpd:wands|魔杖]] 作為 [[zh:rpd:melee_weapons|近戰武器]] 使用
+  * 當裝備魔杖作為主武器攻擊時，有 25% 的機率 (實現為 Random.Int(4) == 0) 對目標發動魔杖力量而不消耗充能
+  * 此能力在 HeroSubClass.java 的 attackProc 方法中實現 (第 172-181 行)
+  * 魔杖必須裝備為主武器 (作用中武器) 此機制才生效
+  * 魔杖需有可用充能且 affectTarget() 方法必須回傳 true
+  * +1 露水加成增強 [[zh:rpd:mana_mechanic|魔力恢復]]
+  * **mr: 命名空間：** 查看 [[mr:shaman_subclass]] 獲取機器可讀數據
+
+===== 技術細節 =====
+  * **實現方式**：薩滿的特殊機制在 HeroSubClass.java 的 attackProc 方法中實現 (第 172-181 行)
+  * **魔杖發動**：當薩滿裝備魔杖作為作用中武器攻擊時，有 25% 機率對敵人發動魔杖效果而不消耗充能
+  * **程式碼參考**：具體實現檢查主武器是否為魔杖，若 affectTarget() 回傳 true 且 Random.Int(4) == 0，則呼叫 zapCell() 對敵人發動效果而不消耗充能
+
+===== 專屬護甲 =====
+使用 [[zh:rpd:armor_kit_item|護甲套裝]] 將任何護甲轉換為 [[zh:rpd:shaman_armor_item|薩滿護甲]]，專為此專精設計。
+
+===== 優勢 =====
+  * 可以將 [[zh:rpd:wands|魔杖]] 作為 [[zh:rpd:melee_weapons|近戰武器]] 使用
+  * 25% 機率在不消耗充能下發動魔杖力量
+  * 結合 [[zh:rpd:ranged_weapons|遠程]] 和 [[zh:rpd:melee_combat|近戰]] 的多功能武器選擇
+  * 魔杖力量發動時保留充能
+  * 與所有 [[zh:rpd:wands|魔杖類型]] 協同良好
+  * +1 露水加成增強 [[zh:rpd:mana_mechanic|魔力恢復]]
+
+===== 劣勢 =====
+  * 發動機率不保證 (25% 機率)
+  * 魔杖作為 [[zh:rpd:melee_mechanic|近戰武器]] 時傷害可能低於專用武器
+
+===== 數據驗證 =====
+  * 資訊來源：Java 枚舉 `com.watabou.pixeldungeon.actors.hero.HeroSubClass.SHAMAN`
+  * 機制驗證：HeroSubClass.java 的 attackProc 方法中實現攻擊加成，25% 機率發動魔杖
+  * 效果描述：基於 values/strings_all.xml 字串資源 ("HeroSubClass_DescShaman")
+  * 名稱驗證：從字串資源確認 ("HeroSubClass_NameShaman")
+  * 額外機制：HeroSubClass.java 的 dewBonus 方法中驗證露水加成
+
+===== 程式碼參考 =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - 專精定義和機制
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L172-L181|HeroSubClass.java#L172-L181]] - 魔杖發動機制確切實現 (持魔杖時 25% 機率)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L234-L242|HeroSubClass.java#L234-L242]] - 露水加成實現 (薩滿 +1)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java#L46|HeroSubClass.java#L46]] - 帶護甲類別的枚舉定義 ("ShamanArmor")
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] - 實現此機制的魔杖
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L382-L384|Wand.java#L382-L384]] - 檢查魔杖是否可發動的 affectTarget() 方法
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java#L140-L143|Wand.java#L140-L143]] - 不消耗充能發動效果的 zapCell() 方法
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1013-L1027|薩滿字串資源 (英文)]] - 名稱和描述
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1012-L1026|薩滿字串資源 (俄文)]] - 俄文本地化
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - 職業/專精關係定義
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L376|ItemFactory.java#L376]] - 薩滿護甲註冊
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1012-L1026|HeroSubClass_NameShaman, HeroSubClass_DescShaman]] - 俄文字串資源 (名稱和描述)
+  * **mr: 命名空間：** 查看 [[mr:shaman_subclass]] 獲取機器可讀數據
+
+===== 配置檔案 =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - 職業/專精關係定義
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L376|ItemFactory.java#L376]] - 薩滿護甲註冊
+
+===== 字串資源 =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1027|HeroSubClass_NameShaman]] - "shaman" (英文)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1013|HeroSubClass_DescShaman]] - "Elven _Shamans_ can use wands as melee weapons. Successful hits have a chance to activate the wand's power on a target without using a charge." (英文)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1026|HeroSubClass_NameShaman]] - "шаман" (俄文)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1012|HeroSubClass_DescShaman]] - "_Шаманы_ эльфов могут использовать посохи как оружие ближнего боя. При попадании в цель волшебство палочки может использоваться без потери заряда." (俄文)
+
+===== 參見 =====
+  * [[zh:rpd:elf_class|精靈職業]]
+  * [[zh:rpd:wands|魔杖]]
+  * [[playable_class_mechanic|可玩職業]]
+  * [[zh:rpd:subclasses|專精]]
+  * [[zh:rpd:shaman_armor_item|薩滿護甲]]
+  * [[zh:rpd:hero|英雄]]
+  * [[zh:rpd:mechanics_mechanic|遊戲機制]]
+
+{{tag> rpd subclasses shaman elf wand melee}}
