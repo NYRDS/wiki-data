@@ -1,0 +1,58 @@
+====== Механика Брони ======
+
+{{ rpd:images:plate_armor_item.png|Латная Броня }}
+
+Броня в Remixed Dungeon обеспечивает защиту, уменьшая урон от физических атак. Каждый предмет брони имеет рейтинг защиты, который вносит вклад в общую живучесть героя.
+
+==== Характеристики Брони ====
+  * **Рейтинг Защиты (DR):** Насколько уменьшается урон от входящих атак
+  * **Прочность:** Сколько урона броня может выдержать перед тем, как сломаться
+  * **Уровень/Улучшения:** Броню можно улучшить для повышения рейтинга защиты
+  * **Штраф к Скорости:** Тяжелая броня может замедлять передвижение героя
+  * **Штраф к Скрытности:** Тяжелая броня может снижать эффективность скрытности
+  * **Требуемая Сила:** Минимальная сила, необходимая для ношения брони без штрафов (рассчитывается методом ''requiredSTR()'')
+
+==== Типы Брони ====
+  * [[ru:rpd:cloth_armor_item|Тканёвая Броня]] - Самая легкая броня с минимальной защитой
+  * [[ru:rpd:leather_armor_item|Кожаная Броня]] - Сбалансированная защита и подвижность
+  * [[ru:rpd:mail_armor_item|Кольчужная Броня]] - Хорошая защита с умеренными штрафами
+  * [[ru:rpd:armor_item|Латная Броня]] - Максимальная защита с значительными штрафами
+  * [[ru:rpd:class_armor_item|Классовая Броня]] - Специальная броня для каждого класса героя
+
+==== Механика Брони ====
+  * **Поглощение:** Броня поглощает процент входящего физического урона
+  * **Прочность:** Вся броня получает урон при поглощении ударов и может сломаться, если не поддерживать её в порядке
+  * **Идентификация:** Большинство брони должно быть идентифицировано для показа полных характеристик
+  * **Улучшение:** Броню можно улучшить с помощью [[ru:rpd:scroll_of_upgrade_item|Свитка Улучшения]] или похожих предметов
+  * **Очарование:** Брону можно зачаровать [[ru:rpd:glyphs_mechanic|Глифами]] для получения особых свойств
+  * **Расчёт Защиты:** Эффективная защита рассчитывается в методе ''effectiveDr()'': ''tier * 2 + level() * tier + (glyph != null ? tier : 0)''
+  * **Требование Силы:** Рассчитывается в методе ''requiredSTR()'': ''Math.max(typicalSTR() - level(),2)''
+  * **Типичная Защита:** Метод ''typicalDR()'' возвращает ''tier * 2''
+  * **Типичная Сила:** Метод ''typicalSTR()'' возвращает ''7 + tier * 2''
+
+==== Специальные Брони ====
+  * [[ru:rpd:class_armor_item|Классовая броня]] - Уникальная броня для каждого класса героя с особыми способностями
+  * [[ru:rpd:armor_glyphs|Глифы]] - Магические свойства, которые можно добавить к броне
+  * [[ru:rpd:upgrading|Улучшения]] - Повышение эффективности брони через свитки и другие средства
+
+==== Ссылки на Код ====
+  * **Базовый класс:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]]
+  * **Реализации брони:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/|Директория Реализаций Брони]]
+  * **Система Глифов:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/|Директория Глифов Брони]]
+  * **Расчёт Защиты:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L137-L139|Метод effectiveDr()]]
+  * **Расчёт Силы:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L149-L150|Метод requiredSTR()]]
+  * **Формула Защиты:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L133-L135|Методы typicalDR() и typicalSTR()]]
+  * **Реализация Очарования:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L120-L122|Метод inscribe()]]
+  * **Обработка Защиты от Урона:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L73-L84|Метод defenceProc()]]
+  * **Процесс Улучшения Брони:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java#L57-L69|Метод upgrade()]]
+  * **Строковые Ресурсы (Английский):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1926-L1941|Строки Брони]]
+  * **Строковые Ресурсы (Русский):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1970-L1985|Строки Брони]]
+
+==== Связанное ====
+  * [[ru:rpd:items|Предметы]]
+  * [[ru:rpd:equipment|Снаряжение]]
+  * [[ru:rpd:defence|Защита]]
+  * [[ru:rpd:armor_glyphs|Глифы]]
+  * [[ru:rpd:upgrading|Улучшения]]
+
+{{tag> ru:rpd:items броня механика защита}}

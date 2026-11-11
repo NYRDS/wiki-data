@@ -8,4 +8,40 @@
 
 В остальных свойствах доспех схож с кольчужной бронёй.
 
+==== Характеристики ====
+  * **Тип брони:** Средняя броня
+  * **Базовая защита:** 3 (как кольчуга)
+  * **Шлем:** Да (hasHelmet = true)
+  * **Специальная способность:** При получении урона с 50% вероятностью создаёт паутину вокруг героя
+  * **Перемещение:** Позволяет свободно ходить по паутине (иммунитет к Rooting от паутины)
+  * **Изображение:** Индекс 21 (items.png)
+
+==== Механика ====
+Паучья броня содержит функционирующие паутинные железы. В методе `defenceProc` (Java) при получении урона с вероятностью 50% создаёт блоб паутины (`Web`) в радиусе 5-7 клеток вокруг героя. Это происходит в классе `SpiderArmor.java`.
+
+Кроме того, в классе `Web.java` есть проверка: если герой носит `SpiderArmor`, он не получает эффект укоренения (Rooting) при стоянии на паутине.
+
+==== Доступность ====
+Паучья броня может выпасть при победе над Паучьей Королевой:
+  * [[ru:rpd:spider_queen_mob|Паучья Королева]] - Выпадение (1/3 шанс вместе с Хаотическим Кристаллом и Паучьим Амулетом)
+
+В Lua скрипте `SpiderQueen.lua` в функции `spawn` определяется случайный лут: 33% Хаотический Кристалл, 33% Пауччий Амулет, 33% Паучья Броня.
+
+==== Связанный Контент ====
+  * Броня взаимодействует с механикой [[ru:rpd:web_trap|Паутины]] в подземелье
+  * Особенно эффективна при бою с паукообразными мобами
+  * Смотри [[ru:rpd:armor_mechanic|Броня]] для общей информации о броне
+
+==== Ссылки на Код ====
+  * Java Реализация: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/SpiderArmor.java|SpiderArmor.java]]
+  * Item Factory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L407|ItemFactory.java]]
+  * Паучья Королева (брасывает броню): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/SpiderQueen.lua#L47-L54|SpiderQueen.lua]]
+  * Взаимодействие с паутиной: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Web.java#L36|Web.java]]
+
+==== Смотри Также ====
+  * [[ru:rpd:armor_mechanic|Броня]]
+  * [[ru:rpd:spider_queen_mob|Паучья Королева]]
+  * [[ru:rpd:spider_creatures_overview|Пауки]]
+  * [[ru:rpd:web_trap|Паутина]]
+
 {{tag> ru:rpd:items}}
