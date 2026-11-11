@@ -1,22 +1,238 @@
 ====== Remixed Pickaxe Item - Code References ======
 
-===== Java Classes =====
-This entity may be implemented in Java, but no matching class was found. Check:
-  * RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/items/*.java
-  * RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/items/*.java
+This page documents the Lua-based RemixedPickaxe item, which extends the base Java Pickaxe with additional mining capabilities in Ice Caves and Guts levels.
 
-===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check:
-  * RemixedDungeon/src/main/assets/itemsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/remixed_pickaxe.json
+===== Lua Implementation (RemixedPickaxe.lua) =====
+```
+-- scripts/items/RemixedPickaxe.lua
+local RPD = require "scripts/lib/commonClasses"
+local storage = require "scripts/lib/storage"
+local itemLib = require "scripts/lib/item"
+
+local action_mine = "Pickaxe_ACMine"
+local mineableLevels = {
+    ["CavesLevel"] = true,
+    ["CavesBossLevel"] = true,
+    ["GutsLevel"] = true,
+}
+
+local requiredStr = 14
+
+return itemLib.init{
+    desc  = function (self, item)
+        return {
+            image         = 101,
+            imageFile     = "items.png",
+            name          = "Pickaxe_Name",
+            info          = "Pickaxe_Info",
+            stackable     = false,
+            defaultAction = action_mine,
+            equipable = RPD.Slots.weapon,
+            price     = 20,
+            data = {
+                bloodStained = false
+            }
+        }
+    end,
+
+    actions = function(self, item, hero)
+        return {action_mine}
+    end,
+
+    getBoolean = function(self,item, key)
+        return self.data[key]
+    end,
+
+    execute = function(self, item, owner, action)
+        local level = owner:level()
+        local levelKind = RPD.DungeonGenerator:getLevelKind(level.levelId)
+
+        RPD.debug("Pickaxe: " .. levelKind .. " " .. action .. " " .. tostring(self.data.bloodStained))
+
+        if action == action_mine then
+
+            if owner:effectiveSTR() < requiredStr then
+                owner:say("Pickaxe_InsufficientStr")
+                return
+            end
+
+
+            if not mineableLevels[levelKind] then
+                return
+            end
+
+            local time_to_mine = 1
+            local mined = false
+            local tryMine = function(cell)
+                if mined then
+                    return
+                end
+                if level:get(cell) == RPD.Terrain.WALL_DECO then
+                    level:set(cell, RPD.Terrain.WALL)
+                    RPD.GameScene:updateMap( )
+                    mined = true
+
+                    owner:playAttack(cell)
+                    owner:spend(time_to_mine)
+                    owner:hunger():satisfy(-RPD.Buffs.Hunger.STARVING / 10)
+
+                    if levelKind == 'CavesLevel' or levelKind == 'CavesBossLevel' then
+                        RPD.Sfx.CellEmitter:center(cell):burst(RPD.Sfx.Speck:factory(RPD.Sfx.Speck.STAR), 7)
+                        RPD.playSound( "snd_evoke" )
+                        owner:collectAnimated(RPD.item("DarkGold"))
+                    end
+
+                    if levelKind == 'IceCavesLevel' or levelKind == 'IceCavesBossLevel' then
+                        RPD.Sfx.CellEmitter:center(cell):burst(RPD.Sfx.Speck:factory(RPD.Sfx.Speck.STAR), 7)
+                        RPD.playSound( "snd_evoke" )
+                        owner:collectAnimated(RPD.carcass("Gnoll"))
+                    end
+
+                    if levelKind == 'GutsLevel' then
+                        RPD.Sfx.Wound:hit(cell,math.random()*3.14)
+                        RPD.playSound( "snd_hit" )
+                        owner:collectAnimated(RPD.item("MysteryMeat"))
+                    end
+                end
+            end
+
+            RPD.forCellsAround(owner:getPos(), tryMine)
+
+            if not mined then
+                owner:say("Pickaxe_NothingToMine")
+            end
+
+        end
+    end,
+
+    attackProc = function(self, item, attacker, defender, damage)
+        if defender:getEntityKind() == "Bat" and damage >= defender:hp() then
+            self.data.bloodStained = true
+            RPD.QuickSlot:refresh(attacker)
+        end
+        return damage
+    end,
+
+    glowing = function(self, item)
+        if self.data.bloodStained then
+            return itemLib.makeGlowing(0x550000, 1)
+        end
+        return nil
+    end,
+
+    goodForMelee = function()
+        return true
+    end,
+
+    getVisualName = function()
+        return "Pickaxe"
+    end,
+
+    getAttackAnimationClass = function()
+        return "sword"
+    end,
+
+    slot = function(self, item, belongings)
+        return RPD.Slots.weapon
+    end,
+
+    blockSlot = function(self, item, belongings)
+        return RPD.Slots.leftHand
+    end,
+
+    accuracyFactor = function(self, item, user)
+        return 1
+    end,
+
+    damageRoll = function(self, item, user)
+        local lvl = item:level()
+        return math.random(2 + lvl, 10 + lvl*2)
+    end,
+
+    attackDelayFactor = function(self, item, user)
+        return 1 + math.min((requiredStr - user:effectiveSTR()) / 10, 0)
+    end,
+
+    typicalSTR = function(self, item)
+        return requiredStr
+    end,
+
+    statsRequirementsSatisfied = function(self, item)
+        return item:getOwner():effectiveSTR() >= requiredStr
+    end,
+
+    knownStatsText = function(self, item)
+        return ":"..tostring(requiredStr)
+    end,
+
+    unknownStatsText = function(self, item)
+        return "???"
+    end
+}
+```
+
+===== Java Base Class (Pickaxe.java) =====
+The RemixedPickaxe extends the functionality of the Java Pickaxe class:
+```
+package com.watabou.pixeldungeon.items.quest;
+public class Pickaxe extends Weapon {
+    public static final String AC_MINE = "Pickaxe_ACMine";
+    public static final float TIME_TO_MINE = 2;
+    
+    {
+        image = ItemSpriteSheet.PICKAXE;
+        setDefaultAction(AC_MINE);
+        setSTR(14);
+        MIN = 3;
+        MAX = 12;
+        animation_class = SWORD_ATTACK;
+    }
+    // Blood staining mechanic for Blacksmith quest
+    // Mining only in CavesLevel and CavesBossLevel
+}
+```
+
+===== Key Differences from Java Pickaxe =====
+  * **Mining Time**: 1 turn (Lua) vs 2 turns (Java)
+  * **Mineable Levels**: Caves, CavesBoss, IceCaves, IceCavesBoss, Guts (Lua) vs only Caves/CavesBoss (Java)
+  * **Mining Rewards**:
+    - Caves/CavesBoss: DarkGold (both)
+    - IceCaves/IceCavesBoss: Gnoll carcass (Lua only)
+    - GutsLevel: MysteryMeat (Lua only)
+  * **Damage Scaling**: Scales with item level (2+lvl to 10+2*lvl) vs fixed 3-12
+  * **Visual Name**: Returns "Pickaxe" for sprite lookup
+  * **Blood Staining**: Same mechanic - kills Bat to stain
 
 ===== String Resources =====
-<code xml>
-<string name="RemixedPickaxe_Name">[Name]</string>
-<string name="RemixedPickaxe_Info">[Description]</string>
-</code>
+The RemixedPickaxe uses the same string resources as the base Pickaxe:
+```
+<string name="Pickaxe_Name">pickaxe</string>
+<string name="Pickaxe_Info">This is a large and sturdy tool for breaking rocks. It can be probably used as a weapon.</string>
+<string name="Pickaxe_ACMine">MINE</string>
+<string name="Pickaxe_NoVein">There is no dark gold vein near you to mine</string>
+<string name="Pickaxe_Gender">feminine</string>
+<string name="Pickaxe_NothingToMine">Nothing to mine here!</string>
+<string name="Pickaxe_InsufficientStr">Not enough strength to mine!</string>
+```
 
-===== Lua Scripts =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/items/RemixedPickaxe.lua|RemixedPickaxe.lua]] (in scripts/items/ directory)
+===== Entity Registration =====
+Registered in ItemFactory.java:
+```
+public static final String REMIXED_PICKAXE = "RemixedPickaxe";
+```
+Referenced in entities/items.txt as "RemixedPickaxe".
 
-{{tag> rpd items}}
+===== NPC Usage (Blacksmith.lua) =====
+```
+local pick = RPD.item("RemixedPickaxe")
+chr:collectAnimated(pick)
+```
+The Blacksmith NPC gives the RemixedPickaxe to the player for the quest.
+
+===== Related Code Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/items/RemixedPickaxe.lua|scripts/items/RemixedPickaxe.lua]] - Main Lua implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/Pickaxe.java|Pickaxe.java]] - Java base class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/npc/Blacksmith.lua|scripts/npc/Blacksmith.lua]] - NPC that gives the pickaxe
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration (line 230)
+
+{{tag> mr items quest_tools mining lua}}

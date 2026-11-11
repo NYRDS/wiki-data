@@ -1,0 +1,69 @@
+====== Vorstpijl ======
+{{ rpd:images:frost_arrow_item.png|Vorstpijl }}
+
+**Vorstpijl** is een speciaal type wapen voor op afstand dat de statuseffect Vertraging veroorzaakt wanneer het een doel raakt. De pijl wordt gecreëerd door een [[nl:rpd:potion_of_frost_item|Drankje van Vorst]] te gebruiken op gewone [[nl:rpd:common_arrow_item|Gewone Pijlen]] in een proces dat "bevochtigen" heet.
+
+==== Statistieken ====
+  * **Schade**: 0-6 (baseMin: 0, baseMax: 6)
+  * **Vertraging**: 0.75 (baseDly: 0.75)
+  * **Minimale Vereiste Kracht**: 9 (setSTR: 9)
+  * **Prijs**: 5 goud per pijl
+  * **Afbeelding**: ammo.png, index 6 (FROST_ARROW_IMAGE constante)
+  * **Willekeurige Hoeveelheid**: 15-30 pijlen wanneer willekeurig gegenereerd
+
+==== Speciale Vaardigheden ====
+  * **Vertragingseffect**: Wanneer de pijl een doel raakt, heeft het een 25% kans om de [[nl:rpd:slow_buff|Vertraging]] statuseffect toe te passen voor 5 beurten
+  * **Mechanisme**: Gebruikt ''Buff.prolong(defender, Slow.class, DURATION)'' waar DURATION = 5f
+  * **Kansactivatie**: Het speciale effect activeert alleen met 25% kans op succesvolle treffers (activateSpecial() methode)
+  * **Bogen**: Wanneer afgevuurd uit een boog, worden schade, nauwkeurigheid en vertraging beïnvloed door de eigenschappen van de boog
+
+==== Verwerving ====
+  * Kan gecreëerd worden door [[nl:rpd:potion_of_frost_item|Drankje van Vorst]] te gebruiken op gewone [[nl:rpd:common_arrow_item|Gewone Pijlen]] (bevochtigingsproces)
+  * Hoeveelheid varieert meestal van 15-30 wanneer willekeurig gegenereerd
+  * Kan niet natuurlijk op de vloer van de kelder gevonden worden als zelfstandig item
+  * Prijs: 5 goud per pijl
+
+==== Strategie ====
+  * Effectief tegen snel bewegende vijanden om hun mobiliteit te reduceren
+  * Bijzonder nuttig tegen gevaarlijke close-combat aanvallers
+  * Kan gebruikt worden om tijd te winnen tijdens moeilijke confrontaties
+  * Het vertragingseffect treedt alleen op bij een succesvolle treffer met 25% kans
+  * Effectiever tegen vuur-gebaseerde vijanden
+  * Werkt synergistisch met booguitrusting die schade en nauwkeurigheid verhoogt
+
+==== Inhoudsvalidatie ====
+  * **Informatiebron**: Java klasse [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java|FrostArrow.java]]
+  * **Statistiekenvalidatie**: Direct geëxtraheerd uit FrostArrow constructor en Arrow basisklasse
+  * **Effectbeschrijvingen**: Gebaseerd op attackProc methode implementatie in code
+  * **String resources**: Geverifieerd tegen values/strings_all.xml
+  * **Laatst bijgewerkt**: December 2025
+  * **Bronbestand**: FrostArrow.java
+
+==== Code Referenties ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java|FrostArrow.java]] - Complete implementatie van Vorstpijl mechanieken, inclusief schade (0-6), vertraging (0.75), en speciaal effect (25% kans om 5-beurt vertraging toe te passen)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (basisklasse) - Basismissile implementatie die gemeenschappelijke functionaliteit biedt
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]] (toegepast effect) - Vertraging effect implementatie met duurmechanieken
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java#L28-L30|Arrow.java#L28-L30]] - Definitie van FROST_ARROW_IMAGE constante
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java#L25-L38|FrostArrow.java#L25-L38]] - Prijs methode implementatie (5 goud per pijl)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java#L41-L46|FrostArrow.java#L41-L46]] - Speciale attackProc implementatie met 25% kans om vertragingseffect toe te passen
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-nl/strings_all.xml#L677|FrostArrow_Gender]]: feminine
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-nl/strings_all.xml#L678|FrostArrow_Info]]: Je voelt een ijskoude aura uit de pijlpunt komen.
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L854|FrostArrow_Name (English)]]: frost arrow
+
+==== Configuratie Bestanden ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (basismissile implementatie)
+
+==== Zie Ook ====
+  * [[nl:rpd:slow_buff|Vertraging]] - De statuseffect toegepast door deze pijl
+  * [[nl:rpd:potion_of_frost_item|Drankje van Vorst]] - Gebruikt om Vorstpijlen te maken
+  * [[nl:rpd:common_arrow_item|Gewone Pijl]] - Basismateriaal voor bevochtigen
+  * [[nl:rpd:moisten_mechanic|Bevochtigingsmechanisme]] - Proces om speciale pijlen te maken
+  * [[nl:rpd:arrows_item|Pijlen]] - Andere pijltypen
+  * [[nl:rpd:missile_weapons|Missile Wapens]] - Andere werpwapens
+  * [[nl:rpd:fire_arrow_item|Vuurpijl]] - Ander speciaal pijltype
+  * [[nl:rpd:poison_arrow_item|Gifpijl]] - Ander speciaal pijltype
+  * [[nl:rpd:paralysis_arrow_item|Verlammingspijl]] - Ander speciaal pijltype
+
+{{tag> rpd items arrows missiles ice }}

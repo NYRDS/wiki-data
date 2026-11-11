@@ -1,0 +1,69 @@
+====== 寒霜箭 ======
+{{ rpd:images:frost_arrow_item.png|寒霜箭 }}
+
+**寒霜箭** 是 Remixed Dungeon 中一種特殊的遠程武器，擊中目標時會施加緩慢狀態效果。這種箭矢是透過將 [[zh:rpd:potion_of_frost_item|冰霜藥水]] 用於普通 [[zh:rpd:common_arrow_item|普通箭矢]] 來創建的，這一過程稱為"浸潤"。
+
+==== 屬性 ====
+  * **傷害**: 0-6 (baseMin: 0, baseMax: 6)
+  * **延遲**: 0.75 (baseDly: 0.75)
+  * **最低力量需求**: 9 (setSTR: 9)
+  * **價格**: 每支箭 5 金幣
+  * **圖像**: ammo.png, 索引 6 (FROST_ARROW_IMAGE 常數)
+  * **隨機數量**: 隨機生成時 15-30 支箭
+
+==== 特殊能力 ====
+  * **減速效果**: 箭矢擊中目標時，有 25% 几率施加 [[zh:rpd:slow_buff|緩慢]] 狀態效果，持續 5 回合
+  * **機制**: 使用 ''Buff.prolong(defender, Slow.class, DURATION)'' 其中 DURATION = 5f
+  * **觸發機率**: 特殊效果僅在成功命中時以 25% 概率觸發 (activateSpecial() 方法)
+  * **弓箭**: 從弓發射時，傷害、命中率和延遲會受弓的屬性影響
+
+==== 獲取方式 ====
+  * 可透過在普通 [[zh:rpd:common_arrow_item|普通箭矢]] 上使用 [[zh:rpd:potion_of_frost_item|冰霜藥水]] 來創建 (浸潤過程)
+  * 隨機生成時數量通常為 15-30 支
+  * 不能作為獨立物品自然生成在地城地板上
+  * 價格: 每支箭 5 金幣
+
+==== 策略 ====
+  * 對快速移動的敵人有效，可降低其機動性
+  * 對危險的近戰攻擊者特別有用
+  * 可在困難遭遇戰中用於爭取時間
+  * 減速效果僅在成功命中時以 25% 機率觸發
+  * 對火屬性敵人更有效
+  * 與增加傷害和命中率的弓裝備有協同效果
+
+==== 內容驗證 ====
+  * **信息來源**: Java 類 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java|FrostArrow.java]]
+  * **屬性驗證**: 直接從 FrostArrow 建構函式和 Arrow 基類提取
+  * **效果描述**: 基於代碼中 attackProc 方法的實現
+  * **字串資源**: 已對照 values/strings_all.xml 驗證
+  * **最後更新**: 2025年12月
+  * **源文件**: FrostArrow.java
+
+==== 代碼參考 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java|FrostArrow.java]] - 寒霜箭機制的完整實現，包括傷害 (0-6)、延遲 (0.75) 和特殊效果 (25% 機率施加 5 回合緩慢)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (基類) - 提供通用功能的基礎導彈實現
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]] (施加的效果) - 帶有持續時間機制的緩慢效果實現
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java#L28-L30|Arrow.java#L28-L30]] - FROST_ARROW_IMAGE 常數定義
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java#L25-L38|FrostArrow.java#L25-L38]] - 價格方法實現 (每支箭 5 金幣)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/FrostArrow.java#L41-L46|FrostArrow.java#L41-L46]] - 帶有 25% 機率施加緩慢效果的特殊 attackProc 實現
+
+==== 字串資源 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L836|FrostArrow_Name]]: 寒霜箭
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L835|FrostArrow_Info]]: 您能感受到從箭頭湧出的霜寒氣息。
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L834|FrostArrow_Gender]]: feminine
+
+==== 配置文件 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (基礎導彈實現)
+
+==== 另請參閱 ====
+  * [[zh:rpd:slow_buff|緩慢]] - 此箭矢施加的狀態效果
+  * [[zh:rpd:potion_of_frost_item|冰霜藥水]] - 用於製作寒霜箭
+  * [[zh:rpd:common_arrow_item|普通箭矢]] - 浸潤的基礎物品
+  * [[zh:rpd:moisten_mechanic|浸潤機制]] - 製作特殊箭矢的過程
+  * [[zh:rpd:arrows_item|箭矢]] - 其他箭矢類型
+  * [[zh:rpd:missile_weapons|遠程武器]] - 其他投擲武器
+  * [[zh:rpd:fire_arrow_item|火焰箭]] - 其他特殊箭矢類型
+  * [[zh:rpd:poison_arrow_item|毒箭]] - 其他特殊箭矢類型
+  * [[zh:rpd:paralysis_arrow_item|麻痹箭]] - 其他特殊箭矢類型
+
+{{tag> rpd items arrows missiles ice }}

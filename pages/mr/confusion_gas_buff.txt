@@ -1,0 +1,117 @@
+====== Confusion Gas Blob - Machine Readable Data ======
+
+This page contains raw code fragments, configuration excerpts, and string resource references for the Confusion Gas blob entity.
+
+===== Java Implementation (ConfusionGas.java) =====
+```
+package com.watabou.pixeldungeon.actors.blobs;
+import com.nyrds.LuaInterface;
+import com.nyrds.pixeldungeon.mechanics.buffs.BuffFactory;
+import com.nyrds.pixeldungeon.ml.R;
+import com.nyrds.platform.util.StringsManager;
+import com.watabou.pixeldungeon.actors.Actor;
+import com.watabou.pixeldungeon.actors.Char;
+import com.watabou.pixeldungeon.actors.CharUtils;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.effects.BlobEmitter;
+import com.watabou.pixeldungeon.effects.Speck;
+
+@LuaInterface
+public class ConfusionGas extends Blob {
+
+	@Override
+	protected void evolve() {
+		super.evolve();
+		
+		Char ch;
+		for (int i=0; i < getLength(); i++) {
+			if (cur[i] > 0 && (ch = Actor.findChar( i )) != null) {
+				Buff.prolong( ch, BuffFactory.VERTIGO, CharUtils.durationFactor(ch) * 10f );
+			}
+		}
+	}
+	
+	@Override
+	public void use( BlobEmitter emitter ) {
+		super.use( emitter );
+		
+		emitter.pour( Speck.factory( Speck.CONFUSION, true ), 0.6f );
+	}
+	
+	@Override
+	public String tileDesc() {
+        return StringsManager.getVar(R.string.ConfusionGas_Info);
+    }
+}
+```
+
+===== Source of Confusion Gas (RottenFood.java) =====
+```
+package com.watabou.pixeldungeon.items.food;
+...
+switch (Random.Int( 4 )) {
+case 0:
+    GameScene.add( Blob.seed( cell, 150 + 10 * Dungeon.depth, ConfusionGas.class ) );
+    CellEmitter.get( cell ).burst( Speck.factory( Speck.CONFUSION ), 10 );
+    break;
+...
+}
+```
+25% chance to spawn ConfusionGas with potency `150 + 10 * dungeon_depth` when rotten food is eaten or thrown.
+
+===== Dreamweed Plant Source (Dreamweed.lua) =====
+```
+local RPD = require "scripts/lib/commonClasses"
+local plant = require "scripts/lib/plant"
+
+return plant.init{
+    effect = function(self, plantObject, pos, presser, activator)
+        RPD.placeBlob(RPD.Blobs.ConfusionGas, pos, 300 + 20 * RPD.Dungeon.depth)
+    end
+}
+```
+Dreamweed plants generate ConfusionGas with potency `300 + 20 * dungeon_depth` when pressed.
+
+===== Applied Buff: Vertigo (Vertigo.lua) =====
+```
+local RPD  = require "scripts/lib/commonClasses"
+local buff = require "scripts/lib/buff"
+
+return buff.init{
+    desc  = function ()
+        return {
+            icon          = 29, -- BuffIndicator.VERTIGO
+            name          = "VertigoBuff_Name",
+            info          = "VertigoBuff_Info",
+        }
+    end,
+
+    attachVisual = function(self, buff)
+        buff.target:showStatus(RPD.CharSprite.NEGATIVE, RPD.textById("Char_StaDizzy"))
+    end
+}
+```
+Vertigo is implemented as a CustomBuff (no dedicated Java class).
+
+===== String Resources (English) =====
+```
+<string name="ConfusionGas_Info">A cloud of confusion gas is swirling here.</string>
+<string name="VertigoBuff_Name">Vertigo</string>
+<string name="VertigoBuff_Info">The lightheaded feeling makes it harder to walk straight!</string>
+```
+
+===== String Resources (Russian) =====
+```
+<string name="ConfusionGas_Info">Здесь витает облако дурманящего газа.</string>
+<string name="VertigoBuff_Name">Вертиго</string>
+<string name="VertigoBuff_Info">Головокружение мешает идти прямо!</string>
+```
+
+===== Related Code Files =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ConfusionGas.java|ConfusionGas.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java|RottenFood.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/plants/Dreamweed.lua|Dreamweed.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/buffs/Vertigo.lua|Vertigo.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] (Vertigo constant)
+
+{{tag> mr gas blob vertigo}}
