@@ -3,28 +3,49 @@
 {{ rpd:images:zombie_mob.png|Zombie Mob }}
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/Zombie.java|Zombie.java]] - Main mob implementation class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Parent class
-
-===== Implementation Details =====
-  * **HP**: 33
-  * **Defense Skill**: 10
-  * **Attack Skill**: 10
-  * **Damage**: 3-10
-  * **Defense Rating**: 10
-  * **EXP for Kill**: 6
-  * **Max Level**: 15
-  * **Type**: Undead (immune to many effects via `setUndead(true)`)
-  * **Special Attack**: 33% chance (1 in 3) to poison target on hit for 2-4 seconds
-  * **Loot**: Gold (2% drop chance)
-  * **Spawn Location**: Necropolis levels (necro1, necro2, necro3)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Base mob class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Factory for creating mobs from JSON configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/CustomMobAi.java|CustomMobAi.java]] - AI for JSON-configured mobs
 
 ===== JSON Configuration =====
-Spawn configuration in Bestiary.json:
-  * **necro1**: Zombie spawn rate 1.0
-  * **necro2**: Zombie spawn rate 1.0 (with ExplodingSkull, EnslavedSoul, DeathKnight, DreadKnight)
-  * **necro3**: Zombie spawn rate 2.0 (with ExplodingSkull, EnslavedSoul, DeathKnight, DreadKnight)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]
+Mob configuration in mobsDesc/Zombie.json:
+<code json>
+{
+   "name"          : "Zombie_Name",
+   "name_objective": "Zombie_Name_Objective",
+   "description"   : "Zombie_Desc",
+   "gender"        : "Zombie_Gender",
+   "attackSkill"   : 10,
+   "defenseSkill"  : 10,
+   "dmgMin"        : 3,
+   "dmgMax"        : 10,
+   "dr"            : 10,
+   "str"           : 13,
+   "ht"            : 33,
+   "exp"           : 6,
+   "maxLvl"        : 15,
+   "baseSpeed"     : 1,
+   "attackDelay"   : 1,
+   "viewDistance"  : 8,
+   "walkingType"   : "NORMAL",
+   "spriteDesc"    : "spritesDesc/Zombie.json",
+   "scriptFile"    : "scripts/mobs/Zombie",
+   "lootChance"    : 0.02,
+   "loot"          : { "kind": "Gold" },
+   "undead"        : true,
+   "isHumanoid"    : true,
+   "canBePet"      : true,
+   "friendly"      : false,
+   "fraction"      : "DUNGEON"
+}
+</code>
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Zombie.json|mobsDesc/Zombie.json]] - Main mob configuration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Zombie.json|spritesDesc/Zombie.json]] - Sprite configuration
+  * Spawn configuration in Bestiary.json:
+    * **necro1**: Zombie spawn rate 1.0
+    * **necro2**: Zombie spawn rate 1.0 (with ExplodingSkull, EnslavedSoul, DeathKnight, DreadKnight)
+    * **necro3**: Zombie spawn rate 2.0 (with ExplodingSkull, EnslavedSoul, DeathKnight, DreadKnight)
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]
 
 ===== String Resources =====
 English string resources:
@@ -44,36 +65,57 @@ String resources available in multiple languages:
   * And other localization files
 
 ===== Lua Scripts =====
-This entity is implemented entirely in Java. No Lua script exists for Zombie.
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Zombie.lua|Zombie.lua]] - Custom attack behavior (poison on hit)
 
 ===== Key Code Fragments =====
 
-**Java Implementation (Zombie.java)**:
-<code java>
-public class Zombie extends Mob {
-    {
-        hp(ht(33));
-        baseDefenseSkill = 10;
-        baseAttackSkill  = 10;
-        dmgMin = 3;
-        dmgMax = 10;
-        dr = 10;
+**JSON Configuration (mobsDesc/Zombie.json)**:
+<code json>
+{
+   "name"          : "Zombie_Name",
+   "name_objective": "Zombie_Name_Objective",
+   "description"   : "Zombie_Desc",
+   "gender"        : "Zombie_Gender",
+   "attackSkill"   : 10,
+   "defenseSkill"  : 10,
+   "dmgMin"        : 3,
+   "dmgMax"        : 10,
+   "dr"            : 10,
+   "str"           : 13,
+   "ht"            : 33,
+   "exp"           : 6,
+   "maxLvl"        : 15,
+   "baseSpeed"     : 1,
+   "attackDelay"   : 1,
+   "viewDistance"  : 8,
+   "walkingType"   : "NORMAL",
+   "spriteDesc"    : "spritesDesc/Zombie.json",
+   "scriptFile"    : "scripts/mobs/Zombie",
+   "lootChance"    : 0.02,
+   "loot"          : { "kind": "Gold" },
+   "undead"        : true,
+   "isHumanoid"    : true,
+   "canBePet"      : true,
+   "friendly"      : false,
+   "fraction"      : "DUNGEON"
+}
+</code>
 
-        expForKill = 6;
-        maxLvl = 15;
+**Lua Script (scripts/mobs/Zombie.lua)**:
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local mob = require "scripts/lib/mob"
 
-        setUndead(true);
-        loot(Gold.class, 0.02f);
-    }
-
-    @Override
-    public int attackProc(@NotNull Char enemy, int damage ) {
-        //Poison proc - 33% chance (1 in 3)
-        if (Random.Int(3) == 1){
-            Buff.affect( enemy, Poison.class, Random.Int( 2, 4 ) * Poison.durationFactor( enemy ) );
-        }
-        return damage;
-    }
+return mob.init{
+    attackProc = function(self, enemy, dmg)
+        -- 1/3 chance to poison; java rolled Random.Int(2,3) which is [2,3)
+        -- i.e. always 2 turns
+        if enemy ~= nil and math.random(3) == 1 then
+            local factor = RPD.CharUtils:durationFactor(enemy)
+            RPD.Buffs.Buff:affect(enemy, "Poison", 2 * factor)
+        end
+        return dmg
+    end
 }
 </code>
 

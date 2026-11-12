@@ -1,0 +1,113 @@
+====== Buff Mechanics - Code References ======
+
+The **Buff Mechanics** system in Remixed Dungeon handles all temporary status effects (buffs and debuffs) applied to characters. It is centered around the `Buff` base class and its various subclasses.
+
+===== Java Classes =====
+
+**Core System:**
+  * `com/watabou/pixeldungeon/actors/buffs/Buff.java` - Base class for all buffs and debuffs
+  * `com/watabou/pixeldungeon/actors/Char.java` - Character class that manages buff application
+  * `com/watabou/pixeldungeon/actors/buffs/Buff.java` - Contains duration, stacking, and application logic
+
+**Specialized Buff Base Classes:**
+  * `com/watabou/pixeldungeon/items/rings/ArtifactBuff.java` - Base for artifact-sourced buffs (auto-detach on artifact removal)
+  * `com/watabou/pixeldungeon/actors/buffs/DurationBuff.java` - Base for time-limited buffs
+  * `com/watabou/pixeldungeon/actors/buffs/PermaBuff.java` - Base for permanent buffs
+
+**Buff Factory:**
+  * `com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java` - Central registry and factory for buff creation
+
+**Key Interfaces:**
+  * `com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java` - Entity identification for buff types
+  * `com/nyrds/pixeldungeon/utils/EntityIdSource.java` - Source ID tracking for artifact buffs
+
+===== Core Mechanics =====
+
+**Duration System:**
+<code java>
+// In Buff.java
+protected float duration;
+public void set(float duration) { this.duration = duration; }
+public float getDuration() { return duration; }
+
+// Duration is reduced each turn in act()
+@Override
+public void act() {
+    duration--;
+    if (duration <= 0) detach();
+}
+</code>
+
+**Duration Factor:**
+<code java>
+// In Char.java / CharUtils.java
+public static float durationFactor(Char ch) {
+    // Returns factor based on character's resistances, etc.
+}
+</code>
+
+**Stacking Rules:**
+  * **Replace**: New application replaces existing buff (default for most buffs)
+  * **Extend**: New application adds to duration
+  * **Stack**: Multiple instances can exist simultaneously (rare)
+  * Determined by buff class implementation in `attachTo()` method
+
+**Application Flow:**
+1. `Buff.affect(target, buffClass, duration)` - Factory method to create/apply buff
+2. `BuffFactory.getBuff(buffClass)` - Gets or creates buff instance
+3. `buff.attachTo(target)` - Attaches to character, handles stacking logic
+3. `target.addBuff(buff)` - Adds to character's buff list
+
+**Removal:**
+  * Automatic: Duration expires in `act()`
+  * Manual: `buff.detach()` or `target.removeBuff(buffClass)`
+  * Source-based: ArtifactBuff auto-detaches when source artifact removed
+
+===== JSON Configuration =====
+
+Buffs do not have separate JSON configuration files. They are:
+  * Defined entirely in Java code as subclasses of `Buff`
+  * Registered through `BuffFactory` at startup
+  * Associated with their source items/abilities via string resources
+
+===== String Resources =====
+
+Each buff has string resources in `values/strings_all.xml`:
+<code xml>
+<string name="BuffClass_Name">Display Name</string>
+<string name="BuffClass_Desc">Description of effect</string>
+</code>
+
+Localized versions exist in `values-<lang>/strings_all.xml` for each supported language.
+
+===== Lua Scripts =====
+
+Buffs are implemented entirely in Java. No Lua scripts are used for buff mechanics.
+Custom buff behaviors are implemented via Java subclassing.
+
+===== Related Entities =====
+
+**Base System:**
+  * [[mr:buff|Buff (Base Class)]] - Base buff implementation
+  * [[mr:artifact_buff|Artifact Buff]] - Artifact-sourced buff base class
+  * [[mr:charm_buff|Charm Buff]] - Example charm mechanic buff
+
+**Status Effect Categories:**
+  * [[mr:poison_buff|Poison Buff]] - Damage over time
+  * [[mr:burning_buff|Burning Buff]] - Fire damage over time
+  * [[mr:paralysis_buff|Paralysis Buff]] - Action prevention
+  * [[mr:invisibility_buff|Invisibility Buff]] - Stealth effect
+  * [[mr:regeneration_buff|Regeneration Buff]] - Healing over time
+
+**Related Systems:**
+  * [[mr:char|Char]] - Character buff management
+  * [[mr:buff_factory|Buff Factory]] - Buff creation and registry
+
+===== Code References =====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/ArtifactBuff.java|ArtifactBuff.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/EntityIdSource.java|EntityIdSource.java]]
+
+{{tag> mr code reference buff mechanics status_effects }}
