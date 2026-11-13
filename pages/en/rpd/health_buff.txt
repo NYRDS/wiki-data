@@ -1,0 +1,43 @@
+====== Health ======
+
+{{ rpd:images:health_buff.png|Health }}
+
+**Health** is a buff in Remixed Dungeon that provides regenerative healing while the hero remains stationary on the cell where the buff was applied.
+
+==== Effect ====
+  * **Regeneration**: Heals max(1, max HP / 10) HP per turn while the hero stays on the same cell
+  * **Duration**: Persists until the hero moves off the cell or reaches full HP
+  * **Visual**: Shaft particle effect at the cell location
+
+==== Sources ====
+  * **Sungrass Plant**: Stepping on a [[en:rpd:sungrass_level_object|Sungrass]] plant applies this buff
+  * **Warden Subclass**: Heroes with the [[en:rpd:warden_subclass|Warden]] subclass have a chance to gain this buff when interacting with plants
+
+==== Mechanics ====
+  * The buff checks the hero's position each turn
+  * If the hero moves to a different cell, the buff immediately detaches
+  * If the hero's HP reaches maximum, the buff detaches
+  * Healing amount scales with max HP (1/10 of max HP, minimum 1)
+  * Uses 5 time units per healing tick (STEP)
+
+==== Implementation ====
+  * **Buff Script**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Health.lua|scripts/buffs/Health.lua]]
+  * **Plant Script**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/plants/Sungrass.lua|scripts/plants/Sungrass.lua]] - applies Health buff on interaction
+  * **String Resources**: 
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2281-L2282|SungrassBuff_Name, SungrassBuff_Info]]
+  * **Buff Indicator**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java#L37|HEALING]] (icon 19)
+
+==== Strategy ====
+  * Stand on Sungrass plants to recover health safely
+  * Useful for conserving potions and food
+  * Combine with [[en:rpd:warden_subclass|Warden]] subclass for more frequent plant buffs
+  * The buff is lost if you move, so plan your positioning carefully
+
+==== Related ====
+  * [[en:rpd:sungrass_level_object|Sungrass Plant]] - Primary source of this buff
+  * [[en:rpd:sungrass_seed_item|Sungrass Seed]] - Grows into Sungrass plant
+  * [[en:rpd:warden_subclass|Warden]] - Subclass with plant interaction bonuses
+  * [[en:rpd:regeneration_buff|Regeneration]] - Similar healing-over-time effect
+  * [[en:rpd:buff_mechanics|Buff Mechanics]] - General buff system information
+
+{{tag> rpd buffs healing regeneration}}
