@@ -1,0 +1,56 @@
+====== Encantamento Vampírico ======
+
+{{ rpd:images:enchantment.png|Encantamento Vampírico }}
+
+O encantamento Vampírico é um encantamento de arma que cura o portador por uma parte do dano causado ao atingir um inimigo. Isso cria uma mecânica de sustentação para combate corpo a corpo, permitindo que jogadores recuperem vida enquanto causam dano.
+
+==== Descrição ====
+O encantamento Vampírico fornece funcionalidade de roubo de vida, convertendo uma porcentagem do dano causado em cura para o atacante. O encantamento brilha com uma cor vermelho escuro quando ativo.
+
+==== Mecânicas ====
+  * **Chance de Ativação:** Baseada no nível da arma e dano causado
+  * **Fórmula de Cura:** A quantidade de cura é calculada da seguinte forma:
+    * Valor máximo de cura: dano * (nível + 2) / (nível + 6)
+    * Cura real: Valor aleatório entre 0 e o máximo, limitado pelo HP faltante
+    * Só cura se o atacante tiver HP faltante
+  * **Escala de Nível:**
+    * Nível 0: ~33% do dano (máximo)
+    * Nível 1: ~43% do dano (máximo)
+    * Nível 2: ~50% do dano (máximo)
+    * Níveis mais altos continuam melhorando a proporção
+  * **Efeito Visual:** Mostra a quantidade de cura como números verdes acima do personagem
+  * **Cor do Brilho:** Vermelho escuro (RGB: 0x660022)
+
+==== Estratégia ====
+  * Mais eficaz em armas de ataque rápido que causam dano consistente
+  * Fornece sustentação em lutas prolongadas, reduzindo dependência de poções de cura
+  * Menos eficaz quando com vida cheia (nenhuma cura ocorre)
+  * Funciona bem com armas de alto dano para rajadas maiores de cura
+  * Pode ser a diferença entre vida e morte em encontros difíceis
+
+==== Código Fonte ====
+  * Implementação Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Leech.java|Leech.java]]
+  * O efeito é aplicado no método proc()
+  * A quantidade de cura escala com o nível da arma usando a fórmula: dano * (nível + 2) / (nível + 6)
+  * Só cura se o atacante tiver HP faltante (attacker.ht() - attacker.hp() > 0)
+  * Usa Random.IntRange() para variabilidade na quantidade de cura
+
+==== Recursos de String ====
+  * O nome e descrição do encantamento são definidos nos recursos de string de encantamentos de arma
+
+==== Recursos de String (Português) ====
+<code xml>
+<!-- Português (values-pt-rBR/strings_all.xml) -->
+<string name="Leech_Name_0">%s Vampírico(a)</string>
+<string name="Leech_Name_1">%s Vampírico(a)</string>
+<string name="Leech_Name_2">%s Vampírico(a)</string>
+</code>
+
+==== Veja Também ====
+  * [[pt:rpd:enchantments|Encantamentos]] - Lista de todos os encantamentos de arma
+  * [[pt:rpd:weapons|Armas]] - Equipamentos que podem ter encantamentos
+  * [[pt:rpd:heal_spell|Feitiço de Cura]] - Informações gerais sobre cura no jogo
+  * [[pt:rpd:combat_mechanic|Mecânicas de Combate]] - Como combate e dano funcionam
+  * [[pt:rpd:healing|Cura]] - Todos os métodos de cura no jogo
+
+{{tag> rpd items encantamentos cura roubo_de_vida }}

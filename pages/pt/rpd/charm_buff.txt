@@ -1,0 +1,81 @@
+====== Encanto ======
+
+{{ rpd:images:buff_charm.png|Ícone do Buff de Encanto }}
+
+**Encanto** é um efeito de status em Remixed Dungeon que temporariamente transforma um inimigo em aliado.
+
+==== Descrição ====
+Quando uma criatura é afetada pelo efeito de status Encanto, ela se torna temporariamente aliada ao herói e lutará contra outras criaturas hostis em vez de atacar o herói. O efeito desaparece após uma duração determinada pelo nível do conjurador.
+
+==== Efeitos ====
+  * **Conversão de Aliado:** Inimigos encantados se tornam aliados temporários
+  * **Duração:** Calculada como sqrt(nível de habilidade do conjurador * conjurador:lvl()) + 5 turnos
+  * **Comportamento em Combate:** Inimigos encantados atacarão outras criaturas hostis
+  * **Alvo:** Não atacarão o herói que lançou o encanto
+
+==== Aplicação ====
+O efeito Encanto pode ser aplicado através de:
+  * [[pt:rpd:charm_spell|Feitiço de Encanto]]
+  * [[pt:rpd:succubus_mob|Súcubo]] - Ataque especial que aplica encanto por 2-5 turnos
+  * [[pt:rpd:affection_glyph|Glifo de Afeto]] - Glifo de armadura que aplica encanto aos atacantes
+  * [[pt:rpd:sungrass_plant|Sungrass]] - Planta que aplica encanto por 10-15 turnos
+  * [[pt:rpd:moongrace_plant|Moongrace]] - Planta que aplica encanto por 10-15 turnos
+  * Efeitos de maldição da Rosa Seca
+
+==== Estratégia ====
+  * Use para virar inimigos poderosos uns contra os outros
+  * Particularmente eficaz em grupos de inimigos onde inimigos encantados atacarão outros
+  * Considere o posicionamento de inimigos encantados pois eles podem bloquear passagens
+  * O tempo é importante pois a duração depende do nível do herói
+  * Tenha cuidado para que inimigos encantados não bloqueiem suas rotas de fuga
+
+==== Mecânicas ====
+  * Inimigos encantados são pacificados (tornam-se passivos e não atacam)
+  * O efeito termina automaticamente quando a duração expira
+  * Criaturas encantadas têm um efeito de coração ao redor delas
+  * **Pacificação:** Personagens afetados ficam incapazes de engajar em combate
+  * **Imunidade:** Alguns inimigos (como YogsEye) são imunes a efeitos de encanto
+  * **Interações Especiais:** Personagens afetados com o OneWayLoveBuff da Rosa Seca são imunes a encanto
+  * Algumas criaturas (como órgãos do Yog) e mortos-vivos são imunes a encanto
+
+==== Contra-medidas ====
+  * O efeito de encanto termina quando a duração expira
+  * Encanto não acumula com outros efeitos de status conflitantes como Amok
+  * Algumas criaturas podem ser imunes a efeitos de encanto (mortos-vivos, órgãos do Yog, etc.)
+
+==== Fontes de Encanto ====
+  * **Súcubo:** Usa ataque de encanto em inimigos
+  * **Glifo de Afeto:** Glifo de armadura que aplica encanto aos atacantes
+  * **Feitiço de Encanto:** Feitiço lançável pelo jogador que aplica encanto ao alvo
+  * **Sungrass & Moongrace:** Plantas que podem encantar personagens quando consumidas
+  * **Rainha Aranha:** Derruba artefato Aranha Encantada que pode encantar
+  * **Encantamento de Afeto:** Encantamento de arma que causa encanto no acerto
+
+==== Afetados por Encanto ====
+  * A maioria dos inimigos pode ser encantada
+  * Alguns inimigos como YogsEye, EnslavedSoul e outros têm imunidade a encanto
+  * Inimigos encantados não atacarão a fonte do encanto
+
+==== Referências de Código ====
+  * **Implementação Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charm.java|Charm.java]]
+  * **Súcubo:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Succubus.java|Succubus.java]] - Usa encanto no ataque
+  * **Glifo de Afeto:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Affection.java|Affection.java]]
+  * **Feitiço de Encanto:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Charm.lua|Charm.lua]]
+  * **Efeitos de Plantas:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java|Sungrass.java]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Moongrace.java|Moongrace.java]]
+  * **Recursos de String:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L522-L523|Charm_Name, Charm_Info]]
+
+==== Recursos de String (Português) ====
+<code xml>
+<!-- Português (values-pt-rBR/strings_all.xml) -->
+<string name="CharmBuff_Name">Encantado</string>
+<string name="CharmBuff_Info">A mente e o corpo foram encantados!</string>
+</code>
+
+==== Relacionado ====
+  * [[pt:rpd:spells_overview|Feitiços]]
+  * [[pt:rpd:charm_spell|Feitiço de Encanto]]
+  * [[pt:rpd:buffs|Buffs]]
+  * [[pt:rpd:succubus_mob|Súcubo]]
+  * [[pt:rpd:affection_glyph|Glifo de Afeto]]
+
+{{tag> rpd buffs status_effect encanto }}

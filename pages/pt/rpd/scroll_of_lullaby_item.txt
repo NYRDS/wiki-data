@@ -1,0 +1,83 @@
+====== Pergaminho de Canção de Ninar ======
+
+{{ rpd:images:scroll_of_lullaby_item.png|Pergaminho de Canção de Ninar }}
+
+O Pergaminho de Canção de Ninar é um item mágico que coloca inimigos próximos para dormir.
+
+==== Descrição ====
+Quando lido, o Pergaminho de Canção de Ninar libera melodias mágicas que colocam todos os inimigos dentro de um certo raio para dormir. Inimigos dormindo permanecerão dormindo até receberem dano ou serem perturbados de outra forma.
+
+==== Efeitos ====
+  * **Área de Efeito:** Todos os inimigos dentro de 5 tiles do herói
+  * **Duração do Sono:** Inimigos permanecem dormindo por 5-10 turnos
+  * **Sono Pacífico:** Inimigos dormindo não atacarão a menos que sejam danificados
+  * **Perturbação:** Barulhos altos ou ataques acordarão inimigos dormindo
+
+==== Estratégia ====
+  * **Passagem Segura:** Permite passagem segura através de áreas perigosas
+  * **Mecanismo de Fuga:** Útil para escapar de situações perigosas
+  * **Tempo:** Melhor usado quando cercado por múltiplos inimigos
+  * **Cuidado:** Tenha cuidado para não acordar inimigos dormindo
+
+==== Referências de Código ====
+<code>
+package com.watabou.pixeldungeon.items.scrolls;
+
+import com.watabou.pixeldungeon.Dungeon;
+import com.watabou.pixeldungeon.actors.buffs.Buff;
+import com.watabou.pixeldungeon.actors.mobs.Mob;
+import com.watabou.pixeldungeon.effects.SpellSprite;
+import com.watabou.pixeldungeon.utils.GLog;
+
+public class ScrollOfLullaby extends Scroll {
+
+	@Override
+	protected void doRead() {
+
+		for (Mob mob : Dungeon.level.mobs) {
+			if (Dungeon.visible[mob.pos]) {
+				Buff.affect( mob, Sleep.class );
+				if (mob.state == mob.HUNTING) {
+					mob.state = mob.WANDERING;
+				}
+				mob.sprite.centerEmitter().start( Speck.factory( Speck.NOTE ), 0.3f, 4 );
+			}
+		}
+
+		GLog.h( "The scroll utters a soothing melody. You feel very sleepy." );
+		setKnown();
+
+		((ScrollOfMagicMapping)curItem).readAnimation();
+	}
+
+	@Override
+	public String desc() {
+		return
+			"The scroll utters a soothing melody that will put all " +
+			"enemies caught within its range into a deep magical slumber.";
+	}
+}
+</code>
+
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfLullaby.java|ScrollOfLullaby.java]] - Implementação principal
+
+==== Verificação de Fonte ====
+  * Fonte: Classe Java `com.watabou.pixeldungeon.items.scrolls.ScrollOfLullaby`
+  * Efeito verificado: Buff Sleep aplicado a todos os mobs visíveis
+  * Descrição: Corresponde ao recurso de string do jogo
+
+==== Recursos de String (Português) ====
+<code xml>
+<!-- Português (values-pt-rBR/strings_all.xml) -->
+<string name="ScrollOfLullaby_Name">Pergaminho de Canção de Ninar</string>
+<string name="ScrollOfLullaby_Info">Uma melodia suave colocará todas as criaturas no seu campo de visão em um sono profundo, dando a você a chance de fugir ou fazer um ataque surpresa nelas.</string>
+<string name="ScrollOfLullaby_Info1">O pergaminho sussurra uma melodia suave.</string>
+<string name="ScrollOfLullaby_Info2">O pergaminho sussurra uma melodia suave e o %s adormece!</string>
+<string name="ScrollOfLullaby_Info3">O pergaminho sussurra uma melodia suave e os monstros adormecem!</string>
+</code>
+
+==== Itens Relacionados ====
+  * [[pt:rpd:scrolls|Pergaminhos]] - Lista de todos os pergaminhos
+  * [[pt:rpd:scroll_of_teleportation_item|Pergaminho de Teletransporte]] - Outro pergaminho utilitário de fuga
+
+{{tag> rpd items pergaminhos cancao_de_ninar }}
