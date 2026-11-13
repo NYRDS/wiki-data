@@ -1,0 +1,53 @@
+====== Rat King's Crown ======
+
+{{ rpd:images:rat_king_crown_item.png|Rat King's Crown }}
+
+==== Description ====
+The **Rat King's Crown** is a unique artifact in Remixed Dungeon. It is the golden crown of "His Ratness" and provides the wearer with the ability to tame rats they defeat in combat.
+
+According to the game: "The golden crown of His Ratness, symbol of everrating Power"
+
+==== Properties ====
+  * **Type:** [[en:rpd:artifacts|Artifact]]
+  * **Effect:** When attacking a rat while wearing this crown, the rat becomes a friendly pet
+  * **Buff:** Grants the **Rat King Aura** buff ([[en:rpd:rat_king_aura_buff|Rat King Aura]]) when equipped
+  * **Identification:** Always identified (cannot be unidentified)
+  * **Sprite:** Artifacts atlas at index 17
+
+==== Mechanics ====
+  * The crown provides the **Rat King Aura** buff when equipped
+  * When the player attacks a [[en:rpd:rat_mob|Rat]] while the buff is active, the rat is tamed via `Mob.makePet()` and becomes an ally
+  * Only affects regular rats, not rat bosses or special variants
+  * The buff icon is `BuffIndicator.RATTNESS`
+  * Buff name: "Ratness"
+  * Buff description: "Hail the Lord of the rats, every rat shall obey and praise."
+
+==== Strategy ====
+  * Extremely valuable in areas with high rat populations (Sewers, Prison)
+  * Can build a small army of pet rats over time
+  * Works well with the [[en:rpd:pet_mechanic|Pet Mechanic]] for additional allies
+  * The crown is automatically identified when found
+
+==== Obtaining ====
+  * Dropped by the [[en:rpd:rat_king_mob|Rat King]] boss
+  * Part of the Rat King quest line
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/RatKingCrown.java|RatKingCrown.java]] - Main implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L307|ItemFactory.java]] - Registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L162|BuffFactory.java]] - Buff registration
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/RatKing.java|RatKing.java]] - NPC that drops the crown
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1800-L1803|String resources]] - Names and descriptions
+
+==== See Also ====
+  * [[en:rpd:rat_king_aura_buff|Rat King Aura]] - The buff provided by this artifact
+  * [[en:rpd:rat_king_mob|Rat King]] - The boss that drops this crown
+  * [[en:rpd:rat_mob|Rat]] - The enemy that can be tamed
+  * [[en:rpd:artifacts|Artifacts]] - General artifact information
+  * [[en:rpd:pet_mechanic|Pet Mechanic]] - How pets work
+
+==== Other Languages ====
+  * [[ru:rpd:rat_king_crown|Русский]] (Note: Russian page uses different naming)
+  * [[mr:rat_king_crown_item|Machine-readable data]]
+
+{{tag> rpd items artifacts rat_king pets }}

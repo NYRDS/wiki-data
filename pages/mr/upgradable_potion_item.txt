@@ -1,0 +1,59 @@
+====== Upgradable Potion Item - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/UpgradablePotion.java|UpgradablePotion.java]] - Base class for upgradable potions
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/Potion.java|Potion.java]] - Base potion class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLiquidFlame.java|PotionOfLiquidFlame.java]] - Example implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]] - Example implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java|PotionOfFrost.java]] - Example implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java|PotionOfParalyticGas.java]] - Example implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfToxicGas.java|PotionOfToxicGas.java]] - Example implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfMindVision.java|PotionOfMindVision.java]] - Example implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfInvisibility.java|PotionOfInvisibility.java]] - Example implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java|PotionOfLevitation.java]] - Example implementation
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfStrength.java|PotionOfStrength.java]] - Example implementation
+
+===== JSON Configuration =====
+This entity is a base class implemented in Java, no JSON configuration exists
+
+===== String Resources =====
+No specific string resources for the base class. Subclasses define their own strings.
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists
+
+===== Implementation Details =====
+  * **Class**: `com.watabou.pixeldungeon.items.potions.UpgradablePotion`
+  * **Extends**: `Potion`
+  * **Package**: `com.watabou.pixeldungeon.items.potions`
+  * **Purpose**: Provides upgrade/degrade mechanics for potions
+  * **Key Method**: `qualityFactor()` returns `Math.pow(2, level())` - volume scales exponentially with upgrade level
+  * **Upgrade Behavior**: When upgraded, creates a new upgraded potion if quantity > 1
+  * **Degrade Behavior**: When degraded, creates a new degraded potion if quantity > 1
+  * **Random Generation**: 15% chance to be upgraded once, 2.25% chance to be upgraded twice
+  * **Visual Indicator**: `visiblyUpgraded()` returns the potion's level
+
+===== Known Subclasses =====
+  * PotionOfHealing
+  * PotionOfLiquidFlame
+  * PotionOfFrost
+  * PotionOfParalyticGas
+  * PotionOfToxicGas
+  * PotionOfMindVision
+  * PotionOfInvisibility
+  * PotionOfLevitation
+  * PotionOfStrength
+
+===== Related mr Entities =====
+  * [[mr:potion_item|Potion (Item)]] - Base potion type
+  * [[mr:potion_of_healing_item|Potion of Healing]]
+  * [[mr:potion_of_liquid_flame_item|Potion of Liquid Flame]]
+  * [[mr:potion_of_frost_item|Potion of Frost]]
+  * [[mr:potion_of_paralytic_gas_item|Potion of Paralytic Gas]]
+  * [[mr:potion_of_toxic_gas_item|Potion of Toxic Gas]]
+  * [[mr:potion_of_mind_vision_item|Potion of Mind Vision]]
+  * [[mr:potion_of_invisibility_item|Potion of Invisibility]]
+  * [[mr:potion_of_levitation_item|Potion of Levitation]]
+  * [[mr:potion_of_strength_item|Potion of Strength]]
+
+{{tag> mr items potions code_reference upgradable }}
