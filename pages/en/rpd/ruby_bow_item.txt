@@ -36,10 +36,14 @@
   * Ideal for ranged-focused characters with high stats
 
 ==== Code References ====
-  * Java class reference removed: RubyBow.java no longer exists (entity references remain in Treasury/SpidersTreasury JSON); no JSON config or Lua script found for RubyBow in current assets
+  * Java class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/RubyBow.java|RubyBow.java]]
+  * Constructor: `super(5, 0.8f, 1.5f)` - base damage 5, speed 0.8, accuracy 1.5
+  * Damage factor: `1 + level()` (scales with upgrade level)
+  * Delay factor: `1 + level() * 0.2`
+  * Parent class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Bow.java|Bow.java]] (ranged weapon base)
   * Treasury reference: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json|Treasury.json (RubyBow entry)]]
-  * Java class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/guts/weapon/ranged/Bow.java|Bow.java]] (parent class)
   * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L858-L860|RubyBow strings]]
+  * Item registration: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (registerItemClass(RubyBow.class))
 
 ==== Related Items ====
   * [[en:rpd:weapon_item|Weapons]] - Other weapons
