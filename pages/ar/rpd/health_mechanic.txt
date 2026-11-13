@@ -1,0 +1,41 @@
+====== ميكانيكية الصحة ======
+
+{{ rpd:images:health_buff.png|الصحة }}
+
+**الصحة** (أو نقاط الحياة/HP) تمثل كمية الضرر التي يمكن للشخصية تحملها قبل الموت. يبدأ الأبطال بصحة أساسية تعتمد على الصعوبة: 30 HP في الصعوبة العادية و 20 HP في الصعوبات الأعلى. تُجاوز هذه القيمة الأساسية بقيم صحة خاصة بكل فئة من initHeroes.json (مثلاً: الإلف 15 HP، الصياد 15 HP، ساحر الموت 15 HP، الغنول 5 HP). يمكن زيادة الحد الأقصى للصحة بشكل دائم بالعثور على [[ar:rpd:potion_of_might_item|إكسير القوة]] (+5 صحة قصوى) أو من خلال ميكانيكيات أخرى في اللعبة.
+
+==== الميكانيكيات ====
+  * **الحد الأقصى للصحة**: الحد الأعلى للصحة التي يمكن أن تتمتع بها الشخصية
+  * **الصحة الحالية**: كمية الصحة المتبقية حالياً
+  * **الاستعادة**: يمكن استعادة الصحة عبر وسائل مختلفة:
+    * [[ar:rpd:potion_of_healing_item|إكسير الشفاء]] والإكسيرات المماثلة
+    * [[ar:rpd:heal_spell|تعويذة الشفاء]]
+    * [[ar:rpd:ring_of_mending_item|خاتم الإصلاح]]
+    * [[ar:rpd:wand_of_regrowth_item|عصا النمو]]
+    * [[ar:rpd:herbalism|الطب العشبي]] (أكل الخضروات النيئة)
+
+==== آثار الصحة المنخفضة ====
+  * إذا وصلت الصحة إلى 0، تموت الشخصية
+
+==== صفحات ذات صلة ====
+  * [[ar:rpd:potion_of_healing_item|إكسير الشفاء]]
+  * [[ar:rpd:potion_of_might_item|إكسير القوة]]
+  * [[ar:rpd:heal_spell|تعويذة الشفاء]]
+  * [[ar:rpd:ring_of_mending_item|خاتم الإصلاح]]
+  * [[ar:rpd:hunger|الجوع]]
+
+==== مراجع الكود ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - الفئة الأساسية للشخصية مع ميكانيكيات الصحة (دوال hp() و ht())
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - تنفيذ الصحة الخاص بالبطل بما في ذلك الصحة الابتدائية
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L137-L147|Hero.java#L137-L147]] - الصحة الابتدائية بناءً على مستوى الصعوبة
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L192|HeroClass.java#L192]] - الصحة الخاصة بالفئة من initHeroes.json
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L1312-L1320|Char.java#L1312-L1320]] - دوال الحصول على HP و HT وتعيينهما
+
+==== إعدادات JSON ====
+  * ملفات إعدادات الوحوش المختلفة في ''RemixedDungeon/src/main/assets/mobsDesc/'' تحدد قيم HP للأعداء
+  * ''RemixedDungeon/src/main/assets/hero/initHeroes.json'' - يحدد الصحة الابتدائية لفئات الأبطال
+
+==== موارد النصوص ====
+  * يمكن العثور على النصوص المتعلقة بالصحة في ''RemixedDungeon/src/main/res/values-ar/strings_all.xml'' وملفات موارد اللغات الأخرى
+
+{{tag> rpd mechanics stats}}
