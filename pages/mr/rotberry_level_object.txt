@@ -1,0 +1,41 @@
+====== Rotberry Level Object - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/WandMaker.java|WandMaker.java]] - Contains Rotberry and Rotberry.Seed inner classes (lines 263-309)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObject.java|LevelObject.java]] - Base class for level objects
+
+===== JSON Configuration =====
+This entity is implemented in Java (WandMaker.Rotberry), no JSON configuration exists
+
+===== String Resources =====
+  * **WandMaker_Rotberry_Name** - "Rotberry"
+  * **WandMaker_Rotberry_Info** - "Berries of this shrub taste like sweet, sweet death."
+  * **WandMaker_Rotberry_Effect** - "The rotberry releases a cloud of toxic gas and drops a seed."
+
+<code xml>
+<string name="WandMaker_Rotberry_Name">Rotberry</string>
+<string name="WandMaker_Rotberry_Info">Berries of this shrub taste like sweet, sweet death.</string>
+<string name="WandMaker_Rotberry_Effect">The rotberry releases a cloud of toxic gas and drops a seed.</string>
+</code>
+
+===== Lua Scripts =====
+No dedicated Lua script; behavior implemented in Java (WandMaker.Rotberry.effect method)
+
+===== Mechanics =====
+**Activation Effect (WandMaker.Rotberry.effect):**
+  * Creates toxic gas cloud at plant's location: `RPD.placeBlob(RPD.Blobs.ToxicGas, pos, 100)`
+  * Applies Roots buff to activator: `Buff.prolong(target, "Roots", 3f)`
+  * Drops a Rotberry Seed at the plant's position
+  * Removes the Rotberry level object from the level
+
+**Rotberry Seed (WandMaker.Rotberry.Seed):**
+  * Item that can be planted to grow a new Rotberry level object
+  * Image: ItemSpriteSheet.ROTBERRY_SEED (items/artifacts.png, index)
+
+===== Related mr Entities =====
+  * [[mr:rotberry_seed_item|Rotberry Seed (Item)]]
+  * [[mr:toxic_gas_buff|Toxic Gas (Blob)]]
+  * [[mr:roots_buff|Roots (Buff)]]
+  * [[mr:wandmaker_npc|Wandmaker (NPC)]]
+
+{{tag> mr rpd level_objects plants gas toxic}}

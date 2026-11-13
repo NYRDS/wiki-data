@@ -1,0 +1,44 @@
+====== Miasma Gas - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/MiasmaGas.java|MiasmaGas.java]] - Blob implementation for miasma gas cloud, applies Poison, Weakness, and Vertigo to characters standing in it
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] - Defines POISON, WEAKNESS, VERTIGO buff constants
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists
+
+===== String Resources =====
+  * **MiasmaGas_Info** - Description shown when standing in miasma gas
+
+<code xml>
+<string name="MiasmaGas_Info">You are affected by miasma! Poison, weakness, and vertigo afflict you.</string>
+</code>
+
+===== Lua Scripts =====
+  * **RPD.Blobs.MiasmaGas** - Lua binding for the MiasmaGas blob class, accessible via `RPD.placeBlob(RPD.Blobs.MiasmaGas, cell, volume)`
+  * Used in: various scripts that create gas effects
+
+===== Sources & Effects =====
+**Sources that create Miasma Gas:**
+  * Various traps and enemy abilities
+
+**Mechanics:**
+  * Extends `Blob` class
+  * In `evolve()`: applies three buffs to characters standing in gas:
+    * **Poison** - Damage over time (duration: `CharUtils.durationFactor(ch) * 3f`)
+    * **Weakness** - Reduced damage (duration: `CharUtils.durationFactor(ch) * 40f`)
+    * **Vertigo** - Disorientation (duration: `CharUtils.durationFactor(ch) * 10f`)
+  * Only affects characters without "ToxicGas" or "GasesImmunity" immunities
+  * Visual effect: `Speck.MIASMA` particles
+  * Interacts with ParalyticGas: when both gases overlap, the smaller volume is cancelled from both
+
+===== Related mr Entities =====
+  * [[mr:poison_buff|Poison (Buff)]]
+  * [[mr:weakness_buff|Weakness (Buff)]]
+  * [[mr:vertigo_buff|Vertigo (Buff)]]
+  * [[mr:toxic_gas_buff|Toxic Gas (Blob)]]
+  * [[mr:paralytic_gas_buff|Paralytic Gas (Blob)]]
+  * [[mr:confusion_gas_buff|Confusion Gas (Blob)]]
+  * [[mr:gases_immunity_buff|Gases Immunity (Buff)]]
+
+{{tag> mr rpd blobs gas miasma poison weakness vertigo}}

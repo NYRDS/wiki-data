@@ -1,0 +1,42 @@
+====== Paralytic Gas - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ParalyticGas.java|ParalyticGas.java]] - Blob implementation for paralytic gas cloud, applies paralysis to characters standing in it
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]] - Buff implementation for paralysis effect
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists
+
+===== String Resources =====
+  * **ParalyticGas_Info** - Description shown when standing in paralytic gas
+
+<code xml>
+<string name="ParalyticGas_Info">You are paralyzed by the gas! You cannot move or act.</string>
+</code>
+
+===== Lua Scripts =====
+  * **RPD.Blobs.ParalyticGas** - Lua binding for the ParalyticGas blob class, accessible via `RPD.placeBlob(RPD.Blobs.ParalyticGas, cell, volume)`
+  * Used in: `scripts/traps/ParalyticTrap.lua`, `scripts/items/PotionOfParalyticGas.lua`
+
+===== Sources & Effects =====
+**Sources that create Paralytic Gas:**
+  * **Potion of Paralytic Gas** (`PotionOfParalyticGas.java`) - Thrown potion creates paralytic gas cloud
+  * **Paralytic Trap** (`ParalyticTrap.java`) - Trap creates paralytic gas when triggered
+  * **Rotten Food** - Eating has chance to create paralytic gas
+
+**Mechanics:**
+  * Extends `Blob` class
+  * In `evolve()`: applies Paralysis buff to characters standing in gas
+  * Duration scaled by `CharUtils.durationFactor(ch)`
+  * Visual effect: `Speck.PARALYTIC` particles
+  * Characters with gas immunity are unaffected
+
+===== Related mr Entities =====
+  * [[mr:potion_of_paralytic_gas_item|Potion of Paralytic Gas (Item)]]
+  * [[mr:paralysis_buff|Paralysis (Buff)]]
+  * [[mr:toxic_gas_buff|Toxic Gas (Blob)]]
+  * [[mr:miasma_gas_buff|Miasma Gas (Blob)]]
+  * [[mr:confusion_gas_buff|Confusion Gas (Blob)]]
+  * [[mr:gases_immunity_buff|Gases Immunity (Buff)]]
+
+{{tag> mr rpd blobs gas paralytic}}

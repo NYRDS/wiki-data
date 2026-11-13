@@ -1,0 +1,62 @@
+====== Wandmaker NPC - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/WandMaker.java|WandMaker.java]] - Main NPC implementation including Rotberry and Rotberry.Seed inner classes
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/NPC.java|NPC.java]] - Base NPC class
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists
+
+===== String Resources =====
+  * **WandMaker_Name** - "Wandmaker"
+  * **WandMaker_Rotberry_Name** - "Rotberry"
+  * **WandMaker_Rotberry_Info** - "Berries of this shrub taste like sweet, sweet death."
+  * **WandMaker_Rotberry_Effect** - "The rotberry releases a cloud of toxic gas and drops a seed."
+  * Various dialogue strings for Wandmaker interactions
+
+<code xml>
+<string name="WandMaker_Name">Wandmaker</string>
+<string name="WandMaker_Rotberry_Name">Rotberry</string>
+<string name="WandMaker_Rotberry_Info">Berries of this shrub taste like sweet, sweet death.</string>
+<string name="WandMaker_Rotberry_Effect">The rotberry releases a cloud of toxic gas and drops a seed.</string>
+</code>
+
+===== Lua Scripts =====
+No dedicated Lua script; NPC behavior implemented in Java (WandMaker.java)
+
+===== Mechanics =====
+**Encounter:**
+  * Spawns in Prison level (depths 6-9) with 1 in (10 - depth) chance
+  * Single encounter per game
+  * Protected by magic shield (invulnerable to damage)
+
+**Services:**
+  * **Wand Upgrading:** Enhances wand quality in exchange for Rotberry Seed
+  * **Free Identification:** Identifies all wands in inventory when upgrading
+  * **Quest Rewards:** Offers choice between Battle Wands and Utility Wands
+
+**Quest Types:**
+  * Rotberry quest: Requires Rotberry Seed
+  * Corpse Dust quest: Requires Corpse Dust
+
+**Rewards:**
+  * Battle Wands: Firebolt, Lightning, Poison, Frost, Magic Missile
+  * Utility Wands: Amok, Regrowth, Slowness, Flock
+  * All reward wands are randomly upgraded before giving
+
+===== Related mr Entities =====
+  * [[mr:rotberry_level_object|Rotberry Level Object]]
+  * [[mr:rotberry_seed_item|Rotberry Seed (Item)]]
+  * [[mr:corpse_dust_item|Corpse Dust (Item)]]
+  * [[mr:wand_of_firebolt_item|Wand of Firebolt (Item)]]
+  * [[mr:wand_of_lightning_item|Wand of Lightning (Item)]]
+  * [[mr:wand_of_poison_item|Wand of Poison (Item)]]
+  * [[mr:wand_of_frost_item|Wand of Frost (Item)]]
+  * [[mr:wand_of_magic_missile_item|Wand of Magic Missile (Item)]]
+  * [[mr:wand_of_amok_item|Wand of Amok (Item)]]
+  * [[mr:wand_of_regrowth_item|Wand of Regrowth (Item)]]
+  * [[mr:wand_of_slowness_item|Wand of Slowness (Item)]]
+  * [[mr:wand_of_flock_item|Wand of Flock (Item)]]
+  * [[mr:prison_level|Prison Level]]
+
+{{tag> mr rpd npcs prison services wands}}
