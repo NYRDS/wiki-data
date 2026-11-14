@@ -1,0 +1,49 @@
+====== روح غادرة (Treacherous Spirit) ======
+
+{{ rpd:images:treacherous_spirit_mob.png|روح غادرة }}
+
+**روح غادرة** هو زعيم مهمة خاص يظهر كجزء من مهمة الغريب (AzuterronNPC). إنه كائن مظلم يجب على اللاعب هزيمته لإكمال المهمة.
+
+==== نظرة عامة ====
+  * **النوع:** زعيم مهمة
+  * **الموقع:** يظهر في المستوى الحالي عند قبول مهمة الغريب (AzuterronNPC)
+  * **المهمة:** اهزم هذا الوحش وأعد قلبه إلى الغريب (AzuterronNPC)
+  * **المكافأة:** إكمال هذه المهمة يكافئ اللاعب بـ **جرعة القوة**
+
+==== الإحصائيات ====
+  * **الصحة:** 200
+  * **مهارة الدفاع:** 35
+  * **مهارة الهجوم:** 35
+  * **الضرر:** 30-45
+  * **تقليل الضرر (DR):** 25
+  * **خبرة للقتل:** 45
+  * **الحد الأقصى للمستوى:** 30
+  * **حالة الذكاء الاصطناعي:** تجوال
+
+==== الميكانيكا ====
+  * يتم استدعاء روح غادرة في موقع عشوائي صالح في المستوى الحالي عند بدء مهمة الغريب (AzuterronNPC)
+  * الروح جزء من محتوى منطقة الأحشاء (Guts) في لعبة Remixed Dungeon
+  * ككائن زعيم، لديه قدرات خاصة:
+    * **استدعاء روح الألم:** في كل هجوم، هناك احتمال 25% (1 من 4) لاستدعاء روح الألم في خلية فارغة مجاورة
+  * يجب هزيمته للحصول على عنصر مهمة **قلب الظلام**
+  * لا يمكن تدجينه (canBePet() يعيد false)
+
+==== سياق المهمة ====
+  * تظهر روح غادرة كجزء من مهمة خاصة يعطيها الغريب (AzuterronNPC)
+  * يطلب الغريب من اللاعب هزيمة هذا الكائن وإعادة قلبه
+  * هذه مهمة لمرة واحدة تساعد في تعريف اللاعبين على منطقة الأحشاء في الزنزانة
+
+==== التحقق من المحتوى ====
+  * مصدر المعلومات: فئة Java [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/TreacherousSpirit.java|TreacherousSpirit.java]]
+  * ميكانيكا المهمة مطبقة في [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/AzuterronNPC.java|AzuterronNPC.java]]
+  * موارد نصية: TreacherousSpirit_Name، TreacherousSpirit_Desc، TreacherousSpirit_Gender، TreacherousSpirit_Name_Objective
+  * نوع الكيان: treacherousspirit (عبر getEntityKind() الذي يعيد اسم الفئة البسيط)
+  * بيانات قابلة للقراءة آلياً: [[mr:treacherous_spirit_mob|mr:treacherous_spirit_mob]]
+  * آخر تحديث: بناءً على تحليل كود Remixed Dungeon المصدري
+
+==== انظر أيضاً ====
+  * [[ar:rpd:stranger_npc|الغريب/AzuterronNPC]] — الشخصية غير القابلة للعب التي تعطي المهمة
+  * [[ar:rpd:heart_of_darkness_item|قلب الظلام]] — عنصر المهمة الذي يتم الحصول عليه من هزيمة الروح
+  * [[ar:rpd:potion_of_might_item|جرعة القوة]] — مكافأة إكمال المهمة
+
+{{tag> rpd mobs quest boss guts}}
