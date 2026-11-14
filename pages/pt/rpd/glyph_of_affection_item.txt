@@ -1,0 +1,44 @@
+====== Glifo de Afeto ======
+
+O Glifo de Afeto é um [[pt:rpd:armor_glyphs|glifo de armadura]] que pode aparecer em certos tipos de armadura no Remixed Dungeon. Este glifo fornece habilidades defensivas baseadas em charme ao usuário.
+
+==== Descrição ====
+Quando um inimigo ataca o usuário de uma armadura com este glifo, há uma chance de que o atacante se torne encantado, virando-se para lutar ao lado do herói por um tempo limitado.
+
+==== Mecânicas ====
+Baseado em [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Affection.java|Affection.java]]:
+  * **Ativação:** Dispara quando o usuário é atingido por um inimigo adjacente ao usuário
+  * **Probabilidade:** A chance é (nível da armadura limitado a 0-6)/2 + 4 de (nível/2 + 5), ou seja, 80% no nível 0, subindo para 90% no nível 6
+  * **Efeito:** O atacante é encantado por uma duração aleatória de 2-5 turnos (modificado pela resistência a charme)
+  * **Retaliação:** O usuário também se torna encantado por metade da duração do atacante, mas nunca por mais tempo que o atacante
+  * **Limitações:** Inimigos sem mente podem ser imunes ao efeito de charme
+
+==== Compatibilidade de Armadura ====
+  * Pode aparecer em qualquer armadura como um glifo de inscrição aleatória
+
+==== Estratégia ====
+  * Eficaz em grupos de inimigos, pois inimigos encantados lutarão contra outros inimigos
+  * Particularmente útil contra inimigos únicos difíceis
+  * Tenha cuidado em situações onde não se deseja perder o controle do campo de batalha
+  * Funciona bem com estratégias de controle de multidão
+
+==== Identificação ====
+  * Armadura com este glifo aparece como normal até ser ativada
+  * Pode ser identificada através de vários meios como [[pt:rpd:scroll_of_identify_item|Pergaminho de Identificação]]
+
+==== Aquisição ====
+  * [[pt:rpd:armor_item|Armadura]] gerada aleatoriamente com este glifo
+  * [[pt:rpd:scroll_of_enchantment_item|Pergaminho de Encantamento]]
+  * Serviços do [[pt:rpd:artificer_npc|NPC Artesão]]
+
+==== Referência de Código ====
+  * Implementação Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charm.java|Charm.java]] - O efeito de charme
+  * Implementação Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Affection.java|Affection.java]] - A implementação do glifo
+
+==== Relacionado ====
+  * [[pt:rpd:armor_glyphs|Glifos de Armadura]] - Outros glifos de armadura
+  * [[pt:rpd:armor_item|Armadura]] - Informações gerais sobre armadura
+  * [[pt:rpd:charm_buff|Charme]] - O efeito de status
+  * [[pt:rpd:scroll_of_enchantment_item|Pergaminho de Encantamento]] - Como encantar armadura
+
+{{tag> rpd itens armadura glifos encantamento charme}}
