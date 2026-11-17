@@ -1,0 +1,46 @@
+====== 薩滿 (怪物) ======
+
+{{ rpd:images:shaman_mob.png|薩滿 }}
+
+==== 描述 ====
+**薩滿** 是豺狼人社會中的施法者和領袖。他們在身體上不如其他豺狼人強壯，但憑藉他們的魔法能力彌補了這一不足，特別是他們對閃電魔法的掌握。
+
+==== 屬性 ====
+  * **生命值**: 18
+  * **最大生命值**: 18
+  * **防禦技能**: 8
+  * **攻擊技能**: 11
+  * **傷害**: 2-6
+  * **護甲**: 4 DR
+  * **擊殺經驗**: 6
+  * **最高等級**: 14
+
+==== 特殊能力 ====
+  * **閃電打擊**: 可以使用彈道學機制從遠處施放閃電攻擊
+  * **電擊抗性**: 對電擊效果有較高的抗性（特別是對[[zh:rpd:lightning_trap|閃電陷阱]]類）
+  * **撤退行為**: 當生命值較低時會逃跑以治療和重新定位
+  * **逃跑機制**: 當 HP 高於最大值的 2/3 或 1/3 時可能會逃跑，此狀態下只受一半傷害
+  * **語音**: 閃電打擊未命中時有 10% 機率大喊「*咒罵於豺狼語*」
+  * **閃電連鎖**: 閃電打擊命中時會產生連鎖閃電，可傷害其他附近敵人
+
+==== 策略 ====
+  * 小心接近，因為他們擅長使用[[zh:rpd:ranged_combat|遠程攻擊]]
+  * 考慮使用[[zh:rpd:melee_combat_mechanic|近戰戰術]]快速拉近距離
+  * 提防他們基於[[zh:rpd:electricity_buff|電擊]]的攻擊
+  * 它們可能在生命值較低時撤退，所以要快速解決它們以免逃脫
+  * 他們的[[zh:rpd:armor_mechanic|護甲]] 4 [[zh:rpd:armor_mechanic|DR]] 提供中等防護
+
+==== 代碼參考 ====
+  * 實現：Lua 腳本 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Shaman.lua|Shaman.lua]] (實體已從 Java 遷移；Java 文件不再存在)
+  * 統計驗證：直接從 Shaman.lua 的 init stats 和 commonClasses 引用提取
+  * Lua 腳本方法已對照 scripts/mobs/Shaman.lua 驗證 (適當 HP 閾值的逃跑機制、帶連鎖效果的閃電打擊、10% 未命中語音)
+  * 生成位置：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] (監獄層 6 級起出現，洞穴層 13 級起出現)
+  * 俄文字串資源（用於子職業）：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1018|HeroSubClass_NameShaman]]、[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1004|HeroSubClass_DescShaman]]
+  * 最後更新：2026 年 4 月 13 日
+
+==== 參見 ====
+  * [[zh:rpd:shaman_elder_mob|長老薩滿]] - 更強大的薩滿變體
+  * [[zh:rpd:gnoll_mob|豺狼人]] - 基礎豺狼人怪物
+  * [[zh:rpd:brute_mob|蠻牛]] - 更強壯的豺狼人變體
+
+{{tag> rpd mobs gnoll shaman lightning}}

@@ -1,0 +1,40 @@
+====== Гнолл (Моб) ======
+
+{{ rpd:images:gnoll_mob.png|Гнолл }}
+
+==== Описание ====
+**Гноллы** — это гиенаподобные гуманоиды, обитающие в [[ru:rpd:sewers_level|канализации]] и подземельях, время от времени совершающие набеги на поверхность. Они являются обычными членами своей стаи и не так сильны, как [[ru:rpd:gnoll_brute|бруты]], или так умны, как [[ru:rpd:gnoll_shaman_mob|шаманы]].
+
+==== Характеристики ====
+  * **HP**: 12 (ht(12))
+  * **HT**: 12 (ht(12))
+  * **Навык защиты**: 4 (baseDefenseSkill = 4)
+  * **Навык атаки**: 11 (baseAttackSkill = 11)
+  * **Урон**: 2-5 (dmgMin = 2, dmgMax = 5)
+  * **Броня**: 2 DR (dr = 2)
+  * **ОП за убийство**: 2 (expForKill = 2)
+  * **Максимальный уровень**: 12 (maxLvl = 12)
+  * **Добыча**: [[ru:rpd:gold_item|Золото]] с вероятностью 50% (loot(Gold.class, 0.5f))
+
+==== Особенности ====
+  * **Триггер квестов**: При смерти гноллы запускают квесты [[ru:rpd:ghost_npc|Призрака]] и [[ru:rpd:scarecrow_npc|Страшилы]], как показано в методе die() в исходном коде
+
+==== Тактика ====
+  * Обычные враги ранней игры, встречаются преимущественно в канализации
+  * Относительно слабы поодиночке, но могут представлять угрозу группами
+  * Базовые ближние бои с умеренным уроном и защитой
+
+==== Проверка содержимого ====
+  * Источник информации: Java-класс [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Gnoll.java|Gnoll.java]]
+  * Проверка статистики: извлечено напрямую из конструктора Gnoll.java
+  * Строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L891-L892|Gnoll string resources]] (Gnoll_Name, Gnoll_Desc)
+  * Специальные механики: Смерть запускает квесты [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/Ghost.java|Ghost]] и [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ScarecrowNPC.java|ScarecrowNPC]]
+  * Последнее обновление: 28 декабря 2025
+
+==== См. также ====
+  * [[ru:rpd:sewers_level|Уровень Канализации]] — обычное место встречи с гноллами-разведчиками
+  * [[ru:rpd:brute_mob|Гнолл-брут]] — более сильный вариант
+  * [[ru:rpd:gnoll_shaman_mob|Гнолл-шаман]] — магический вариант
+  * [[ru:rpd:mobs|Список мобов]] — другие враги в подземелье
+
+{{tag> rpd mobs sewers }}
