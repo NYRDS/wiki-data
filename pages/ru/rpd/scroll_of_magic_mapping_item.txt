@@ -1,0 +1,38 @@
+====== Свиток Магического Картографирования ======
+
+{{ rpd:images:scroll_of_magic_mapping_item.png|Свиток Магического Картографирования }}
+
+Свиток Магического Картографирования — это магический предмет, который при чтении раскрывает планировку текущего подземелья, а также все скрытые двери и тайные проходы. Также раскрывает любые скрытые объекты уровня (например, скрытые ловушки на объектах уровня) на текущем этаже.
+
+==== Описание ====
+При чтении Свиток Магического Картографирования раскрывает всю планировку текущего этажа (все обнаруживаемые клетки помечаются как откартографированные), обнаруживает любой ландшафт с флагом `TerrainFlags.SECRET` (скрытые двери, тайные проходы) и любые объекты уровня, у которых `secret() == true`. Расположение предметов и существ остаётся неизвестным.
+
+==== Эффекты ====
+  * **Полное раскрытие карты:** Раскрывает всю планировку текущего этажа (все обнаруживаемые клетки помечаются как откартографированные через массив `mapped[]`)
+  * **Скрытые двери:** Обнаруживает любой ландшафт с флагом `TerrainFlags.SECRET` (например, скрытые двери, тайные проходы)
+  * **Скрытые объекты уровня:** Обнаруживает любые объекты уровня, сообщающие `secret() == true` (например, скрытые ловушки на объектах уровня)
+  * **Нет эффекта на врагов:** Не влияет на позиции или поведение врагов; расположение врагов и предметов остаётся скрытым
+  * **Не обезвреживает ловушки:** **Не** обезвреживает видимые ловушки — он только помечает клетки с ловушками как откартографированные/видимые. Ловушки на объектах уровня обнаруживаются только когда эти объекты сообщают `secret() == true`
+
+==== Стратегия ====
+  * **Исследование:** Необходим для картографирования неизвестных областей
+  * **Безопасность:** Помогает избегать опасных зон и раскрытых ловушек
+  * **Планирование:** Позволяет планировать безопасные маршруты и пути отхода
+  * **Управление ресурсами:** Лучше оставлять для важных моментов, когда нужна картография
+
+==== Ссылки на код ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfMagicMapping.java|ScrollOfMagicMapping.java]] — основная реализация (doRead раскрывает клетки mapped[], SECRET-ландшафт и секретные объекты уровня)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]] — базовый класс свитка (перечисляет ScrollOfMagicMapping.class в `scrolls[]` и `inscribableScrolls[]`)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L716|Hero.java]] — повторно использует `ScrollOfMagicMapping.discover(p)` для обнаружения секретных дверей/объектов (строки 716, 723)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L116|Tengu.java]] — повторно использует `ScrollOfMagicMapping.discover(trapPos)` для отметки позиций ловушек, созданных Тенгу
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L267|ItemFactory.java]] — регистрирует класс ScrollOfMagicMapping
+
+==== Строковые ресурсы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1913-L1915|ScrollOfMagicMapping_Name, ScrollOfMagicMapping_Info, ScrollOfMagicMapping_Layout]] — отображаемые строки и описание Свитка Магического Картографирования
+
+==== Связанные предметы ====
+  * [[ru:rpd:scroll_item|Свитки]] — список всех свитков
+  * [[ru:rpd:scroll_of_identify_item|Свиток Идентификации]] — другой базовый свиток
+  * [[mr:scroll_of_magic_mapping_item|mr:scroll_of_magic_mapping_item]] — машинно-читаемые ссылки на код
+
+{{tag> ru:rpd items scrolls mapping}}
