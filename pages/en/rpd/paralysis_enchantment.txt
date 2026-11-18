@@ -6,15 +6,18 @@
 The Paralysis enchantment has a chance to stun enemies when they are hit by the weapon. Stunned enemies cannot act for a duration.
 
 ==== Mechanics ====
-  * **Activation Chance:** 13% at +0 level, increasing to 22% at +1, 30% at +2, etc.
-  * **Effect**: When triggered, applies the [[en:rpd:stun_buff|Stun]] status effect for 1 to (1.5 + level) turns
+  * **Activation Chance:** ~11.1% at +0 level (1/9), 30% at +1 (3/10), ~36.4% at +2 (4/11)
+  * **Effect**: When triggered, applies the [[en:rpd:stun_buff|Stun]] status effect for Random.Float(1, 1.5 + level) seconds
+    * Level 0: 1.0-1.5s
+    * Level 1: 1.0-2.5s
+    * Level 2: 1.0-3.5s
   * **Effectiveness:** Particularly effective against dangerous enemies to temporarily disable them
   * **Visual:** Has a yellow glowing effect on enchanted weapons
 
 ==== Stats ====
-  * **Base Activation Chance:** 13% (at +0 weapon level)
-  * **Chance Scaling:** Increases by approximately 9% per weapon level
-  * **Stun Duration:** 1 to (1.5 + enchantment level) turns
+  * **Base Activation Chance:** ~11.1% (at +0 weapon level, Random.Int(8) >= 7)
+  * **Chance Scaling:** Formula: Random.Int(level + 8) >= 7
+  * **Stun Duration:** Random.Float(1, 1.5 + level) seconds
   * **Visual Glowing:** Yellow (RGB: 0xCCAA44)
 
 ==== Source Code ====

@@ -1,0 +1,78 @@
+====== Pergaminho de Teletransporte ======
+
+{{ rpd:images:scroll_of_teleportation_item.png|Pergaminho de Teletransporte }}
+
+O **Pergaminho de Teletransporte** é um pergaminho incomum em Remixed Dungeon que transporta instantaneamente o leitor para uma localização aleatória no nível atual.
+
+==== Visão Geral do Item ====
+  * **Tipo:** [[pt:rpd:scroll_item|Pergaminho]]
+  * **Raridade:** Incomum
+  * **Efeito Especial:** Teleporta o usuário para uma localização aleatória no nível atual
+  * **Uso:** Item de uso único (consumido ao ser lido)
+  * **Preço:** 40 [[pt:rpd:gold_item|ouro]] quando identificado
+
+==== Mecânicas Especiais ====
+  * **Teletransporte Aleatório:** Move o usuário para uma posição válida aleatória no nível atual
+  * **Efeito Imediato:** Funciona imediatamente ao ser lido
+  * **Sem Alvo Necessário:** Não requer alvo específico
+  * **Utilidade de Emergência:** Pode ser usado para escapar de situações perigosas
+  * **Auxílio de Exploração:** Pode ser usado para alcançar novas áreas rapidamente
+  * **Identificação:** Torna-se identificado quando lido ou visto no inventário após ser identificado
+  * **Não Consome Escadas:** Não consome escadas ou outras transições de nível
+  * **Utilizável quando Adjacente:** Funciona quando inimigos estão adjacentes (diferente de beber poções)
+  * **Restrição de Área Limitada:** Não funciona em áreas especiais como lojas ou salas de tesouro
+
+==== Estratégia ====
+  * Use para escapar de situações perigosas ou lutas, especialmente quando cercado por inimigos perigosos
+  * Útil para alcançar rapidamente áreas distantes do nível (especialmente em níveis com grandes áreas abertas)
+  * Útil para escapar de posições presas ou perigosas
+  * Pode ser usado para evitar chefes se não estiver pronto para eles
+  * Bom para usar quando cercado por inimigos
+  * Tenha cuidado pois o destino é aleatório (pode cair perto de outros inimigos)
+  * Não funciona se todas as células do nível estiverem bloqueadas (situação muito rara)
+  * Bom carregar um ou dois para situações de emergência
+  * Útil em níveis com grandes áreas abertas onde você precisa percorrer rapidamente
+  * Pode ser arriscado pois o destino é aleatório
+  * Considere guardar para emergências
+
+==== Obtenção ====
+  * Encontrado em todos os níveis do [[pt:rpd:levels|calabouço]]
+  * Disponível em lojas a preços moderados (40 [[pt:rpd:gold|ouro]] quando identificado)
+  * Dropeado por vários [[pt:rpd:mobs|inimigos]]
+  * Encontrado em contêineres e salas especiais
+  * Mais comum em níveis com mais espaços abertos
+  * Encontrado em [[pt:rpd:chests_mechanic|Baús]] no calabouço
+  * Em níveis [[pt:rpd:treasury|Tesouro]]
+  * Ocasionalmente disponível em [[pt:rpd:shops|Lojas]]
+
+==== Efeito ====
+Quando lido, o Pergaminho de Teletransporte transporta instantaneamente o leitor para uma localização acessível aleatória no nível atual. Isso não consome escadas ou outras transições de nível e funciona quando inimigos estão adjacentes (diferente de beber poções).
+
+De acordo com os recursos de string do jogo: "O feitiço neste pergaminho transporta instantaneamente o leitor para uma localização aleatória no nível do calabouço. Pode ser usado para escapar de uma situação perigosa, mas o leitor azarado pode se encontrar em um lugar ainda mais perigoso."
+
+==== Referências de Código ====
+  * **Implementação Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfTeleportation.java|ScrollOfTeleportation.java]]
+  * **Classe Base Pergaminho:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/Scroll.java|Scroll.java]]
+  * **Sistema de Teletransporte:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java#L200-L210|Actor.java#teleportation]] (mecânicas gerais de teletransporte)
+  * **Implementação do Efeito:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfTeleportation.java#L35-L45|ScrollOfTeleportation.java#L35-L45]] (efeito específico de teletransporte)
+  * **Configuração de Preço:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfTeleportation.java#L30-L32|ScrollOfTeleportation.java#L30-L32]] (preço é 40 ouro quando identificado)
+  * **Recursos de String:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2572-L2574|ScrollOfTeleportation_Name, ScrollOfTeleportation_Info, ScrollOfTeleportation_Gender]]
+  * **Recursos de String (Russo):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2572-L2574|ScrollOfTeleportation strings]] (localização russa)
+  * **Configuração:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/Scrolls.json|Scrolls.json]] (configuração do item)
+  * **Recursos de String (Adicionais):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2576-L2577|ScrollOfTeleportation_Teleport, ScrollOfTeleportation_NoTeleport]]
+  * **Mecanismo de Teletransporte:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java#L165-L177|CharUtils.teleportRandom()]]
+  * **Config Taxa de Spawn:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L124|Treasury.json]] (taxa de spawn no nível Tesouro)
+  * **Config Taxa de Spawn:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L121|SpidersTreasury.json]] (taxa de spawn no tesouro das aranhas)
+
+==== Itens Relacionados ====
+  * [[pt:rpd:scroll|Pergaminhos]] - Informações gerais sobre pergaminhos
+  * [[pt:rpd:scroll_of_terror_item|Pergaminho de Terror]] - Pode fazer inimigos fugirem, proporcionando oportunidade de fuga
+  * [[pt:rpd:scroll_of_passage_item|Pergaminho de Passagem]] - Outro pergaminho de movimento
+  * [[pt:rpd:scroll_of_magic_mapping|Pergaminho de Mapeamento Mágico]] - Outro pergaminho de exploração
+  * [[pt:rpd:scroll_of_identify_item|Pergaminho de Identificação]] - Outro tipo comum de pergaminho
+  * [[pt:rpd:scroll_of_upgrade_item|Pergaminho de Melhoria]] - Outros pergaminhos úteis
+  * [[pt:rpd:stairs|Escadas]] - Outra forma de se mover pelo calabouço
+  * [[pt:rpd:hero|Herói]] - Personagem principal jogável
+  * [[pt:rpd:levels|Níveis]] - Informações sobre níveis do calabouço
+
+{{tag> rpd itens pergaminhos teletransporte fuga }}
