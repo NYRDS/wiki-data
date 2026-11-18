@@ -1,0 +1,52 @@
+====== IJskapplant ======
+{{ rpd:images:icecap_plant.png|IJskapplant }}
+
+==== Beschrijving ====
+De **IJskap** is een van de magische [[nl:rpd:plants|planten]] in Remixed Dungeon die kan worden gekweekt uit haar zaadje ([[nl:rpd:icecap_seed_item|IJskap Zaadje]]). Wanneer geactiveerd, geeft het een wolk bloedstof vrij die nabijgelegen wezens bevriest.
+
+Beschrijving in-game: \"Bij aanraking scheidt de IJskap bloedstof uit, wat alles in de omgeving bevriest.\" (''Icecap_Desc'', strings_all.xml#L1103)
+
+==== Statistieken ====
+  * **Zaadje:** [[nl:rpd:icecap_seed_item|IJskap Zaadje]] (item soort `Icecap.Seed`)
+  * **Uiterlijk:** Kleine blauwe bloem (sprite frame index 1, volgens `plantsDesc/Icecap.json`)
+  * **Effectbereik:** De plantcel plus alle 8 aangrenzende cellen
+  * **Primaire Effect:** [[nl:rpd:frost_buff|Bevroren]] op elke niet-zicht-geblokkeerde cel in bereik
+  * **Alchemie-klasse:** Vorstdrank (''IcecapSeed.java'' stelt `alchemyClass = PotionOfFrost.class` in)
+
+==== Effecten ====
+  * Vrij het bevriezende effect wanneer elk personage erop stapelt
+  * Beïnvloedt de broncel en alle acht buren; cellen geblokkeerd door zichtlijn worden overgeslagen
+  * Het effect is identiek aan [[nl:rpd:potion_of_frost_item|Vorstdrank]]
+  * Bij opeten: heelt en past een gedubbelde [[nl:rpd:frost_buff|Vorst]] buff toe (duur `5 x durationFactor x 2`)
+
+==== Mechanica ====
+  * Wordt in nature gevonden groeiend in de dungeon, inclusief in de Schatkamer en Spinnen Schatkamer levels
+  * Gekweekt door [[nl:rpd:icecap_seed_item|IJskap Zaden]] te planten
+  * Activeert wanneer elk personage (held of vijand) erop stapelt
+  * Effectgebied: 1 tegel straal (onmiddellijk aangrenzende tegels, uitgezonderd zicht-geblokkeerde cellen)
+  * Bij opeten: heelt `Random.Int(0, max((maxHP - huidigeHP) / 4, 10))` en past een 2x duur Vorst buff toe
+
+==== Strategie ====
+  * Uitstekend voor het bevriezen van groepen vijanden in kleine ruimtes
+  * Nuttig tegen snel bewegende vijanden die moeilijk te raken zijn
+  * Kan worden opgegeten voor noodhealing en een langdurige Vorst buff
+  * Overweeg te planten in gangen om vijanden voor de strijd te bevriezen
+  * Zicht-blokkerend terrein (muren, keien) beschermt aangrenzende cellen tegen het bevriezen
+
+==== Codeverwijzingen ====
+  * Gedrag (Lua): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/plants/Icecap.lua|Icecap.lua]] - verving de voormalige `plants/Icecap.java` tijdens de Lua-migratie
+  * Sprite/Sprite Frame Config: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/plantsDesc/Icecap.json|IJskap.json]]
+  * Zaad Implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/IcecapSeed.java|IcecapSeed.java]]
+  * Registratie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObjectsFactory.java#L84|LevelObjectsFactory.java#L84]] - `registerObjectClassByName(\"Icecap\", Plant.class)`
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1103-L1104|Icecap_Name, Icecap_Desc]]
+  * Nederlandse String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-nl/strings_all.xml#L1103-L1104|Icecap_Name, Icecap_Desc]]
+
+==== Gerelateerd ====
+  * [[nl:rpd:icecap_seed_item|IJskap Zaadje]] - Het zaadje dat uitgroeit tot deze plant
+  * [[nl:rpd:plants|Planten]] - Andere planten in het spel
+  * [[nl:rpd:seeds_mechanic|Zaden]] - Zaden die geplant kunnen worden om nuttige planten te laten groeien
+  * [[nl:rpd:frost_buff|Vorst]] - Statuseffect toegepast door IJskap
+  * [[nl:rpd:freezing_buff|Bevriezing]] - Bevriezingsmechanica en effecten
+  * [[mr:icecap_plant|IJskapplant - Codeverwijzingen]]
+
+{{tag> rpd planten items ijskap vorst }}
