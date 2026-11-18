@@ -1,0 +1,54 @@
+====== 漂浮增益 ======
+
+{{ rpd:images:levitation_buff.png|漂浮增益 }}
+
+**漂浮** 是 Remixed Dungeon 中的有益狀態效果，允許受影響的角色浮在地面上方。
+
+==== 效果描述 ====
+  * **類型：** 有益狀態效果（增益）
+  * **效果：** 允許浮在地面上方
+  * **持續時間：** 20 回合（基礎持續時間來自 [[zh:rpd:potion_of_levitation_item|漂浮藥水]]）
+  * **來源：** 主要來自飲用 [[zh:rpd:potion_of_levitation_item|漂浮藥水]]
+
+==== 獲得方式 ====
+  * 飲用 [[zh:rpd:potion_of_levitation_item|漂浮藥水]]
+  * 透過某些法術或職業能力
+  * 透過特殊物品或環境效果
+
+==== 機制 ====
+  * 允許在陷阱上移動而不觸發它們
+  * 允許通過通常會阻礙移動的特殊地形
+  * 防止某些基於地面的效果影響角色
+  * 移除纏繞狀態效果（解除當前影響角色的任何纏繞）
+  * 效果結束時，遊戲調用 Dungeon.level.press()，可能在角色位置觸發地板效果
+  * 角色精靈顯示為 CharSprite.State.LEVITATING
+  * 使用 BuffIndicator.LEVITATION 作為界面圖標
+
+==== 策略 ====
+  * 非常適合安全穿越充滿陷阱的區域
+  * 允許繞過某些障礙或困難地形
+  * 有助於避免基於地面的有害效果
+  * 適合在危險地板上導航
+  * 效果結束的時機很重要，以避免降落在危險區域
+
+==== 代碼參考 ====
+  * Lua 腳本: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Levitation.lua|Levitation.lua]]
+  * 持續時間設定於: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfLevitation.java#L22|PotionOfLevitation.java#L22]] (20f 基礎持續時間 * 品質因子)
+  * 相關類: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]]（漂浮開始時解除纏繞）
+  * 擴展: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]]
+  * 界面指示器: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java#L25|BuffIndicator.LEVITATION]]
+  * 精靈狀態: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java#L86|CharSprite.State.LEVITATING]]
+
+==== 字符串資源 ====
+  * 繁體中文: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L1309|LevitationBuff_Info]] ("身體懸浮在地面上方，避免陷阱和其他地面的危險。")
+  * 繁體中文: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L1310|LevitationBuff_Name]] ("漂浮")
+
+==== 另見 ====
+  * [[zh:rpd:status_effects|狀態效果]] - 其他狀態變化
+  * [[zh:rpd:potion_of_levitation_item|漂浮藥水]] - 漂浮的主要來源
+  * [[zh:rpd:roots_buff|纏繞]] - 漂浮可對抗的效果
+  * [[zh:rpd:gameplay_mechanic|遊戲機制]] - 其他核心系統
+  * [[zh:rpd:traps|陷阱]] - 可通過漂浮避開的陷阱
+  * [[zh:rpd:buffs|增益]] - 其他有用的狀態效果
+
+{{tag> rpd mechanics status_effects buffs levitation}}
