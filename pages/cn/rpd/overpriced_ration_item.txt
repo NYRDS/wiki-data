@@ -3,21 +3,29 @@
 {{ rpd:images:overpriced_ration_item.png|昂贵的配给 }}
 
 ==== 描述 ====
-**昂贵的配给** 是标准食物配给的升级版本，食用时可恢复更多生命值。与基本配给相比，这是一顿更丰盛的餐食，尽管在库存空间方面有更高的机会成本。
+**昂贵的配给** 是一种特殊的食物物品，外观与标准配给相同但体积更小。尽管价格更高，但它提供的营养价值（饱食度恢复）实际上低于标准配给。
 
 ==== 属性 ====
   * **类型**：食物
-  * **治疗**：恢复英雄最大生命值的约 50%
-  * **重量**：5
-  * **可堆叠**：否
-  * **易腐**：否（不会腐烂）
+  * **饱食度恢复**：120 点（标准配给为 280 点）
+  * **价格**：基础价格 20 金币/个（标准配给通常更便宜）
+  * **堆叠**：是
+  * **易腐**：是（可变质为腐烂配给）
+  * **重量**：游戏不使用重量系统，背包基于力量限制
 
 ==== 获取方式 ====
-  * 偶尔在商店出售
-  * 有时可在宝箱中找到
-  * 当生命值严重不足时，比标准配给更好的替代选择
+  * 偶尔在城镇商店出售（Shop_Town.json, TownShopTreasury.json）
+  * 有时可在宝箱中找到（Treasury.json, SpidersTreasury.json，生成率 0.1）
+
+==== 特殊机制 ====
+  * **职业奖励**：战士食用时额外恢复 5 点生命值（Hero.java eat() 方法）
+  * **变质**：中毒时会变为腐烂配给
 
 ==== 代码参考 ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/OverpricedRation.java|OverpricedRation.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L810|Hero.java eat() 方法]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json|Treasury.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json|SpidersTreasury.json]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Shop_Town.json|Shop_Town.json]]
 
-{{tag> rpd items food ration healing}}
+{{tag> rpd items food ration }}
