@@ -1,0 +1,51 @@
+====== Chave Esqueleto ======
+
+{{ rpd:images:skeleton_key_item.png|Chave Esqueleto }}
+
+**Chave Esqueleto** é um item de chave especial que desbloqueia saídas de profundidade trancadas (as escadas atrás de um chefe), permitindo acesso ao próximo nível da masmorra.
+
+==== Função ====
+  * **Desbloqueio de Área:** Abre saídas de profundidade trancadas, como a saída trancada do nível do chefe da Prisão que leva aos [[pt:rpd:halls|Salões Demoníacos]]
+  * **Uso Único:** Consumida quando desbloqueia uma saída (ver Unlock.java)
+  * **Limitada à Profundidade:** Cada chave é vinculada à profundidade onde seu dono foi derrotado
+  * **Item de Progressão:** Essencial para progredir além dos níveis de chefes
+
+==== Aquisição ====
+Todo chefe carrega uma Chave Esqueleto e a dropa na morte:
+  * **[[pt:rpd:tengu_mob|Tengu]]:** Dropado após derrotar Tengu na Prisão; concede acesso aos [[pt:rpd:halls|Salões Demoníacos]]
+  * **Outros chefes:** [[pt:rpd:goo_mob|Goo]], [[pt:rpd:dm300_mob|DM-300]], Rei Gnoll, Rainha Aranha, Lich, Olho de Yog e outros também a dropam
+
+==== Uso ====
+  * **Desbloqueio de Saídas:** Usada em uma saída de profundidade trancada (as escadas atrás de um chefe) para abrir o caminho para baixo
+  * **Consumida no Uso:** A chave é removida do inventário quando desbloqueia uma saída
+  * **Porta de Acesso:** Necessária para progredir mais fundo na masmorra
+
+==== Estratégia ====
+  * **Progressão Essencial:** Sem esta chave, o próximo nível da masmorra permanece inacessível
+  * **Timing:** Pode ser guardada até estar pronto para o conteúdo desafiador à frente
+  * **Backup:** É uma chave de uso único, então não há backup se perdida
+  * **Prioridade:** Deve ser preservada para quando estiver pronto para descer
+
+==== Detalhes Técnicos ====
+  * Implementação: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/SkeletonKey.java|SkeletonKey.java]]
+  * Sistema de chaves: Parte do sistema de chaves e fechaduras para portas da masmorra
+  * Transição de nível: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/HallsLevel.java|HallsLevel.java]]
+
+==== Referências de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/SkeletonKey.java|SkeletonKey.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/HallsLevel.java|HallsLevel.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2075-L2076|Strings SkeletonKey]]
+  * **Strings (Português):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L2083-L2084|strings_all.xml#L2083-L2084]]
+
+<code xml>
+<string name="SkeletonKey_Name">chave esqueleto</string>
+<string name="SkeletonKey_Info">Esta chave parece importante: sua cabeça tem a forma de uma caveira. Provavelmente, ele pode abrir alguma porta importante.</string>
+</code>
+
+==== Veja Também ====
+  * [[pt:rpd:tengu_mob|Tengu]] (fonte da chave)
+  * [[pt:rpd:halls|Salões Demoníacos]]
+  * [[pt:rpd:keys|Chaves]]
+  * [[pt:rpd:items|Itens]]
+
+{{tag> rpd items keys progression }}

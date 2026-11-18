@@ -2,43 +2,64 @@
 
 {{ rpd:images:lich_mob.png|Chefe Lich }}
 
-O **Chefe Lich** (Lich Boss) é um inimigo poderoso encontrado principalmente no nível Necrópole (Guts).
+O **Chefe Lich** (Lich Boss) é um inimigo poderoso encontrado no nível Necrópole (NecroBossLevel). Ele serve como mecanismo de desbloqueio para a subclasse Lich do Necromante.
 
 ==== Descrição ====
-O Lich é um necromante que alcançou o pico de suas habilidades. Existindo entre a vida e a morte, o Lich é formidável em necromancia, mas suas habilidades de combate são consideravelmente inferiores às de uma pessoa comum.
+O Lich é um necromante que atingiu o auge de suas habilidades. Existindo entre a vida e a morte, o Lich é formidável em necromancia, mas suas habilidades de combate são consideravelmente inferiores às de uma pessoa comum. É um chefe desafiador com poderosas habilidades mágicas e vida considerável.
 
 ==== Atributos ====
-  * **Tipo:** Chefe (Boss)
-  * **Nível:** 22 (aproximadamente)
-  * **HP:** Muito alto
-  * **Ataque:** Muito forte com ataques mágicos
-  * **Resistências:** Alta resistência a dano mágico
+  * **HP:** 200
+  * **Ataque (Attack Skill):** 35
+  * **Defesa (Defense Skill):** 23
+  * **Dano:** 12-20
+  * **Redução de Dano (DR):** 15
+  * **EXP:** 25
+  * **Nível:** Chefe (Boss)
+  * **Velocidade:** 1.0
+  * **Alcance de Ataque:** 3
 
 ==== Habilidades ====
-  * **Ataques Mágicos:** Usa poderosos ataques baseados em magia
-  * **Imunidade a Efeitos de Status:** Resistente à maioria dos efeitos de controle
-  * **Regeneração de Vida:** Recupera vida ao longo do combate
-  * **Invocação:** Pode invocar aliados para ajudar no combate
+  * **Ataques Mágicos:** Usa poderosos ataques baseados em magia com alcance 3
+  * **Crânios Rúnicos:** A cada 5 turnos, ativa um crânio rúnico aleatório com um de quatro efeitos:
+    * **Crânio Vermelho:** Cura o Lich em 7% do HP máximo por crânio invocado
+    * **Crânio Azul:** Invoca Esqueletos (1 por crânio invocado)
+    * **Crânio Verde:** Cria nuvens de Gás Tóxico (área de 30 células por crânio)
+    * **Crânio Roxo:** Proporciona proteção completa contra dano
+  * **Teletransporte:** Teleporta pelo campo de batalha (até 15 tentativas para encontrar posição válida)
+  * **Efeitos de Área:** Usa feitiços de área como Gás Tóxico
+  * **Defesa Proc:** 50% de chance de teleportar quando sofre dano
+
+==== Mecânicas Especiais ====
+  * **Desbloqueio de Subclasse:** Derrotar o Lich desbloqueia a subclasse Lich para a classe Necromante
+  * **Itens Dropados:** Dropa [[pt:rpd:skeleton_key_item|Chave Esqueleto]] e [[pt:rpd:black_skull_item|Crânio Negro]] (para classes não-Necromante) ou [[pt:rpd:black_skull_of_mastery_item|Crânio Negro da Maestria]] (para Necromante)
+  * **Imunidades:** Imune a [[pt:rpd:paralysis_buff|Paralisia]], [[pt:rpd:toxic_gas_buff|Gás Tóxico]], [[pt:rpd:terror_buff|Terror]], [[pt:rpd:death_enchantment|Encantamento da Morte]], [[pt:rpd:amok_buff|Fúria]], [[pt:rpd:blindness_buff|Cegueira]] e [[pt:rpd:sleep_buff|Sono]]
+  * **Natureza Morta-Viva:** É uma criatura morta-viva com todas as imunidades e fraquezas associadas
+  * **Crânios Rúnicos:** Invoca 2-4 crânios rúnicos (dependendo da dificuldade: 2 no Fácil, 3 no Normal, 4 no Difícil+)
+  * **Escalonamento de Dificuldade:** Número de crânios rúnicos escala com a dificuldade do jogo
 
 ==== Estratégia de Combate ====
-  * Prepare-se com resistências a dano mágico
-  * Use distanciamento para evitar ataques corpo a corpo
-  * Ataques à distância com elementos que o afetem são eficazes
-  * Derrote invocações primeiro se possível
-  * Tenha curativos suficientes para suportar o combate prolongado
+  * **Preparação:** Garanta bom equipamento, [[pt:rpd:potion_of_healing_item|poções]] e [[pt:rpd:scrolls|pergaminhos]] antes de engajar
+  * **Priorização dos Crânios Rúnicos:** Foque em destruir os crânios rúnicos pois fornecem efeitos poderosos ao Lich
+  * **Consciência de Área:** Esteja ciente dos [[pt:rpd:skeleton_mob|esqueletos]] invocados e nuvens de [[pt:rpd:toxic_gas_level_object|gás tóxico]] das ativações dos crânios
+  * **Gerenciamento de Distância:** Controle a distância para evitar ataques de área e impedir que o Lich alcance alcance corpo a corpo
+  * **Disrupção:** Aja rapidamente durante as fases de ativação dos crânios para prevenir efeitos poderosos
+  * **Itens de Cura:** Leve itens de cura pois a luta pode ser prolongada e o Lich pode se curar
+  * **Consciência do Crânio Roxo:** Esteja preparado para situações onde o Lich se torna temporariamente invulnerável devido à proteção do Crânio Roxo
+  * **Previsão de Teletransporte:** Antecipe onde o Lich pode teleportar baseado no terreno disponível
 
 ==== Recompensas ====
   * **Item de Progressão:** [[pt:rpd:the_soulbringer_item|O Armazenador de Almas]] - Permite que um Necromante se torne um Lich
   * **Chave:** [[pt:rpd:skeleton_key_item|Chave Esqueleto]] - Abre baús e portas especiais
 
 ==== Links de Código ====
-  * **Java Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/Lich.java|Lich.java]]
-  * **Sistema de Boss:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mobs/Mob.java|Mob.java]]
-  * **Definições de String:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1085-L1086|Lich_Name, Lich_Info]]
+  * **Configuração JSON:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Lich.json|mobsDesc/Lich.json]]
+  * **Implementação Lua:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Lich.lua|scripts/mobs/Lich.lua]] (migrado de Java para JSON + Lua)
+  * **Configuração de Sprite:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Lich.json|spritesDesc/Lich.json]]
+  * **Definições de String (Português):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L1316-L1320|strings_all.xml#L1316-L1320]]
 
 <code xml>
-<string name="Lich_Name">Lich</string>
-<string name="Lich_Info">Um Lich é um necromante que alcançou o pico de suas habilidades. Existindo entre a vida e a morte, o Lich é formidável em necromancia, mas suas habilidades de combate são consideravelmente inferiores às de uma pessoa comum.</string>
+<string name="Lich_Name">lich</string>
+<string name="Lich_Info">O necromante encontrou sua morte nas profundezas da Necropolis, toda a energia maligna deste lugar se uniu ao seu corpo, então ele acaba se tornando o Lich. O bruxo morto-vivo, sem vontade própria e controlado como uma marionete pelos poderes malignos.</string>
 </code>
 
 ==== Veja Também ====
@@ -47,4 +68,4 @@ O Lich é um necromante que alcançou o pico de suas habilidades. Existindo entr
   * [[pt:rpd:necropolis_level|Necrópole]] - O nível onde é encontrado
   * [[pt:rpd:the_soulbringer_item|O Armazenador de Almas]] - Recompensa importante
 
-{{tag> rpd mobs bosses necromancer lich}}
+{{tag> rpd mobs bosses necromancer lich }}

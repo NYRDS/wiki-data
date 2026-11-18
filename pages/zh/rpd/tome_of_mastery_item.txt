@@ -1,11 +1,71 @@
-====== 掌握之书 ======
+====== 精通之書 ======
 
-掌握之书用于解锁进阶职业。
+{{ rpd:images:tome_of_mastery_item.png|精通之書 }}
 
-==== 获取 ====
-  * 击败第二关 BOSS 后可用
+**精通之書** 是一個獨特的物品，允許英雄為其職業選擇一個進階職業，解鎖額外的能力和專精選項。
 
-==== 效果 ====
-  * 解锁进阶职业
+==== 功能 ====
+  * **進階職業選擇:** 找到時允許在不同的進階職業選項之間選擇
+  * **一次性使用:** 每個職業只能選擇一次進階職業
+  * **特殊獎勵:** 通常作為首領掉落或特殊挑戰的獎勵找到
 
-{{tag> rpd items mastery subclass}}
+==== 可用性 ====
+  * **[[zh:rpd:tengu_mob|天狗]]:** 如果玩家尚未獲得精通之書且不是死靈法師或豺狼人，會掉落一本精通之書
+  * **特殊任務:** 完成特殊挑戰後可能作為獎勵找到
+  * **隱藏地點:** 有時在深層的秘密區域中找到
+
+==== 進階職業選項 ====
+每個職業都有特定的進階職業選項：
+  * **[[zh:rpd:warrior_class|戰士]]**: [[zh:rpd:gladiator_subclass|角鬥士]] 或 [[zh:rpd:berserker_subclass|狂戰士]]
+  * **[[zh:rpd:mage_class|法師]]**: [[zh:rpd:battle_mage_subclass|鬥法家]] 或 [[zh:rpd:warlock_subclass|術士]]
+  * **[[zh:rpd:rogue_class|盜賊]]**: [[zh:rpd:freerunner_subclass|疾行者]] 或 [[zh:rpd:assassin_subclass|刺客]]
+  * **[[zh:rpd:huntress_class|女獵手]]**: [[zh:rpd:sniper_subclass|狙擊手]] 或 [[zh:rpd:warden_subclass|守望者]]
+  * **[[zh:rpd:elf_class|精靈]]**: [[zh:rpd:scout_subclass|斥候]] 或 [[zh:rpd:shaman_subclass|薩滿]]
+  * **[[zh:rpd:necromancer_class|死靈法師]]**: [[zh:rpd:lich_subclass|巫妖]] (唯一進階職業)
+  * **[[zh:rpd:gnoll_class|豺狼人]]**: [[zh:rpd:guardian_subclass|護衛]] 或 [[zh:rpd:witch_doctor_subclass|巫醫]]
+
+==== 策略 ====
+  * **時機:** 考慮等到遊戲後期再使用，當進階職業的好處更有影響力時
+  * **職業協同:** 選擇能補充你當前裝備和策略的進階職業
+  * **靈活性:** 在某些遊戲版本中，你可能想為不同角色保存它
+
+==== 技術細節 ====
+  * 實現: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/TomeOfMastery.java|TomeOfMastery.java]]
+  * 進階職業映射: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndClass.java#L91-L111|WndClass.java中的MasteryTab]]
+  * 職業系統: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
+  * 天狗掉落邏輯: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L56-L62|Tengu.java掉落邏輯]]
+
+==== 代碼參考 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/TomeOfMastery.java|TomeOfMastery.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndClass.java#L91-L111|WndClass.java#MasteryTab]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/windows/WndChooseWay.java|WndChooseWay.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L78-L81|Hero.getSubClass() 和 Hero.getHeroClass() 方法]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java#L48-L50|Badges.validateMastery() 方法]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/TomeOfMastery.java#L71-L79|進階職業可用性邏輯]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2563-L2568|TomeOfMastery 字符串]]
+  * **字符串資源 (繁體中文):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L2293-L2298|strings_all.xml#L2293-L2298]]
+
+<code xml>
+<string name="TomeOfMastery_Name">精通之書</string>
+<string name="TomeOfMastery_Info">這本皮封典籍不算厚, 但您隱約感覺到自己能從中獲益良多。 不過記住：要閱畢這本典籍需要一段相當長的時間。</string>
+<string name="TomeOfMastery_ACRead">閱讀</string>
+<string name="TomeOfMastery_Blinded">你在失明時無法閱讀</string>
+<string name="TomeOfMastery_Choose">您選擇了%s的道路！</string>
+<string name="TomeOfMastery_WayAlreadyChosen">木已成舟，無法改變！</string>
+</code>
+
+==== 參見 ====
+  * [[zh:rpd:subclasses|進階職業]]
+  * [[zh:rpd:hero_class|英雄職業]]
+  * [[zh:rpd:tengu_mob|天狗]] (掉落典籍)
+  * [[zh:rpd:items|物品]]
+  * [[zh:rpd:mastery|精通系統]]
+  * [[zh:rpd:hero_subclasses|英雄進階職業]]
+  * [[zh:rpd:warrior_class|戰士職業]]
+  * [[zh:rpd:mage_class|法師職業]]
+  * [[zh:rpd:rogue_class|盜賊職業]]
+  * [[zh:rpd:huntress_class|女獵手職業]]
+  * [[zh:rpd:elf_class|精靈職業]]
+
+{{tag> rpd items books subclass }}
