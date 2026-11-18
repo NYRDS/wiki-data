@@ -1,43 +1,95 @@
-====== Yogs Eye Mob ======
+====== YogsEye - Code References ======
 
-==== Entity Kind ====
+===== Entity Kind =====
 YogsEye
 
-==== Java Class ====
-[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsEye.java|YogsEye.java]]
+===== JSON Configuration =====
+File: `RemixedDungeon/src/main/assets/mobsDesc/YogsEye.json`
+<code json>
+{
+  "name"          : "YogsEye_Name",
+  "name_objective": "YogsEye_Name_Objective",
+  "description"   : "YogsEye_Desc",
+  "gender"        : "YogsEye_Gender",
+  "attackSkill"   : 30,
+  "defenseSkill"  : 30,
+  "dmgMin"        : 20,
+  "dmgMax"        : 30,
+  "str"           : 18,
+  "ht"            : 1000,
+  "exp"           : 50,
+  "maxLvl"        : 50,
+  "baseSpeed"     : 1,
+  "attackDelay"   : 1,
+  "spriteDesc"    : "spritesDesc/YogsEye.json",
+  "scriptFile"    : "scripts/mobs/YogsEye",
+  "aiState"       : "Sleeping",
+  "movable"       : false,
+  "isBoss"        : true,
+  "resistances"   : ["Death", "ScrollOfPsionicBlast"],
+  "immunities"    : ["Death", "Terror", "Amok", "Charm", "Sleep", "Burning", "ToxicGas", "ScrollOfPsionicBlast"],
+  "canBePet"      : false,
+  "friendly"      : false,
+  "fraction"      : "DUNGEON",
+  "battleMusic"        : "ost_boss_6_fight",
+  "battleMusicFallback": "ost_boss_fight"
+}
+</code>
 
-==== JSON Configuration ====
-(No specific JSON config for this mob)
+===== Lua Script =====
+File: `RemixedDungeon/src/main/assets/scripts/mobs/YogsEye.lua`
+Key behaviors implemented in Lua:
+  * **canAttack**: Uses Ballistica to cast gaze ray from one row above eye position
+  * **zapProc**: Beams strike through all characters in line (Eye_Kill effect)
+  * **damage**: Calls other Yog organs to position; damage reduced by 2^shift where shift = number of living organs
+  * **die**: Validates YOG_SLAIN badge; yells Yog_Info1
+  * **notice**: Yells Yog_Info2
+  * **spawn**: Spawns 2-3 other Yog organs (RottingFist, BurningFist, YogsBrain, YogsHeart, YogsTeeth) on battle start
+  * Spawns Larva when damaged (10 * difficulty factor)
 
-==== Lua Script ====
-(No specific Lua script for this mob)
+===== String Resource References =====
+  * **YogsEye_Name**: "yog's eye"
+  * **YogsEye_Gender**: "masculine"
+  * **YogsEye_Name_Objective**: "Yog's eye"
+  * **YogsEye_Desc**: "The eye of the Old God, all-seeing gaze filled with eternal hatred. You can feel it watching right through your soul"
 
-==== String Resource References ====
-  * ''YogsEye_Name'': "yog's eye"
-  * ''YogsEye_Gender'': "masculine"
-  * ''YogsEye_Name_Objective'': "Yog's eye"
-  * ''YogsEye_Desc'': "The eye of the Old God, all-seeing gaze filled with eternal hatred. You can feel it watching right through your soul"
+===== Code Implementation =====
+This mob is implemented via JSON configuration + Lua script (migrated from Java class `com/nyrds/pixeldungeon/mobs/guts/YogsEye.java`).
 
-==== Code Implementation ====
-This mob inherits from Boss class. It has the following key properties:
-
-  * **movable**: false (immovable boss)
-  * **HP**: 1000
-  * **Attack**: 30
-  * **Defense**: 30
+Key properties from JSON:
+  * **HP**: 1000 (ht)
+  * **Attack Skill**: 30
+  * **Defense Skill**: 30
   * **Damage**: 20-30
+  * **STR**: 18
   * **EXP**: 50
-  * **Special Immunities**: Death, Terror, Amok, Charm, Sleep, Burning, Toxic Gas, and Psionic Blast
-  * **Special Abilities**:
-    * **Death Ray**: Can attack with a ray that passes through multiple enemies in a straight line
-    * **Larva Spawn**: Spawns Larva when taking damage
-    * **Organ Coordination**: When damaged, calls other Yog organs to its position
-    * **Organ Protection**: Damage is reduced when other Yog organs are alive (damage >>= number of other organs)
-    * **Secondary Boss Spawning**: At the start of battle, spawns 2-3 other Yog organs randomly
+  * **Max Level**: 50
+  * **Immobile**: movable = false
+  * **Boss**: isBoss = true
+  * **Immunities**: Death, Terror, Amok, Charm, Sleep, Burning, Toxic Gas, Psionic Blast
+  * **Resistances**: Death, Psionic Blast
 
-==== Behavior ====
-  * Remains stationary throughout the battle
-  * Cannot be beckoned (overridden beckon method does nothing)
-  * Automatically spawns secondary bosses with the main Yog battle
-  * Uses a death ray attack that affects all enemies in a line
-  * Dies, awards a badge for Yog-Dzewa being slain
+Special abilities from Lua:
+  * **Death Ray / Gaze**: Attacks along a straight line (Ballistica cast from cell above)
+  * **Organ Coordination**: When damaged, calls all living Yog organs (RottingFist, BurningFist, YogsBrain, YogsHeart, YogsTeeth) to its position
+  * **Organ Protection**: Incoming damage is halved per living organ (damage >>= shift)
+  * **Larva Spawn**: Spawns Larva when taking damage (count based on difficulty)
+  * **Secondary Organ Spawning**: At battle start, spawns 2-3 distinct other Yog organs (3 on difficulty > 2, else 2)
+  * **Boss Death Flow**: Awards YOG_SLAIN badge on death
+
+===== Behavior =====
+  * Remains stationary throughout the battle (movable = false)
+  * Cannot be beckoned (no beckon override in Lua, but JSON movable=false prevents movement)
+  * Automatically spawns 2-3 secondary boss organs at battle start
+  * Uses death ray attack that affects all characters in a straight line
+  * Damage reduction scales with number of surviving sibling organs
+  * On death, awards badge for Yog-Dzewa being slain
+
+===== Related mr Entities =====
+  * [[mr:yogs_brain_mob|YogsBrain]]
+  * [[mr:yogs_heart_mob|YogsHeart]]
+  * [[mr:yogs_teeth_mob|YogsTeeth]]
+  * [[mr:rotting_fist_mob|RottingFist]]
+  * [[mr:burning_fist_mob|BurningFist]]
+  * [[mr:larva_mob|Larva]]
+  * [[mr:yog_mob|Yog-Dzewa (main boss)]]
