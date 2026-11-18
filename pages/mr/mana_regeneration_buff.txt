@@ -27,16 +27,15 @@ This entity is implemented in Java, no specific JSON configuration exists
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/ManaRegeneration.lua|ManaRegeneration.lua]] - Main buff implementation (migrated from Java)
 
 ===== Implementation Details =====
-  * **Class**: `com.watabou.pixeldungeon.actors.buffs.ManaRegeneration`
-  * **Extends**: `Buff`
+  * **Lua Script**: `scripts/buffs/ManaRegeneration.lua`
   * **Regeneration Delay**: 20 turns base (REGENERATION_DELAY constant)
-  * **Bonus Calculation**: spend time = REGENERATION_DELAY / 1.2^bonus
-  * **Fast Mana Regeneration**: Adds +10 bonus when facilitation is enabled
+  * **Bonus Calculation**: spend time = REGENERATION_DELAY / 1.2^bonus (where bonus = sum of manaRegenerationBonus from other buffs)
+  * **Fast Mana Regeneration**: Adds +10 bonus when Fast Mana Regeneration facilitation is enabled
   * **Skill Points**: Accumulates 1 skill point per tick in unsafe areas
-  * **Buff Attachment**: Only attaches if target already has this buff or via super.attachTo()
+  * **Buff Attachment**: Only attaches if target already has this buff
 
 ===== Code Fragment =====
 <code java>

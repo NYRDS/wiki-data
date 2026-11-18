@@ -1,0 +1,44 @@
+====== Wand of Blink ======
+
+{{ rpd:images:wand_of_blink_item.png|Wand of Blink }}
+
+==== Description ====
+The Wand of Blink allows the user to teleport to a target location. The distance of the blink depends on the wand's level and the distance to the target. If the target cell is occupied, the blink will end at a safe distance from the target. If the target is too far away, the blink will end at a shorter distance based on the wand level.
+
+==== Mechanics ====
+When zapped, the Wand of Blink:
+  * Teleports the user to the target location
+  * Maximum range equals wand level + 4 cells
+  * If target is too far, blinks to maximum range
+  * If target cell is occupied, blinks to nearest safe cell
+  * Produces white light magic missile visual effect
+  * Plays teleport sound effect
+  * Emits light speck particles on arrival
+
+==== Properties ====
+  * **Maximum Range**: Wand level + 4 cells
+  * **Targeting**: Self-cast only (does not affect target)
+  * **Visual Effects**: White light magic missile, teleport sound, light specks
+  * **Path Calculation**: Uses Ballistica for line-of-sight and distance
+
+==== Strategy ====
+  * Useful for escaping dangerous situations or repositioning in combat
+  * Can teleport through walls if there's line of sight
+  * Maximum range increases with wand upgrades
+  * Cannot target enemies directly - only empty cells
+
+==== Code References ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfBlink.java|WandOfBlink.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]] (base class)
+
+==== Data Sources ====
+  * **Java Source**: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfBlink.java
+  * **String Resources**: RemixedDungeon/src/main/res/values/strings_all.xml (WandOfBlink_Name, WandOfBlink_Info, WandOfBlink_InvTitle)
+  * **Machine-readable data**: [[mr:wand_of_blink_item|Wand of Blink - Code References]]
+
+==== Related Content ====
+  * [[en:rpd:wands|Wands]] - Other wands in the game
+  * [[en:rpd:scroll_of_teleportation_item|Scroll of Teleportation]] - Similar teleportation effect
+  * [[en:rpd:ballistica_mechanic|Ballistica]] - Path calculation mechanic
+
+{{tag> rpd items wands teleportation}}
