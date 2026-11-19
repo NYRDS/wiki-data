@@ -1,2 +1,39 @@
 ====== Кольцо Травничества ======
-  * При надевании в слот кольца увеличивает шанс выпадения [[ru:rpd:seeds|Семян]] и росы с высокой травы.
+
+{{ rpd:images:ring_of_herbalism_item.png|Кольцо Травничества }}
+
+**Кольцо Травничества** — это кольцо в [[ru:rpd:remixed_dungeon|Remixed Dungeon]], которое увеличивает шанс получения [[ru:rpd:seeds|семян]] и [[ru:rpd:dewdrop_item|капель росы]] при прохождении через высокую траву.
+
+==== Обзор предмета ====
+  * **Тип:** [[ru:rpd:rings|Кольцо]]
+  * **Редкость:** Обычное
+  * **Вес:** 1
+  * **Цена:** 50 золотых (как определено в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfHerbalism.java|RingOfHerbalism.java]])
+  * **Эффект:** При надевании создаёт бафф [[ru:rpd:herbalism|Травничество]], который увеличивает шанс выпадения семян и росы с высокой травы
+
+==== Механика ====
+  * **Бафф Травничества:** При надевании кольца на героя накладывается бафф `Herbalism` (внутренний класс в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfHerbalism.java#L19|RingOfHerbalism.java:19]]), расширяющий `RingBuff`
+  * **Взаимодействие с высокой травой:** Бафф модифицирует логику сбора ресурсов в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java|HighGrass.java]], увеличивая шанс получения семян и капель росы
+  * **Постоянный эффект:** Эффект активен пока кольцо надето; снятие кольца убирает бафф
+
+==== Получение ====
+  * Может находиться в сундуках и других контейнерах
+  * Доступно в [[ru:rpd:shop|магазинах]]
+  * Выпадает в особых сокровищницах (как определено в [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L82|Treasury.json:82]] и [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L81|SpidersTreasury.json:81]])
+
+==== Связанные предметы ====
+  * [[ru:rpd:rings|Кольца]] - Общая информация о кольцах
+  * [[ru:rpd:seeds|Семена]] - Ресурсы, шанс получения которых увеличивает кольцо
+  * [[ru:rpd:dewdrop_item|Капля росы]] - Ресурс, шанс получения которого увеличивает кольцо
+  * [[ru:rpd:high_grass|Высокая трава]] - Объект уровня, с которым взаимодействует кольцо
+
+==== Ссылки на код ====
+  * Java класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfHerbalism.java|RingOfHerbalism.java]]
+  * Родительский класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java|Ring.java]]
+  * Взаимодействие с высокой травой: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java|HighGrass.java]]
+  * Строковые ресурсы (рус.): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1859-L1860|RingOfHerbalism_Name, RingOfHerbalism_Info]]
+  * Строковые ресурсы (англ.): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1860-L1861|RingOfHerbalism_Name, RingOfHerbalism_Info]]
+  * Конфигурация Сокровищницы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L82|Treasury.json:82]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/SpidersTreasury.json#L81|SpidersTreasury.json:81]]
+  * Машинно-читаемые данные: [[mr:ring_of_herbalism_item|mr:ring_of_herbalism_item]]
+
+{{tag> rpd предметы кольца }}
