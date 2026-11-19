@@ -1,0 +1,74 @@
+====== Deathling ======
+
+{{ rpd:images:deathling_mob.png|Deathling }}
+
+**Deathling** é um mob morto-vivo em Remixed Pixel Dungeon que serve como criatura invocada para a classe [[pt:rpd:necromancer_class|Necromancer]].
+
+==== Descrição ====
+O **Deathling** é um servo morto-vivo invocado pelo [[pt:rpd:necromancer_class|Necromancer]] usando a [[pt:rpd:necromancy_spell|Magia Necromancia]]. Ele luta ao lado do Necromancer contra inimigos da masmorra.
+
+==== Estatísticas ====
+  * **Tipo:** Morto-vivo
+  * **HP Base:** 4 (escala com o invocador)
+  * **Alinhamento:** Aliado/Pet do invocador
+  * **Comportamento:** Agressivo contra inimigos, segue o invocador
+  * **Voador:** true
+  * **Chance de Carcaça:** 0 (sem cadáver)
+  * **Experiência por Morte:** 0
+  * **Nível Máximo:** 32
+  * **Slots de Equipamento Disponíveis:** Artefato, Artefato Esquerdo
+  * **Morto-vivo:** true
+
+==== Escala de Estatísticas ====
+As estatísticas do Deathling escalam com o nível e habilidade do invocador:
+  * **Modificador:** nível do herói + (nível da habilidade)²
+  * **Velocidade Base:** 1.1
+  * **Habilidade de Defesa Base:** 1 + modificador
+  * **Habilidade de Ataque Base:** 4 + modificador
+  * **Dano:** 1 a (4 + modificador)
+  * **Redução de Dano:** modificador
+  * **HP Máximo:** 4 + modificador (cura para o total no primeiro ato)
+
+==== Invocação ====
+  * Invocado usando a [[pt:rpd:necromancy_spell|Magia Necromancia]] (classe SummonDeathling)
+  * Custa almas (tipicamente 5 almas)
+  * Força e durabilidade aumentam com o nível do herói e habilidade de necromancia
+  * Invocação pode ser limitada por limites de pets/aliados no jogo
+
+==== Mecânicas ====
+  * Funciona como um combatente aliado que luta ao lado do invocador
+  * Permanece ativo até ser derrotado ou dissipado
+  * Serve como guarda-costas e fonte adicional de dano para o [[pt:rpd:necromancer_class|Necromancer]]
+  * Tem resistências/propriedades especiais de criaturas mortas-vivas
+  * Estatísticas ajustam automaticamente a cada ato para corresponder ao nível/habilidade atual do invocador
+  * Pode equipar artefatos em ambos os slots de artefato
+
+==== Classes ====
+  * [[pt:rpd:necromancer_class|Necromancer]] - Classe invocadora primária
+  * [[pt:rpd:lich_subclass|Lich]] - Habilidades de invocação aprimoradas
+
+==== Estratégia ====
+  * Fornece poder de combate adicional para o [[pt:rpd:necromancer_class|Necromancer]]
+  * Pode ser usado para tankar dano enquanto o jogador ataca à distância ou de posição segura
+  * Gerenciar recursos de alma é essencial para manter aliados Deathling
+  * Eficaz quando combinado com outras habilidades necromânticas
+  * Habilidade de voar permite atravessar abismos e evitar armadilhas de chão
+
+==== Verificação de Conteúdo ====
+  * Classe Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Deathling.java|Deathling.java]]
+  * Magia de Invocação: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]]
+  * Registro do Mob: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L257|MobFactory.java:257]]
+  * Recursos de String: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L641-L644|Deathling_Name, Deathling_Gender, Deathling_Name_Objective, Deathling_Desc]]
+  * Tipo de entidade: deathling (via getEntityKind() retornando nome simples da classe)
+  * Dados legíveis por máquina: [[mr:deathling_mob|mr:deathling_mob]]
+  * Última atualização: Baseado em análise do código-fonte do Remixed Dungeon
+
+==== Veja Também ====
+  * [[pt:rpd:necromancer_class|Classe Necromancer]]
+  * [[pt:rpd:lich_subclass|Subclasse Lich]]
+  * [[pt:rpd:necromancy_spell|Magia Necromancia]]
+  * [[pt:rpd:souls|Recurso Almas]]
+  * [[pt:rpd:soul_shard_item|Fragmento de Alma]]
+  * [[pt:rpd:mobs|Mobs]]
+
+{{tag> rpd mobs necromancer undead pet }}

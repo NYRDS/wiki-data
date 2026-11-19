@@ -2,10 +2,56 @@
 
 {{ rpd:images:wand_of_icebolt_item.png|Wand of Icebolt }}
 
-The **Wand of Icebolt** is an ice-based wand that fires bolts of freezing energy, dealing frost damage to targets.
+The **Wand of Icebolt** is an ice-based wand that fires bolts of freezing energy, dealing frost damage to targets and applying freezing effects.
 
-==== Related ====
-  * [[en:rpd:wands|Wands]]
-  * [[en:rpd:frost_buff|Frost]]
+==== Item Overview ====
+  * **Type:** Wand
+  * **Rarity:** Uncommon
+  * **Special Effect:** Deals ice damage and applies Frost and Slow debuffs
+  * **Damage Type:** Magic (ice/frost)
 
-{{tag> rpd items wands frost }}
+==== Special Mechanics ====
+  * **Ice Damage:** Deals direct ice-based damage to targets (3+level to 4+level*2)
+  * **Frost Application:** Applies Frost buff for (duration factor * 2.5 + level) duration
+  * **Slow Application:** Applies Slow buff for (duration factor * 5 + level) duration
+  * **Line of Sight:** Icebolts travel in a straight line to the target
+  * **Charges:** Standard wand charges, can be increased with upgrades
+  * **Identification:** Always known (isKnown() returns true)
+  * **Visual Effects:** Emits snow particles when equipped
+
+==== Strategy ====
+  * Effective against fire-based enemies and enemies vulnerable to cold
+  * The Frost debuff reduces enemy damage output and can freeze them
+  * The Slow debuff reduces enemy speed, making kiting easier
+  * Can be used to create distance between you and pursuing enemies
+  * Particularly useful against fast enemies that rely on melee attacks
+  * Avoid using on cold-resistant enemies
+
+==== Obtaining ====
+  * Found in Ice Caves levels
+  * Available in shops at moderate prices
+  * Dropped by ice-themed enemies
+  * Found in containers and special rooms in cold areas
+
+==== Effect ====
+When fired, the Wand of Icebolt shoots a bolt of ice at the targeted enemy, dealing ice damage and applying both Frost and Slow debuffs.
+
+According to the game's string resources: "This wand launches an ice bolt, dealing light damage to the target. There is also a chance to slow down or even freeze the enemy."
+
+==== Code References ====
+  * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/icecaves/WandOfIcebolt.java|WandOfIcebolt.java]]
+  * **Wand Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/Wand.java|Wand.java]]
+  * **Magic Missile Effect:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/MagicMissile.java#L85-L90|MagicMissile.java]] (for ice effect)
+  * **Frost Buff:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]] (freezing mechanics)
+  * **Slow Buff:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]] (slowing mechanics)
+  * **English String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2440-L2442|WandOfIcebolt_Name, WandOfIcebolt_Info, WandOfIcebolt_Info1]]
+
+==== Related Items ====
+  * [[en:rpd:wand_item|Wands]] - General information about wands
+  * [[en:rpd:wand_of_firebolt_item|Wand of Firebolt]] - Opposing fire-based wand
+  * [[en:rpd:potion_of_frost_item|Potion of Frost]] - Alternative ice-based item
+  * [[en:rpd:frost_buff|Frost]] - Status effect applied by this wand
+  * [[en:rpd:slow_buff|Slow]] - Status effect applied by this wand
+  * [[en:rpd:ice_caves_level|Ice Caves]] - Level where this wand is commonly found
+
+{{tag> rpd items wands frost ice }}

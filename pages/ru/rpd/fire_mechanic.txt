@@ -1,0 +1,82 @@
+====== Механика Огня ======
+
+**Огонь** — это экологическая угроза в Remixed Dungeon, которая наносит урон персонажам и распространяется на легковоспламеняющуюся территорию.
+
+==== Описание ====
+Огонь — это вредный экологический эффект, который наносит урон любому персонажу, входящему в горящие клетки. Огонь возникает из различных источников и распространяется на смежную легковоспламеняющуюся территорию каждый ход. Когда огонь истекает на естественной территории, он становится [[ru:rpd:embers_level_object|углями]].
+
+==== Механики ====
+  * **Урон:** Огонь наносит урон персонажам каждый ход, пока они остаются в горячей клетке
+  * **Распространение:** Огонь распространяется на смежную легковоспламеняющуюся территорию каждый ход
+  * **Длительность:** Огонь горит 4 хода в каждой локации (уменьшается на 1 каждый ход)
+  * **Изменение территории:** Когда огонь истекает на естественной территории, он становится [[ru:rpd:embers_level_object|углями]]
+  * **Сжигание предметов:** Огонь сжигает предметы в кучах и носимые предметы пораженных персонажей
+  * **Эффект статуса:** Персонажи в огне получают эффект статуса [[ru:rpd:burning_buff|Горение]] с длительностью 8 ходов
+  * **Объекты уровня:** Огонь влияет на [[ru:rpd:level_objects|объекты уровня]] (сундуки, статуи и т.д.), а также на персонажей
+
+==== Источники огня ====
+Огонь может быть создан:
+  * [[ru:rpd:ignite_spell|Заклинание Поджог]] — Создаёт клоб огня на 5 ходов (специальная реализация)
+  * [[ru:rpd:wand_of_firebolt_item|Посох Огненной Стрелы]] — Атаки поджигают цели
+  * [[ru:rpd:fire_arrow_item|Огненные Стрелы]] — Метательное оружие, поджигающее цели
+  * [[ru:rpd:fire_enchantment|Зачарование Огня]] — [[ru:rpd:weapon_enchantments|Зачарование оружия]]
+  * [[ru:rpd:firebloom_plant|Огнецвет]] — [[ru:rpd:plants|Растения]], поджигающие персонажей
+  * [[ru:rpd:fire_elemental_mob|Огненные Элементали]] — Враги, атакующие огнём
+  * [[ru:rpd:mage_armor_item|Броня Мага]] — Специальный эффект брони
+  * [[ru:rpd:incendiary_dart_item|Зажигательные Дротики]] и другие огненные предметы
+  * Источники из окружения и [[ru:rpd:traps|ловушки]]
+
+==== Эффекты на персонажей ====
+Персонажи, стоящие в огне, получают:
+  * Урон каждый ход, пока находятся в огне
+  * Эффект статуса [[ru:rpd:burning_buff|Горение]] с длительностью 8 ходов
+  * Визуальные эффекты пламенных частиц на спрайте
+  * Звуковые эффекты горения
+  * [[ru:rpd:damage_over_time|Урон со временем]]
+
+==== Стратегия ====
+Как эффективно использовать огонь:
+  * **Для игроков:** Используйте для нанесения урона врагам и создания зоны запрета
+  * **Для защиты:** Будьте осведомлены, что огонь будет наносить урон вам так же, как и врагам
+  * **Бой:** Загоняйте врагов в огонь для получения преимущества в [[ru:rpd:damage|уроне]]
+  * **Территория:** Используйте в легковоспламеняющихся зонах для распространения эффекта
+  * **Окружение:** Поджигайте [[ru:rpd:high_grass|высокую траву]] и другие легковоспламеняющиеся территории для создания долгих препятствий
+
+==== Противодействие огню ====
+  * Избегайте стояния в огне, когда возможно
+  * Используйте основанные на [[ru:rpd:frost_buff|Льде]] предметы или [[ru:rpd:spells_overview|заклинания]] для потушения огня
+  * Используйте способности к полёту для избегания наземного огня
+  * Снимите эффект статуса [[ru:rpd:burning_buff|горения]] с помощью подходящих предметов
+
+==== Иммунитеты ====
+  * [[ru:rpd:fire_elemental_mob|Огненные Элементали]] — Иммунны к огню и [[ru:rpd:burning_buff|горению]]
+  * [[ru:rpd:ice_elemental_mob|Ледяные Элементали]] — Могут быть резистентны
+  * Некоторые [[ru:rpd:undead_mob|нежить]] могут иметь резистентность
+  * [[ru:rpd:mechanical_enemies_mob|Механические]] существа могут быть иммунны
+  * Персонажи с защитой на основе льда
+  * [[ru:rpd:champions_mechanic|Чемпионы]] с эффектом чемпиона огня
+
+==== Проверка контента ====
+  * Источник информации: Java класс [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]]
+  * Проверка статистики: Извлечено из реализации Fire.java и Burning.java
+  * Описания эффектов: Основано на строковых ресурсах и игровых механиках
+  * Последнее обновление: Декабрь 2025, источник: Remixed Dungeon 1.9.3
+
+==== Исходный код ====
+  * Основные механики: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]]
+  * Эффект Горения: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]]
+  * Строковые ресурсы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L541|Строки огня]]
+  * Взаимодействие с территорией: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java#L23-L48|Реализация горения в Fire.java]]
+
+==== Связанный код ====
+  * Предметы, создающие огонь: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/IncendiaryDart.java|IncendiaryDart.java]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Firebloom.java|Firebloom.java]]
+  * Заклинания, создающие огонь: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Ignite.java|Ignite.java]]
+  * Мобы с иммунитетом к огню: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/FireElemental.java#L35|Иммунитет FireElemental.java]]
+
+==== См. также ====
+  * [[ru:rpd:spells_overview|Заклинания]]
+  * [[ru:rpd:mechanics|Игровые механики]]
+  * [[ru:rpd:burning_buff|Горение]] — Эффект статуса, применяемый огнём
+  * [[ru:rpd:ignite_spell|Заклинание Поджог]] — Заклинание, создающее огонь
+
+{{tag> rpd status effects environment }}
