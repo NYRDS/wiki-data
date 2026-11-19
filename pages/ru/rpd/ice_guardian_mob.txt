@@ -2,27 +2,19 @@
 
 {{ rpd:images:ice_guardian_mob.png|Ice Guardian }}
 
-**Ледяной Страж** — босс ледяных пещер, состоящий из двух частей: основного босса (Ядро Ледяного Стража) и его защитных клонов (Ледяные Стражи).
+**Ледяной Страж** (Ice Guardian) — ледяное существо, обитающее в Ледяных пещерах. Это защитные клоны, созданные Ядром Ледяного Стража.
 
 ==== Описание ====
-Ледяные Стражи были созданы древними кобольдами для защиты их царства. Пока в ядре Стража содержится достаточно энергии, он способен восстанавливать повреждённые части тела прямо во время боя.
-
-==== Механика боя ====
-  * Основной босс — **Ядро Ледяного Стража** (IceGuardianCore) — имеет 1000 HP и находится в центре комнаты
-  * Вокруг ядра патрулируют **Ледяные Стражи** (IceGuardian) — защитные клоны с 70 HP
-  * При убийстве **Ядра**, все клон-стражи умирают
-  * При убийстве **клона-стража** пока ядро живо, он восстанавливает 2 клонов
-  * Используйте **древковое оружие** для атаки на расстоянии и обмотки вокруг центральной статуи
-  * Благодаря низкой скорости, стражи легко обходятся в центре комнаты
+Ледяные Стражи были созданы древними кобольдами для защиты их царства. Они служат защитниками для Ядра Ледяного Стража и способны восстанавливаться, пока ядро живо.
 
 ==== Характеристики ====
-^ Свойство ^ Значение ^
-| Класс | Босс (Ядро) / Моб (Клоны) |
-| HP | Ядро: 1000 / Клоны: 70 |
-| Урон | Ядро: 13-23 / Клоны: 10-15 |
-| Защита | Ядро: 11 / Клоны: 14 |
-| Скорость | Ядро: 0.5 / Клоны: 0.7 |
-| Опыт за убийство | 5 |
+  * **HP/HT:** 70
+  * **Навык атаки:** 31
+  * **Навык защиты:** 30
+  * **Урон:** 10-15
+  * **Снижение урона (DR):** 14
+  * **Скорость:** 0.7 (медленнее обычной)
+  * **Опыт за убийство:** 5
 
 ==== Иммунитеты ====
   * Паралич
@@ -33,25 +25,28 @@
   * Слепота
   * Сон
 
-==== Выпадающие предметы ====
-  * Костяной ключ
-  * Ледяной ключ
-  * Посох Ледяной Стрелы (улучшенный на +1)
+==== Особенности ====
+  * **Восстановление:** При смерти, если Ядро Ледяного Стража живо, наносит 150 урона ядру. Если ядро выживает, Страж восстанавливается дважды.
+  * **Добыча:** 20% шанс выпадения [[ru:rpd:frozen_carpaccio_item|Замороженного карпаччо]] при убийстве.
+
+==== Поведение ====
+  * Ледяной Страж является частью битвы с боссом Ядро Ледяного Стража
+  * При убийстве наносит урон Ядру Ледяного Стража
+  * Если ядро выживает после урона, Страж восстанавливается дважды
 
 ==== Стратегия ====
-  * Не убивайте клонов, пока живо ядро — они будут восстанавливаться
-  * Атакуйте ядро с расстояния или обмотайте вокруг центральной статуи
-  * Используйте оружие, наносящее урон по области для поражения нескольких клонов
+  * Сосредоточьтесь на уничтожении Ядра Ледяного Стража, чтобы предотвратить восстановление
+  * Низкая скорость можно использовать для маневрирования
+  * Благодаря множественным иммунитетам, стратегии на основе статус-эффектов не сработают
 
 ==== См. также ====
-  * [[ru:rpd:ice_caves_level|Ледяные пещеры]]
-  * [[ru:rpd:ice_key_item|Ледяной ключ]]
-  * [[en:rpd:wand_of_frost_item|Wand of Frost]] (English page)
-  * [[ru:rpd:bosses|Боссы]]
+  * [[ru:rpd:ice_guardian_core_mob|Ядро Ледяного Стража]] — основной босс, связанный со Стражами
+  * [[ru:rpd:ice_caves_level|Ледяные пещеры]] — уровень, где появляются
+  * [[ru:rpd:ice_elemental_mob|Ледяной элементал]] — другое ледяное существо
 
 ==== Источники ====
-  * Java классы: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardianCore.java|IceGuardianCore.java]] и [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardian.java|IceGuardian.java]]
-  * JSON-конфигурация: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/IceGuardianCore.json|IceGuardianCore.json]] и [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/IceGuardian.json|IceGuardian.json]]
-  * Строковые ресурсы (RU): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1019-L1026|IceGuardian strings (line 1019-1026)]]
+  * JSON-конфигурация: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/IceGuardian.json|IceGuardian.json]]
+  * Lua-скрипт: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/IceGuardian.lua|IceGuardian.lua]]
+  * Строковые ресурсы (RU): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1019-L1026|IceGuardian strings]]
 
-{{tag> rpd mobs bosses ice_caves }}
+{{tag> rpd mobs ice_caves }}
