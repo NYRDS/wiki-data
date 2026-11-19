@@ -19,8 +19,8 @@ The Poison buff can be inflicted by:
   * Other toxic effects and items
 
 ==== Mechanics ====
-  * **Damage Formula:** (cooldown / 3) + 1 (according to code: target.damage( (int)(timeLeft / 3) + 1, this ))
-  * **Decay:** Poison intensity may decrease over time
+  * **Damage Formula:** floor(timeLeft / 3) + 1 (according to code: target.damage(math.floor(timeLeft / 3) + 1, this))
+  * **Decay:** Poison intensity decreases over time as duration counts down
   * **Duration:** Scales with Poison.durationFactor of the target; e.g. Poison Arrow applies durationFactor * (1 + bow level)
   * **Resistance:** Some characters and items provide poison resistance
   * **Immunity:** Some characters and items provide complete immunity to poison
@@ -40,9 +40,8 @@ The Poison buff can be inflicted by:
   * Certain classes and subclasses have poison resistance
 
 ==== Data Sources ====
-  * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|com.watabou.pixeldungeon.actors.buffs.Poison]]
-  * **Toxic Gas Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas.java]]
-  * **Damage Calculation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java#L30-L38|ToxicGas damage calculation]]
+  * **Lua Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Poison.lua|Poison.lua]] - Poison buff implementation (formerly Poison.java)
+  * **Toxic Gas Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas.java]] - Source of poison through gas clouds
   * **Machine-readable data**: [[mr:poison_buff|mr:poison_buff]]
 
 ==== Related ====
