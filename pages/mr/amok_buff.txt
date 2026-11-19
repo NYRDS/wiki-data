@@ -3,26 +3,32 @@
 {{ rpd:images:amok_buff.png|Amok Buff }}
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Amok.java|Amok.java]]
+This entity was originally implemented in Java (`com.watabou.pixeldungeon.actors.buffs.Amok`) but has been migrated to a Lua script.
+
+===== Lua Scripts =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Amok.lua|scripts/buffs/Amok.lua]] - Current implementation
 
 **Key Implementation Details:**
-  * Extends: `FlavourBuff` class
-  * Package: `com.watabou.pixeldungeon.actors.buffs`
-  * Buff type: Flavour (visual/status effect)
-  * Icon: `BuffIndicator.AMOK`
+  * Lua buff module using `scripts/lib/buff` library
+  * Icon: `9` (BuffIndicator.AMOK)
+  * Name string: `AmokBuff_Name`
+  * Info string: `AmokBuff_Info`
   * Visual status: `CharSprite.NEGATIVE` (red text)
   * Status text: `Char_StaAmok` string resource
 
-**Core Methods:**
-  * `icon()` - Returns buff icon for UI display
+**Core Functions:**
+  * `desc()` - Returns buff descriptor with icon, name, and info strings
   * `attachVisual()` - Shows "AMOK" status text on target when buff is applied
 
 ===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+This entity is implemented in Lua, no JSON configuration exists
 
 ===== String Resources =====
-  * No specific string resources for this entity (name and description use default class name)
+  * Name: `AmokBuff_Name` - Buff name
+  * Info: `AmokBuff_Info` - Buff description
   * Status text: `Char_StaAmok` - Displayed when buff is applied
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+===== Related mr Entities =====
+  * [[mr:wand_of_amok_item|Wand of Amok]] - Wand that applies this buff
+  * [[mr:amok_arrow_item|Amok Arrow]] - Arrow that applies this buff
+  * [[mr:amok_dart_item|Amok Dart]] - Dart that applies this buff
