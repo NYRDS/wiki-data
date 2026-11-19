@@ -1,0 +1,51 @@
+====== 状态效果 ======
+
+状态效果是在 Remixed Dungeon 中影响角色的临时状态。
+
+==== 描述 ====
+状态效果是改变角色能力、外观或行为的临时状态。它们可以是有益的、有害的或中性的，通常持续有限的回合数。
+
+==== 有益效果 ====
+  * [[cn:rpd:invisibility_buff|隐身]] - 使角色对敌人隐身
+  * [[cn:rpd:regeneration_buff|再生]] - 逐渐恢复生命值
+  * [[cn:rpd:heroism_buff|英勇]] - 增加伤害和生命值
+  * [[cn:rpd:levitation_buff|悬浮]] - 允许飞越地形和陷阱
+  * [[cn:rpd:shadows_buff|暗影]] - 提供潜行和保护
+  * [[cn:rpd:freerunning_buff|自由奔跑]] - 增加移动速度
+
+==== 有害效果 ====
+  * [[cn:rpd:burning_buff|燃烧]] - 造成持续火焰伤害
+  * [[cn:rpd:poison_buff|中毒]] - 造成持续伤害
+  * [[cn:rpd:weakness_buff|虚弱]] - 降低力量和伤害
+  * [[cn:rpd:paralysis_buff|麻痹]] - 阻止所有行动
+  * [[cn:rpd:blindness_buff|致盲]] - 降低视野半径
+  * [[cn:rpd:charmed_buff|魅惑]] - 使敌人暂时变友好
+  * [[cn:rpd:terror_buff|恐惧]] - 强迫角色逃跑
+  * [[cn:rpd:amok_buff|狂暴]] - 使角色攻击所有事物
+
+==== 中性效果 ====
+  * [[cn:rpd:roots_buff|缠绕]] - 阻止移动但允许其他行动
+  * [[cn:rpd:slow_buff|减速]] - 降低行动速度
+  * [[cn:rpd:haste_buff|加速]] - 增加行动速度
+  * [[cn:rpd:light_buff|光亮]] - 增加视野半径
+
+==== 常见机制 ====
+  * **持续时间**：大多数效果持续特定的回合数
+  * **叠加**：某些效果可以叠加，其他效果则刷新持续时间
+  * **抗性**：角色可能抵抗或免疫某些效果
+  * **移除**：某些物品和能力可以移除负面状态效果
+
+==== 代码参考 ====
+  * 增益系统: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - 基础实现
+  * 角色系统: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - 角色如何与增益交互
+  * 持续时间系统: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java#L25-L50|Buff duration code]] - 增益持续时间的计算方式
+  * 字符串资源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - 所有状态效果的名称和描述
+
+==== 另见 ====
+  * [[cn:rpd:buffs|增益]]
+  * [[cn:rpd:debuffs|减益]]
+  * [[cn:rpd:combat_mechanics|战斗]]
+  * [[cn:rpd:mobs|敌人]]
+  * [[cn:rpd:hero|英雄]]
+
+{{tag> rpd mechanics status_effects buffs debuffs }}

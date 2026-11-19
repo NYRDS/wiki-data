@@ -1,21 +1,49 @@
 ====== Spider Mind Mob - Code References ======
-
 {{ rpd:images:spider_mind_mob.png|Spider Mind }}
 
 ===== Implementation Sources =====
   * JSON: `RemixedDungeon/src/main/assets/mobsDesc/SpiderMind.json`
-  * Lua: `RemixedDungeon/src/main/assets/scripts/mobs/SpiderMind`
+  * Lua: `RemixedDungeon/src/main/assets/scripts/mobs/SpiderMind.lua`
   * String resources reference above
   * Key behaviors:
-    - Ranged-only attacker (canAttack returns CharUtils.canDoOnlyRangedAttack)
-    - Zapping proc buffs friendly mobs with random buffs (Speed, Barkskin, Blessed, Sungrass.Health, Earthroot.Armor, ManaShield, Fury)
-    - Gets further from enemies when in Hunting state (cowardly behavior)
-    - Buffs allies within field of view with visual shaft particle effects
+    - Ranged-only attacker (AI State: Kite, attackRange: 8, dmgMin/dmgMax: 0)
+    - Zapping proc buffs friendly mobs with random buffs (Speed, Barkskin, Blessed, Health, Armor, ManaShield, Fury) for 3 turns
+    - Retreats from enemies when hunting (kiteNeverApproach = true, cowardly behavior)
+    - Buffs first friendly mob in field of view with visual shaft particle effects
+    - HP: 5, STR: 12, attackSkill: 10, defenseSkill: 1, EXP: 6, maxLvl: 9
+    - Loot: MysteryMeat (6.7% chance)
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check:
-  * RemixedDungeon/src/main/assets/mobsDesc/spider_mind.json
-  * RemixedDungeon/src/main/assets/spritesDesc/spider_mind.json
+<code json>
+{
+  "aiState"       : "Kite",
+  "name"          : "SpiderMind_Name",
+  "name_objective": "SpiderMind_Name_Objective",
+  "description"   : "SpiderMind_Desc",
+  "gender"        : "SpiderMind_Gender",
+  "attackSkill"   : 10,
+  "defenseSkill"  : 1,
+  "dmgMin"        : 0,
+  "dmgMax"        : 0,
+  "dr"            : 0,
+  "str"           : 12,
+  "ht"            : 5,
+  "exp"           : 6,
+  "maxLvl"        : 9,
+  "baseSpeed"     : 1,
+  "attackDelay"   : 1,
+  "attackRange"   : 8,
+  "viewDistance"  : 8,
+  "walkingType"   : "NORMAL",
+  "lootChance"    : 0.067,
+  "loot"          : { "kind": "MysteryMeat" },
+  "spriteDesc"    : "spritesDesc/SpiderMind.json",
+  "scriptFile"    : "scripts/mobs/SpiderMind",
+  "canBePet"      : true,
+  "friendly"      : false,
+  "fraction"      : "DUNGEON"
+}
+</code>
 
 ===== String Resources =====
 English (values/strings_all.xml):
@@ -27,16 +55,56 @@ English (values/strings_all.xml):
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists.
+Lua script: `RemixedDungeon/src/main/assets/scripts/mobs/SpiderMind.lua`
+<code lua>
+local RPD = require "scripts/lib/commonClasses"
+local mob = require "scripts/lib/mob"
+
+-- java SpiderMind (batch 10): harmless buff-bot - its zap buffs the first
+-- friendly mob in sight (3 turns) instead of hurting the enemy, and it
+-- retreats while hunting (aiState Kite + kiteNeverApproach) keeping its
+-- ranged line.
+return mob.init{
+    stats = function(self)
+        mob.restoreData(self).kiteNeverApproach = true
+    end,
+
+    zapProc = function(self, enemy, dmg)
+        local level = RPD.Dungeon.level
+        local buffs = {"Speed", "Barkskin", "Blessed", "Health", "Armor", "ManaShield", "Fury"}
+        local mobs = level:getCopyOfMobsArray()
+
+        for i = 1, #mobs do
+            local chr = mobs[i]
+            if chr ~= self then
+                local chrPos = chr:getPos()
+                -- luaj arrays are 1-based: fieldOfView[pos + 1] == java [pos]
+                if level.fieldOfView[chrPos + 1] and chr:friendly(self) then
+                    RPD.Buffs.Buff:prolong(chr, buffs[math.random(#buffs)], 3)
+                    if RPD.Dungeon:isCellVisible(chrPos) then
+                        RPD.Sfx.CellEmitter:get(chrPos):start(RPD.Sfx.ShaftParticle.FACTORY, 0.2, 3)
+                    end
+                    break
+                end
+            end
+        end
+        return 0
+    end,
+
+}
+</code>
 
 ===== Mob Mechanics =====
   * **Type**: Spider mob (spider colony)
   * **Behavior**: Support/coward - buffs allies and avoids combat
-  * **Special Ability**: Zapping proc that randomly buffs friendly mobs in field of view
-  * **AI Pattern**: Gets further from enemies (cowardly), prefers ranged attacks
-  * **Habitat**: Spider-related levels (likely Spider's Nest)
-  * **Buffs Applied**: Speed, Barkskin, Blessed, Sungrass.Health, Earthroot.Armor, ManaShield, Fury
+  * **Special Ability**: Zapping proc that randomly buffs friendly mobs in field of view for 3 turns
+  * **AI Pattern**: Gets further from enemies (cowardly), prefers ranged attacks (AI State: Kite, attackRange: 8)
+  * **Habitat**: Spider-related levels (Spider's Nest, levels 8-10 per Bestiary.json)
+  * **Stats**: HP 5, STR 12, attackSkill 10, defenseSkill 1, EXP 6, maxLvl 9
+  * **Buffs Applied**: Speed, Barkskin, Blessed, Health, Armor, ManaShield, Fury (3 turns each)
   * **Visual Effects**: Shaft particle effects when buffing allies
+  * **Loot**: MysteryMeat (6.7% chance)
+  * **Can be pet**: Yes
 
 ===== Related mr Entities =====
   * [[mr:spider_mind_amber_mob|Spider Mind Amber (Mob)]] - Related spider entity
