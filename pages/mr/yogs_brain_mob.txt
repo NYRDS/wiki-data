@@ -1,12 +1,41 @@
 ====== Yogs Brain Mob - Code References ======
 
+{{ rpd:images:yogs_brain_mob.png|Yogs Brain }}
+
+===== Entity Kind =====
+  * **Entity Kind:** YogsBrain
+  * **Type:** Mob (boss organ)
+  * **Namespace:** mr: (machine-readable reference)
+
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/guts/YogsBrain.java|YogsBrain.java]]
+  * **Main Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] (registration)
+  * **Note:** Java class deleted (batch 17d-2), entity migrated to JSON + Lua
 
 ===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+  * **Config File:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsBrain.json|YogsBrain.json]]
+  * **HP:** 350
+  * **Attack Skill:** 31
+  * **Defense Skill:** 30
+  * **Damage:** 15-25
+  * **DR:** 12
+  * **Strength:** 18
+  * **EXP:** 25
+  * **Max Level:** 50
+  * **Base Speed:** 1
+  * **Attack Range:** 8
+  * **View Distance:** 8
+  * **Resistances:** Electricity, ToxicGas
+  * **Immunities:** Paralysis, Amok, Sleep, Terror, Burning
+  * **Can Be Pet:** false
+  * **Sprite Config:** spritesDesc/YogsBrain.json
+  * **Script File:** scripts/mobs/YogsBrain
+
+===== Lua Scripts =====
+  * **Main Script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/YogsBrain.lua|YogsBrain.lua]]
+  * **Behavior:** Ranged-only kiter shooting lightning bolts. On damage, beckons all mobs to its position and spawns Nightmares (10 * difficulty factor). AI switches between HUNTING and FLEEING states based on ranged attack line of sight.
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
 <string name="YogsBrain_Name">yog's brain</string>
 <string name="YogsBrain_Gender">masculine</string>
@@ -14,26 +43,27 @@ This entity is implemented in Java, no JSON configuration exists
 <string name="YogsBrain_Desc">Brain of Yog-Dzewa. Source of all evil ever to come out of the dungeon.</string>
 </code>
 
-**Line Numbers in strings_all.xml:**
-  * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2821-L2824|L2821-L2824]]
-  * Russian: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2830-L2833|L2830-L2833]]
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="YogsBrain_Name">мозг йога</string>
+<string name="YogsBrain_Gender">masculine</string>
+<string name="YogsBrain_Name_Objective">мозга йога</string>
+<string name="YogsBrain_Desc">Мозг Йог-Джевы. Источник всех зол, когда-либо выходивших из подземелья.</string>
+</code>
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
-
-===== Mob Stats (from Java) =====
-  * **HP**: 350
-  * **Defense Skill**: 30
-  * **Attack Skill**: 31
-  * **Damage**: 15-25
-  * **Damage Reduction**: 12
-  * **EXP for Kill**: 25
-  * **Resistances**: Lightning, Toxic Gas
-  * **Immunities**: Paralysis, Amok, Sleep, Terror, Burning
-  * **Special**: Can spawn Nightmare mobs when damaged, has ranged attack, can stun on attack
-
-===== Related mr Entities =====
+===== Related Entities =====
   * [[mr:yog_mob|Yog-Dzewa (Mob)]]
   * [[mr:yogs_heart_mob|Yog's Heart (Mob)]]
   * [[mr:yogs_teeth_mob|Yog's Teeth (Mob)]]
+  * [[mr:rotting_fist_mob|Rotting Fist (Mob)]]
+  * [[mr:burning_fist_mob|Burning Fist (Mob)]]
   * [[mr:nightmare_mob|Nightmare (Mob)]]
+
+===== Code References Summary =====
+  * **JSON Config:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsBrain.json|YogsBrain.json]]
+  * **Lua Script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/YogsBrain.lua|YogsBrain.lua]]
+  * **String Resources:** Multiple language files (values/, values-ru/, etc.)
+  * **Registration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]]
+  * **Bestiary:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]]
+
+{{tag> mr mobs yogs_brain guts boss}}

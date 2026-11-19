@@ -1,49 +1,66 @@
 ====== Ice Guardian Core Mob - Code References ======
 
+{{ rpd:images:ice_guardian_core_mob.png|Ice Guardian Core }}
+
+===== Entity Kind =====
+  * **Entity Kind:** IceGuardianCore
+  * **Type:** Mob (boss)
+  * **Namespace:** mr: (machine-readable reference)
+
 ===== Java Classes =====
-  * **Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardianCore.java|IceGuardianCore.java]]
-  * **Inheritance:** Inherits from [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java|Boss]]
-  * **Package:** com.nyrds.pixeldungeon.mobs.icecaves
-  * **Registration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L236|MobFactory.java:236]]
-
-===== Stats (from Java code) =====
-  * **HP:** 1000 (ht(1000))
-  * **Experience for Kill:** 5
-  * **Base Defense Skill:** 10
-  * **Base Attack Skill:** 26
-  * **Damage:** 13-23 (dmgMin-dmgMax)
-  * **Defense Rating:** 11
-  * **Base Speed:** 0.5f (slower than normal)
-
-===== Immunities (from Java code) =====
-  * Paralysis
-  * ToxicGas
-  * Terror
-  * Death (enchantment)
-  * Amok
-  * Blindness
-  * Sleep
-
-===== Drops (from Java code) =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/icecaves/WandOfIcebolt.java|WandOfIcebolt]] (upgraded)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/SkeletonKey.java|SkeletonKey]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/icecaves/IceKey.java|IceKey]]
+  * **Main Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] (registration)
+  * **Note:** Java class deleted (batch 17d-1), entity migrated to JSON + Lua
 
 ===== JSON Configuration =====
-This entity is implemented purely in Java, no JSON configuration found.
+  * **Config File:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/IceGuardianCore.json|IceGuardianCore.json]]
+  * **HP:** 1000
+  * **Attack Skill:** 26
+  * **Defense Skill:** 10
+  * **Damage:** 13-23
+  * **DR:** 11
+  * **Strength:** 10
+  * **Base Speed:** 0.5
+  * **EXP:** 5
+  * **Immunities:** Paralysis, ToxicGas, Terror, Death, Amok, Blindness, Sleep
+  * **Is Boss:** true
+  * **Sprite Config:** spritesDesc/IceGuardianCore.json
+  * **Script File:** scripts/mobs/IceGuardianCore
+
+===== Lua Scripts =====
+  * **Main Script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/IceGuardianCore.lua|IceGuardianCore.lua]]
+  * **Behavior:** On spawn, collects WandOfIcebolt (upgraded +1) and IceKey. On death, kills all IceGuardian mobs on level and validates ICE_GUARDIAN_SLAIN badge.
+
+===== Sprite Configuration =====
+  * **File:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/IceGuardianCore.json|IceGuardianCore.json (sprite)]]
 
 ===== String Resources =====
+English (values/strings_all.xml):
 <code xml>
 <string name="IceGuardianCore_Name">ice guardian</string>
 <string name="IceGuardianCore_Name_Objective">ice guardian</string>
 <string name="IceGuardianCore_Desc">Ice guardians were manufactured by ancient kobolds to protect their caves. Power stored within it's core allows Ice guardian to reconstruct itself as long it has enough energy.</string>
+<string name="IceGuardianCore_Gender">masculine</string>
 </code>
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+Russian (values-ru/strings_all.xml):
+<code xml>
+<string name="IceGuardianCore_Name">ледяной страж</string>
+<string name="IceGuardianCore_Name_Objective">ледяного стража</string>
+<string name="IceGuardianCore_Desc">Ледяные стражи были созданы древними кобольдами для защиты их пещер. Энергия, хранящаяся в их ядре, позволяет стражу восстанавливаться, пока у него достаточно сил.</string>
+<string name="IceGuardianCore_Gender">masculine</string>
+</code>
 
-===== Additional References =====
-  * **Related Mob:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardian.java|IceGuardian.java]] - IceGuardianCore spawns IceGuardian mobs
-  * **Death Behavior:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/IceGuardianCore.java#L48-L56|IceGuardianCore.die()]] - kills all IceGuardian mobs on death
-  * **Badge:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.Badge.ICE_GUARDIAN_SLAIN]] - validates boss slain badge
-  * **Sprite:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/IceGuardianCore.json|IceGuardianCore.json (sprite)]]
+===== Related Entities =====
+  * [[mr:ice_guardian_mob|Ice Guardian (Mob)]] - Clone mobs spawned by the Core
+  * [[mr:wand_of_icebolt_item|Wand of Icebolt]] - Dropped upgraded
+  * [[mr:skeleton_key_item|Skeleton Key]] - Dropped
+  * [[mr:ice_key_item|Ice Key]] - Dropped
+
+===== Code References Summary =====
+  * **JSON Config:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/IceGuardianCore.json|IceGuardianCore.json]]
+  * **Lua Script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/IceGuardianCore.lua|IceGuardianCore.lua]]
+  * **Sprite Config:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/IceGuardianCore.json|IceGuardianCore.json (sprite)]]
+  * **String Resources:** Multiple language files (values/, values-ru/, etc.)
+  * **Registration:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]]
+
+{{tag> mr mobs ice_guardian_core ice_caves boss}}
