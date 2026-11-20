@@ -1,0 +1,71 @@
+====== Vorstdrank ======
+
+{{ rpd:images:potion_of_frost_item.png|Vorstdrank }}
+
+Een Vorstdrank is een type drankje in Remixed Dungeon dat een bevriezend effect creëert wanneer het blootgesteld wordt aan lucht.
+
+==== Effect ====
+Wanneer het verbroken wordt, creëert de drank een bevriezende wolk die alle wezens binnen 2 tegels van het impactpunt beïnvloedt:
+  * **Bevriezen:** Wezens worden op hun plaats bevroren, ongemachtigd om te bewegen of te handelen
+  * **Effectgebied:** De bevriezende wolk beïnvloedt alle wezens binnen 2 tegels van het impactpunt
+  * **Duur:** Wezens blijven bevroren tot het effect verliest of wordt opgelost
+  * **Mechanisme:** Gebruikt [[nl:rpd:freezing_buff|Bevriezing]] blob om het bevries-effect toe te passen
+
+==== Eigenschappen ====
+  * **Zeldzaamheid:** Gewoon
+  * **Gewicht:** 1
+  * **Prijs:** 50 gouden munten (basis prijs)
+  * **Identificatie:** Eén gebruik om te identificeren (verbreek om effect te leren)
+  * **Type:** Worpbare drank
+  * **Upgrade Klasse:** UpgradablePotion
+  * **Effect Radius:** (int)(DISTANCE * qualityFactor()) waar DISTANCE 2 is
+
+==== Mechanica ====
+  * Wanneer het op een willekeurige locatie verbroken wordt, creëert het een effectgebied gebaseerd op een afstandskaart
+  * Gebruikt PathFinder.buildDistanceMap om het beïnvloede gebied te berekenen
+  * Beïnvloedt alle cellen binnen de berekende afstandskaart
+  * Bevries-effect wordt toegepast op elke beïnvloede tegel via Freezing.affect()
+  * Volgens string resources: "Bij blootstelling aan open lucht verdampt dit chemisch in een bevriezende wolk, waardoor elk wezen dat er contact mee maakt bevroren wordt, ongemachtigd om te handelen en te bewegen."
+
+==== Functie ====
+  * **Verbreek:** Wanneer geworpen naar een doel of de grond, creëert het de bevriezende effectwolk
+  * **Pijlen Bevochtigen:** Kan gebruikt worden om pijlen te bevochtigen, ze om te zetten in [[nl:rpd:frost_arrow_item|Vorstpijlen]]
+  * **Nuttigheid:** Effectief om gevaarlijke vijanden tijdelijk uit te schakelen of tijdelijke barrières te creëren
+  * **Omgevingsinteractie:** Kan branden doven bij impact
+
+==== Strategie ====
+  * Gebruik om gevaarlijke vijanden tijdelijk uit te schakelen tijdens gevechten
+  * Bijzonder effectief op enkele krachtige vijanden die moeilijk te bestrijden zijn
+  * Kan gebruikt worden om tijdelijke ademruimte te creëren tijdens moeilijke confrontaties
+  * Wees voorzichtig om jezelf of belangrijke bondgenoten niet te bevriezen
+  * Nuttig voor crowd control bij meerdere vijanden
+  * Uitstekend voor crowd control in gangen en besloten ruimtes
+  * Effectief tegen vuur-gebaseerde vijanden voor extra schade
+  * Kan gebruikt worden om vijandelijke casting of speciale vaardigheden te onderbreken
+  * Combineer met andere crowd control items voor maximaal effect
+  * Onmisbaar voor het creëren van Vorstpijlen via het bevochtigingsproces
+  * Bijzonder effectief tegen vuur-gebaseerde wezens
+
+==== Verwerving ====
+  * Gevonden als willekeurige drops in dungeon-levels
+  * Beschikbaar in winkels
+  * Soms gevonden in kisten
+  * Gedropt door bepaalde vijanden
+
+==== Content Verificatie ====
+  * Java Klasse: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java|PotionOfFrost.java]]
+  * Broncode Locatie: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java
+  * String Resource: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2186|PotionOfFrost_Name]] en [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2187|PotionOfFrost_Info]]
+  * Effecten: Gebruikt [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] blob om bevries-effect toe te passen
+  * Implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L287|registerItemClass(PotionOfFrost.class)]]
+  * Entity Kind: potion_of_frost (via getEntityKind())
+  * Machine-leesbare data: [[mr:potion_of_frost_item|mr:potion_of_frost_item]]
+
+==== Gerelateerde Items ====
+  * [[nl:rpd:potion_item|Drankjes]] - Andere drankjes in het spel
+  * [[nl:rpd:frost_arrow_item|Vorstpijlen]] - Pijlen bevochtigd met deze drank
+  * [[nl:rpd:frost_buff|Vorst Status Effect]] - Het bevries-effect toegepast op wezens
+  * [[nl:rpd:potion_of_liquid_flame_item|Vloeibare Vlam Drank]] - Tegenovergesteld vuur-gebaseerd effect
+  * [[nl:rpd:freezing_buff|Bevriezing]] - Status effect toegepast door de drank
+
+{{tag> rpd items potions vorst utiliteit }}

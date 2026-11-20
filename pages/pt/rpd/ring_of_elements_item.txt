@@ -1,0 +1,73 @@
+====== Anel dos Elementos ======
+
+{{ rpd:images:ringofelements_sprite.png|Anel dos Elementos }}
+
+**Anel dos Elementos** é um anel em Remixed Dungeon que fornece resistência a vários efeitos elementais e mágicos, e reduz a duração de efeitos de status negativos.
+
+===== Descrição =====
+Este anel fornece resistência a diferentes elementos, como fogo, eletricidade, gases etc. Também diminui a duração de efeitos negativos.
+
+===== Efeitos =====
+  * Fornece resistência a ataques elementais e mágicos
+  * Reduz dano de fontes elementais
+  * Fornece proteção contra efeitos de status de fontes mágicas
+  * Reduz duração de efeitos de status negativos
+
+===== Estatísticas =====
+  * **Efeito Primário:** Resistência a efeitos elementais (baseado em chance, aumenta com nível)
+  * **Efeito Secundário:** Redução de duração de efeitos de status negativos ((2 + 0.5*nível) / (2 + nível))
+  * **Benefícios de Upgrade:** Upgrades maiores fornecem chance de resistência mais forte e redução de duração
+
+===== Mecânicas =====
+  * Chance de efeito de resistência: Chance aleatória de (nível + 3) >= 3, significando que para níveis positivos (ou 0), o anel sempre fornece resistência
+  * Fator de duração: (2 + 0.5 * nível) / (2 + nível) - com níveis positivos, isso reduz duração de debuffs
+  * O anel fornece resistência contra: Queimadura, Gás Tóxico, Veneno, Eletricidade de Armadilha de Raio, Bruxo, Olho, Punho Flamejante, Chama Líquida
+  * No nível 0 ou superior, a resistência está sempre ativa
+
+===== Aquisição =====
+  * Encontrado em salas de tesouro
+  * Pode ser vendido em lojas em níveis posteriores
+  * Às vezes obtido como recompensas de missões
+
+===== Estratégia =====
+  * Extremamente valioso contra inimigos que usam magia e ataques elementais
+  * Ajuda contra vários efeitos de status e armadilhas elementais
+  * Particularmente valioso para classes que enfrentam muitos inimigos mágicos
+  * Bom para jogadores que frequentemente encontram perigos elementais
+  * Fornece proteção consistente contra debuffs comuns quando upgradado
+
+===== Identificação =====
+  * Como todos os anéis, começa não identificado e deve ser identificado
+  * Efeitos ficam mais claros após identificação
+  * Qualidade afeta a força da resistência
+
+===== Verificação de Conteúdo =====
+  * Fonte de informação: Java Classe [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]]
+  * Verificação de estatísticas: Extraído do construtor de RingOfElements.java e classe interna Resistance
+  * Descrições de efeitos: Baseado em string resources e mecânicas in-game
+  * Última atualização: Dezembro 2025, fonte: Remixed Dungeon 1.9.3
+
+===== Código Fonte =====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java|RingOfElements.java]]
+  * Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L49-L50|strings do Anel dos Elementos]]
+  * Classe Base Anel: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/Ring.java|Ring.java]] - Contém mecânicas comuns de anéis
+
+===== Validação de Dados =====
+  * Elementos Resistidos (Java): A classe Resistance especificamente protege contra Burning, ToxicGas, Poison, LightningTrap.Electricity, Warlock, Eye, BurningFist, e LiquidFlame classes
+  * Fórmula de Chance de Resistência: ''Random.Int( level() + 3 ) >= 3'' - significando que no nível 0 ou acima, resistência está sempre ativa
+  * Fórmula de Fator de Duração: ''(2 + 0.5f * level()) / (2 + level())'' - reduz duração de efeito negativo com níveis maiores
+  * String Resources: ''RingOfElements_Info'' em strings_all.xml
+  * Recursos de Nomes de Gemas: array ''Ring_Gems'' em strings_all.xml define o nome da gema exibida no nome do anel
+
+===== Veja Também =====
+  * [[pt:rpd:rings|Anéis]] - Outros tipos de anéis no jogo
+  * [[pt:rpd:wands|Varinhas]] - Os efeitos que este anel ajuda a resistir
+  * [[pt:rpd:equipment|Equipamento]] - Outras opções de equipamento
+  * [[pt:rpd:immunities|Imunidades]] - Lista completa de imunidades e resistências
+  * [[pt:rpd:resistances|Resistências]] - Lista completa de resistências e redução de dano
+  * [[pt:rpd:poison_buff|Veneno]] - Um dos efeitos que este anel fornece resistência contra
+  * [[pt:rpd:burning_buff|Queimadura]] - Um dos efeitos que este anel fornece resistência contra
+  * [[pt:rpd:toxic_gas_buff|Gás Tóxico]] - Um dos efeitos que este anel fornece resistência contra
+  * [[pt:rpd:lightning_trap|Araldilhha de Raio]] - Um dos efeitos que este anel fornece resistência contra
+
+{{tag> rpd items anéis equipamento ring_of_elements ring_of_elements_item }}
