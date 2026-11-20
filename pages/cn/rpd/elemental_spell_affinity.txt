@@ -1,5 +1,39 @@
 ====== 元素法术亲和力 ======
 
-元素亲和力包括风暴术、点燃、冰冻之球等法术。
+**元素亲和力** 是 [[en:rpd:spell_affinities|法术亲和力]] 系统中可用的亲和力之一。拥有元素亲和力的角色在使用元素法术时会获得特殊增益。
 
-{{tag> rpd spells elemental affinity }}
+==== 描述 ====
+元素亲和力使英雄能更有效地使用与元素相关的法术。拥有此亲和力的英雄可以施展元素法术并获得增强效果或降低法力消耗。
+
+==== 拥有元素亲和力的英雄 ====
+  * [[en:rpd:mage_class|法师]] - 游戏中主要的元素法术使用者
+  * 其他某些职业可能通过子职业能力获得元素法术
+
+==== 相关法术 ====
+  * [[en:rpd:ignite_spell|点燃]] - 在目标位置创建火焰团 (Java 实现)
+  * [[en:rpd:freeze_globe_spell|冰冻之球]] - 冻结并减速敌人 (Java 实现)
+  * [[en:rpd:wind_gust_spell|风暴术]] - 推开敌人并造成伤害 (Java 实现)
+  * [[en:rpd:root_spell|扎根]] - 用大地魔法将敌人定在原地 (Java 实现)
+
+==== 机制 ====
+拥有元素亲和力的英雄受益于：
+  * 元素法术的法力消耗降低
+  * 法术效果增强
+  * 与基于元素的物品和装备有更好的协同
+
+==== 法术亲和力系统 ====
+这是 [[en:rpd:spell_affinities|法术亲和力]] 系统的一部分，允许英雄专精于不同类型的魔法。每个英雄职业都有主要亲和力，决定了他们能有效使用哪些法术。
+
+==== 技术细节 ====
+  * 实现于: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]]
+  * 配置: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L40-L43|initHeroes.json]]
+  * 法术定义: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java#L14|SpellHelper.java]]
+  * 字符串资源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L5000-L5010|元素亲和力字符串]]
+
+==== 另请参阅 ====
+  * [[en:rpd:spell_affinities|法术亲和力]]
+  * [[en:rpd:spells_overview|法术]]
+  * [[en:rpd:magic|魔法系统]]
+  * [[en:rpd:mage_class|法师职业]]
+
+{{tag> rpd magic affinities }}
