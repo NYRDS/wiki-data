@@ -1,0 +1,50 @@
+====== Interface Doom ======
+
+{{ rpd:images:stone_walking_buff.png|Buf Sangue de Pedra (Implementação Doom) }}
+
+A **Interface Doom** é uma interface marcadora no Remixed Dungeon que identifica "bufs tipo maldição" - bufs que disparam efeitos especiais quando o herói morre enquanto está afetado por eles.
+
+==== Descrição ====
+A interface Doom estende [[pt:rpd:named_entity_kind|NamedEntityKind]] e define um único método `onHeroDeath()` que é chamado quando o herói morre enquanto o buf está ativo. Isso permite que bufs implementem efeitos de morte personalizados, como mensagens especiais de game over, validação de conquistas, ou razões de morte únicas.
+
+==== Definição da Interface ====
+```java
+public interface Doom extends NamedEntityKind {
+    void onHeroDeath();
+}
+```
+
+==== Implementações ====
+Classes que implementam Doom devem:
+  * Estender [[pt:rpd:buff_mechanics|Buf]] (ou uma subclasse como [[pt:rpd:artifact_buff|Buf de Artefato]])
+  * Implementar o método `onHeroDeath()` para definir comportamento de morte personalizado
+  * Implementar `getEntityKind()` de NamedEntityKind para identificação de entidade
+
+==== Implementações Conhecidas ====
+  * [[pt:rpd:stone_walking_buff|Buf Sangue de Pedra]] - Implementa Doom via BufDeArtefato
+    * Na morte: Valida a conquista "Morte em Pedra", mostra a mensagem "Você foi imurado em pedra. Para sempre.", usa a razão de morte IMMURED
+  * Outros bufs tipo maldição podem existir
+
+==== Referências de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Doom.java|Doom.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind.java]] (interface pai)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/ArtifactBuff.java|ArtifactBuff.java]] (pai comum para bufs doom)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] (lida com lógica de morte de bufs doom)
+
+==== Uso na Lógica do Jogo ====
+Quando o herói morre, o jogo verifica todos os bufs ativos para implementações de Doom:
+```java
+for (Buff buff : hero.buffs()) {
+    if (buff instanceof Doom) {
+        ((Doom) buff).onHeroDeath();
+    }
+}
+```
+
+==== Páginas Relacionadas ====
+  * [[pt:rpd:artifact_buff|Buf de Artefato]] - Classe base para bufs de artefato (frequentemente implementam Doom)
+  * [[pt:rpd:stone_walking_buff|Buf Sangue de Pedra]] - Exemplo de implementação de buf doom
+  * [[pt:rpd:buff_mechanics|Mecânicas de Buf]] - Sistema geral de bufs
+  * [[pt:rpd:badges|Conquistas]] - Sistema de conquistas (frequentemente validadas em onHeroDeath)
+
+{{tag> rpd mecânicas interfaces buffs doom }}

@@ -1,0 +1,59 @@
+====== Buf de Artefato ======
+
+{{ rpd:images:ring_of_stone_blood_item.png|Buf de Artefato }}
+
+===== Descrição =====
+O **Buf de Artefato** é uma classe base para bufs relacionados a artefatos no Remixed Dungeon. Ele estende a classe padrão [[pt:rpd:buff_mechanics|Buf]] e adiciona comportamento específico para bufs originados de artefatos.
+
+===== Principais Características =====
+  * **Rastreamento de Origem:** Cada BufDeArtefato rastreia o ID de sua entidade origem via `getSourceId()`
+  * **Desanexação Automática:** Se o ID da origem for `EntityIdSource.INVALID_ID` (significando origem não-arquivo), o buf se desanexa automaticamente
+  * **Persistência:** BuFos de artefato com IDs de origem válidos não são empacotados/salvos com o estado do jogo (`dontPack()` retorna `true`)
+  * **Tipo de Entidade:** Retorna "artifactBuff" + tipo de entidade do pai para identificação única
+
+===== Implementação em Código =====
+<code java>
+public class ArtifactBuff extends Buff {
+
+    @Override
+    public void act() {
+        if(getSourceId()==EntityIdSource.INVALID_ID) { // origem não-arquivo
+            detach();
+        }
+        super.act();
+    }
+
+    public String getEntityKind() {
+        return "artifactBuff" + super.getEntityKind();
+    }
+
+    @Override
+    public boolean dontPack() {
+        return getSourceId()!= EntityIdSource.INVALID_ID;
+    }
+}
+</code>
+
+===== Subclasses Conhecidas =====
+  * [[pt:rpd:stone_walking_buff|Buf Sangue de Pedra]] - Aplicado pelo [[pt:rpd:ring_of_stone_blood_item|Anel de Sangue de Pedra]]
+  * [[pt:rpd:ring_of_accuracy_item|Anel de Precisão]] - Classe interna Accuracy estende RingBuff
+  * [[pt:rpd:ring_of_evasion_item|Anel de Esquiva]] - Classe interna Evasion estende RingBuff
+  * Outros bufs de anéis de artefato (estendem BufDeArtefato)
+
+===== Referências de Código =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/ArtifactBuff.java|ArtifactBuff.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] (classe pai)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/utils/EntityIdSource.java|EntityIdSource.java]] (rastreamento de ID de origem)
+
+===== Recursos de String =====
+Bufs de artefato usam os recursos de string de suas implementações específicas. Veja as páginas individuais de bufs para referências de strings.
+
+===== Páginas Relacionadas =====
+  * [[pt:rpd:buff_mechanics|Mecânicas de Buf]] - Sistema base de bufs
+  * [[pt:rpd:ring_of_stone_blood_item|Anel de Sangue de Pedra]] - Exemplo de anel de artefato
+  * [[pt:rpd:stone_walking_buff|Buf Sangue de Pedra]] - Exemplo de buf de artefato
+  * [[pt:rpd:ring_of_accuracy_item|Anel de Precisão]] - Outro anel de artefato
+  * [[pt:rpd:doom_interface|Interface Doom]] - Interface para bufs tipo maldição
+  * [[mr:artifact_buff|Buf de Artefato - Referências de Código]] - Referência legível por máquina
+
+{{tag> rpd buffs artefato mecânicas }}

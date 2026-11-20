@@ -1,0 +1,55 @@
+====== Anel de Sangue de Pedra ======
+
+{{ rpd:images:ring_of_stone_blood_item.png|Anel de Sangue de Pedra }}
+
+O **Anel de Sangue de Pedra** permite que o aventureiro que o usa atravesse rochas sólidas como se fossem ar rarefeito. Isso tem um preço, claro: para cada passo dado dentro de paredes, o usuário perde uma porção de sua vida.
+
+Este artefato é exclusivo do [[pt:rpd:start|Remixed Pixel Dungeon]].
+
+==== Descrição ====
+Este anel estranho é feito de uma pedra resistente. O que à primeira vista parecia ser um rubi é na verdade sangue líquido mantido no lugar! No interior, há uma seta apontando para o que parece ser uma parede, junto com um coração partido... O que isso poderia fazer?
+
+==== Classe do Item ====
+  * **Classe Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java|RingOfStoneWalking.java]]
+  * **Índice do Sprite:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java#L80|RING_OF_STONE_WALKING = 133]]
+
+==== Propriedades Especiais ====
+  * **Construção em Pedra:** Feito de material pétreo resistente
+  * **Centro de Sangue:** Contém o que parece ser sangue líquido no centro
+  * **Design Único:** Apresenta imagens de uma seta e um coração partido
+
+==== Efeitos ====
+  * **Travessia de Paredes:** Permite que o usuário atravesse paredes/rochas sólidas como se fossem terreno passável
+  * **Custo de Vida:** Para cada passo dado dentro de paredes sólidas, o usuário sofre dano igual a max(HP / 2, 2)
+  * **Habilidade Sangue de Pedra:** O sangue vira pedra que se funde com as paredes próximas e facilita muito a sua travessia, mas a que custo
+  * **Restrição de Nível de Chefe:** O anel não funciona em níveis de chefe (a habilidade de atravessar paredes é desativada)
+  * **Consequência da Morte:** Se o jogador morre enquanto usa este anel, ele fica permanentemente imurado em pedra
+
+==== Mecânicas ====
+O anel funciona sobrescrevendo as verificações normais de passabilidade na lógica de movimento do [[pt:rpd:hero|Herói]]. Quando o jogador tenta mover para um tile sólido enquanto usa o anel (e não está em um nível de chefe), o movimento é permitido. No entanto, cada passo dado em terreno sólido aplica dano igual ao maior entre metade do HP atual do herói ou 2 pontos.
+
+==== Estratégia ====
+  * Como o dano é baseado no HP atual, tente reduzir seu HP antes de usar o anel se não quiser sofrer muito dano
+  * O anel é mais útil para contornar obstáculos, acessar áreas difíceis de alcançar ou evadir inimigos
+  * Você pode beber poções dentro de paredes sem que elas se dispersem, mas tenha cuidado pois isso pode levar a situações perigosas
+  * O anel não funciona em níveis de chefe, então planeje adequadamente para encontros com chefes
+  * Esteja ciente de que se você morrer enquanto usa este anel, o jogo falhará com "Você foi imurado em pedra. Para sempre."
+
+==== Verificação de Conteúdo ====
+  * Fonte da informação: Classe Java [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java|RingOfStoneWalking.java]]
+  * Verificação de stats: Extraída diretamente do construtor de RingOfStoneWalking.java e da classe de buff StoneWalking
+  * Descrições de efeitos: Baseadas na implementação em RingOfStoneWalking.java e recursos de string
+  * Última atualização: Dezembro 2025, fonte: Remixed Dungeon 1.9.3
+
+==== Código Fonte ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfStoneWalking.java|RingOfStoneWalking.java]]
+  * Strings: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1831|Strings do RingOfStoneWalking]]
+  * Sprite: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/ItemSpriteSheet.java|ItemSpriteSheet.java]] (RING_OF_STONE_WALKING)
+
+==== Ver Também ====
+  * [[pt:rpd:artifacts|Artefatos]]
+  * [[pt:rpd:rings|Tipos de Anéis]]
+  * [[pt:rpd:hero|Mecânicas de Movimento do Herói]]
+  * [[mr:ring_of_stone_walking_item|Anel de Sangue de Pedra - Referências de Código]]
+
+{{tag> rpd itens artefatos aneis modding}}

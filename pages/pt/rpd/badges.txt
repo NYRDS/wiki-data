@@ -1,0 +1,90 @@
+====== Conquistas ======
+
+**Conquistas** são o sistema de realizações no Remixed Dungeon. Elas rastreiam as conquistas do jogador e são exibidas no menu de coleção de conquistas do jogo. As conquistas são globais da conta e persistem em todas as partidas.
+
+==== Descrição ====
+As conquistas representam várias realizações no jogo, desde marcos simples (como matar 100 monstros) até desafios complexos (como vencer com classes de herói específicas em dificuldades altas). Elas fornecem objetivos de longo prazo e rastreiam a progressão do jogador.
+
+==== Categorias de Conquistas ====
+
+===== Abate de Monstros =====
+  * **Monstros Abatidos I-V** - Derrote números crescentes de monstros (100, 1000, 10000, 100000, 1000000)
+  * Rastreia o total de monstros mortos em todas as partidas
+
+===== Coleta de Ouro =====
+  * **Ouro Coletado I-V** - Colete quantidades crescentes de ouro (1000, 10000, 100000, 1000000, 10000000)
+  * Rastreia o total de ouro coletado em todas as partidas
+
+===== Profundidade Alcançada =====
+  * **Nível Alcançado I-V** - Alcançe profundidades crescentes da masmorra (nível 5, 10, 15, 20, 25+)
+  * Rastreia o nível mais profundo alcançado em qualquer partida
+
+===== Identificação de Itens =====
+  * **Todas as Poções Identificadas** - Identifique todos os tipos de poções
+  * **Todos os Pergaminhos Identificados** - Identifique todos os tipos de pergaminhos
+  * **Todos os Anéis Identificados** - Identifique todos os tipos de anéis
+  * **Todas as Varas Identificadas** - Identifique todos os tipos de varas
+  * **Todos os Itens Identificados** - Identifique todos os tipos de itens (requer todos os anteriores)
+
+===== Compras de Bolsas =====
+  * **Bolsa de Sementes Comprada** - Compre uma Bolsa de Sementes
+  * **Porta-Pergaminhos Comprado** - Compre um Porta-Pergaminhos
+  * **Coldre de Varas Comprado** - Compre um Coldre de Varas
+  * **Cinto de Poções Comprado** - Compre um Cinto de Poções
+  * **Chaveiro Comprado** - Compre um Chaveiro
+  * **Aljava Comprada** - Compre uma Aljava
+  * **Todas as Bolsas Compradas** - Compre todos os 6 tipos de bolsas
+
+===== Tipos de Morte =====
+  * **Morte por Fogo** - Morra queimado
+  * **Morte por Veneno** - Morra envenenado
+  * **Morte por Gás** - Morra por gás tóxico/paralítico
+  * Várias outras conquistas relacionadas à morte
+
+===== Maestria de Classes =====
+  * **Maestria: Guerreiro/Mago/Ladino/Caçadora/Elfo/Necromante/Gnoll/Sacerdote/Doutor** - Vença com cada classe
+  * **Vitória: Guerreiro/Mago/Ladino/Caçadora/Elfo/Necromante/Gnoll/Sacerdote/Doutor** - Vença em qualquer dificuldade
+  * **Chefe Abatido** - Derrote chefes específicos
+
+===== Realizações Especiais =====
+  * **Morte em Pedra** - Morra enquanto afetado pelo [[pt:rpd:stone_walking_buff|Buf Sangue de Pedra]]
+  * Muitas outras conquistas especiais para realizações únicas
+
+==== Implementação em Código ====
+As conquistas são gerenciadas pela classe `Badges` com um enum `Badge` definindo todas as conquistas disponíveis:
+
+```java
+public enum Badge {
+    MONSTERS_SLAIN_1(R.string.Badges_MonsterSlain1, 0),
+    MONSTERS_SLAIN_2(R.string.Badges_MonsterSlain2, 1),
+    // ... mais conquistas
+    MASTERY_PRIEST, MASTERY_DOCTOR,
+    VICTORY_PRIEST, VICTORY_DOCTOR,
+    BOSS_SLAIN_1_DOCTOR, BOSS_1_SLAIN_PRIEST;
+}
+```
+
+Métodos-chave:
+  * `isUnlocked(Badge badge)` - Verifica se uma conquista está desbloqueada
+  * `unlock(Badge badge)` - Desbloqueia uma conquista
+  * `saveGlobal()` / `loadGlobal()` - Persiste conquistas entre sessões
+  * `getUnlockedCount()` / `getTotalCount()` - Estatísticas
+
+==== Recursos de String ====
+Nomes e descrições das conquistas são armazenados em recursos de string:
+  * Inglês: `values/strings_all.xml` (chaves Badges_*)
+  * Russo: `values-ru/strings_all.xml`
+  * Outras linguagens: `values-*/strings_all.xml` correspondentes
+
+==== Referências de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java|Badges.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml (EN)]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|strings_all.xml (RU)]]
+
+==== Páginas Relacionadas ====
+  * [[pt:rpd:hero_class|Classes de Herói]] - Conquistas específicas de classe
+  * [[pt:rpd:stone_walking_buff|Buf Sangue de Pedra]] - Fonte da conquista "Morte em Pedra"
+  * [[pt:rpd:doom_interface|Interface Doom]] - BuFs que validam conquistas na morte
+  * [[pt:rpd:buff_mechanics|Mecânicas de Buf]] - Sistema de bufs
+
+{{tag> rpd mecânicas conquistas progressão }}
