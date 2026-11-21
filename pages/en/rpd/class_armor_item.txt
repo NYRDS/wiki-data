@@ -11,7 +11,7 @@
   * [[en:rpd:elf_class|Elf]] → [[en:rpd:elf_armor_item|Elf Armor]] (base), [[en:rpd:scout_armor_item|Scout Armor]] (Scout subclass), [[en:rpd:shaman_armor_item|Shaman Armor]] (Shaman subclass)
   * [[en:rpd:necromancer_class|Necromancer]] → [[en:rpd:necromancer_armor_item|Necromancer Armor]] (base and Lich subclass), [[en:rpd:witchdoctor_armor_item|Witchdoctor Armor]] (Witchdoctor subclass)
   * [[en:rpd:doctor_class|Doctor]] → [[en:rpd:doctor_armor_item|Doctor Armor (Plague Doctor)]] — the Doctor class has no subclasses; its armor uses the "PlagueDoctor" visual appearance
-  * [[en:rpd:priest_class|Priest]] → [[en:rpd:priest_armor_item|Priest Armor]] (base only, no special ability implemented yet)
+  * [[en:rpd:priest_class|Priest]] → [[en:rpd:priest_armor_item|Priest Armor]] (Sanctify: damages undead/demons in radius 2, applies Blessed buff)
   * [[en:rpd:gnoll_class|Gnoll]] → [[en:rpd:gnoll_armor_item|Gnoll Armor]] (base), [[en:rpd:guardian_armor_item|Guardian Armor]] (Guardian subclass), [[en:rpd:witchdoctor_armor_item|Witchdoctor Armor]] (Witchdoctor subclass)
 
 ==== Special Abilities ====
@@ -35,7 +35,6 @@ Class armor can be obtained in two ways:
 
 ==== Notes ====
   * Class armors cannot be upgraded and are always identified (see `ClassArmor.isUpgradable()` / `isIdentified()`)
-  * Priest Armor currently has no special ability implemented (`PriestArmor.special()` returns an empty string)
   * Guardian Armor and Witchdoctor Armor are Gnoll subclass armors: despite the subclass mapping, both currently check `hero.getHeroClass() == HeroClass.GNOLL` when equipped
   * The Doctor class (Plague Doctor) has a single Doctor Armor; the "PlagueDoctor" visual name is used for its sprite (`DoctorArmor.getVisualName()`) — there is no separate Plague Doctor subclass armor in the code yet
 

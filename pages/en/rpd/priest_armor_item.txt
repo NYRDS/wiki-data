@@ -5,27 +5,33 @@
 The **Priest Vestments** (internal name: Priest Armor) is the class-specific armor for the [[en:rpd:priest_class|Priest]] class in Remixed Pixel Dungeon. It's designed to support the Priest's healing and purification abilities.
 
 ==== Description ====
-Like other class armors, the Priest Vestments have unique special abilities accessible through the Special action. However, the current implementation of the Priest Vestments is a placeholder with no special ability implemented.
+The Priest Vestments is a class armor available exclusively to the Priest class. Attempting to equip it with other classes shows a warning. The armor has a unique active special ability "Sanctify" that damages undead and demons within a 2-tile radius and applies the "Blessed" buff to the hero.
 
-==== Special Ability ====
-Currently, the Priest Vestments have no implemented special ability:
-  * The special() method returns an empty string
-  * The doSpecial() method is empty and performs no action
+==== Special Ability: Sanctify ====
+  * **Radius:** 2 tiles
+  * **Damage to undead:** 5 + hero level
+  * **Damage to demons:** Half of undead damage (minimum 1)
+  * **Additional effect:** Applies [[en:rpd:blessed_buff|Blessed]] buff to hero for 20 turns, buff level = 1 + hero level / 5
+  * **Visual effects:** Gold particles (ShaftParticle.GOLD_FACTORY) on affected enemies and hero
+  * **Sound:** Level-up sound (SND_LEVELUP)
+  * **Cooldown:** One turn (user.doOperate(Actor.TICK))
 
 ==== Implementation Notes ====
-The Priest Vestments class serves as a placeholder for future implementation. While it extends ClassArmor like other class armors, its special abilities have not yet been programmed.
+The class is implemented in `PriestArmor.java` and extends `ClassArmor`. The `special()` method returns `"PriestArmor_ACSpecial"` to identify the ability in the UI. The `doSpecial()` method contains the full ability logic. The `doEquip()` method checks the hero class — only `HeroClass.PRIEST` can equip this armor.
 
 ==== Content Verification ====
   * Information source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/PriestArmor.java|PriestArmor.java]]
-  * Implementation details: Based on code analysis of PriestArmor.java
+  * Implementation details: Based on code analysis of PriestArmor.java (lines 19-71)
+  * Sprite: image = 34 (corresponds to priest_armor_item.png after processing)
 
 ==== Class Restriction ====
-This armor can only be effectively used by the Priest class. If worn by other classes, it may not function properly.
+This armor can only be effectively used by the Priest class. If worn by other classes, it may not function properly — attempting to equip shows the `PriestArmor_NotPriest` warning and returns `false`.
 
 ==== See Also ====
   * [[en:rpd:priest_class|Priest Class]]
   * [[en:rpd:class_armor_item|Class Armor]]
   * [[en:rpd:cloth_armor_item|Cloth Armor]]
+  * [[en:rpd:blessed_buff|Blessed]]
   * [[en:rpd:items|Items]]
 
 {{tag> rpd items armor class_armor priest}}

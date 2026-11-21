@@ -1,0 +1,43 @@
+====== Благословение ======
+
+{{ rpd:images:blessed_buff.png|Благословение }}
+
+**Благословение** (Blessed) — положительный статусный эффект (бафф) в Remixed Dungeon, временно увеличивающий навык атаки и навык защиты персонажа.
+
+==== Описание ====
+Бафф Благословение временно повышает навык атаки (attack skill) и навык защиты (defence skill) персонажа, делая его точнее в атаках и труднее для попаданий врагов.
+
+==== Эффекты ====
+  * **Навык атаки:** +уровень баффа к точности (attack skill bonus)
+  * **Навык защиты:** +уровень баффа к уклонению (defence skill bonus)
+  * Уровень баффа определяется источником: при применении через Рясу Жреца уровень = 1 + уровень героя / 5
+
+==== Длительность ====
+  * При применении через специальную способность Рясы Жреца: **20 ходов**
+  * При других источниках длительность может варьироваться
+  * Снимается при погружении в воду
+
+==== Источники ====
+  * Специальная способность **Рясы Жреца** (Освящение) — накладывает на 20 ходов с уровнем 1 + уровень героя / 5
+  * **Епископ** (Bishop NPC) — предоставляет этот бафф как часть специальных услуг
+  * Различные предметы и способности в игре
+
+==== Реализация ====
+Бафф реализован в Lua-скрипте `scripts/buffs/Blessed.lua`:
+  * Функция `defenceSkillBonus` возвращает уровень баффа
+  * Функция `attackSkillBonus` возвращает уровень баффа
+  * Создается через `BuffFactory.BLESSED` (строка "Blessed")
+
+==== Ссылки на код ====
+  * Lua скрипт: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/buffs/Blessed.lua|Blessed.lua]]
+  * BuffFactory: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]]
+  * Применение в Рясе Жреца: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/armor/PriestArmor.java|PriestArmor.java]] (строка 56)
+
+==== См. также ====
+  * [[ru:rpd:bishop_npc|Епископ]] — источник баффа Благословение
+  * [[ru:rpd:hero|Герой]] — персонаж, на которого действует бафф
+  * [[ru:rpd:accuracy|Точность]] — характеристика, повышаемая баффом
+  * [[ru:rpd:evasion_mechanic|Уклонение]] — характеристика, повышаемая баффом
+  * [[ru:rpd:priest_armor_item|Ряса Жреца]] — классовая броня, дающая этот бафф
+
+{{tag> rpd баффы статусные_эффекты}}
