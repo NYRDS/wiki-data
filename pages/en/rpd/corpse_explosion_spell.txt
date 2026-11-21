@@ -1,0 +1,56 @@
+====== Corpse Explosion ======
+
+==== Description ====
+**Corpse Explosion** is a Plague Doctor affinity spell that consumes a corpse (Carcass item) on the target cell to create a toxic gas cloud and spread multiple harmful gases to adjacent cells. The power of the explosion scales with the corpse's value and the caster's skill level.
+
+==== Mechanics ====
+  * **Magic Affinity**: PlagueDoctor
+  * **Targeting Type**: Cell — must target a cell containing a Carcass item
+  * **Spell Level**: 3
+  * **Cast Time**: 2 turns
+  * **Mana Cost**: 9
+  * **Cooldown**: 10 turns
+
+==== Effects ====
+When cast on a cell containing a Carcass:
+  * **Corpse Consumption**: The Carcass item is removed from the heap
+  * **Base Power**: Corpse's price (gold value) × 6 = corpse health value
+  * **Gas Strength**: floor(corpseHealth × 0.5 × casterSkillLevel)
+  * **Central Cell**: Creates a **Toxic Gas** cloud at the target cell with the full gas strength
+  * **Adjacent Cells**: Spreads three gas types cyclically to orthogonal adjacent cells (up/down/left/right):
+    * **Paralytic Gas** — strength = floor(gasStrength × 0.3)
+    * **Confusion Gas** — strength = floor(gasStrength × 0.3)
+    * **Miasma Gas** — strength = floor(gasStrength × 0.3)
+  * **Visuals**: Shadow particles (CURSE type) burst at the target cell
+  * **Sound**: Cursed sound effect
+  * **Failure Message**: "CorpseExplosion_NoCorpse" if no Carcass is present on the target cell
+
+==== Requirements ====
+  * Target cell must contain a **Carcass** item (any mob corpse with "Carcass" prefix)
+  * Cannot be cast on empty cells or cells with non-carcass items
+
+==== Strategy ====
+  * High mana cost (9) and long cooldown (10 turns) limit spam usage
+  * Most effective with high-value corpses (bosses, high-level mobs) and high skill levels
+  * The gas spread to adjacent cells provides area denial and crowd control
+  * Paralytic Gas prevents enemy movement/actions, Confusion Gas causes friendly fire, Miasma Gas deals damage over time
+  * Synergizes with Plague Doctor's corpse-generating mechanics and Carcass-related items
+  * Consider positioning to catch multiple enemies in the gas spread
+
+==== Source Code ====
+  * Lua Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CorpseExplosion.lua|CorpseExplosion.lua]]
+  * Spell Library: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]]
+  * Blob/Gas System: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]]
+
+==== See Also ====
+  * [[en:rpd:plague_doctor_affinity_mechanic|Plague Doctor Affinity]]
+  * [[en:rpd:heal_spell|Heal]]
+  * [[en:rpd:anesthesia_spell|Anesthesia]]
+  * [[en:rpd:blood_transfusion_spell|Blood Transfusion]]
+  * [[en:rpd:spell_affinities|Spell Affinities]]
+  * [[en:rpd:toxic_gas_buff|Toxic Gas]]
+  * [[en:rpd:paralytic_gas_buff|Paralytic Gas]]
+  * [[en:rpd:confusion_gas_buff|Confusion Gas]]
+  * [[en:rpd:miasma_gas_buff|Miasma Gas]]
+
+{{tag> rpd spells plaguedoctor corpse explosion gas }}

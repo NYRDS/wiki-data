@@ -1,0 +1,40 @@
+====== Чёрная Крыса ======
+
+{{ rpd:images:blackrat_sprite.png|Чёрная Крыса }}
+
+==== Описание ====
+Просто обычная домовая крыса, не сумчатая. Чёрная Крыса — это кастомный моб, реализованный через JSON-конфигурацию для демонстрации возможностей создания мобов моддерами. Она функционально похожа на другие варианты крыс, но имеет отличительную внешность и свойства.
+
+==== Характеристики ====
+  * **Здоровье (HT):** 5
+  * **Навык защиты:** 1
+  * **Навык атаки:** 10
+  * **Урон:** 1-1
+  * **Броня (DR):** 1
+  * **Опыт:** 1
+  * **Макс. уровень:** 1
+  * **Скорость:** 2× обычной скорости
+  * **Дальность обзора:** 1
+  * **Задержка атаки:** 1
+
+==== Поведение ====
+  * Очень высокая скорость передвижения (2× нормальной)
+  * Низкие атакующие и защитные способности
+  * Выпадает **Крысиная шкурка** как лут (100% шанс)
+  * Поведение вора: крадёт предметы у героя при атаке (наследует поведение от ScriptedThief.lua)
+
+==== Реализация ====
+Чёрная Крыса демонстрирует создание кастомных мобов через JSON-файлы конфигурации:
+  * Определена в: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BlackRat.json|mobsDesc/BlackRat.json]]
+  * Использует спрайт: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/BlackRat.json|spritesDesc/BlackRat.json]] (текстура rat.png)
+  * Скриптовое поведение: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/ScriptedThief.lua|scripts/mobs/ScriptedThief.lua]]
+  * Базовый класс: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/CustomMob.java|CustomMob.java]]
+  * Регистрация в фабрике: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L184|MobFactory.java]]
+
+==== См. также ====
+  * [[ru:rpd:rat_mob|Обычная Крыса]]
+  * [[ru:rpd:mobs|Мобы]]
+  * [[ru:rpd:modding_custom_mobs|Кастомные мобы для моддинга]]
+  * [[mr:black_rat_mob|Чёрная Крыса — Ссылки на код]]
+
+{{tag> rpd мобы крысы кастом моддинг }}

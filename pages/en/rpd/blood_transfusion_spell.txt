@@ -1,0 +1,49 @@
+====== Blood Transfusion ======
+
+==== Description ====
+**Blood Transfusion** is a Plague Doctor affinity spell that allows the caster to drain health from a friendly character (including summoned allies) to heal themselves. The spell transfers a portion of the target's health to the caster, with the transfer efficiency scaling with the caster's skill level.
+
+==== Mechanics ====
+  * **Magic Affinity**: PlagueDoctor
+  * **Targeting Type**: Character (not self) — must target an ally or summoned minion
+  * **Spell Level**: 2
+  * **Cast Time**: 1 turn
+  * **Mana Cost**: 2
+  * **Cooldown**: 1 turn
+
+==== Effects ====
+When cast on a valid target (not the caster themselves):
+  * **Drain**: Removes HP from the target equal to the amount needed to fully heal the caster, capped at the target's current HP
+  * **Transfer Rate**: Scales with the caster's skill level:
+    * Level 1: 75% transfer efficiency
+    * Level 5: 95% transfer efficiency
+    * Level 6+: 100% transfer efficiency
+  * **Heal**: The caster receives the transferred HP (drain × transfer rate)
+  * **Visuals**: Blood particles on the target, Elmo particles on the caster
+  * **Sound**: Healing sound effect
+  * **Messages**: "BloodTransfusion_Drained" on success, "BloodTransfusion_WontAgreed" if target is invalid, "BloodTransfusion_FullHP" if caster is already at full health
+
+==== Restrictions ====
+  * Cannot be cast on self
+  * Cannot be cast on hostile enemies
+  * Fails if caster is already at full HP
+  * Target must be a character owned by the caster (ally, summon, pet)
+
+==== Strategy ====
+  * Best used with durable summons (e.g., Skeleton, Deathling) that can survive the HP drain
+  * The transfer rate scaling makes this spell significantly more effective at higher skill levels
+  * Useful emergency heal when no potions are available and you have expendable allies
+  * The short cooldown (1 turn) allows repeated use if you have multiple allies or a high-HP summon
+
+==== Source Code ====
+  * Lua Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/BloodTransfusion.lua|BloodTransfusion.lua]]
+  * Spell Library: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|spell.lua]]
+
+==== See Also ====
+  * [[en:rpd:plague_doctor_affinity_mechanic|Plague Doctor Affinity]]
+  * [[en:rpd:heal_spell|Heal]]
+  * [[en:rpd:anesthesia_spell|Anesthesia]]
+  * [[en:rpd:corpse_explosion_spell|Corpse Explosion]]
+  * [[en:rpd:spell_affinities|Spell Affinities]]
+
+{{tag> rpd spells plaguedoctor healing transfusion }}
