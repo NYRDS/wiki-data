@@ -1,0 +1,69 @@
+====== 护甲改造包 ======
+
+{{ rpd:images:armor_kit_item.png|护甲改造包 }}
+
+**护甲改造包** 是 Remixed Dungeon 中的一种特殊物品，允许玩家将普通护甲升级为其英雄专精的专属职业护甲。
+
+==== 物品概览 ====
+  * **类型：** 制作/升级物品
+  * **获取：** 由大厅层的 [[zh:rpd:king_mob|国王]] 首领掉落（King.lua 在生成时将 ArmorKit 放入物品栏）
+  * **用途：** 将普通护甲转换为职业专属护甲
+  * **使用：** 必须在已选择相应专精的英雄身上对普通护甲使用
+
+==== 机制 ====
+  * **转换：** 将任何普通护甲转换为对应的职业护甲
+  * **属性保留：** 升级后的护甲保留原护甲的所有属性（防御值、附魔、等级）
+  * **专精专属：** 每种职业护甲只能由对应专精装备
+  * **一次性：** 使用后护甲改造包消耗
+  * **无专精：** 若英雄无专精，生成基础职业护甲（如战士的 [[zh:rpd:warrior_armor_item|战士护甲]]）
+  * **有专精：** 若英雄有专精，生成专精专属护甲（如角斗士的 [[zh:rpd:gladiator_armor_item|角斗士护甲]]）
+
+==== 生成的职业护甲 ====
+  * **战士（无专精）：** [[zh:rpd:warrior_armor_item|战士护甲]]（拥有跃击技能）
+  * **角斗士专精：** [[zh:rpd:gladiator_armor_item|角斗士护甲]]（拥有跃击技能）
+  * **狂战士专精：** [[zh:rpd:berserker_armor_item|狂战士护甲]]（拥有狂怒技能）
+  * **法师（无专精）：** [[zh:rpd:mage_armor_item|法师护甲]]（拥有法师法杖特殊技能）
+  * **术士专精：** [[zh:rpd:warlock_armor_item|术士护甲]]（拥有法杖充能特性）
+  * **战斗法师专精：** [[zh:rpd:battle_mage_armor_item|战斗法师护甲]]（拥有法杖充能特性）
+  * **潜行者（无专精）：** [[zh:rpd:rogue_armor_item|潜行者护甲]]（拥有烟雾弹技能）
+  * **刺客专精：** [[zh:rpd:assassin_armor_item|刺客护甲]]（拥有影遁加成）
+  * **自由奔跑者专精：** [[zh:rpd:freerunner_armor_item|自由奔跑者护甲]]（拥有闪避加成）
+  * **猎手（无专精）：** [[zh:rpd:huntress_armor_item|猎手护甲]]（拥有灵魂之鹰技能）
+  * **守望者专精：** [[zh:rpd:warden_armor_item|守望者护甲]]（拥有晨露收集）
+  * **狙击手专精：** [[zh:rpd:sniper_armor_item|狙击手护甲]]（拥有狙击标记）
+  * **精灵（无专精）：** [[zh:rpd:elf_armor_item|精灵护甲]]（拥有魔法箭）
+  * **斥候专精：** [[zh:rpd:scout_armor_item|斥候护甲]]（拥有加速）
+  * **萨满专精：** [[zh:rpd:shaman_armor_item|萨满护甲]]（拥有法杖加成）
+  * **死灵法师（无专精）：** [[zh:rpd:necromancer_armor_item|死灵法师长袍]]（拥有复活死灵）
+  * **巫妖专精：** [[zh:rpd:necromancer_armor_item|死灵法师长袍]]（拥有复活死灵）
+  * **豺狼人（无专精）：** [[zh:rpd:gnoll_armor_item|豺狼人护甲]]（拥有群体狩猎）
+  * **守护者专精：** [[zh:rpd:guardian_armor_item|守护者护甲]]（拥有盾牌反击）
+  * **巫医专精：** [[zh:rpd:witchdoctor_armor_item|巫医护甲]]（拥有法力护盾）
+  * **牧师（无专精）：** [[zh:rpd:priest_armor_item|牧师护甲]]（拥有亡灵/恶魔伤害加成）
+  * **医生（无专精）：** [[zh:rpd:doctor_armor_item|医生护甲]]（拥有骨锯加成）
+
+==== 策略 ====
+  * 最大化专精效果的关键物品
+  * 选择专精后应尽快制作
+  * 允许充分利用专精能力
+  * 升级前保留高等级护甲以维持其优势
+
+==== 获取方式 ====
+  * 由大厅层的 [[zh:rpd:king_mob|国王]] 首领掉落（携带在国王物品栏中，死亡时掉落）
+  * 商店不出售
+
+==== 代码参考 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ArmorKit.java|ArmorKit.java]] - 实现
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] - 基础职业护甲实现
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GladiatorArmor.java|GladiatorArmor.java]] - 职业专属护甲示例
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - 专精护甲映射
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - 基础职业护甲映射
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/King.lua|King.lua]] - 国王生成时携带护甲改造包
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L78-L82|ArmorKit 字符串]] - 字符串资源
+
+==== 相关物品 ====
+  * [[zh:rpd:armor|护甲]] - 所有护甲类型
+  * [[zh:rpd:upgrading|升级]] - 装备强化系统
+  * [[zh:rpd:subclasses|专精]] - 使用职业护甲的英雄专精
+
+{{tag> rpd 物品 制作 升级 护甲 }}
