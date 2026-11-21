@@ -1,0 +1,101 @@
+====== Yog-Dzewa ======
+
+{{ rpd:images:yog_mob.png|Yog-Dzewa }}
+
+Yog-Dzewa is de eindbaas van de kerker, te vinden in de Demon Halls. Het is een oude god van woede en bloedvergieting die gebonden is aan de Demon Halls door oude magie.
+
+==== Basis Statistieken ====
+  * **[[nl:rpd:health_mechanic|HP]]:** 1000
+  * **[[nl:rpd:combat_mechanic|Aanvalsvaardigheid]]:** 30
+  * **[[nl:rpd:combat_mechanic|Verdedigingsvaardigheid]]:** 30
+  * **[[nl:rpd:damage|Schade]]:** 20-30
+  * **[[nl:rpd:armor_mechanic|Verdedigingswaarde (DR)]]:** 0
+  * **[[nl:rpd:experience_system|EXP voor Doden]]:** 50
+
+==== Speciale Vaardigheden ====
+  * **Orgaan Oproepen:** Wanneer beschadigd, roept het andere baasorganen (Rotting Fist, Burning Fist, Yog's Brain, Yog's Heart, Yog's Teeth) naar zijn positie
+  * **Larva Spawning:** Wanneer beschadigd, spawnt Larven op aangrenzende cellen
+  * **Schade Reductie:** Ondergangen schade wordt bit-geshift naar rechts voor elk geroepen orgaan (effectief halveren per orgaan)
+  * **Doodsstraal Aanval:** Vuurt een doodsstraal in een rechte lijn die alle personages in zijn pad raakt
+  * **Hoge Weerstanden:** Immuun voor Dood, Terreur, Amok, Bevalligheid, Slaap, Branding, Giftig Gas en Psionische Blast
+  * **Multi-fase Gevecht:** Gevecht loopt door meerdere fasen met veranderende mechanieken naarmate organen worden geroepen
+
+==== Gevechtsmechanieken ====
+  * **Orgaan Beheer:** Moet omgaan met geroepen organen en larven tijdens het vechten tegen Yog
+  * **Schade Mitigatie:** Schade aan Yog neemt exponentieel af met elk geroepen orgaan
+  * **Zichtlijn Aanvallen:** Doodsstraal raakt alle tegels in een rechte lijn
+  * **Regeneratie:** Yog heeft beperkte zelfherstelcapaciteiten via orgaan oproep mechanieken
+  * **Fase Veranderingen:** Gevechtsmechanieken veranderen naarmate Yog's gezondheid daalt en meer organen worden geroepen
+
+==== Drops ====
+  * [[nl:rpd:amulet_of_yendor_item|Amulet of Yendor]]: Het ultieme artefact, nodig om het spel te winnen
+  * [[nl:rpd:gold_item|Goud]]: Groot bedrag goud
+  * **Skeleton Key**: Gegarandeerd drop bij doden (als held er geen heeft)
+  * **Zeldzame Items:** Kan unieke items van alle vorige verdiepingen droppen
+
+==== Locatie ====
+  * Te vinden in het [[nl:rpd:halls|Demon Halls]] gebied, alleen toegankelijk met een [[nl:rpd:skeleton_key_item|Skeleton Key]]
+
+==== Beschrijving ====
+Yog, de Heer van de Doden, is de einduitdaging voor helden die durf zijn om de diepste niveaus van de kerker te betreden.
+
+==== Voorbereiding ====
+  * **Uitrusting:** Hoog-niveau wapens en pantser zijn essentieel
+  * **Verbruiksmiddelen:** Neem veel genezingsitems, drankjes en schriftrollen mee
+  * **Strategie:** Plan voor een lang, complex gevecht tegen meerdere vijanden
+  * **Positionering Beheer:** Vermijd rechte lijnen met Yog vanwege de doodsstraal aanval
+  * **Buff Strategie:** Plan voor frequente buff hercreatie door orgaan oproep mechanieken
+
+==== Tactieken ====
+  * Focus op het elimineren van geroepen organen en larven om overweldigd te worden te voorkomen
+  * Houd afstand en vermijd directe vuurlijnen waar mogelijk
+  * Wees voorbereid om tactieken te veranderen naarmate het gevecht door fasen gaat
+  * Neem [[nl:rpd:ranged_weapons|afstandwapens]] mee om vanuit veiligheid aan te vallen
+  * Verwacht dat het gevecht veel beurten duurt met complexe mechanieken
+
+==== Citatem ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2827|Yog_Info1]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2828|Yog_Info2]]
+
+==== Inhoudsverificatie ====
+  * JSON Configuratie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsEye.json|mobsDesc/YogsEye.json]]
+  * Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/YogsEye.lua|scripts/mobs/YogsEye.lua]] (gemigreerd van Java naar JSON + Lua)
+  * Entity Kind: YogsEye (geeft simpele klassenaam terug via getEntityKind())
+  * Statistieken verificatie: Direct geëxtraheerd uit mobsDesc/YogsEye.json (ht=1000, attackSkill=30, defenseSkill=30, dmgMin=20, dmgMax=30, dr=0, exp=50)
+  * Effect beschrijvingen: Gebaseerd op code analyse van scripts/mobs/YogsEye.lua en geassocieerde orgaan klassen
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2827-L2833|Yog_Name, Yog_Desc, Yog_Gender, Yog_Info1, Yog_Info2, Yog_Name_Objective]]
+  * Sprite configuratie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/YogsEye.json|spritesDesc/YogsEye.json]] - sprite afmetingen en animatie frames
+  * Orgaan klassen:
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/YogsEye.lua#L93-L119|spawn() in YogsEye.lua]] - orgaan oproepen
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/RottingFist.json|mobsDesc/RottingFist.json]] (Rotting Fist)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/BurningFist.json|mobsDesc/BurningFist.json]] (Burning Fist)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsBrain.json|mobsDesc/YogsBrain.json]] (Yog's Brain)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsHeart.json|mobsDesc/YogsHeart.json]] (Yog's Heart)
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsTeeth.json|mobsDesc/YogsTeeth.json]] (Yog's Teeth)
+  * Doodsstraal implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/YogsEye.lua#L40-L58|canAttack() en zapProc() in YogsEye.lua]]
+  * Larva spawning: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/YogsEye.lua#L75-L76|damage() in YogsEye.lua]]
+  * Schade mitigatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/YogsEye.lua#L60-L82|damage() methode]] - bitwise shift per orgaan
+  * Buff mechanieken: Basis Boss klasse biedt immuniteit voor Dood, Terreur, Amok, Bevalligheid, Slaap, Branding, ToxicGas, ScrollOfPsionicBlast
+  * Niveau generatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/HallsBossLevel.java|HallsBossLevel.java]] waar Yog verschijnt
+  * Amulet/Key drop logica: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java#L59-L87|Boss.die() en restoreFromBundle()]] behandelen Amulet of Yendor en Skeleton Key drops
+  * Badge validatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Badges.java#L186|YOG_SLAIN badge]]
+  * Gevechtsmuziek: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/YogsEye.json|spritesDesc/YogsEye.json]] specificeert "ost_boss_6_fight" / "ost_boss_fight" als gevechtsmuziek
+  * AI gedrag: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob basisklasse]] uitgebreid door YogsEye
+  * Gezondheidsformule: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsEye.json#L11|ht=1000 in mobsDesc/YogsEye.json]]
+  * Aanvalsformules: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/YogsEye.json#L6-L9|attack/defense/damage/DR waarden]]
+  * Laatst bijgewerkt: Geverifieerd tegen huidige codebase
+
+==== Zie Ook ====
+  * [[nl:rpd:bosses|Baas Vijanden]] - Andere grote kerkeruitdagingen
+  * [[nl:rpd:halls|Demon Halls]] - Het gebied waar Yog te vinden is
+  * [[nl:rpd:mobs|Mobs]] - Andere wezens in de kerker
+  * [[nl:rpd:combat_mechanic|Gevecht]] - Algemene gevechtsmechanieken
+  * [[nl:rpd:amulet_of_yendor_item|Amulet of Yendor]] - Het ultieme doel van het spel
+  * [[nl:rpd:rotting_fist_mob|Rotting Fist]] - Een van Yog's geroepen organen
+  * [[nl:rpd:burning_fist_mob|Burning Fist]] - Een van Yog's geroepen organen
+  * [[nl:rpd:yogs_brain_mob|Yog's Brain]] - Een van Yog's geroepen organen
+  * [[nl:rpd:yogs_heart_mob|Yog's Heart]] - Een van Yog's geroepen organen
+  * [[nl:rpd:yogs_teeth_mob|Yog's Teeth]] - Een van Yog's geroepen organen
+  * [[nl:rpd:badges_mechanic|Badges]] - Prestatiesysteem inclusief baas kills
+
+{{tag> nl:rpd mobs boss final_boss demon_halls }}
