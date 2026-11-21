@@ -1,0 +1,55 @@
+====== Dauwflesje ======
+{{ rpd:images:dew_vial_item.png|Dauwflesje }}
+
+**Dauwflesje** is een speciaal item in Remixed Dungeon dat spelers toestaat overtollige dauwdruppels op te slaan voor later gebruik. Het biedt ook een noodheelmechanisme als de held in levensgevaar is.
+
+==== Beschrijving ====
+Het Dauwflesje is een miniatuurvat ontworpen om dauwdruppels te bevatten. Spelers kunnen dauwdruppels in verzamelen wanneer ze in hoge gras worden gevonden, en ze later drinken wanneer nodig. Belangrijkste is dat als het flesje vol is wanneer de gezondheid van de speler nul bereikt, de dauwdruppels automatisch worden verbruikt om de speler te genezen en de dood te voorkomen.
+
+==== Mechanica ====
+  * **Opslagcapaciteit:** Kan maximaal 10 dauwdruppels bevatten (MAX_VOLUME constante)
+  * **Automatische Genezing:** Als vol en speler HP 0 bereikt, automatisch verbruikt om het personage te genezen
+  * **Handmatig Drinken:** Kan handmatig worden geconsumeerd om een variabel bedrag te genezen op basis van opgeslagen dauwdruppels
+  * **Visuele Indicator:** Gloeit wit wanneer vol om de geladen staat aan te duiden (Glowing.WHITE effect)
+  * **Genezingsformule:** Genezingsbedrag volgt de formule: `ceil(volume^(log10(20)) / 20 * character_HT)`
+  * **Afbeeldingsvariatie:** Toont verschillende afbeeldingen op basis van volume (0, 1, 2, of 3 afhankelijk van vullingsgraad)
+  * **Auto-Herleven:** Als speler HP 0 is, herleeft auto-drinken eerst de held met 1 HP voordat het geneest
+
+==== Statistieken ====
+  * **Maximaal Volume:** 10 dauwdruppels capaciteit (MAX_VOLUME constante)
+  * **Auto-Drink Functie:** Automatisch verbruikt wanneer HP 0 bereikt als vol
+  * **Genezingsberekening:** Genezingsbedrag gebaseerd op formule: `ceil(volume^(log10(20)) / 20 * character_HT)`
+  * **Gewicht:** 0 (geen gewicht)
+  * **Type:** Consumable item met opslagcapaciteit
+  * **Drinktijd:** Kost 1f tijdseenheden om handmatig te consumeren (TIME_TO_DRINK constante)
+
+==== Strategie ====
+  * Verzamel dauwdruppels in hoog gras en bewaar ze in het flesje voor noodgevallen
+  * Een vol flesje fungeert als een \"tweede kans\" in levensgevaar
+  * Zeer nuttig voor vroege-game overleven wanneer genezingsitems schaars zijn
+  * Houd het flesje geladen naarmate je dieper in de kerker daalt
+  * Auto-herleven functie kan je zelfs van de dood redden als het flesje vol is
+
+==== Verwerving ====
+  * Kan in winkels worden gevonden, incidenteel
+  * Soms beschikbaar als kerkerbuit
+  * Waardvoller om te bewaren dan individuele [[nl:rpd:dewdrop_item|dauwdruppels]]
+
+==== Code Referenties ====
+  * Implementatie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java|DewVial.java]]
+  * String bronnen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-nl/strings_all.xml|Dutch Dew Vial strings]]
+  * Sprite: [[https://github.com/NYRDS/remixed-dungeon/blob/master/sprites/item_DewVial.png|item_DewVial.png]]
+  * Genezingsberekening: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java#L70-L74|doDrink methode met genezingsformule]]
+  * Auto-drink mechanisme: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java#L94-L105|autoDrink methode]]
+  * Afbeeldingsvariaties: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/DewVial.java#L122-L129|image methode met 4 verschillende staten]]
+
+==== Zie Ook ====
+  * [[nl:rpd:dewdrop_item|Dauwdruppel]] - Individueel dauwdruppel item dat het flesje vult
+  * [[nl:rpd:high_grass|Hoog Gras]] - Waar dauwdruppels gevonden kunnen worden
+  * [[nl:rpd:potion_of_healing_item|Genezingsdrank]] - Substantieelere genezingsalternatief
+  * [[nl:rpd:ring_of_herbalism_item|Ring van Kruidkunde]] - Verhoogt dauwverzamelingsratio
+  * [[en:rpd:dew_vial_item|Dew Vial (English)]] - English version of this page
+  * [[es:rpd:dew_vial_item|Frasco de Rocío (Spanish)]] - Spanish version of this page
+  * [[pt:rpd:dew_vial_item|Frasco de Orvalho (Portuguese)]] - Portuguese version of this page
+
+{{tag> rpd items consumable healing }}
