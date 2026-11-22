@@ -1,0 +1,41 @@
+====== Llama Líquida ======
+
+{{ rpd:images:potion_of_liquid_flame_item.png|Efecto Llama Líquida }}
+
+**Llama Líquida** es un efecto ambiental dañino en Remixed Pixel Dungeon que inflige daño a los personajes que están sobre ella.
+
+==== Descripción ====
+Llama Líquida es un efecto blob que crea un peligro de fuego en el suelo de la mazmorra, infligiendo daño de fuego continuo a cualquier personaje en la casilla afectada. Se propaga a terreno inflamable adyacente y puede ser creada por varias fuentes, incluyendo la Poción de Llama Líquida.
+
+==== Mecánicas ====
+  * **Daño:** Inflige daño de fuego cada turno a todas las criaturas en la casilla afectada
+  * **Propagación:** Puede propagarse a casillas de terreno inflamable adyacentes
+  * **Duración:** Persiste varios turnos antes de desvanecerse
+  * **Resistencia:** Los personajes con resistencia al fuego reciben daño reducido
+
+==== Fuentes ====
+  * [[es:rpd:potion_of_liquid_flame_item|Poción de Llama Líquida]] - Crea un área de llama líquida 3x3 al romperse
+  * [[es:rpd:fire_trap|Trampa de Fuego]] - Peligro ambiental que crea llama líquida
+  * [[es:rpd:wand_of_firebolt_item|Varilla de Bola de Fuego]] - Puede ignitar áreas de llama líquida
+  * Otros objetos y habilidades de fuego
+
+==== Contramedidas ====
+  * [[es:rpd:potion_of_frost_item|Poción de Escarcha]] - Puede extinguir llama líquida
+  * [[es:rpd:wand_of_frost_item|Varilla de Escarcha]] - Los ataques de escarcha pueden neutralizar el fuego
+  * Equipamiento y buffs con resistencia al fuego reducen el daño recibido
+
+==== Detalles Técnicos ====
+  * Implementación: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame.java]]
+  * Sistema blob: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java|Blob.java]]
+  * Mecánicas de daño de fuego: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java#L20-L30|método spread]]
+  * Mecánicas de duración: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java#L35-L45|desvanecimiento con el tiempo]]
+  * Integración de resistencia al fuego: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L154-L159|método Char.resist()]]
+  * Datos legibles por máquina: [[mr:liquid_flame_blob|mr:liquid_flame_blob]]
+
+==== Efectos Relacionados ====
+  * [[es:rpd:burning_buff|Quemadura]] - Efecto de estado aplicado por llama líquida
+  * [[es:rpd:fire|Fuego]] - Mecánicas generales de fuego
+  * [[es:rpd:toxic_gas_buff|Gas Tóxico]] - Otro efecto blob
+  * [[es:rpd:paralytic_gas_buff|Gas Paralizante]] - Otro efecto blob
+
+{{tag> rpd mechanics blobs fire damage }}

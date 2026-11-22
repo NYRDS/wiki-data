@@ -1,0 +1,63 @@
+====== גמדים מתים-חיים ======
+
+{{ rpd:images:undead_mob.png|גמדים מתים-חיים }}
+
+**גמדים מתים-חיים** הם מובים ב-Remixed Dungeon שזומנו על ידי בוס מלך הגמדים. אלו לוחמים גמדיים מונפשים מחדש המשרתים את המלך ברמות הסופיות של הצינוק.
+
+==== נתונים ====
+  * **חיים:** 28
+  * **מיומנות הגנה:** 15
+  * **מיומנות התקפה:** 16
+  * **נזק:** 12-16
+  * **דרג שריון:** 5
+  * **ניסיון:** 0
+  * **סטטוס מת:** כן (חסין להשפעות סטטוס המכוונות ליצורים חיים)
+
+==== תיאור ====
+הגמדים מתים-חיים הם לוחמים גמדיים מונפשים מחדש המשרתים את מלך הגמדים. הם זומנים על ידי המלך במהלך קרב ונלחמים לצידו. הם היו חברים לשעבר בצבאו של מלך הגמדים, שהוחזרו באמצעות קסם אפל.
+
+==== התנהגות ====
+  * **זימון:** נוצרים על ידי המלך במהלך קרב כשהוא זקוק לכוחות נוספים
+  * **התקפה:** סיכוי ל[[he:rpd:stun_buff|להמם]] מטרות בפגיעה (1 ל-MAX_ARMY_SIZE סיכוי)
+  * **אינטראקציה עם גז רעיל:** כשהם נפגעים על ידי [[he:rpd:toxic_gas_level_object|גז רעיל]], ענן הגז מתנקה
+  * **צליל מוות:** משמיע צליל מוות של עצמות נשברות כשהם מובסים
+
+==== אסטרטגיה ====
+  * המלך יזמן מתים-חיים כשהוא מתחת לגודל הצבא המקסימלי
+  * הם לא מסוכנים במיוחד בנפרד אבל יכולים להציף אם רבים זומנו
+  * התמקדו במלך כדי למנוע זימון נוספים
+  * שקלו להשתמש בהתקפות שטח כשיש מספר מתים-חיים נוכחים
+  * שימו לב ש[[he:rpd:heal_spell|כשפי ריפוי]] לא יעבדו עליהם
+
+==== אינטראקציות ====
+  * **חסינויות:** חסינים ל[[he:rpd:poison_buff|רעל]] ול[[he:rpd:bleeding_buff|דימום]]
+  * **חולשות:** פגיעים להתקפות מבוססות קודש/אור ו[[he:rpd:healing_spell|קסמי ריפוי]] (שפוגעים בהם)
+  * **השפעות סטטוס:** חסינים להשפעות סטטוס המכוונות ליצורים חיים (שינה, שיתוק, הקסמה)
+
+==== הפניות קוד ====
+  * **יישום Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L164|King.Undead.java]]
+  * **מחלקת בסיס:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]]
+  * **זימון המלך:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L141-L147|King.java - לוגיקת זימון]]
+  * **נתונים:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L167-L178|בונה Undead של King.java]] - מגדיר חיים (28), מיומנות הגנה (15), מיומנות התקפה (16), נזק (12-16), שריון (5), וניסיון (0)
+  * **התקפת המם:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L181-L185|attackProc method]] - סיכוי 1 ל-MAX_ARMY_SIZE (5) להמם מטרה לסיבוב אחד
+  * **אינטראקציה עם גז רעיל:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L187-L191|damage method]] - מנקה גז רעיל כשנפגע ממנו
+  * **צליל מוות:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L193-L198|die method]] - משמיע צליל עצמות נשברות כשמובס
+  * **סטטוס מת:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L176|setUndead method]] - מסמן כיצור מת
+  * **AI משוטט:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L177|Wandering.class]] - משתמש בהתנהגות AI משוטטת
+  * **קבוע MAX_ARMY_SIZE:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L13|MAX_ARMY_SIZE = 5]] - מגדיר מספר מקסימלי של מתים-חיים שהמלך יכול לזמן
+  * **מכניקת זימון:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L120-L134|summon() method]] - מטפל בזימון מתים-חיים חדשים
+  * **ספירת משרתים:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L89-L97|countServants() method]] - סופר מתים-חיים קיימים כדי למנוע חריגה מ-MAX_ARMY_SIZE
+  * **אפקטים ויזואליים מיוחדים:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L152-L154|Flare effect]] - אפקט ויזואלי בזימון מתים-חיים
+  * **טלפורטציה בזימון:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/King.java#L150-L151|WandOfBlink.appear]] - מטלפרט מתים-חיים למיקומם בזימון
+  * **מכניקת זימון:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/Level.java#L321-L323|Level.spawnMob]] - מטפל בזימון בפועל של המוב
+  * **משאבי מחרוזות:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1295-L1297|Undead_Name, Undead_Name_Objective, Undead_Desc]] - שמות ותיאורים באנגלית
+  * **משאבי מחרוזות בעברית:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-he/strings_all.xml|strings_all.xml]] - לוקליזציה עברית
+  * **תצורת ספרייט:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Undead.json|Undead.json]] - מימדי ספרייט, אנימציות וטקסטורה
+  * **נתונים קריאי מכונה:** [[mr:undead_mob|mr:undead_mob]]
+
+==== מובים קשורים ====
+  * [[he:rpd:king_mob|מלך הגמדים]] - הבוס שמזמן מתים-חיים
+  * [[he:rpd:skeleton_mob|שלד]] - יצור מת נוסף
+  * [[he:rpd:zombie_mob|זומבי]] - סוג נוסף של מת-חי
+
+{{tag> rpd mobs undead boss_minion}}

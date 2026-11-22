@@ -1,0 +1,45 @@
+====== Piège à Poison ======
+
+{{ rpd:images:poison_trap_level_object.png|Piège à Poison }}
+
+**Piège à Poison** est un type de piège trouvé dans le donjon qui libère du gaz poison lorsqu'il est activé, causant l'effet de statut poison au personnage qui l'active.
+
+==== Effets ====
+  * **Statut Poison** : Inflige l'effet [[fr:rpd:poison_buff|poison]] au personnage piégé
+  * **Dégâts sur la Durée** : Cause des dégâts graduels jusqu'à ce que le poison s'estompe ou soit soigné
+  * **Durée** : L'effet poison dure un nombre limité de tours
+  * **Cumul** : Plusieurs coups de poison augmentent le taux de dégâts
+
+==== Activation ====
+  * **Déclencheur** : S'active quand un personnage se déplace sur la case du piège
+  * **Usage Unique** : Devient inoffensif après activation
+  * **Silencieux** : N'alerte pas les autres ennemis (contrairement aux pièges d'alarme)
+
+==== Contremesures ====
+  * **[[fr:rpd:potion_of_purity_item|Potion de Pureté]]** : Nettoie instantanément le statut poison
+  * **[[fr:rpd:ring_of_elements_item|Anneau des Éléments]]** : Fournit une résistance aux effets de poison
+  * **[[fr:rpd:herbalism|Herboristerie]]** : Peut réduire la durée du poison
+  * **Évitement** : Détecter et éviter le piège entièrement
+
+==== Utilisation par Tengu ====
+  * **Placement Stratégique** : Tengu crée des pièges à poison pendant le combat dans le cadre de sa stratégie
+  * **Déni de Zone** : Force le héros à se déplacer vers des emplacements spécifiques pour éviter les pièges
+  * **Effet Multi-tours** : Continue d'endommager le héros même après que Tengu se soit déplacé ailleurs
+
+==== Détails Techniques ====
+  * Implémentation : [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java]] - implémentation de piège à fléchettes empoisonnées
+  * Classe de base : [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap.java]] (méthode factory)
+  * Effet : Applique le [[fr:rpd:poison_buff|statut poison]]
+
+==== Références Code ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/objects/Trap.java|Trap.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
+
+==== Voir Aussi ====
+  * [[fr:rpd:traps|Pièges]]
+  * [[fr:rpd:poison_buff|Búf de Poison]]
+  * [[fr:rpd:tengu_mob|Tengu]] (utilise les pièges à poison stratégiquement)
+  * [[fr:rpd:level_objects|Objets de Niveau]]
+
+{{tag> rpd mechanics traps poison hazards }}
