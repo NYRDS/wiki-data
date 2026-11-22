@@ -1,0 +1,59 @@
+====== Mana ======
+
+{{ rpd:images:potion_of_mana_item.png|Manadrank }}
+
+In Remixed Dungeon is de bron die in de UI als "Mana" wordt weergegeven eigenlijk het **Vaardigheidspunten** systeem. Dit wordt gebruikt voor het uitspreken van spreuken en het gebruiken van klassevaardigheden, hoewel het in de interface als "Mana" gelabeld is.
+
+**Mana** (ook bekend als Vaardigheidspunten) is een bronnensysteem in Remixed Dungeon dat spreuken en magische vaardigheden aandraagt voor bepaalde klassen en personagebouw.
+
+==== Overzicht ====
+Mana vertegenwoordigt de magische energie die nodig is om spreuken uit te spreken en magische vaardigheden te gebruiken. Het is een beperkte maar hernieuwbare bron die spelers strategisch moeten beheren. In de spelcode wordt mana aangeduid als "vaardigheidspunten" en wordt bijgehouden als het SP (Skill Points) systeem.
+
+==== Mechanismen ====
+  * **Regeneratie**: Mana genereert zichzelf door de ManaRegeneratie buff die 1 vaardigheidspunt geeft op vaste intervallen
+  * **Regeneratiesnelheid**: Genereert 1 vaardigheidspunt elke 20/(1.2^bonus) beurten waarbij bonus verschillende factoren omvat
+  * **Capaciteit**: Maximum mana wordt bepaald door vaardigheidspuntmaximums, die toenemen met level
+  * **Verbruik**: Spreuken en speciale vaardigheden consumeren een specifiek aantal vaardigheidspunten
+  * **Regeneratiebereik**: Mana genereert zich alleen buiten veilige gebieden (winkels, altaren); binnen veilige gebieden accumuleert de ManaRegeneratie buff geen vaardigheidspunten
+  * **Bonus Regeneratie**: Bepaalde buffs en subklassen kunnen mana-regeneratiebonussen geven (bijv. Shaman-subklasse)
+
+==== Gebruik ====
+  * **Spreuken Spreken**: De meeste spreuken vereisen een bepaald aantal vaardigheidspunten om uit te spreken
+  * **Speciale Vaardigheden**: Klassenpantsers en andere speciale vaardigheden consumeren vaardigheidspunten
+  * **Bronnenbeheer**: Spelers moeten vaardigheidspuntgebruik balanceren met andere bronnen
+  * **Klassenpantsers**: Krijgerpanservermogens, Magierstafkrachten en andere klassespecifieke vaardigheden vereisen vaardigheidspunten
+
+==== Klassen en Affiniteiten ====
+  * **Rogue Klasse**: Gebruikt mana voor worpspreuken zoals [[nl:rpd:kunai_throw_spell|Kunai Worp]]
+  * **Shaman Subklasse**: Biedt manaregeneratiebonus via HeroSubClass.manaRegenerationBonus()
+  * **Mage Klasse**: Heeft directe toegang tot staf en spreukmechanismen
+  * **Andere Klassen**: Kunnen toegang krijgen tot managebaseerde vaardigheden via speciale middelen
+
+==== Technische Details ====
+  * **Java Klasse**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Bevat SP (vaardigheidspunten) systeem implementatie
+  * **Regeneratie Klasse**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/ManaRegeneration.java|ManaRegeneration.java]] - Behandelt automatische manaregeneratie
+  * **Methoden**:
+    * **getSkillPoints()**: Retourneert huidige manawaarde
+    * **getSkillPointsMax()**: Retourneert maximum manacapaciteit
+    * **spendSkillPoints()**: Vermindert vaardigheidspunten met opgegeven bedrag
+    * **accumulateSkillPoints()**: Voegt vaardigheidspunten toe aan huidige waarde
+  * **Regeneratieformule**: 1 vaardigheidspunt elke 20/(1.2^bonus) beurten met diverse bonussen meegerekend
+
+==== Code Referenties ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java|Hero.java]] - Hoofd vaardigheidspunten implementatie
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/ManaRegeneration.java|ManaRegeneration.java]] - Automatisch manaregeneratiesysteem
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subklasse manabonussen (shaman.manaRegenerationBonus)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Klasse manabonussen
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/KunaiThrow.lua#L18|KunaiThrow.lua]] - Voorbeeld spreuk die mana gebruikt
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] - Initiële manawwaarden voor verschillende klassen
+
+==== Zie Ook ====
+  * [[nl:rpd:spells_overview|Spreuken]]
+  * [[nl:rpd:magic|Magiesysteem]]
+  * [[nl:rpd:kunai_throw_spell|Kunai Worp Spreuk]]
+  * [[nl:rpd:mechanics|Spelmechanismen]]
+  * [[nl:rpd:shaman_subclass|Shaman]] - Subklasse met manaregeneratiebonus
+  * [[nl:rpd:warrior_armor_item|Krijgerpanser]] - Klassenpanser die mana gebruikt
+  * [[nl:rpd:class_armor_item|Klassenpanser]] - Alle klassespecifieke pantsers gebruiken mana
+
+{{tag> rpd mechanismen magie bronnen }}
