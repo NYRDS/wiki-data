@@ -1,0 +1,45 @@
+====== Лечебная Стрела ======
+
+{{ rpd:images:health_arrow_item.png|Лечебная Стрела }}
+
+**Лечебная Стрела** — это специальный тип ракетного оружия, которое лечит цель при попадании, а не наносит значительный урон. Хотя у неё есть базовый урон 1-1, её основная цель — лечить цели, а не ранить их.
+
+==== Статистика ====
+  * **Урон**: 1-1 (baseMin: 1, baseMax: 1)
+  * **Задержка**: 1.0 (baseDly: 1.0)
+  * **Минимальная требуемая сила**: 9 (setSTR: 9)
+
+==== Особенности ====
+  * **Лечащий эффект**: Когда стрела попадает в цель, она лечит цель на 15% от её максимального HP
+  * **Механизм**: Использует PotionOfHealing.heal(defender, 0.15f)
+
+==== Получение ====
+  * Может быть найдена в различных кладовых по всему подземелью
+  * Количество обычно варьируется от 15-30 при случайной генерации (источник: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java#L103-L104|Arrow.java#L103-L104]])
+  * Цена: 10 золота за стрелу — самый дорогой тип стрел (источник: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthArrow.java#L17-L19|HealthArrow.java#L17-L19]])
+
+==== Стратегия ====
+  * Полезна для лечения союзников или питомцев во время боя
+  * Может использоваться для самолечения при бою с дружественными существами
+  * Особенно ценна при использовании с питомцами или призванными существами
+  * Лечащий эффект имеет 25% шанс сработать при попадании стрелы в цель
+
+==== Ссылки на код ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthArrow.java|HealthArrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (базовый класс)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfHealing.java|PotionOfHealing.java]] (механизм лечения)
+
+==== Строковые ресурсы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1557|HealthArrow_Name]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1558|HealthArrow_Info]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1559|HealthArrow_Gender]]
+
+==== Конфигурационные файлы ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] (базовая ракетная реализация)
+
+==== См. также ====
+  * [[ru:rpd:potion_of_healing_item|Зелье Исцеления]] — Базовый механизм лечения
+  * [[ru:rpd:arrows_item|Стрелы]] — Другие типы стрел
+  * [[ru:rpd:missile_weapons|Ракетное Оружие]] — Другие виды метательного оружия
+
+{{tag> rpd items arrows missiles healing }}

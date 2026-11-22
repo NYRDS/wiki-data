@@ -1,0 +1,85 @@
+====== Gifpijl ======
+
+{{ rpd:images:poison_arrow_item.png|Gifpijl }}
+
+**Gifpijl** is een speciaal munitie-item voor afstandsgevecht in Remixed Pixel Dungeon dat vijanden vergiftigt bij raak.
+
+==== Beschrijving ====
+Een houten pijl met een punt gedoopt in gif. Wanneer deze pijl een vijand raakt, past het een gif-statuseffect toe, wat continue schade over tijd veroorzaakt. Dit wordt gecreëerd door een [[nl:rpd:common_arrow_item|Gewone Pijl]] te "bevochtigen" met een [[nl:rpd:potion_of_toxic_gas_item|Drank van Giftig Gas]].
+
+==== Statistieken ====
+  * **Schade:** 3-4 punten (basis, stijgt wanneer afgevuurd vanaf een boog)
+  * **Vertraging:** 0.75x (relatief aan wapen vuursnelheid)
+  * **Nauwkeurigheid:** 1x (relatief aan wapen nauwkeurigheid)
+  * **Vereiste Kracht:** 9
+  * **Duurzaamheid:** Eenmalig gebruik (verbruikt bij impact)
+  * **Prijs:** 5 goud per pijl
+  * **Gewicht:** 1
+
+==== Eigenschappen ====
+  * **Type:** Worpen/Munitie (Speciaal)
+  * **Gebruik:** Voor gebruik met afstandwapens zoals bogen
+  * **Verbruikbaar:** Elke pijl wordt verbruikt na afvuur
+  * **Stapelbaar:** Kan oplopen tot zeer hoge hoeveelheden
+  * **Speciaal Effect:** Vergiftigt het doelwit bij raak, wat schade over tijd veroorzaakt
+  * **Upgegraded bij afvuren:** Schade neemt toe met het niveau van de boog
+
+==== Creatie ====
+Gifpijlen kunnen worden gecreëerd door een [[nl:rpd:potion_of_toxic_gas_item|Drank van Giftig Gas]] te gebruiken op gewone [[nl:rpd:common_arrow_item|Gewone Pijlen]]. Dit proces heet "bevochtigen" en transformeert de basis pijl in een met speciale eigenschappen.
+
+==== Mechanica ====
+  * Bij raak van een vijand, past de [[nl:rpd:poison_buff|Gif]] statuseffect toe
+  * Basisfgifduur is 5f (gedefinieerd als ''PoisonArrow.DURATION = 5f''), verhoogd met 1 beurt per niveau van de boog waaruit afgevuurd (indien vanaf een boog)
+  * Gif veroorzaakt 1 schade per beurt tot het afneemt of de vijand sterft
+  * Giftige effect stackt met bestaand gif, vernieuwt duur
+  * Stackt niet met andere statuseffecten zoals [[nl:rpd:paralysis_buff|Verlamming]] of [[nl:rpd:burning_buff|Branding]]
+
+==== Implementatie Details ====
+  * **Klasse**: ''com.watabou.pixeldungeon.items.weapon.missiles.PoisonArrow''
+  * **Basisklasse**: Extends ''Arrow'' klasse
+  * **Sprite**: item_PoisonArrow.png
+  * **Schade:** Min 3, Max 4 (bijgewerkt in constructor)
+  * **Vertraging:** Basistvertraging 0.75 (bijgewerkt in constructor)
+  * **Prijs:** 5 goud per pijl (hoeveelheidsgebaseerd)
+  * **Giftapplicatie:** Afgehandeld in de ''attackProc'' methode met ''Buff.affect(defender, Poison.class, ...)'' 
+  * **Gifduur:** ''Poison.durationFactor(defender) * poisonFactor'' waar poisonFactor = 1 + firedFrom.level() indien vanaf een boog afgevuurd
+  * **Speciale Activering:** ''activateSpecial(attacker, defender, damage)'' wordt geroepen voordat gif wordt toegepast
+
+==== Beschikbaarheid ====
+  * **Alleen Creatie:** Kan niet als willekeurige loot worden gevonden; moet worden gecreëerd door bevochtiging
+  * **Vereiste Materialen:** [[nl:rpd:common_arrow_item|Gewone Pijl]] + [[nl:rpd:potion_of_toxic_gas_item|Drank van Giftig Gas]]
+  * **Alchemie:** Deel van het alchemiesysteem van het spel voor het creëren van speciale munitie
+
+==== Strategie ====
+  * Uitstekend voor het aanbrengen van duurzame schade zonder veel middelen te verbruiken
+  * Goed tegen vijanden met matige gezondheid die vergiftigd kunnen worden tot de dood
+  * Overweeg bij groepen, aangezien gif ze over tijd verder verzwakt
+  * Wees voorzichtig om niet te verspillen op vijanden die gif snel kunnen opruimen of immuun zijn
+  * Effectief tegen vijanden die je niet direct doden, waardoor het gif kan werken
+  * Schade neemt toe wanneer vanaf een boog afgevuurd, en gifduur neemt toe met het niveau van de boog
+
+==== Gerelateerd ====
+  * [[nl:rpd:common_arrow_item|Gewone Pijl]] - Basispijl voor bevochtiging
+  * [[nl:rpd:potion_of_toxic_gas_item|Drank van Giftig Gas]] - Vereist voor creatie
+  * [[nl:rpd:arrows_item|Alle Pijltypes]] - Complete lijst van pijlovarianten
+  * [[nl:rpd:bows_and_arrows_item|Bogen en Pijlen]] - Wapens compatibel met pijlen
+  * [[nl:rpd:alchemy|Alchemie]] - Speciale items creëren
+  * [[nl:rpd:poison_buff|Gif Statuseffect]] - Gedetailleerde informatie over gifmechanica
+
+==== Broncode ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/PoisonArrow.java|PoisonArrow.java]]
+  * Basispijl: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfToxicGas.java|PotionOfToxicGas.java]] - Creatiemechanisme
+  * Tekstbronnen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L859-L860|PoisonArrow_Name en PoisonArrow_Info strings]]
+  * Russische Tekstbronnen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L846-L847|Russische PoisonArrow strings]]
+  * JSON Configuratie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/missiles/Arrow.json|Arrow.json]]
+  * Giftmechanica: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
+  * Creatierecept: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Moistening.java#L64-L66|Moistening recept]]
+  * Basistatistieken: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/PoisonArrow.java#L13-L20|Constructor met stats]]
+  * Aanvalsmechanica: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/PoisonArrow.java#L31-L41|attackProc methode]]
+  * Prijsberekening: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/PoisonArrow.java#L27-L29|price() methode]]
+
+==== Opmerkingen ====
+Gifpijlen zijn een sleuteldeel van het alchemiesysteem, waardoor spelers krachtige munitie kunnen creëren uit algemene bronnen. Ze zijn bijzonder effectief bij het vechten tegen meerdere vijanden of in situaties waar je afstand kunt bewaren. Het giftige effect heeft een basisduratie van 5 beurten, met additionele duur gebaseerd op het niveau van de gebruikte boog.
+
+{{tag> rpd items ammunition ranged toxic_gas poison }}

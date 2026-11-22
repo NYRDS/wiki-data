@@ -1,16 +1,22 @@
 ====== Boss Mob - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java|Boss.java]] - Abstract base class for all boss mobs
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Parent mob class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java|Mob.java]] - Parent mob class that all bosses extend
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Hunting.java|Hunting.java]] - AI state used for battle music
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/keys/SkeletonKey.java|SkeletonKey.java]] - Key dropped by bosses
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfPsionicBlast.java|ScrollOfPsionicBlast.java]] - Item bosses resist
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Death.java|Death.java]] - Enchantment bosses resist
 
 ===== JSON Configuration =====
-  * Boss mobs are configured through individual JSON files in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/|mobsDesc/]] directory
-  * Specific boss configurations: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/King.json|King.json]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Goo.json|Goo.json]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Tengu.json|Tengu.json]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/DM300.json|DM300.json]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Yog.json|Yog.json]]
+  * Boss mobs are configured through individual JSON files in [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets/mobsDesc/|mobsDesc/]] directory
+  * Specific boss configurations: 
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Goo.json|Goo.json]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Tengu.json|Tengu.json]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/DM300.json|DM300.json]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/King.json|King.json]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Yog.json|Yog.json]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/Lich.json|Lich.json]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/ShadowLord.json|ShadowLord.json]]
 
 ===== String Resources =====
   * English: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - Search for "_Name" and "_Desc" patterns for boss entities
@@ -18,11 +24,11 @@
   * All languages: Search for boss entity names in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/|res/]] directory
 
 ===== Lua Scripts =====
-Boss entities are primarily implemented in Java. Some custom boss behaviors may be implemented in Lua scripts in [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets/scripts/|scripts/]] directory.
+Boss entities are primarily implemented via JSON configuration. Some custom boss behaviors may be implemented in Lua scripts in [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets/scripts/|scripts/]] directory.
 
 ===== Key Implementation Details =====
-  * **Abstract Class**: Boss is an abstract class that extends Mob
-  * **Boss Flag**: isBoss = true (set in constructor)
+  * **Base Class**: All bosses extend Mob.java; there is no separate Boss.java class
+  * **Boss Flag**: isBoss = true (set in JSON configuration via "boss": true)
   * **Max Level**: maxLvl = 50 (all bosses scale to level 50 maximum)
   * **Pet Immunity**: cannotBePet() returns true (bosses cannot be pets)
   * **Death Enchantment Resistance**: Adds resistance to Death enchantment
@@ -49,9 +55,9 @@ Boss entities are primarily implemented in Java. Some custom boss behaviors may 
   * [[mr:undead_mob|Undead_Mob]] - Minions summoned by King boss
 
 ===== Content Verification =====
-  * Information source: Java code (Boss.java)
-  * Last updated: 2026-04-05 based on current codebase analysis
-  * Verified against: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Boss.java
-  * Key properties: isBoss=true, maxLvl=50, cannotBePet, Death/PsionicBlast resistance
+  * Information source: Java code (Mob.java) + JSON configurations (mobsDesc/*.json)
+  * Last updated: 2026-11-22 based on current codebase analysis
+  * Verified against: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Mob.java and mobsDesc/*.json
+  * Key properties: isBoss=true (JSON), maxLvl=50, cannotBePet, Death/PsionicBlast resistance
 
 {{tag>mr mobs boss code_reference}}
