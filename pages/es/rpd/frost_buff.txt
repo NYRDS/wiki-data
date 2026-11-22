@@ -1,0 +1,55 @@
+====== Escarcha ======
+
+{{ rpd:images:frost_buff.png|Buff de Escarcha }}
+
+La **Escarcha** es un efecto de estado en Remixed Dungeon que congela temporalmente a un personaje en su lugar, impidiéndole moverse o actuar.
+
+==== Efecto ====
+  * **Inmovilización:** Los personajes afectados no pueden moverse ni realizar acciones
+  * **Duración:** La congelación dura una duración específica (la duración base es de 5 turnos, modificada por Resistencia)
+  * **Eliminación:** El efecto desaparece con el tiempo, puede ser eliminado por daño de fuego, o por ciertos medios
+  * **Acumulación:** No se acumula típicamente con otros efectos que impiden el movimiento
+
+==== Aplicación ====
+El efecto de Escarcha puede aplicarse a través de varias fuentes:
+  * [[es:rpd:potion_of_frost_item|Poción de Escarcha]] - Al romperse, crea una nube de congelación
+  * [[es:rpd:wand_of_frost_item|Varita de Escarcha]] - Daño directo y efecto de congelación
+  * [[es:rpd:ice_elemental_mob|Elementales de Hielo]] - Pueden aplicar escarcha a través de ataques
+  * [[es:rpd:ice_trap_level_object|Trampas de Hielo]] - Pueden aplicar escarcha al activarse
+  * [[es:rpd:freeze_globe_spell|Hechizo de Globo de Congelación]] - Hechizo que crea efectos de congelación
+
+==== Inmunidades y Resistencias ====
+  * Algunos enemigos son inmunes a los efectos de congelación
+  * Ciertas armaduras o objetos pueden proporcionar resistencia
+  * Los personajes resistentes al fuego pueden tener duración reducida
+
+==== Consideraciones Estratégicas ====
+  * **Beneficios:** Puede usarse para deshabilitar temporalmente enemigos durante encuentros peligrosos
+  * **Riesgos:** Afecta tanto a enemigos como a aliados, así que úsalo con precaución en situaciones grupales
+  * **Momento:** Más efectivo cuando se usa en un solo enemigo poderoso
+  * **Contramedidas:** Los personajes afectados pueden ser objetivos más fáciles mientras están congelados
+
+==== Mecánicas ====
+  * Aplicado a través del efecto blob [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]]
+  * El personaje permanece en su lugar hasta que expira la duración
+  * No interrumpe acciones en curso que ya se hayan iniciado
+  * El efecto de escarcha causa parálisis, previniendo completamente la acción
+  * El efecto de quemadura se elimina cuando se aplica escarcha
+  * El efecto de escarcha se elimina cuando el personaje afectado recibe daño
+
+==== Verificación de Contenido ====
+  * Implementación Principal: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]]
+  * Clase Buff: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
+  * Recursos de Cadena: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L572-L574|Cadenas de Escarcha]]
+  * Datos legibles por máquina: [[mr:frost_buff|mr:frost_buff]]
+
+==== Efectos Relacionados ====
+  * [[es:rpd:freeze_globe_spell|Hechizo de Globo de Congelación]] - Hechizo que crea efectos de escarcha
+  * [[es:rpd:potion_of_frost_item|Poción de Escarcha]] - Objeto que crea nubes de escarcha
+  * [[es:rpd:wand_of_frost_item|Varita de Escarcha]] - Varita que aplica escarcha
+  * [[es:rpd:chill_buff|Frío]] - Versión de efecto reducido de la escarcha
+  * [[es:rpd:freezing_buff|Congelación]] - El efecto blob que crea la escarcha
+  * [[es:rpd:paralysis_buff|Parálisis]] - Otro efecto inmovilizante
+  * [[es:rpd:slow_buff|Lentitud]] - Efecto de reducción de velocidad
+
+{{tag> rpd status_effects frost buffs debuffs freezing}}

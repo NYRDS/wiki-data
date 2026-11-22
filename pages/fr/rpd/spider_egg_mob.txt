@@ -1,0 +1,79 @@
+====== Œuf d'Araignée ======
+
+{{ rpd:images:spider_egg_mob.png|Œuf d'Araignée }}
+
+==== Description ====
+L'Œuf d'Araignée est un mob passif dans Remixed Dungeon qui finit par éclore en une araignée aléatoire après 20 tours. Les Œufs d'Araignée sont pondus par la Reine des Araignées et ont une durée de vie limitée avant d'éclore. Ils représentent les emplacements où les araignées pondent leurs œufs ou où de jeunes araignées apparaissent.
+
+==== Stats ====
+  * **PV**: 2
+  * **Niveau**: 9 (Max)
+  * **Compétence de Défense**: 1
+  * **Compétence d'Attaque**: 1
+  * **Dégâts**: 0-0
+  * **Armure**: 0
+  * **Vitesse**: 0 (immobile)
+  * **État IA**: Passif (ne cherche pas activement de cibles)
+  * **Type de Mouvement**: Normal (mais immobile)
+  * **Expérience Donnée**: 0
+  * **Chance de Butin**: 20% pour une graine aléatoire
+
+==== Capacités ====
+  * **Éclosion**: Éclot automatiquement en une araignée aléatoire après 20 tours
+  * **Immobilisation**: Ne peut pas bouger de sa position
+  * **Fragilité**: PV très bas, facilement détruit
+  * **Immunité Familier**: Ne peut pas être apprivoisé ou devenir un familier (canBePet() retourne false)
+
+==== Comportement ====
+  * **Immobile**: Reste en place jusqu'à être détruit ou éclore
+  * **Minuteur d'Éclosion**: Éclot automatiquement après 20 tours via la méthode act()
+  * **Apparition**: Lors de l'éclosion, crée une araignée aléatoire en utilisant MobSpawner
+  * **Destruction**: Si tué avant d'éclore, est détruit sans faire apparaître d'araignée
+  * **Butin**: A 20% de chance de lâcher une graine aléatoire quand détruit
+  * **Emplacement**: Le plus souvent trouvé sur les niveaux Nid d'Araignée et zones infestées de la mazmorre
+
+==== Butin ====
+  * **Graines**: 20% de chance pour une graine aléatoire quand détruit
+  * **Rien**: Sinon
+
+==== Stratégie ====
+  * **Menace Immédiate**: Bien que fragile, présente une menace car il éclot bientôt en araignée
+  * **Timing**: Vous pouvez choisir de le détruire immédiatement pour empêcher une araignée d'apparaître, ou le laisser éclore quand vous êtes prêt
+  * **Avantage**: Si vous avez des moyens d'apprivoiser ou contrôler les araignées, le laisser éclore peut être avantageux
+  * **Ferme de Graines**: A 20% de chance de lâcher une graine quand détruit, ce qui peut être utile
+  * **Éviter l'Amas**: Faites attention que plusieurs œufs n'éclosent pas à proximité, créant un essaim d'araignées
+  * **Population d'Araignées**: Considérez la population d'araignées existante dans la zone quand vous décidez de détruire ou laisser éclore
+
+==== Emplacements ====
+  * **Pondu par**: [[fr:rpd:spider_queen_mob|Reine des Araignées]] (pond ces œufs)
+  * **Éclosion**: Après 20 tours s'il survit, éclot en un mob araignée aléatoire
+  * **Portée**: Peut apparaître sur n'importe quel niveau où du contenu araignée existe
+  * **Zones**: Le plus commun sur les niveaux Nid d'Araignée et parties infestées de la mazmorre
+
+==== Interactions ====
+  * Peut contenir des araignées ou autres arachnides
+  * Peut être détruit pour empêcher l'apparition de nouvelles araignées
+  * Fait partie du design de niveau avec les araignées
+  * Éclot en différents types d'araignées selon la zone
+  * Peut contenir différents types d'araignées (régulier, poison, etc.)
+  * La destruction des œufs empêche les apparitions d'araignées supplémentaires
+
+==== Sources de Données ====
+  * Implémentation Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/spiders/SpiderEgg.java|SpiderEgg.java]]
+  * Mob Spawner: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobSpawner.java|MobSpawner.java]]
+  * Système Trésorerie: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java|Treasury.java]]
+
+==== Ressources de Chaînes ====
+  * Anglais: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|SpiderEgg_Name]] ("spider egg")
+  * Russe: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|SpiderEgg_Name]] ("паучье яйцо")
+  * Allemand: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-de/strings_all.xml|SpiderEgg_Name]] ("Spinnenei")
+  * Japonais: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ja/strings_all.xml|SpiderEgg_Name]] ("クモの卵")
+  * Chinois: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml|SpiderEgg_Name]] ("蜘蛛卵")
+
+==== Voir Aussi ====
+  * [[fr:rpd:spider_queen_mob|Reine des Araignées]] - Pond ces œufs
+  * [[fr:rpd:spider_creatures_overview|Araignées]] - Ce qui éclot de cet œuf
+  * [[fr:rpd:spider_nest_mob|Nid d'Araignée]] - Où les Œufs d'Araignée peuvent apparaître
+  * [[fr:rpd:mobs|Mobs]]
+
+{{tag> rpd mobs spiders eggs }}

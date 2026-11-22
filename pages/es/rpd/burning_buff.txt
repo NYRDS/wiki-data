@@ -1,0 +1,111 @@
+====== Quemadura ======
+
+{{ rpd:images:burning_buff.png|Quemadura }}
+
+La **Quemadura** es un efecto de estado dañino en Remixed Pixel Dungeon que causa daño continuo a los personajes afectados. Es uno de los efectos de daño por tiempo más comunes en el juego.
+
+==== Visión General ====
+La quemadura causa daño cada turno y puede incendiar terreno y objetos inflamables. Puede extinguirse entrando en casillas de agua o curándose con una [[es:rpd:potion_of_purity_item|Poción de Pureza]].
+
+==== Mecánicas de Quemadura ====
+  * **Tasa de Daño:** Recibe daño cada turno (1 + daño extra basado en la profundidad, específicamente Random.Int(1 + bonusDamage, 5 + bonusDamage) donde bonusDamage = Dungeon.depth / 2)
+  * **Duración:** Dura aproximadamente 8 turnos por defecto (puede modificarse con el Anillo de Resistencia a Elementos)
+  * **Propagación:** Puede propagarse a terreno inflamable adyacente cuando se está en una casilla inflamable
+  * **Daño a Objetos:** Los objetos transportados pueden quemarse y destruirse
+  * **Efecto de Luz:** Proporciona luz al personaje jugador (como la [[es:rpd:torch_item|Antorcha]])
+
+==== Causas de la Quemadura ====
+  * **Ataques basados en Fuego:** [[es:rpd:wand_of_firebolt_item|Varita de Bola de Fuego]], ataques de [[es:rpd:fire_elemental_mob|Elemental de Fuego]]
+  * **Trampas de Fuego:** Pisando una [[es:rpd:fire_trap|Trampa de Fuego]]
+  * **Peligros Ambientales:** Terreno de [[es:rpd:fire_mechanic|Fuego]]
+  * **Habilidades de Enemigos:** [[es:rpd:fire_elemental_mob|Elementales de Fuego]], [[es:rpd:fire_enchantment|Encantamiento de Fuego]] en armas
+  * **[[es:rpd:weapon_enchantments|Encantamientos de Armas]]:** [[es:rpd:fire_enchantment|Encantamiento de Fuego]]
+  * **[[es:rpd:arrows_item|Flechas]]:** [[es:rpd:fire_arrow_item|Flechas de Fuego]]
+  * **[[es:rpd:plants|Plantas]]:** [[es:rpd:firebloom_plant|Firebloom]]
+  * **Autoinfligida:** [[es:rpd:mystery_meat_item|Carne Misteriosa]], usando [[es:rpd:arcane_stylus_item|Estiloscópico Arcano]] en armadura
+
+==== Inmunidades y Resistencias a la Quemadura ====
+  * **[[es:rpd:immunities|Inmunidades]]:** [[es:rpd:fire_elemental_mob|Elementales de Fuego]], [[es:rpd:piranha_mob|Piraña]], [[es:rpd:spider_queen_mob|Reina Araña]], [[es:rpd:yogs_brain_mob|Cerebro de Yog]], [[es:rpd:yogs_heart_mob|Corazón de Yog]], [[es:rpd:yogs_teeth_mob|Dientes de Yog]], [[es:rpd:burning_fist_mob|Puño Ardiente]], [[es:rpd:rotting_fist_mob|Puño Putrefacto]], [[es:rpd:earth_elemental_mob|Elementales de Tierra]], [[es:rpd:scroll_of_mirror_image_item|Imagen Espejo]]
+  * **[[es:rpd:resistances|Resistencias]]:** [[es:rpd:ring_of_elements_item|Anillo de Elementos]] puede proporcionar resistencia
+  * **[[es:rpd:status_effects|Efectos de Estado]]:** [[es:rpd:potion_of_purity_item|Poción de Pureza]] elimina el efecto
+
+==== Efectos de la Quemadura ====
+  * **Daño Continuo:** Recibe 1 + (Dungeon.depth / 2) a 5 + (Dungeon.depth / 2) de daño cada turno
+  * **Destrucción de Objetos:** Los objetos transportados tienen una probabilidad de quemarse y destruirse
+  * **Ignición de Terreno:** Puede incendiar terreno inflamable en la posición del personaje
+  * **Propagación de Fuego:** Se propaga a casillas inflamables adyacentes si está en terreno inflamable
+  * **[[es:rpd:light_buff|Generación de Luz]]:** Proporciona luz para el personaje héroe
+  * **[[es:rpd:haste_spell|Celeridad]]:** Se extingue al combinarse con el efecto de celeridad
+  * **[[es:rpd:frost_buff|Escarcha]]:** La escarcha elimina la quemadura inmediatamente
+
+==== Contrarrestar la Quemadura ====
+  * **[[es:rpd:potion_of_purity_item|Poción de Pureza]]:** Puede limpiar efectos de estado incluyendo la quemadura
+  * **Terreno de Agua:** Estar en agua típicamente extingue la quemadura (si no se está volando)
+  * **[[es:rpd:frost_buff|Escarcha]]:** Elimina la quemadura inmediatamente
+  * **[[es:rpd:ring_of_elements_item|Anillo de Elementos]]:** Proporciona resistencia reduciendo la duración
+  * **[[es:rpd:levitation_buff|Levitación]]:** Previene el contacto con agua (si estás ardiendo y levitando, no puedes apagar el fuego en el agua)
+
+==== Condiciones de Extinción ====
+La quemadura se elimina cuando:
+  * **Contacto con Agua:** Entrando en una casilla de agua sin volar
+  * **[[es:rpd:frost_buff|Escarcha]]:** Aplicada al personaje (la escarcha elimina la quemadura)
+  * **Duración Expirada:** Probabilidad aleatoria basada en la fórmula 2 + (hp/ht) / 3
+  * **[[es:rpd:potion_of_purity_item|Poción de Pureza]]:** Aplicada al personaje
+  * **Muerte:** El personaje muere mientras arde
+
+==== Mecánicas Especiales ====
+  * **Muerte del Héroe:** Causa el mensaje de fallo "Quemado hasta la muerte"
+  * **Interacción con Terreno:** Puede incendiar terreno inflamable en la posición
+  * **Efecto de Luz:** Activa el buff Luz para el héroe con duración 1.01f
+  * **[[es:rpd:badges_mechanic|Insignia]]:** La insignia "Muerte por fuego" se valida cuando el héroe muere por quemadura
+  * **Quemadura de Objetos:** Puede quemar objetos transportados con efectos visuales en la posición del personaje
+
+==== Referencias de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]] - Implementación principal
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java#L32-L34|Burning.java#L32-L34]] - Constante de duración (8f)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java#L55-L65|Burning.java#L55-L65]] - Método principal de acción con cálculo de daño (daño 1+bonus a 5+bonus donde bonus = profundidad/2)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java#L79-L86|Burning.java#L79-L86]] - Condiciones de extinción (agua, probabilidad de duración)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java#L40-L44|Burning.java#L40-L44]] - Método reignite para reiniciar la duración
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java#L88-L90|Burning.java#L88-L90]] - Cálculo de duración con factor de resistencia del Anillo de Elementos
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java#L92-L98|Burning.java#L92-L98]] - Manejo de muerte del héroe y validación de insignia
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java#L100-L101|Burning.java#L100-L101]] - Mensaje de muerte y condición de fallo
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L1005-L1006|Char.java#L1005-L1006]] - Lista de buffs que previenen curación
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L526-L527|Hero.java#L526-L527]] - Mensaje especial cuando el héroe recibe quemadura ("¡Te prendes fuego!")
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java#L54|Fire.java#L54]] - Cómo el terreno de fuego aplica quemadura a los personajes
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/FireElemental.java#L36|FireElemental.java#L36]] - Inmunidad del elemental de fuego a la quemadura
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java#L90|CharSprite.java#L90]] - Estado de quemadura para sprites de personajes
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java#L37|RingOfElements.java#L37]] - Resistencia del Anillo de Elementos a la quemadura
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/Effects.java|Effects.java]] - Efectos visuales de quemadura
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L561-L564|Recursos de cadena de Quemadura (Español)]] - Nombres y descripciones de quemadura
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L561-L564|Recursos de cadena de Quemadura (Ruso)]] - Localización rusa
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - Implementación de la clase base buff
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Light.java|Light.java]] - Efecto de luz que la quemadura proporciona al héroe
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.Resistance.java|RingOfElements.Resistance.java]] - Implementación específica de resistencia
+  * **Espacio de nombres mr:** Ver [[mr:burning_buff]] para datos legibles por máquina
+
+==== Archivos de Configuración ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L561-L564|strings_all.xml]] - Recursos de cadena en inglés para quemadura
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L561-L564|strings_all.xml (Español)]] - Recursos de cadena en español para quemadura
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L122|BuffFactory.java#L122]] - Registro de fábrica del buff de quemadura
+
+==== Recursos de Cadena ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L561|BurningBuff_Name]] - "Burning"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L562|BurningBuff_Info]] - "The body is engulfed in raging flames!"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L563|Burning_Burns]] - "%s burns up!"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L564|Burning_Death]] - "You burned to death..."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L971|Hero_StaBurning]] - "You catch fire!"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L561-L564|Cadenas de Quemadura (Español)]] - Localización española
+
+==== Relacionado ====
+  * [[es:rpd:fire_mechanic|Mecánica de Fuego]]
+  * [[es:rpd:potion_of_purity_item|Poción de Pureza]]
+  * [[es:rpd:fire_enchantment|Encantamiento de Fuego]]
+  * [[es:rpd:debuffs_mechanic|Debuffs]]
+  * [[es:rpd:resistances|Resistencias]]
+  * [[es:rpd:immunities|Inmunidades]]
+  * [[es:rpd:ring_of_elements_item|Anillo de Elementos]]
+  * [[es:rpd:status_effects|Efectos de Estado]]
+  * [[es:rpd:frost_buff|Escarcha]]
+  * [[es:rpd:light_buff|Buff de Luz]]
+
+{{tag> rpd status_effects fire debuffs burning }}

@@ -1,0 +1,71 @@
+====== Poción de Escarcha ======
+
+{{ rpd:images:potion_of_frost_item.png|Poción de Escarcha }}
+
+Una **Poción de Escarcha** es un tipo de poción en Remixed Dungeon que crea un efecto de congelación cuando se expone al aire.
+
+==== Efecto ====
+Al romperse, la poción crea una nube de congelación que afecta a todas las criaturas a 2 casillas del punto de impacto:
+  * **Congelación:** Las criaturas se congelan en su lugar, incapaces de moverse o actuar
+  * **Área de Efecto:** La nube de congelación afecta a todas las criaturas dentro de 2 casillas del punto de impacto
+  * **Duración:** Las criaturas permanecen congeladas hasta que el efecto desaparece o se elimina
+  * **Mecanismo:** Usa el blob [[es:rpd:freezing_buff|Congelación]] para aplicar el efecto de congelación
+
+==== Propiedades ====
+  * **Rareza:** Común
+  * **Peso:** 1
+  * **Precio:** 50 monedas de oro (precio base)
+  * **Identificación:** Un uso para identificar (romper para aprender el efecto)
+  * **Tipo:** Poción Lanzable
+  * **Clase de Mejora:** UpgradablePotion
+  * **Radio de Efecto:** (int)(DISTANCE * qualityFactor()) donde DISTANCE es 2
+
+==== Mecánicas ====
+  * Al romperse en cualquier ubicación, crea un área de efecto basada en un mapa de distancias
+  * Usa PathFinder.buildDistanceMap para calcular el área afectada
+  * Afecta todas las casillas dentro del mapa de distancias calculado
+  * El efecto de congelación se aplica a cada casilla afectada usando Freezing.affect()
+  * Según los recursos de cadena: "Al exponerse al aire libre, este químico se evaporará en una nube de congelación, causando que cualquier criatura que la contacte se congele en su lugar, incapaz de actuar y moverse."
+
+==== Función ====
+  * **Romper:** Al lanzarse contra un objetivo o el suelo, crea la nube de efecto de congelación
+  * **Humedecer Flechas:** Puede usarse para humedecer flechas, convirtiéndolas en [[es:rpd:frost_arrow_item|Flechas de Escarcha]]
+  * **Utilidad:** Efectiva para detener enemigos peligrosos o crear barreras temporales
+  * **Interacción Ambiental:** Puede extinguir fuegos al impactar
+
+==== Estrategia ====
+  * Úsala para deshabilitar temporalmente enemigos peligrosos durante el combate
+  * Particularmente efectiva en un solo enemigo poderoso que es difícil de combatir
+  * Puede usarse para crear espacio temporal durante encuentros difíciles
+  * Ten cuidado de no congelarte a ti mismo o a aliados importantes
+  * Útil para control de multitudes cuando enfrentas múltiples enemigos
+  * Excelente para control de multitudes en corredores y espacios cerrados
+  * Efectiva contra enemigos basados en fuego para daño extra
+  * Puede usarse para interrumpir hechizos o habilidades especiales de enemigos
+  * Combínala con otros objetos de control de multitudes para máximo efecto
+  * Invaluable para crear Flechas de Escarcha a través del proceso de humedecimiento
+  * Particularmente efectiva contra criaturas basadas en fuego
+
+==== Obtención ====
+  * Encontrada como botín aleatorio en niveles de la mazmorra
+  * Disponible en tiendas
+  * A veces encontrada en cofres
+  * Soltada por ciertos enemigos
+
+==== Verificación de Contenido ====
+  * Clase Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java|PotionOfFrost.java]]
+  * Ubicación Código Fuente: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java
+  * Recurso de Cadena: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L2186|PotionOfFrost_Name]] y [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L2187|PotionOfFrost_Info]]
+  * Efectos: Usa el blob [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] para aplicar el efecto de congelación
+  * Implementación: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L287|registerItemClass(PotionOfFrost.class)]]
+  * Tipo de Entidad: potion_of_frost (via getEntityKind())
+  * Datos legibles por máquina: [[mr:potion_of_frost_item|mr:potion_of_frost_item]]
+
+==== Objetos Relacionados ====
+  * [[es:rpd:potion_item|Pociones]] - Otras pociones en el juego
+  * [[es:rpd:frost_arrow_item|Flechas de Escarcha]] - Flechas humedecidas con esta poción
+  * [[es:rpd:frost_buff|Efecto de Estado Escarcha]] - El efecto de congelación aplicado a las criaturas
+  * [[es:rpd:potion_of_liquid_flame_item|Poción de Llama Líquida]] - Efecto opuesto basado en fuego
+  * [[es:rpd:freezing_buff|Congelación]] - Efecto de estado aplicado por la poción
+
+{{tag> rpd items potions frost utility}}
