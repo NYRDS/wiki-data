@@ -1,20 +1,76 @@
 ====== Gnoll Armor Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GnollArmor.java|GnollArmor.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GuardianArmor.java|GuardianArmor.java]] (extends GnollArmor)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WitchdoctorArmor.java|WitchdoctorArmor.java]] (extends GnollArmor)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GnollArmor.java|GnollArmor.java]] - Base class armor, only equippable by Gnoll hero class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/GuardianArmor.java|GuardianArmor.java]] (extends GnollArmor) - Guardian subclass variant (image=26, has helmet, covers hair)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/WitchdoctorArmor.java|WitchdoctorArmor.java]] (extends GnollArmor) - WitchDoctor subclass variant (image=27, has helmet, covers hair and facial hair)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Gnoll class starting armor reference (line 63)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Item registration (line 462)
 
 ===== JSON Configuration =====
 This entity is implemented in Java, no JSON configuration exists
 
 ===== String Resources =====
-<code>
+<code xml>
 <string name="GnollArmor_ACSpecial">DOMINATE</string>
 <string name="GnollArmor_NotGnoll">Only gnolls can equip the Gnoll Armor!</string>
 <string name="GnollArmor_Name">gnoll-lieutenant suit</string>
 <string name="GnollArmor_Info">Owners of the Gnoll-Lieutenant suit are well known for their ability to persuade even extremely angry mobs, to be loyal servants of the Crown.</string>
 </code>
 
+===== Dutch String Resources =====
+<code xml>
+<string name="GnollArmor_ACSpecial">DOMINEREN</string>
+<string name="GnollArmor_Info">Draagsters van het Gnome-Luitenant-kostuum zijn bekend om hun vermogen om zelfs de woestste monsters te overtuigen tot loyale dienaren van de Kroon.</string>
+<string name="GnollArmor_Name">gnol-luitenantpak</string>
+<string name="GnollArmor_NotGnoll">Alleen gnollen kunnen de Gnoll Armor uitrusten!</string>
+</code>
+
+===== Russian String Resources =====
+<code xml>
+<string name="GnollArmor_ACSpecial">ДОМИНИРОВАНИЕ</string>
+<string name="GnollArmor_NotGnoll">Только гноллы могут экипировать Бронину Гнолла!</string>
+<string name="GnollArmor_Name">костюм лейтенанта гноллов</string>
+<string name="GnollArmor_Info">Владельцы костюма лейтенанта гноллов известны своей способностью уговорить даже самых яростных мобов стать верными слугами Короны.</string>
+</code>
+
+===== Mechanics =====
+**Special Ability - DOMINATE (DOMINEREN / ДОМИНИРОВАНИЕ):**
+  * Activated via the armor's special action
+  * Shows DOMINATION spell sprite effect
+  * Plays dominance sound effect
+  * Charms nearby mobs that canBePet() within line of sight and ShadowCaster.MAX_DISTANCE
+  * Maximum dominated mobs = hero level / 6
+  * Costs one turn (Actor.TICK)
+
+**Equip Restriction:**
+  * Only heroes with HeroClass.GNOLL can equip
+  * Other classes receive warning message: "Only gnolls can equip the Gnoll Aror!"
+  * Subclass variants (GuardianArmor, WitchdoctorArmor) maintain same restriction
+
+**Visual Properties (Base GnollArmor):**
+  * image = 25 (ItemSpriteSheet index)
+  * coverHair = false
+  * hasCollar = false
+  * hasHelmet = false
+
+**Visual Properties (GuardianArmor):**
+  * image = 26
+  * hasHelmet = true
+  * coverHair = true
+
+**Visual Properties (WitchdoctorArmor):**
+  * image = 27
+  * hasHelmet = true
+  * coverHair = true
+  * coverFacialHair = true
+
 ===== Lua Scripts =====
 This entity is implemented in Java, no Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:guardian_armor_item|Guardian Armor]] - Guardian subclass variant
+  * [[mr:witchdoctor_armor_item|WitchDoctor Armor]] - WitchDoctor subclass variant
+  * [[mr:gnoll_class|Gnoll Class]] - Hero class that can equip this armor
+  * [[mr:guardian_subclass|Guardian Subclass]] - Subclass using GuardianArmor variant
+  * [[mr:witchdoctor_subclass|WitchDoctor Subclass]] - Subclass using WitchDoctorArmor variant

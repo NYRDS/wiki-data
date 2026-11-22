@@ -1,0 +1,60 @@
+====== IJselementaal ======
+
+{{ rpd:images:ice_elemental_mob.png|IJselementaal }}
+
+IJselementalen zijn magische wezens die de IJsgrotten bewoonen. Ze zijn onder de gevaarlijkste elementalen in de kerker vanwege hun vermogen om vijanden te vertragen met hun ijzige aanwezigheid. Hoewel ze nauwelijks als krachtig kunnen worden beschouwd in termen van ruwe stats, kunnen ze terecht worden genoemd een van de meest gevaarlijke. De vrosaura die van hun lichamen afkomt, kan elke vijand vertragen.
+
+==== Stats ====
+  * **HP**: Diepte * 10 + 1
+  * **Verdediging**: Diepte * 2 + 1
+  * **XP voor Doden**: Diepte + 1
+  * **Max Level**: Diepte + 2
+  * **Schade Weerstand**: XP voor Doden waarde
+  * **Aanvalsvaardigheid**: (Verdediging/3) + 1
+  * **Schade**: HP/6 tot HP/6 (zelfde minimum en maximum)
+  * **Karkas Kans**: 0 (droopt geen botten)
+
+==== Speciale Vaardigheden ====
+  * **Vertragende Aanval**: Bij aanval, 33% kans (Random.Int(3) == 1) om de [[nl:rpd:slow_buff|Vertraging]] statuseffect toe te passen op het doel voor 3 beurten
+  * **Immuniteiten**: Immuun voor [[nl:rpd:roots_buff|Wortels]], [[nl:rpd:paralysis_buff|Verlamd]], [[nl:rpd:stun_buff|Stonering]], en [[nl:rpd:toxic_gas_buff|Giftig Gas]]
+  * **Diepte Schaling**: Alle stats schalen gebaseerd op de huidige kerkerdiepte
+
+==== Habitat ====
+IJselementalen kunnen gevonden worden in de [[nl:rpd:ice_caves_level|IJsgrotten]] levels (ice1-ice4).
+
+==== Drops ====
+  * [[nl:rpd:frozen_carpaccio_item|Bevroren Carpaccio]] met een 10% kans (0.1f)
+
+==== Strategie ====
+  * Wees voorbereid op mogelijke vertragingseffecten die je beweging en aanvalssnelheid kunnen hinderen
+  * Omdat ze lage schade hebben, zijn ze over het algemeen beheersbaar in gevecht
+  * Het vertragingseffect kan bijzonder gevaarlijk zijn bij het vechten tegen meerdere vijanden
+  * Overweeg gebruik van afstandswapens om de vertragingskans bij aansluitende aanvallen te vermijden
+  * IJselementalen kunnen gevaarlijk zijn door hun vermogen je te vertragen
+  * Ze worden sterker in diepere niveaus van de kerker
+  * Hun vertragingseffect kan vluchten moeilijk maken
+  * Aanval vanaf een afstand als mogelijk om het vertragende effect te vermijden
+
+==== Gerelateerd ====
+  * [[nl:rpd:elementals|Elementalen]] - Andere elementale wezens
+  * [[nl:rpd:ice_caves_level|IJsgrotten]] - Waar ze gevonden worden
+  * [[nl:rpd:slow_buff|Vertraging]] - Statuseffect dat ze kunnen toepassen
+  * [[nl:rpd:fire_elemental_mob|Vuurelementaal]] - Tegestelde elementaire type
+  * [[nl:rpd:water_elemental_mob|Waterelementaal]] - Ander elementair type
+  * [[nl:rpd:earth_elemental_mob|Aarde-elementaal]] - Ander elementair type
+  * [[nl:rpd:air_elemental_mob|Luchelementaal]] - Ander elementair type
+  * [[nl:rpd:frozen_carpaccio_item|Bevroren Carpaccio]] - Item dat ze kunnen droppen
+
+==== Technische Details ====
+  * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/IceElemental.java|com.nyrds.pixeldungeon.mobs.elementals.IceElemental]]
+  * **Implementatie**: Implementeert IDepthAdjustable interface voor schaling gebaseerd op kerkerdiepte
+  * **Vertragingskans**: 33% kans (Random.Int(3) == 1) om Vertraging toe te passen bij aanval
+  * **Diepte Schaling**: Alle stats schalen gebaseerd op huidige kerkerdiepte
+
+==== Inhoudsverificatie ====
+  * Informatiebron: Java Class com.nyrds.pixeldungeon.mobs.elementals.IceElemental
+  * Stats verificatie: Direct geëxtraheerd uit adjustStats() methode
+  * Effect beschrijvingen: Gebaseerd op attackProc() methode analyse
+  * Broncode: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/IceElemental.java|IceElemental.java]]
+
+{{tag> rpd mobs elementaal ijs }}

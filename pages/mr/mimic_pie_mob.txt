@@ -1,18 +1,99 @@
 ====== Mimic Pie Mob - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/MimicPie.java|MimicPie.java]]
+This entity is implemented as a JSON-defined mob (CustomMob), no dedicated Java class exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Defines MIMIC_PIE kind constant
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/CustomMob.java|CustomMob.java]] - Base class for JSON-defined mobs
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/PseudoPasty.java|PseudoPasty.java]] - Item that spawns MimicPie when picked up or eaten
 
 ===== JSON Configuration =====
-This entity may have JSON configuration, but no matching config was found. Check: 
-  * RemixedDungeon/src/main/assets/mobsDesc/*.json
-  * RemixedDungeon/src/main/assets/spritesDesc/mimic_pie.json
+<code json>
+{
+   "name"          : "MimicPie_Name",
+   "name_objective": "MimicPie_Name_Objective",
+   "description"   : "MimicPie_Desc",
+   "gender"        : "MimicPie_Gender",
+   "attackSkill"   : 19,
+   "defenseSkill"  : 12,
+   "dmgMin"        : 6,
+   "dmgMax"        : 16,
+   "dr"            : 0,
+   "str"           : 10,
+   "ht"            : 65,
+   "exp"           : 5,
+   "baseSpeed"     : 1.25,
+   "attackDelay"   : 1,
+   "viewDistance"  : 8,
+   "walkingType"   : "NORMAL",
+   "flying"        : true,
+   "spriteDesc"    : "spritesDesc/MimicPie.json",
+   "lootChance"    : 1,
+   "loot"          : { "kind": "RottenPasty" },
+   "carcassChance" : 0,
+   "canBePet"      : false,
+   "friendly"      : false,
+   "fraction"      : "DUNGEON",
+   "hasBodyParts" : false
+}
+</code>
+
+===== Sprite Configuration =====
+<code json>
+{
+  "texture" : "mimic_pie.png",
+  "width" : 16,
+  "height" : 16,
+  "idle" : {
+    "fps" : 5,
+    "looped" : true,
+    "frames" : [0, 0, 0, 1, 1]
+  },
+  "run" : {
+    "fps" : 10,
+    "looped" : true,
+    "frames" : [0, 1, 2, 3, 3, 2, 1]
+  },
+  "attack" : {
+    "fps" : 10,
+    "looped" : false,
+    "frames" : [0, 3, 4, 5]
+  },
+  "die" : {
+    "fps" : 12,
+    "looped" : false,
+    "frames" : [0,6,7,8,9]
+  },
+  "states": ["levitating"],
+  "bloodColor" : "0xFFcb9700"
+}
+</code>
 
 ===== String Resources =====
 <code xml>
-<string name="MimicPie_Name">[Name]</string>
-<string name="MimicPie_Info">[Description]</string>
+<string name="MimicPie_Name">mimic</string>
+<string name="MimicPie_Name_Objective">mimic</string>
+<string name="MimicPie_Desc">Mimics are magical creatures which can take any shape they wish. This one looks like a big tasty pasty</string>
+<string name="MimicPie_Gender">masculine</string>
+</code>
+
+===== Dutch String Resources =====
+<code xml>
+<string name="MimicPie_Name">mimic</string>
+<string name="MimicPie_Name_Objective">mimic</string>
+<string name="MimicPie_Gender">masculine</string>
+</code>
+
+===== Russian String Resources =====
+<code xml>
+<string name="MimicPie_Name">мимик</string>
+<string name="MimicPie_Name_Objective">мимика</string>
+<string name="MimicPie_Desc">Мимики — магические существа, способные принимать любую форму. Этот выглядит как большой аппетитный пирожок</string>
+<string name="MimicPie_Gender">masculine</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+This entity is implemented via JSON configuration, no dedicated Lua script exists
+
+===== Related mr Entities =====
+  * [[mr:pseudo_pasty_item|Pseudo Pasty (Item)]] - Food item that spawns this mob
+  * [[mr:rotten_pasty_item|Rotten Pasty (Item)]] - Loot dropped by this mob

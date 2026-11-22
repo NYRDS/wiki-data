@@ -1,0 +1,60 @@
+====== Verlamd ======
+
+{{ rpd:images:paralysis_buff.png|Verlamd Statuseffect }}
+
+**Verlamd** is een statuseffect in Remixed Pixel Dungeon dat het getroffene personage tijdelijk voorkomt om enige acties te ondernemen.
+
+==== Effecten ====
+  * **Actie Voorkoming**: Getroffen personages kunnen niet bewegen, aanvallen, of items/spreuken gebruiken
+  * **Beurt Overslaan**: De beurt van het getroffene personage wordt overgeslagen tot het effect verstrekt
+  * **Duur Vermindering**: De effectduur neemt elke beurt af tot het verstrekt
+
+==== Oorzaken ====
+Verlamd kan worden veroorzaakt door:
+  * [[nl:rpd:paralysis_enchantment|Verlamd Betovering]] op wapens
+  * [[nl:rpd:curare_dart_item|Curare Dart]]
+  * [[nl:rpd:piranha_mob|Piranha]] aanvallen
+  * [[nl:rpd:king_mob|Koning]] aanvallen
+  * [[nl:rpd:paralytic_gas_trap_level_object|Verlammend Gas Val]]
+  * Andere speciale vaardigheden en effecten
+
+==== Tegengangers ====
+  * Sommige wezens zijn van nature immuun voor verlamd
+  * [[nl:rpd:resistances|Weerstand]] effecten kunnen de duur verminderen
+  * Drankjes en items die statuseffecten genezen kunnen verlamd verwijderen
+
+==== Broncode ====
+  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]]
+  * String Resources (Engels): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L595-L596|Verlamd strings (regel 595-596)]]
+  * String Resources (Russisch): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L595-L596|Verlamd strings (regel 595-596)]]
+  * Verlamd duur: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L39|Paralysis.duration() methode]] - berekent duur gebaseerd op personage weerstanden
+  * Personage verlamd methode: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L20-L22|Char.paralyse() methode]] - behandelt verlamde staat
+  * Verlamd hechten: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L14-L19|Paralysis.attachTo() methode]] - hecht verlamd en roept Char.paralyse(true)
+  * Verlamd losmaken: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L21-L24|Paralysis.detach() methode]] - roept Char.paralyse(false) om effect te verwijderen
+  * Visueel statuseffect: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L33|Paralysis.charSpriteStatus()]] - retourneert CharSprite.State.PARALYSED
+  * Visuele hechting: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L29-L31|Paralysis.attachVisual()]] - voegt visuele effecten toe aan sprite
+  * Schade ontsnappingskans: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L26-L31|Paralysis.charGotDamage()]] - staat ontsnapping aan verlamd toe gebaseerd op opgelopen schade
+  * Weerstand berekening: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L39|Paralysis.duration()]] - controleert op Weerstand buff om duur te wijzigen
+  * Statusbericht: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L31|GLog.i(Char_OutParalysis)]] - toont bericht wanneer verlamd eindigt door schade
+  * Statusbericht (Russisch): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L328|Char_OutParalysis (ru)]]
+  * Personage statustekst: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java#L17-L19|CharSprite.NEGATIVE]] - toont "Verlamd" status
+  * Personage statustekst (Russisch): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L958|Hero_StaParalysis (ru)]]
+  * Personage sprite statussen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java#L12-L15|CharSprite.State.PARALYSED]]
+  * FlavourBuff basisklasse: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] - basisklasse voor visuele statuseffecten
+  * Char interface: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - basisklasse voor alle personages
+  * NamedEntityKind interface: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind.java]] - voor entiteit identificatie
+  * Actor systeem: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]] - spel beurt planningssysteem
+  * Buff indicator: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java#L7-L10|BuffIndicator.PARALYSIS]] - UI icoon voor verlamd buff
+  * Personage hulpfuncties: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]] - zichtbaarheid en andere hulpfuncties
+  * Ring van Elementen weerstand: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java#L15-L20|RingOfElements.Resistance]] - beïnvloedt verlamd duur
+  * Willekeurige hulpmiddelen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/utils/Random.java|Random.java]] - gebruikt voor schade ontsnappingskans berekening
+  * Machine-leesbare data: [[mr:paralysis_buff|mr:paralysis_buff]]
+
+==== Zie Ook ====
+  * [[nl:rpd:status_effects|Statuseffecten]]
+  * [[nl:rpd:paralysis_enchantment|Verlamd Betovering]]
+  * [[nl:rpd:buffs|Buffs en Debuffs]]
+  * [[nl:rpd:paralytic_gas_trap_level_object|Verlammend Gas Val]]
+  * [[nl:rpd:potion_of_paralytic_gas_item|Drankje van Verlammend Gas]]
+
+{{tag> rpd statuseffects buffs }}
