@@ -1,0 +1,46 @@
+====== Combat Affinity - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]] - Maps Combat affinity to icon ID 15
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] - Hero class magic affinity field
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Base spell class with magicAffinity field
+
+===== JSON Configuration =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] - Defines magic affinity for hero classes (Warrior has Combat affinity)
+
+===== Lua Scripts =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]] - Defines Combat affinity spells: DieHard, Dash, BodyArmor, Smash
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Smash.lua|Smash.lua]] - Combat affinity spell (level 4, self-targeted)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/DieHard.lua|DieHard.lua]] - Combat affinity spell
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Dash.lua|Dash.lua]] - Combat affinity spell
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/BodyArmor.lua|BodyArmor.lua]] - Combat affinity spell
+
+===== String Resources =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - Combat spell names and descriptions
+
+===== Affinity Implementation =====
+In SpellHelper.java:
+  * `affinityToIcon.put("Combat", 15);` - Maps Combat affinity to icon ID 15
+  * `iconIdByAffinity()` method returns icon ID based on affinity string
+
+In HeroClass.java:
+  * `magicAffinity` field stores the hero class's default affinity
+  * `getMagicAffinity()` / `setMagicAffinity()` accessor methods
+
+===== Combat Affinity Spells =====
+| Spell | Level | Targeting | Cost | Cooldown | Description |
+|-------|-------|-----------|------|----------|-------------|
+| DieHard | 1 | self | 5 | 10 | Temporary damage reduction |
+| Dash | 2 | cell | 5 | 10 | Quick movement to target cell |
+| BodyArmor | 3 | self | 10 | 15 | Temporary armor boost |
+| Smash | 4 | self | 10 | 10 | AoE stun + weapon damage |
+
+===== Related mr Entities =====
+  * [[mr:custom_spell|CustomSpell (Class)]] - Base class for Lua spells
+  * [[mr:self_targeting_spell|Self Targeting Spell]] - Targeting type used by Combat spells
+  * [[mr:smash_spell|Smash Spell]] - Combat affinity spell
+  * [[mr:die_hard_spell|DieHard Spell]] - Combat affinity spell
+  * [[mr:warrior_class|Warrior Class]] - Has Combat affinity
+  * [[mr:elemental_affinity_spell_mechanic|Elemental Affinity]] - Another magic affinity
+
+{{tag> rpd magic affinity combat spells}}

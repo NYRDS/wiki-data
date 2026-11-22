@@ -1,43 +1,92 @@
 ====== Barkskin Buff - Code References ======
 
-===== Entity Status =====
-**This entity does NOT exist in the current codebase.**
-
-===== Search Results =====
-
 ===== Java Classes =====
-No Java class found for Barkskin buff.
-  * Checked: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/*.java
-  * Checked: RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/buffs/*.java
+This entity is implemented in Lua (migrated from Java), no Java class exists in current codebase
+  * Former Java implementation: `com/watabou/pixeldungeon/actors/buffs/Barkskin.java` (removed)
 
 ===== JSON Configuration =====
-No JSON configuration found for Barkskin buff.
-  * Checked: RemixedDungeon/src/main/assets/buffsDesc/*.json
-  * Checked: RemixedDungeon/src/main/assets/spritesDesc/barkskin.json
+This entity is implemented in Lua, no JSON configuration exists
 
 ===== String Resources =====
-No string resources found for Barkskin buff.
-Expected string resource names (if entity existed):
 <code xml>
-<string name="Barkskin_Name">[Name]</string>
-<string name="Barkskin_Info">[Description]</string>
+<string name="BarkskinBuff_Name">Barkskin</string>
+<string name="BarkskinBuff_Info">The body is covered by bark which blocks some damage taken.</string>
+<string name="BarkskinBuff_Gender">neuter</string>
+</code>
+Russian strings:
+<code xml>
+<string name="BarkskinBuff_Name">Кора</string>
+<string name="BarkskinBuff_Info">Тело покрыто твёрдой корой, которая блокирует некоторый урон.</string>
 </code>
 
 ===== Lua Scripts =====
-No Lua scripts found for Barkskin buff.
-  * Checked: RemixedDungeon/src/main/assets/scripts/buffs/
-  * Checked: RemixedDungeon/src/main/assets/scripts/
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Barkskin.lua|Barkskin.lua]] - Core buff implementation
+
+===== Lua Implementation (Barkskin.lua) =====
+<code lua>
+local RPD  = require "scripts/lib/commonClasses"
+local buff = require "scripts/lib/buff"
+
+return buff.init{
+    desc  = function ()
+        return {
+            icon          = 24, -- BuffIndicator.BARKSKIN
+            name          = "BarkskinBuff_Name",
+            info          = "BarkskinBuff_Info",
+        }
+    end,
+
+    act = function(self, buff)
+        local target = buff.target
+        if target:isAlive() then
+            buff:spend(1) -- Actor.TICK
+            local lvl = buff:level() - 1
+            buff:level(lvl)
+            if lvl <= 0 then
+                buff:detach()
+            end
+        else
+            buff:detach()
+        end
+    end,
+
+    drBonus = function(self, buff)
+        return buff:level()
+    end
+}
+</code>
+
+===== Mechanics =====
+  * **Effect**: Increases DR (Damage Reduction) by amount equal to current buff level
+  * **Duration**: Buff level decreases by 1 each turn (Actor.TICK); expires when level reaches 0
+  * **Initial Level**: Set by the source applying the buff (see Sources below)
+  * **DR Bonus**: Equal to current buff level (via `drBonus()` method)
+  * **Icon**: BuffIndicator.BARKSKIN (icon ID 24)
+
+===== Sources =====
+  * **Nature Armor Spell** (Elf spell): Applies Barkskin with initial level = caster's skill level × caster's level
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/NatureArmor.lua|NatureArmor.lua]]
+  * **Earthroot Plant**: Applies Barkskin with initial level = hero's effective STR / 4
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java|Earthroot.java]]
+  * **Generic Plant**: Applies Barkskin with initial level = hero's max HP / 3
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java|Plant.java]]
+  * **Frozen Carpaccio** (food): Applies Barkskin with initial level = hero's max HP / 4
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/FrozenCarpaccio.java|FrozenCarpaccio.java]]
+  * **High Grass** (level feature): Applies Barkskin with initial level = hero's max HP / 3
+    - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java|HighGrass.java]]
+  * **Spider Mind** (mob): Has Barkskin as one of its buffs
 
 ===== Image Assets =====
-Image assets exist but entity is not implemented:
   * wiki-data/media/rpd/images/barkskin_buff.png
   * wiki-data/media/rpd/images/buff_Barkskin.png
 
-===== Notes =====
-This mr: namespace page was created as a placeholder. The Barkskin buff entity is referenced in image assets but has no implementation in Java code, Lua scripts, or JSON configuration files. This may indicate:
-  * A planned feature that was never implemented
-  * A removed feature that left behind asset files
-  * A modding extension not present in the base game
+===== Related mr Entities =====
+  * [[mr:nature_armor_spell|Nature Armor Spell]]
+  * [[mr:vertigo_buff|Vertigo Buff]] - Another buff implementation reference
+  * [[mr:buff_class|Buff (Base Class)]]
 
-===== Related =====
-For machine-readable data about actual implemented buffs, see other mr:*_buff pages.
+===== Related Pages =====
+  * [[en:rpd:barkskin_buff|Barkskin (English)]]
+  * [[ru:rpd:barkskin_buff|Кора (Russian)]]
+
+{{tag> rpd buffs status_effects protection dr}}

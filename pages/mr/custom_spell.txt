@@ -1,0 +1,64 @@
+====== CustomSpell Class - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/CustomSpell.java|CustomSpell.java]] - Base class for all Lua-implemented spells
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/LuaScript.java|LuaScript.java]] - Lua script execution wrapper
+
+===== JSON Configuration =====
+This entity is a Java base class, no JSON configuration exists
+
+===== Lua Scripts =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]] - Registry of all custom spells by magic affinity
+  * Individual spell scripts in RemixedDungeon/src/main/assets/scripts/spells/ - Each implements spellDesc() and cast() functions
+
+===== Class Implementation Details =====
+CustomSpell extends the base Spell class and loads all spell properties from a Lua script:
+
+**Constructor** (`CustomSpell(String scriptFile)`):
+  - Loads Lua script from `scripts/spells/{scriptFile}`
+  - Runs `spellDesc()` function to get spell descriptor table
+  - Extracts properties: image, imageSize, imageFile, name, info, magicAffinity, targetingType, cooldown, level, spellCost, castTime
+
+**Casting Methods**:
+  - `cast(Char chr, int cell)` - Runs Lua `castOnCell(chr, cell)`
+  - `cast(Char chr, Char target)` - Runs Lua `castOnChar(chr, target)`
+  - `cast(Char chr)` - Runs Lua `cast(chr)` (for self-targeted spells)
+  - All call `castCallback(chr)` on success
+
+**Other Methods**:
+  - `getEntityKind()` - Returns the script file name
+  - `getImage()` - Can be overridden by Lua `image()` function
+
+===== Spell Descriptor Structure (from Lua) =====
+<code lua>
+return {
+  image         = number,     -- Icon index
+  imageFile     = "path",     -- Icon file path
+  imageSize     = number,     -- Optional icon size
+  name          = "StringID", -- String resource for name
+  info          = "StringID", -- String resource for description
+  magicAffinity = "Affinity", -- e.g., "Combat", "Elemental", "Witchcraft"
+  targetingType = "type",     -- "self", "char", "cell", "char_not_self", "ally", "enemy", "none"
+  level         = number,     -- Spell level
+  spellCost     = number,     -- Mana cost
+  cooldown      = number,     -- Cooldown in turns
+  castTime      = number      -- Cast time in seconds
+}
+</code>
+
+===== String Resources =====
+Spell-specific strings (examples from Smash.lua):
+<code xml>
+<string name="SmashSpell_Name">Smash</string>
+<string name="SmashSpell_Info">Jump upwards and create a powerful smash upon hitting the ground,that temporarily stuns enemies around and at the same time deals physical damage.</string>
+<string name="SmashSpell_NeedWeapon">I need a weapon for this move.</string>
+</code>
+
+===== Related mr Entities =====
+  * [[mr:combat_magic_affinity|Combat (Magic Affinity)]]
+  * [[mr:self_targeting_spell|Self Targeting Spell]]
+  * [[mr:heal_spell|Heal Spell]] - Example custom spell
+  * [[mr:smash_spell|Smash Spell]] - Example custom spell
+
+{{tag> rpd spell class lua custom}}

@@ -1,0 +1,58 @@
+====== Self Targeting Spell - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] - Base spell class with targetingType field
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellHelper.java|SpellHelper.java]] - Defines targeting type constants
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/CustomSpell.java|CustomSpell.java]] - Lua spell implementation
+
+===== JSON Configuration =====
+This is a spell targeting type concept, no JSON configuration exists
+
+===== Lua Scripts =====
+Self-targeted spells are implemented in Lua with `targetingType = "self"`. Examples:
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Smash.lua|Smash.lua]] - Combat affinity, level 4
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/BodyArmor.lua|BodyArmor.lua]] - Combat affinity, level 3
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/DieHard.lua|DieHard.lua]] - Combat affinity, level 1
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Dash.lua|Dash.lua]] - Combat affinity, level 2 (targets cell but self-initiated)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Cloak.lua|Cloak.lua]] - Rogue affinity
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Haste.lua|Haste.lua]] - Rogue affinity
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Calm.lua|Calm.lua]] - Huntress affinity (char_not_self but similar)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/HideInGrass.lua|HideInGrass.lua]] - Elf affinity
+
+===== Targeting Type Constants (SpellHelper.java) =====
+<code java>
+public static final String TARGET_SELF          = "self";
+public static final String TARGET_CELL          = "cell";
+public static final String TARGET_CHAR          = "char";
+public static final String TARGET_CHAR_NOT_SELF = "char_not_self";
+public static final String TARGET_ALLY          = "ally";
+public static final String TARGET_ENEMY         = "enemy";
+public static final String TARGET_NONE          = "none";
+</code>
+
+===== Self-Targeting Behavior =====
+When `targetingType = "self"`:
+  * Spell is cast on the caster directly
+  * No target selection UI is shown
+  * `CustomSpell.cast(Char chr)` is called (the no-argument version)
+  * Lua `cast(self, spell, caster)` function receives only the caster
+  * Typical for buffs, self-buffs, and area effects centered on caster
+
+===== String Resources =====
+Spell-specific strings for self-targeted spells (e.g., Smash):
+<code xml>
+<string name="SmashSpell_Name">Smash</string>
+<string name="SmashSpell_Info">Jump upwards and create a powerful smash upon hitting the ground,that temporarily stuns enemies around and at the same time deals physical damage.</string>
+<string name="SmashSpell_NeedWeapon">I need a weapon for this move.</string>
+</code>
+
+===== Related mr Entities =====
+  * [[mr:custom_spell|CustomSpell (Class)]] - Base class for Lua spells
+  * [[mr:combat_magic_affinity|Combat Affinity]] - Uses self-targeting extensively
+  * [[mr:smash_spell|Smash Spell]] - Self-targeted Combat spell
+  * [[mr:body_armor_spell|BodyArmor Spell]] - Self-targeted Combat spell
+  * [[mr:die_hard_spell|DieHard Spell]] - Self-targeted Combat spell
+  * [[mr:cloak_spell|Cloak Spell]] - Self-targeted Rogue spell
+  * [[mr:haste_spell|Haste Spell]] - Self-targeted Rogue spell
+
+{{tag> rpd spell mechanic targeting}}
