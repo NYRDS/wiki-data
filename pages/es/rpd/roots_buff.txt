@@ -1,0 +1,56 @@
+====== Enraizado ======
+
+{{ rpd:images:roots_buff.png|Enraizado }}
+
+==== Descripción ====
+**Enraizado** es un efecto de estado negativo en Remixed Dungeon que inmoviliza al personaje afectado y le impide moverse.
+
+==== Descripción del Efecto ====
+  * **Tipo:** Efecto de Estado Negativo (Debuff)
+  * **Efecto:** Impide el movimiento mientras está activo
+  * **Duración:** Varía según la fuente
+  * **Fuente:** Principalmente de ataques de enemigos o habilidades especiales
+  * **Inmunidad Voladora:** Los personajes voladores son inmunes a enraizado (attachTo devuelve false si el objetivo vuela)
+
+==== Cómo se Obtiene ====
+  * De ciertos ataques de enemigos que aplican efectos de enraizado
+  * De efectos ambientales en áreas específicas de la mazmorra
+  * De algunas habilidades de enemigos que restringen el movimiento
+
+==== Mecánicas ====
+  * Impide todo movimiento mientras el efecto está activo
+  * El personaje aún puede realizar otras acciones (atacar, usar objetos, etc.)
+  * Puede ser eliminado por el efecto de estado [[es:rpd:levitation_buff|Levitación]] (por eso Levitación lo menciona)
+  * Los personajes voladores son inmunes a enraizado (attachTo() falla si el objetivo vuela)
+  * No impide otras acciones más allá del movimiento
+  * La duración típicamente disminuye con mayor Defensa Mágica
+
+==== Estrategia ====
+  * Ten cuidado al entrar en áreas con enemigos basados en plantas que puedan aplicar enraizado
+  * Si vas a ser enraizado, intenta posicionarte ventajosamente antes de que termine el efecto
+  * Lleva pociones de Levitación si regularmente te encuentras con enemigos que usan enraizado
+  * Puede ser peligroso si se aplica cerca de otros enemigos o peligros
+  * Útil en situaciones limitadas donde quieres quedarte quieto para ataques a distancia
+
+==== Contramedidas ====
+  * [[es:rpd:levitation_buff|Levitación]] - Elimina completamente enraizado cuando se aplica
+  * [[es:rpd:armor_item|Armadura]] de alto nivel con buena defensa mágica puede resistir el efecto
+  * Algunos equipos o habilidades de clase pueden reducir la duración
+  * Los personajes voladores son naturalmente inmunes a enraizado
+
+==== Referencias de Código ====
+  * Clase Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java|Roots.java]]
+  * Implementación: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java#L15|attachTo() verifica estado volador]]
+  * Efecto Visual: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java#L22|attachVisual() muestra estado "Enraizado"]]
+  * Referencia de Icono: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Roots.java#L20|BuffIndicator.ROOTS]]
+
+==== Recursos de String ====
+  * Español: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L55|Char_StaRooted]] ("enraizado")
+  * Español: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L55|RootsBuff_Name]] ("Enraizado")
+
+==== Véase También ====
+  * [[es:rpd:status_effects|Efectos de Estado]] - Otros cambios de estado
+  * [[es:rpd:levitation_buff|Levitación]] - Efecto que contrarresta enraizado
+  * [[es:rpd:mechanics_mechanic|Mecánicas de Juego]] - Otros sistemas principales
+
+{{tag> rpd mechanics status_effects debuffs roots}}

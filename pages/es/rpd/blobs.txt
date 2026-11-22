@@ -1,0 +1,50 @@
+====== Blobs ======
+
+**Blobs** son efectos ambientales en Remixed Dungeon que se extienden por el suelo de la mazmorra, afectando a personajes y objetos que entran en contacto con ellos. Son campos dinámicos que pueden expandirse, contraerse e interactuar con entidades de varias formas.
+
+==== Visión General ====
+Los Blobs se implementan como subclases de la clase base `Blob`. Cada tipo de blob tiene propiedades, comportamientos y efectos únicos sobre los personajes. Los blobs pueden ser creados por mobs, objetos, trampas o características del nivel.
+
+==== Tipos de Blobs ====
+  * **Gas Tóxico** (`[[es:rpd:toxic_gas_buff|Gas Tóxico]]`) - Envenena a los personajes que están en él
+  * **Fuego** - Quema personajes y destruye objetos
+  * **Agua** - Apaga el fuego, conduce electricidad
+  * **Telaraña** (`[[es:rpd:web_trap|Telaraña]]`) - Enraíza a los personajes en su lugar (aplica buff [[es:rpd:roots_buff|Enraizado]])
+  * **Llama Líquida** (`[[es:rpd:liquid_flame_blob|Llama Líquida]]`) - Quema y crea gas tóxico
+  * **Vapor Congelante** (`[[es:rpd:freezing_buff|Vapor Congelante]]`) - Enfría y congela a los personajes
+  * **Gas Paralizante** - Paraliza a los personajes
+  * **Gas de Confusión** - Confunde a los personajes
+  * **Pergamino de Explosión Psiónica** - Crea campos de energía psíquica dañina
+
+==== Mecánicas ====
+  * **Propagación:** Los blobs se propagan a casillas adyacentes cada turno basándose en su volumen
+  * **Volumen:** Cada casilla de blob tiene un valor de volumen que disminuye con el tiempo; cuando el volumen llega a 0, el blob desaparece de esa casilla
+  * **Interacción:** Los personajes que están en casillas de blob son afectados cada turno (o inmediatamente al entrar)
+  * **Inmunidad:** Algunos personajes/objetos otorgan inmunidad a efectos específicos de blob (ej. Armadura Arácnida otorga inmunidad a Telaraña)
+  * **Eliminación:** Ataques basados en fuego pueden eliminar blobs de Telaraña; otros blobs pueden tener contramedidas específicas
+
+==== Fuentes de Creación ====
+  * **Mobs:** Las Arañas de Cueva crean Telaraña al huir; otros mobs pueden crear varios blobs
+  * **Objetos:** La Armadura Arácnida crea Telaraña cuando el portador recibe daño; las herramientas del Alquimista pueden crear varios blobs
+  * **Trampas:** Trampas de gas liberan Gas Tóxico, Gas Paralizante, etc.
+  * **Características del Nivel:** Ciertas habitaciones u objetos de nivel pueden generar blobs
+  * **Hechizos/Pergaminos:** Algunos efectos mágicos crean campos de blob temporales
+
+==== Implementación Técnica ====
+  * Clase Base: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Blob.java|Blob.java]]
+  * Implementación de Telaraña: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Web.java|Web.java]]
+  * Gas Tóxico: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ToxicGas.java|ToxicGas.java]]
+  * Fuego: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]]
+  * Emisor de Blob: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/BlobEmitter.java|BlobEmitter.java]] - maneja efectos visuales de partículas
+  * Recursos de String: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - descripciones y nombres de blobs
+
+==== Páginas Relacionadas ====
+  * [[es:rpd:web_trap|Telaraña]]
+  * [[es:rpd:toxic_gas_buff|Gas Tóxico]]
+  * [[es:rpd:liquid_flame_blob|Llama Líquida]]
+  * [[es:rpd:freezing_buff|Vapor Congelante]]
+  * [[es:rpd:spider_armor_item|Armadura Arácnida]] - Otorga inmunidad a Telaraña, crea Telaraña al recibir daño
+  * [[es:rpd:spinner_mob|Araña de Cueva]] - Crea rastros de Telaraña al huir
+  * [[es:rpd:paralytic_gas_trap_level_object|Trampa de Gas Paralizante]]
+
+{{tag> rpd mechanics blobs environment }}
