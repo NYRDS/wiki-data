@@ -1,0 +1,88 @@
+====== מכניקת מלכודות ======
+
+{{ rpd:images:fire_trap_level_object.png|מכניקת מלכודות }}
+
+מכניקת מלכודות הן מנגנונים נסתרים המופעלים כאשר מופעלים ברמיקסד דאנג'ן.
+
+==== תיאור ====
+מלכודות הן סכנות נסתרות הממוקמות ברחבי הצינוק המופעלות כאשר דורכים עליהן או מופעלות ממרחק. הן יכולות לגרום להשפעות מזיקות שונות ולכן נדרשת ניווט זהיר כדי להימנע מהן.
+
+==== סוגי מלכודות ====
+  * **מלכודת אש** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/FireTrap.java|FireTrap.java]] - יוצרת להבות בוערות הגורמות נזק אש
+  * **מלכודת רעל** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java]] - משחררת חיצי רעל המחילים אפקט רעל
+  * **מלכודת אזעקה** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/AlarmTrap.java|AlarmTrap.java]] - יוצרת אזעקה רועשת המושכת את כל המפלצות בצינוק
+  * **מלכודת ברק** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/LightningTrap.java|LightningTrap.java]] - מכה בזרם חשמלי הגורם נזק מבוסס % HP
+  * **מלכודת רעילה** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ToxicTrap.java|ToxicTrap.java]] - משחררת גז רעיל המחיל אפקט רעל
+  * **מלכודת משתקת** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ParalyticTrap.java|ParalyticTrap.java]] - משחררת גז המשתק את המטרה
+  * **מלכודת אוחזת** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/GrippingTrap.java|GrippingTrap.java]] - גורמת נזק ומשרישה את המטרה במקומה
+  * **מלכודת זימון** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/SummoningTrap.java|SummoningTrap.java]] - מזמנת אויבים סביב הגיבור
+
+==== מלכודות נפוצות ====
+  * [[he:rpd:fire_trap|מלכודת אש]] - יוצרת להבות בוערות
+  * [[he:rpd:poison_trap|מלכודת רעל]] - משחררת גז רעיל
+  * מלכודת אזעקה - יוצרת רעש חזק המושך אויבים
+  * [[he:rpd:lightning_trap|מלכודת ברק]] - מכה בזרם חשמלי
+  * מלכודת חצץ - חושפת אויבים ופריטים בלתי נראים
+  * מלכודת זימון - מזמנת אויבים
+  * מלכודת טלפורטציה - מטלפרטת את הגיבור למיקום אקראי
+  * מלכודת הגנה - יוצרת מחסומי הגנה
+  * מלכודת רעילה - משחררת גז רעיל
+  * מלכודת משתקת - משתקת מטרות
+  * מלכודת אוחזת - אוחזת וגורמת נזק למטרות
+
+==== מכניקה כללית ====
+  * **חשאיות**: מלכודות נסתרות עד להפעלה או גילוי
+  * **נטרול**: דמויות מסוימות יכולות לנטרל מלכודות בבטחה
+  * **גילוי**: הגיבור יכול ללמוד לזהות מלכודות קרובות ככל שהוא עולה רמות
+  * **הפעלה**: בדרך כלל מופעלת על ידי דריכה עליהן או מעבר לידן
+
+==== הפניות קוד ====
+  * **מחלקת בסיס מלכודת**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java|Trap.java]] - מימוש בסיסי
+  * **אובייקטי רמה**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObject.java|LevelObject.java]] - איך מלכודות משתלבות באובייקטי רמה
+  * **מימושי מלכודות**:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/FireTrap.java|FireTrap.java]] - מכניקת מלכודת אש
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java]] - מכניקת מלכודת חץ רעל
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/AlarmTrap.java|AlarmTrap.java]] - מכניקת מלכודת אזעקה
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/LightningTrap.java|LightningTrap.java]] - מכניקת מלכודת ברק
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ToxicTrap.java|ToxicTrap.java]] - מכניקת מלכודת גז רעיל
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ParalyticTrap.java|ParalyticTrap.java]] - מכניקת מלכודת גז משתק
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/GrippingTrap.java|GrippingTrap.java]] - מכניקת מלכודת אוחזת
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/SummoningTrap.java|SummoningTrap.java]] - מכניקת מלכודת זימון
+  * **מערכת גילוי**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L200-L220|Hero trap detection]] - איך גיבורים מזהים מלכודות
+  * **מערכת צינוק**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] - איך מלכודות ממוקמות
+  * **משאבי מחרוזות**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - כל הטקסט הקשור למלכודות
+
+==== הפניות למשאבי מחרוזות ====
+<code xml>
+<string name="Level_TileToxicTrap">מלכודת גז רעיל</string>
+<string name="Level_TileFireTrap">מלכודת אש</string>
+<string name="Level_TileParalyticTrap">מלכודת גז משתקת</string>
+<string name="Level_TilePoisonTrap">מלכודת חץ מורעל</string>
+<string name="Level_TileAlarmTrap">מלכודת אזעקה</string>
+<string name="Level_TileLightningTrap">מלכודת ברק</string>
+<string name="Level_TileGrippingTrap">מלכודת אוחזת</string>
+<string name="Level_TileSummoningTrap">מלכודת זימון</string>
+<string name="Level_TileInactiveTrap">מלכודת מופעלת</string>
+<string name="Level_TileDescTrap">דריכה על לוח לחץ נסתר תפעיל את המלכודת.</string>
+<string name="Level_TileDescInactiveTrap">המלכודת כבר הופעלה בעבר והיא לא מסוכנת יותר.</string>
+<string name="AlarmTrap_Desc">המלכודת משמיעה קול חודר שמהדהד בכל הצינוק!</string>
+<string name="LightningTrap_Name">מלכודת ברק</string>
+<string name="LightningTrap_Desc">נהרגת על ידי פריקת מלכודת ברק...</string>
+</code>
+
+==== אינטראקציה עם מלכודות ====
+  * **הפעלה**: בדרך כלל מתרחשת כשדורכים על המלכודת
+  * **הימנעות**: לפעמים ניתן להבחין בהן לפני ההפעלה
+  * **נטרול**: חלק מהמקצועות יכולים לנטרל מלכודות בבטחה
+  * **השפעות**: אפשרויות השפעות מזיקות, מועילות או מעורבות
+
+==== ראו גם ====
+  * [[he:rpd:levels|שלבים]]
+  * [[he:rpd:mechanics|מכניקה]]
+  * [[he:rpd:status_effects|אפקטי סטטוס]]
+  * [[he:rpd:level_objects|אובייקטי רמה]]
+  * [[en:rpd:ring_of_detection_item|Ring of Detection]]
+  * [[he:rpd:hero_class|גיבור]] (אינטראקציה עם מלכודות)
+  * [[he:rpd:challenges|אתגרים]] (אתגרים הקשורים למלכודות)
+
+{{tag> rpd מלכודות סכנות מכניקה }}
