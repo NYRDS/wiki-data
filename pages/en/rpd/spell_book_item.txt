@@ -3,38 +3,59 @@
 {{ rpd:images:spell_book_item.png|Spell Book }}
 
 ==== Description ====
-The Spell Book is an item that allows heroes to learn and access various magic spells in Remixed Dungeon. It serves as a repository for different magical abilities that can be used for combat, utility, or support purposes.
+The **Spell Book** is an artifact item in Remixed Dungeon that contains a single spell. When read, it casts the stored spell, allowing heroes to use magic regardless of their class affinity. It serves as a versatile tool for accessing spells that a hero might not naturally be able to learn or cast.
 
-==== Special Properties ====
-  * **Spell Storage**: Can store multiple spells for use during gameplay
-  * **Accessibility**: Allows heroes to access spells even when not naturally attuned to them
-  * **Learning**: Provides a way to learn new spells beyond class affinities
+==== Properties ====
+  * **Type**: Artifact (extends Artifact class)
+  * **Sprite**: `items/books.png` (index 3) → {{ rpd:images:spell_book_item.png|Spell Book }}
+  * **Price**: 500 gold
+  * **Bag**: Scroll Holder (ScrollHolder)
+  * **Default Action**: Read (when equipped)
+  * **Stackable**: No (artifact)
+  * **Identified**: Shows stored spell name and description
+  * **Burnable**: No (burn() returns null)
+
+==== Functionality ====
+  * **Spell Storage**: Holds **one spell** at a time (set via `spell(String spellName)`)
+  * **Spell Casting**: When read (AC_READ), casts the stored spell via `UseSpell` action
+  * **Spell Access**: Allows any hero to cast the contained spell, bypassing class affinity restrictions
+  * **Identification**: When identified, name shows as "Spell Book (SpellName)" and description shows the spell's full info
+
+==== Usage ====
+  1. **Equip** the Spell Book
+  2. **Read** it (default action when equipped) to cast the contained spell
+  3. The spell effect applies based on the stored spell's mechanics
+  4. The Spell Book is **not consumed** when used - it retains the spell
 
 ==== Spell Categories ====
-  * **[[en:rpd:combat_mechanic|Combat Spells]]**: Spells for direct damage and battle utility
-  * **Utility Spells**: Spells for movement, escape, or environmental interaction
-  * **Support Spells**: Healing and buffing spells
-
-==== Classes and Affinities ====
-  * [[en:rpd:spell_affinities|Spell Affinities]] determine which spells are most effective for each class
-  * [[en:rpd:hero_class|Hero Classes]] may have natural proclivities toward certain spell types
-  * [[en:rpd:hero_subclasses|Subclasses]] can unlock specialized spell access
+The Spell Book can contain any spell from the game's spell system:
+  * **[[en:rpd:combat_mechanic|Combat Spells]]**: Direct damage and battle utility (e.g., Smash, Die Hard)
+  * **Utility Spells**: Movement, escape, environmental interaction (e.g., Magic Torch, Blink)
+  * **Support Spells**: Healing and buffing (e.g., Heal, Order)
+  * **Elemental Spells**: Fire, ice, nature (e.g., Ignite, Root)
+  * **Necromancy Spells**: Undead and death-related (e.g., Raise Dead, Exhumation)
+  * **Rogue Spells**: Stealth and agility (e.g., Backstab, Haste)
+  * **Witchcraft Spells**: Magic manipulation (e.g., Lightning Bolt, Roar)
+  * **Huntress/Elf/Priest/PlagueDoctor Spells**: Class-specific affinities
 
 ==== Strategy ====
-  * Consider the hero's class when choosing spells to focus on
-  * Some spells synergize with specific class abilities
-  * Certain situations may call for specific spell types (e.g., damage vs. utility)
+  * **Versatility**: Any class can use any spell via Spell Book
+  * **Resource Management**: No mana cost to cast from Spell Book (uses the item's action instead)
+  * **Situational Spells**: Carry utility spells (Town Portal, Magic Torch) for emergencies
+  * **Boss Fights**: Store high-damage or control spells for difficult encounters
+  * **Identification**: Identify to see which spell it contains before committing inventory space
 
 ==== Code References ====
-  * **Lua Scripts**: ''RemixedDungeon/src/main/assets/scripts/spells/'' - Various spell implementations
-  * **Core Spell System**: ''RemixedDungeon/src/main/assets/scripts/lib/spell.lua''
-  * **English String Resources**: ''RemixedDungeon/src/main/res/values/strings_all.xml'' - Spell names and descriptions
-  * **Russian String Resources**: ''RemixedDungeon/src/main/res/values-ru/strings_all.xml'' - Spell names and descriptions
+  * **Java Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/artifacts/SpellBook.java|SpellBook.java]]
+  * **Spell Factory**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java|SpellFactory.java]]
+  * **Spell System**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/spell.lua|scripts/lib/spell.lua]]
+  * **String Resources**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] (SpellBook_Name, SpellBook_Info, SpellBook_Info_Identified)
 
 ==== See Also ====
-  * [[en:rpd:spells_overview|Spells]]
+  * [[en:rpd:spells_overview|Spells Overview]]
   * [[en:rpd:magic_mechanic|Magic Mechanic]]
-  * [[en:rpd:herbalism|Herbalism]]
   * [[en:rpd:spell_affinities|Spell Affinities]]
+  * [[en:rpd:artifacts|Artifacts]]
+  * [[mr:spell_book_item|Technical Details]]
 
-{{tag> rpd items spells magic }}
+{{tag> rpd items artifacts spells magic }}
