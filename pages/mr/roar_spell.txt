@@ -2,19 +2,7 @@
 
 {{ rpd:images:roar_spell.png|Roar Spell }}
 
-===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java|Spell.java]] (Base class)
-
-===== JSON Configuration =====
-This entity is implemented in Lua, no JSON configuration exists
-
-===== String Resources =====
-<code xml>
-<string name="Roar_Name">Roar</string>
-<string name="Roar_Info">The mighty roar will surely terrify your enemies and inspire allies.</string>
-</code>
-
-===== Lua Scripts =====
+===== Lua Script =====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua|Roar.lua]] - Main spell implementation
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua|CustomSpellsList.lua]] - Spell registration (line 13: spells["Witchcraft"] = {"Roar","LightningBolt","Heal","Order"})
 
@@ -28,7 +16,6 @@ This entity is implemented in Lua, no JSON configuration exists
 
 
 local RPD = require "scripts/lib/commonClasses"
-
 local spell = require "scripts/lib/spell"
 
 
@@ -66,6 +53,29 @@ return spell.init{
 }
 </code>
 
+===== String Resources =====
+<code xml>
+<string name="Roar_Name">Roar</string>
+<string name="Roar_Info">The mighty roar will surely terrify your enemies and inspire allies.</string>
+</code>
+
+===== Spell Properties (from desc function) =====
+  * **Magic Affinity:** Witchcraft (line 20)
+  * **Targeting Type:** self (line 21)
+  * **Level:** 1 (line 22)
+  * **Cast Time:** 0 seconds (line 23)
+  * **Mana Cost:** 1 (line 24)
+  * **Image File:** spellsIcons/witchcraft.png (line 17)
+  * **Image Index:** 0 (line 16)
+
+===== Mechanics (from cast function) =====
+  * Creates visual flare effect on caster: 6 rays, 32 pixels, red (#FF0000), 2 seconds (line 29)
+  * Plays sound effect: "snd_challenge" (line 30)
+  * Terror duration equals caster's level (line 32)
+  * Affects up to caster's skill level random enemies (line 33)
+  * For each affected enemy: flare effect 4 rays, 16 pixels, red (#FF0000), 2 seconds (line 37)
+  * Applies Terror buff with caster as source (line 38)
+
 ===== Entity Usage Analysis =====
 Using find_entity_usage.py:
   * Lua file: ./RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua (line 13) - Registered as Witchcraft spell
@@ -77,3 +87,5 @@ Using find_entity_usage.py:
 ===== Related mr Entities =====
   * [[mr:terror_buff|Terror (Buff)]] - Applied by Roar spell
   * [[mr:witchcraft_affinity|Witchcraft Affinity]] - Spell affinity
+
+{{tag>mr spells code_reference}}

@@ -1,0 +1,71 @@
+====== Brul Spreuk ======
+{{ rpd:images:roar_spell.png|Brul Spreuk Icoon }}
+
+**Brul** is een Hekserij-affiniteit spreuk in Remixed Pixel Dungeon die vijanden doet beven. Gebaseerd op broncode: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua|Roar.lua]]
+
+===== Beschrijving =====
+De machtige brul zal zonder twijfel je vijanden doet beven en bondgenoten inspireren. Bij gebruik creëert Brul een vreseffect op willekeurige vijanden gelijk aan het niveau van de spreker.
+
+===== Kenmerken =====
+  * **Magische Affiniteit:** Hekserij (bron: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L20|Roar.lua:20]])
+  * **Doelwit:** Zelf (bron: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L21|Roar.lua:21]])
+  * **Niveau:** 1 (bron: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L22|Roar.lua:22]])
+  * **Mana Kosten:** 1 (bron: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L24|Roar.lua:24]])
+  * **Uittijd:** 0 seconden (bron: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L23|Roar.lua:23]])
+  * **Effect:** Past Vrees toe op willekeurige vijanden
+  * **Afbeeldingsbestand:** spellsIcons/witchcraft.png (afbeeldingsindex 0) (bron: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L16-L17|Roar.lua:16-17]])
+
+===== Mechanica =====
+  * Creëert een visueel flitereffect (6 stralen, 32 pixels, rode kleur #FF0000) op de spreker voor 2 seconden (bron: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L29|Roar.lua:29]])
+  * Speelt het uitdagingsgeluidseffect af ('snd_challenge') (bron: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L30|Roar.lua:30]])
+  * Duur van het Vrees-effect is gelijk aan het niveau van de spreker (bron: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L32|Roar.lua:32]])
+  * Beïnvloedt tot het vaardigheidsniveau van de spreker aantal willekeurige vijanden (bron: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L33|Roar.lua:33]])
+  * Voor elke getroffen vijand: flitereffect 4 stralen, 16 pixels, rode kleur #FF0000, 2 seconden (bron: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L37|Roar.lua:37]])
+  * Gebruikt de Vrees buff klasse met de spreker als bron (bron: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L38|Roar.lua:38]])
+
+===== Gebruik =====
+De Brul spreuk wordt primair gebruikt voor:
+  * Vijanden laten beven met de Vrees statuseffect
+  * Creëren van kansen om te ontkomen uit gevaarlijke situaties
+  * Onderbreken van vijandacties aangezien Vrees hen voorkomt offensieve acties te ondernemen
+  * Ondersteunen van tactische positionering tijdens gevecht
+
+===== Klassen =====
+Klassen met Hekserij-affiniteit hebben primaire toegang tot deze spreuk:
+  * [[nl:rpd:gnoll_class|Gnol Klas]] - Heeft [[nl:rpd:witchcraft_affinity|Hekserij-affiniteit]]
+  * [[nl:rpd:doctor_class|Pestdokter Klas]] - Heeft [[nl:rpd:witchcraft_affinity|Hekserij-affiniteit]]
+
+===== Strategie =====
+Brul is het meest effectief wanneer gebruikt in groepen vijanden waar meerdere doelen tegelijk kunnen worden verslagen. De duur van het Vrees-effect schaalt met het niveau van de spreker, wat het effectiever maakt op hogere niveaus. Aangezien Vrees vijanden voorkomt aan te vallen, is het bijzonder nuttig wanneer je omringd bent of geconfronteerd wordt met gevaarlijke vijanden.
+
+===== Inhoudsverificatie =====
+  * Informatiebron: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua|Roar.lua]]
+  * Kenmerken verificatie: Direct geëxtraheerd uit desc() functie in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L14-L25|Roar.lua:14-25]]
+  * Mechanica verificatie: Gebaseerd op cast() functie in [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua#L28-L43|Roar.lua:28-43]]
+  * Laatst bijgewerkt: december 2025
+
+===== Code Referenties =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Roar.lua|Roar.lua]] - Hoofd implementatie
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2675-L2676|strings_all.xml:2675-2676]] - Naam en beschrijving
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-nl/strings_all.xml|strings_all.xml (nl)]] - Nederlandse naam en beschrijving
+  * [[mr:roar_spell|Machine-leesbare referentie pagina]]
+
+===== Configuratie Referenties =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json#L183|initHeroes.json:183]] - Brul spreuk beschikbaarheid voor heldenklassen
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroesDebug.json#L216|initHeroesDebug.json:216]] - Debug configuratie voor Brul spreuk
+
+===== Bron Strings =====
+Naam: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2675|Roar_Name]] = "Roar"
+
+Beschrijving: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2676|Roar_Info]] = "The mighty roar will surely terrify your enemies and inspire allies."
+
+===== Zie Ook =====
+  * [[nl:rpd:spells_overview|Spreuken]]
+  * [[nl:rpd:terror_buff|Vrees Status Effect]]
+  * [[nl:rpd:witchcraft_affinity|Hekserij Affiniteit]]
+  * [[nl:rpd:gnoll_class|Gnol Klas]]
+  * [[nl:rpd:doctor_class|Pestdokter Klas]]
+  * [[nl:rpd:buffs|Buffs]]
+  * [[nl:rpd:spells_overview|Spreuk Mechanica]]
+
+{{tag> rpd spells witchcraft }}

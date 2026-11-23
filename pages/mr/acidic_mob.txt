@@ -3,38 +3,86 @@
 ===== Entity Name =====
 acidic_mob
 
-===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Acidic.java|Acidic.java]] - Main class extending Scorpio
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Scorpio.java|Scorpio.java]] - Base parent class
-
-===== Class Implementation =====
-<code java>
-package com.watabou.pixeldungeon.actors.mobs;
-
-import com.watabou.pixeldungeon.actors.Char;
-import com.watabou.utils.Random;
-
-public class Acidic extends Scorpio {
-
-	@Override
-	public int defenseProc( Char enemy, int damage ) {
-
-		int dmg = Random.IntRange( 0, damage );
-		if (dmg > 0) {
-			enemy.damage( dmg, this );
-		}
-
-		return super.defenseProc( enemy, damage );
-	}
+===== JSON Configuration =====
+<code json>
+{
+  "aiState"       : "Kite",
+  "name"          : "Acidic_Name",
+  "name_objective": "Acidic_Name_Objective",
+  "description"   : "Acidic_Desc",
+  "gender"        : "Acidic_Gender",
+  "attackSkill"   : 36,
+  "defenseSkill"  : 24,
+  "dmgMin"        : 20,
+  "dmgMax"        : 32,
+  "dr"            : 16,
+  "str"           : 17,
+  "ht"            : 95,
+  "exp"           : 14,
+  "maxLvl"        : 25,
+  "baseSpeed"     : 1,
+  "attackDelay"   : 1,
+  "attackRange"   : 10,
+  "viewDistance"  : 8,
+  "walkingType"   : "NORMAL",
+  "spriteDesc"    : "spritesDesc/Acidic.json",
+  "scriptFile"    : "scripts/mobs/Acidic",
+  "resistances"   : ["Leech", "Poison"],
+  "canBePet"      : true,
+  "friendly"      : false,
+  "fraction"      : "DUNGEON"
 }
 </code>
 
-===== Special Abilities =====
-  * **Thorn Damage**: When attacked, reflects random damage (0 to incoming damage) back to the attacker
-  * **Inherits Scorpio Abilities**: As a subclass of Scorpio, inherits all parent mob behaviors
+===== Lua Script =====
+[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Acidic.lua|Acidic.lua]] - Main mob behavior implementation
 
-===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+<code lua>
+-- java Acidic (batch 7): a Scorpio whose carapace splashes acid back at the
+-- attacker (defenseProc reflect on top of the inherited Scorpio kit, aiState
+-- Kite + kiteRanged for the never-close-in policy).
+return mob.init{
+    stats = function(self)
+        local data = mob.restoreData(self)
+        if data.rolled then
+            return
+        end
+        if not self:getBelongings():isBackpackEmpty() then
+            data.rolled = true
+            return
+        end
+        data.rolled = true
+        data.kiteRanged = true
+        if math.random(8) == 1 then
+            self:collect(RPD.item("PotionOfHealing"))
+        elseif math.random(6) == 1 then
+            self:collect(RPD.item("MysteryMeat"))
+        end
+    end,
+
+    spawn = function(self, level)
+        self:setViewDistance(level:getViewDistance() + 1)
+    end,
+
+    zapProc = function(self, enemy, dmg)
+        if enemy ~= nil and math.random(2) == 1 then
+            RPD.Buffs.Buff:prolong(enemy, "Cripple", 10)
+        end
+        return dmg
+    end,
+
+    defenceProc = function(self, enemy, dmg)
+        -- Random.IntRange(0, damage) is inclusive on both ends
+        if enemy ~= nil then
+            local reflect = math.random(0, dmg)
+            if reflect > 0 then
+                enemy:damage(reflect, self)
+            end
+        end
+        return dmg
+    end,
+}
+</code>
 
 ===== String Resources =====
 English (values/strings_all.xml):
@@ -50,18 +98,21 @@ Russian (values-ru/strings_all.xml):
 <string name="Acidic_Name">кислотный скорпион</string>
 <string name="Acidic_Gender">masculine</string>
 <string name="Acidic_Name_Objective">кислотного скорпиона</string>
-<string name="Acidic_Desc">Эти огромные членистоногие создания стараются избегать ближнего боя, выстреливая ядовитые иглы с большого расстояния.</string>
+<string name="Acidic_Desc">Эти огромные членистоногие создания стараются избегать ближнего боя, выстреливая ядовитые иглы с большим расстояния.</string>
 </code>
 
-===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Scorpio.java|Scorpio.java]] - Base parent class (Acidic inherits from Scorpio via JSON configuration)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/CustomMob.java|CustomMob.java]] - Handles JSON-defined mob properties
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] - Registers "Acidic" entity kind (line 76)
+
+===== Sprite Configuration =====
+[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Acidic.json|spritesDesc/Acidic.json]] - Sprite animation configuration
+
+===== Spawn Configuration =====
+[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Bestiary.json|Bestiary.json]] - Mob spawn rates (Halls levels 23-24)
 
 ===== Related mr Entities =====
-  * [[mr:scorpio_mob|Scorpio_Mob]] - Parent mob class
+  * [[mr:scorpio_mob|Scorpio Mob]] - Parent mob type
 
-===== Content Verification =====
-  * Information source: Java code (Acidic.java) and string resources
-  * Last updated: 2026-03-21 based on current codebase analysis
-  * Verified against: RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Acidic.java
-
-{{tag>mr mobs code_reference}}
+{{tag> mr mobs code_reference}}
