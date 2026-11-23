@@ -1,0 +1,74 @@
+====== Armor Class - Machine Readable Reference ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/Armor.java|Armor.java]] - Base armor class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/|Glyphs package]] - Armor glyphs/enchantments (Bounce, Affection, AntiEntropy, Multiplicity, Potential, Metabolism, Stench, Viscosity, Displacement, Entanglement)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/EquipableItem.java|EquipableItem.java]] - Parent class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] - Base item class
+
+===== Key Fields =====
+  * `tier` (int) - Armor tier (1-6+), determines base DR and STR requirement
+  * `glyph` (Glyph) - Inscribed glyph/enchantment (nullable)
+  * `hasHelmet`, `hasCollar`, `coverHair`, `coverFacialHair` - Visual properties
+  * `hitsToKnow` (int) - Hits needed to auto-identify armor level (default 10)
+
+===== Key Methods =====
+  * `slot(Belongings)` - Returns `Belongings.Slot.ARMOR`
+  * `upgrade(boolean inscribe)` - Upgrades armor, may randomly add/remove glyph
+  * `defenceProc(Char attacker, Char defender, int damage)` - Damage reduction with glyph proc
+  * `effectiveDr()` - Effective damage reduction: `tier * 2 + level() * tier + (glyph != null ? tier : 0)`
+  * `typicalDR()` - Base DR: `tier * 2`
+  * `typicalSTR()` - Base STR requirement: `7 + tier * 2`
+  * `requiredSTR()` - Actual STR needed: `max(typicalSTR() - level(), 2)`
+  * `price()` - Shop price: `10 * (1 << (tier - 1))`, 1.5x with glyph
+  * `inscribe(Glyph)` - Adds glyph to armor
+  * `random()` - Generates random armor, 10% chance of random glyph
+  * `info()` / `name()` / `toString()` - Display logic with identification state
+
+===== Armor Glyphs (Inner Class) =====
+Abstract class `Armor.Glyph` extends `Buff`, implements `Bundlable`, `NamedEntityKind`, `Doom`
+  * 10 glyph types with equal weight: Bounce, Affection, AntiEntropy, Multiplicity, Potential, Metabolism, Stench, Viscosity, Displacement, Entanglement
+  * `defenceProc(Armor, Char, Char, int)` - Abstract, implemented per glyph
+  * `onHeroDeath()` - Validates GLYPH death badge, shows death message
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists (but supports JSON serialization via fromJson/toJson for glyph persistence)
+
+===== String Resources =====
+<code xml>
+<string name="Armor_EquipCursed">your %s constricts around you painfully</string>
+<string name="Armor_Glyph">glyph</string>
+<string name="Armor_Identify">you are now familiar enough with your %1$s to identify it. It is %2$s.</string>
+<string name="Armor_Incompatible">Interaction of different types of magic has erased the glyph on this armor!</string>
+<string name="Armor_Info1">This %1$s provides damage absorption up to "%2$d" points per attack.</string>
+<string name="Armor_Info2">\n\nBecause of your inadequate strength your movement speed and defense skill is decreased.</string>
+<string name="Armor_Info3">\n\nBecause of your inadequate strength wearing this armor will decrease your movement speed and defense skill.</string>
+<string name="Armor_Info4">\n\nTypical %1$s provides damage absorption up to %2$d points per attack and requires %3$d points of strength.</string>
+<string name="Armor_Info5">This armor probably is too heavy for you.</string>
+<string name="Armor_Info6">It is inscribed.</string>
+<string name="Armor_Info7a">\n\nYou are wearing the %1$s%2$s.</string>
+<string name="Armor_Info7b">, and because it is cursed, you are powerless to remove it</string>
+<string name="Armor_Info8">\n\nYou can feel a malevolent magic lurking within the %s.</string>
+<string name="Armor_ToString">%1$s :%2$d</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists for base Armor class.
+Specific armor types (ClothArmor, LeatherArmor, MailArmor, etc.) may have Lua configurations in mobsDesc/ or scripts.
+
+===== Related mr Entities =====
+  * [[mr:cloth_armor_item|Cloth Armor (Item)]] - Tier 1 armor
+  * [[mr:leather_armor_item|Leather Armor (Item)]] - Tier 2 armor
+  * [[mr:mail_armor_item|Mail Armor (Item)]] - Tier 3 armor
+  * [[mr:scale_armor_item|Scale Armor (Item)]] - Tier 4 armor
+  * [[mr:plate_armor_item|Plate Armor (Item)]] - Tier 5 armor
+  * [[mr:gothic_armor_item|Gothic Armor (Item)]] - Tier 6 armor
+  * [[mr:class_armor_item|Class Armor (Item)]] - Hero class-specific armors (PriestArmor, MageArmor, etc.)
+  * [[mr:artifact_item|Artifact (Item)]] - ARTIFACT slot items
+  * [[mr:belongings_class|Belongings Class]] - Equipment slot management
+  * [[mr:equipable_item|Equipable Item]] - Base equippable class
+
+===== Content Verification =====
+  * Information source: Java code (Armor.java, EquipableItem.java)
+  * String resources: values/strings_all.xml (Armor_* keys)
+  * Last updated: Based on Remixed Dungeon source code analysis
