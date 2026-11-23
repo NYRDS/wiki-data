@@ -1,0 +1,74 @@
+====== Classe Médico ======
+{{ rpd:images:doctor_hero.png|Médico }}
+
+O Médico é uma classe jogável de herói no Remixed Dungeon especializada em efeitos tóxicos, mecânicas de doenças e conhecimento de poções. A classe Médico foca em utilizar vários agentes químicos e biológicos com eficácia aprimorada de poções.
+
+==== Equipamento Inicial ====
+  * [[pt:rpd:bone_saw_item|Serra Óssea]] - Arma básica de corpo a corpo (identificada)
+  * Sem armadura (o Médico começa com armadura `NoItem` para permitir equipar mais facilmente a [[pt:rpd:plague_doctor_mask_item|Máscara do Médico da Peste]])
+  * [[pt:rpd:plague_doctor_mask_item|Máscara do Médico da Peste]] - Acessório inicial (slot de artefato)
+  * 100 moedas de ouro
+
+==== Itens Conhecidos ====
+O Médico começa com conhecimento dos seguintes itens:
+  * [[pt:rpd:potion_of_healing_item|Poção de Cura]]
+  * [[pt:rpd:potion_of_toxic_gas_item|Poção de Gás Tóxico]]
+  * [[pt:rpd:potion_of_paralytic_gas_item|Poção de Gás Paralisante]]
+
+==== Especializações ====
+A classe Médico tem mecânicas únicas que a diferenciam de outras classes:
+  * **Afinidade Médico da Peste:** Usa a afinidade mágica PlagueDoctor para eficácia de feitiços
+  * **Conhecimento Tóxico:** Começa com conhecimento de poções baseadas em gás
+  * **Experiência Médica:** Eficácia aprimorada com poções de cura e tóxicas
+  * **Mecânicas de Doença:** Habilidade de espalhar e utilizar doenças através da quest do NPC Médico da Peste
+  * **Sinergia com Serra Óssea:** Ao empunhar a [[pt:rpd:bone_saw_item|Serra Óssea]] em qualquer mão, o Médico não sofre penalidade de habilidade de ataque. Ao empunhar qualquer outra arma, `attackSkillBonus()` retorna -5 (com 5% de chance de gritar um aviso de precisão por ataque)
+
+==== Vantagens ====
+  * **Conhecimento de Poções:** Começa conhecendo poções-chave para controle de multidão
+  * **Acessório Único:** Recebe acessório Máscara do Médico da Peste no início
+  * **Foco Tóxico:** Especializado em estratégias baseadas em veneno e gás
+  * **Acesso a Quest:** Pode completar a quest do NPC Médico da Peste por recompensas
+
+==== Desvantagens ====
+  * **Prisão à Serra Óssea:** Penalidade de -5 em habilidade de ataque ao empunhar qualquer arma que não seja a [[pt:rpd:bone_saw_item|Serra Óssea]]
+  * **Estilo de Jogo Especializado:** Requer compreensão de mecânicas de poções
+  * **Sem Armadura Inicial:** Começa com armadura `NoItem`, deixando o slot do corpo exposto
+
+==== Estilo de Jogo ====
+O Médico joga diferente de outras classes por:
+  * Focar em combate baseado em poções e controle de multidão
+  * Utilizar efeitos de gás tóxico e paralisante
+  * Empregar estratégias baseadas em doenças através da questline do Médico da Peste
+  * Aproveitar conhecimento médico para sobrevivência
+
+==== Subclasses ====
+A classe Médico não tem subclasses predefinidas no jogo padrão. Funcionalidade de subclasses pode ser adicionada através de mods.
+
+==== Estratégia ====
+  * **Início de Jogo:** Use poções de gás para controle de multidão e negação de área
+  * **Foco em Poções:** Colete e identifique poções cedo para aproveitar itens conhecidos
+  * **Maestria Tóxico:** Aprenda a usar efeitos de veneno e gás efetivamente
+  * **Completação de Quest:** Encontre e complete a quest do NPC Médico da Peste
+  * **Melhorias de Arma:** Priorize melhorar a Serra Óssea ou encontrar armas melhores
+
+==== Mecânicas ====
+  * [[pt:rpd:potions|Poções]] - Grande dependência no uso de poções
+  * [[pt:rpd:toxic_gas_buff|Gás Tóxico]] - Mecânica central
+  * [[pt:rpd:paralytic_gas_buff|Gás Paralisante]] - Mecânica central
+  * [[pt:rpd:plague_doctor_npc|NPC Médico da Peste]] - NPC de quest relacionado
+
+==== Fontes de Dados ====
+  * **Classe Java**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java|HeroClass.java]] (enum DOCTOR)
+  * **Verificação de Precisão da Serra Óssea**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroClass.java#L412-L432|HeroClass.attackSkillBonus()]] — aplica -5 de habilidade de ataque quando não empunha Serra Óssea
+  * **Itens Iniciais**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] (configuração DOCTOR)
+  * **Recursos de String**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] (HeroClass_Doctor)
+
+==== Relacionado ====
+  * [[pt:rpd:classes_mechanic|Classes]] - Todas as classes jogáveis
+  * [[pt:rpd:plague_doctor_npc|NPC Médico da Peste]] - NPC de quest relacionado
+  * [[pt:rpd:potions|Poções]] - Tipo de item importante para o Médico
+  * [[pt:rpd:hero|Herói]] - Informação geral de herói
+  * [[pt:rpd:plague_doctor_mask_item|Máscara do Médico da Peste]] - Acessório inicial
+  * [[pt:rpd:bone_saw_item|Serra Óssea]] - Arma inicial
+
+{{tag> pt:rpd hero classes doctor alchemy toxic gas plague }}

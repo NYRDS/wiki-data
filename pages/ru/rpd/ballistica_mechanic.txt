@@ -1,0 +1,42 @@
+====== Система Баллистика ======
+
+**Система Баллистика** — это система прямой видимости и поиска путей, используемая в Remixed Dungeon для определения того, может ли дальнобойная атака попасть в цель.
+
+==== Описание ====
+Система Баллистика используется для расчёта прямой видимости между двумя точками в подземелье и для определения допустимых путей для дальнобойных атак, снарядов и способностей молниеносного удара. Название происходит от итальянского слова "ballistica" — баллистика.
+
+==== Механика ====
+  * **Прямая видимость (LoS):** Определяет, есть ли неперекрытый путь между атакующим и целью
+  * **Расчёт пути:** Находит потенциальный путь для прямых дальнобойных атак
+  * **Ограничение дальности:** Устанавливает максимальную эффективную дальность дальнобойных способностей
+  * **Обработка препятствий:** Учитывает стены, двери и другие препятствия окружения
+
+==== Использование ====
+  * **Атаки молнией:** Используется для определения, может ли моб с молнией (например, Чернокнижник) попасть по цели
+  * **Использование палочек:** Определяет допустимые цели для палочек
+  * **Метательное оружие:** Используется для прицеливания дальнобойным оружием
+  * **Срабатывание ловушек:** Некоторые ловушки используют Баллистику для обнаружения активации
+
+==== Технические детали ====
+  * **Длина пути:** Возвращает длину расчитанного пути
+  * **Обнаружение препятствий:** Останавливает поиск пути при встрече с блокирующим ландшафтом
+  * **Прямой линейный путь:** Расчитывает прямые линейные пути с учётом геометрии подземелья
+
+==== Ссылки на код ====
+  * **Java-реализация:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java|Ballistica.java]]
+  * **Расчёт пути:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java#L50-L80|Метод расчёта пути в Ballistica]]
+  * **Использование в Чернокнижнике:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Warlock.java#L70-L72|Метод canAttack использующий Ballistica]]
+  * **Использование в Тенгу:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Tengu.java#L58-L60|Тенгу использует Ballistica для атак на расстоянии]]
+  * **Конструктор Ballistica:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java#L25-L45|Инициализация Ballistica]]
+  * **Блокирующий ландшафт:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/mechanics/Ballistica.java#L85-L90|Как обрабатывается блокирующий ландшафт]]
+  * **Интеграция с полем зрения:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/Level.java#L200-L210|Интеграция с системой поля зрения]]
+  * **Машиночитаемые данные:** [[mr:ballistica_mechanic|mr:ballistica_mechanic]]
+
+==== См. также ====
+  * [[ru:rpd:zapping|Механика Заклинаний]]
+  * [[ru:rpd:warlock_mob|Чернокнижник]] — Использует Баллистику для дальнобойных атак
+  * [[ru:rpd:tengu_mob|Тенгу]] — Использует Баллистику для атак на расстоянии
+  * [[ru:rpd:wands|Палки]] — Используют Баллистику для наведения
+  * [[ru:rpd:mechanics|Игровые механики]]
+
+{{tag> rpd mechanics ballistica line_of_sight ranging pathfinding}}
