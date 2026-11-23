@@ -1,5 +1,58 @@
 ====== Alquimia ======
 
-**Alquimia** é o sistema de criação de poções em Remixed Dungeon, realizado no caldeirão de alquimia.
+{{ rpd:images:firebloom_seed_item.png|Sementes de Alquimia }}
 
-{{tag> rpd alchemy potions crafting }}
+**Alquimia** em Remixed Dungeon é um sistema de criação de poções ao jogar sementes no caldeirão de alquimia encontrado nos [[pt:rpd:sewers_level|Esgotos]]. Diferente de receitas fixas, o sistema seleciona aleatoriamente uma poção baseada nas sementes jogadas.
+
+==== Mecânica da Alquimia ====
+  * A alquimia é realizada em um caldeirão de alquimia encontrado no [[pt:rpd:sewers_level|Nível dos Esgotos]]
+  * Jogue 3 ou mais sementes no caldeirão para desencadear a transmutação
+  * O caldeirão escolhe aleatoriamente uma semente (ponderada pela quantidade) e cria a poção associada a ela
+  * Se a semente escolhida não tiver classe de alquimia, uma poção aleatória é criada do tesouro
+  * Cada tipo de semente tem uma propriedade **alchemyClass** definindo sua poção (ex.: Sungrass → Poção de Cura)
+  * Sementes sem classe de alquimia (ex.: Rotberry) geram uma poção aleatória
+
+==== Mapeamento Semente-para-Poção ====
+  * **Semente de Sungrass** → [[pt:rpd:potion_of_healing_item|Poção de Cura]]
+  * **Semente de Firebloom** → [[pt:rpd:potion_of_liquid_flame_item|Poção de Chama Líquida]]
+  * **Semente de Sorrowmoss** → [[pt:rpd:potion_of_paralytic_gas_item|Poção de Gás Paralítico]] ou [[pt:rpd:potion_of_invisibility_item|Poção de Invisibilidade]] (aleatório)
+  * **Semente de Dreamweed** → [[pt:rpd:potion_of_mind_vision_item|Poção de Visão Mental]]
+  * **Semente de Earthroot** / **Semente de Fadeleaf** → [[pt:rpd:potion_of_toxic_gas_item|Poção de Gás Tóxico]]
+  * **Semente de Icecap** → [[pt:rpd:potion_of_frost_item|Poção de Gelo]]
+  * **Semente de Rotberry** → [[pt:rpd:potion_of_purity_item|Poção de Pureza]] (sem alchemyClass, escolha aleatória do tesouro)
+  * **Semente de Moongrace** → Poção aleatória (sem alchemyClass definido)
+
+==== Criação de Flechas ====
+  * Flechas especializadas podem ser criadas combinando flechas comuns com poções:
+    * [[pt:rpd:fire_arrow_item|Flecha de Fogo]] - De flechas e [[pt:rpd:potion_of_liquid_flame_item|Poção de Chama Líquida]]
+    * [[pt:rpd:health_arrow_item|Flecha de Cura]] - De flechas e [[pt:rpd:potion_of_healing_item|Poção de Cura]]
+    * [[pt:rpd:paralysis_arrow_item|Flecha de Paralisia]] - De flechas e [[pt:rpd:potion_of_paralytic_gas_item|Poção de Gás Paralítico]]
+    * [[pt:rpd:poison_arrow_item|Flecha de Veneno]] - De flechas e [[pt:rpd:potion_of_toxic_gas_item|Poção de Gás Tóxico]]
+
+==== Ingredientes da Alquimia ====
+  * [[pt:rpd:seed_item|Sementes]] - Ingrediente principal, obtido de plantas
+  * Água - Ingrediente implícito (não é um item) para a maioria das poções
+
+==== Estratégia ====
+  * Colete múltiplas sementes do mesmo tipo para aumentar a chance da poção desejada
+  * Sementes de Sungrass são as mais valiosas para poções de cura confiáveis
+  * Jogar sementes misturadas dá resultados aleatórios ponderados
+  * O caldeirão de alquimia nos Esgotos é o único local fixo; alguns níveis podem ter caldeirões adicionais
+
+==== Referências de Código ====
+  * Implementação da Alquimia: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Alchemy.java|Alchemy.java]] - Mecânica central de transmutação
+  * Lógica de receita: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Alchemy.java#L66-L100|Alchemy.java transmute()]] - Seleção de sementes e criação de poções
+  * Objeto caldeirão de alquimia: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/AlchemyPot.java|AlchemyPot.java]] - Interação do jogador com o caldeirão
+  * Classes de alquimia das sementes: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Seed.java#L39|Seed.alchemyClass]] - Cada planta define sua poção
+  * Exemplo (Sungrass): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java|Sungrass.java]] - alchemyClass = PotionOfHealing.class
+  * Sistema de tesouro: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/Treasury.java|Treasury.java]] - Seleção aleatória de poção como fallback
+  * Estatísticas: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Statistics.java|Statistics.potionsCooked]] - Acompanha poções criadas
+
+==== Ver Também ====
+  * [[pt:rpd:potions|Poções]] - Todos os tipos de poções e efeitos
+  * [[pt:rpd:seeds_mechanic|Sementes]] - Tipos de sementes e propriedades
+  * [[pt:rpd:sewers_level|Nível dos Esgotos]] - Onde o caldeirão de alquimia está localizado
+  * [[pt:rpd:alchemy_mechanic|Mecânica de Alquimia]] - Mecânica técnica detalhada
+  * [[pt:rpd:plants|Plantas]] - Fontes de sementes para alquimia
+
+{{tag> rpd alquimia poções crafting sementes }}
