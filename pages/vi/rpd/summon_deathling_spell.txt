@@ -1,0 +1,73 @@
+====== Triệu hồi Tử vong ======
+
+{{ rpd:images:summon_deathling_spell.png|Triệu hồi Tử vong }}
+
+**Triệu hồi Tử vong** là phép thuật thuộc hệ **Hồi sinh thuật** trong Remixed Pixel Dungeon, triệu hồi một tù vong làm tuỳ tùng. Nguồn: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]]
+
+==== Mô tả ====
+Phép thuật này tạo ra một đồng minh tù vong tạm thời để chiến đấu cùng người施法. Sinh vật được triệu hồi sẽ hỗ trợ trong chiến đấu cho đến khi bị tiêu diệt hoặc đạt giới hạn triệu hồi.
+
+==== Thông số ====
+  * **Hệ phép thuật:** Hồi sinh thuật (nguồn: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java#L11|SummonDeathling.java:11]])
+  * **Loại mục tiêu:** Không (Tự thân) (nguồn: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java#L10|SummonDeathling.java:10]])
+  * **Cấp độ:** 1 (mặc định)
+  * **Chi phí Mana:** 1 (mặc định)
+  * **Thời gian ch唱:** 3 giây (nguồn: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java#L13|SummonDeathling.java:13]])
+  * **Hiệu ứng:** Triệu hồi một đồng minh tù vong
+  * **Tệp hình ảnh:** spellsIcons/necromancy.png (chỉ số 0) (nguồn: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java#L12|SummonDeathling.java:12]])
+
+==== Cơ chế ====
+  * Triệu hồi sinh vật tù vong để chiến đấu cùng người chơi (nguồn: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummoningSpell.java|SummoningSpell.java]])
+  * Giới hạn triệu hồi: 1 + (Cấp kỹ năng Anh hùng - Cấp phép thuật) = Cấp kỹ năng Anh hùng cho phép thuật cấp 1 (nguồn: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java#L16-L18|SummonDeathling.java:16-18]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java#L210|Spell.java:210]])
+  * HP và sát thương của Tù vong tăng theo cấp độ và cấp kỹ năng của anh hùng (nguồn: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Deathling.java|Deathling.java]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Deathling.lua|Deathling.lua]])
+  * Tù vong là quái không chết bay với 0 điểm kinh nghiệm (nguồn: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Deathling.lua|Deathling.lua]])
+
+==== Cách sử dụng ====
+Phép thuật Triệu hồi Tử vong được dùng để:
+  * Có thêm hỗ trợ chiến đấu tạm thời
+  * Tạo lợi thế chiến thuật trong những trận đấu khó
+  * Hấp thụ sát thương cho nhân vật người chơi
+
+==== Lớp nhân vật ====
+Các lớp có hệ Hồi sinh thuật có quyền truy cập chính vào phép thuật này:
+  * [[vi:rpd:necromancer_class|Lớp Hồi sinh thuật sư]] - Có hệ Hồi sinh thuật, bắt đầu với phép thuật này
+  * [[vi:rpd:lich_subclass|Đồng tù Lich]] - Đồng tù tiên tiến của Hồi sinh thuật sư với hệ Hồi sinh thuật được tăng cường
+
+==== Chiến thuật ====
+Triệu hồi Tử vong hiệu quả nhất khi dùng trong các cuộc đối đầu khó khăn cần thêm hỗ trợ chiến đấu. Tù vong được triệu hồi sẽ chiến đấu cho người chơi cho đến khi bị tiêu diệt hoặc đạt giới hạn triệu hồi. Cấp kỹ năng anh hùng càng cao cho phép triệu hồi nhiều Tù vong cùng lúc.
+
+==== Kiểm tra Nội dung ====
+  * Nguồn thông tin: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]]
+  * Kiểm tra thông số: Trích xuất trực tiếp từ [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]]
+  * Kiểm tra cơ chế: Dựa trên triển khai trong [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummoningSpell.java|SummoningSpell.java]] lớp cha và [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java#L210|Spell.java:210]] cho bộ sửa đổi cấp độ
+  * Cập nhật lần cuối: Tháng 11 2026
+
+==== Tham chiếu Mã nguồn ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummonDeathling.java|SummonDeathling.java]] - Triển khai chính
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SummoningSpell.java|SummoningSpell.java]] - Triển khai lớp cha (logic triệu hồi, quản lý thú cưng)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/Spell.java#L210|Spell.java:210]] - Phương thức getLevelModifier để tính giới hạn triệu hồi
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/spells/SpellFactory.java#L118|SpellFactory.java:118]] - Đăng ký phép thuật
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Deathling.lua|Deathling.lua]] - Triển khai quái Tù vong (thang điểm stat)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java#L257|MobFactory.java:257]] - Đăng ký Tù vong
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L8-L10|strings_all.xml:8-10]] - Tên, mô tả và chuỗi hệ phép thuật
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L755-L758|strings_all.xml:755-758]] - Chuỗi tài nguyên quái Tù vong
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L765|strings_all.xml:765]] - Necromancy_SummonDeathlingName
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-vi/strings_all.xml#L1227|strings_all.xml (vi):1227]] - Tên tiếng Việt
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/hero/initHeroes.json|initHeroes.json]] - Tham chiếu phép thuật bắt đầu của Hồi sinh thuật sư
+
+==== Chuỗi nguồn ====
+Tên: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-vi/strings_all.xml#L1227|Necromancy_SummonDeathlingName]] = "Triệu hồi Tử vong"
+
+Mô tả: "Triệu hồi một tuỳ tùng không chết. HP và sát thương của Tử vong tăng theo cấp anh hùng.\\n\\nGiới hạn triệu hồi: %1$d (+1 mỗi Cấp phép thuật)"
+
+==== Xem thêm ====
+  * [[vi:rpd:spells_overview|Phép thuật]]
+  * [[vi:rpd:necromancy_affinity_mechanic|Hệ Hồi sinh thuật]]
+  * [[vi:rpd:necromancer_class|Lớp Hồi sinh thuật sư]]
+  * [[vi:rpd:lich_subclass|Đồng tù Lich]]
+  * [[vi:rpd:deathling_mob|Tử vong]]
+  * [[vi:rpd:buffs|Hiệu ứng trạng thái]]
+  * [[vi:rpd:mobs|Quái và kẻ thù]]
+  * [[vi:rpd:summoning_spells_mechanic|Phép thuật Triệu hồi]]
+
+{{tag> rpd spells necromancy }}
