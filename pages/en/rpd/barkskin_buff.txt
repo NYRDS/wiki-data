@@ -14,23 +14,28 @@
 The Barkskin buff can be applied through:
 
   * **[[en:rpd:nature_armor_spell|Nature Armor Spell]]** (Elf spell) - applies Barkskin with initial level = caster's skill level × caster's level
-  * **[[en:rpd:earthroot_plant|Earthroot Plant]]** - applies Barkskin with initial level = hero's effective STR / 4
-  * **Generic Plant** - applies Barkskin with initial level = hero's max HP / 3
-  * **Frozen Carpaccio** (food) - applies Barkskin with initial level = hero's max HP / 4
-  * **High Grass** (level feature) - applies Barkskin with initial level = hero's max HP / 3
+  * **Frozen Carpaccio** (food) - 20% chance to apply Barkskin with initial level = hero's max HP / 4
+  * **High Grass** (level feature) - applies Barkskin with initial level = hero's max HP / 3 **only for Warden subclass**
+  * **Generic Plant** interaction - applies Barkskin with initial level = hero's max HP / 3 **only for Warden subclass**
   * **Spider Mind** (mob) - has Barkskin as one of its buffs
+
+==== Note on Earthroot ====
+The **[[en:rpd:earthroot_plant|Earthroot Plant]]** applies a different buff called **Earthroot Armor** (buff ID "Armor"), not Barkskin. Earthroot Armor absorbs damage into a pool while the hero stays on the same cell. See [[en:rpd:earthroot_plant|Earthroot Plant]] for details.
 
 ==== Code References ====
   * **Implementation**: `scripts/buffs/Barkskin.lua` - Core buff implementation (migrated from Java)
   * **Nature Armor Spell**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/NatureArmor.lua|NatureArmor.lua]] - Applies Barkskin with level = skillLevel × casterLevel
-  * **Earthroot Plant**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java#L66|Earthroot.java]] - Applies Barkskin with level = effectiveSTR / 4
-  * **Plant**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java#L48|Plant.java]] - Applies Barkskin with level = ht() / 3
-  * **Frozen Carpaccio**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/FrozenCarpaccio.java#L44|FrozenCarpaccio.java]] - Applies Barkskin with level = ht() / 4
-  * **High Grass**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java#L48|HighGrass.java]] - Applies Barkskin with level = ht() / 3
+  * **Earthroot Plant**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/plants/Earthroot.lua|Earthroot.lua]] - Applies **Earthroot Armor** (buff ID "Armor") with level = hero's max HP
+  * **Earthroot Armor buff**: `scripts/buffs/Armor.lua` - Earthroot Armor implementation
+  * **Plant**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java#L99-L101|Plant.java]] - Applies Barkskin with level = ht() / 3 (Warden subclass only)
+  * **Frozen Carpaccio**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/FrozenCarpaccio.java#L37-L38|FrozenCarpaccio.java]] - 20% chance to apply Barkskin with level = ht() / 4
+  * **High Grass**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java#L44-L47|HighGrass.java]] - Applies Barkskin with level = ht() / 3 (Warden subclass only)
 
 ==== String Resources ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L557-L558|English strings]]: Name="Barkskin", Info="The body is covered by bark which blocks some damage taken."
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L210-L211|Russian strings]]: Name="Кожа-кора", Info="Тело покрыто твёрдой корой, которая блокирует некоторый урон."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|English strings (Earthroot Armor)]]: Name="Herbal armor", Info="Roots have sprouted from the ground providing natural armor."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|Russian strings (Earthroot Armor)]]: Name="Растительная броня", Info="Из земли проросли корни, прочность которых легко заменяет броню."
 
 ==== See Also ====
   * [[en:rpd:buffs|Buffs and Debuffs]]

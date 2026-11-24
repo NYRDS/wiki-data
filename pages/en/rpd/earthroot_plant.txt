@@ -1,19 +1,26 @@
 ====== Earthroot Plant ======
 
-{{ rpd:images:earthroot_plant.png|Earthroot Plant }}
+{{ rpd:images:earthroot_level_object.png|Earthroot Plant }}
 
 ==== Description ====
-The **Earthroot Plant** is a defensive plant that grows from an [[en:rpd:earthroot_seed_item|Earthroot Seed]]. When stepped on, it applies an [[en:rpd:barkskin_buff|Barkskin]] armor buff based on the pressing character's health.
+The **Earthroot Plant** is a defensive plant that grows from an [[en:rpd:earthroot_seed_item|Earthroot Seed]]. When stepped on, it applies an **Earthroot Armor** buff (buff ID "Armor") based on the pressing character's max HP.
 
 ==== Mechanics ====
   * Grows from a planted [[en:rpd:earthroot_seed_item|Earthroot Seed]]
-  * When pressed, grants [[en:rpd:barkskin_buff|Barkskin]] armor equal to 1/4 of the character's health
+  * When pressed, grants **Earthroot Armor** with level equal to the character's max HP (ht())
+  * Earthroot Armor absorbs damage into a pool while the hero stays on the same cell; moving away removes the buff
   * Visual effect: earth particles and camera shake
   * Implemented in Lua: `scripts/plants/Earthroot.lua`
+  * Buff implementation: `scripts/buffs/Armor.lua`
+
+==== Note ====
+This plant grants **Earthroot Armor**, not [[en:rpd:barkskin_buff|Barkskin]]. The two buffs are different:
+  * **Barkskin** provides Damage Reduction (DR) that decays by 1 per turn
+  * **Earthroot Armor** provides a damage absorption pool that depletes as damage is taken, but only while stationary
 
 ==== Related ====
   * [[en:rpd:earthroot_seed_item|Earthroot Seed]] — source seed
-  * [[en:rpd:barkskin_buff|Barkskin]] — armor buff granted
+  * [[en:rpd:barkskin_buff|Barkskin]] — different DR-based buff
   * [[en:rpd:sprout_spell|Sprout Spell]] — plants seeds randomly
 
 {{tag> rpd plants earthroot }}

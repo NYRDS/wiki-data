@@ -11,14 +11,30 @@
   * **Бонус DR:** Равен текущему уровню баффа
 
 ==== Источники ====
+Кору можно получить следующими способами:
+
   * **[[ru:rpd:nature_armor_spell|Заклинание Природной Брони]]** (заклинание Эльфа) — применяет Кору с начальным уровнем = уровень навыка заклинателя × уровень заклинателя
-  * **[[ru:rpd:earthroot_level_object|Земляной Корень]]** — применяет Кору с начальным уровнем = эффективная СИЛ героя / 4
+  * **Замороженный Карпаччо** (еда) — 20% шанс применить Кору с начальным уровнем = макс. ЗД героя / 4
+  * **Высокая Трава** (особенность уровня) — применяет Кору с начальным уровнем = макс. ЗД героя / 3 **только для подкласса Страж**
+  * **Растение** (взаимодействие) — применяет Кору с начальным уровнем = макс. ЗД героя / 3 **только для подкласса Страж**
+  * **Паучье Чувиво** (моб) — имеетKORу среди своих баффов
+
+==== Примечание про Земляной Корень ====
+**[[ru:rpd:earthroot_level_object|Земляной Корень]]** применяет **другой бафф** — **Броня Земляного Корня** (ID баффа "Armor"), а не Кору. Броня Земляного Корня поглощает урон в пул поглощения, пока герой остается на той же клетке; перемещение снимает бафф. См. [[ru:rpd:earthroot_level_object|Земляной Корень]] для подробностей.
 
 ==== Ссылки на код ====
-  * Реализация: `scripts/buffs/Barkskin.lua`
+  * Реализация: `scripts/buffs/Barkskin.lua` — Основная реализация баффа (мигрировано из Java)
+  * Заклинание Природной Брони: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/NatureArmor.lua|NatureArmor.lua]] — Применяет Кору с уровнем = skillLevel × casterLevel
+  * Земляной Корень: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/plants/Earthroot.lua|Earthroot.lua]] — Применяет **Броню Земляного Корня** (ID баффа "Armor") с уровнем = макс. ЗД героя
+  * Бафф Броня Земляного Корня: `scripts/buffs/Armor.lua` — Реализация Брони Земляного Корня
+  * Растение: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java#L99-L101|Plant.java]] — Применяет Кору с уровнем = ht() / 3 (только для подкласса Страж)
+  * Замороженный Карпаччо: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/FrozenCarpaccio.java#L37-L38|FrozenCarpaccio.java]] — 20% шанс применить Кору с уровнем = ht() / 4
+  * Высокая Трава: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java#L44-L47|HighGrass.java]] — Применяет Кору с уровнем = ht() / 3 (только для подкласса Страж)
 
 ==== См. также ====
   * [[ru:rpd:buffs|Баффы и Дебаффы]]
+  * [[ru:rpd:nature_armor_spell|Заклинание Природной Брони]]
   * [[ru:rpd:earthroot_level_object|Земляной Корень]]
+  * [[ru:rpd:status_effects|Статус-эффекты]]
 
 {{tag> rpd баффы статус_эффекты защита }}
