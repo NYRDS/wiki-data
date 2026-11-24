@@ -1,0 +1,72 @@
+====== MeleeWeapon Item - Code References ======
+
+{{ rpd:images:sword_item.png|Sword }}
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java|MeleeWeapon.java]] - Base melee weapon class
+  * Location: ``RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/MeleeWeapon.java``
+  * Extends: ``Weapon`` class
+  * Constructor: ``MeleeWeapon(int tier, float acu, float dly)`` - tier, accuracy, delay
+  * Durability handling for melee weapons
+
+===== Known MeleeWeapon Subclasses =====
+  * **Swords**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/swords/|swords/]] directory
+  * **Axes**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/axes/|axes/]] directory
+  * **Maces**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/maces/|maces/]] directory
+  * **Daggers**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Dagger.java|Dagger.java]]
+  * **Polearms**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Polearm.java|Polearm.java]] - Extended reach weapons
+  * **Other**: WarHammer, Quarterstaff, Kusarigama
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists for the base MeleeWeapon class.
+Individual melee weapons may have JSON configuration in Treasury.json for loot tables.
+
+===== String Resources =====
+English string resources (values/strings_all.xml) contain names and descriptions for all melee weapons.
+Example strings:
+<code xml>
+<string name="ShortSword_Name">short sword</string>
+<string name="ShortSword_Info">A well-balanced sword suitable for most situations.</string>
+<string name="Dagger_Name">dagger</string>
+<string name="Dagger_Info">A light, fast weapon designed for stabbing.</string>
+</code>
+
+Russian string resources (values-ru/strings_all.xml) provide localization for all melee weapons.
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists for the base MeleeWeapon class.
+Custom melee weapons may use Lua scripts in scripts/items/.
+
+===== Weapon Stats =====
+  * **Damage Range**: Varies by weapon (e.g., ShortSword: 1-4, Dagger: 1-3)
+  * **Speed**: Varies by weapon (e.g., ShortSword: 1.0, Dagger: 1.3)
+  * **Accuracy**: Varies by weapon (e.g., ShortSword: 1.0, Dagger: 1.1)
+  * **Required Strength**: Calculated based on tier
+  * **Durability**: Degrades on use, can be repaired
+  * **Upgradeable**: Can be upgraded with Scroll of Upgrade
+
+===== Related mr Entities =====
+  * [[mr:weapon_item|Weapon]]
+  * [[mr:polearm_item|Polearm]]
+  * [[mr:ranged_weapon_item|RangedWeapon]]
+  * [[mr:short_sword_item|Short Sword]]
+  * [[mr:dagger_item|Dagger]]
+  * [[mr:weapon_enchantments|Weapon Enchantments]]
+
+===== Wiki Pages =====
+**English:**
+  * [[en:rpd:melee_weapon_item|Melee Weapon]] - Main wiki page
+  * [[en:rpd:melee_weapons|Melee Weapons]] - Category page
+  * [[en:rpd:swords|Swords]]
+  * [[en:rpd:axes_item|Axes]]
+  * [[en:rpd:mace_item|Maces]]
+  * [[en:rpd:polearms|Polearms]]
+
+**Russian:**
+  * [[ru:rpd:melee_weapon_item|Ближнее оружие]]
+  * [[ru:rpd:swords|Мечи]]
+  * [[ru:rpd:axes_item|Топоры]]
+  * [[ru:rpd:mace_item|Булавы]]
+  * [[ru:rpd:polearms|Древковое оружие]]
+
+{{tag> mr items weapons melee reference machine-readable}}

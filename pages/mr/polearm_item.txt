@@ -1,0 +1,73 @@
+====== Polearm Item - Code References ======
+
+{{ rpd:images:glaive_item.png|Glaive }}
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Polearm.java|Polearm.java]] - Base polearm class
+  * Location: ``RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Polearm.java``
+  * Extends: ``MeleeWeapon`` class
+  * Constructor: ``Polearm(int tier, float acu, float dly)`` - tier, accuracy, delay
+  * Animation: ``SPEAR_ATTACK``
+  * Range: ``2`` tiles (extended reach)
+
+===== Known Polearm Subclasses =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Glaive.java|Glaive.java]] - Tier 5, accuracy 1.2, delay 1.4
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Spear.java|Spear.java]] - Tier 2, accuracy 1.0, delay 1.5
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/melee/Halberd.java|Halberd.java]] - Tier 4, accuracy 1.1, delay 1.6
+
+===== JSON Configuration =====
+This entity is implemented in Java, no JSON configuration exists for the base Polearm class.
+Individual polearms may have JSON configuration in Treasury.json for loot tables.
+
+===== String Resources =====
+English string resources (values/strings_all.xml):
+<code xml>
+<string name="Glaive_Name">glaive</string>
+<string name="Glaive_Info">A polearm consisting of a sword blade on the end of a pole.</string>
+<string name="Spear_Name">spear</string>
+<string name="Spear_Info">A slender wooden rod tipped with sharpened iron.</string>
+<string name="Halberd_Name">halberd</string>
+<string name="Halberd_Info">A polearm with an axe blade and a spear point.</string>
+</code>
+
+Russian string resources (values-ru/strings_all.xml):
+<code xml>
+<string name="Glaive_Name">глефа</string>
+<string name="Glaive_Info">Древковое оружие с лезвием от меча на конце древка.</string>
+<string name="Spear_Name">копье</string>
+<string name="Spear_Info">Тонкое деревянное древко с острым железным наконечником.</string>
+<string name="Halberd_Name">аллебарда</string>
+<string name="Halberd_Info">Древковое оружие с топорищем и наконечником копья.</string>
+</code>
+
+===== Lua Scripts =====
+This entity is implemented in Java, no Lua script exists for the base Polearm class.
+Custom polearms may use Lua scripts in scripts/items/.
+
+===== Weapon Stats =====
+  * **Range**: 2 tiles (can attack enemies 2 tiles away)
+  * **Block Slot**: LEFT_HAND (requires two hands)
+  * **Animation**: SPEAR_ATTACK
+  * **Flight**: Projectiles fly straight (isFliesStraight() returns true)
+  * **Slot**: WEAPON (main hand)
+
+===== Related mr Entities =====
+  * [[mr:melee_weapon_item|MeleeWeapon]]
+  * [[mr:glaive_item|Glaive Item]]
+  * [[mr:spear_item|Spear Item]]
+  * [[mr:halberd_item|Halberd Item]]
+  * [[mr:weapon_item|Weapon]]
+
+===== Wiki Pages =====
+**English:**
+  * [[en:rpd:polearms|Polearms]] - Category page
+  * [[en:rpd:glaive_item|Glaive]]
+  * [[en:rpd:spear_item|Spear]]
+  * [[en:rpd:halberd_item|Halberd]]
+
+**Russian:**
+  * [[ru:rpd:glaive_item|Глефа]]
+  * [[ru:rpd:spear_item|Копьё]]
+  * [[ru:rpd:halberd_item|Аллебарда]]
+
+{{tag> mr items weapons melee polearm reference machine-readable}}
