@@ -1,8 +1,55 @@
-====== 重击 ======
+====== 重擊 ======
 
-重击是战士可用的战斗法术，造成额外伤害。
+{{ rpd:images:smash_spell.png|重擊 }}
+
+**重擊** 是戰士可用的戰鬥系法術，向上跳躍並猛擊地面，對周圍敵人造成物理傷害並施加暈眩效果。
 
 ==== 效果 ====
-  * 增加伤害
+  * 向上跳躍並猛擊地面
+  * 對周圍敵人造成武器傷害
+  * 施加暈眩效果（眩暈）
+  * 需要裝備武器才能施放
 
-{{tag> rpd spells combat warrior}}
+==== 統計數據 ====
+  * **魔法親和力**: 戰鬥
+  * **等級**: 4 (進階)
+  * **法力消耗**: 10
+  * **冷卻時間**: 10 回合
+  * **施法時間**: 0.5 秒
+  * **目標類型**: 自身 (影響周圍格子)
+
+==== 機制 ====
+重擊施放時會：
+  * 檢查英雄是否裝備武器，未裝備則無法施放
+  * 英雄向上跳躍 (30 像素高度)
+  * 在英雄位置產生拳頭視覺特效
+  * 在周圍 8 格範圍內對所有敵人造成武器傷害並施加眩暈效果
+  * 眩暈持續時間基於施法者的技能等級
+  * 播放「smash」音效
+
+==== 策略 ====
+  * 適合在被多個敵人包圍時使用
+  * 眩暈效果可為後續攻擊創造機會
+  * 需要裝備武器才能使用，注意武器耐久度
+  * 冷卻時間較長 (10 回合)，使用時機要把握
+  * 結合高傷害武器效果最佳
+
+==== 適用職業 ====
+  * **戰士** - 戰鬥系魔法親和力
+  * 其他具有戰鬥系親和力的職業
+
+==== 代碼參考 ====
+  * Lua 腳本實現: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Smash.lua|Smash.lua]]
+  * 字串資源 (英文): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2134-L2136|SmashSpell_Name, SmashSpell_Info, SmashSpell_NeedWeapon]]
+  * 字串資源 (繁體中文): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rTW/strings_all.xml#L2105-L2107|SmashSpell_Name, SmashSpell_Info, SmashSpell_NeedWeapon]]
+  * 法術圖示: spellsIcons/warrior.png
+  * 自定義法術列表: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L11|CustomSpellsList.lua]] - 列於戰鬥系法術中
+
+==== 參見 ====
+  * [[zh:rpd:spells_overview|法術總覽]]
+  * [[zh:rpd:combat_mechanic|戰鬥機制]]
+  * [[zh:rpd:warrior_class|戰士職業]]
+  * [[zh:rpd:vertigo_buff|眩暈]]
+  * [[en:rpd:smash_spell|Smash (English)]]
+
+{{tag> rpd 法術 戰鬥 戰士 重擊 眩暈}}
