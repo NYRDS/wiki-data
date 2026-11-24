@@ -1,0 +1,71 @@
+====== 冰霜药水 ======
+
+{{ rpd:images:potion_of_frost_item.png|冰霜药水 }}
+
+冰霜药水是 Remixed Dungeon 中的一种药水，暴露在空气中时会产生冻结效果。
+
+==== 效果 ====
+破碎时，药水会产生一个冻结云雾，影响冲击点周围 2 格内的所有生物：
+  * **冻结：** 生物被冻结在原地，无法移动或行动
+  * **影响范围：** 冻结云雾影响冲击点周围 2 格内的所有生物
+  * **持续时间：** 生物保持冻结状态，直到效果消失或被清除
+  * **机制：** 使用 [[zh:rpd:freezing_buff|冻结]] blob 来应用冻结效果
+
+==== 属性 ====
+  * **稀有度：** 普通
+  * **重量：** 1
+  * **价格：** 50 金币（基础价格）
+  * **鉴定：** 一次使用即可鉴定（破碎以了解效果）
+  * **类型：** 可投掷药水
+  * **升级类别：** UpgradablePotion
+  * **效果半径：** (int)(DISTANCE * qualityFactor())，其中 DISTANCE 为 2
+
+==== 机制 ====
+  * 在任意位置破碎时，基于距离图创建影响区域
+  * 使用 PathFinder.buildDistanceMap 计算受影响区域
+  * 影响距离图内的所有格子
+  * 使用 Freezing.affect() 对每个受影响的格子应用冻结效果
+  * 根据字符串资源："Upon exposure to open air, this chemical will evaporate into a freezing cloud, causing any creature that contacts it to be frozen in place, unable to act and move."
+
+==== 功能 ====
+  * **破碎：** 投掷到目标或地面时，创建冻结效果云雾
+  * **箭矢浸润：** 可用于浸润箭矢，将其变为 [[zh:rpd:frost_arrow_item|寒霜箭]]
+  * **实用性：** 对阻止危险敌人或创建临时屏障有效
+  * **环境交互：** 撞击时可熄灭火焰
+
+==== 策略 ====
+  * 用于战斗中暂时禁用危险敌人
+  * 对难以对付的单个强力敌人特别有效
+  * 可用于在困难遭遇战中创造暂时的喘息空间
+  * 小心不要冻结自己或重要盟友
+  * 面对多个敌人时适合群体控制
+  * 在走廊和封闭空间中进行群体控制非常出色
+  * 对火属性敌人可造成额外伤害
+  * 可用于打断敌人施法或特殊能力
+  * 与其他群控物品结合可达成最大效果
+  * 通过浸润过程制作寒霜箭极其宝贵
+  * 对火属性生物特别有效
+
+==== 获取途径 ====
+  * 在地城层中作为随机掉落发现
+  * 商店中可买到
+  * 有时在宝箱中发现
+  * 某些敌人掉落
+
+==== 内容验证 ====
+  * Java 类：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java|PotionOfFrost.java]]
+  * 源代码位置：RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java
+  * 字符串资源：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2186|PotionOfFrost_Name]] 和 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L2187|PotionOfFrost_Info]]
+  * 效果：使用 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] blob 应用冻结效果
+  * 实现：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L287|registerItemClass(PotionOfFrost.class)]]
+  * 实体种类：potion_of_frost（通过 getEntityKind()）
+  * 机器可读数据：[[mr:potion_of_frost_item|mr:potion_of_frost_item]]
+
+==== 相关物品 ====
+  * [[zh:rpd:potion_item|药水]] - 游戏中的其他药水
+  * [[zh:rpd:frost_arrow_item|寒霜箭]] - 用此药水浸润的箭矢
+  * [[zh:rpd:frost_buff|冰霜状态效果]] - 药水施加给生物的冻结效果
+  * [[zh:rpd:potion_of_liquid_flame_item|液态火焰药水]] - 相反的火焰效果
+  * [[zh:rpd:freezing_buff|冻结]] - 药水施加的状态效果
+
+{{tag> rpd 物品 药水 冰霜 实用 }}

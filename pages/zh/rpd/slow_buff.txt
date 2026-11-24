@@ -1,0 +1,51 @@
+====== 减速效果 ======
+
+{{ rpd:images:slow_buff.png|减速效果 }}
+
+**减速** 是 Remixed Dungeon 中的一种负面状态效果，会降低角色的行动速度。
+
+==== 效果概览 ====
+  * **类型：** [[zh:rpd:debuffs|减益]]
+  * **持续时间：** 可变，基于来源和目标等级
+  * **效果：** 显著降低行动速度
+  * **移除：** 自然过期或 [[zh:rpd:potion_of_purity_item|纯净药水]]
+
+==== 机制 ====
+  * **速度降低：** 受影响的角色以降低的速度行动
+  * **持续时间计算：** 持续时间根据效果来源而变化
+  * **叠加：** 不与其他降低速度的效果叠加
+  * **有效性：** 使受影响的角色移动和攻击变慢
+  * **受影响动作：** 移动、攻击和其他动作均被减速
+
+==== 应用途径 ====
+  * **法杖：** 由 [[zh:rpd:wand_of_slowness_item|缓慢法杖]] 施加
+  * **法术：** 某些法术可施加减速效果
+  * **敌人：** 某些敌人可施加减速
+  * **陷阱：** 某些陷阱可能有减速效果
+
+==== 策略 ====
+  * **作为敌人：** 用于减速难以命中的快速敌人
+  * **战术优势：** 为对减速目标的行动规划争取时间
+  * **群体控制：** 减速一群敌人以便更轻松地应对
+  * **防御用途：** 减速逼近的敌人以争取时间
+  * **组合：** 与其他控制效果配合效果良好
+  * **自身应对：** 若被影响，尝试移动到更安全的位置或使用即时效果
+
+==== 克制手段 ====
+  * [[zh:rpd:potion_of_purity_item|纯净药水]] 可瞬间移除效果
+  * 等待自然过期
+  * [[zh:rpd:resistances|抗性]] 可减少持续时间
+
+==== 代码参考 ====
+  * **Java 实现：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]]
+  * **Buff 基类：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
+  * **持续时间计算：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java#L18-L20|Slow.duration() 方法]]
+  * **字符串资源：** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Slow buff 名称/描述的字符串资源]]
+
+==== 相关 Buff ====
+  * [[zh:rpd:chill_buff|寒冷]] - 类似但较弱的速度降低
+  * [[zh:rpd:paralysis_buff|瘫痪]] - 更严重的移动限制
+  * [[zh:rpd:freezing_buff|冻结]] - 类似瘫痪但受伤害可解除
+  * [[zh:rpd:amok_buff|狂暴]] - 相反效果（加速）
+
+{{tag> rpd buffs debuffs 状态效果 }}

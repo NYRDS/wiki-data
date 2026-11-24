@@ -1,0 +1,85 @@
+====== 毒箭 ======
+
+{{ rpd:images:poison_arrow_item.png|毒箭 }}
+
+**毒箭** 是 Remixed Pixel Dungeon 中的一种特殊远程弹药物品，命中时会毒害敌人。
+
+==== 描述 ====
+一支木箭，箭头浸泡在毒药中。当这支箭击中敌人时，会施加中毒状态效果，造成持续伤害。这是通过用 [[zh:rpd:potion_of_toxic_gas_item|剧毒气体药水]] "浸润" 一支 [[zh:rpd:common_arrow_item|普通箭矢]] 来创建的。
+
+==== 属性 ====
+  * **伤害：** 3-4 点（基础，从弓发射时增加）
+  * **延迟：** 0.75x（相对于武器发射速度）
+  * **命中率：** 1x（相对于武器命中率）
+  * **所需力量：** 9
+  * **耐久度：** 单次使用（撞击时消耗）
+  * **价格：** 每支箭 5 金币
+  * **重量：** 1
+
+==== 特性 ====
+  * **类型：** 投掷/弹药 (特殊)
+  * **用法：** 配合弓等远程武器使用
+  * **消耗品：** 每支箭发射后消耗
+  * **可堆叠：** 可堆叠至极高数量
+  * **特殊效果：** 命中时毒害目标，造成持续伤害
+  * **发射时可升级：** 随弓的等级增加伤害
+
+==== 创建 ====
+毒箭可通过在普通 [[zh:rpd:common_arrow_item|普通箭矢]] 上使用 [[zh:rpd:potion_of_toxic_gas_item|剧毒气体药水]] 来创建。此过程称为"浸润"，将基础箭矢转化为具有特殊属性的箭矢。
+
+==== 机制 ====
+  * 击中敌人时施加 [[zh:rpd:poison_buff|中毒]] 状态效果
+  * 基础中毒持续时间为 5f (定义为 ''PoisonArrow.DURATION = 5f'')，若从弓发射则每级弓增加 1 回合
+  * 中毒每回合造成 1 点伤害，直到消失或敌人死亡
+  * 中毒效果与现有中毒叠加，刷新持续时间
+  * 不与 [[zh:rpd:paralysis_buff|麻痹]] 或 [[zh:rpd:burning_buff|燃烧]] 等其他状态效果叠加
+
+==== 实现细节 ====
+  * **类**：''com.watabou.pixeldungeon.items.weapon.missiles.PoisonArrow''
+  * **父类**：继承 ''Arrow'' 类
+  * **精灵**：item_PoisonArrow.png
+  * **伤害**：最小 3，最大 4 (构造函数中更新)
+  * **延迟**：基础延迟 0.75 (构造函数中更新)
+  * **价格**：每支箭 5 金币 (基于数量)
+  * **中毒施加**：在 ''attackProc'' 方法中使用 ''Buff.affect(defender, Poison.class, ...)'' 处理
+  * **中毒持续时间**：''Poison.durationFactor(defender) * poisonFactor''，其中 poisonFactor = 1 + firedFrom.level() (若从弓发射)
+  * **特殊激活**：在施加中毒前调用 ''activateSpecial(attacker, defender, damage)''
+
+==== 可获得性 ====
+  * **仅创建：** 无法作为随机战利品找到；必须通过浸润创建
+  * **所需材料：** [[zh:rpd:common_arrow_item|普通箭矢]] + [[zh:rpd:potion_of_toxic_gas_item|剧毒气体药水]]
+  * **炼金术：** 游戏炼金系统的一部分，用于创建特殊弹药
+
+==== 策略 ====
+  * 无需消耗大量资源即可造成持续伤害的绝佳选择
+  * 适合对付中等血量可被毒死的敌人
+  * 面对群体时考虑使用，中毒会随时间持续削弱它们
+  * 小心不要浪费在能快速清除中毒或免疫的敌人身上
+  * 对不会立即击杀你的敌人有效，让毒药发挥作用
+  * 从弓发射时伤害增加，中毒持随弓的等级增加
+
+==== 相关 ====
+  * [[zh:rpd:common_arrow_item|普通箭矢]] - 浸润用的基础箭矢
+  * [[zh:rpd:potion_of_toxic_gas_item|剧毒气体药水]] - 创建所需
+  * [[zh:rpd:arrows_item|所有箭矢类型]] - 箭矢变体完整列表
+  * [[zh:rpd:bows_and_arrows_item|弓与箭]] - 兼容箭矢的武器
+  * [[zh:rpd:alchemy|炼金术]] - 创建特殊物品
+  * [[zh:rpd:poison_buff|中毒状态效果]] - 中毒机制详细信息
+
+==== 源代码 ====
+  * Java：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/PoisonArrow.java|PoisonArrow.java]]
+  * 基础箭矢：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfToxicGas.java|PotionOfToxicGas.java]] - 创建机制
+  * 字符串资源：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L859-L860|PoisonArrow_Name 和 PoisonArrow_Info 字符串]]
+  * 俄语字符串资源：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L846-L847|俄语 PoisonArrow 字符串]]
+  * JSON 配置：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/itemsDesc/missiles/Arrow.json|Arrow.json]]
+  * 中毒机制：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
+  * 创建配方：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Moistening.java#L64-L66|Moistening.java 中的浸润配方]]
+  * 基础属性：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/PoisonArrow.java#L13-L20|带属性的构造函数]]
+  * 攻击机制：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/PoisonArrow.java#L31-L41|attackProc 方法]]
+  * 价格计算：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/PoisonArrow.java#L27-L29|price() 方法]]
+
+==== 注释 ====
+毒箭是炼金系统的关键部分，允许玩家从常见资源创建强力弹药。对付多个敌人或需要保持距离的情况时特别有效。毒药效果基础持续 5 回合，使用的弓等级每级增加额外持续时间。
+
+{{tag> rpd 物品 弹药 远程 剧毒气体 毒药 }}

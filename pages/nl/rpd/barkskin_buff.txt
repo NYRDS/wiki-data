@@ -1,0 +1,46 @@
+====== Barkskin ======
+
+{{ rpd:images:barkskin_buff.png|Barkskin }}
+
+**Barkskin** is een nuttige statuseffect in Remixed Dungeon die tijdelijk de pantserwaarde (DR) van de personage verhoogt, waardoor ze weerstandskrachtiger worden tegen fysieke schade.
+
+==== Mechanica ====
+  * **Effect:** Verhoogt DR (Damage Reduction) met een bedrag gelijk aan het huidige buff-niveau
+  * **Duur:** Het buff-niveau daalt met 1 per beurt; wanneer het 0 bereikt, verloopt de buff
+  * **Initiële Level:** Gesteld door de bron die de buff toepast (zie Bronnen hieronder)
+  * **DR Bonus:** Gelijk aan het huidige buff-niveau (gecheckt via de `drBonus()` methode)
+
+==== Bronnen ====
+De Barkskin buff kan worden toegepast via:
+
+  * **[[nl:rpd:nature_armor_spell|Nature Armor Spell]]** (Elf spreuk) - past Barkskin toe met initiële level = spreukniveau van de spreker × niveau van de spreker
+  * **Bevroren Carpaccio** (voedsel) - 20% kans om Barkskin toe te passen met initiële level = max HP van de held / 4
+  * **Hoog Gras** (level feature) - past Barkskin toe met initiële level = max HP van de held / 3 **alleen voor Warden subklasse**
+  * **Generieke Plant** interactie - past Barkskin toe met initiële level = max HP van de held / 3 **alleen voor Warden subklasse**
+  * **Spider Mind** (vijand) - heeft Barkskin als een van zijn buffs
+
+==== Let op Earthroot ====
+De **[[nl:rpd:earthroot_plant|Earthroot Plant]]** past een andere buff toe genaamd **Earthroot Armor** (buff ID "Armor"), geen Barkskin. Earthroot Armor absorbeert schade in een pool zolang de held op dezelfde cel blijft. Zie [[nl:rpd:earthroot_plant|Earthroot Plant]] voor details.
+
+==== Code Referenties ====
+  * **Implementatie:** `scripts/buffs/Barkskin.lua` - Kern buff implementatie (gemigreerd van Java)
+  * **Nature Armor Spell:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/NatureArmor.lua|NatureArmor.lua]] - Past Barkskin toe met level = skillLevel × casterLevel
+  * **Earthroot Plant:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/plants/Earthroot.lua|Earthroot.lua]] - Past **Earthroot Armor** toe (buff ID "Armor") met level = max HP van de held
+  * **Earthroot Armor buff:** `scripts/buffs/Armor.lua` - Earthroot Armor implementatie
+  * **Plant:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java#L99-L101|Plant.java]] - Past Barkskin toe met level = ht() / 3 (alleen Warden subklasse)
+  * **Bevroren Carpaccio:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/FrozenCarpaccio.java#L37-L38|FrozenCarpaccio.java]] - 20% kans om Barkskin toe te passen met level = ht() / 4
+  * **Hoog Gras:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/features/HighGrass.java#L44-L47|HighGrass.java]] - Past Barkskin toe met level = ht() / 3 (alleen Warden subklasse)
+
+==== String Bronnen ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L557-L558|Engelse strings]]: Name="Barkskin", Info="The body is covered by bark which blocks some damage taken."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L210-L211|Russische strings]]: Name="Кожа-кора", Info="Тело покрыто твёрдой корой, которая блокирует некоторый урон."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Engelse strings (Earthroot Armor)]]: Name="Herbal armor", Info="Roots have sprouted from the ground providing natural armor."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml|Russische strings (Earthroot Armor)]]: Name="Растительная броня", Info="Из земли проросли корни, прочность которых легко заменяет броню."
+
+==== Zie Ook ====
+  * [[nl:rpd:buffs|Buffs en Debuffs]]
+  * [[nl:rpd:nature_armor_spell|Nature Armor Spell]]
+  * [[nl:rpd:earthroot_plant|Earthroot Plant]]
+  * [[nl:rpd:status_effects|Status Effecten]]
+
+{{tag> rpd buffs status_effecten bescherming }}

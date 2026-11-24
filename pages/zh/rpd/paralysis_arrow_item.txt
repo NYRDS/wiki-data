@@ -1,0 +1,56 @@
+====== 麻痹箭 ======
+
+{{ rpd:images:paralysis_arrow_item.png|麻痹箭 }}
+
+**麻痹箭** 是 Remixed Dungeon 中一种可投掷的飞弹武器，能使目标眩晕。
+
+==== 属性 ====
+  * **重量**：1
+  * **[[zh:rpd:items|类型]]**：[[zh:rpd:arrow_item|箭矢]]
+  * **[[zh:rpd:damage|伤害]]**：0-4
+  * **耐久度**：1 次使用
+
+==== 效果 ====
+  * **[[zh:rpd:stun_buff|眩晕]]**：造成 [[zh:rpd:stun_buff|眩晕状态效果]] 持续 4 回合，阻止目标行动
+  * **[[zh:rpd:throwing_weapons|可投掷]]**：可投掷向远处的敌人
+  * **单次使用**：使用后消耗
+  * **[[zh:rpd:missile_weapons|飞弹]]**：具有标准飞弹机制的远程武器
+
+==== 描述 ====
+麻痹箭是一种特殊弹药，使用时会使目标暂时眩晕。这使它们在战斗中控制敌人和获得战术优势时非常有效。
+
+==== 获取途径 ====
+  * 通过炼金术用 [[zh:rpd:potion_of_paralytic_gas_item|麻痹气体药水]] 配合普通 [[zh:rpd:arrow_item|箭矢]] 创建
+  * 偶尔可在 [[zh:rpd:shops|商店]] 或 [[zh:rpd:level_objects|关卡物体]]（如箱子或堆）中找到
+  * 炼金制造系统的一部分
+
+==== 用法 ====
+  * 投掷向敌人施加 [[zh:rpd:stun_buff|眩晕效果]]
+  * 适合战斗控制和创造喘息空间
+  * 对危险敌人或群体特别有价值
+  * 可用作战术逃脱手段
+
+==== 机制 ====
+  * 通过浸润系统结合 [[zh:rpd:potion_of_paralytic_gas_item|麻痹气体药水]] 与普通 [[zh:rpd:arrow_item|箭矢]] 创建
+  * 命中时施加 [[zh:rpd:stun_buff|眩晕]] 状态效果持续 4 回合 (DURATION = 4f)
+  * 遵循标准 [[zh:rpd:throwing_weapons|投掷武器]] 机制
+  * 数量由使用的药水量和箭矢质量决定
+
+==== 源代码 ====
+  * Java 类：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/ParalysisArrow.java|ParalysisArrow.java]]
+  * 基础箭矢：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
+  * 眩晕效果（命中时施加）：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Stun.java|Stun.java]]（注意：箭矢施加眩晕，而非麻痹）
+  * 炼金系统：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfParalyticGas.java#L43-L48|PotionOfParalyticGas.java 中的 moistenArrow 方法]]
+  * 伤害系统：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/MissileWeapon.java|MissileWeapon]] - 飞弹伤害基类
+  * 字符串资源：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L1520-L1522|ParalysisArrow_Name, ParalysisArrow_Info, ParalysisArrow_Gender]]
+  * 俄语字符串资源：[[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L1519-L1521|ParalysisArrow_Name, ParalysisArrow_Info (俄语)]]
+  * 机器可读数据：[[mr:paralysis_arrow_item|mr:paralysis_arrow_item]]
+
+==== 另请参阅 ====
+  * [[zh:rpd:arrows_item|箭矢]]
+  * [[zh:rpd:stun_buff|眩晕 Buff]]
+  * [[zh:rpd:potion_of_paralytic_gas_item|麻痹气体药水]]
+  * [[zh:rpd:missile_weapons|飞弹武器]]
+  * [[zh:rpd:alchemy_mechanic|炼金术]]
+
+{{tag> rpd 物品 箭矢 投掷 麻痹 }}
