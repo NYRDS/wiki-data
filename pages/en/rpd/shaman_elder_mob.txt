@@ -7,13 +7,25 @@ The **Shaman Elder** is a special variant of the Gnoll Shaman mob found in the d
 
 ==== Stats ====
   * **Level**: Appears in levels 13-14 (very rare in level 13, more common in level 14)
-  * **Behavior**: Uses ranged attacks and has special abilities
-  * **Special Ability**: When damaged, may activate a Mana Shield buff
+  * **HP**: 48
+  * **EXP for killing**: 9
+  * **Defense**: 4 (Damage Reduction)
+  * **Attack Skill**: 20
+  * **Defense Skill**: 14
+  * **Damage**: 8-12
+  * **Attack Delay**: 1.0 seconds
+  * **Attack Range**: 6 tiles (ranged)
+  * **Movement Speed**: Normal (1.0x)
+
+==== Special Abilities ====
+  * **Kiting AI**: Maintains distance from enemies (kiteMinDist = 2)
+    - When enemy is within 1-2 tiles, the Shaman Elder will flee
+    - When enemy is more than 4 tiles away, it will hunt them down
+  * **Mana Shield**: When hit by a magical attack (zap), activates a Mana Shield buff at skill level
+  * **Loot**: Always drops a Spell Book (100% chance)
 
 ==== Behavior ====
-  * When enemy is within 1-2 tiles, the Shaman Elder will flee
-  * When enemy is more than 4 tiles away, it will hunt them down
-  * When damaged, may activate a Mana Shield for protection
+The Shaman Elder uses a "Kite" AI behavior, preferring to attack from range and maintain distance. It will flee when enemies get too close (within 2 tiles) and pursue when they are far away.
 
 ==== Source Code ====
   * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/ShamanElder.json|ShamanElder.json]] - Configuration file
