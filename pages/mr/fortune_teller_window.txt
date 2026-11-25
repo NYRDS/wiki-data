@@ -1,0 +1,78 @@
+====== Fortune Teller Window - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/FortuneTeller.lua|FortuneTeller.lua]] (Lua script implementing the Fortune Teller NPC interaction and identification window)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/scrolls/ScrollOfIdentify.java|ScrollOfIdentify.java]] (Scroll of Identify item for comparison)
+
+===== JSON Configuration =====
+File: `RemixedDungeon/src/main/assets/mobsDesc/FortuneTellerNPC.json`
+<code json>
+{
+   "baseSpeed"     :0,
+   "spriteDesc"    :"spritesDesc/FortuneTellerNPC.json",
+   "scriptFile"    :"scripts/npc/FortuneTeller",
+   "friendly"      :true,
+   "movable"       :false,
+   "aiState"       :"Passive",
+   "fraction"      :"NEUTRAL",
+   "immortal"      :true,
+   "npc"           :true,
+   "isHumanoid"    :true,
+   "ht"            :1,
+   "exp"           :0
+}
+</code>
+
+This entity is implemented via JSON configuration + Lua script (replaced Java classes FortuneTellerNPC.java and WndFortuneTeller.java).
+
+Key properties from JSON:
+  * **Immortal**: immortal = true
+  * **Immobile**: movable = false, baseSpeed = 0
+  * **Passive AI**: aiState = "Passive"
+  * **Neutral Faction**: fraction = "NEUTRAL"
+  * **NPC**: npc = true
+  * **HP**: 1 (ht), **EXP**: 0
+
+===== Lua Script =====
+File: `RemixedDungeon/src/main/assets/scripts/npc/FortuneTeller.lua`
+Key behaviors implemented in Lua:
+  * **interact**: Opens identification dialog with two options:
+    * Identify single item for 50 gold (modified by difficulty and Ring of Haggler)
+    * Identify all unidentified items for 50 gold per item
+  * Uses `RPD.CharUtils:goldPrice(chr, 50)` for dynamic price calculation
+  * Uses `RPD.CharUtils:countUnidentified(chr)` to count unidentified items
+  * Uses `RPD.CharUtils:identifyItem(chr, item)` for single item identification
+  * Uses `chr:getBelongings():identify()` for identify all
+  * Uses `RPD.chooseOption()` for dialog with options
+  * Validates gold before proceeding
+
+===== String Resource References =====
+  * **WndFortuneTeller_Title**: "Fortune-teller."
+  * **WndFortuneTeller_Instruction**: "I can reveal secrets behind items, that you posses.\nOne identification will cost you %d coins."
+  * **WndFortuneTeller_IdentifyAll**: "All"
+  * **WndFortuneTeller_No_Item**: "Careful, you don't want to spend your money for nothing, right? There are no unidentified items in your inventory."
+  * **FortuneTellerNPC_Name**: "fortune teller"
+  * **FortuneTellerNPC_Desc**: "This woman is wearing a long, brightly colored robe. She looks suspiciously young for someone who has mastered the arcane arts of fortune telling. As you approach, you can hear her muttering, while staring fixedly at the crystal ball."
+  * **FortuneTellerNPC_Gender**: "feminine"
+
+===== Code Implementation =====
+This NPC/window is implemented via JSON configuration + Lua script (migrated from Java classes `com/nyrds/pixeldungeon/mobs/npc/FortuneTellerNPC.java` and `com/nyrds/pixeldungeon/windows/WndFortuneTeller.java`).
+
+Key mechanics:
+  * **Identification Cost**: 50 gold per item (base), modified by `RPD.CharUtils:goldPrice()` which applies difficulty multiplier and Ring of Haggler discount (10%)
+  * **Single Item**: Player selects one unidentified item to identify
+  * **All Items**: Identifies all unidentified items in inventory at once
+  * **Gold Validation**: Checks if player has enough gold before proceeding
+  * **Alternative to Scrolls**: Provides alternative to [[en:rpd:scroll_of_identify_item|Scroll of Identify]]
+
+===== Behavior =====
+  * Stationary NPC found in Town level (Fortune level)
+  * Passive AI - does not initiate combat
+  * Immortal - cannot be killed
+  * Offers identification services for gold
+  * Uses game's window system for dialog interaction
+
+===== Related mr Entities =====
+  * [[mr:fortuneteller_npc|FortuneTellerNPC]]
+  * [[mr:scroll_of_identify_item|Scroll of Identify]]
+  * [[mr:ring_of_haggler_item|Ring of Haggler]]

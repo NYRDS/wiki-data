@@ -1,0 +1,170 @@
+====== Mecânica de Comportamento de IA ======
+
+O **Comportamento de IA** refere-se aos sistemas de inteligência artificial que controlam como personagens não-jogadores (NPCs) e monstros se comportam em Remixed Dungeon. O sistema de IA é implementado como comportamentos baseados em estado que podem ser alterados dinamicamente durante o jogo.
+
+==== Código do Sistema de IA ====
+
+O sistema de IA é implementado usando a interface [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/AiState.java|AiState]]:
+
+<code java>
+// In AiState.java
+public interface AiState {
+    void act(@NotNull Char me);
+    String status(Char me);
+    String getTag();
+    void gotDamage(Char me, NamedEntityKind src, int dmg);
+    void onDie(@NotNull Char me);
+}
+</code>
+
+==== Tipos Comuns de IA ====
+
+==== IA Vagante ====
+  * **Classe**: ''Wandering.java''
+  * **Comportamento**: Move-se aleatoriamente pela masmorra
+  * **Mecânicas**:
+    * Se inimigo estiver no campo de visão (FOV), transiciona para caça
+    * Caso contrário, move-se para destinos aleatórios
+    * Se danificado, busca vingança e transiciona para caça
+  * **String de Status**: ''Mob_StaWanderingStatus'' → "%s está vagando"
+  * **Uso**: IA padrão para a maioria dos mobs quando não estão em combate
+
+==== IA de Caça ====
+  * **Classe**: ''Hunting.java''
+  * **Comportamento**: Persegue ativamente inimigos
+  * **Mecânicas**:
+    * Se inimigo estiver no FOV e no alcance de ataque, ataca
+    * Caso contrário, move-se em direção ao inimigo
+    * Se o inimigo for perdido, transiciona de volta para vagante
+    * Retorna ao dono se estiver muito longe (para pets/invocações)
+  * **String de Status**: ''Mob_StaHuntingStatus'' ou ''Mob_StaHuntingStatus2''
+  * **Uso**: Usada quando mobs estão em combate ou avistam o jogador
+
+==== IA Adormecida ====
+  * **Classe**: ''Sleeping.java''
+  * **Comportamento**: Permanece dormente até acordar
+  * **Mecânicas**:
+    * Só acorda se inimigo estiver no FOV (com 50% de chance de detecção)
+    * Se danificado, acorda e transiciona para caça (com atraso)
+    * Gasta ''Mob.TIME_TO_WAKE_UP'' tempo para acordar
+  * **String de Status**: ''Mob_StaSleepingStatus'' → "%s está dormindo"
+  * **Uso**: IA inicial para muitos inimigos da masmorra
+
+==== IA Passiva ====
+  * **Classe**: ''Passive.java''
+  * **Comportamento**: Não inicia combate
+  * **Mecânicas**:
+    * Nunca busca ativamente inimigos
+    * Só ataca se danificado (após buscar vingança)
+    * Não responde a inimigos no FOV
+  * **String de Status**: ''Mob_StaPassiveStatus'' → "%s é passivo"
+  * **Uso**: Para NPCs neutros ou objetos defensivos
+
+==== IA de Fuga ====
+  * **Classe**: ''Fleeing.java''
+  * **Comportamento**: Foge de inimigos
+  * **Mecânicas**:
+    * Move-se para longe da posição do inimigo
+    * Rastreia continuamente a posição do inimigo enquanto foge
+    * Se danificado, pode buscar vingança e transicionar para caça
+  * **String de Status**: ''Mob_StaFleeingStatus'' ou ''Mob_StaFleeingStatus2''
+  * **Uso**: Usada por certos mobs quando com pouca vida ou por ladrões
+
+==== Outros Tipos de IA ====
+
+==== IA Correndo Amok ====
+  * **Classe**: ''RunningAmok.java''
+  * **Comportamento**: Move-se aleatoriamente enquanto ataca tudo ao alcance
+
+==== IA Aterrorizada ====
+  * **Classe**: ''Horrified.java''
+  * **Comportamento**: Estado de medo que faz o mob fugir
+
+==== IA ThiefFleeing ====
+  * **Classe**: ''ThiefFleeing.java''
+  * **Comportamento**: IA de fuga especializada para mobs do tipo ladrão
+
+==== IA Controlada ====
+  * **Classe**: ''ControlledAi.java''
+  * **Comportamento**: IA que pode ser controlada pelo jogador (para criaturas invocadas)
+
+==== Implementação de IA ====
+O sistema de IA usa um padrão de estado gerenciado em [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/MobAi.java|MobAi]] e [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/actors/mobs/Mob.java|Mob]]:
+
+<code java>
+// In Mob.java
+public void setState(String state) {
+    setState(MobAi.getStateByTag(state));
+}
+
+// In Mob.java - Transições de estado de IA
+public void beckon(int cell) {
+    // ... código que pode mudar o estado de IA baseado no contexto
+    if (state.getTag().equals("WANDERING")) {
+        // ... pode mudar para estado de caça
+    }
+}
+</code>
+
+==== Gatilhos de Transição de IA ====
+  * **Dano**: Quando um mob recebe dano, geralmente busca vingança e muda para IA de Caça
+  * **Visão**: Quando um mob vê um inimigo enquanto dorme ou vaga, transiciona para IA de Caça
+  * **Vida**: Quando a vida de um mob cai muito, pode transicionar para IA de Fuga
+  * **Eventos Scriptados**: Scripts Lua podem mudar estados de IA em certas condições
+
+==== IA na Inicialização de Mobs ====
+  * A maioria dos mobs começa com IA ''Adormecida''
+  * Alguns mobs especiais começam com ''Vagante'' ou outras IAs
+  * A IA pode ser especificada no descritor JSON do mob com o parâmetro "aiState"
+
+==== Recursos de String Relacionados à IA ====
+  * ''Mob_StaWanderingStatus'': "%s está vagando"
+  * ''Mob_StaHuntingStatus'': "%s está caçando"
+  * ''Mob_StaHuntingStatus2'': "%s está caçando %s"
+  * ''Mob_StaSleepingStatus'': "%s está dormindo"
+  * ''Mob_StaPassiveStatus'': "%s é passivo"
+  * ''Mob_StaFleeingStatus'': "%s está fugindo"
+  * ''Mob_StaFleeingStatus2'': "%s está fugindo de %s"
+
+==== Mecânicas de IA ====
+  * **Detecção** - Como os inimigos notam o jogador (visão, som, etc.)
+  * **Padrões de Movimento** - Como os inimigos navegam pela masmorra
+  * **Táticas de Combate** - Como os inimigos abordam a luta
+  * **Comportamento de Fuga** - Quando e como os inimigos recuam
+  * **Transições de Estado** - Como a IA muda baseada em eventos do jogo
+
+==== Fatores que Afetam a IA ====
+  * **Distância do Jogador** - O quão longe o inimigo vai buscar
+  * **Visibilidade** - Efeitos de iluminação e furtividade
+  * **Status de Vida** - Como o inimigo se comporta quando ferido
+  * **Consciência Ambiental** - Interação com objetos de nível
+  * **Detecção de Som** - Algumas ações podem alertar inimigos próximos
+
+==== Interação com o Jogador ====
+  * **Linha de Visão** - A maioria dos inimigos só nota o jogador se puder vê-lo
+  * **Ruído** - Algumas ações criam som que atrai inimigos
+  * **Furtividade** - Certos equipamentos ou habilidades podem reduzir chances de detecção
+  * **Provocação** - Alguns itens ou habilidades podem manipular o alvo dos inimigos
+
+==== Explorando a IA ====
+  * **Kiting** - Movendo-se para lutar contra inimigos um por vez
+  * **Bloqueio** - Usando portas para lutar contra inimigos um por vez
+  * **Distração** - Usando itens para desviar a atenção inimiga
+  * **Táticas de Emboscada** - Usando furtividade e posicionamento
+
+==== Referências de Código ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/AiState.java|AiState.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Hunting.java|Hunting.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Wandering.java|Wandering.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Sleeping.java|Sleeping.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Passive.java|Passive.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/Fleeing.java|Fleeing.java]]
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/ai/MobAi.java|MobAi.java]]
+
+==== Ver Também ====
+  * [[pt:rpd:mobs|Mobs]]
+  * [[pt:rpd:stealth_mechanics|Mecânicas de Furtividade]]
+  * [[pt:rpd:combat_mechanic|Combate]]
+  * [[mr:ai_behavior_mechanic|Detalhes Técnicos]]
+
+{{tag> rpd mecânicas ia mobs}}
