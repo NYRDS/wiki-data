@@ -24,28 +24,20 @@
   * 治疗状态效果的药水和物品可能移除麻痹
 
 ==== 源代码 ====
-  * Java 类: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]]
+  * Lua 脚本: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/buffs/Paralysis.lua|Paralysis.lua]] - 主要麻痹增益实现（从 Java 迁移）
   * 字符串资源 (英文): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L595-L596|Paralysis 字符串 (第 595-596 行)]]
   * 字符串资源 (中文): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L595-L596|Paralysis 字符串 (第 595-596 行)]]
-  * 麻痹持续时间: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L39|Paralysis.duration() 方法]] - 基于角色抗性计算持续时间
-  * 角色麻痹方法: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L20-L22|Char.paralyse() 方法]] - 处理麻痹状态
-  * 麻痹附着: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L14-L19|Paralysis.attachTo() 方法]] - 附着麻痹并调用 Char.paralyse(true)
-  * 麻痹分离: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L21-L24|Paralysis.detach() 方法]] - 调用 Char.paralyse(false) 移除效果
-  * 视觉状态效果: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L33|Paralysis.charSpriteStatus()]] - 返回 CharSprite.State.PARALYSED
-  * 视觉附着: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L29-L31|Paralysis.attachVisual()]] - 向精灵添加视觉效果
-  * 伤害逃脱几率: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L26-L31|Paralysis.charGotDamage()]] - 基于受到的伤害允许逃脱麻痹
-  * 抗性计算: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L39|Paralysis.duration()]] - 检查抗性增益以修改持续时间
-  * 状态消息: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java#L31|GLog.i(Char_OutParalysis)]] - 因伤害导致麻痹结束时显示消息
+  * 麻痹附着逻辑: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/buffs/Paralysis.lua#L16-L18|Paralysis.attached() 函数]] - 附着麻痹并调用 target:paralyse(true)
+  * 麻痹分离逻辑: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/buffs/Paralysis.lua#L20-L22|Paralysis.detach() 函数]] - 调用 target:paralyse(false) 移除效果
+  * 伤害逃脱几率: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/buffs/Paralysis.lua#L24-L33|Paralysis.damage() 函数]] - 基于受到的伤害允许逃脱麻痹
+  * 视觉状态效果: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/buffs/Paralysis.lua#L36-L37|Paralysis.charSpriteStatus() 函数]] - 返回 "PARALYSED"
+  * 视觉附着: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/buffs/Paralysis.lua#L40-L41|Paralysis.attachVisual() 函数]] - 向精灵添加视觉效果
+  * 状态消息: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/buffs/Paralysis.lua#L28-L31|GLog.i(Char_OutParalysis)]] - 因伤害导致麻痹结束时显示消息
   * 状态消息 (中文): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L328|Char_OutParalysis (中文)]]
-  * 角色状态文本: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java#L17-L19|CharSprite.NEGATIVE]] - 显示 \"麻痹\" 状态
+  * 角色状态文本: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java#L17-L19|CharSprite.NEGATIVE]] - 显示 "麻痹" 状态
   * 角色状态文本 (中文): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-zh-rCN/strings_all.xml#L958|Hero_StaParalysis (中文)]]
   * 角色精灵状态: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/sprites/CharSprite.java#L12-L15|CharSprite.State.PARALYSED]]
-  * FlavourBuff 基类: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/FlavourBuff.java|FlavourBuff.java]] - 视觉状态效果的基类
-  * Char 接口: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java|Char.java]] - 所有角色的基类
-  * NamedEntityKind 接口: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/NamedEntityKind.java|NamedEntityKind.java]] - 用于实体识别
-  * Actor 系统: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Actor.java|Actor.java]] - 游戏回合调度系统
   * 增益指示器: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java#L7-L10|BuffIndicator.PARALYSIS]] - 麻痹增益的 UI 图标
-  * 角色工具函数: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java|CharUtils.java]] - 可见性和其他工具函数
   * 元素之戒抗性: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/RingOfElements.java#L15-L20|RingOfElements.Resistance]] - 影响麻痹持续时间
   * 随机工具: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/utils/Random.java|Random.java]] - 用于伤害逃脱几率计算
   * 机器可读数据: [[mr:paralysis_buff|mr:paralysis_buff]]

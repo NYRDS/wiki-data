@@ -1,0 +1,37 @@
+====== 麻痹附魔 ======
+
+{{ rpd:images:paralysis_buff.png|麻痹附魔 }}
+
+==== 描述 ====
+麻痹附魔在武器击中敌人时有一定几率使其眩晕。眩晕的敌人将在一段时间内无法行动。
+
+==== 机制 ====
+  * **触发几率**：+0 等级约 11.1%（1/9），+1 等级 30%（3/10），+2 等级约 36.4%（4/11）
+  * **效果**：触发时施加 [[cn:rpd:stun_buff|眩晕]] 状态效果，持续 Random.Float(1, 1.5 + 等级) 秒
+    * 等级 0：1.0-1.5 秒
+    * 等级 1：1.0-2.5 秒
+    * 等级 2：1.0-3.5 秒
+  * **有效性**：对危险敌人特别有效，可暂时使其失去行动能力
+  * **视觉效果**：附魔武器带有黄色发光效果
+
+==== 属性 ====
+  * **基础触发几率**：约 11.1%（+0 武器等级，Random.Int(8) >= 7）
+  * **几率公式**：Random.Int(等级 + 8) >= 7
+  * **眩晕持续时间**：Random.Float(1, 1.5 + 等级) 秒
+  * **发光颜色**：黄色 (RGB: 0xCCAA44)
+
+==== 源代码 ====
+  * Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Paralysis.java|Paralysis.java]]
+  * 效果在 proc() 方法中应用，触发概率和持随武器等级增加
+  * 注意：尽管名为"麻痹"，但实际施加的是眩晕效果，而非麻痹
+
+==== 字符串资源 ====
+该附魔无特定字符串资源，游戏中通过名称识别
+
+==== 另见 ====
+  - [[cn:rpd:stun_buff|眩晕增益]] - 该附魔造成的状态效果
+  - [[cn:rpd:enchantments|附魔]] - 所有武器附魔列表
+  - [[cn:rpd:weapons|武器]] - 可附魔的装备
+  - [[cn:rpd:paralysis_buff|麻痹增益]] - 另一种也能阻止行动的增益
+
+{{tag> cn:rpd 物品 附魔 眩晕}}
