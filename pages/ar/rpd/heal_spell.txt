@@ -1,0 +1,57 @@
+====== شفاء ======
+
+{{ rpd:images:heal_spell.png|أيقونة تعويذة الشفاء }}
+
+**الشفاء** هو تعويذة في Remixed Dungeon مع تقارب السحر (متاح أيضًا لتقاربات الكاهن وطبيب الطاعون).
+
+==== الوصف ====
+تعويذة الشفاء تستعيد جزءًا من صحة الهدف فورًا، مما يجعلها قيمة لحالات الطوارئ. يتم حساب كمية الشفاء كـ 20% من أقصى HP للهدف مضروبًا في مستوى مهارة المشعوذ (بحد أدنى 1 HP شفاء).
+
+==== الإحصائيات ====
+  * **التقارب السحري:** [[en:rpd:witchcraft_affinity|السحر]] (متاح أيضًا في [[en:rpd:priest_class|الكاهن]] و[[en:rpd:plague_doctor_affinity|طبيب الطاعون]] التقاربات)
+  * **الهدف:** شخصية (يمكن استهداف أي شخصية على الخريطة)
+  * **المستوى:** 2
+  * **تكلفة المانا:** 5
+  * **وقت الإلقاء:** 1 دور
+  * **فترة الانتظار:** 3 أدوار
+  * **صيغة الشفاء:** heal = target:ht() / 5 × caster:skillLevel() (الحد الأدنى 1 HP)
+
+==== الميكانيكا ====
+التعويذة تشفي الشخصية الهدف بـ (أقصى HP / 5 * مستوى مهارة المشعوذ) نقاط حياة، مع حد أدنى 1 نقطة شفاء، وفقًا للتنفيذ في Lua.
+
+الصيغة الدقيقة من كود Lua هي: heal = target:ht() / 5. * caster:skillLevel()
+
+هذا يعني أنه لهدف بصحة كاملة:
+  * في مستوى مهارة 1: يشفي 20% من أقصى HP للهدف (الحد الأدنى 1)
+  * في مستوى مهارة 2: يشفي 40% من أقصى HP (الحد الأدنى 1)
+  * في مستوى مهارة 3: يشفي 60% من أقصى HP (الحد الأدنى 1)
+  * وهكذا...
+
+==== الاستخدام ====
+يمكن استخدام تعويذة الشفاء لـ:
+  * استعادة صحية طارئة خلال مواجهات خطيرة
+  * شفاء نفسك في مواقف القتال
+  * شفاء الحلفاء أو الحيوانات الأليفة
+  * دعم الحيوانات الأليفة خلال قتال صعب
+
+==== الاستراتيجية ====
+  * أفضل استخدام عندما تكون الصحة منخفضة بشكل حرج
+  * يمكن شفاء الحلفاء والحيوانات الأليفة وكذلك نفسك
+  * جيد لدعم الحيوانات الأليفة خلال قتال صعب
+  * الشفاء يتغير مع مستوى مهارتك
+  * انتبه لـ [[en:rpd:cooldown_mechanic|فترة الانتظار]] لمدة 3 أدوار عند التخطيط للشفاء
+
+==== التقاربات ====
+التقاربات التي يمكنها استخدام هذه التعويذة تشمل:
+  * مستخدمي [[en:rpd:witchcraft_affinity|السحر]]
+  * مستخدمي [[en:rpd:priest_class|الكاهن]]
+  * مستخدمي [[en:rpd:plague_doctor_affinity|طبيب الطاعون]]
+
+==== مراجع الكود ====
+  * **تنفيذ Lua:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Heal.lua|Heal.lua]]
+  * **توافر التعويذة (مشترك):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L9|CustomSpellsList.lua#L9]]
+  * **توافر التعويذة (السحر):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L13|CustomSpellsList.lua#L13]]
+  * **توافر التعويذة (الكاهن):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L16|CustomSpellsList.lua#L16]]
+  * **توافر التعويذة (طبيب الطاعون):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L17|CustomSpellsList.lua#L17]]
+
+{{tag> rpd spells witchcraft priest plague_doctor }}

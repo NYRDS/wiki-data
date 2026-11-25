@@ -1,0 +1,63 @@
+====== Ceguera ======
+
+{{ rpd:images:blindness_buff.png|Efecto de Estado Ceguera }}
+
+La **Ceguera** es un efecto de estado en Remixed Dungeon que afecta la visión del personaje, reduciendo su capacidad para navegar y combatir eficazmente.
+
+==== Descripción ====
+Completamente cegado, solo se pueden oír los sonidos alrededor. El personaje afectado experimenta penalizaciones significativas a la visión, precisión y defensa.
+
+==== Efectos ====
+  * **Visión Reducida:** Los personajes afectados tienen un rango de visión limitado (el personaje necesita estar adyacente para oír sonidos)
+  * **Penalización de Precisión:** Precisión reducida al atacar
+  * **Penalización de Defensa:** Defensa reducida contra ataques
+  * **Navegación:** Dificultad para navegar el terreno eficazmente
+  * **Detección:** El personaje solo puede detectar enemigos adyacentes
+  * **Duración:** El efecto dura hasta que se disipa o se cura
+
+==== Causas ====
+La Ceguera puede ser infligida por:
+  * Ataques de [[es:rpd:enslaved_soul_mob|Alma Esclavizada]]
+  * Ataques de [[es:rpd:bandit_mob|Bandido]] - inflige ceguera por 5-12 turnos
+  * [[es:rpd:shoot_in_eye_spell|Hechizo Disparo en el Ojo]] - inflige ceguera por una duración basada en el nivel de habilidad del lanzador
+  * [[es:rpd:scroll_of_psionic_blast_item|Pergamino de Explosión Psiónica]]
+  * [[es:rpd:wand_of_lightning_item|Varilla de Relámpago]] (en algunos casos)
+  * [[es:rpd:scroll_of_curse_item|Pergamino de Maldición]]
+  * Habilidades especiales de ciertos mobs
+  * Efectos ambientales u objetos malditos
+
+==== Contramedidas ====
+  * [[es:rpd:resistances|Resistencia a la Ceguera]] puede reducir el efecto
+  * Pociones e items que curan efectos de estado pueden remover la ceguera
+  * Algunas criaturas pueden ser inmunes a los efectos de ceguera (ej. Guardián de Hielo, Cráneo Rúnico, Lich, AlmaEsclavizada)
+  * [[es:rpd:mind_vision_buff|Visión Mental]] puede contrarrestar parcialmente la ceguera
+
+==== Referencias de Código ====
+  * Clase Java: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Blindness.java|Blindness.java]] - Implementación central como FlavourBuff
+  * Tipo de Entidad: getEntityKind() devuelve "Blindness" en código Java
+  * Mecánicas: métodos attachTo y detach llaman a target.observe() para actualizar el campo de visión
+  * Recursos de String:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L559-L560|Strings en inglés]] - Nombre y texto de información
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L559-L560|Strings en ruso]] - Localización rusa
+  * Inmunidades: Guardián de Hielo, Cráneo Rúnico, Lich y algunos otros mobs tienen inmunidad a la Ceguera
+  * Scripts Lua: ShootInEye.lua aplica Ceguera; commonClasses.lua vincula la clase Blindness; autoTestAi.lua verifica buff de Ceguera
+
+==== Verificación de Contenido ====
+  * **Fuente:** Clase Java `Blindness.java` en `com.watabou.pixeldungeon.actors.buffs` (extiende FlavourBuff)
+  * **Mecánicas verificadas:** En attach/detach llama a target.observe() para refrescar campo de visión; icono es BuffIndicator.BLINDNESS
+  * **Duración:** Determinada por la fuente que aplica el buff (no hay duración fija en la clase)
+  * **Fuentes verificadas:** EnslavedSoul, Bandido (5-12 turnos), hechizo ShootInEye (duración por nivel de habilidad), ScrollOfPsionicBlast, WandOfLightning (algunos casos), ScrollOfCurse, varias habilidades de mobs
+  * **Recursos de string:** BlindnessBuff_Name ("Blinded"), BlindnessBuff_Info ("Completely blinded, only sounds can be heard"), Hero_StaBlindness ("You have been blinded!")
+  * **Strings en ruso:** BlindnessBuff_Name ("Ослеплён"), BlindnessBuff_Info ("Полностью ослеплен, разве что слышны звуки вокруг"), Hero_StaBlindness ("Тебя ослепили!")
+  * **Inmunidades:** Guardián de Hielo, Cráneo Rúnico, Lich, AlmaEsclavizada tienen resistencia/inmunidad
+  * **Última actualización:** Basada en análisis de código
+
+==== Véase También ====
+  * [[es:rpd:status_effects|Efectos de Estado]]
+  * [[es:rpd:mind_vision_buff|Visión Mental]]
+  * [[es:rpd:accuracy_mechanic|Precisión]]
+  * [[es:rpd:buffs|Buffs y Debuffs]]
+  * [[es:rpd:resistances|Resistencias]]
+  * [[mr:blindness_buff|mr:blindness_buff]] - Referencia legible por máquina
+
+{{tag> rpd efectos_de_estado buffs }}

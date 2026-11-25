@@ -1,0 +1,55 @@
+====== Vértigo ======
+
+{{ rpd:images:vertigo_buff.png|Efecto de Estado Vértigo }}
+
+==== Descripción ====
+El **Vértigo** (también llamado Confusión o Mareo) es un efecto de estado negativo en Remixed Dungeon que causa desorientación en el personaje afectado.
+
+==== Efectos ====
+  * **Desorientación:** Los personajes afectados experimentan mareo y confusión
+  * **Movimiento:** El movimiento del personaje se vuelve errático e impredecible
+  * **Duración Base:** 10 turnos (constante DURATION en Vertigo.java)
+  * **Reducción de Duración:** La duración se multiplica por el factor de Resistencia (de anillos de elementos, etc.)
+  * **Dirección:** El personaje puede moverse en direcciones aleatorias en lugar del camino previsto
+
+==== Fuentes ====
+El Vértigo puede ser infligido por:
+  * **Gas de Confusión** - Creado cuando se come o lanza [[es:rpd:rotten_food_item|comida podrida]] (25% probabilidad). El gas dura 150 + 10 × profundidad de la mazmorra turnos y aplica Vértigo a todas las criaturas en su área, refrescando la duración cada turno.
+  * **Encantamiento de Horror** - Cuando se usa contra el héroe jugador
+  * **Habilidades especiales** de ciertos mobs
+  * **Efectos mágicos** u objetos que causan desorientación
+  * **Efectos ambientales**
+
+==== Contramedidas ====
+  * [[es:rpd:resistances|Resistencia]] (de anillos de elementos) reduce la duración vía durationFactor()
+  * Pociones y objetos que curan efectos de estado pueden remover el vértigo
+  * Algunas criaturas pueden ser inmunes a efectos de desorientación
+  * Esperar a que el efecto expire naturalmente
+
+==== Referencias de Código ====
+  * **Implementación del Buff Vértigo:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java|Vertigo.java]]
+  * **Constante de Duración:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java#L14|DURATION = 10f]]
+  * **Cálculo de Duración:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java#L21|método duration() con factor de resistencia]]
+  * **Efecto Visual:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java#L27|attachVisual() muestra estado "Mareado"]]
+  * **Referencia del Icono:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Vertigo.java#L19|BuffIndicator.VERTIGO]]
+  * **Gas de Confusión (Blob):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/ConfusionGas.java|ConfusionGas.java]] - Aplica Vértigo a criaturas en el gas
+  * **Comida Podrida:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/food/RottenFood.java#L30|RottenFood.java]] - Crea ConfusionGas con vida 150 + 10 × profundidad
+
+==== Recursos de String ====
+  * **Buff Vértigo:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L626-L627|Inglés]]: Name="Vertigo", Info="The lightheaded feeling makes it harder to walk straight!"
+  * **Gas de Confusión:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L543|Inglés]]: "A cloud of confusion gas is swirling here."
+  * **Texto de Estado:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L994|Char_StaVertigo]]: "Everything is spinning around you!"
+  * **Español Vértigo:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml|ES]]: Name="Vértigo", Info="¡La sensación de mareo hace que sea más difícil caminar derecho!"
+  * **Español Gas de Confusión:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml|ES]]: "Una nube de gas de confusión flota en el aire."
+  * **Español Estado:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml|ES]]: "¡Todo gira a tu alrededor!"
+
+==== Véase También ====
+  * [[es:rpd:status_effects|Efectos de Estado]]
+  * [[es:rpd:buffs|Buffs y Debuffs]]
+  * [[es:rpd:horror_enchantment|Encantamiento de Horror]]
+  * [[es:rpd:rotten_food_item|Comida Podrida]]
+  * [[es:rpd:confusion_gas_buff|Gas de Confusión (Blob de Gas)]]
+  * [[es:rpd:toxic_gas_buff|Gas Tóxico]]
+  * [[es:rpd:paralytic_gas_buff|Gas Paralizante]]
+
+{{tag> rpd efectos_de_estado buffs vértigo confusión control mareo }}

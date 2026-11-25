@@ -1,0 +1,57 @@
+====== Cura ======
+
+{{ rpd:images:heal_spell.png|Feitiço de Cura }}
+
+**Cura** é um feitiço em Remixed Dungeon com Afinidade de Bruxaria (também disponível para afinidades de Sacerdote e Médico da Peste).
+
+==== Descrição ====
+O feitiço Cura restaura instantaneamente uma parte da saúde do alvo, tornando-o valioso para situações de emergência. A quantidade de cura é calculada como 20% do HP máximo do alvo multiplicado pelo nível de habilidade do lançador (com um mínimo de 1 HP curado).
+
+==== Estatísticas ====
+  * **Afinidade Mágica:** [[en:rpd:witchcraft_affinity|Bruxaria]] (também disponível em [[en:rpd:priest_class|Sacerdote]] e [[en:rpd:plague_doctor_affinity|Médico da Peste]] afinidades)
+  * **Alvo:** Personagem (pode mirar em qualquer personagem no mapa)
+  * **Nível:** 2
+  * **Custo de Mana:** 5
+  * **Tempo de Conjuração:** 1 turno
+  * **Recarga:** 3 turnos
+  * **Fórmula de Cura:** heal = target:ht() / 5 × caster:skillLevel() (mínimo 1 HP)
+
+==== Mecânicas ====
+O feitiço cura o personagem alvo em (HP Máx / 5 * Nível de habilidade do lançador) pontos de vida, com um mínimo de 1 ponto curado, de acordo com a implementação em Lua.
+
+A fórmula exata do código Lua é: heal = target:ht() / 5. * caster:skillLevel()
+
+Isso significa que para um alvo com vida completa:
+  * No nível de habilidade 1: cura 20% do HP máximo do alvo (mínimo 1)
+  * No nível de habilidade 2: cura 40% do HP máximo (mínimo 1)
+  * No nível de habilidade 3: cura 60% do HP máximo (mínimo 1)
+  * E assim por diante...
+
+==== Uso ====
+O feitiço Cura pode ser usado para:
+  * Restauração de saúde de emergência durante encontros perigosos
+  * Curar a si mesmo em situações de combate
+  * Curar aliados ou animais de estimação
+  * Apoiar animais de estimação durante combates desafiadores
+
+==== Estratégia ====
+  * Melhor usado quando a saúde está criticamente baixa
+  * Pode curar aliados e animais de estimação, mas também a si mesmo
+  * Bom para apoiar animais de estimação durante combates desafiadores
+  * A cura escala com seu nível de habilidade
+  * Esteja ciente do [[en:rpd:cooldown_mechanic|recarga]] de 3 turnos ao planejar a cura
+
+==== Afinidades ====
+Afinidades que podem usar este feitiço incluem:
+  * Usuários de [[en:rpd:witchcraft_affinity|Bruxaria]]
+  * Usuários de [[en:rpd:priest_class|Sacerdote]]
+  * Usuários de [[en:rpd:plague_doctor_affinity|Médico da Peste]]
+
+==== Referências de Código ====
+  * **Implementação Lua:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Heal.lua|Heal.lua]]
+  * **Disponibilidade do Feitiço (Comum):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L9|CustomSpellsList.lua#L9]]
+  * **Disponibilidade do Feitiço (Bruxaria):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L13|CustomSpellsList.lua#L13]]
+  * **Disponibilidade do Feitiço (Sacerdote):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L16|CustomSpellsList.lua#L16]]
+  * **Disponibilidade do Feitiço (Médico da Peste):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L17|CustomSpellsList.lua#L17]]
+
+{{tag> rpd spells witchcraft priest plague_doctor }}

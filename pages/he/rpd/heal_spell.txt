@@ -1,0 +1,57 @@
+====== ריפוי ======
+
+{{ rpd:images:heal_spell.png|כשף ריפוי }}
+
+**ריפוי** הוא כשף ב-Remixed Dungeon עם זיקה של כישוף (זמין גם לזיקות כוהן ורופא מגפה).
+
+==== תיאור ====
+כשף הריפוי משחזר מיידית חלק מבריאותו של היעד, מה שהופך אותו לבעל ערך למצבי חירום. כמות הריפוי מחושבת כ-20% מה-HP המקסימלי של היעד כפול רמת המיומנות של המטיל (עם מינימום של 1 HP נרפא).
+
+==== סטטיסטיקות ====
+  * **זיקה קסומה:** [[en:rpd:witchcraft_affinity|כישוף]] (זמין גם ב-[[en:rpd:priest_class|כוהן]] ו-[[en:rpd:plague_doctor_affinity|רופא מגפה]] זיקות)
+  * **מטרה:** דמות (יכול לכוון לכל דמות על המפה)
+  * **רמה:** 2
+  * **עלות מאנה:** 5
+  * **זמן הטלה:** 1 תור
+  * **זמן המתנה:** 3 תורות
+  * **נוסחת ריפוי:** heal = target:ht() / 5 × caster:skillLevel() (מינימום 1 HP)
+
+==== מכניקה ====
+הכשף מרפא את הדמות היעד עבור (HP מקסימלי / 5 * רמת מיומנות המטיל) נקודות חיים, עם מינימום של 1 נקודה נרפאת, לפי היישום ב-Lua.
+
+הנוסחה המדויקת מקוד ה-Lua היא: heal = target:ht() / 5. * caster:skillLevel()
+
+זה אומר שעבור יעד עם חיים מלאים:
+  * ברמת מיומנות 1: מרפא 20% מה-HP המקסימלי של היעד (מינימום 1)
+  * ברמת מיומנות 2: מרפא 40% מה-HP המקסימלי (מינימום 1)
+  * ברמת מיומנות 3: מרפא 60% מה-HP המקסימלי (מינימום 1)
+  * וכן הלאה...
+
+==== שימוש ====
+כשף הריפוי יכול לשמש ל:
+  * שחזור בריאות חירום במהלך מפגשים מסוכנים
+  * ריפוי עצמך במצבי קרב
+  * ריפוי בעלי ברית או חיות מחמד
+  * תמיכה בחיות מחמד במהלך קרבות מאתגרים
+
+==== אסטרטגיה ====
+  * מומלץ להשתמש כשהבריאות נמוכה באופן קריטי
+  * יכול לרפא בעלי ברית וחיות מחמד, אבל גם את עצמך
+  * טוב לתמיכה בחיות מחמד במהלך קרבות מאתגרים
+  * הריפוי משתנה עם רמת המיומנות שלך
+  * שים לב ל-[[en:rpd:cooldown_mechanic|זמן המתנה]] של 3 תורות בעת תכנון ריפוי
+
+==== זיקות ====
+זיקות שיכולות להשתמש בכשף זה כוללות:
+  * משתמשי [[en:rpd:witchcraft_affinity|כישוף]]
+  * משתמשי [[en:rpd:priest_class|כוהן]]
+  * משתמשי [[en:rpd:plague_doctor_affinity|רופא מגפה]]
+
+==== הפניות קוד ====
+  * **יישום Lua:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Heal.lua|Heal.lua]]
+  * **זמינות כשף (משותפת):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L9|CustomSpellsList.lua#L9]]
+  * **זמינות כשף (כישוף):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L13|CustomSpellsList.lua#L13]]
+  * **זמינות כשף (כוהן):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L16|CustomSpellsList.lua#L16]]
+  * **זמינות כשף (רופא מגפה):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L17|CustomSpellsList.lua#L17]]
+
+{{tag> rpd spells witchcraft priest plague_doctor }}

@@ -1,0 +1,74 @@
+====== Encantamiento ======
+
+{{ rpd:images:buff_charm.png|Icono del Buff Encantamiento }}
+
+El **Encantamiento** es un efecto de estado en Remixed Pixel Dungeon que temporalmente convierte a un enemigo en aliado.
+
+==== Descripción ====
+Cuando una criatura es afectada por el efecto de estado Encantamiento, se vuelve temporalmente aliada con el héroe y luchará contra otras criaturas hostiles en lugar de atacar al héroe. El efecto se disipa tras una duración determinada por el nivel del lanzador.
+
+==== Efectos ====
+  * **Conversión a Aliado:** Los enemigos encantados se vuelven aliados temporales
+  * **Duración:** Calculada como sqrt(nivel de habilidad del lanzador * nivel del lanzador) + 5 turnos
+  * **Comportamiento en Combate:** Los enemigos encantados atacarán a otras criaturas hostiles
+  * **Objetivo:** No atacarán al héroe que lanzó el encantamiento
+
+==== Aplicación ====
+El efecto de Encantamiento puede ser aplicado a través de:
+  * [[es:rpd:charm_spell|Hechizo de Encantamiento]]
+  * [[es:rpd:succubus_mob|Súcubo]] - Ataque especial que aplica encantamiento por 2-5 turnos
+  * [[es:rpd:glyph_of_affection_item|Glifo de Afecto]] - Glifo de armadura que aplica encantamiento a los atacantes
+  * [[es:rpd:sungrass_level_object|Planta de la Vida]] - Planta que aplica encantamiento por 10-15 turnos
+  * [[es:rpd:moongrace_level_object|Gracia Lunar]] - Planta que aplica encantamiento por 10-15 turnos
+  * Efectos de maldición de la Rosa Seca
+
+==== Estrategia ====
+  * Úsalo para volver enemigos poderosos unos contra otros
+  * Particularmente efectivo en grupos de enemigos donde los encantados atacarán a otros
+  * Considera el posicionamiento de los enemigos encantados ya que pueden bloquear pasajes
+  * El tiempo es importante ya que la duración depende del nivel del héroe
+  * Ten cuidado de que los enemigos encantados no bloqueen tus rutas de escape
+
+==== Mecánicas ====
+  * Los enemigos encantados son pacificados (se vuelven pasivos y no atacan)
+  * El efecto termina automáticamente cuando expira la duración
+  * Las criaturas encantadas tienen un efecto de corazón alrededor de ellas
+  * **Pacificación:** Los personajes encantados no pueden participar en combate
+  * **Inmunidad:** Algunos enemigos (como Ojo de Yog) son inmunes a efectos de encantamiento
+  * **Interacciones especiales:** Personajes afectados por el OneWayLoveBuff de la Rosa Seca son inmunes al encantamiento
+  * Algunas criaturas (como órganos de Yog) y no-muertos son inmunes al encantamiento
+
+==== Contramedidas ====
+  * El efecto de encantamiento terminará cuando expire la duración
+  * El encantamiento no se apila con otros efectos de estado conflictivos como Amok
+  * Algunas criaturas pueden ser inmunes a efectos de encantamiento (no-muertos, órganos de Yog, etc.)
+
+==== Fuentes de Encantamiento ====
+  * **Súcubo:** Usa ataque de encantamiento en enemigos
+  * **Glifo de Afecto:** Glifo de armadura que aplica encantamiento a los atacantes
+  * **Hechizo de Encantamiento:** Hechizo lanzable por el jugador que aplica encantamiento al objetivo
+  * **Planta de la Vida y Gracia Lunar:** Plantas que pueden encantar personajes al ser consumidas
+  * **Reina Araña:** Suelta el artefacto Encantamiento de Araña que puede encantar
+  * **Encantamiento de Afecto:** Encantamiento de arma que causa encantamiento al golpear
+
+==== Afectados por Encantamiento ====
+  * La mayoría de enemigos pueden ser encantados
+  * Algunos enemigos como Ojo de Yog, Alma Esclavizada y otros tienen inmunidad al encantamiento
+  * Los enemigos encantados no atacarán la fuente del encantamiento
+
+==== Referencias de Código ====
+  * **Implementación Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charm.java|Charm.java]]
+  * **Súcubo:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Succubus.java|Succubus.java]] - Usa encantamiento en ataque
+  * **Glifo de Afecto:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Affection.java|Affection.java]]
+  * **Hechizo de Encantamiento:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Charm.lua|Charm.lua]]
+  * **Efectos de Plantas:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java|Sungrass.java]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Moongrace.java|Moongrace.java]]
+  * **Recursos de String:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L522-L523|Charm_Name, Charm_Info]]
+
+==== Relacionado ====
+  * [[es:rpd:spells_overview|Hechizos]]
+  * [[es:rpd:charm_spell|Hechizo de Encantamiento]]
+  * [[es:rpd:buffs|Buffs]]
+  * [[es:rpd:succubus_mob|Súcubo]]
+  * [[es:rpd:glyph_of_affection_item|Glifo de Afecto]]
+
+{{tag> rpd buffs efectos_de_estado encantamiento }}

@@ -1,0 +1,57 @@
+====== Исцеление ======
+
+{{ rpd:images:heal_spell.png|Заклинание Исцеления }}
+
+**Исцеление** — это заклинание в Remixed Dungeon со Сродством Чернокнижия (также доступно для сродств Жреца и Чумного Доктора).
+
+==== Описание ====
+Заклинание Исцеление мгновенно восстанавливает часть здоровья цели, что делает его ценным для экстренных ситуаций. Количество исцеления рассчитывается как 20% от максимального HP цели, умноженное на уровень навыка заклинателя (с минимумом 1 HP исцеления).
+
+==== Статистика ====
+  * **Магическое Сродство:** [[en:rpd:witchcraft_affinity|Чернокнижие]] (также доступно в [[en:rpd:priest_class|Жрец]] и [[en:rpd:plague_doctor_affinity|Чумной Доктор]] сродствах)
+  * **Цель:** Персонаж (может нацелиться на любого персонажа на карте)
+  * **Уровень:** 2
+  * **Стоимость Маны:** 5
+  * **Время Чтения:** 1 ход
+  * **Перезарядка:** 3 хода
+  * **Формула Исцеления:** heal = target:ht() / 5 × caster:skillLevel() (минимум 1 HP)
+
+==== Механика ====
+Заклинание лечит целевого персонажа на (Макс HP / 5 * Уровень навыка заклинателя) очков здоровья, с минимумом 1 очко исцеления, согласно Lua-реализации.
+
+Точная формула из Lua-кода: heal = target:ht() / 5. * caster:skillLevel()
+
+Это означает, что для цели с полным здоровьем:
+  * На уровне навыка 1: лечит 20% от максимального HP цели (минимум 1)
+  * На уровне навыка 2: лечит 40% от максимального HP (минимум 1)
+  * На уровне навыка 3: лечит 60% от максимального HP (минимум 1)
+  * И так далее...
+
+==== Использование ====
+Заклинание Исцеление может использоваться для:
+  * Экстренного восстановления здоровья во время опасных встреч
+  * Лечения себя в боевых ситуациях
+  * Лечения союзников или питомцев
+  * Поддержки питомцев во время сложных боев
+
+==== Стратегия ====
+  * Лучше всего используется, когда здоровье критически низко
+  * Может лечить союзников и питомцев, а также себя
+  * Хорошо для поддержки питомцев во время сложных боев
+  * Исцеление масштабируется с вашим уровнем навыка
+  * Имейте в виду 3-ходовую [[en:rpd:cooldown_mechanic|перезарядку]] при планировании лечения
+
+==== Сродства ====
+Сродства, которые могут использовать это заклинание:
+  * Пользователи [[en:rpd:witchcraft_affinity|Чернокнижия]]
+  * Пользователи [[en:rpd:priest_class|Жреца]]
+  * Пользователи [[en:rpd:plague_doctor_affinity|Чумного Доктора]]
+
+==== Ссылки на Код ====
+  * **Lua Реализация:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Heal.lua|Heal.lua]]
+  * **Доступность Заклинания (Общая):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L9|CustomSpellsList.lua#L9]]
+  * **Доступность Заклинания (Чернокнижие):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L13|CustomSpellsList.lua#L13]]
+  * **Доступность Заклинания (Жрец):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L16|CustomSpellsList.lua#L16]]
+  * **Доступность Заклинания (ChumDoctor):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/CustomSpellsList.lua#L17|CustomSpellsList.lua#L17]]
+
+{{tag> rpd spells witchcraft priest plague_doctor }}
