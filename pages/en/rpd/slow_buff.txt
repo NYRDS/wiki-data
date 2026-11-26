@@ -5,7 +5,7 @@
 The **Slow** is a negative status effect in Remixed Dungeon that reduces a character's action speed.
 
 ==== Effect Overview ====
-  * **Type:** [[en:rpd:debuffs|Debuff]]
+  * **Type:** [[en:rpd:debuffs_mechanic|Debuff]]
   * **Duration:** Variable, based on source and target level
   * **Effect:** Reduces action speed significantly
   * **Removal:** Natural expiration or [[en:rpd:potion_of_purity_item|Potion of Purity]]
@@ -37,10 +37,11 @@ The **Slow** is a negative status effect in Remixed Dungeon that reduces a chara
   * [[en:rpd:resistances|Resistances]] may reduce duration
 
 ==== Code References ====
-  * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]]
+  * **Lua Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Slow.lua|Slow.lua]]
   * **Buff Base Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
-  * **Duration Calculation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java#L18-L20|Slow.duration() method]]
+  * **Buff Factory:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] (registration: BuffFactory.SLOW)
   * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|String resources for Slow buff name/description]]
+  * **Wand Application:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfSlowness.java|WandOfSlowness.java]] (applies Slow buff)
 
 ==== Related Buffs ====
   * [[en:rpd:chill_buff|Chill]] - Similar but weaker speed reduction

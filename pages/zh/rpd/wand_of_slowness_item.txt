@@ -1,0 +1,71 @@
+====== 缓慢法杖 ======
+
+{{ rpd:images:wand_of_slowness_item.png|缓慢法杖 }}
+
+缓慢法杖是 Remixed Dungeon 中的一种魔法法杖，能降低敌人的速度。当对目标使用时，它会施加缓慢状态效果，使受影响的生物以其正常速度的一半移动和攻击。
+
+==== 效果 ====
+使用时，缓慢法杖会对目标施加 [[zh:rpd:slow_buff|缓慢]] 状态效果：
+  * **速度降低**: 受影响的生物以正常速度的一半移动和攻击
+  * **持续时间**: 效果持续 (10 / 3 + 有效等级()) 回合，其中 10 是缓慢增益的基础持续时间
+  * **影响范围**: 仅限单一目标
+  * **射程**: 标准法杖射程
+  * **视觉效果**: 产生独特的减速动画效果
+
+==== 属性 ====
+  * **类型**: 法杖
+  * **特殊效果**: 对目标施加缓慢状态效果
+  * **目标选择**: 单体直接瞄准
+  * **充能**: 随时间充能，与其他法杖相同
+  * **图像**: ''items.png'' 索引 (由 SimpleWand 基类决定)
+
+==== 机制 ====
+  * 对目标使用时，施加缓慢效果，持续 (缓慢.持续时间(角色) / 3 + 有效等级()) 回合
+  * 缓慢增益的基础持续时间为 10f，会被抗性效果修改
+  * 随着法杖等级提升，缓慢效果的持续时间增加 (每级增加 1 回合)
+  * 缓慢效果使行动速度降低约 7.27254 的急速等级 (负值)
+  * 效果持续时间公式: 10 / 3 + 法杖有效等级 (抗性修正后)
+  * 如果对空格子使用法杖，显示"什么也没发生"提示
+
+==== 策略 ====
+  * 用于减速强力敌人，在战斗中获得优势
+  * 对难以命中的快速移动敌人特别有效
+  * 适合逐个减速一群敌人
+  * 可防御性地用于减速逼近的敌人
+  * 与其他状态效果配合效果良好
+  * 对像腾这样有时效性的怪物非常有效
+  * Boss 战中可创造喘息空间
+  * 与瘫痪或眩晕等其他控制效果配合良好
+
+==== 内容验证 ====
+  * **信息来源**: Java 类 [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfSlowness.java|WandOfSlowness.java]]
+  * **数据验证**: 直接从代码中 onZap 方法实现提取
+  * **效果描述**: 基于源代码中的缓慢增益实际应用
+  * **字符串资源**: 根据 values/strings_all.xml 验证
+  * **最后更新**: 2025 年 12 月
+  * **源文件**: WandOfSlowness.java
+
+==== 代码参考 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfSlowness.java|WandOfSlowness.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/SimpleWand.java|SimpleWand.java]] (基类)
+
+==== 字符串资源 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L235|WandOfSlowness_Name]]: 缓慢法杖
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L236|WandOfSlowness_Info]]: 此法杖将使生物以正常速度的一半移动和攻击，直到效果结束
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L237|WandOfSlowness_Info1]]: 什么也没发生
+
+==== 配置文件 ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (注册: registerItemClass(WandOfSlowness.class))
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json]] (掉落率)
+
+==== 另请参阅 ====
+  * [[zh:rpd:slow_buff|缓慢增益]] - 此法杖施加的状态效果
+  * [[zh:rpd:wands|法杖]] - 游戏中的其他法杖
+  * [[zh:rpd:wand_of_firebolt_item|火球法杖]] - 其他伤害型法杖
+  * [[zh:rpd:wand_of_lightning_item|闪电法杖]] - 其他直接伤害法杖
+  * [[zh:rpd:slow_enchantment|缓慢附魔]] - 武器上的类似减速效果
+  * [[zh:rpd:paralysis_buff|瘫痪]] - 其他限制移动的状态效果
+  * [[zh:rpd:wandmaker_npc|制杖师 NPC]] - 可鉴定法杖
+
+{{tag> rpd 物品 法杖 实用 }}

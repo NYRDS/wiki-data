@@ -1,0 +1,60 @@
+====== 减益 ======
+
+减益是 Remixed Dungeon 中损害角色的负面状态效果。
+
+==== 描述 ====
+减益是暂时的有害状态效果，会在有限的持续时间内妨碍角色的能力。它们可能降低战斗效率、限制移动或造成持续伤害。
+
+==== 常见减益 ====
+  * [[zh:rpd:burning_buff|燃烧]] - 造成持续火焰伤害
+  * [[zh:rpd:poison_buff|中毒]] - 造成持续伤害
+  * [[zh:rpd:weakness_buff|虚弱]] - 降低力量和伤害
+  * [[zh:rpd:paralysis_buff|瘫痪]] - 阻止所有行动
+  * [[zh:rpd:blindness_buff|致盲]] - 降低视野半径
+  * [[zh:rpd:charm_buff|魅惑]] - 暂时使敌人变为友好
+  * [[zh:rpd:terror_buff|恐惧]] - 强迫角色逃跑
+  * [[zh:rpd:amok_buff|狂暴]] - 使角色无差别攻击一切
+  * [[zh:rpd:necrotism_buff|腐化]] - 逐渐将角色变为敌人
+  * [[zh:rpd:bleeding_buff|流血]] - 造成随时间增加的伤害
+  * [[zh:rpd:stun_buff|眩晕]] - 短暂禁用行动
+  * [[zh:rpd:terror_buff|恐惧]] - 导致逃跑行为
+  * [[zh:rpd:drowsy_buff|困倦]] - 使目标入睡
+
+==== 减益机制 ====
+  * **持续时间**: 大多数减益持续特定回合数
+  * **叠加**: 某些减益可以叠加或刷新持续时间
+  * **施加**: 减益可由敌人、陷阱或环境危害施加
+  * **移除**: 某些物品和能力可移除负面状态效果
+
+==== 常见来源 ====
+  * **敌人**: 许多怪物可通过攻击施加减益
+  * **陷阱**: 各种陷阱触发时施加减益
+  * **药水**: 某些药水投掷时施加有害效果
+  * **法杖**: 某些法杖可对敌人施加减益
+  * **环境效应**: 气体、火焰等危害导致减益
+
+==== 代码参考 ====
+  * 减益系统: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]] - 基础实现
+  * 角色系统: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/Char.java#L250-L275|角色如何与减益交互]]
+  * 持续时间系统: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java#L25-L50|Buff 持续时间代码]] - 减益持续时间如何计算
+  * 移除系统: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java#L85-L110|Buff 移除代码]] - 减益如何被移除
+  * 字符串资源: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - 所有减益名称和描述
+  * 常见减益实现:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Poison.java|Poison.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Weakness.java|Weakness.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Paralysis.java|Paralysis.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Blindness.java|Blindness.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charm.java|Charm.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Terror.java|Terror.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Amok.java|Amok.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Corruption.java|Corruption.java]]
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Bleeding.java|Bleeding.java]]
+
+==== 另请参阅 ====
+  * [[zh:rpd:status_effects|状态效果]] - 所有状态效果概览
+  * [[zh:rpd:mobs|敌人]] - 经常施加减益的生物
+  * [[zh:rpd:traps|陷阱]] - 施加减益的环境危害
+  * [[zh:rpd:potion_of_purity_item|纯净药水]] - 移除减益的物品
+
+{{tag> rpd 机制 减益 状态效果 }}
