@@ -1,60 +1,51 @@
 ====== Armor Buff - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Earthroot.java|Earthroot.java]] (contains Armor as inner class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java|Plant.java]] (base plant class)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObjectsFactory.java|LevelObjectsFactory.java]] (registers Earthroot plant)
 
 ===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+This entity is implemented via Lua scripts, no JSON configuration exists for the buff itself.
 
 ===== String Resources =====
 <code xml>
 <string name="Earthroot_ArmorBuff">Armor</string>
+<string name="EarthrootBuff_Name">Herbal armor</string>
+<string name="EarthrootBuff_Info">Roots have sprouted from the ground providing natural armor.</string>
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * Plant script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/plants/Earthroot.lua|scripts/plants/Earthroot.lua]] - Applies Armor buff on contact
+  * Buff script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Armor.lua|scripts/buffs/Armor.lua]] - Armor buff implementation
 
-===== Buff Properties (from Earthroot.Armor) =====
-  * ''extends Buff'' - Inherits from base Buff class
+===== Buff Properties (from scripts/buffs/Armor.lua) =====
+  * ''icon = 20'' - BuffIndicator.ARMOR
+  * ''name = "EarthrootBuff_Name"'' - String resource for name
+  * ''info = "EarthrootBuff_Info"'' - String resource for description
   * ''level'' - Stores the damage absorption amount (set to character's HT when applied)
   * ''pos'' - Stores the position where the buff was applied
-  * ''absorb(damage)'' - Method that reduces incoming damage and detaches when depleted
 
 ===== Buff Implementation =====
-<code java>
-public static class Armor extends Buff {
-    private static final float STEP = 1f;
+<code lua>
+act = function(self, buff)
+    local target = buff.target
+    local pos = self.data and self.data.pos
+    if target:getPos() ~= pos then
+        buff:detach()
+    end
+    buff:spend(1) -- STEP
+end,
 
-    @Packable
-    public int pos;
-    @Packable
-    public int level;
-
-    @Override
-    public boolean attachTo(@NotNull Char target) {
-        pos = target.getPos();
-        return super.attachTo(target);
-    }
-
-    @Override
-    public boolean act() {
-        if (target.getPos() != pos) {
-            detach();
-        }
-        spend(STEP);
-        return true;
-    }
-
-    public int absorb(int damage) {
-        if (damage >= level) {
-            detach();
-            return damage - level;
-        } else {
-            level -= damage;
-            return 0;
-        }
-    }
-}
+defenceProc = function(self, buff, enemy, damage)
+    local lvl = buff:level()
+    if damage >= lvl then
+        buff:detach()
+        return damage - lvl
+    else
+        buff:level(lvl - damage)
+        return 0
+    end
+end
 </code>
 
 ===== Buff Behavior =====
@@ -67,3 +58,5 @@ public static class Armor extends Buff {
 ===== Related mr Entities =====
   * [[mr:earthroot_plant|Earthroot (Plant)]]
   * [[mr:barkskin_buff|Barkskin (Buff)]]
+
+{{tag> mr buffs armor reference machine-readable}}

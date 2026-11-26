@@ -1,0 +1,44 @@
+====== Deferred Damage ======
+
+{{ rpd:images:defered_damage_buff.png|Deferred Damage }}
+
+**Deferred Damage** is a buff in Remixed Dungeon that stores incoming damage and deals it back to the character over time.
+
+==== Description ====
+When a character has the Viscosity glyph on their armor, there is a chance that incoming damage will be deferred instead of being taken immediately. The damage is stored in the Deferred Damage buff and then dealt back at a rate of 1 damage per turn until the stored damage is depleted.
+
+According to the string resources: "The pain has been turned into a slowing pain, lessening the damage taken at once. Damage left to receive %d"
+
+==== Mechanics ====
+  * **Source:** Viscosity glyph on armor
+  * **Trigger Chance:** Based on armor level - `Random.Int(level + 7) >= 6`
+  * **Damage Storage:** All deferred damage accumulates in the buff's damage field
+  * **Damage Release:** 1 damage per turn (TICK) until depleted
+  * **Buff Icon:** BuffIndicator.DEFERRED
+  * **Visual:** Purple glow on armor (Viscosity glyph)
+
+==== Behavior ====
+  * When damage is deferred, the character takes 0 immediate damage
+  * The deferred damage is added to the buff's damage counter
+  * Each turn, the buff deals 1 damage to the character
+  * If the character dies from deferred damage, it counts as a glyph death
+  * The buff detaches when stored damage reaches 0 or character dies
+
+==== Stats ====
+  * **Duration:** Variable (depends on accumulated damage)
+  * **Damage per Turn:** 1
+  * **Stacks:** Yes (damage accumulates)
+  * **Removable:** No (only by depleting damage or death)
+
+==== Code References ====
+  * **Java Implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Viscosity.java#L63-L119|Viscosity.DeferedDamage class]]
+  * **Viscosity Glyph:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Viscosity.java|Viscosity.java]]
+  * **String Resources:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L681-L683|DeferedDamageBuff_Name, DeferedDamageBuff_Info, DeferedDamage_Killed_Txt]]
+  * **Machine-readable data:** [[mr:defered_damage_buff|mr:defered_damage_buff]]
+
+==== Related Pages ====
+  * [[en:rpd:viscosity_glyph|Viscosity Glyph]] - The glyph that causes this buff
+  * [[en:rpd:armor_glyphs|Armor Glyphs]] - General information about armor glyphs
+  * [[en:rpd:buffs|Buffs]] - Overview of all buffs and debuffs
+
+{{tag> rpd buffs debuffs viscosity glyph deferred_damage }}

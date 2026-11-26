@@ -1,0 +1,58 @@
+====== Earthroot (Plant) - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Plant.java|Plant.java]] - Base plant class
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/plants/EarthrootSeed.java|EarthrootSeed.java]] - Seed item for Earthroot
+
+===== JSON Configuration =====
+Earthroot is implemented as a Lua-scripted plant. No JSON configuration exists for the plant itself.
+
+Seed configuration in Treasury.json:
+<code json>
+"Earthroot.Seed": 1
+</code>
+
+Mob loot configuration in EarthElemental.json:
+<code json>
+"loot": { "kind": "Earthroot.Seed" }
+</code>
+
+===== String Resources =====
+<code xml>
+<string name="Earthroot_Name">Earthroot</string>
+<string name="Earthroot_Desc">When a creature touches an Earthroot, its roots create a kind of natural armor around it.</string>
+<string name="EarthrootBuff_Name">Herbal armor</string>
+<string name="EarthrootBuff_Info">Roots have sprouted from the ground providing natural armor.</string>
+</code>
+
+===== Lua Scripts =====
+  * Plant script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/plants/Earthroot.lua|scripts/plants/Earthroot.lua]]
+  * Buff script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Armor.lua|scripts/buffs/Armor.lua]] (Earthroot Armor buff)
+
+===== Plant Behavior =====
+  * **Trigger:** When a character steps on the Earthroot plant
+  * **Effect:** Applies "Armor" buff to the character
+  * **Buff Level:** Set to character's max HP (HT)
+  * **Visual Effect:** Earth particles and camera shake
+  * **Buff Properties:** Absorbs damage up to level amount, detaches if character moves from the cell
+
+===== Buff Implementation (Armor) =====
+<code lua>
+defenceProc = function(self, buff, enemy, damage)
+    local lvl = buff:level()
+    if damage >= lvl then
+        buff:detach()
+        return damage - lvl
+    else
+        buff:level(lvl - damage)
+        return 0
+    end
+end
+</code>
+
+===== Related mr Entities =====
+  * [[mr:armor_buff|Armor Buff]] - The buff applied by Earthroot
+  * [[mr:earthroot_seed_item|Earthroot Seed]] - Seed item for planting Earthroot
+  * [[mr:barkskin_buff|Barkskin Buff]] - Similar armor buff from high grass
+
+{{tag> mr plants earthroot reference machine-readable}}
