@@ -3,10 +3,26 @@
 Quests in Remixed Dungeon zijn speciale missies of doelen die spelers kunnen voltooien voor beloningen.
 
 ==== Hoofd Quests ====
-  * **Geest Quest**: Help de geest in de riool door een [[nl:rpd:rat_skull_item|Reuzenrat Schedel]] te verkrijgen van de [[nl:rpd:fetid_rat_mob|Stinkende Rat]]
-  * **Imp Quest**: Help de Imp in de riool door een speciale ring te smeden
-  * **Smid Quest**: Help de Smid in de gevangenis door twee [[nl:rpd:dwarf_token_item|Dwerg Tokens]] te vinden
-  * **Stafmaker Quest**: Help de Stafmaker door de drie elementaire emblemen te vinden om staven te upgraden
+  * **Geest Quest** (Riool, diepte 2+): De geest biedt twee alternatieve paden:
+    * **Rat Pad**: Versla de [[nl:rpd:fetid_rat_mob|Stinkende Rat]] om een **Reuzenrat Schedel** te verkrijgen
+    * **Roos Pad**: Versla ratten, gnollen of krabben om een **Gedroogde Roos** te laten vallen (kans na ~8 doden)
+    * Beloning: Een geïdentificeerd wapen of pantser uit de niveau-schatkamer
+
+  * **Imp Quest** (Stad, diepte 17+): De Imp vraagt om **Dwerg Tokens**:
+    * **Monnik Variant**: Verzamel 8 Dwerg Tokens van [[nl:rpd:monk_mob|Monniken]]
+    * **Golem Variant**: Verzamel 6 Dwerg Tokens van [[nl:rpd:golem_mob|Golems]]
+    * Beloning: Een verfluchte ring (geüpgraded 2x) uit de niveau-schatkamer
+
+  * **Smid Quest** (Grotten, diepte 12+): De Smid heeft twee alternatieve paden:
+    * **Bloed Pad**: Lever een **Bloedbevlekte Hakbijl** op
+    * **Goud Pad**: Betaal 15 **Donker Goud**
+    * Na voltooiing: Toegang tot **Hervorming** - twee opgegradeerbare items combineren (het hoogste krijgt +1 upgrade, het laagste wordt verbruikt)
+    * Beloning: **Herbouwde Hakbijl** wordt gegeven bij start van quest
+
+  * **Stafmaker Quest** (Gevangenis, diepte 7+): De Stafmaker vraagt om één van twee items:
+    * **Stof Variant**: Vind **Lijkstof** in een verborgen skelethoop
+    * **Zaad Variant**: Pluk een **Rotbes Zaadje** dat zichzelf plant
+    * Beloning: Een willekeurige verfluchte staf (geüpgraded 1x) - krijgs- of utiliteitsvariant
 
 ==== Bijzaken ====
   * Verschillende optionele quests die unieke beloningen bieden
@@ -21,17 +37,22 @@ Quests in Remixed Dungeon zijn speciale missies of doelen die spelers kunnen vol
 ==== Quest Mechanieken ====
   * Quests worden meestal geïnitieerd door NPC's in specifieke kerkergebieden
   * Meeste quests vereisen het verslaan van een speciale vijand of het vinden van specifieke items
-  * Quest voltooiing wordt bijgehouden door het quest-systeem van het spel
+  * Quest voltooiing wordt bijgehouden door het quest-systeem van het spel (scripts/lib/quest.lua)
+  * Veel quests hebben alternatieve paden met verschillende vereisten
 
 ==== Strategie ====
   * Voltooi quests voor waardevolle beloningen die gameplay significant kunnen beïnvloeden
   * Prioriteer quest-doelstellingen bij het verkennen van gebieden waar quest NPC's zich bevinden
   * Quests vereisen vaak afwijken van het hoofpad maar bieden significante voordelen
+  * Let op alternatieve paden - sommige zijn makkelijker afhankelijk van je build
 
 ==== Content Verificatie ====
-  * Informatiebron: Java Classes in [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs|NPC-gerelateerde classes]]
-  * Implementatie details in diverse quest-gerelateerde classes
-  * String bronnen: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Quest-gerelateerde strings]]
+  * Informatiebron: Lua scripts in [[https://github.com/NYRDS/remixed-dungeon/tree/master/RemixedDungeon/src/main/assets/scripts/npc|NPC scripts]]
+  * Geest: scripts/npc/Ghost.lua (sadGhost quest)
+  * Imp: scripts/npc/Imp.lua (imp quest)
+  * Smid: scripts/npc/Blacksmith.lua (blacksmith quest)
+  * Stafmaker: scripts/npc/WandMaker.lua (wandmaker quest)
+  * Quest systeem: scripts/lib/quest.lua
 
 ==== Zie Ook ====
   * [[nl:rpd:npcs|NPC's]]
@@ -40,6 +61,11 @@ Quests in Remixed Dungeon zijn speciale missies of doelen die spelers kunnen vol
   * [[nl:rpd:blacksmith_npc|Smid NPC]]
   * [[nl:rpd:wandmaker_npc|Stafmaker NPC]]
   * [[nl:rpd:rat_skull_item|Reuzenrat Schedel]]
+  * [[nl:rpd:dried_rose_item|Gedroogde Roos]]
   * [[nl:rpd:dwarf_token_item|Dwerg Token]]
+  * [[nl:rpd:corpse_dust_item|Lijkstof]]
+  * [[nl:rpd:rotberry_seed_item|Rotbes Zaadje]]
+  * [[nl:rpd:dark_gold_item|Donker Goud]]
+  * [[nl:rpd:remixed_pickaxe_item|Herbouwde Hakbijl]]
 
 {{tag> rpd quests gameplay}}
