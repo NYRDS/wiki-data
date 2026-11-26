@@ -9,32 +9,38 @@ Una sierra quirúrgica de precisión diseñada para disección rápida. Su daño
 
 ==== Propiedades ====
   * **Tipo**: Arma (A dos manos)
-  * **Daño**: 1-2 (se escala con el nivel)
+  * **Daño**: Escala con el nivel del héroe y el nivel del arma: (nivel_habilidad + nivel_arma) × aleatorio(2 + nivel_arma, 3 + nivel_arma×2)
   * **Durabilidad**: Se degrada con el uso
   * **Fuerza Requerida**: 9
-  * **Habilidad Especial**: Daño adicional contra enemigos paralizados para Médico de Plaga
+  * **Habilidad Especial**: Daño doble contra enemigos paralizados para Médico de Plaga; sangrado en cada golpe; golpes críticos del Médico de Plaga otorgan +50% daño y sueltan partes cosechables
 
 ==== Obtención ====
   * **Arma Inicial**: El Médico de Plaga comienza con esta arma
   * **Especial**: No puede ser mejorada de la manera tradicional (mejora no disponible)
 
 ==== Mecánicas ====
-  * Al atacar, tiene una posibilidad de causar sangrado en el objetivo
-  * Contra enemigos paralizados, inflige un 50% de daño adicional cuando es empuñada por la clase de héroe Médico de Plaga
+  * Al atacar, siempre aplica sangrado (3 turnos) al objetivo
+  * Contra enemigos paralizados, inflige el doble de daño (100% adicional) cuando es empuñada por la clase de héroe Médico de Plaga
+  * Golpes críticos (cuando el tirada de ataque supera 3× la defensa) con Médico de Plaga: +50% daño y suelta una parte cosechable aleatoria (Glándula Tóxica, Órgano Podrido o Fragmento de Hueso)
   * Usa la animación de ataque de "espada" cuando es empuñada
 
 ==== Verificación de Contenido ====
   * Fuente de información: Script Lua [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/BoneSaw.lua|BoneSaw.lua]]
-  * Detalles de implementación: RemixedDungeon/src/main/assets/scripts/items/BoneSaw.lua
+  * Detalles de implementación:
+    - Daño: (user_level + lvl) * random(2 + lvl, 3 + lvl*2)
+    - Requerimiento STR: 9
+    - Ranura: Dos manos (slot_bothHands)
+    - Animación: "sword"
+    - attackProc: Siempre aplica Bleeding(3); crítico Doctor = +50% daño + drop aleatorio; paralizado + Doctor = 2x daño
   * Recursos de cadenas:
     * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-es/strings_all.xml#L3011-L3012|BoneSaw_Name, BoneSaw_Info en español]]
 
 ==== Ver También ====
-  * [[en:rpd:hero_class|Clases de Héroes]]
-  * [[en:rpd:plague_doctor_subclass|Clase Médico de Plaga]]
-  * [[en:rpd:weapons|Armas]]
+  * [[es:rpd:hero_class|Clases de Héroes]]
+  * [[es:rpd:plague_doctor_subclass|Clase Médico de Plaga]]
+  * [[es:rpd:weapons|Armas]]
   * [[es:rpd:bleeding_buff|Sangrado]] - Efecto aplicado por la Sierra Ósea
   * [[es:rpd:paralysis_buff|Parálisis]] - Estado que afecta al daño de la Sierra Ósea
-  * [[en:rpd:melee_weapon_item|Armas cuerpo a cuerpo]] - Categoría de arma
+  * [[es:rpd:melee_weapon_item|Armas cuerpo a cuerpo]] - Categoría de arma
 
 {{tag> rpd items weapons doctor}}
