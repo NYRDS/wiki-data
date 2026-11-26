@@ -1,0 +1,50 @@
+====== Snoepje van de Dood Item ======
+
+{{ rpd:images:candy_of_death_item.png|Snoepje van de Dood }}
+
+**Snoepje van de Dood** is een debug/ontwikkel-item in Remixed Dungeon dat de karakter die het consumeert direct doet sterven.
+
+==== Beschrijving ====
+Snoepje van de Dood lijkt op een simpel snoepje, maar heeft een dodelijk effect bij consumptie. Het wordt primair gebruikt voor debug-doeleinden om dood-mechanieken, karakter-resurrectie-items (zoals Ankh) en dood-straffen te testen. Dit item is niet bedoeld voor normaal gameplay.
+
+==== Eigenschappen ====
+  * **Type**: Voedselitem (debug)
+  * **Prijs**: 20 goud per stuk
+  * **Effect**: Doet de karakter die het eet direct sterven
+  * **Doel**: Debug en ontwikkel-testing
+
+==== Mechanieken ====
+  * Bij consumptie past het direct schade toe gelijk aan de max HP van de karakter (ht())
+  * Omgaat alle resistenties en pantser
+  * Doet de karakter direct sterven ongeacht huidige HP
+  * Kan dood-gerelateerde mechanieken en items triggeren (Ankh, Lich klasse vaardigheden, etc.)
+
+==== Verwerving ====
+  * Normaal niet beschikbaar in standaard gameplay
+  * Waarschijnlijk alleen toegankelijk via developer/debug modi
+  * Kan verschijnen in speciale test-omgevingen of levels
+
+==== Gebruiksnotities ====
+  * **Waarschuwing**: Consumeren van dit item zal directe dood veroorzaken
+  * Nuttig voor het testen van resurrectie-mechanieken en dood-straffen
+  * Geen onderdeel van de normale spelvoortgang of item-drops
+  * Moet alleen gebruikt worden in debug/ontwikkel-contexten
+
+==== Technische Details ====
+  * **Java Klasse:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/debug/CandyOfDeath.java|com.nyrds.pixeldungeon.items.common.debug.CandyOfDeath]]
+  * **Implementatie:** Breidt de Food basisklasse uit
+  * **Sprite:** Gebruikt image index 21 uit artifacts.png
+  * **Schadeformule:** ``chr.damage(chr.ht(), this)`` (schade gelijk aan karakters max HP)
+
+==== Content Verificatie ====
+  * Informatiebron: Java Klasse com.nyrds.pixeldungeon.items.common.debug.CandyOfDeath
+  * Effect geverifieerd uit _execute() methode in CandyOfDeath.java
+  * Prijs geverifieerd als 20 * hoeveelheid uit price() methode
+
+==== Gerelateerd ====
+  * [[nl:rpd:candy_item|Snoepje]] - Normaal snoepje gebruikt in Schrikkelaar quest
+  * [[nl:rpd:food_item|Voedsel]] - Andere eetbare items in het spel
+  * [[nl:rpd:ankh_item|Ankh]] - Item dat dood kan voorkomen
+  * [[nl:rpd:quest_items|Quest Items]] - Andere items gebruikt voor quests
+
+{{tag> rpd items voedsel debug dood}}

@@ -1,0 +1,46 @@
+====== Fire Enchantment ======
+
+**Fire Enchantment** is a [[en:rpd:enchantments|weapon enchantment]] in Remixed Dungeon that has a chance to set enemies on fire when hitting them.
+
+==== Description ====
+Fire Enchantment has a chance to ignite enemies on hit. This causes additional damage over time from the [[en:rpd:burning_buff|Burning]] effect.
+
+==== Mechanics ====
+  * **Chance to ignite enemy:** **Random.Int(weapon_level + 3) >= 2**
+    * Level 0: 33% chance
+    * Level 1: 50% chance
+    * Level 2: 60% chance
+    * Higher levels: increasing chance
+  * On proc, applies [[en:rpd:burning_buff|Burning]] effect for several turns
+  * Additional fire damage: random value from 1 to (weapon level + 2)
+  * Emits flame particles: Level + 1 particles
+  * Fire damage stacks with existing weapon fire damage bonus
+  * Visually glows orange (color: 0xFF4400)
+  * Effect applied through proc() method with probability increasing with weapon level
+
+==== Code References ====
+  * Java class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/enchantments/Fire.java|Fire.java]]
+  * Effect applied in proc() method
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Burning.java|Burning.java]] - Burning effect
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/particles/FlameParticle.java|FlameParticle.java]] - Flame particles
+  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] (en)
+
+==== Strategy ====
+  * Effective against enemies vulnerable to fire
+  * Works well with fast weapons for frequent procs
+  * Damage over time helps in prolonged fights
+  * Useful against enemies that fear fire
+
+==== See Also ====
+  * [[en:rpd:burning_buff|Burning]] - Status effect caused by this enchantment
+  * [[en:rpd:enchantments|Enchantments]] - List of all weapon enchantments
+  * [[en:rpd:weapon|Weapon]] - Equipment that can be enchanted
+  * [[en:rpd:fire_elemental_mob|Fire Elemental]] - Enemy associated with fire
+  * [[en:rpd:trap_mechanic|Traps]] - Traps that cause fire
+  * [[en:rpd:fire_arrow_item|Fire Arrow]] - Projectile with fire
+  * [[en:rpd:wand_item|Wands]] - Wands with fire
+  * [[ru:rpd:fire_enchantment_mechanic|Огненные Чары (Russian)]]
+  * [[es:rpd:fire_enchantment|Encantamiento de Fuego (Español)]]
+  * [[pt:rpd:fire_enchantment|Encantamento de Fogo (Português)]]
+
+{{tag> rpd items enchantments fire}}
