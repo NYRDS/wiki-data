@@ -5,24 +5,26 @@ Machine-readable reference page for Toxic Gland item in Remixed Dungeon.
 ==== Item Properties ====
 
 **Basic Stats**:
-  * Type: Item
-  * Stackable: No
-  * Cost: 5 gold
+  * Type: Item (Material/Crafting Component)
+  * Stackable: Yes
+  * Cost: 0 gold (Doctor harvest: not sellable)
 
 **Lua Definition**:
-  * No Lua script - implemented in Java
+  * File: `scripts/items/ToxicGland.lua`
+  * Implemented via Lua item library
+  * Sprite: image 3 from `items/materials.png`
 
 ==== Effects ====
 
-**Primary Effects**:
-  * Throwable weapon
-  * Deals damage when thrown
-  * Applies poison effect
+**Primary Purpose**:
+  * Harvestable material from carcasses (Doctor class)
+  * Used in alchemical processes/crafting
+  * Dropped by Carcass on critical hits with Bone Saw
 
 **Implementation**:
-  * File: ToxicGland.java
-  * Throwable weapon mechanics
-  * Poison application
+  * Lua script: `scripts/items/ToxicGland.lua`
+  * Harvested via `scripts/items/BoneSaw.lua` (critical hits drop ToxicGland, RottenOrgan, or BoneShard)
+  * Alchemy recipe ingredient: `scripts/alchemy_recipes.json`
 
 ==== String Resources ====
 
@@ -37,14 +39,16 @@ Machine-readable reference page for Toxic Gland item in Remixed Dungeon.
 ==== Wiki Pages ====
 
 **English**:
-  * [[en:rpd:toxic_gland_item|Toxic Gland]] - Main wiki page
+  * [[en:rpd:toxic_gland_item|Toxic Gland]] - Main wiki page (MISSING - needs creation)
 
 **Russian**:
-  * [[ru:rpd:toxic_gland_item|Ядовитая железа]] - Russian wiki page
+  * [[ru:rpd:toxic_gland_item|Ядовитая железа]] - Russian wiki page (MISSING - needs creation)
 
 ==== Code References ====
 
-  * Main implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/ToxicGland.java|ToxicGland.java]]
-  * String resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml:ToxicGland]]
+  * Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/items/ToxicGland.lua|ToxicGland.lua]]
+  * Harvest Logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/items/BoneSaw.lua|BoneSaw.lua]]
+  * Alchemy Recipe: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/alchemy_recipes.json|alchemy_recipes.json]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml:ToxicGland]]
 
 {{tag> mr items toxic_gland reference machine-readable}}

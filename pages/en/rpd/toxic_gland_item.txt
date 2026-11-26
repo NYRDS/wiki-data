@@ -1,0 +1,59 @@
+====== Toxic Gland ======
+
+{{ rpd:images:toxic_gland_item.png|Toxic Gland }}
+
+The **Toxic Gland** is a crafting material in Remixed Dungeon harvested from defeated enemies. It serves as an alchemical ingredient and is primarily obtained by the Doctor class through the Bone Saw's critical hit harvesting mechanic.
+
+==== Description ====
+A toxic gland harvested from a defeated enemy. These glands are filled with potent toxins and can be used in alchemical processes.
+
+==== Properties ====
+  * **Type**: Material / Crafting Component
+  * **Stackable**: Yes
+  * **Cost**: 0 gold (Doctor harvest: not sellable)
+  * **Sprite**: Image 3 from `items/materials.png`
+
+==== Acquisition ====
+  * **Doctor Class**: Critical hits with the [[en:rpd:bone_saw_item|Bone Saw]] have a chance to harvest Toxic Glands from corpses (along with [[en:rpd:rotten_organ_item|Rotten Organ]] and [[en:rpd:bone_shard_item|Bone Shard]])
+  * **Carcass Interaction**: Using the Bone Saw on carcasses yields harvestable materials
+
+==== Uses ====
+  * **Alchemy**: Used as an ingredient in alchemical recipes (see `scripts/alchemy_recipes.json`)
+  * **Crafting Component**: Material for various crafting processes
+
+==== Implementation Details ====
+The Toxic Gland is implemented as a Lua scripted item:
+  * **Lua Script**: `scripts/items/ToxicGland.lua`
+  * **Harvest Logic**: `scripts/items/BoneSaw.lua` (critical hits drop ToxicGland, RottenOrgan, or BoneShard)
+  * **Alchemy Recipes**: `scripts/alchemy_recipes.json`
+  * Uses the item library via `require "scripts/lib/item"`
+  * Not a Java class - fully data-driven via Lua
+
+==== Content Verification ====
+  * Information source: Lua script [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/items/ToxicGland.lua|ToxicGland.lua]]
+  * Harvest logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/items/BoneSaw.lua|BoneSaw.lua]]
+  * String resources: `ToxicGland_Name` and `ToxicGland_Info` from strings_all.xml
+  * Last updated: Current version, source: Remixed Dungeon game code
+
+==== Code References ====
+  * Lua Script: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/items/ToxicGland.lua|ToxicGland.lua]]
+  * Harvest Logic: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/items/BoneSaw.lua|BoneSaw.lua]]
+  * Alchemy Recipes: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/alchemy_recipes.json|alchemy_recipes.json]]
+  * String Resources: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]]
+
+==== String Resources ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|ToxicGland_Name]] - "Toxic Gland"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|ToxicGland_Info]] - "A toxic gland harvested from a defeated enemy. These glands are filled with potent toxins and can be used in alchemical processes."
+
+==== See Also ====
+  * [[en:rpd:bone_saw_item|Bone Saw]] - Tool used to harvest Toxic Glands
+  * [[en:rpd:rotten_organ_item|Rotten Organ]] - Other harvestable material
+  * [[en:rpd:bone_shard_item|Bone Shard]] - Other harvestable material
+  * [[en:rpd:doctor_class|Doctor]] - Class that can harvest Toxic Glands
+  * [[en:rpd:alchemy|Alchemy]] - Crafting system using Toxic Glands
+  * [[mr:toxic_gland_item|Technical Details]] - Machine-readable reference page
+
+==== Other Languages ====
+  * [[ru:rpd:toxic_gland_item|Русский]]
+
+{{tag> rpd items materials crafting doctor harvest}}

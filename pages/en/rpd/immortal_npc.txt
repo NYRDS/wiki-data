@@ -1,28 +1,28 @@
 ====== Immortal NPC ======
 
-**ImmortalNPC** is an abstract class in Remixed Dungeon that extends the base [[en:rpd:npc|NPC]] class. NPCs that inherit from this class have special properties that make them essentially invulnerable to damage and unable to move.
+**Immortal NPCs** in Remixed Dungeon are non-player characters that cannot be killed or damaged. Unlike earlier versions where this was implemented via an `ImmortalNPC` abstract Java base class, immortality is now configured per-entity via JSON in `mobsDesc/` with `"immortal": true`.
 
-{{tag> rpd npcs immortal abstract}}
+{{tag> rpd npcs immortal}}
 
 ==== Properties ====
-  * **Immobile**: Cannot move (movable = false)
-  * **Invulnerable**: Cannot take damage from any attacks (damage method is overridden to do nothing)
+  * **Immobile**: Cannot move (`"movable": false`, `"baseSpeed": 0` or `0.5`)
+  * **Invulnerable**: Cannot take damage from any attacks (`"immortal": true`)
   * **High Defense**: Defense skill is set to 1000 (effectively impossible to hit)
-  * **Low Speed**: Speed is set to 0.5f (slower than normal)
-  * **Buff Immunity**: Cannot receive or be affected by buffs (add(Buff) returns false)
-  * **Defensive**: Uses "wails" as its defense verb (from Ghost_Defense string resource)
-  * **Reset Behavior**: Automatically resets position after actions (reset() returns true)
+  * **Low Speed**: Speed is set to 0.5f or 0 (slower than normal)
+  * **Buff Immunity**: Cannot receive or be affected by buffs
+  * **Defensive**: Uses "wails" as its defense verb (from `Ghost_Defense` string resource)
+  * **Reset Behavior**: Automatically resets position after actions (`"persistOnReset": true`)
 
 ==== Implemented NPCs ====
-NPCs that extend ImmortalNPC include:
-  * [[en:rpd:townguard_npc|Town Guard]] - Provides security in town areas
+NPCs with immortal configuration include:
+  * [[en:rpd:town_guard_npc|Town Guard]] - Provides security in town areas
   * [[en:rpd:townsfolk_npc|Townsfolk]] - Regular citizens with various messages
   * [[en:rpd:townsfolk_npc|Silent Townsfolk]] - Quiet townspeople with minimal dialogue
   * [[en:rpd:townsfolk_movie_npc|Townsfolk Movie NPC]] - References cinema's special service
   * [[en:rpd:healer_npc|Healer NPC]] - Provides healing services
   * [[en:rpd:librarian_npc|Librarian NPC]] - Library-related services
   * [[en:rpd:fortuneteller_npc|Fortune Teller NPC]] - Fortune telling services
-  * [[en:rpd:serviceman_npc|Service Man NPC]] - Service-related functions
+  * [[en:rpd:service_man_npc|Service Man NPC]] - Service-related functions (ad theatre)
   * [[en:rpd:sociologist_npc|Sociologist NPC]] - Social interaction NPC
   * [[en:rpd:inquirer_npc|Inquirer NPC]] - Information-seeking NPC
   * [[en:rpd:scarecrow_npc|Scarecrow NPC]] - Scarecrow that serves as an NPC
@@ -30,13 +30,21 @@ NPCs that extend ImmortalNPC include:
   * [[en:rpd:plague_doctor_npc|Plague Doctor NPC]] - Plague-related NPC
   * [[en:rpd:bella_npc|Bella NPC]] - Bella-related NPC
   * [[en:rpd:caged_kobold_npc|Caged Kobold]] - Caged Kobold NPC
+  * [[en:rpd:bard_npc|Bard NPC]] - Music and entertainment NPC
+  * [[en:rpd:bishop_npc|Bishop NPC]] - Religious NPC
+  * [[en:rpd:drunkard_npc|Drunkard NPC]] - Drunk NPC with dialogue
+  * [[en:rpd:innkeeper_npc|Innkeeper NPC]] - Inn services NPC
+  * [[en:rpd:mercenary_npc|Mercenary NPC]] - Mercenary NPC
+  * [[en:rpd:servant_npc|Servant NPC]] - Servant NPC
+  * [[en:rpd:black_cat_npc|Black Cat NPC]] - Black cat NPC
   * Other special NPCs in the game
 
 ==== Implementation ====
-  * **Abstract Class**: Cannot be instantiated directly, must be extended
-  * **Protection**: Has special protection against damage and effects
+  * **JSON Configuration**: Each NPC defines its properties in `RemixedDungeon/src/main/assets/mobsDesc/<NPCName>.json`
+  * **Key Properties**: `"immortal": true`, `"movable": false`, `"defenseSkill": 1000`, `"aiState": "Passive"`, `"fraction": "NEUTRAL"`, `"defenceVerb": "Ghost_Defense"`, `"npc": true`, `"friendly": true`
+  * **Lua Behaviors**: Custom behaviors in `scripts/npc/` (e.g., `scripts/npc/Townsfolk.lua`, `scripts/npc/Healer.lua`)
+  * **Java Classes**: Only NPCs with special logic (e.g., `ServiceManNPC.java` for ad theatre) retain Java classes; most are data-driven
   * **Purpose**: Designed for safe NPCs that provide services, lore, or other functions without risk of being killed
-  * **Location**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java]]
 
 ==== Strategy ====
   * These NPCs are completely safe to interact with
@@ -46,12 +54,14 @@ NPCs that extend ImmortalNPC include:
   * Players can interact with them without worry of accidental harm
 
 ==== Source Code ====
-  * Java Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
-  * Parent Class: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/npcs/NPC.java|NPC.java]]
+  * JSON Config Examples: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/TownsfolkNPC.json|TownsfolkNPC.json]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/ServiceManNPC.json|ServiceManNPC.json]]
+  * Lua Scripts: `scripts/npc/` directory
+  * Java (special cases): `com/nyrds/pixeldungeon/mobs/npc/ServiceManNPC.java`
+  * String Resource: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Ghost_Defense]] ("wails")
 
 ==== See Also ====
   * [[en:rpd:npc|NPCs]] - General information about non-player characters
   * [[en:rpd:npcs|NPCs]] - List of all NPCs in the game
   * [[mr:immortal_npc|Technical Details]] - Machine-readable reference page
 
-{{tag> rpd npcs immortal abstract}}
+{{tag> rpd npcs immortal}}

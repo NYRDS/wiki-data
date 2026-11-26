@@ -1,11 +1,46 @@
 ====== Immortal NPC - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/npc/ImmortalNPC.java|ImmortalNPC.java]]
+This entity type no longer exists as a Java base class. NPC immortality is now configured per-entity via JSON in `mobsDesc/` with `"immortal": true`. The former `ImmortalNPC.java` abstract class has been removed.
+
+===== JSON Configuration =====
+Immortality and related NPC properties are defined in individual NPC JSON files in `RemixedDungeon/src/main/assets/mobsDesc/`. Common properties for immortal NPCs:
+  * `"immortal": true` - Prevents damage and death
+  * `"movable": false` - NPC cannot move
+  * `"defenseSkill": 1000` - Effectively impossible to hit
+  * `"baseSpeed": 0` or `0.5` - Immobile or very slow
+  * `"aiState": "Passive"` - Non-aggressive behavior
+  * `"fraction": "NEUTRAL"` - Neutral faction
+  * `"defenceVerb": "Ghost_Defense"` - Uses "wails" as defense verb
+  * `"persistOnReset": true` - Survives level resets
+  * `"npc": true` - Marks as NPC type
+  * `"friendly": true` - Friendly to player
+
+Example: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/TownsfolkNPC.json|TownsfolkNPC.json]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/mobsDesc/ServiceManNPC.json|ServiceManNPC.json]]
 
 ===== String Resources =====
-  * <string name="Ghost_Defense">wails</string>
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Ghost_Defense]] - "wails" (used as defenceVerb)
 
-===== Related mr Entities =====
-  * [[mr:town_guard_npc_mob|Town Guard NPC]]
+===== Lua Scripts =====
+NPC behaviors are implemented in Lua scripts in `scripts/npc/` (e.g., `scripts/npc/Townsfolk.lua`, `scripts/npc/Healer.lua`)
+
+===== Known Immortal NPCs =====
+  * [[mr:townsfolk_npc|Townsfolk NPC]]
   * [[mr:healer_npc|Healer NPC]]
+  * [[mr:librarian_npc|Librarian NPC]]
+  * [[mr:fortuneteller_npc|Fortune Teller NPC]]
+  * [[mr:service_man_npc|Service Man NPC]]
+  * [[mr:town_guard_npc|Town Guard NPC]]
+  * [[mr:bard_npc|Bard NPC]]
+  * [[mr:bishop_npc|Bishop NPC]]
+  * [[mr:drunkard_npc|Drunkard NPC]]
+  * [[mr:innkeeper_npc|Innkeeper NPC]]
+  * [[mr:necromancer_npc|Necromancer NPC]]
+  * [[mr:plague_doctor_npc|Plague Doctor NPC]]
+  * [[mr:servant_npc|Servant NPC]]
+  * [[mr:black_cat_npc|Black Cat NPC]]
+  * [[mr:townsfolk_movie_npc|Townsfolk Movie NPC]]
+  * [[mr:townsfolk_silent_npc|Townsfolk Silent NPC]]
+  * [[mr:mercenary_npc|Mercenary NPC]]
+
+{{tag> mr npcs reference immortal}}
