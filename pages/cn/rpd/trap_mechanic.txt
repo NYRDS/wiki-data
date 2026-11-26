@@ -1,0 +1,88 @@
+====== 陷阱机制 ======
+
+{{ rpd:images:fire_trap_level_object.png|陷阱机制 }}
+
+陷阱机制是 Remixed Dungeon 中隐藏的机关，触发时会激活。
+
+==== 描述 ====
+陷阱是放置在地城各处的隐藏危险，踩上或远程触发时会激活。它们会造成各种有害效果，需要小心导航来避免。
+
+==== 陷阱类型 ====
+  * **火焰陷阱** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/FireTrap.java|FireTrap.java]] - 创造燃烧的火焰造成火焰伤害
+  * **毒针陷阱** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java]] - 释放毒针造成中毒状态效果
+  * **警报陷阱** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/AlarmTrap.java|AlarmTrap.java]] - 产生响亮的警报吸引地城中所有怪物
+  * **闪电陷阱** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/LightningTrap.java|LightningTrap.java]] - 用电流攻击，根据生命值百分比造成伤害
+  * **毒气陷阱** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ToxicTrap.java|ToxicTrap.java]] - 释放毒气造成中毒效果
+  * **麻痹陷阱** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ParalyticTrap.java|ParalyticTrap.java]] - 释放气体使目标麻痹
+  * **抓取陷阱** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/GrippingTrap.java|GrippingTrap.java]] - 伤害并定住目标
+  * **召唤陷阱** - [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/SummoningTrap.java|SummoningTrap.java]] - 在英雄周围召唤敌人
+
+==== 常见陷阱 ====
+  * [[cn:rpd:fire_trap|火焰陷阱]] - 创造燃烧火焰
+  * [[cn:rpd:poison_trap|毒针陷阱]] - 释放毒气
+  * 警报陷阱 - 产生响亮噪音吸引敌人
+  * [[cn:rpd:lightning_trap|闪电陷阱]] - 用电流攻击
+  * 碎石陷阱 - 显示隐形敌人和物品
+  * 召唤陷阱 - 召唤敌人
+  * 传送陷阱 - 将英雄传送到随机位置
+  * 守卫陷阱 - 创造保护结界
+  * 毒气陷阱 - 释放毒气
+  * [[cn:rpd:paralytic_gas_trap_level_object|麻痹陷阱]] - 使目标麻痹
+  * 抓取陷阱 - 抓取并伤害目标
+
+==== 常见机制 ====
+  * **隐蔽**: 陷阱在触发或被发现前是隐藏的
+  * **解除**: 某些角色可以解除陷阱以获得好处
+  * **侦测**: 英雄升级时可以学会侦测附近的陷阱
+  * **激活**: 通常由踩上或路过触发
+
+==== 代码参考 ====
+  * **陷阱基类**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java|Trap.java]] - 基础实现
+  * **关卡对象**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObject.java|LevelObject.java]] - 陷阱如何融入关卡对象
+  * **陷阱实现**:
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/FireTrap.java|FireTrap.java]] - 火焰陷阱机制
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/PoisonTrap.java|PoisonTrap.java]] - 毒针陷阱机制
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/AlarmTrap.java|AlarmTrap.java]] - 警报陷阱机制
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/LightningTrap.java|LightningTrap.java]] - 闪电陷阱机制
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ToxicTrap.java|ToxicTrap.java]] - 毒气陷阱机制
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/ParalyticTrap.java|ParalyticTrap.java]] - 麻痹气体陷阱机制
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/GrippingTrap.java|GrippingTrap.java]] - 抓取陷阱机制
+    * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/SummoningTrap.java|SummoningTrap.java]] - 召唤陷阱机制
+  * **侦测系统**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/Hero.java#L200-L220|Hero trap detection]] - 英雄如何侦测陷阱
+  * **地城系统**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/Dungeon.java|Dungeon.java]] - 陷阱如何放置
+  * **字符串资源**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] - 所有陷阱相关文本
+
+==== 字符串资源参考 ====
+<code xml>
+<string name="Level_TileToxicTrap">毒气陷阱</string>
+<string name="Level_TileFireTrap">火焰陷阱</string>
+<string name="Level_TileParalyticTrap">麻痹气体陷阱</string>
+<string name="Level_TilePoisonTrap">毒针陷阱</string>
+<string name="Level_TileAlarmTrap">警报陷阱</string>
+<string name="Level_TileLightningTrap">闪电陷阱</string>
+<string name="Level_TileGrippingTrap">抓取陷阱</string>
+<string name="Level_TileSummoningTrap">召唤陷阱</string>
+<string name="Level_TileInactiveTrap">已触发陷阱</string>
+<string name="Level_TileDescTrap">踩上隐藏的压力板将激活陷阱。</string>
+<string name="Level_TileDescInactiveTrap">陷阱以前触发过，不再危险。</string>
+<string name="AlarmTrap_Desc">陷阱发出刺耳的声音，在整个地城回荡！</string>
+<string name="LightningTrap_Name">闪电陷阱</string>
+<string name="LightningTrap_Desc">你被闪电陷阱的电击杀死了……</string>
+</code>
+
+==== 陷阱交互 ====
+  * **触发**: 通常发生在踩上陷阱时
+  * **避免**: 有时可以在触发前发现
+  * **解除**: 某些职业可以安全解除陷阱
+  * **效果**: 可能有各种有害、有益或混合效果
+
+==== 另见 ====
+  * [[cn:rpd:levels|关卡]]
+  * [[cn:rpd:mechanics|机制]]
+  * [[cn:rpd:status_effects|状态效果]]
+  * [[cn:rpd:level_objects|关卡对象]]
+  * [[cn:rpd:ring_of_detection_item|侦测之戒]]
+  * [[cn:rpd:hero_class|英雄]] (陷阱交互)
+  * [[cn:rpd:challenges|挑战]] (陷阱相关挑战)
+
+{{tag> rpd 陷阱 危险 机制 }}
