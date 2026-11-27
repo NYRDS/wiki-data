@@ -1,0 +1,53 @@
+====== Hooked Dagger ======
+
+{{ rpd:images:hooked_dagger_item.png|Hooked Dagger }}
+
+**Hooked Dagger** is a Lua-scripted melee weapon in Remixed Dungeon. It is a dagger-type weapon that causes bleeding on hit.
+
+==== Description ====
+The Hooked Dagger is a specialized dagger with a hooked blade designed to tear at flesh. When it strikes an enemy, it applies a bleeding effect that deals damage over time.
+
+==== Stats ====
+  * **Type:** Melee Weapon (Dagger)
+  * **Slot:** Weapon slot
+  * **Image:** Item index 3 from `items/daggers.png` sprite sheet
+  * **Price:** 17 gold
+  * **Required STR:** 9
+  * **Attack Delay Factor:** 1.0
+  * **Accuracy Factor:** 1.0
+  * **Damage:** Level to Level×2 (scales with item level)
+
+==== Mechanics ====
+  * **Bleeding Proc:** On successful hit, applies the [[en:rpd:bleeding_buff|Bleeding]] buff to the target for 3 turns
+  * **Level Scaling:** Damage scales with item level (1-2 damage per level)
+  * **Dual-wielding Interaction:** Equips in main weapon slot, blocks left hand slot
+  * **Visual Name:** Displays as "Wand" (may be a placeholder)
+  * **Attack Animation:** Uses staff animation class
+
+==== Acquisition ====
+  * Available through standard item generation (shops, loot, etc.)
+  * Can be found in the dungeon as random loot
+
+==== Usage Tips ====
+  * Excellent for applying consistent damage over time through bleeding
+  * Bleeding effect stacks with multiple hits
+  * Low STR requirement (9) makes it accessible to most builds
+  * Damage scaling makes it viable through mid-game
+
+==== Strategy ====
+The Hooked Dagger shines in extended fights where the bleeding damage accumulates. Its low strength requirement makes it a good early-game weapon for characters who haven't invested heavily in strength. The bleeding proc is particularly effective against high-HP enemies where the damage-over-time represents a significant portion of their health pool.
+
+==== Code References ====
+  * **Lua Script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/items/HookedDagger.lua|HookedDagger.lua]]
+  * **Lua Library (Common Classes):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/lib/commonClasses.lua|commonClasses.lua]]
+  * **Lua Library (Item Base):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/lib/item.lua|item.lua]]
+  * **String Resources (English):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] (HookedDagger_Name, HookedDagger_Info)
+  * **Machine-readable data:** [[mr:hooked_dagger_item|Hooked Dagger - Code References]]
+
+==== See Also ====
+  * [[en:rpd:bleeding_buff|Bleeding]] - Status effect applied by this weapon
+  * [[en:rpd:dagger_item|Dagger]] - Base dagger-type weapon
+  * [[en:rpd:melee_weapons|Melee Weapons]] - All close combat weapons
+  * [[en:rpd:weapon_item|Weapons]] - All weapon types
+
+{{tag> rpd items weapon dagger melee lua_scripted bleeding}}
