@@ -1,0 +1,59 @@
+====== Buff de Congelamento ======
+
+{{ rpd:images:frost_buff.png|Buff de Congelamento }}
+
+**Congelamento** é um efeito de blob em Remixed Dungeon que aplica o status congelado a criaturas que entram em contato com ele. O congelamento é criado pela [[pt:rpd:potion_of_frost_item|Poção de Congelamento]] quando ela se estilhaça.
+
+==== Descrição ====
+Congelamento é um efeito de blob em Remixed Dungeon que aplica o status congelado a criaturas que entram em contato com ele. O congelamento é criado pela [[pt:rpd:potion_of_frost_item|Poção de Congelamento]] quando ela se estilhaça.
+
+==== Efeito ====
+Quando criaturas entram em contato com o blob de congelamento:
+  * **Efeito de Congelamento:** Criaturas ficam congeladas no lugar, incapazes de se mover ou agir
+  * **Duração:** Criaturas permanecem congeladas até que o efeito acabe ou seja removido
+  * **Área de Efeito:** Afeta todas as criaturas que entram na área congelada
+
+==== Mecânicas ====
+  * **Ativação:** O congelamento é criado quando uma [[pt:rpd:potion_of_frost_item|Poção de Congelamento]] se estilhaça
+  * **Raio:** O efeito de congelamento cobre um raio de 2 tiles ao redor do ponto de impacto
+  * **Persistência:** O blob de congelamento permanece por um curto tempo, continuando a congelar criaturas
+  * **Duração:** O blob se dissipa após alguns turnos
+
+==== Interação ====
+  * **Movimento:** Criaturas congeladas não podem se mover ou tomar ações
+  * **Dano:** Alguns ataques baseados em fogo podem remover efeitos de congelamento
+  * **Duração:** O efeito de congelamento desaparece naturalmente após algum tempo
+  * **Imunidades:** Algumas criaturas são naturalmente imunes ao efeito de congelamento
+
+==== Estratégia ====
+  * Use em combate para desabilitar temporariamente inimigos perigosos
+  * Eficaz para controle de multidão quando enfrentando múltiplos inimigos
+  * Tenha cuidado para não congelar a si mesmo ou aliados importantes
+  * Funciona bem em corredores estreitos onde inimigos são forçados a passar pela área
+
+==== Referências de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Freezing.java|Freezing.java]] - Implementação do efeito blob de congelamento
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]] - Buff de congelamento aplicado às criaturas
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]] - Blob de fogo que pode ser removido por congelamento
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/LiquidFlame.java|LiquidFlame.java]] - Blob de chama líquida que pode ser removido por congelamento
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/potions/PotionOfFrost.java|PotionOfFrost.java]] - Cria o efeito de congelamento quando estilhaçada
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Icecap.java|Icecap.java]] - Planta que pode criar efeito de congelamento
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/icecaves/ColdSpirit.java|ColdSpirit.java]] - Mob que pode aplicar congelamento
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/elementals/WaterElemental.java|WaterElemental.java]] - Mob que pode aplicar congelamento
+  * Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|commonClasses.lua]] - Congelamento vinculado como PseudoBlob para scripts Lua
+  * Lua: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/actors/Freeze.lua|Freeze.lua]] - Script de ator que coloca pseudo-blob Freezing
+
+==== Recursos de String ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L844-L846|FrostBuff_Name, FrostBuff_Info, Frost_Shatter]] - Strings de exibição e efeito do buff de congelamento
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L1672-L1673|PotionOfFrost_Name, PotionOfFrost_Info]] - Strings de descrição da Poção de Congelamento
+
+==== Páginas Relacionadas ====
+  * [[mr:freezing_buff|Detalhes Técnicos]] - Referência machine-readable para esta entidade
+  * [[pt:rpd:potion_of_frost_item|Poção de Congelamento]] - O item que cria congelamento
+  * [[pt:rpd:ice_trap_level_object|Armadilha de Gelo]] - Outra fonte de efeito de congelamento
+  * [[pt:rpd:burning_buff|Queimadura]] - Efeito oposto com fogo em vez de gelo
+  * [[pt:rpd:frost_buff|Congelado]] - O buff aplicado pelo congelamento
+  * [[pt:rpd:liquid_flame_blob|Blob de Chama Líquida]] - Outro efeito de blob que o congelamento pode remover
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire Blob (Código)]] - Efeito de blob que o congelamento pode remover
+
+{{tag> rpd buffs status_effects freezing }}

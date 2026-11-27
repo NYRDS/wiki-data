@@ -1,0 +1,71 @@
+====== Varinha da Lentidão ======
+
+{{ rpd:images:wand_of_slowness_item.png|Varinha da Lentidão }}
+
+A Varinha da Lentidão é uma varinha mágica em Remixed Dungeon que reduz a velocidade dos inimigos. Quando usada em um alvo, ela aplica o efeito de status [[pt:rpd:slow_buff|Lentidão]], fazendo com que a criatura afetada se mova e ataque com metade de sua velocidade normal.
+
+==== Efeito ====
+Quando usada em um alvo, a Varinha da Lentidão aplica o efeito de status [[pt:rpd:slow_buff|Lentidão]]:
+  * **Redução de Velocidade:** Criaturas afetadas se movem e atacam com metade de sua velocidade normal
+  * **Duração:** O efeito dura (10 / 3 + effectiveLevel()) turnos, onde 10 é a duração base do buff Lentidão
+  * **Área de Efeito:** Apenas alvo único
+  * **Alcance:** Alcance padrão de varinha
+  * **Efeito Visual:** Causa uma animação de lentidão distinta
+
+==== Propriedades ====
+  * **Tipo:** Varinha
+  * **Efeito Especial:** Aplica efeito de status Lentidão ao alvo
+  * **Alvo:** Mira direta em alvo único
+  * **Cargas:** Recarrega com o tempo como outras varinhas
+  * **Imagem:** Índice em ''items.png'' (determinado pela classe base SimpleWand)
+
+==== Mecânicas ====
+  * Quando usada em um alvo, aplica efeito de lentidão por (Slow.duration(char) / 3 + effectiveLevel()) turnos
+  * A duração base do buff Lentidão é 10f, que é modificada por efeitos de Resistência
+  * Conforme o nível da varinha aumenta, a duração do efeito de lentidão aumenta (1 turno por nível)
+  * O efeito de lentidão reduz a velocidade de ação em aproximadamente 7.27254 nível de pressa (valor negativo)
+  * A fórmula de duração do efeito: 10 / 3 + nível efetivo da varinha (após modificações de Resistência)
+  * Se a varinha for usada em uma célula vazia, mostra a mensagem "nada aconteceu"
+
+==== Estratégia ====
+  * Use para desacelerar inimigos poderosos e ganhar vantagem no combate
+  * Particularmente eficaz contra inimigos de movimento rápido que seriam difíceis de acertar
+  * Bom para desacelerar grupos de inimigos um por um
+  * Pode ser usado defensivamente para desacelerar inimigos que se aproximam
+  * Funciona bem em combinação com outros efeitos de status
+  * Muito eficaz contra monstros sensíveis ao tempo como Tengu
+  * Útil durante lutas contra chefes para criar espaço para respirar
+  * Sinergiza bem com outros efeitos de controle como paralisia ou vertigem
+
+==== Verificação de Conteúdo ====
+  * **Fonte de informação**: Classe Java [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfSlowness.java|WandOfSlowness.java]]
+  * **Verificação de stats**: Extraída diretamente da implementação do método onZap no código
+  * **Descrições de efeitos**: Baseadas na aplicação real do buff Slow no código fonte
+  * **Recursos de string**: Verificados contra values/strings_all.xml
+  * **Última atualização**: Dezembro 2025
+  * **Arquivo fonte**: WandOfSlowness.java
+
+==== Referências de Código ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfSlowness.java|WandOfSlowness.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/SimpleWand.java|SimpleWand.java]] (classe base)
+
+==== Recursos de String ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L2436|WandOfSlowness_Name]]: Varinha da Lentidão
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L2434|WandOfSlowness_Info]]: Esta varinha fará com que uma criatura se mova ou ataque com a metade de sua velocidade normal até o fim de seu efeito
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L2435|WandOfSlowness_Info1]]: nada aconteceu
+
+==== Arquivos de Configuração ====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] (registro: registerItemClass(WandOfSlowness.class))
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json]] (taxas de drop)
+
+==== Ver Também ====
+  * [[pt:rpd:slow_buff|Buff de Lentidão]] - O efeito de status aplicado por esta varinha
+  * [[pt:rpd:wands|Varinhas]] - Outras varinhas no jogo
+  * [[pt:rpd:wand_of_firebolt_item|Varinha de Fogo]] - Outra varinha de dano direto
+  * [[pt:rpd:wand_of_lightning_item|Varinha do Relâmpago]] - Outra varinha de dano direto
+  * [[pt:rpd:slow_enchantment|Encantamento de Lentidão]] - Efeito de lentidão semelhante em armas
+  * [[pt:rpd:paralysis_buff|Paralisia]] - Outro efeito de status que impede movimento
+  * [[pt:rpd:wandmaker_npc|Wandmaker NPC]] - Pode identificar varinhas
+
+{{tag> rpd items wands utility }}

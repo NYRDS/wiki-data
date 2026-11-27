@@ -1,0 +1,50 @@
+====== Pedestal Level Object - Code References ======
+
+==== JSON Configuration ====
+<code json>
+{
+  "kind": "CustomObject",
+  "script": "pedestal",
+  "layer": 0,
+  "appearance": {
+    "desc": {
+      "desc": "Level_TileDescPedestal",
+      "name": "Level_TilePedestal",
+      "nonPassable": false
+    },
+    "sprite": {
+      "textureFile": "levelObjects/objects.png",
+      "imageIndex": 0
+    }
+  }
+}
+</code>
+
+===== Lua Scripts =====
+  * **Object script:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/objects/pedestal.lua|scripts/objects/pedestal.lua]]
+  * **Object library:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/object.lua|scripts/lib/object.lua]]
+
+===== Java Classes =====
+  * **LevelObjectsFactory:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/LevelObjectsFactory.java|LevelObjectsFactory.java]] (creates pedestals)
+  * **CustomObject:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/CustomObject.java|CustomObject.java]] (base class for scripted objects)
+  * **Lich (uses pedestals):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/necropolis/Lich.java|Lich.java]] (spawns Runic Skulls on pedestals)
+  * **StandardPainter (spawns Crystal on pedestals):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/StandardPainter.java|StandardPainter.java]]
+
+===== String Resources =====
+  * **Level_TilePedestal:** Pedestal
+  * **Level_TileDescPedestal:** A stone pedestal. Looks like something can be placed on it.
+
+===== Properties =====
+  * **Object kind:** CustomObject
+  * **Script:** pedestal
+  * **Layer:** 0 (ground layer)
+  * **Passable:** true (nonPassable: false)
+  * **Sprite:** levelObjects/objects.png index 0
+  * **Tile kind:** PEDESTAL (Terrain.PEDESTAL)
+  * **Special:** Used by Lich boss for Runic Skull summoning; 25% chance to spawn Crystal mob in Necropolis rooms
+
+===== Related mr Entities =====
+  * [[mr:lich_mob|Lich (Mob)]]
+  * [[mr:runic_skull_mob|Runic Skull (Mob)]]
+  * [[mr:crystal_mob|Crystal (Mob)]]
+  * [[mr:necropolis_level|Necropolis (Level)]]

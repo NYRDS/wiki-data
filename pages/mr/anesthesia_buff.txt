@@ -1,0 +1,33 @@
+====== Anesthesia Buff - Code References ======
+
+===== Java Classes =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] (ANESTHESIA constant)
+  * This entity is implemented in Lua, no Java class exists
+
+===== JSON Configuration =====
+This entity is implemented in Lua, no JSON configuration exists
+
+===== String Resources =====
+<code xml>
+<string name="AnesthesiaBuff_Name">Anesthesia</string>
+<string name="AnesthesiaBuff_Info">Feels no pain and won't wake up from attacks, but still takes damage.</string>
+<string name="Anesthesia_Name">Anesthesia</string>
+<string name="Anesthesia_Info">Induces a deep, unnatural sleep in your target. Even the most violent attacks won't wake them from this slumber.</string>
+<string name="Anesthesia_Cast">%s falls into a deep, dreamless sleep.</string>
+</code>
+
+===== Lua Scripts =====
+  * **Buff implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Anesthesia.lua|scripts/buffs/Anesthesia.lua]]
+  * **Spell that applies it:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Anesthesia.lua|scripts/spells/Anesthesia.lua]]
+  * **Common classes binding:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|scripts/lib/commonClasses.lua]]
+
+===== Properties =====
+  * **Entity kind:** "Anesthesia" (BuffFactory.ANESTHESIA)
+  * **Icon:** 26 (in buff descriptor)
+  * **Function:** Prevents waking from damage while sleeping; does not reduce damage taken
+  * **Duration:** 10 × skill level turns (from Anesthesia spell)
+  * **Interaction:** Works in conjunction with Sleep buff - Sleep puts target to sleep, Anesthesia prevents wake-up from damage
+
+===== Related mr Entities =====
+  * [[mr:sleep_buff|Sleep (Buff)]]
+  * [[mr:anesthesia_spell|Anesthesia (Spell)]]

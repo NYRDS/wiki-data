@@ -8,7 +8,7 @@ A **Lentidão** é um efeito de status negativo no Remixed Dungeon que reduz a v
   * **Tipo:** [[pt:rpd:debuffs|Debuff]]
   * **Duração:** Variável, baseada na fonte e no nível do alvo
   * **Efeito:** Reduz significativamente a velocidade de ação
-  * **Remoção:** Expiração natural ou [[pt:rpd:potion_of_purity_item|Poção de Pureza]]
+  * **Remoção:** Apenas expiração natural (nenhum item remove diretamente a Lentidão)
 
 ==== Mecânicas ====
   * **Redução de Velocidade:** Personagens afetados agem a velocidade reduzida
@@ -32,15 +32,16 @@ A **Lentidão** é um efeito de status negativo no Remixed Dungeon que reduz a v
   * **Se Afetado:** Tente mover-se para locais mais seguros ou usar efeitos instantâneos
 
 ==== Contramedidas ====
-  * [[pt:rpd:potion_of_purity_item|Poção de Pureza]] remove o efeito instantaneamente
   * Aguarde a expiração natural
-  * [[pt:rpd:resistances|Resistências]] podem reduzir a duração
+  * [[pt:rpd:resistances|Resistências]] (via Anel dos Elementos) podem reduzir a duração
+  * Nenhuma poção ou item remove diretamente a Lentidão
 
 ==== Referências de Código ====
-  * **Implementação Java:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]]
+  * **Implementação Lua:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Slow.lua|Slow.lua]]
   * **Classe Base de Buff:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Buff.java|Buff.java]]
-  * **Cálculo de Duração:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java#L18-L20|Método Slow.duration()]]
+  * **Buff Factory:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]] (registro: BuffFactory.SLOW)
   * **Recursos de String:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|Recursos de string para nome/descrição da Lentidão]]
+  * **Aplicação pela Varinha:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/wands/WandOfSlowness.java|WandOfSlowness.java]] (aplica buff de Lentidão)
 
 ==== Efeitos Relacionados ====
   * [[pt:rpd:chill_buff|Frio]] - Redução de velocidade similar mas mais fraca

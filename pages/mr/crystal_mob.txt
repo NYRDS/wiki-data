@@ -6,78 +6,47 @@ This page contains raw code references and configuration excerpts for the Crysta
   * **getEntityKind() value:** Crystal
 
 ==== Java Implementation ====
-  * **Class location:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/Crystal.java|Crystal.java]]
-  * **Parent Class:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MultiKindMob.java|MultiKindMob]]
-  * **Interfaces:** IDepthAdjustable, IZapper
+  * **Class location:** This entity is implemented in Lua/JSON, no Java class exists (was `com/nyrds/pixeldungeon/mobs/common/Crystal.java`, deleted batch 17d-5)
+  * **Spawning:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/painters/StandardPainter.java|StandardPainter.java]] (spawns via MobFactory.mobByName)
+  * **Mob Factory:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mobs/common/MobFactory.java|MobFactory.java]] (CRYSTAL constant)
+  * **Parent Class (Lua):** MultiKindMob behavior via kind field
 
-==== Code Fragments ====
-**Constructor:**
-<code java>
-public Crystal() {
-	adjustStats(Dungeon.depth);
-	ensureWand(false);
-}
+==== JSON Configuration ====
+  * **Config file:** `mobsDesc/Crystal.json` (batch 17d-5)
+  * **Kind 0/1:** Plain pedestal rooms, random simple wand, auto-hit (attackSkill 1000)
+  * **Kind 2:** Shadow Lord pedestal variant (25% Shadowbolt wand)
 
-static public Crystal makeShadowLordCrystal() {
-	Crystal crystal = new Crystal();
-	crystal.kind = 2;
-	crystal.ensureWand(true);
-	return crystal;
-}
-</code>
-
-**Stats adjustment:**
-<code java>
-public void adjustStats(int depth) {
-	kind = (ctr++) % 2;
-
-	hp(ht(depth * 4 + 1));
-
-	baseDefenseSkill = depth * 2 + 1;
-	baseAttackSkill = 35;
-	expForKill = depth + 1;
-	maxLvl = depth + 2;
-	dr = expForKill /3;
-
-	addImmunity(ScrollOfPsionicBlast.class);
-	addImmunity(ToxicGas.class);
-	addImmunity(Paralysis.class);
-	addImmunity(Stun.class);
-	addImmunity(ConfusionGas.class);
-}
-</code>
-
-**Wand handling:**
-<code java>
-private Wand ensureWand(boolean regen) {
-	Wand wand = getBelongings().getItem(Wand.class);
-	if (wand != null && !regen) {
-		return wand;
-	}
-
-	var item = SimpleWand.createRandomSimpleWand().upgrade(Dungeon.depth/3);
-	if(kind == 2 && Random.Float(1) < 0.25f) {
-		item = new WandOfShadowbolt().upgrade(Dungeon.depth/2);
-	}
-
-	item.collect(this); //no treasury check, we want to keep the wand in the crystal
-
-	return ensureWand(false);
-}
-</code>
+==== Lua Scripts ====
+  * **Main implementation:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/Crystal.lua|scripts/mobs/Crystal.lua]]
+  * **Shadow Lord spawning:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/mobs/ShadowLord.lua|scripts/mobs/ShadowLord.lua]]
+  * **Common classes binding:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/lib/commonClasses.lua|scripts/lib/commonClasses.lua]]
 
 ==== Properties ====
-  * **movable:** false (immovable)
+  * **movable:** false (immobile)
   * **carcassChance:** 0 (no corpse)
   * **immunities:** ScrollOfPsionicBlast, ToxicGas, Paralysis, Stun, ConfusionGas
-  * **attackSkill:** 1000 for types 0 & 1; default for type 2
+  * **attackSkill:** 1000 for kinds 0 & 1; default for kind 2
   * **damageRoll:** Random.NormalIntRange(hp() / 2, ht() / 2)
   * **canBePet:** false
+  * **interfaces:** IDepthAdjustable, IZapper
 
 ==== String Resources ====
   * **Crystal_Name:** floating crystal
   * **Crystal_Desc:** Big shining crystal floating in the air. Probably it is filled with powerful magic.
+  * **Crystal_Gender:** neuter
+  * **Crystal_Name_Objective:** floating crystal
 
-===== Code Reference Completion Note =====
-This mr page is truncated; full Java source is in `Crystal.java` (see Java Implementation section above).
-</content>
+==== Wand Handling ====
+Crystal mobs carry a wand that they fire at targets in line of sight:
+  * **Kind 0/1:** Random simple wand, upgraded to depth/3
+  * **Kind 2 (Shadow Lord):** 25% chance of Wand of Shadowbolt upgraded to depth/2, otherwise random simple wand
+  * **Zapping:** Free of charge, fires at anything in LOS
+
+==== Death Effects ====
+  * Dying on a pedestal clears Darkness around it and grows Foliage
+  * Being stolen from marks the thief
+
+==== Related mr Entities ====
+  * [[mr:shadow_lord_mob|Shadow Lord (Mob)]]
+  * [[mr:pedestal_level_object|Pedestal (Level Object)]]
+  * [[mr:wand_of_shadowbolt_item|Wand of Shadowbolt (Item)]]
