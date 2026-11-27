@@ -1,0 +1,44 @@
+====== Glyph of Potential ======
+
+The Glyph of Potential is an [[en:rpd:armor_glyphs|armor glyph]] that can appear on certain types of armor in Remixed Dungeon. This glyph discharges electricity through both the attacker and defender when hit.
+
+==== Description ====
+When an enemy hits the wearer of armor with this glyph, there is a chance that electricity will arc between the attacker and defender, damaging both parties.
+
+==== Mechanics ====
+Grounded in [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/glyphs/Potential.lua|Potential.lua]]:
+  * **Activation:** Triggers on adjacent hits, chance (armor level + 7) >= 6
+  * **Damage to Attacker:** Random 1 to original damage amount, as electricity damage
+  * **Damage to Defender:** Random 1 to attacker's damage amount, as electricity damage
+  * **Visual:** Lightning bolt effect between attacker and defender, camera shake for hero
+  * **Scaling:** Higher armor levels increase activation chance
+
+==== Armor Compatibility ====
+  * Can appear on any armor as a random glyph inscription
+
+==== Strategy ====
+  * Punishes enemies for attacking, especially high-damage enemies
+  * Self-damage can be risky - consider health pool before relying on it
+  * Effective against enemies with low electricity resistance
+  * Camera shake provides visual feedback on activation
+
+==== Identification ====
+  * Armor with this glyph appears as normal until activated
+  * Can be identified through various means like [[en:rpd:scroll_of_identify_item|Scroll of Identify]]
+
+==== Acquisition ====
+  * [[en:rpd:armor_item|Armor]] randomly generated with this glyph
+  * [[en:rpd:scroll_of_enchantment_item|Scroll of Enchantment]]
+  * [[en:rpd:artificer_npc|Artificer NPC]] services
+
+==== Code Reference ====
+  * Lua Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/glyphs/Potential.lua|Potential.lua]] - The glyph implementation
+  * Java Reference (legacy): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Potential.java|Potential.java]] - Original Java implementation
+
+==== Related ====
+  * [[en:rpd:armor_glyphs|Armor Glyphs]] - Other armor glyphs
+  * [[en:rpd:armor_item|Armor]] - General armor information
+  * [[en:rpd:electricity_mechanic|Electricity]] - Electricity damage type
+  * [[en:rpd:scroll_of_enchantment_item|Scroll of Enchantment]] - How to enchant armor
+
+{{tag> rpd items armor glyphs enchantment electricity}}

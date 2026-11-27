@@ -1,0 +1,42 @@
+====== Glyph of Displacement ======
+
+The Glyph of Displacement is an [[en:rpd:armor_glyphs|armor glyph]] that can appear on certain types of armor in Remixed Dungeon. This glyph provides teleportation-based defensive abilities to the wearer.
+
+==== Description ====
+When an enemy hits the wearer of armor with this glyph, there is a chance that the wearer will be teleported to a random visible, passable location on the current level, escaping immediate danger.
+
+==== Mechanics ====
+Grounded in [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/glyphs/Displacement.lua|Displacement.lua]]:
+  * **Activation:** Triggers when the wearer is hit by an enemy
+  * **Probability:** Number of teleport attempts = (armor level + 1) * 5 (minimum 1 if armor is cursed)
+  * **Effect:** Teleports the wearer to a random visible, passable cell with no other character
+  * **Limitations:** Does not activate on boss levels
+
+==== Armor Compatibility ====
+  * Can appear on any armor as a random glyph inscription
+
+==== Strategy ====
+  * Can be a lifesaver when cornered or surrounded
+  * Random teleportation may move the hero to a worse position
+  * Does not work on boss levels - plan accordingly
+  * Combines well with high evasion builds
+
+==== Identification ====
+  * Armor with this glyph appears as normal until activated
+  * Can be identified through various means like [[en:rpd:scroll_of_identify_item|Scroll of Identify]]
+
+==== Acquisition ====
+  * [[en:rpd:armor_item|Armor]] randomly generated with this glyph
+  * [[en:rpd:scroll_of_enchantment_item|Scroll of Enchantment]]
+  * [[en:rpd:artificer_npc|Artificer NPC]] services
+
+==== Code Reference ====
+  * Lua Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/glyphs/Displacement.lua|Displacement.lua]] - The glyph implementation
+  * Java Reference (legacy): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Displacement.java|Displacement.java]] - Original Java implementation
+
+==== Related ====
+  * [[en:rpd:armor_glyphs|Armor Glyphs]] - Other armor glyphs
+  * [[en:rpd:armor_item|Armor]] - General armor information
+  * [[en:rpd:scroll_of_enchantment_item|Scroll of Enchantment]] - How to enchant armor
+
+{{tag> rpd items armor glyphs enchantment teleportation}}

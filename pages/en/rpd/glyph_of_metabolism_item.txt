@@ -1,0 +1,44 @@
+====== Glyph of Metabolism ======
+
+The Glyph of Metabolism is an [[en:rpd:armor_glyphs|armor glyph]] that can appear on certain types of armor in Remixed Dungeon. This glyph converts hunger into healing when the wearer is hit.
+
+==== Description ====
+When an enemy hits the wearer of armor with this glyph, there is a chance that the wearer will heal by consuming their hunger (satiety). This trades long-term sustenance for immediate survival.
+
+==== Mechanics ====
+Grounded in [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/glyphs/Metabolism.lua|Metabolism.lua]]:
+  * **Activation:** Chance based on armor level, (floor(armor level / 2) + 5) >= 4
+  * **Healing:** Heals up to 1/5 of max HP, but not exceeding missing HP
+  * **Cost:** Reduces hunger by 40 (equivalent to 10% of starving threshold)
+  * **Limitation:** Does not activate if the wearer is already starving
+  * **Visual:** Shows green healing numbers on activation
+
+==== Armor Compatibility ====
+  * Can appear on any armor as a random glyph inscription
+
+==== Strategy ====
+  * Excellent for emergency healing when potions are unavailable
+  * Requires careful food management - don't rely on it exclusively
+  * Most effective at high armor levels where activation chance is higher
+  * Risky when food is scarce or in long dungeon runs
+
+==== Identification ====
+  * Armor with this glyph appears as normal until activated
+  * Can be identified through various means like [[en:rpd:scroll_of_identify_item|Scroll of Identify]]
+
+==== Acquisition ====
+  * [[en:rpd:armor_item|Armor]] randomly generated with this glyph
+  * [[en:rpd:scroll_of_enchantment_item|Scroll of Enchantment]]
+  * [[en:rpd:artificer_npc|Artificer NPC]] services
+
+==== Code Reference ====
+  * Lua Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/glyphs/Metabolism.lua|Metabolism.lua]] - The glyph implementation
+  * Java Reference (legacy): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Metabolism.java|Metabolism.java]] - Original Java implementation
+
+==== Related ====
+  * [[en:rpd:armor_glyphs|Armor Glyphs]] - Other armor glyphs
+  * [[en:rpd:armor_item|Armor]] - General armor information
+  * [[en:rpd:hunger_mechanic|Hunger]] - Hunger and satiety mechanics
+  * [[en:rpd:scroll_of_enchantment_item|Scroll of Enchantment]] - How to enchant armor
+
+{{tag> rpd items armor glyphs enchantment healing hunger}}

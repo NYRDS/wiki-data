@@ -1,0 +1,47 @@
+====== Glyph of Viscosity ======
+
+The Glyph of Viscosity is an [[en:rpd:armor_glyphs|armor glyph]] that can appear on certain types of armor in Remixed Dungeon. This glyph defers incoming damage into a slow drain over time instead of taking it all at once.
+
+==== Description ====
+When an enemy hits the wearer of armor with this glyph, there is a chance that the damage will be deferred, converting the immediate damage into a damage-over-time effect that ticks for 1 damage per turn.
+
+==== Mechanics ====
+Grounded in [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/glyphs/Viscosity.lua|Viscosity.lua]]:
+  * **Activation:** Triggers on non-zero damage, chance (armor level + 7) >= 6
+  * **Effect:** Negates the incoming damage entirely and applies DeferredDamage buff
+  * **Deferred Damage:** The buff accumulates the prevented damage and deals 1 damage per turn
+  * **Stacking:** Multiple activations add to the existing DeferredDamage buff level
+  * **First Tick Delay:** The first damage tick is delayed by one game tick
+  * **Visual:** Shows "deferred X" warning message with the amount
+
+==== Armor Compatibility ====
+  * Can appear on any armor as a random glyph inscription
+
+==== Strategy ====
+  * Converts burst damage into manageable sustained damage
+  * Allows survival against otherwise lethal single hits
+  * Requires healing over time to outpace the damage drain
+  * Dangerous if multiple large hits are deferred simultaneously
+  * Works well with regeneration effects
+
+==== Identification ====
+  * Armor with this glyph appears as normal until activated
+  * Can be identified through various means like [[en:rpd:scroll_of_identify_item|Scroll of Identify]]
+
+==== Acquisition ====
+  * [[en:rpd:armor_item|Armor]] randomly generated with this glyph
+  * [[en:rpd:scroll_of_enchantment_item|Scroll of Enchantment]]
+  * [[en:rpd:artificer_npc|Artificer NPC]] services
+
+==== Code Reference ====
+  * Lua Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/glyphs/Viscosity.lua|Viscosity.lua]] - The glyph implementation
+  * Lua Reference: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/buffs/DeferedDamage.lua|DeferedDamage.lua]] - The deferred damage buff
+  * Java Reference (legacy): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Viscosity.java|Viscosity.java]] - Original Java implementation
+
+==== Related ====
+  * [[en:rpd:armor_glyphs|Armor Glyphs]] - Other armor glyphs
+  * [[en:rpd:armor_item|Armor]] - General armor information
+  * [[en:rpd:deferred_damage_buff|Deferred Damage]] - The status effect
+  * [[en:rpd:scroll_of_enchantment_item|Scroll of Enchantment]] - How to enchant armor
+
+{{tag> rpd items armor glyphs enchantment damage_over_time}}

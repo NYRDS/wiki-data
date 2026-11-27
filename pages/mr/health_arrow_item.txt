@@ -1,11 +1,10 @@
 ====== Health Arrow Item - Code References ======
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/HealthArrow.java|HealthArrow.java]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] - Base arrow class (bow coupling, firedFrom stat scaling stays Java-side)
 
 ===== JSON Configuration =====
-This entity is implemented in Java, no JSON configuration exists
+This entity is implemented in Lua, no JSON configuration exists
 
 ===== String Resources =====
 <code xml>
@@ -15,7 +14,17 @@ This entity is implemented in Java, no JSON configuration exists
 </code>
 
 ===== Lua Scripts =====
-This entity is implemented in Java, no Lua script exists
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/items/HealthArrow.lua|HealthArrow.lua]] - Lua implementation (migrated from Java)
+  * Uses: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/lib/weapon.lua|weapon.lua]] - Weapon library for base stats
+  * Uses: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/lib/potion.lua|potion.lua]] - Potion library for healing effect
+
+===== Stats from Lua =====
+  * **Base Damage:** 1-1
+  * **Base Delay:** 1.0
+  * **Image Index:** 13
+  * **Price per Unit:** 10 gold
+  * **Random Generation Range:** 15-30 units
+  * **Special Effect:** On hit, 15% chance to heal defender for 15% of their max HP (via potion.heal)
 
 ===== Related mr Entities =====
   * [[mr:arrow_item|Arrow (Item)]]

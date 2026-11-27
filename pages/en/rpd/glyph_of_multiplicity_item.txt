@@ -1,0 +1,43 @@
+====== Glyph of Multiplicity ======
+
+The Glyph of Multiplicity is an [[en:rpd:armor_glyphs|armor glyph]] that can appear on certain types of armor in Remixed Dungeon. This glyph creates a mirror image of the wearer when hit, at the cost of taking damage.
+
+==== Description ====
+When an enemy hits the wearer of armor with this glyph, there is a chance that a clone of the wearer will be created adjacent to them. The clone fights alongside the hero but the creation process damages the hero.
+
+==== Mechanics ====
+Grounded in [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/glyphs/Multiplicity.lua|Multiplicity.lua]]:
+  * **Activation:** Chance based on armor level, (floor(armor level / 2) + 6) >= 5
+  * **Effect:** Creates a clone of the wearer in an adjacent empty cell
+  * **Cost:** The wearer takes 1 to floor(max HP / 6) damage from the cloning process
+  * **For Heroes:** Creates a mirror image using the hero's clone ability
+  * **For Other Entities:** Uses the standard split mechanic
+
+==== Armor Compatibility ====
+  * Can appear on any armor as a random glyph inscription
+
+==== Strategy ====
+  * The clone can distract enemies and deal additional damage
+  * Self-damage can be dangerous at low HP - avoid when critically wounded
+  * Most effective in open areas where there's space for the clone to spawn
+  * Clones inherit the wearer's equipment and stats
+
+==== Identification ====
+  * Armor with this glyph appears as normal until activated
+  * Can be identified through various means like [[en:rpd:scroll_of_identify_item|Scroll of Identify]]
+
+==== Acquisition ====
+  * [[en:rpd:armor_item|Armor]] randomly generated with this glyph
+  * [[en:rpd:scroll_of_enchantment_item|Scroll of Enchantment]]
+  * [[en:rpd:artificer_npc|Artificer NPC]] services
+
+==== Code Reference ====
+  * Lua Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/glyphs/Multiplicity.lua|Multiplicity.lua]] - The glyph implementation
+  * Java Reference (legacy): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Multiplicity.java|Multiplicity.java]] - Original Java implementation
+
+==== Related ====
+  * [[en:rpd:armor_glyphs|Armor Glyphs]] - Other armor glyphs
+  * [[en:rpd:armor_item|Armor]] - General armor information
+  * [[en:rpd:scroll_of_enchantment_item|Scroll of Enchantment]] - How to enchant armor
+
+{{tag> rpd items armor glyphs enchantment clones}}

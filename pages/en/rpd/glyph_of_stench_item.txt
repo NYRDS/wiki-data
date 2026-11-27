@@ -1,0 +1,43 @@
+====== Glyph of Stench ======
+
+The Glyph of Stench is an [[en:rpd:armor_glyphs|armor glyph]] that can appear on certain types of armor in Remixed Dungeon. This glyph releases toxic gas around the attacker when the wearer is hit.
+
+==== Description ====
+When an enemy hits the wearer of armor with this glyph, there is a chance that a cloud of toxic gas will be released at the attacker's position, poisoning them and potentially other nearby enemies.
+
+==== Mechanics ====
+Grounded in [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/glyphs/Stench.lua|Stench.lua]]:
+  * **Activation:** Triggers on adjacent hits, chance (armor level + 5) >= 4
+  * **Effect:** Places a ToxicGas blob at the attacker's position with volume 20
+  * **Area of Effect:** The gas spreads and affects all creatures in the area
+  * **Scaling:** Higher armor levels increase activation chance
+
+==== Armor Compatibility ====
+  * Can appear on any armor as a random glyph inscription
+
+==== Strategy ====
+  * Excellent for crowd control - gas affects multiple enemies
+  * Can poison the wearer if they stay in the gas cloud
+  * Effective against groups of melee enemies
+  * Combine with gas immunity for safe usage
+
+==== Identification ====
+  * Armor with this glyph appears as normal until activated
+  * Can be identified through various means like [[en:rpd:scroll_of_identify_item|Scroll of Identify]]
+
+==== Acquisition ====
+  * [[en:rpd:armor_item|Armor]] randomly generated with this glyph
+  * [[en:rpd:scroll_of_enchantment_item|Scroll of Enchantment]]
+  * [[en:rpd:artificer_npc|Artificer NPC]] services
+
+==== Code Reference ====
+  * Lua Implementation: [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/glyphs/Stench.lua|Stench.lua]] - The glyph implementation
+  * Java Reference (legacy): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Stench.java|Stench.java]] - Original Java implementation
+
+==== Related ====
+  * [[en:rpd:armor_glyphs|Armor Glyphs]] - Other armor glyphs
+  * [[en:rpd:armor_item|Armor]] - General armor information
+  * [[en:rpd:toxic_gas_buff|Toxic Gas]] - The status effect
+  * [[en:rpd:scroll_of_enchantment_item|Scroll of Enchantment]] - How to enchant armor
+
+{{tag> rpd items armor glyphs enchantment poison gas}}
