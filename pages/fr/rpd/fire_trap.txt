@@ -1,0 +1,62 @@
+====== Piège de Feu ======
+
+{{ rpd:images:fire_trap_level_object.png|Piège de Feu }}
+
+Le **Piège de Feu** est un piège dans Remixed Dungeon qui s'enflamme quand il est déclenché, endommageant les personnages et mettant le feu à la zone environnante.
+
+==== Description ====
+Les pièges de feu sont des dangers cachés placés à travers les niveaux du donjon. Quand un personnage marche sur un piège de feu, il se déclenche et crée une explosion de flammes qui endommage le personnage déclencheur et peut potentiellement mettre le feu au terrain environnant.
+
+==== Mécaniques ====
+  * **Déclencheur :** S'active quand n'importe quel personnage (héros ou mob) marche sur le piège
+  * **Dégâts :** Inflige des dégâts de feu directs au personnage déclencheur
+  * **Effet de zone :** Peut enflammer les tuiles adjacentes, créant des dangers de feu persistants
+  * **Visibilité :** Caché jusqu'à ce qu'on marche dessus, sauf s'il est détecté par certaines capacités
+  * **Immunité au feu :** Les personnages immunisés aux dégâts de feu ne subissent aucun dégât des pièges de feu
+
+==== Statistiques ====
+  * **Dégâts :** Crée un blob de feu avec 2 unités de dégâts (selon la méthode FireTrap.trigger())
+  * **Rayon :** Affecte la tuile déclenchée et les tuiles adjacentes
+  * **Durée du feu :** Sur les tuiles adjacentes, le feu peut persister pendant plusieurs tours
+
+==== Stratégie ====
+  * **Détection :** Utilisez des capacités ou objets de détection pour localiser les pièges cachés
+  * **Évitement :** Soyez prudent dans les zones suspectes ou utilisez un mouvement sûr vis-à-vis des pièges
+  * **Immunité :** Les personnages résistants ou immunisés au feu peuvent déclencher les pièges de feu sans danger
+  * **Utilisation tactique :** Peut être utilisé pour endommager les ennemis ou créer des barrières de feu
+  * **Équipement :** Certains objets et capacités fournissent la détection de pièges ou l'immunité
+
+==== Emplacements ====
+  * Trouvés dans divers niveaux du donjon
+  * Plus courants dans les niveaux ultérieurs du donjon
+  * Souvent placés dans des emplacements stratégiques pour entraver le mouvement
+  * Font partie des modèles standards de génération de niveau
+
+==== Contremesures ====
+  * La résistance ou l'immunité au feu annule les dégâts
+  * Les capacités de détection de pièges peuvent révéler les pièges de feu cachés
+  * Les anneaux de marche sur pierre peuvent aider à éviter de déclencher les pièges
+  * Mouvement prudent dans les zones inconnues
+
+Selon les ressources de chaînes du jeu : « Un piège de feu s'enflamme quand il est déclenché, endommageant tout ce qui est pris dans les flammes. »
+
+==== Références de Code ====
+  * **Implémentation Java :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/traps/FireTrap.java|FireTrap.java]]
+  * **Classe de base Trap :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java|Trap.java]]
+  * **Système de pièges :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/Level.java|Level.java]] (logique de placement des pièges)
+  * **Configuration :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelObjects/FireTrap.json|FireTrap.json]] (configuration du piège)
+  * **Ressources de chaînes russes :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2925-L2927|FireTrap_Name, FireTrap_Desc, FireTrap_DescNoText]]
+  * **Implémentation de l'effet de feu :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]] (mécaniques de dégâts de feu)
+  * **Méthode de déclenchement FireTrap :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/FireTrap.java#L18-L22|FireTrap.trigger()]] (implémentation spécifique qui crée un blob de feu avec 2 dégâts)
+  * **Effets de particules de flamme :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/particles/FlameParticle.java|FlameParticle.java]] (effets visuels)
+  * **Intégration GameScene :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/scenes/GameScene.java#L120-L125|GameScene.add()]] (ajoute le blob de feu à la scène)
+  * **Interface de déclenchement de piège :** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/ITrigger.java|ITrigger.java]] (interface que FireTrap implémente)
+
+==== Contenu Connexe ====
+  * [[fr:rpd:traps|Pièges]] - Informations générales sur les pièges
+  * [[fr:rpd:fire_mechanic|Effets de feu]] - Informations sur les mécaniques de dégâts de feu
+  * [[fr:rpd:potion_of_liquid_flame_item|Potion de Flamme Liquide]] - Mécaniques similaires basées sur le feu
+  * [[fr:rpd:wand_of_firebolt_item|Baguette de Trait de Feu]] - Baguette d'attaque basée sur le feu
+  * [[fr:rpd:level_objects|Objets de Niveau]] - Autres objets sur les niveaux du donjon
+
+{{tag> fr:rpd pièges feu mécaniques }}

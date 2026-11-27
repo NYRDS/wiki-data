@@ -3,13 +3,15 @@
 **Common Arrow** is a missile weapon item in Remixed Dungeon.
 
 ==== Description ====
-Common Arrow is a basic missile weapon that can be used with bows. It is made of wood with an iron head and serves as a standard ammunition for ranged combat.
+Common Arrow is a basic missile weapon that can be used with bows. It is made of wood with an iron head and serves as standard ammunition for ranged combat.
 
 ==== Stats ====
-  * **Damage Min**: 2 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CommonArrow.java#L16|CommonArrow.java:L16]])
-  * **Damage Max**: 5 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CommonArrow.java#L17|CommonArrow.java:L17]])
-  * **Delay**: 0.75 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CommonArrow.java#L18|CommonArrow.java:L18]])
-  * **Price**: 3 per arrow (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CommonArrow.java#L22|CommonArrow.java:L22]])
+  * **Damage Min**: 2 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/CommonArrow.lua#L12|CommonArrow.lua:L12]])
+  * **Damage Max**: 5 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/CommonArrow.lua#L13|CommonArrow.lua:L13]])
+  * **Delay**: 0.75 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/CommonArrow.lua#L14|CommonArrow.lua:L14]])
+  * **Price**: 3 per arrow (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/CommonArrow.lua#L16|CommonArrow.lua:L16]])
+  * **Random Quantity**: 15-30 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/CommonArrow.lua#L17-L18|CommonArrow.lua:L17-L18]])
+  * **Image Index**: 7 (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/CommonArrow.lua#L15|CommonArrow.lua:L15]])
 
 ==== Usage ====
   * Can be equipped as ammunition for bow weapons
@@ -23,14 +25,15 @@ Common Arrow is a basic missile weapon that can be used with bows. It is made of
   * Found in treasure rooms such as Treasury (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelsDesc/Treasury.json#L25|Treasury.json:L25]])
 
 ==== Code References ====
-  * **Java Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CommonArrow.java|CommonArrow.java]]
-  * **Inheritance**: Extends Arrow class (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/CommonArrow.java#L6|CommonArrow.java:L6]])
-  * **Item Registration**: Registered in ItemFactory (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L350|ItemFactory.java:L350]])
+  * **Lua Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/CommonArrow.lua|CommonArrow.lua]] - Arrow kind definition (base stats, image, price)
+  * **Java Base Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/missiles/Arrow.java|Arrow.java]] - Base arrow class with bow coupling logic
+  * **Item Registration**: Registered in ItemFactory as Arrow kind (source: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L252|ItemFactory.java:L252]])
+  * **Note**: Formerly implemented as separate Java class CommonArrow.java (removed during migration to Lua/JSON data-driven items)
 
 ==== String Resources ====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L853|CommonArrow_Name]]: "arrow"
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L854|CommonArrow_Info]]: "Common wooden arrow with an iron head."
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L855|CommonArrow_Gender]]: "feminine"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L603|CommonArrow_Name]]: "arrow"
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L604|CommonArrow_Info]]: "Common wooden arrow with an iron head."
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml#L605|CommonArrow_Gender]]: "feminine"
 
 ==== See Also ====
   * [[en:rpd:items|All Items]]
