@@ -14,11 +14,11 @@ Este anel é esculpido em gelo mágico. Seu portador é protegido por uma aura g
   * **Custo de Melhoria:** Aumenta com o nível
 
 ==== Efeitos ====
-Quando usado e ativado, o anel ativa os seguintes efeitos quando um inimigo ataca você:
-  * **Efeito de Desaceleração:** Aplica o efeito de Desaceleração por (Slow.duration(enemy) / 5 + nível do anel) turnos
-  * **Chance de Geada:** Tem (10% + nível do anel)% de chance de aplicar o efeito de Geada por (Frost.duration(enemy) / 5 + nível do anel) turnos
+Quando usado e ativado, o anel ativa os seguintes efeitos quando um inimigo o ataca:
+  * **Efeito de Desaceleração:** Aplica o efeito de Desaceleração por (fator de duração do inimigo × 2 + nível do anel) turnos
+  * **Chance de Geada:** Tem (10% + nível do anel)% de chance de aplicar o efeito de Geada por (fator de duração do inimigo × 1 + nível do anel) turnos
   * **Dano:** Causa (nível do anel / 2) de dano ao inimigo atacante
-  * **Alcance:** Só funciona quando o inimigo está a menos de 1 tile de distância do portador
+  * **Alcance:** Só funciona quando o inimigo está a menos de 1 tile de distância do portador (adjacente)
 
 ==== Aquisição ====
   * Encontrado em vários baús nos níveis da dungeon
@@ -35,17 +35,16 @@ Quando usado e ativado, o anel ativa os seguintes efeitos quando um inimigo atac
 O Anel Congelado é altamente benéfico para personagens que enfrentam inimigos diretamente. Ele fornece uma defesa passiva que transforma a agressão inimiga contra eles mesmos, tornando-o especialmente valioso no meio e final do jogo quando os inimigos são mais fortes e perigosos.
 
 ==== Referências de Código ====
-  * Implementação do item: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java|RingOfFrost.java]]
-  * Registro na fábrica de itens: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L424|ItemFactory.java#L424]]
+  * Implementação do item (Lua): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RingOfFrost.lua|RingOfFrost.lua]]
+  * Registro na fábrica de itens: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java#L340|ItemFactory.java#L340]]
   * Registro na fábrica de buffs: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L167|BuffFactory.java#L167]]
-  * Recursos de string: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L1474-L1475|strings_all.xml#L1474-L1475]]
-  * Implementação de buffs: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java|Slow.java]] e [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java|Frost.java]]
-  * Constantes do jogo: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Slow.java#L23|Slow.DURATION]], [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Frost.java#L20|Frost.DURATION]]
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L26-L44|método FrostAura.defenceProc()]] - Implementação principal do efeito do anel quando atacado
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L32|verificação de distância]] - Apenas afeta inemigos em 2 tiles (adjacentes)
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L35|aplicação de desaceleração]] - Aplicando efeito de desaceleração
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L37-L39|aplicação de geada]] - Chance aleatória de aplicar geada
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/rings/RingOfFrost.java#L40|aplicação de dano]] - Dano baseado no nível do anel
+  * Recursos de string (PT-BR): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-pt-rBR/strings_all.xml#L1830-L1831|strings_all.xml#L1830-L1831]]
+  * Implementação de buffs (Lua): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Slow.lua|Slow.lua]] e [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Frost.lua|Frost.lua]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RingOfFrost.lua#L24-L36|método defenceProc()]] - Implementação principal do efeito do anel quando atacado
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RingOfFrost.lua#L26|verificação de distância]] - Apenas afeta inimigos adjacentes (distância < 2)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RingOfFrost.lua#L28|aplicação de desaceleração]] - Aplicando efeito de desaceleração
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RingOfFrost.lua#L29-L31|aplicação de geada]] - Chance aleatória de aplicar geada
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/RingOfFrost.lua#L32|aplicação de dano]] - Dano baseado no nível do anel
 
 ==== Veja Também ====
   * [[en:rpd:keyring_item|Keyring]] - Requerido para carregar vários anéis

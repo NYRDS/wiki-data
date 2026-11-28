@@ -1,49 +1,47 @@
 ====== One Way Cursed Love Buff (Machine-Readable Reference) ======
 
-{{ rpd:images:one_way_cursed_love_buff.png|One Way Cursed Love Buff }}
-
 ==== Entity Identification ====
   * **Entity Kind**: OneWayCursedLoveBuff
   * **Entity Type**: Buff (Status Effect)
-  * **Java Class**: `com.watabou.pixeldungeon.items.quest.DriedRose.OneWayCursedLoveBuff`
-  * **Package**: `com.watabou.pixeldungeon.items.quest`
-  * **Inheritance**: `OneWayCursedLoveBuff` → `ArtifactBuff` → `Buff`
-  * **Parent Artifact**: `DriedRose` (quest item)
+  * **Lua Script**: `scripts/buffs/OneWayCursedLoveBuff.lua`
+  * **Package**: `scripts.buffs`
+  * **Parent Artifact**: `DriedRose` (quest item, implemented in `scripts/items/DriedRose.lua`)
+  * **Base Buff Class**: `ArtifactBuff` (via `attachArtifactBuff` mechanism)
 
 ==== Core Properties ====
   * **Buff Type**: Negative/Debuff (cursed variant)
-  * **Icon**: `BuffIndicator.CURSED_ROSE`
+  * **Icon**: `BuffIndicator.CURSED_ROSE` (icon 31)
   * **Source**: Cursed Dried Rose artifact
   * **Duration**: Permanent while cursed Dried Rose is equipped
   * **Removable**: Only by removing curse from Dried Rose or unequipping
 
 ==== Mechanics ====
   * **Effect**: One-way charm - causes NPCs to interact differently with player
-  * **Charm Resistance**: In `Charm.java` resistance calculation:
+  * **Charm Resistance**: In `CharUtils.charmDurationFactor` (Java) and `Charm.lua` (Lua):
     * If target has `OneWayLoveBuff`: charm power = 0 (immune to charm)
     * If target has `OneWayCursedLoveBuff`: charm power = 2 (enhanced charm effect)
   * **Quest Related**: Part of Ghost NPC questline
-  * **Artifact Buff**: Extends `ArtifactBuff` base class
+  * **Artifact Buff**: Attached via `RPD.ItemUtils:attachArtifactBuff` when cursed Dried Rose is equipped
 
 ==== Code References ====
-  * **Main Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DriedRose.java#L52-L64|DriedRose.java#L52-L64]]
-  * **Parent Artifact**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/quest/DriedRose.java|DriedRose.java]]
-  * **Base Class**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/rings/ArtifactBuff.java|ArtifactBuff.java]]
-  * **Charm Interaction**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charm.java#L55|Charm.java#L55]]
-  * **Buff Indicator**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java#L37|BuffIndicator.java#L37]]
+  * **Lua Buff Implementation**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/OneWayCursedLoveBuff.lua|OneWayCursedLoveBuff.lua]]
+  * **Parent Item (Lua)**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/DriedRose.lua|DriedRose.lua]]
+  * **Charm Duration Factor (Java)**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java#L361|CharUtils.java#L361]]
+  * **Charm Interaction (Lua)**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Charm.lua#L17|Charm.lua#L17]]
   * **Buff Factory**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java#L164|BuffFactory.java#L164]]
+  * **Buff Indicator**: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java#L37|BuffIndicator.java#L37]]
 
 ==== String Resources ====
   * **English Name**: `DriedRoseCursedBuff_Name` = "Amorous"
   * **English Info**: `DriedRoseCursedBuff_Info` = "The rose looks beautiful but not very charming."
-  * **Russian Name**: `DriedRoseCursedBuff_Name` = "Влюблённый"
-  * **Russian Info**: `DriedRoseCursedBuff_Info` = "Роза выглядит красиво, но не очень очаровательно."
+  * **Russian Name**: `DriedRoseCursedBuff_Name` = "Влюбчивый"
+  * **Russian Info**: `DriedRoseCursedBuff_Info` = "Эта роза не так красива, но глядя на неё возникает чувство влюблености!"
 
 ==== JSON Configuration ====
-This entity is implemented as a nested Java class, no JSON configuration exists.
+This entity is implemented as a Lua buff, no JSON configuration exists
 
 ==== Lua Scripts ====
-This entity is implemented in Java, no Lua script exists.
+This entity is implemented in Lua (see Code References above)
 
 ==== Related Entities ====
   * **Uncursed Version**: [[mr:one_way_love_buff|One Way Love Buff]]

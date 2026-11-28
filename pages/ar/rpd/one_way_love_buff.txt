@@ -1,0 +1,35 @@
+====== حب من طرف واحد ======
+
+{{ rpd:images:one_way_cursed_love_buff_buff.png|حب من طرف واحد }}
+
+**حب من طرف واحد** هو تأثير حالة (باف) يتم تطبيقه بواسطة [[ar:rpd:dried_rose_item|الوردة المجففة]] عندما **ليست ملعونة**.
+
+==== التأثيرات ====
+  * **ساحر** - تبدو الوردة ساحرة جداً
+  * يجعل المستخدم في حالة سحر من طرف واحد
+  * **مناعة ضد السحر**: بينما هذا الباف نشط، يصبح الهدف محصناً ضد تأثير [[ar:rpd:charm_buff|السحر]] (عامل مدة السحر = 0)
+
+==== ملاحظات ====
+  * ينطبق هذا التأثير عندما تكون [[ar:rpd:dried_rose_item|الوردة المجففة]] **غير ملعونة**
+  * التأثير جزء من [[ar:rpd:ghost_npc|سلسلة مهمة الشبح]]
+  * يؤثر على كيفية تفاعل الشخصيات غير القابلة للعب مع اللاعب
+  * يستخدم أيقونة الوردة (ROSE) في مؤشر البافات
+  * تم نقل التطبيق من صناديق جافا المدمجة إلى سكريبتات لوا (`scripts/buffs/OneWayLoveBuff.lua`)
+
+==== ذات صلة ====
+  * [[ar:rpd:dried_rose_item|وردة مجففة]] - العنصر الذي يطبق هذا التأثير عندما يكون غير ملعون
+  * [[ar:rpd:one_way_cursed_love_buff|حب من طرف واحد (ملعون)]] - النسخة الملعونة من هذا التأثير
+  * [[ar:rpd:charm_buff|سحر]] - ميكانيكيات السحر ذات الصلة
+  * [[ar:rpd:ghost_npc|شخصية الشبح]] - الشخصية المرتبطة بسلسلة المهمة التي تستخدم هذا العنصر
+  * [[ar:rpd:status_effects|تأثيرات الحالة]] - معلومات عامة عن تأثيرات الحالة
+
+==== مراجع التنفيذ ====
+  * سكريبت الباف (لوا): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/OneWayLoveBuff.lua|OneWayLoveBuff.lua]]
+  * العنصر الوردة المجففة (لوا): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/items/DriedRose.lua#L24-L29|DriedRose.lua#L24-L29]] - يعلق هذا الباف عند تجهيز الوردة غير الملعونة
+  * فحص السحر (لوا): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/buffs/Charm.lua#L17|Charm.lua#L17]] - يمنع السحر إذا كان الهدف لديه هذا الباف
+  * عامل مدة السحر (جافا): [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/CharUtils.java#L358|CharUtils.java#L358]] - يعيد 0f (مناعة)
+  * مصفوفة البافات: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/mechanics/buffs/BuffFactory.java|BuffFactory.java]]
+  * مؤشر البافات: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/ui/BuffIndicator.java|BuffIndicator.java]] - أيقونة ROSE
+  * موارد النصوص العربية: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ar/strings_all.xml#L355|DriedRoseBuff_Info]]
+
+{{tag> rpd buffs status_effects }}

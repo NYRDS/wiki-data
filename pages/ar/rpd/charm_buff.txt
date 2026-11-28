@@ -1,0 +1,74 @@
+====== باف السحر ======
+
+{{ rpd:images:buff_charm.png|أيقونة باف السحر }}
+
+**السحر** هو تأثير حالة في Remixed Dungeon يحول العدو مؤقتاً إلى حليف.
+
+==== الوصف ====
+عندما يتأثر مخلوق بتأثير حالة السحر، يصبح مؤقتاً حليفاً للبطل وسيحارب مخلوقات معادية أخرى بدلاً من مهاجمة البطل. ينتهي التأثير بعد مدة تحدد حسب مستوى المُلقي.
+
+==== التأثيرات ====
+  * **تحويل الحليف:** الأعداء المسحورون يصبحون حلفاء مؤقتين
+  * **المدة:** تُحسب كـ sqrt(مستوى مهارة المُلقي * مستوى المُلقي) + 5 أدوار
+  * **سلوك القتال:** الأعداء المسحورون سيهاجمون مخلوقات معادية أخرى
+  * **الاستهداف:** لن يهاجموا البطل الذي ألقى السحر
+
+==== التطبيق ====
+يمكن تطبيق تأثير السحر من خلال:
+  * [[en:rpd:charm_spell|سحر السحر]] (الإنجليزية)
+  * [[en:rpd:succubus_mob|سوكوبوس]] (الإنجليزية) - هجوم خاص يطبق السحر لـ 2-5 أدوار
+  * [[en:rpd:glyph_of_affection_item|نقش المودة]] (الإنجليزية) - نقش درع يطبق السحر على المهاجمين
+  * [[en:rpd:sungrass_level_object|سنجراس]] (الإنجليزية) - نبات يطبق السحر لـ 10-15 دوراً
+  * [[en:rpd:moongrace_level_object|مونجراس]] (الإنجليزية) - نبات يطبق السحر لـ 10-15 دوراً
+  * تأثيرات لعنة [[ar:rpd:dried_rose_item|الوردة المجففة]]
+
+==== استراتيجية ====
+  * استخدم لتحويل أعداء أقوياء ضد بعضهم البعض
+  * فعال بشكل خاص في مجموعات الأعداء حيث سيهاجم الأعداء المسحورون غيرهم
+  * اعتبر تموضع الأعداء المسحورين لأنهم قد يسدون الممرات
+  * التوقيت مهم لأن المدة تعتمد على مستوى البطل
+  * احذر أن الأعداء المسحورين لا يسدون طرق هروبك
+
+==== ميكانيكيات ====
+  * الأعداء المسحورون يُهدأون (يصبحون سلبيين ولا يهاجمون)
+  * ينتهي التأثير تلقائياً عند انتهاء المدة
+  * المخلوقات المسحورة لديها تأثير قلب حولها
+  * **تهدئة:** الشخصيات المسحورة غير قادرة على الدخول في قتال
+  * **مناعة:** بعض الأعداء (مثل YogsEye) محصنون ضد تأثيرات السحر
+  * **تفاعلات خاصة:** الشخصيات المتأثرة بـ [[ar:rpd:one_way_love_buff|حب من طرف واحد]] محصنة ضد السحر
+  * بعض المخلوقات (مثل أعضاء يوغ) والأموات محصنة ضد السحر
+
+==== مضادات ====
+  * ينتهي تأثير السحر عند انتهاء المدة
+  * السحر لا يتراكم مع تأثيرات حالة متعارضة أخرى مثل الأموك
+  * بعض المخلوقات قد تكون محصنة ضد تأثيرات السحر (الأموات، أعضاء يوغ، إلخ)
+
+==== مصادر السحر ====
+  * **سوكوبوس:** تستخدم هجوم السحر على الأعداء
+  * **نقش المودة:** نقش درع يطبق السحر على المهاجمين
+  * **سحر السحر:** سحر قابل للإلقاء من اللاعب يطبق السحر على الهدف
+  * **سنجراس ومونجراس:** نباتات يمكنها أن تسحر الشخصيات عند استهلاكها
+  * **ملكة العناكب:** تسقط تعويذة العنكبوت التي يمكنها أن تسحر
+  * **سحر المودة:** سحر سلاح يسبب السحر عند الضرب
+
+==== متأثرون بالسحر ====
+  * معظم الأعداء يمكن أن يُسحروا
+  * بعض الأعداء مثل YogsEye و EnslavedSoul وغيرهم لديهم مناعة ضد السحر
+  * الأعداء المسحورون لن يهاجموا مصدر السحر
+
+==== مراجع الكود ====
+  * **تنفيذ جافا:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/buffs/Charm.java|Charm.java]]
+  * **سوكوبوس:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/mobs/Succubus.java|Succubus.java]] - تستخدم السحر في الهجوم
+  * **نقش المودة:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/glyphs/Affection.java|Affection.java]]
+  * **سحر السحر (لوا):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/spells/Charm.lua|Charm.lua]]
+  * **تأثيرات النباتات:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Sungrass.java|Sungrass.java]]، [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/plants/Moongrace.java|Moongrace.java]]
+  * **موارد النصوص العربية:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ar/strings_all.xml#L272|CharmBuff_Name = "مسحور"]]
+
+==== ذات صلة ====
+  * [[en:rpd:spells_overview|الأحراف]] (الإنجليزية)
+  * [[en:rpd:charm_spell|سحر السحر]] (الإنجليزية)
+  * [[en:rpd:buffs|البافات]] (الإنجليزية)
+  * [[en:rpd:succubus_mob|سوكوبوس]] (الإنجليزية)
+  * [[en:rpd:glyph_of_affection_item|نقش المودة]] (الإنجليزية)
+
+{{tag> rpd buffs status_effect charm }}
