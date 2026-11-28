@@ -1,49 +1,29 @@
 ====== Scout Armor Item - Code References ======
 
 **Entity Kind**: `ScoutArmor`
-
 **Entity Type**: Item (Armor)
 
-**Description**: Scout Armor is a subclass-specific armor item for the Scout subclass (Elf class mastery path). It extends ElfArmor and can only be equipped by heroes with the Scout subclass.
+**Description**: Scout Armor is a subclass-specific armor item for the Scout subclass (Elf class mastery path). It is a ClassArmor data kind defined in Lua, not a separate Java class. It can only be equipped by heroes with the Scout subclass.
 
 ===== Java Classes =====
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ScoutArmor.java|ScoutArmor.java]] - Main armor class implementation
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ElfArmor.java|ElfArmor.java]] - Parent armor class
-  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass definition (SCOUT enum)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/armor/ClassArmor.java|ClassArmor.java]] - Base class for class-specific armors
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/items/common/ItemFactory.java|ItemFactory.java]] - Registers ScoutArmor as a ClassArmor kind (Line 293)
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/hero/HeroSubClass.java|HeroSubClass.java]] - Subclass definition (SCOUT enum, Line 45)
 
 **Key Implementation Details**:
 <code java>
-public class ScoutArmor extends ElfArmor {
-    public ScoutArmor() {
-        name = StringsManager.getVar(R.string.ElfArmor_Name);
-        image = 18;
-        hasHelmet = false;
-    }
+// From ItemFactory.java
+registerItemKind("ScoutArmor", ClassArmor::new);
 
-    @Override
-    public boolean doEquip(@NotNull Char hero) {
-        if (hero.getSubClass() == HeroSubClass.SCOUT) {
-            return super.doEquip(hero);
-        } else {
-            GLog.w(StringsManager.getVar(R.string.ElfArmor_NotElf));
-            return false;
-        }
-    }
-}
+// From HeroSubClass.java
+SCOUT(R.string.HeroSubClass_NameScout, R.string.HeroSubClass_DescScout, "ScoutArmor"),
 </code>
 
 ===== JSON Configuration =====
-This armor is not defined in JSON configuration. It is a hardcoded Java item class that is automatically registered through the ItemFactory system.
-
-**Registration in ItemFactory**:
-<code java>
-// From ItemFactory.java
-import com.watabou.pixeldungeon.items.armor.ScoutArmor;
-registerItemClass(ScoutArmor.class);
-</code>
+This armor is not defined in JSON configuration. It is a ClassArmor data kind registered in ItemFactory.
 
 ===== String Resources =====
-ScoutArmor uses the parent class (ElfArmor) string resources:
+ScoutArmor uses the ElfArmor string resources (parent visual type):
 
 **English** (`values/strings_all.xml`):
 <code xml>
@@ -57,11 +37,12 @@ ScoutArmor uses the parent class (ElfArmor) string resources:
 <string name="ElfArmor_NotElf">Только эльфы могут использовать эту броню!</string>
 </code>
 
-**Note**: The ScoutArmor item shares string resources with ElfArmor. The in-game name is "Elven mantle" in English and "эльфийская мантия" in Russian, not "Scout Armor" as the class name might suggest.
+**Note**: The ScoutArmor item shares string resources with ElfArmor. The in-game name is "Elven mantle" in English and "эльфийская мантия" in Russian, not "Scout Armor" as the entity kind might suggest.
 
 ===== Lua Scripts =====
-This entity is implemented entirely in Java, no Lua script exists.
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/items/ScoutArmor.lua|ScoutArmor.lua]] - ClassArmor data kind definition (tier=6, image=18, special=ElfArmor_ACSpecial, gateClass=SCOUT, elfSpecial=true)
 
 ===== Related mr Entities =====
-  * [[mr:elf_armor_item|Elf Armor Item]] - Parent armor class
+  * [[mr:elf_armor_item|Elf Armor Item]] - Visual parent armor type
   * [[mr:scout_subclass|Scout Subclass]] - Required subclass to equip
+  * [[mr:gladiator_armor_item|Gladiator Armor]] - Another ClassArmor example
