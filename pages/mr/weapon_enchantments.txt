@@ -1,3 +1,62 @@
-====== Weapon Enchantments ======
+====== Weapon Enchantments - Code References ======
 
-{{redirect> mr:rpd/death_enchantment}}
+{{ rpd:images:enchantment.png|Weapon Enchantments}}
+
+===== Overview =====
+Weapon enchantments are special magical properties that can be added to weapons via [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfEnchantment.java|ScrollOfEnchantment.java]]. Each enchantment is implemented as a Lua script in `scripts/enchants/` and extends the base [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.Enchantment]] class (Java).
+
+===== Enchantment Entity Kinds =====
+  * Death
+  * Fire
+  * Horror
+  * Instability
+  * Leech
+  * Luck
+  * Paralysis
+  * Piercing
+  * Poison
+  * Slow
+  * Swing
+
+===== Java Base Class =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java|Weapon.Enchantment]] - Abstract base class for all enchantments
+  * Package: com.watabou.pixeldungeon.items.weapon
+  * Key methods: proc(), glowing effect, entity kind system
+
+===== Enchantment Application =====
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/weapon/Weapon.java#L150-L180|Enchantment application in Weapon class]]
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfEnchantment.java|ScrollOfEnchantment.java]] - Primary method to add enchantments
+  * [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfUpgrade.java|ScrollOfUpgrade.java]] - May improve existing enchantment
+
+===== Individual Enchantment mr: Pages =====
+  * [[mr:death_enchantment|Death Enchantment]] - Instant kill chance on low-health enemies
+  * [[mr:fire_enchantment|Fire Enchantment]] - Burning damage over time
+  * [[mr:horror_enchantment|Horror Enchantment]] - Causes enemies to flee
+  * [[mr:instability_enchantment|Instability Enchantment]] - Randomly applies various effects
+  * [[mr:leech_enchantment|Leech Enchantment]] - Absorbs health from enemies
+  * [[mr:luck_enchantment|Luck Enchantment]] - Increases damage consistency
+  * [[mr:paralysis_enchantment|Paralysis Enchantment]] - Temporarily paralyzes enemies
+  * [[mr:piercing_enchantment|Piercing Enchantment]] - Attacks pass through enemies
+  * [[mr:poison_enchantment|Poison Enchantment]] - Poisons the target
+  * [[mr:slow_enchantment|Slow Enchantment]] - Reduces enemy speed
+  * [[mr:swing_enchantment|Swing Enchantment]] - Area damage around target
+
+===== String Resources =====
+<code xml>
+<string-array name="Enchantment_Name">
+  <item>@string/Enchantment_Name_0</item>
+  <item>@string/Enchantment_Name_1</item>
+  <item>@string/Enchantment_Name_2</item>
+</string-array>
+<string name="Enchantment_Name_0">%s of %s</string>
+<string name="Enchantment_Name_1">%s of %s</string>
+<string name="Enchantment_Name_2">%s of %s</string>
+</code>
+
+===== Related mr Entities =====
+  * [[mr:sword_item|Sword Item]] - Weapons that can have enchantments
+  * [[mr:scroll_of_enchantment_item|Scroll of Enchantment]] - Applies enchantments
+  * [[mr:scroll_of_upgrade_item|Scroll of Upgrade]] - Improves enchantments
+  * [[mr:weapon_item|Weapon Item]] - Base weapon class
+
+{{tag> mr items weapons enchantments }}
