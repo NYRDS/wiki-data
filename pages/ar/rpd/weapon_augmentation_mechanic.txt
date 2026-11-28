@@ -1,0 +1,50 @@
+====== تعزيز الأسلحة ======
+
+{{ rpd:images:scroll_of_weapon_upgrade_item.png|تعزيز/ترقية الأسلحة }}
+
+يشير **تعزيز الأسلحة** في Remixed Dungeon إلى ميكانيكية **إعادة التشكيل (Reforging)** التي يقدمها شخصية المهمة [[ar:rpd:blacksmith_npc|الحداد الترول]]. لا يوجد نظام "تعزيز" فرعي يضيف خصائص مثل "دقيق" (Precise) أو "سريع" (Swift) أو "ثقيل" (Heavy) أو "خفيف" (Light)؛ فالتعديل الوحيد للأسلحة في اللعبة بخلاف الترقية هو خدمة إعادة التشكيل التي يقدمها الحداد.
+
+==== ميكانيكية إعادة التشكيل ====
+تجمع عملية إعادة تشكيل الحداد بين عنصرين من نفس النوع (نفس `entityKind`) في عنصر واحد مستواه أعلى بمستوى واحد من أعلى مستوى بين العنصرين.
+
+  * **نوع العنصر:** يجب أن يكون العنصران من نفس نوع الكيان (مثلاً سيفي Short Sword، أو درعين Leather Armor).
+  * **التعرف:** يجب أن يكون العنصران معروفين (identified).
+  * **الحالة الملعونة:** لا يجوز أن يكون أي من العنصرين ملعوناً.
+  * **المستويات السالبة:** لا يجوز أن يكون لأي من العنصرين مستوى ترقية سالب (`level() < 0`).
+  * **قابلية الترقية:** يجب أن يكون العنصران قابلين للترقية (`isUpgradable() == true`).
+
+عند إجراء إعادة التشكيل:
+  * يتم ترقية العنصر ذو المستوى الأعلى بمقدار 1.
+  * يتم استهلاك العنصر الآخر.
+  * ينفق البطل دورين (`Dungeon.hero.spendAndNext(2f)`).
+  * يتم تشغيل صوت `SND_EVOKE`.
+  * يتم تشغيل فحص شارة `Badges.validateItemLevelAcquired`.
+
+==== الفروقات عن الترقية ====
+  * الترقية العادية (عبر [[ar:rpd:scroll_of_upgrade_item|ورقة الترقية]] أو [[ar:rpd:scroll_of_weapon_upgrade_item|ورقة ترقية الأسلحة]]) ترفع مستوى عنصر واحد بمقدار 1.
+  * إعادة تشكيل الحداد تستهلك العنصر الثاني بينما ترفع الأول بمقدار 1 — التأثير الصافي على عنصر واحد مطابق لترقية واحدة، لكن العنصر الثاني يُدمّر.
+  * بالنسبة للأسلحة، ورقة ترقية الأسلحة هي مسار الترقية الذي قد يضيف أو يحافظ على السحر؛ إعادة تشكيل الحداد لا تغير السحر على العنصر المتبقي.
+
+==== الحصول على خدمة الحداد ====
+يظهر الحداد الترول في مستويات الزنزانة الأعمق من 11 (يتحكم به `Dungeon.depth > 11` في كود الظهور). للمهمة مساران بديلان:
+
+  * **مسار الذهب:** احصل على 15 قطعة من خام الذهب الداكن وأحضرها مع المعول الذي يوفره الحداد.
+  * **مسار الدم:** استخدم المعول الذي يوفره الحداد لقتل خفاش، ثم أعد المعول الملطخ بالدماء.
+
+بعد إكمال المهمة، سيفتح الحداد نافذة إعادة التشكيل. بمجرد إجراء إعادة تشكيل، سيقول الحداد فقط "أنا مشغول. اخرج!" حتى تتم إعادة تعيين الزنزانة.
+
+==== كود المصدر ====
+  * نص Lua للحداد: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/scripts/npc/Blacksmith.lua|Blacksmith.lua]] — حالة المهمة ومنطق إعادة التشكيل (يحل محل Blacksmith.java و WndBlacksmith.java السابقين)
+  * أساس ترقية العناصر: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/Item.java|Item.java]] — `level()`، `upgrade()`، `isUpgradable()`
+  * ورقة ترقية الأسلحة: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/items/scrolls/ScrollOfWeaponUpgrade.java|ScrollOfWeaponUpgrade.java]] — مسار الترقية الذي يحافظ على السحر
+  * صورة متحركة: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/spritesDesc/Blacksmith.json|Blacksmith.json]] — تعريف الصورة المتحركة
+  * موارد النصوص: [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] — إدخالات `Blacksmith_*` و `WndBlacksmith_*`
+
+==== انظر أيضاً ====
+  * [[ar:rpd:blacksmith_npc|الحداد الترول]] — شخصية NPC التي تقوم بإعادة التشكيل
+  * [[ar:rpd:weapon_upgrades_mechanic|ترقيات الأسلحة]] — ميكانيكية ترقية الأسلحة العامة
+  * [[ar:rpd:scroll_of_weapon_upgrade_item|ورقة ترقية الأسلحة]] — ورقة ترقية عنصر واحد
+  * [[ar:rpd:weapons|الأسلحة]] — جميع الأسلحة
+  * [[ar:rpd:items|العناصر]] — جميع أنواع العناصر
+
+{{tag> rpd items weapons augmentation reforge blacksmith}}

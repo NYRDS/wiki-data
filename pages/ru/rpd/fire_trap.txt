@@ -2,11 +2,61 @@
 
 {{ rpd:images:fire_trap_level_object.png|Огненная Ловушка }}
 
+**Огненная Ловушка** (Fire Trap) — ловушка в Remixed Dungeon, которая воспламеняется при срабатывании, нанося урон персонажам и поджигая окружающую область.
+
 ==== Описание ====
-**Огненная Ловушка** (Fire Trap) — ловушка, создающая огонь при активации.
+Огненные ловушки — скрытые опасности, размещённые на уровнях подземелья. Когда персонаж наступает на огненную ловушку, она срабатывает и создаёт вспышку пламени, наносящую урон сработавшему персонажу и потенциально поджигающую окружающий ландшафт.
 
-==== Эффект ====
-  * Создаёт горящее пламя в клетке
-  * Наносит урон по времени
+==== Механика ====
+  * **Срабатывание:** Активируется, когда любой персонаж (герой или моб) наступает на ловушку
+  * **Урон:** Наносит прямой огненный урон сработавшему персонажу
+  * **Эффект области:** Может поджигать соседние клетки, создавая постоянные огненные опасности
+  * **Видимость:** Скрыта до срабатывания, если не обнаружена определёнными способностями
+  * **Иммунитет к огню:** Персонажи, имеющие иммунитет к огненному урону, не получают урон от огненных ловушек
 
-{{tag> rpd traps level_objects}}
+==== Статистика ====
+  * **Урон:** Создаёт пламя (Fire blob) с 2 единицами урона (по методу FireTrap.trigger())
+  * **Радиус:** Затрагивает клетку срабатывания и соседние клетки
+  * **Длительность огня:** На соседних клетках огонь может сохраняться несколько ходов
+
+==== Стратегия ====
+  * **Обнаружение:** Используйте способности или предметы для обнаружения скрытых ловушек
+  * **Избегание:** Будьте осторожны в подозрительных областях или используйте перемещение, безопасное от ловушек
+  * **Иммунитет:** Персонажи, устойчивые или иммунные к огню, могут безопасно срабатывать огненные ловушки
+  * **Тактическое использование:** Можно использовать для нанесения урона врагам или создания огненных барьеров
+  * **Снаряжение:** Некоторые предметы и способности дают обнаружение ловушек или иммунитет
+
+==== Расположение ====
+  * Встречается на различных уровнях подземелья
+  * Чаще встречается на более глубоких уровнях
+  * Часто размещаются в стратегических местах для затруднения движения
+  * Часть стандартных паттернов генерации уровней
+
+==== Противодействие ====
+  * Устойчивость или иммунитет к огню нейтрализует урон
+  * Способности обнаружения ловушек могут раскрыть скрытые огненные ловушки
+  * Кольца ходьбы по камню могут помочь избежать срабатывания ловушек
+  * Осторожное перемещение в неизвестных областях
+
+Согласно строковым ресурсам игры: «Огненная ловушка воспламеняется при срабатывании, нанося урон всему, что попадает в пламя.»
+
+==== Ссылки на исходный код ====
+  * **Java-реализация:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/traps/FireTrap.java|FireTrap.java]]
+  * **Базовый класс Trap:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/Trap.java|Trap.java]]
+  * **Система ловушек:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/Level.java|Level.java]] (логика размещения ловушек)
+  * **Конфигурация:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/assets/levelObjects/FireTrap.json|FireTrap.json]] (конфигурация ловушки)
+  * **Русские строковые ресурсы:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values-ru/strings_all.xml#L2925-L2927|FireTrap_Name, FireTrap_Desc, FireTrap_DescNoText]]
+  * **Реализация эффекта огня:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/actors/blobs/Fire.java|Fire.java]] (механика огненного урона)
+  * **Метод срабатывания FireTrap:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/levels/traps/FireTrap.java#L18-L22|FireTrap.trigger()]] (конкретная реализация, создающая пламя с уроном 2)
+  * **Эффекты частиц пламени:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/effects/particles/FlameParticle.java|FlameParticle.java]] (визуальные эффекты)
+  * **Интеграция с GameScene:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/watabou/pixeldungeon/scenes/GameScene.java#L120-L125|GameScene.add()]] (добавление пламени на сцену)
+  * **Интерфейс срабатывания ловушки:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/java/com/nyrds/pixeldungeon/levels/objects/ITrigger.java|ITrigger.java]] (интерфейс, реализуемый FireTrap)
+
+==== См. также ====
+  * [[ru:rpd:traps|Ловушки]] — Общая информация о ловушках
+  * [[ru:rpd:fire_mechanic|Эффекты огня]] — Информация о механике огненного урона
+  * [[ru:rpd:potion_of_liquid_flame_item|Зелье жидкого пламени]] — Похожие огненные механики
+  * [[ru:rpd:wand_of_firebolt_item|Жезл огненной стрелы]] — Огненная атакующая палочка
+  * [[ru:rpd:level_objects|Объекты уровня]] — Другие объекты на уровнях подземелья
+
+{{tag> rpd traps fire mechanics }}
