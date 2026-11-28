@@ -1,0 +1,52 @@
+====== Daga Gancho ======
+{{ rpd:images:hooked_dagger_item.png|Daga Gancho }}
+
+**Daga Gancho** es un arma cuerpo a cuerpo con script Lua en Remixed Dungeon. Es un arma tipo daga que causa sangrado al golpear.
+
+==== Descripción ====
+La Daga Gancho es una daga especializada con una hoja ganchuda diseñada para desgarrar carne. Cuando golpea a un enemigo, aplica un efecto de sangrado que inflige daño con el tiempo.
+
+==== Estadísticas ====
+  * **Tipo:** Arma Cuerpo a Cuerpo (Daga)
+  * **Slot:** Slot de arma
+  * **Imagen:** Índice 3 del sprite sheet `items/daggers.png`
+  * **Precio:** 17 de oro
+  * **FUE Requerida:** 9
+  * **Factor de Retraso de Ataque:** 1.0
+  * **Factor de Precisión:** 1.0
+  * **Daño:** Nivel a Nivel×2 (escala con el nivel del objeto)
+
+==== Mecánicas ====
+  * **Proc de Sangrado:** En golpe exitoso, aplica el buff [[es:rpd:bleeding_buff|Sangrado]] al objetivo por 3 turnos
+  * **Escala de Nivel:** El daño escala con el nivel del objeto (1-2 de daño por nivel)
+  * **Interacción con Empuñadura Dual:** Se equipa en el slot de arma principal, bloquea el slot de mano izquierda
+  * **Nombre Visual:** Se muestra como "Varita" (puede ser un placeholder)
+  * **Animación de Ataque:** Usa clase de animación de bastón
+
+==== Obtención ====
+  * Disponible a través de generación estándar de objetos (tiendas, botín, etc.)
+  * Puede encontrarse en la masmorra como botín aleatorio
+
+==== Consejos de Uso ====
+  * Excelente para aplicar daño consistente con el tiempo a través de sangrado
+  * El efecto de sangrado se acumula con múltiples golpes
+  * Bajo requisito de FUE (9) la hace accesible para la mayoría de builds
+  * La escala de daño la hace viable hasta el medio juego
+
+==== Estrategia ====
+La Daga Gancho brilla en combates prolongados donde el daño de sangrado se acumula. Su bajo requisito de fuerza la hace un buen arma de inicio para personajes que no han invertido mucho en fuerza. El proc de sangrado es particularmente efectivo contra enemigos con altos PV donde el daño-con-el-tiempo representa una porción significativa de su reserva de vida.
+
+==== Referencias de Código ====
+  * **Script Lua:** [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/items/HookedDagger.lua|HookedDagger.lua]]
+  * **Librería Lua (Clases Comunes):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/lib/commonClasses.lua|commonClasses.lua]]
+  * **Librería Lua (Base de Objetos):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/scripts/lib/item.lua|item.lua]]
+  * **Recursos de Strings (Inglés):** [[https://github.com/NYRDS/remixed-dungeon/blob/master/RemixedDungeon/src/main/res/values/strings_all.xml|strings_all.xml]] (HookedDagger_Name, HookedDagger_Info)
+  * **Datos legibles por máquina:** [[mr:hooked_dagger_item|Daga Gancho - Referencias de Código]]
+
+==== Ver También ====
+  * [[es:rpd:bleeding_buff|Sangrado]] - Efecto de estado aplicado por esta arma
+  * [[es:rpd:dagger_item|Daga]] - Arma base tipo daga
+  * [[es:rpd:melee_weapons|Armas Cuerpo a Cuerpo]] - Todas las armas de combate cercano
+  * [[es:rpd:weapon_item|Armas]] - Todos los tipos de armas
+
+{{tag> rpd items arma daga cuerpo_a_cuerpo lua_scripted sangrado }}
